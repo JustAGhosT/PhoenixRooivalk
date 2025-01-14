@@ -1,7 +1,5 @@
 ## **Technical Overview**
 
----
-
 > **To Do**: Add diagrams to visually represent the following:
 >
 > - System Architecture: Show how detection, identification, and neutralization modules interconnect.
