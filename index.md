@@ -1,8 +1,8 @@
 # **Phoenix Rooivalk**
 
 **Business Plan**\
-**Version**: Draft v1.1\
-**Date**: January 14, 2025
+**Version**: Draft v1.11\
+**Date**: January 14, 2025; 10:58 AM
 
 
 **Prepared by**:\
@@ -28,10 +28,11 @@ The PhoenixRooivalk Counter-Drone System is a modular, cost-effective solution d
 1. [Executive Summary](./docs/executive_summary.html)
 2. [Technical Overview](./docs/technical_overview.html)
 3. [Competitor Analysis](./docs/competitor_analysis.html)
-4. [Marketing and Risk Analysis](./docs/marketing_and_risk_analysis.html)
-5. [Civilian Use Cases](./docs/civilian_use_cases.html)
-6. [Financial Projections](./docs/financial_projections.html)
-7. [Implementation Plan](./docs/implementation_plan.html)
+4. [Civilian Use Cases](./docs/civilian_use_cases.html)
+5. [Emerging Trends and Opportunites](./docs/emerging_trends_opportunities.html)
+6. [Marketing and Risk Analysis](./docs/marketing_and_risk_analysis.html)
+7. [Financial Projections](./docs/financial_projections.html)
+8. [Implementation Plan](./docs/implementation_plan.html)
 8. [Contact Information](#contact-information)
 9. [License](#license)
 
