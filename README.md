@@ -1,4 +1,4 @@
-# PhoenixRooivalk
+# Phoenix Rooivalk
 
 ## Business Plan
 
@@ -8,7 +8,7 @@
 ### Prepared by:  
 **Jurie Smit**  
 **PhoenixVC (net vir jou lol)**  
-**[Contact Information]**
+**smit.jurie@gmail.com**
 
 ---
 
@@ -58,7 +58,7 @@ The **Multi-Tool Counter-Drone System** is a modular, cost-effective, and scalab
 
 ## How to View the Project
 
-This project is hosted on GitHub Pages. You can view it by visiting the following link: [Multi-Tool Counter-Drone System](https://yourusername.github.io/web-project/)
+This project is hosted on GitHub Pages. You can view it by visiting the following link: [Multi-Tool Counter-Drone System](https://JustAGhosT.github.io/web-project/)
 
 ## License
 
