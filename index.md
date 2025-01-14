@@ -30,7 +30,6 @@ This document is confidential and intended solely for the recipient(s). Unauthor
 5. [Civilian Use Cases and After-Sales Support](./docs/civilian_use_cases.md)
 6. [Financial Projections](./docs/financial_projections.md)
 7. [Implementation Plan](./docs/implementation_plan.md)
-8. [Next Steps](./docs/next_steps.md)
 
 ## Project Description
 
