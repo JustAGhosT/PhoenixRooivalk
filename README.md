@@ -1,4 +1,4 @@
-# Phoenix Rooivalk
+# PhoenixRooivalk
 
 ## Business Plan
 
@@ -18,18 +18,18 @@ This document is confidential and intended solely for the recipient(s). Unauthor
 ---
 
 ## Table of Contents
-1. [Executive Summary](./executive-summary.md)
-2. [Technical Overview](./technical-overview.md)
-3. [Competitor Analysis](./competitor-analysis.md)
-4. [Marketing and Risk Analysis](./marketing-and-risk-analysis.md)
-5. [Civilian Use Cases and After-Sales Support](./civilian-use-cases.md)
-6. [Financial Projections](./financial-projections.md)
-7. [Implementation Plan](./implementation-plan.md)
-8. [Next Steps](./next-steps.md)
+1. [Executive Summary](./docs/executive-summary.md)
+2. [Technical Overview](./docs/technical-overview.md)
+3. [Competitor Analysis](./docs/competitor-analysis.md)
+4. [Marketing and Risk Analysis](./docs/marketing-and-risk-analysis.md)
+5. [Civilian Use Cases and After-Sales Support](./docs/civilian-use-cases.md)
+6. [Financial Projections](./docs/financial-projections.md)
+7. [Implementation Plan](./docs/implementation-plan.md)
+8. [Next Steps](./docs/next-steps.md)
 
 ## Project Description
 
-The **Multi-Tool Counter-Drone System** is a modular, cost-effective, and scalable solution designed to neutralize unauthorized drones across various sectors. Combining cutting-edge technologies such as RF jamming, GPS spoofing, and physical countermeasures (e.g., net entanglement), the system provides comprehensive drone defense. Its modular design allows for easy customization to meet the specific needs of diverse clients, including governments, event organizers, and private enterprises.
+The **PhoenixRooivalk** is a modular, cost-effective, and scalable solution designed to neutralize unauthorized drones across various sectors. Combining cutting-edge technologies such as RF jamming, GPS spoofing, and physical countermeasures (e.g., net entanglement), the system provides comprehensive drone defense. Its modular design allows for easy customization to meet the specific needs of diverse clients, including governments, event organizers, and private enterprises.
 
 ### Key Features
 
@@ -58,16 +58,20 @@ The **Multi-Tool Counter-Drone System** is a modular, cost-effective, and scalab
 
 ## How to View the Project
 
-This project is hosted on GitHub Pages. You can view it by visiting the following link: [Multi-Tool Counter-Drone System](https://JustAGhosT.github.io/web-project/)
+This project is hosted on GitHub Pages. You can view it by visiting the following link: [PhoenixRooivalk](https://JustAGhosT.github.io/PhoenixRooivalk/)
 
 ## License
 
 This project is licensed under a proprietary license. See the [LICENSE](./LICENSE) file for details.
+
+## Contributing
+
+If you would like to contribute to this project, please read the [CONTRIBUTING.md](./CONTRIBUTING.md) file for guidelines.
 
 ## Contact
 
 For any inquiries, please contact:
 
 **Jurie Smit**  
-**PhoenixVC (net vir jou lol)**  
-**[Contact Information]**
+**PhoenixVC**  
+**smit.jurie@gmail.com**
