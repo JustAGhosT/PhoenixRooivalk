@@ -27,8 +27,8 @@ The PhoenixRooivalk Counter-Drone System is a modular, cost-effective solution d
 
 1. [Executive Summary](./docs/executive_summary.html)
 2. [Technical Overview](./docs/technical_overview.html)
-3. [Competitor Analysis](./docs/competitor_analysis.html)
-4. [Civilian Use Cases](./docs/civilian_use_cases.html)
+3. [Civilian Use Cases](./docs/civilian_use_cases.html)
+4. [Competitor Analysis](./docs/competitor_analysis.html)
 5. [Emerging Trends and Opportunites](./docs/emerging_trends_opportunities.html)
 6. [Marketing and Risk Analysis](./docs/marketing_and_risk_analysis.html)
 7. [Financial Projections](./docs/financial_projections.html)
