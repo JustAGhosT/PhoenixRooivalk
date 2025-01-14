@@ -56,17 +56,11 @@ Key technologies include:
 ### **Key Features**
 
 - **Modular Design**: Customizable components tailored to specific use cases.
-
 - **Affordability**: Priced 20–30% lower than leading competitors without compromising on performance.
-
 - **Physical Countermeasures**: Unique tools like net entanglement systems for non-destructive drone neutralization.
-
 - **Ease of Deployment**: Lightweight, portable, and user-friendly, requiring minimal training.
-
 - **Future-Ready**: Integration with AI for predictive threat analysis and swarm disruption capabilities.
-
 - **Sustainability**: Designed with energy-efficient components and sustainable manufacturing practices to minimize environmental impact.
-
 - **Advanced Signal Disruption**: Countermeasures for non-RF-controlled drones, including fiber-optic systems, through physical interception or enhanced detection technologies.
 
 > For a detailed explanation of the technologies behind these features, see [Technical Overview](./docs/technical_overview.html).
@@ -76,17 +70,12 @@ Key technologies include:
 ### **Target Markets**
 
 1. **Government Agencies**:
-
    - Border security, military, and law enforcement requiring advanced counter-drone measures.
    - **Military Applications**: Tactical deployment in battlefield scenarios for neutralizing reconnaissance and offensive drones.
    - **Advanced Threat Environments**: Targeting new drone technologies, such as fiber-optic controlled drones.
-
 2. **Event Organizers**:
-
    - Protection from drone-related disruptions at large-scale public events, such as concerts or international sports tournaments.
-
 3. **Private Enterprises**:
-
    - Agriculture, logistics, and critical infrastructure protection from drone threats.
 
 > For competitive advantages in addressing these markets, see [Competitor Analysis](./docs/competitor_analysis.html).
@@ -96,7 +85,6 @@ Key technologies include:
 ### **Financial Highlights**
 
 The financial projections demonstrate the system's potential for profitability and scalability:
-
 - **Revenue Projections**:
   - Year 1: ZAR 12.75 million
   - Year 5: ZAR 170 million
