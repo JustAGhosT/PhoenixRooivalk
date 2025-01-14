@@ -23,14 +23,14 @@ This document is confidential and intended solely for the recipient(s). Unauthor
 ---
 
 ## Table of Contents
-1. [Executive Summary](./docs/executive-summary.md)
-2. [Technical Overview](./docs/technical-overview.md)
-3. [Competitor Analysis](./docs/competitor-analysis.md)
-4. [Marketing and Risk Analysis](./docs/marketing-and-risk-analysis.md)
-5. [Civilian Use Cases and After-Sales Support](./docs/civilian-use-cases.md)
-6. [Financial Projections](./docs/financial-projections.md)
-7. [Implementation Plan](./docs/implementation-plan.md)
-8. [Next Steps](./docs/next-steps.md)
+1. [Executive Summary](./docs/executive_summary.md)
+2. [Technical Overview](./docs/technical_overview.md)
+3. [Competitor Analysis](./docs/competitor_analysis.md)
+4. [Marketing and Risk Analysis](./docs/marketing_and_risk_analysis.md)
+5. [Civilian Use Cases and After-Sales Support](./docs/civilian_use_cases.md)
+6. [Financial Projections](./docs/financial_projections.md)
+7. [Implementation Plan](./docs/implementation_plan.md)
+8. [Next Steps](./docs/next_steps.md)
 
 ## Project Description
 
