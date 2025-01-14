@@ -1,0 +1,30 @@
+title: PhoenixRooivalk
+description: >
+  Business Plan for the PhoenixRooivalk project.
+remote_theme: pages-themes/midnight
+
+markdown: kramdown
+highlighter: rouge
+
+# Build settings
+plugins:
+  - jekyll-feed
+
+# Site settings
+author:
+  name: Jurie Smit
+  email: smit.jurie@gmail.com
+
+# Social settings
+social:
+  github: JustAGhosT
+
+# Other settings
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/
