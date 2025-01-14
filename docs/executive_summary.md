@@ -1,7 +1,5 @@
 ## **Executive Summary**
 
----
-
 ### **Addressing the Threat**
 
 #### **Security Risks**
