@@ -1,13 +1,9 @@
----
-layout: default
-title: PhoenixRooivalk
----
-
-# **PhoenixRooivalk**
+# **Phoenix Rooivalk**
 
 **Business Plan**\
 **Version**: Draft v1.1\
 **Date**: January 14, 2025
+
 
 **Prepared by**:\
 **Jurie Smit**\
@@ -85,6 +81,7 @@ Key technologies include:
 ### **Financial Highlights**
 
 The financial projections demonstrate the system's potential for profitability and scalability:
+
 - **Revenue Projections**:
   - Year 1: ZAR 12.75 million
   - Year 5: ZAR 170 million
@@ -96,7 +93,7 @@ The financial projections demonstrate the system's potential for profitability a
   - Economies of scale reducing production costs.
   - Increased adoption in emerging markets.
 
-For more details, see [Financial Projections](./docs/financial_projections.html).
+> For an in-depth breakdown of revenue, costs, and profit margins, see [Financial Projections](./docs/financial_projections.html).
 
 ---
 
@@ -112,6 +109,8 @@ For more details, see [Financial Projections](./docs/financial_projections.html)
    - Launch targeted campaigns focusing on key markets, highlighting cost-effectiveness and unique features.
 4. **Pilot Programs**:
    - Deploy pilot systems to selected sites (e.g., airports, events) to gather feedback and validate performance.
+
+> For a detailed timeline and specific implementation details, see [Implementation Plan](./docs/implementation_plan.html).
 
 ---
 
