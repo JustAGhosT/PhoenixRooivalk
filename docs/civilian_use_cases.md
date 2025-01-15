@@ -1,4 +1,4 @@
-## **5. Civilian Use Cases and After-Sales Support**
+## **Civilian Use Cases and After-Sales Support**
 
 ### **Civilian Use Cases**
 The counter-drone system is designed to address a variety of civilian applications, ensuring safety, privacy, and operational continuity in non-military environments. Below are key use cases, with practical examples to illustrate their impact:
