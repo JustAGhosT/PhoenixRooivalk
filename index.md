@@ -7,8 +7,8 @@
 
 **Prepared by**:\
 **Jurie Smit**\
-**PhoenixVC (Currently net vir jou Eben, as jy sou wou 🏆)**\
-**[smit.jurie@gmail.com](mailto\:smit.jurie@gmail.com)**
+**PhoenixVC**
+**[jurie@phoenixvc.tech](mailto\:jurie@phoenixvc.tech)**
 
 ---
 
