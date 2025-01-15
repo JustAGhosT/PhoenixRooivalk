@@ -1,4 +1,4 @@
-## **6. Financial Projections**
+## **Financial Projections**
 Below is a detailed breakdown of the financial projections, including revenue growth, cost analysis, profit margins, funding allocation, and risk assessment. The section includes all justifications and supporting data to provide a comprehensive view for stakeholders.
 
 ### **Summary**
