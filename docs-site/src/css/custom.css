@@ -1,0 +1,35 @@
+/* Custom styles for PhoenixRooivalk docs site */
+
+.navbar-env-badge {
+  background: #444;
+  border-radius: 6px;
+  padding: 0 8px;
+  font-size: 0.85rem;
+  line-height: 1.8;
+  color: #fff;
+}
+.navbar-env-badge--preview {
+  background: #d97706; /* amber-600 */
+}
+
+/* Homepage layout helpers */
+.homeMain {
+  padding: 4rem 1rem;
+}
+.homeSection {
+  max-width: 920px;
+  margin: 0 auto;
+}
+.homeCta {
+  margin: 2rem 0;
+}
+
+/* Optional: improve button contrast on homepage */
+.button.button--primary.button--lg {
+  background-color: #0f766e;
+  border-color: #0f766e;
+}
+.button.button--primary.button--lg:hover {
+  background-color: #115e59;
+  border-color: #115e59;
+}

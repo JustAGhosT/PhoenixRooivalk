@@ -1,0 +1,99 @@
+name: Deploy Docusaurus (docs-site)
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'docs-site/**'
+      - '.github/workflows/deploy-docs-site.yml'
+  pull_request:
+    paths:
+      - 'docs-site/**'
+      - '.github/workflows/deploy-docs-site.yml'
+  workflow_dispatch:
+
+jobs:
+  build-and-deploy:
+    env:
+      ENV_NAME: production
+      BRANCH: ${{ github.ref_name }}
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: docs-site
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Use Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: 'docs-site/package.json'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: docs-site-build
+          path: docs-site/build
+
+      - name: Deploy to Netlify
+        uses: nwtgck/actions-netlify@v3
+        with:
+          publish-dir: 'docs-site/build'
+          production-deploy: true
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          deploy-message: 'Automated deploy from GitHub Actions'
+          enable-commit-comment: false
+          enable-commit-status: true
+          alias: 'prod'
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+
+  preview-deploy:
+    if: github.event_name == 'pull_request'
+    env:
+      ENV_NAME: preview
+      BRANCH: ${{ github.head_ref }}
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: docs-site
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Use Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: 'docs-site/package.json'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Deploy Preview to Netlify
+        uses: nwtgck/actions-netlify@v3
+        with:
+          publish-dir: 'docs-site/build'
+          production-deploy: false
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          deploy-message: 'Deploy Preview from PR #${{ github.event.pull_request.number }}'
+          enable-commit-comment: true
+          enable-commit-status: true
+          alias: ${{ github.head_ref }}
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
