@@ -1,0 +1,23 @@
+{
+  "id": "architecture/c2",
+  "title": "C2 and Data Plane (Public-safe)",
+  "description": "Control and data-plane concepts. Specific interfaces and parameters remain",
+  "source": "@site/docs/architecture/c2.md",
+  "sourceDirName": "architecture",
+  "slug": "/architecture/c2",
+  "permalink": "/architecture/c2",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "docs",
+  "previous": {
+    "title": "Architecture Overview (Public-safe)",
+    "permalink": "/architecture/overview"
+  },
+  "next": {
+    "title": "Communications (Public-safe)",
+    "permalink": "/architecture/comms"
+  }
+}

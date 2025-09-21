@@ -1,0 +1,83 @@
+{
+  "docusaurus-plugin-content-docs": {
+    "default": {
+      "path": "/",
+      "versions": [
+        {
+          "name": "current",
+          "label": "Next",
+          "isLast": true,
+          "path": "/",
+          "mainDocId": "overview",
+          "docs": [
+            {
+              "id": "architecture/c2",
+              "path": "/architecture/c2",
+              "sidebar": "docs"
+            },
+            {
+              "id": "architecture/comms",
+              "path": "/architecture/comms",
+              "sidebar": "docs"
+            },
+            {
+              "id": "architecture/overview",
+              "path": "/architecture/overview",
+              "sidebar": "docs"
+            },
+            {
+              "id": "architecture/safety",
+              "path": "/architecture/safety",
+              "sidebar": "docs"
+            },
+            {
+              "id": "legal/compliance",
+              "path": "/legal/compliance",
+              "sidebar": "docs"
+            },
+            {
+              "id": "legal/countermeasure-policy",
+              "path": "/legal/countermeasure-policy",
+              "sidebar": "docs"
+            },
+            {
+              "id": "legal/responsible-use",
+              "path": "/legal/responsible-use",
+              "sidebar": "docs"
+            },
+            {
+              "id": "operations/deployment",
+              "path": "/operations/deployment",
+              "sidebar": "docs"
+            },
+            {
+              "id": "operations/modes",
+              "path": "/operations/modes",
+              "sidebar": "docs"
+            },
+            {
+              "id": "operations/observability",
+              "path": "/operations/observability",
+              "sidebar": "docs"
+            },
+            {
+              "id": "overview",
+              "path": "/overview",
+              "sidebar": "docs"
+            }
+          ],
+          "draftIds": [],
+          "sidebars": {
+            "docs": {
+              "link": {
+                "path": "/overview",
+                "label": "overview"
+              }
+            }
+          }
+        }
+      ],
+      "breadcrumbs": true
+    }
+  }
+}

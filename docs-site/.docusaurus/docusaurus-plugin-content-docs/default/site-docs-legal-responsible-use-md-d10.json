@@ -1,0 +1,23 @@
+{
+  "id": "legal/responsible-use",
+  "title": "Responsible Use (Public-safe)",
+  "description": "This page summarizes the public-safe responsible use stance for the project.",
+  "source": "@site/docs/legal/responsible-use.md",
+  "sourceDirName": "legal",
+  "slug": "/legal/responsible-use",
+  "permalink": "/legal/responsible-use",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "docs",
+  "previous": {
+    "title": "Countermeasure Policy (Public-safe)",
+    "permalink": "/legal/countermeasure-policy"
+  },
+  "next": {
+    "title": "Legal Compliance (Public-safe)",
+    "permalink": "/legal/compliance"
+  }
+}

@@ -11,17 +11,29 @@ const sidebars: SidebarsConfig = {
     {
       type: 'category',
       label: 'Architecture',
-      items: [],
+      items: [
+        'architecture/overview',
+        'architecture/c2',
+        'architecture/comms',
+        'architecture/safety',
+      ],
     },
     {
       type: 'category',
       label: 'Operations',
-      items: [],
+      items: [
+        'operations/modes',
+        'operations/observability',
+        'operations/deployment',
+      ],
     },
     {
       type: 'category',
       label: 'Legal & Governance',
       items: [
+        'legal/countermeasure-policy',
+        'legal/responsible-use',
+        'legal/compliance',
         {
           type: 'link',
           label: 'Request Access',
