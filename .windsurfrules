@@ -10,43 +10,48 @@
 - Explain your OBSERVATIONS clearly, then provide REASONING to identify the exact issue. Add console logs when needed to gather more information.
 
 
-The PhoenixRooivalk counter-drone system implements specialized defense capabilities through modular architecture and advanced countermeasure technologies.
+The project implements a multi-chain blockchain integration system with several key components:
 
-### Core System Components
+## Core Blockchain Components
 
-1. **Modular Counter-Drone Architecture**
-- Customizable deployment configurations
-- Sector-specific adaptations for government, events, and enterprise use
-- Importance Score: 90
+### Address Management and Validation
+Located in `backend/api/blockchain/evm_address.py` and `backend/api/blockchain/networks.py`, these modules handle:
+- EVM address validation with EIP-55 checksum enforcement
+- Cross-chain address format standardization
+- Network-specific metadata and validation rules
+Importance Score: 65
 
-2. **Countermeasure Integration**
-- RF jamming systems
-- GPS spoofing capabilities
-- Physical drone neutralization through net entanglement
-- Non-RF drone countermeasures for fiber-optic systems
-- Importance Score: 85
+### Transaction Handling and Evidence
+The `backend/services/blockchain_handler.py` serves as the central orchestrator:
+- Manages blockchain operations across multiple providers
+- Implements fault-tolerant transaction submission
+- Coordinates with the outbox system for failed operations
+Importance Score: 80
 
-3. **Market Positioning Features**
-- Cost optimization maintaining 20-30% price advantage
-- Rapid deployment capabilities
-- Minimal training requirements
-- Importance Score: 75
+### Evidence Logging System
+Implemented in `backend/services/evidence_log.py`:
+- Append-only logging of mission events
+- SHA-256 digest generation for blockchain anchoring
+- JSON Lines format with canonical payload representation
+Importance Score: 75
 
-4. **Future-Ready Systems**
-- AI-driven threat analysis preparation
-- Swarm disruption capability framework
-- Enhanced detection technologies
-- Importance Score: 80
+### Chain-Specific Implementations
 
-5. **Sustainability Implementation**
-- Energy-efficient component selection
-- Sustainable manufacturing processes
-- Environmental impact minimization
-- Importance Score: 65
+#### Solana Integration
+`backend/services/solana_anchor.py` provides:
+- On-chain anchoring using Memo program
+- SHA-256 digest submission
+- Retry logic with exponential backoff
+Importance Score: 75
 
-### Critical File Paths
-- Business Plan: `index.md`
-- System Documentation: `README.md`
+#### Outbox Processing
+`backend/workers/outbox_worker.py` implements:
+- Periodic processing of failed blockchain operations
+- Configurable retry schedules
+- Error classification and handling
+Importance Score: 70
+
+The system is designed for cross-chain compatibility, with dedicated handlers for EVM-compatible chains (Ethereum, EtherLink) and Solana. The evidence logging system acts as a central source of truth, with blockchain anchoring providing immutable verification of mission events.
 
 $END$
 

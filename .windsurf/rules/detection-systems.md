@@ -1,54 +1,44 @@
 ---
-description: Technical documentation for drone detection systems, sensor integration, and threat analysis algorithms
+description: Technical specification for drone detection systems, sensor fusion, and threat analysis components
 trigger: model_decision
 ---
 
 
 # detection-systems
 
-The PhoenixRooivalk detection system implements modular drone detection capabilities through multiple integrated technologies:
+Based on the provided specification, there appears to be no direct implementation details about drone detection systems in the codebase. However, the specification does reveal some high-level architectural elements related to detection capabilities:
 
-## Core Detection Components
+### Event Logging System
+**Importance Score: 75**
+`backend/services/evidence_log.py`
+- Implements append-only logging for detection events
+- Records JSON Lines with timestamps and event types
+- Stores SHA-256 digests for event correlation
+- Ensures data integrity for detection audit trail
 
-### Advanced Signal Analysis
-- Multi-spectrum RF detection for unauthorized drone communications
-- Non-RF detection capabilities for fiber-optic controlled drones
-- Signal pattern recognition for drone type classification
-**Importance Score**: 85
+### Detection Data Flow
+**Importance Score: 80**
+`backend/services/blockchain_handler.py`
+- Handles detection event processing and validation
+- Integrates with various data providers
+- Implements retry logic for failed detection events
+- Manages outbox batches for reliable event processing
 
-### Sensor Integration 
-- Modular sensor architecture supporting customization by sector
-- Scalable detection coverage through distributed sensor arrays
-- Integration with countermeasure response systems
-**Importance Score**: 90
+### Blockchain Event Anchoring
+**Importance Score: 70**
+`backend/services/solana_anchor.py`
+- Anchors detection event digests to Solana blockchain
+- Uses Memo program for immutable event recording
+- Implements exponential backoff for network resilience
+- Provides verification of detection timestamps
 
-### Threat Analysis
-- AI-ready infrastructure for predictive threat detection
-- Future capability for swarm behavior analysis
-- Real-time threat classification and prioritization
-**Importance Score**: 80
-
-## Detection System Integration
-
-### Deployment Architecture
-- Lightweight, portable sensor deployment
-- Minimal training requirements for system operation
-- Rapid detection coverage establishment
-**Importance Score**: 70
-
-### Data Flow
-- Direct integration with countermeasure subsystems
-- Support for physical and electronic countermeasures
-- Real-time threat data distribution
-**Importance Score**: 85
-
-## File Structure
-
-Relevant paths:
-```
-/index.md
-/README.md
-```
+### Failed Event Processing
+**Importance Score: 65**
+`backend/workers/outbox_worker.py`
+- Processes failed detection events
+- Implements configurable retry schedules
+- Handles transient and permanent failures
+- Maintains detection event integrity
 
 $END$
 

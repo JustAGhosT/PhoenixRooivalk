@@ -1,53 +1,73 @@
 ---
-description: Module integration analysis for PhoenixRooivalk counter-drone system customization and deployment patterns
+description: Documents the modular system architecture, component interfaces, and integration patterns for blockchain-based evidence logging and validation
 trigger: model_decision
 ---
 
 
 # module-integration
 
-### Core Integration Architecture
+### Core Integration Components
 
-The PhoenixRooivalk system implements a modular integration framework supporting customizable deployment configurations across different use cases and environments.
+#### Blockchain Handler Integration Hub
+**File**: `backend/services/blockchain_handler.py`
+**Importance Score**: 85
 
-### Primary Integration Components
+Central integration hub that coordinates between different blockchain providers and services:
+- Orchestrates transaction submission across multiple chains
+- Manages provider failover and retry logic
+- Coordinates evidence logging with on-chain anchoring
+- Handles outbox processing for failed operations
 
-1. **Counter-Measure Module Integration**
-- Combines RF jamming, GPS spoofing, and physical countermeasure subsystems
-- Enables selective activation based on threat assessment
-- Integration score: 85
+#### Multi-Chain Address Management 
+**File**: `backend/api/blockchain/networks.py`
+**File**: `backend/api/blockchain/evm_address.py`
+**Importance Score**: 75
 
-2. **Deployment Configuration System**
-- Lightweight portable components with plug-and-play connectivity
-- Environment-specific deployment profiles
-- Integration score: 70
+Unified address handling across different blockchain networks:
+- Network-specific address format validation
+- Cross-chain address normalization
+- EIP-55 checksum enforcement for EVM chains
+- Metadata-driven network configuration
 
-3. **Future-Ready Integration Framework**
-- Extensible architecture supporting AI-driven threat analysis integration
-- Swarm disruption capability hooks
-- Pre-built interfaces for upcoming technology integration
-- Integration score: 80
+#### Evidence Logging Pipeline
+**File**: `backend/services/evidence_log.py`
+**File**: `backend/services/solana_anchor.py`
+**Importance Score**: 80
 
-4. **Cross-Technology Signal Integration**
-- Integration layer for RF and non-RF drone countermeasures
-- Unified control interface for multiple disruption technologies
-- Integration score: 80
+Integrated evidence recording and anchoring system:
+- Append-only event logging with integrity validation
+- Automated digest calculation and verification
+- Direct anchoring to Solana via Memo program
+- Integration with outbox system for retry handling
 
-### Key Integration Patterns
+#### Worker Integration
+**File**: `backend/workers/outbox_worker.py`
+**Importance Score**: 70
 
-1. **Modular Component Architecture**
-- Customizable system composition based on sector requirements
-- Hot-swappable countermeasure modules
-- Integration score: 90
+Background task coordination for blockchain operations:
+- Scheduled outbox processing 
+- Provider-agnostic batch handling
+- Configuration-driven scheduling
+- Error classification and recovery
 
-2. **Sustainable System Integration**
-- Energy management integration across components
-- Environmental impact optimization
-- Integration score: 65
+### Integration Patterns
 
-Relevant Files:
-- index.md
-- README.md
+1. Provider Abstraction
+- Common interface for multiple blockchain providers
+- Network-specific implementation isolation
+- Unified error handling and retry logic
+
+2. Event Pipeline
+- Standardized event logging format
+- Automated digest calculation
+- Configurable blockchain anchoring
+- Failure recovery via outbox pattern
+
+3. Address Management
+- Network-aware address validation
+- Cross-chain format normalization
+- Metadata-driven configuration
+- Reusable validation components
 
 $END$
 
