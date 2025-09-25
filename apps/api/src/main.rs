@@ -29,15 +29,7 @@ struct EvidenceOut {
     updated_ms: i64,
 }
 
-#[tokio::main]
-async fn main() {
-    tracing_subscriber::registry()
-        .with(tracing_subscriber::EnvFilter::new(
-            std::env::var("RUST_LOG").unwrap_or_else(|_| "info".into()),
-        ))
-        .with(tracing_subscriber::fmt::layer())
-        .init();
-
+pub async fn build_app() -> (Router, Pool<Sqlite>) {
     // DB pool (use API_DB_URL, fallback to KEEPER_DB_URL, then sqlite file)
     let db_url = std::env::var("API_DB_URL")
         .ok()
@@ -50,13 +42,25 @@ async fn main() {
         .expect("failed to connect db");
     ensure_schema(&pool).await.expect("schema init failed");
 
-    let state = AppState { pool };
-
+    let state = AppState { pool: pool.clone() };
     let app = Router::new()
         .route("/health", get(health))
         .route("/evidence", post(post_evidence))
         .route("/evidence/:id", get(get_evidence))
         .with_state(state);
+    (app, pool)
+}
+
+#[tokio::main]
+async fn main() {
+    tracing_subscriber::registry()
+        .with(tracing_subscriber::EnvFilter::new(
+            std::env::var("RUST_LOG").unwrap_or_else(|_| "info".into()),
+        ))
+        .with(tracing_subscriber::fmt::layer())
+        .init();
+
+    let (app, _pool) = build_app().await;
 
     let port: u16 = std::env::var("PORT").ok().and_then(|s| s.parse().ok()).unwrap_or(8080);
     let addr = SocketAddr::from(([0, 0, 0, 0], port));

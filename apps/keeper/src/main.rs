@@ -1,12 +1,10 @@
 use axum::{routing::get, Router};
-use sqlx::{sqlite::SqlitePoolOptions, Sqlite, Pool, Row};
+use sqlx::sqlite::SqlitePoolOptions;
 use std::time::Duration;
 use tokio::signal;
-use tokio::time::sleep;
 use tracing_subscriber::{layer::SubscriberExt, util::SubscriberInitExt};
-use phoenix_evidence::anchor::{AnchorProvider, AnchorError};
-use phoenix_evidence::model::{ChainTxRef, EvidenceRecord, EvidenceDigest, DigestAlgo};
 use anchor_etherlink::EtherlinkProviderStub;
+use phoenix_keeper::{ensure_schema, run_job_loop, run_confirmation_loop, SqliteJobProvider};
 
 #[tokio::main]
 async fn main() {
@@ -36,26 +34,41 @@ async fn main() {
             .map(Duration::from_millis)
             .unwrap_or_else(|| Duration::from_secs(5));
 
-        let db_url = std::env::var("KEEPER_DB_URL").ok();
-        if let Some(url) = db_url {
-            match SqlitePoolOptions::new().max_connections(5).connect(&url).await {
-                Ok(pool) => {
-                    if let Err(e) = ensure_schema(&pool).await { tracing::error!(error=%e, "schema init failed"); }
-                    let mut jp = SqliteJobProvider { pool };
-                    let anchor = EtherlinkProviderStub;
-                    run_job_loop(&mut jp, &anchor, poll_interval).await;
-                }
-                Err(e) => {
-                    tracing::error!(error=%e, "db connect failed, falling back to stdout provider");
-                    let mut jp = StdoutJobProvider;
-                    let anchor = EtherlinkProviderStub;
-                    run_job_loop(&mut jp, &anchor, poll_interval).await;
+        let db_url = std::env::var("KEEPER_DB_URL").unwrap_or_else(|_| "sqlite://blockchain_outbox.sqlite3".to_string());
+        match SqlitePoolOptions::new().max_connections(5).connect(&db_url).await {
+            Ok(pool) => {
+                if let Err(e) = ensure_schema(&pool).await { tracing::error!(error=%e, "schema init failed"); }
+                
+                let mut jp = SqliteJobProvider::new(pool.clone());
+                let anchor = EtherlinkProviderStub;
+                
+                // Start job processing loop
+                let job_pool = pool.clone();
+                let job_anchor = anchor.clone();
+                let job_handle = tokio::spawn(async move {
+                    run_job_loop(&mut jp, &job_anchor, poll_interval).await;
+                });
+                
+                // Start confirmation polling loop
+                let confirm_interval = Duration::from_secs(30); // Check confirmations every 30s
+                let confirm_handle = tokio::spawn(async move {
+                    run_confirmation_loop(&pool, &anchor, confirm_interval).await;
+                });
+                
+                // Wait for either loop to complete (they shouldn't)
+                tokio::select! {
+                    _ = job_handle => {
+                        tracing::warn!("Job loop exited unexpectedly");
+                    }
+                    _ = confirm_handle => {
+                        tracing::warn!("Confirmation loop exited unexpectedly");
+                    }
                 }
             }
-        } else {
-            let mut jp = StdoutJobProvider;
-            let anchor = EtherlinkProviderStub;
-            run_job_loop(&mut jp, &anchor, poll_interval).await;
+            Err(e) => {
+                tracing::error!(error=%e, "db connect failed; keeper idle");
+                tokio::time::sleep(Duration::from_secs(10)).await;
+            }
         }
     });
 
@@ -68,31 +81,3 @@ async fn main() {
         _ = runner => {}
     }
 }
-
-// --- Job model & traits ---
-#[derive(Debug, Clone)]
-pub struct EvidenceJob {
-    pub id: String,
-    pub payload_sha256: String,
-    pub created_ms: i64,
-}
-
-#[derive(Debug, thiserror::Error)]
-pub enum JobError {
-    #[error("temporary: {0}")]
-}
-
-#[async_trait::async_trait]
-impl JobProvider for SqliteJobProvider {
-
-#[async_trait::async_trait]
-impl JobProvider for StdoutJobProvider {
-    async fn fetch_next(&mut self) -> Result<Option<EvidenceJob>, JobError> {
-        // In real use, pull from DB/queue. Here we simulate "no job".
-        Ok(None)
-    }
-    async fn mark_done(&mut self, _id: &str) -> Result<(), JobError> { Ok(()) }
-    async fn mark_failed(&mut self, _id: &str, _reason: &str) -> Result<(), JobError> { Ok(()) }
-}
-
-// removed: LogEvidenceAnchor (we use AnchorProvider impls from provider crates)
