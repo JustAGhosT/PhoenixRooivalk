@@ -43,11 +43,14 @@ def load_database_settings(*, environment: Optional[str] = None) -> DatabaseSett
         raise ConfigError("Invalid MongoDB URI: must start with 'mongodb://' or 'mongodb+srv://'")
 
     # Environment-specific checks
-    if env in {"prod", "production"}:
+    is_prod = env in {"prod", "production"}
+    if is_prod:
         if use_mem:
             raise ConfigError("In-memory DB is not allowed in production")
         if not uri:
             raise ConfigError("MONGODB_URI is required in production")
+    elif not uri:
+        use_mem = True  # default to in-memory fallback outside production
 
     return DatabaseSettings(
         mongodb_uri=uri,

@@ -10,7 +10,7 @@ from dataclasses import dataclass
 from typing import Tuple
 
 try:
-    from eth_utils import is_checksum_address, to_checksum_address  # type: ignore
+    from eth_utils import is_checksum_address, to_checksum_address
 except Exception:  # eth_utils not installed
     is_checksum_address = None  # type: ignore[assignment]
     to_checksum_address = None  # type: ignore[assignment]
@@ -50,7 +50,7 @@ def validate_evm_address(addr: str, *, require_checksum: bool = False) -> Addres
 
     if require_checksum:
         if is_checksum_address is None:
-            return AddressCheck(False, "eth_utils not installed for checksum validation")
+            return AddressCheck(False, "eth_utils not installed for checksum validation")  # type: ignore[unreachable]
         if not is_checksum_address(addr):
             return AddressCheck(False, "invalid EIP-55 checksum")
 
@@ -58,9 +58,11 @@ def validate_evm_address(addr: str, *, require_checksum: bool = False) -> Addres
 
 
 def to_eip55(addr: str) -> str:
-    """Return the EIP-55 checksummed address (requires eth_utils)."""
+    """Return the EIP-55 checksum address (requires eth_utils)."""
     if to_checksum_address is None:
         raise RuntimeError("eth_utils not installed: cannot convert to EIP-55")
+    if not isinstance(addr, str) or not addr:
+        raise ValueError("invalid address: empty or not a string")
     ok, reason = _basic_hex_checks(addr)
     if not ok:
         raise ValueError(f"invalid address: {reason}")

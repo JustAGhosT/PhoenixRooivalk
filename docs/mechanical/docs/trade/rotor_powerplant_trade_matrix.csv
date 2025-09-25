@@ -1,0 +1,7 @@
+Config,Shroud,Topology,Blades,Rel. Static Thrust,Rel. Power @ equal thrust,Acoustic,Tilt Loads,Mass/Complexity,Best Use
+Ducted Single 3,Ducted,Single,3,1.0,1.0,Low,Low,Med,"Baseline (quiet, efficient)"
+Ducted Single 4,Ducted,Single,4,1.0,1.05,Lower tones (RPM↓),Low,Med+,Acoustic/Thermal headroom
+Ducted Coax 3+3,Ducted,Coax,3+3,1.6–1.8,1.1–1.25,More tones (interaction),High,High,"Hot/high, heavy payload"
+Open Single 2,Open,Single,2,0.9–1.0,1.1,Louder 2P,Med,Low,Tail pusher (QP)
+Open Single 3,Open,Single,3,1.0,1.0,Loud,Med,Low,Open prop cruise
+Open Coax 3+3,Open,Coax,3+3,1.6–1.8,1.2–1.3,Loudest tones,High,High,Special cases only

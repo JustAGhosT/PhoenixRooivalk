@@ -31,6 +31,8 @@ class EtherlinkProvider(BaseBlockchainProvider):
         return self._network
 
     def _classify_error(self, ex: Exception) -> Exception:
+        if isinstance(ex, (BlockchainTransientError, BlockchainPermanentError)):
+            return ex
         # Transient classes: network connectivity and timeouts
         transient_types = (
             requests.exceptions.ConnectionError,

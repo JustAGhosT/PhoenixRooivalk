@@ -5,7 +5,7 @@ from __future__ import annotations
 
 import asyncio
 from dataclasses import dataclass
-from typing import Any, Dict, Optional
+from typing import Any, Dict, Optional, Union
 
 from ..config.database import DatabaseSettings, ConfigError
 from ..services.blockchain.logger import get_logger
@@ -32,10 +32,11 @@ class InMemoryCollection:
         await self._lock.acquire()
         return self
 
-    async def __aexit__(self, exc_type, exc, tb) -> None:  # noqa: D401
+    async def __aexit__(self, exc_type: Optional[type], exc: Optional[BaseException], tb: Optional[Any]) -> None:  # noqa: D401
         self._lock.release()
 
-    async def insert_one(self, doc: Dict[str, Any]) -> None:
+    def _insert_one_unlocked(self, doc: Dict[str, Any]) -> None:
+        """Internal helper for insert_one without locking."""
         _id = doc.get("_id")
         if _id is None:
             raise ValueError("_id is required for in-memory insert_one")
@@ -45,7 +46,8 @@ class InMemoryCollection:
         # Clone to avoid mutation
         self._data[key] = dict(doc)
 
-    async def find_one(self, query: Dict[str, Any]) -> Optional[Dict[str, Any]]:
+    def _find_one_unlocked(self, query: Dict[str, Any]) -> Optional[Dict[str, Any]]:
+        """Internal helper for find_one without locking."""
         key = str(query.get("_id"))
         if key and key in self._data:
             return dict(self._data[key])
@@ -60,8 +62,9 @@ class InMemoryCollection:
                 return dict(v)
         return None
 
-    async def update_one(self, query: Dict[str, Any], update: Dict[str, Any]) -> int:
-        doc = await self.find_one(query)
+    def _update_one_unlocked(self, query: Dict[str, Any], update: Dict[str, Any]) -> int:
+        """Internal helper for update_one without locking."""
+        doc = self._find_one_unlocked(query)
         if not doc:
             return 0
         key = str(doc["_id"])
@@ -76,14 +79,30 @@ class InMemoryCollection:
             self._data[key] = replacement
         return 1
 
-    async def delete_one(self, query: Dict[str, Any]) -> int:
-        doc = await self.find_one(query)
+    def _delete_one_unlocked(self, query: Dict[str, Any]) -> int:
+        """Internal helper for delete_one without locking."""
+        doc = self._find_one_unlocked(query)
         if not doc:
             return 0
         key = str(doc["_id"])
         self._data.pop(key, None)
         return 1
 
+    async def insert_one(self, doc: Dict[str, Any]) -> None:
+        async with self._lock:
+            self._insert_one_unlocked(doc)
+
+    async def find_one(self, query: Dict[str, Any]) -> Optional[Dict[str, Any]]:
+        async with self._lock:
+            return self._find_one_unlocked(query)
+
+    async def update_one(self, query: Dict[str, Any], update: Dict[str, Any]) -> int:
+        async with self._lock:
+            return self._update_one_unlocked(query, update)
+
+    async def delete_one(self, query: Dict[str, Any]) -> int:
+        async with self._lock:
+            return self._delete_one_unlocked(query)
 
 class InMemoryDatabase:
     def __init__(self, name: str):
@@ -124,7 +143,7 @@ async def _create_mongo_client(
             client = MongoClient(
                 settings.mongodb_uri,
                 serverSelectionTimeoutMS=settings.connect_timeout_ms,
-                appname="PhoenixRooivalk",
+                appName="PhoenixRooivalk",
             )
             # Force server selection
             client.admin.command("ping")
@@ -161,7 +180,7 @@ class DatabaseProvider:
         self._mongo: Optional[MongoClientWrapper] = None
         self._memory: Optional[InMemoryDatabase] = None
 
-    def get_db(self):  # -> Union[InMemoryDatabase, pymongo.database.Database]
+    def get_db(self) -> Union[InMemoryDatabase, Any]:  # pymongo.database.Database
         if self._settings.use_in_memory_db:
             if not self._memory:
                 _logger.info("using_in_memory_db", extra={"db": self._settings.db_name, "env": self._settings.environment})
@@ -182,7 +201,7 @@ class DatabaseProvider:
                 )
         return self._mongo.db
 
-    async def get_db_async(self):  # -> Union[InMemoryDatabase, pymongo.database.Database]
+    async def get_db_async(self) -> Union[InMemoryDatabase, Any]:  # pymongo.database.Database
         if self._settings.use_in_memory_db:
             if not self._memory:
                 _logger.info("using_in_memory_db", extra={"db": self._settings.db_name, "env": self._settings.environment})
