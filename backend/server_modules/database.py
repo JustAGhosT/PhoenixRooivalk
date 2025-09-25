@@ -4,7 +4,6 @@ Database module providing creation, validation, retry logic, and in-memory async
 from __future__ import annotations
 
 import asyncio
-import time
 from dataclasses import dataclass
 from typing import Any, Dict, Optional
 
@@ -37,9 +36,12 @@ class InMemoryCollection:
         self._lock.release()
 
     async def insert_one(self, doc: Dict[str, Any]) -> None:
-        key = str(doc.get("_id"))
-        if not key:
+        _id = doc.get("_id")
+        if _id is None:
             raise ValueError("_id is required for in-memory insert_one")
+        key = str(_id)
+        if key in self._data:
+            raise ValueError(f"Document with _id '{key}' already exists")
         # Clone to avoid mutation
         self._data[key] = dict(doc)
 
@@ -69,7 +71,9 @@ class InMemoryCollection:
                 self._data[key][k] = v
         else:
             # Replace
-            self._data[key] = dict(update)
+            replacement = dict(update)
+            replacement["_id"] = doc["_id"]  # Preserve _id
+            self._data[key] = replacement
         return 1
 
     async def delete_one(self, query: Dict[str, Any]) -> int:
@@ -101,7 +105,9 @@ class MongoClientWrapper:
     db: Any
 
 
-def _create_mongo_client(settings: DatabaseSettings, *, max_attempts: int = 5, base_delay: float = 0.5) -> MongoClientWrapper:
+async def _create_mongo_client(
+    settings: DatabaseSettings, *, max_attempts: int = 5, base_delay: float = 0.5
+) -> MongoClientWrapper:
     try:
         from pymongo import MongoClient, errors as pymongo_errors  # type: ignore
     except Exception as ex:  # pragma: no cover - dependency import issues
@@ -133,7 +139,7 @@ def _create_mongo_client(settings: DatabaseSettings, *, max_attempts: int = 5, b
             # Transient
             delay = min(8.0, base_delay * (2 ** (attempt - 1)))
             _logger.warning("mongo_connect_retry", extra={"attempt": attempt, "delay_s": delay, "error": str(ex)})
-            time.sleep(delay)
+            await asyncio.sleep(delay)
         except Exception as ex:
             # Permanent
             _logger.error("mongo_connect_fail_permanent", extra={"attempt": attempt, "error": str(ex)})
@@ -161,7 +167,28 @@ class DatabaseProvider:
                 _logger.info("using_in_memory_db", extra={"db": self._settings.db_name, "env": self._settings.environment})
                 self._memory = InMemoryDatabase(self._settings.db_name)
             return self._memory
+        # Real DB (synchronous facade)
+        if not self._mongo:
+            # If we're in an async context, instruct callers to use get_db_async()
+            try:
+                asyncio.get_running_loop()
+            except RuntimeError:
+                # No running loop; safe to block and run async client creation
+                self._mongo = asyncio.run(_create_mongo_client(self._settings))
+            else:
+                # Running loop detected
+                raise RuntimeError(
+                    "get_db() called from an async context. Use 'await DatabaseProvider.get_db_async()' instead."
+                )
+        return self._mongo.db
+
+    async def get_db_async(self):  # -> Union[InMemoryDatabase, pymongo.database.Database]
+        if self._settings.use_in_memory_db:
+            if not self._memory:
+                _logger.info("using_in_memory_db", extra={"db": self._settings.db_name, "env": self._settings.environment})
+                self._memory = InMemoryDatabase(self._settings.db_name)
+            return self._memory
         # Real DB
         if not self._mongo:
-            self._mongo = _create_mongo_client(self._settings)
+            self._mongo = await _create_mongo_client(self._settings)
         return self._mongo.db

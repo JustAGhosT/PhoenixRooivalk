@@ -1,73 +1,47 @@
 ---
-description: Documents the modular system architecture, component interfaces, and integration patterns for blockchain-based evidence logging and validation
+description: Documents modular system architecture, component interfaces, and integration patterns for customizable deployment configurations
 trigger: model_decision
 ---
 
 
 # module-integration
 
-### Core Integration Components
+The system implements a modular blockchain-based evidence anchoring architecture with the following key integration components:
 
-#### Blockchain Handler Integration Hub
-**File**: `backend/services/blockchain_handler.py`
-**Importance Score**: 85
+### Blockchain Provider Integration Layer
+- **Path:** `backend/services/blockchain/base_provider.py`
+- **Importance Score:** 85
+- Defines abstract provider interface for blockchain interactions
+- Enables swappable implementations for different chains (Etherlink, Solana)
+- Standardizes transaction submission and receipt verification flows
 
-Central integration hub that coordinates between different blockchain providers and services:
-- Orchestrates transaction submission across multiple chains
-- Manages provider failover and retry logic
-- Coordinates evidence logging with on-chain anchoring
-- Handles outbox processing for failed operations
+### Evidence Anchoring Pipeline
+- **Path:** `backend/services/blockchain_handler.py`, `backend/services/evidence_log.py`
+- **Importance Score:** 90
+- Coordinates evidence collection, hashing, and on-chain anchoring
+- Implements dual-chain anchoring strategy (Etherlink + Solana) for redundancy
+- Manages atomic commit patterns for evidence logs and blockchain submissions
 
-#### Multi-Chain Address Management 
-**File**: `backend/api/blockchain/networks.py`
-**File**: `backend/api/blockchain/evm_address.py`
-**Importance Score**: 75
+### Outbox Integration Pattern
+- **Path:** `backend/services/blockchain/outbox.py`, `backend/workers/outbox_worker.py`
+- **Importance Score:** 85
+- Provides reliable blockchain operation delivery with retry semantics
+- Coordinates state transitions between evidence logging and chain anchoring
+- Implements at-least-once delivery guarantees for mission-critical events
 
-Unified address handling across different blockchain networks:
-- Network-specific address format validation
-- Cross-chain address normalization
-- EIP-55 checksum enforcement for EVM chains
-- Metadata-driven network configuration
+### Network-Specific Adapters
+- **Path:** `backend/services/blockchain/etherlink_provider.py`, `backend/services/solana_anchor.py`
+- **Importance Score:** 80
+- Network-specific implementations of the provider interface
+- Handles chain-specific address formats and validation rules
+- Manages network-specific retry strategies and error handling
 
-#### Evidence Logging Pipeline
-**File**: `backend/services/evidence_log.py`
-**File**: `backend/services/solana_anchor.py`
-**Importance Score**: 80
-
-Integrated evidence recording and anchoring system:
-- Append-only event logging with integrity validation
-- Automated digest calculation and verification
-- Direct anchoring to Solana via Memo program
-- Integration with outbox system for retry handling
-
-#### Worker Integration
-**File**: `backend/workers/outbox_worker.py`
-**Importance Score**: 70
-
-Background task coordination for blockchain operations:
-- Scheduled outbox processing 
-- Provider-agnostic batch handling
-- Configuration-driven scheduling
-- Error classification and recovery
-
-### Integration Patterns
-
-1. Provider Abstraction
-- Common interface for multiple blockchain providers
-- Network-specific implementation isolation
-- Unified error handling and retry logic
-
-2. Event Pipeline
-- Standardized event logging format
-- Automated digest calculation
-- Configurable blockchain anchoring
-- Failure recovery via outbox pattern
-
-3. Address Management
-- Network-aware address validation
-- Cross-chain format normalization
-- Metadata-driven configuration
-- Reusable validation components
+### Configuration Integration
+- **Path:** `backend/config/database.py`, `backend/server_modules/database.py`
+- **Importance Score:** 75
+- Provides dynamic module loading based on deployment configuration
+- Coordinates database connections across service components
+- Manages environment-specific blockchain endpoint configurations
 
 $END$
 

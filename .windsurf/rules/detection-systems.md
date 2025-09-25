@@ -1,44 +1,46 @@
 ---
-description: Technical specification for drone detection systems, sensor fusion, and threat analysis components
+description: Technical specifications for drone detection systems, sensors, and threat analysis components
 trigger: model_decision
 ---
 
+# === USER INSTRUCTIONS ===
+trigger: model_decision
+# === END USER INSTRUCTIONS ===
 
 # detection-systems
 
-Based on the provided specification, there appears to be no direct implementation details about drone detection systems in the codebase. However, the specification does reveal some high-level architectural elements related to detection capabilities:
+Based on the provided specification, limited direct information exists about detection system components. However, the following high-level elements can be identified:
 
-### Event Logging System
-**Importance Score: 75**
-`backend/services/evidence_log.py`
-- Implements append-only logging for detection events
-- Records JSON Lines with timestamps and event types
-- Stores SHA-256 digests for event correlation
-- Ensures data integrity for detection audit trail
+## System Integration Points
 
-### Detection Data Flow
-**Importance Score: 80**
-`backend/services/blockchain_handler.py`
-- Handles detection event processing and validation
-- Integrates with various data providers
-- Implements retry logic for failed detection events
-- Manages outbox batches for reliable event processing
+### Evidence Logging System (Importance Score: 85)
+- Location: `backend/services/evidence_log.py`
+- Records mission events and detection data in append-only format
+- Computes SHA-256 digests of detection events
+- Implements thread-safe logging with file locking for concurrent detection streams
 
-### Blockchain Event Anchoring
-**Importance Score: 70**
-`backend/services/solana_anchor.py`
-- Anchors detection event digests to Solana blockchain
-- Uses Memo program for immutable event recording
-- Implements exponential backoff for network resilience
-- Provides verification of detection timestamps
+### Detection Data Verification (Importance Score: 80)
+- Location: `backend/services/blockchain_handler.py`
+- Anchors detection event digests to blockchain for tamper-proof verification
+- Integrates with multiple chains (Etherlink, Solana) for redundant verification
+- Implements retry mechanisms for reliable detection data storage
 
-### Failed Event Processing
-**Importance Score: 65**
-`backend/workers/outbox_worker.py`
-- Processes failed detection events
-- Implements configurable retry schedules
-- Handles transient and permanent failures
-- Maintains detection event integrity
+## Operating Modes
+
+### Mobile Picket Mode (Importance Score: 90)
+- Provides mobile detection capabilities
+- Supports dynamic threat analysis during movement
+- Maintains detection capabilities in EW-contested environments
+
+### Site-Fixed Overwatch (Importance Score: 85)
+- Permanent installation detection configuration
+- Continuous monitoring and threat assessment
+- Integration with fixed sensor arrays
+
+### Fiber-Engage Mode (Importance Score: 80)
+- Hardened detection capabilities via fiber connectivity
+- Resistant to RF interference and jamming
+- Enhanced detection range through distributed sensors
 
 $END$
 

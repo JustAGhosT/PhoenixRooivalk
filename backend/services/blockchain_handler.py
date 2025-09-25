@@ -102,7 +102,7 @@ class BlockchainHandler:
             elif item.op_type == "anchor_digest":
                 # Chain-specific anchoring path. Currently supports Solana via Memo program.
                 digest = item.payload.get("sha256")
-                if not isinstance(digest, str) or len(digest) < 64:
+                if not isinstance(digest, str) or len(digest) != 64:
                     raise BlockchainPermanentError("anchor_digest payload missing or invalid 'sha256'")
 
                 chain = (os.getenv("EVIDENCE_ANCHOR_CHAIN") or "").strip().lower()

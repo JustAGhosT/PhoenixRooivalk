@@ -15,6 +15,7 @@ import json
 import os
 from datetime import datetime, timezone
 from typing import Any, Dict, Optional
+from contextlib import contextmanager
 
 
 _DEFAULT_EVIDENCE_PATH = os.getenv(
@@ -59,15 +60,66 @@ def record_event(
         "ts": _now_iso(),
         "type": event_type.strip(),
         "sha256": digest,
-        "payload": json.loads(canonical.decode("utf-8")),  # stored in canonical form
+        # Store original payload; hashing still uses canonical bytes for stability
+        "payload": payload,
     }
 
     # Ensure directory exists
     os.makedirs(os.path.dirname(path) or ".", exist_ok=True)
 
-    # Append atomically-ish using text mode with explicit newline
+    # Append using cross-platform file locking to avoid interleaving between processes
     line = json.dumps(record, separators=(",", ":")) + "\n"
-    with io.open(path, mode="a", encoding="utf-8") as f:
-        f.write(line)
+    _append_line_locked(path, line)
 
     return digest
+
+
+@contextmanager
+def _exclusive_lock(f):
+    """Cross-platform exclusive file lock for the given file object."""
+    if os.name == "nt":  # Windows
+        try:
+            import msvcrt  # type: ignore
+        except Exception:
+            # Best-effort: lock unavailable; proceed without
+            yield
+            return
+        try:
+            # Lock the whole file by locking a large region from start
+            f.seek(0)
+            msvcrt.locking(f.fileno(), msvcrt.LK_LOCK, 0x7FFFFFFF)
+            yield
+        finally:
+            try:
+                f.seek(0)
+                msvcrt.locking(f.fileno(), msvcrt.LK_UNLCK, 0x7FFFFFFF)
+            except Exception:
+                pass
+    else:  # POSIX
+        try:
+            import fcntl  # type: ignore
+        except Exception:
+            # Best-effort: lock unavailable; proceed without
+            yield
+            return
+        try:
+            fcntl.flock(f.fileno(), fcntl.LOCK_EX)
+            yield
+        finally:
+            try:
+                fcntl.flock(f.fileno(), fcntl.LOCK_UN)
+            except Exception:
+                pass
+
+
+def _append_line_locked(path: str, line: str) -> None:
+    """Append a single line to the file with an exclusive lock and fsync."""
+    with io.open(path, mode="a", encoding="utf-8") as f:
+        with _exclusive_lock(f):
+            f.write(line)
+            f.flush()
+            try:
+                os.fsync(f.fileno())
+            except Exception:
+                # Not all filesystems support fsync; best-effort
+                pass

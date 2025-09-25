@@ -1,4 +1,4 @@
-chat## **Executive Summary**
+**Executive Summary**
 
 ### **Addressing the Threat**
 

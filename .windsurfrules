@@ -10,48 +10,50 @@
 - Explain your OBSERVATIONS clearly, then provide REASONING to identify the exact issue. Add console logs when needed to gather more information.
 
 
-The project implements a multi-chain blockchain integration system with several key components:
+The system architecture combines blockchain-based evidence logging with counter-UAS defense capabilities:
 
-## Core Blockchain Components
+## Core Blockchain Operations
+The blockchain integration layer handles mission-critical event anchoring and transaction management:
 
-### Address Management and Validation
-Located in `backend/api/blockchain/evm_address.py` and `backend/api/blockchain/networks.py`, these modules handle:
-- EVM address validation with EIP-55 checksum enforcement
-- Cross-chain address format standardization
-- Network-specific metadata and validation rules
-Importance Score: 65
+### Evidence Anchoring System (Importance: 90)
+- Evidence logging with SHA-256 digest computation
+- Multi-chain anchoring across Solana and EtherLink networks
+- Append-only logging with atomic file operations
+- Transaction outbox pattern for reliable blockchain submissions
 
-### Transaction Handling and Evidence
-The `backend/services/blockchain_handler.py` serves as the central orchestrator:
-- Manages blockchain operations across multiple providers
-- Implements fault-tolerant transaction submission
-- Coordinates with the outbox system for failed operations
-Importance Score: 80
+Key components:
+```
+backend/services/
+├── blockchain_handler.py    # High-level blockchain operations
+├── evidence_log.py         # Secure event logging
+├── solana_anchor.py        # Solana chain integration
+└── blockchain/
+    └── outbox.py          # Reliable transaction handling
+```
 
-### Evidence Logging System
-Implemented in `backend/services/evidence_log.py`:
-- Append-only logging of mission events
-- SHA-256 digest generation for blockchain anchoring
-- JSON Lines format with canonical payload representation
-Importance Score: 75
+## Counter-UAS System Components
 
-### Chain-Specific Implementations
+### Defense Layer Management (Importance: 95)
+- Modular defense system with layered effector activation
+- Cost-optimization logic for effector selection
+- Resilient command and control in EW environments
+- Multiple operating modes:
+  - Mobile picket deployment
+  - Site-fixed overwatch
+  - Fiber-engage capabilities
+  - Logistics support
 
-#### Solana Integration
-`backend/services/solana_anchor.py` provides:
-- On-chain anchoring using Memo program
-- SHA-256 digest submission
-- Retry logic with exponential backoff
-Importance Score: 75
+### Access Control System (Importance: 85)
+- Partner vetting workflow
+- Export control compliance checks
+- Geofencing restrictions
+- Operational safeguards
 
-#### Outbox Processing
-`backend/workers/outbox_worker.py` implements:
-- Periodic processing of failed blockchain operations
-- Configurable retry schedules
-- Error classification and handling
-Importance Score: 70
-
-The system is designed for cross-chain compatibility, with dedicated handlers for EVM-compatible chains (Ethereum, EtherLink) and Solana. The evidence logging system acts as a central source of truth, with blockchain anchoring providing immutable verification of mission events.
+### Financial Operations (Importance: 80)
+- Cost-effective effector management
+- Break-even analysis integration
+- Profit margin optimization
+- Scalability metrics tracking
 
 $END$
 

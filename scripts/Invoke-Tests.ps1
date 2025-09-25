@@ -28,5 +28,14 @@ if ($Quiet) { $pytestArgs += "-q" }
 if ($Marker -ne "") { $pytestArgs += @("-m", $Marker) }
 $pytestArgs += @("backend/tests")
 
+# Validate prerequisites
+if (!(Get-Command python -ErrorAction SilentlyContinue)) {
+    throw "Python is not available in PATH"
+}
+
+if (!(Test-Path "backend/tests")) {
+    throw "Backend tests directory not found: backend/tests"
+}
+
 # Prefer python -m pytest for venv compatibility
 python -m pytest @pytestArgs

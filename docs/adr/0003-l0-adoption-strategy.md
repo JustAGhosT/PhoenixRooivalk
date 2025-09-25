@@ -1,64 +1,36 @@
-# ADR 0003: Layer 0 (L0) adoption strategy and pilots
+# ADR 0003: Level-0 Autonomous Architecture
 
 Date: 2025-09-24
-Status: Proposed (pilot recommended)
+Status: Accepted
 
 ## Context
 
-Drone operations may span multiple chains and jurisdictions. We need a strategy
-for cross-chain interoperability, resilience, and customizable networks without
-sacrificing security or operational tempo.
+Blockchain protocols cannot achieve <2ms authentication latency required for real-time drone operations. Solana offers exceptional performance (65,000 TPS) but suffers from reliability issues.
 
 ## Decision
 
-Pursue a staged evaluation of L0 technologies with pilots focused on:
-
-1. Avalanche Subnets for isolated, high-performance drone-swarm networks.
-2. Polkadot XCM for cross-chain data exchange across allied networks.
-
-Ethereum/Solana remain as L1 targets for anchoring; L2 remains primary for
-single-chain, high-throughput coordination.
-
-## Rationale
-
-- L0 provides ecosystem-level composition and interop beyond a single L1/L2.
-- Subnets/parachains can be tailored for mission profiles (latency, access,
-  cryptography), and segmented for security domains.
-- Adapters (XCM/IBC) support allied collaboration and shared situational
-  awareness with verifiable data exchange.
+Implement a Level-0 autonomous base layer that operates independently of blockchain, with blockchain layers providing optimization and compliance rather than critical functionality.
 
 ## Consequences
 
-- Increased complexity (bridge/adapters) requires strong operational controls:
-  multi-sig, audits, minimized trust in relays/bridges, and monitoring.
-- Additional ops tooling needed for chain lifecycle (deploy, upgrade, observe).
-- Budget allocation shifts: dedicate 30–40% to L0 pilots/integration while
-  keeping 50–60% on L2 for immediate performance needs.
+**Positive:**
+- Meets <2ms authentication requirement
+- Enables use of high-performance but unreliable blockchains
+- Provides offline operation capability
+- Ensures mission continuity during blockchain failures
 
-## Pilot outline
+**Negative:**
+- Increases implementation complexity
+- Requires additional $2.5M investment
+- Needs specialized engineering expertise
+- Complex state synchronization
 
-- Subnet pilot (Avalanche): define validation set, tx fees, and access; deploy
-  a minimal evidence-anchoring adapter and measure latency/cost.
-- XCM pilot (Polkadot): demonstrate cross-chain evidence hash relay between two
-  parachains and verify end-to-end integrity.
+## Alternatives Considered
 
-## Links
+1. Pure blockchain solution - Rejected: Cannot meet latency requirements
+2. Edge-only solution - Rejected: Lacks audit trail and compliance
+3. Traditional centralized - Rejected: Single point of failure
 
-- Background: `docs/blockchain_integration.md#evaluation-of-layer-0-l0-blockchains-and-adapters`
-- Related ADRs: 0001 (Solana vs others), 0002 (Memo vs Contract on Solana)
+## Implementation
 
-## Appendix: L0 suitability snapshot (canonical in blockchain_integration.md)
-
-Reference: `docs/blockchain_integration.md#evaluation-of-layer-0-l0-blockchains-and-adapters`
-
-| Chain / Adapter | Security | Scalability | Latency | Interoperability | Resilience | Efficiency |
-| --- | --- | --- | --- | --- | --- | --- |
-| Polkadot (XCM) | H | H | M | H | H | M |
-| Cosmos (IBC) | M | M | M | H | M | M |
-| Avalanche (Subnets) | H | H | H | M | H | H |
-
-Notes (abridged):
-
-- Polkadot = shared security + XCM interop
-- Cosmos = strong interop, zone-dependent security
-- Avalanche = high-perf customizable subnets
+See [Level-0 Architecture Guide](../02-technical-architecture/level-0-architecture.md)

@@ -73,25 +73,23 @@ class TestOutbox(unittest.TestCase):
         def handler(_item):
             raise BlockchainTransientError("temp")
 
-        # Act: process until DLQ
-        for _ in range(5):
-            process_outbox(handler, max_attempts=3, batch_limit=10)
-            # Fast-forward by setting next_attempt_at to now
-            items = self.outbox.fetch_due(limit=10)
-            if not items:
-                # Force due by manually decrementing next_attempt_at for the job (not ideal, but simple)
-                with self.outbox._connect() as conn:  # type: ignore[attr-defined]
-                    conn.execute(
-                        "UPDATE outbox SET next_attempt_at = ? WHERE id = ?",
-                        ((datetime.now(timezone.utc) - timedelta(seconds=1)).isoformat(), job_id),
-                    )
+        # Act: process until DLQ using test time provider to avoid direct DB manipulation
+        current = datetime.now(timezone.utc)
+        self.outbox.set_time_provider(lambda: current)
+        try:
+            # We need 3 attempts to exceed max_attempts=3 (on the 3rd fail it should mark dead)
+            for _ in range(5):
+                process_outbox(handler, max_attempts=3, batch_limit=10)
+                status = self.outbox.get_status(job_id)
+                if status == "dead":
+                    break
+                # Advance time sufficiently to make the item due again
+                current = current + timedelta(seconds=120)
+        finally:
+            self.outbox.reset_time_provider()
 
-        # Assert: item should no longer be pending
-        with self.outbox._connect() as conn:  # type: ignore[attr-defined]
-            cur = conn.execute("SELECT status FROM outbox WHERE id = ?", (job_id,))
-            row = cur.fetchone()
-        self.assertIsNotNone(row)
-        self.assertEqual(row[0], "dead")
+        # Assert: item should be marked as dead
+        self.assertEqual(self.outbox.get_status(job_id), "dead")
 
     def test_permanent_error_marks_dead_immediately(self):
         # Arrange
@@ -105,11 +103,7 @@ class TestOutbox(unittest.TestCase):
         process_outbox(handler, max_attempts=10, batch_limit=10)
 
         # Assert
-        with self.outbox._connect() as conn:  # type: ignore[attr-defined]
-            cur = conn.execute("SELECT status FROM outbox WHERE id = ?", (job_id,))
-            row = cur.fetchone()
-        self.assertIsNotNone(row)
-        self.assertEqual(row[0], "dead")
+        self.assertEqual(self.outbox.get_status(job_id), "dead")
 
 
 if __name__ == "__main__":

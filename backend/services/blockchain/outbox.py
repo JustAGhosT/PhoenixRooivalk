@@ -10,7 +10,7 @@ import threading
 from contextlib import contextmanager
 from dataclasses import dataclass
 from datetime import datetime, timedelta, timezone
-from typing import Any, Iterable, List, Optional
+from typing import Any, Iterable, List, Optional, Callable
 
 from .errors import BlockchainPermanentError, BlockchainTransientError
 from .logger import get_logger
@@ -36,6 +36,20 @@ CREATE INDEX IF NOT EXISTS idx_outbox_next_attempt ON outbox (status, next_attem
 """
 
 _lock = threading.RLock()
+
+# Test-friendly time provider (dependency injection for clock)
+# In production, this resolves to datetime.now(timezone.utc).
+NOW_FN: Callable[[], datetime] = lambda: datetime.now(timezone.utc)
+
+def set_time_provider(now_fn: Callable[[], datetime]) -> None:
+    """Override the time provider (intended for tests)."""
+    global NOW_FN
+    NOW_FN = now_fn
+
+def reset_time_provider() -> None:
+    """Reset the time provider to the default (system clock)."""
+    global NOW_FN
+    NOW_FN = lambda: datetime.now(timezone.utc)
 
 
 @contextmanager
@@ -86,7 +100,7 @@ class OutboxItem:
 
 
 def enqueue(id: str, op_type: str, payload: dict, *, delay_seconds: int = 0) -> None:
-    now = datetime.now(timezone.utc)
+    now = NOW_FN()
     next_at = now + timedelta(seconds=delay_seconds)
     with _connect() as conn:
         conn.execute(
@@ -111,7 +125,7 @@ def enqueue(id: str, op_type: str, payload: dict, *, delay_seconds: int = 0) -> 
 
 
 def fetch_due(limit: int = 50) -> List[OutboxItem]:
-    now_iso = datetime.now(timezone.utc).isoformat()
+    now_iso = NOW_FN().isoformat()
     with _connect() as conn:
         cur = conn.execute(
             """
@@ -128,14 +142,14 @@ def fetch_due(limit: int = 50) -> List[OutboxItem]:
 
 
 def mark_done(id: str) -> None:
-    now = datetime.now(timezone.utc).isoformat()
+    now = NOW_FN().isoformat()
     with _connect() as conn:
         conn.execute("UPDATE outbox SET status = 'done', updated_at = ? WHERE id = ?", (now, id))
     _logger.info("outbox_done", extra={"id": id})
 
 
 def mark_dead(id: str, error: str) -> None:
-    now = datetime.now(timezone.utc).isoformat()
+    now = NOW_FN().isoformat()
     with _connect() as conn:
         conn.execute(
             "UPDATE outbox SET status = 'dead', last_error = ?, updated_at = ? WHERE id = ?",
@@ -146,7 +160,7 @@ def mark_dead(id: str, error: str) -> None:
 
 def increment_attempts(id: str, attempts: int, last_error: str, *, base_delay: float = 0.5, max_delay: float = 60.0) -> None:
     next_delay = _compute_backoff(attempts, base_delay, max_delay)
-    next_at = datetime.now(timezone.utc) + timedelta(seconds=next_delay)
+    next_at = NOW_FN() + timedelta(seconds=next_delay)
     with _connect() as conn:
         conn.execute(
             """
@@ -154,7 +168,7 @@ def increment_attempts(id: str, attempts: int, last_error: str, *, base_delay: f
             SET attempts = ?, last_error = ?, next_attempt_at = ?, updated_at = ?
             WHERE id = ?
             """,
-            (attempts, last_error, next_at.isoformat(), datetime.now(timezone.utc).isoformat(), id),
+            (attempts, last_error, next_at.isoformat(), NOW_FN().isoformat(), id),
         )
     _logger.warning(
         "outbox_retry_scheduled",
@@ -184,3 +198,14 @@ def process_outbox(handler_fn, *, max_attempts: int = 10, batch_limit: int = 50)
                 increment_attempts(item.id, attempts, str(ex))
         except Exception as ex:  # safeguard
             increment_attempts(item.id, item.attempts + 1, f"Unhandled error: {ex}")
+
+
+def get_status(id: str) -> Optional[str]:
+    """Return the status string for an outbox item, or None if not found.
+
+    Intended for tests and diagnostics; avoids direct DB access in test code.
+    """
+    with _connect() as conn:
+        cur = conn.execute("SELECT status FROM outbox WHERE id = ?", (id,))
+        row = cur.fetchone()
+    return row[0] if row else None

@@ -14,6 +14,12 @@ from typing import Optional
 _correlation_id: contextvars.ContextVar[str] = contextvars.ContextVar("correlation_id", default="-")
 
 
+class CorrelationFilter(logging.Filter):
+    def filter(self, record: logging.LogRecord) -> bool:
+        record.correlation_id = _correlation_id.get()
+        return True
+
+
 def get_logger(name: str = "blockchain") -> logging.Logger:
     logger = logging.getLogger(name)
     if not logger.handlers:
@@ -25,12 +31,6 @@ def get_logger(name: str = "blockchain") -> logging.Logger:
         handler.setFormatter(formatter)
         logger.addHandler(handler)
         logger.setLevel(logging.INFO)
-    # Inject correlation id into all records
-    class CorrelationFilter(logging.Filter):
-        def filter(self, record: logging.LogRecord) -> bool:  # noqa: D401
-            record.correlation_id = _correlation_id.get()
-            return True
-
     # Avoid adding duplicate filters
     if not any(isinstance(f, CorrelationFilter) for f in logger.filters):
         logger.addFilter(CorrelationFilter())
