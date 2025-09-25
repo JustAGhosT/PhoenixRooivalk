@@ -1,0 +1,19 @@
+{
+  "id": "overview",
+  "title": "PhoenixRooivalk Overview",
+  "description": "Public-safe documentation. For restricted partner materials, request access",
+  "source": "@site/docs/overview.md",
+  "sourceDirName": ".",
+  "slug": "/overview",
+  "permalink": "/overview",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "docs",
+  "next": {
+    "title": "Architecture Overview (Public-safe)",
+    "permalink": "/architecture/overview"
+  }
+}

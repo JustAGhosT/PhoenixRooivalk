@@ -1,77 +1,132 @@
 # PhoenixRooivalk
 
-## Business Plan
+Modular Counter‑UAS System (restricted partner access)
 
-### Version: Draft v1.0  
-### Date: January 14, 2025  
+> Notice: This repository contains restricted content intended for approved
+> defense partners. Redistribution or public disclosure is prohibited. See
+> `RESPONSIBLE_USE.md` and `ACCESS.md`.
 
-### Prepared by:  
-**Jurie Smit**  
-**PhoenixVC (net vir jou lol)**  
-**smit.jurie@gmail.com**
+Quick access: [Glossary](./docs/glossary.md)
 
----
+## Overview
 
-**Confidentiality Notice**  
-This document is confidential and intended solely for the recipient(s). Unauthorized distribution, reproduction, or sharing is strictly prohibited.
+PhoenixRooivalk delivers a layered, modular counter‑UAS capability for
+contested EM environments. The public materials in this repository provide a
+high‑level overview and governance. Partner‑only details (specifications,
+simulations, integration guides) are shared upon approval.
 
----
+## Mission
 
-## Table of Contents
-1. [Executive Summary](./docs/executive-summary.md)
-2. [Technical Overview](./docs/technical-overview.md)
-3. [Competitor Analysis](./docs/competitor-analysis.md)
-4. [Marketing and Risk Analysis](./docs/marketing-and-risk-analysis.md)
-5. [Civilian Use Cases and After-Sales Support](./docs/civilian-use-cases.md)
-6. [Financial Projections](./docs/financial-projections.md)
-7. [Implementation Plan](./docs/implementation-plan.md)
-8. [Next Steps](./docs/next-steps.md)
+Provide a modular, layered defense against low‑cost UAS threats by cueing the
+cheapest effective effector first, preserving high‑value effectors, and
+maintaining C2 in heavy EW through resilient optical and RF links.
 
-## Project Description
+## System overview (abstract)
 
-The **PhoenixRooivalk** is a modular, cost-effective, and scalable solution designed to neutralize unauthorized drones across various sectors. Combining cutting-edge technologies such as RF jamming, GPS spoofing, and physical countermeasures (e.g., net entanglement), the system provides comprehensive drone defense. Its modular design allows for easy customization to meet the specific needs of diverse clients, including governments, event organizers, and private enterprises.
+- RKV‑M: Aerial VTOL mothership for picket, relay, and mini launch; resilient
+  comms and survivability provisions.
+- RKV‑I: Deployable minis (interceptor, decoy, ISR). Control via RF or optional
+  fiber for jam‑resistant teleoperation. Non‑kinetic baseline.
+- RKV‑G: Ground support rover acting as mobile GCS, mast, and logistics node;
+  can bear fiber spools for engagements.
+- RKV‑C2: Command, control, and data plane with strict QoS, eventing, and
+  observability; weapon‑agnostic integration patterns.
 
-### Key Features
+For detailed specifications and planning baselines, see [`index.md`](./index.md)
+(restricted).
 
-- **Modular Design:** Customizable components tailored to specific use cases.
-- **Affordability:** Priced 20–30% lower than leading competitors without compromising on performance.
-- **Physical Countermeasures:** Unique tools like net entanglement systems for non-destructive drone neutralization.
-- **Ease of Deployment:** Lightweight, portable, and user-friendly, requiring minimal training.
+## Operating modes
 
-### Target Markets
+- Mobile picket: Extend detection/relay ahead of maneuver elements.
+- Site‑fixed overwatch: Short micro‑tether or elevated optical mast.
+- Fiber‑engage: Rover establishes fiber link for spoof‑resistant control.
+- Logistics: Resupply, magazine swap, and net deployment support.
 
-1. **Government Agencies:** Border security, military, and law enforcement.
-2. **Event Organizers:** Protection from unauthorized drones at large-scale events.
-3. **Private Enterprises:** Agriculture, logistics, and critical infrastructure protection.
+## Documentation map
 
-### Financial Projections
+- Business plan and high‑level brief: see [`index.md`](./index.md)
+  - Technical and business docs (selected public sections):
+    - [Executive summary](./docs/executive_summary.md)
+    - [Technical overview](./docs/technical_overview.md)
+    - [Glossary](./docs/glossary.md)
+    - [Blockchain integration](./docs/blockchain_integration.md)
+    - Architecture Decisions (ADRs):
+      - [ADR 0001: Chain selection for anchoring (Solana vs others)](./docs/adr/0001-solana-vs-others.md)
+      - [ADR 0002: Solana anchoring — Memo vs Smart Contract](./docs/adr/0002-solana-memo-vs-contract.md)
+      - [ADR 0003: L0 adoption strategy and pilots](./docs/adr/0003-l0-adoption-strategy.md)
+      - [ADR 0004: Layered blockchain strategy — L2 + L3 for ops, L1 for anchoring](./docs/adr/0004-layered-strategy-l1-l2-l3.md)
+    - [Competitor analysis](./docs/competitor_analysis.md)
+    - [Marketing and risk analysis](./docs/marketing_and_risk_analysis.md)
+    - [Civilian use cases](./docs/civilian_use_cases.md)
+    - [Financial projections](./docs/financial_projections.md)
+    - [Implementation plan](./docs/implementation_plan.md)
 
-- **Year 1 Revenue:** ZAR 5,000,000  
-- **Year 5 Revenue:** ZAR 25,000,000  
-- **Profit Margin:** Projected to grow from 10% in Year 1 to 35% by Year 5.
+If any link appears broken, verify filenames use underscores (not hyphens) in the `docs/` directory.
 
-### Next Steps
+## Operational tasks
 
-1. Finalize prototype development and conduct field testing.  
-2. Secure initial funding and partnerships with security firms and government agencies.  
-3. Launch marketing campaigns targeting key industries and stakeholders.
+### Outbox worker (process anchoring jobs)
 
-## How to View the Project
+- PowerShell helper: `./scripts/Invoke-OutboxWorker.ps1`
+- Example:
 
-This project is hosted on GitHub Pages. You can view it by visiting the following link: [PhoenixRooivalk](https://JustAGhosT.github.io/PhoenixRooivalk/)
+```powershell
+# Optional anchoring env (Solana pilot)
+$env:EVIDENCE_ANCHOR_CHAIN = "solana"
+$env:SOLANA_RPC_URL = "https://api.mainnet-beta.solana.com"
+$env:SOLANA_SECRET_KEY = "file://C:/secrets/solana-keypair.json"
 
-## License
+./scripts/Invoke-OutboxWorker.ps1 -ProviderEndpoint "http://localhost" -IntervalSec 5 -BatchLimit 25 -MaxAttempts 10
+```
 
-This project is licensed under a proprietary license. See the [LICENSE](./LICENSE) file for details.
+Python entry (alternative):
+
+```powershell
+python -m backend.workers.outbox_worker
+```
+
+### Record evidence and enqueue anchoring (CLI)
+
+- Python CLI: `python -m backend.tools.record_evidence <event_type> <payload_or_@file.json> [--enqueue-anchor]`
+- Examples:
+
+```powershell
+python -m backend.tools.record_evidence engagement_summary '{"missionId":"M-123","result":"success"}' --enqueue-anchor
+python -m backend.tools.record_evidence engagement_summary @C:\data\payload.json --enqueue-anchor
+```
+
+For runbook-style metrics capture, use the Operations Log template:
+
+- [Operations log template — anchoring runs](./docs/ops/operations_log_template.md)
+
+## Access request (partners)
+
+Approved defense partners may request access to extended documentation and
+artifacts. Please see [`ACCESS.md`](./ACCESS.md) for intake details and
+required information.
+
+## Responsible use
+
+This project is weapon‑agnostic by design. Integration of restricted payloads
+occurs only under applicable law and export controls. See
+[`RESPONSIBLE_USE.md`](./RESPONSIBLE_USE.md).
+
+## Site preview (if enabled)
+
+If GitHub Pages is configured for this repository, you can view the rendered
+materials at:
+[JustAGhosT.github.io/PhoenixRooivalk](https://JustAGhosT.github.io/PhoenixRooivalk/)
 
 ## Contributing
 
-If you would like to contribute to this project, please read the [CONTRIBUTING.md](./CONTRIBUTING.md) file for guidelines.
+Contributions are limited to approved collaborators. Review [`CONTRIBUTING.md`](./CONTRIBUTING.md) for guidelines.
+
+## License
+
+This project is licensed under a proprietary license. See [`LICENSE`](./LICENSE) for details.
 
 ## Contact
 
-For any inquiries, please contact:
-
-**Jurie Smit**  
-**PhoenixVC**  
-**smit.jurie@gmail.com**
+Jurie Smit  
+PhoenixVC  
+mailto:smit.jurie@gmail.com

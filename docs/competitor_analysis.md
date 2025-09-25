@@ -8,6 +8,12 @@
 
 ---
 
+> See also: Glossary entries for background on key terms —
+> [Communications and EW](./glossary.md#communications-and-ew),
+> [Navigation and PNT](./glossary.md#navigation-and-pnt),
+> [Neutralization and Countermeasures](./glossary.md#neutralization-and-countermeasures),
+> and [Operations and concepts](./glossary.md#operations-and-concepts).
+
 The counter-drone market is highly competitive, with established players offering a range of solutions. Below is a comparison of key competitors based on price, country of manufacture, year founded, manufacturer name, features, strengths, and weaknesses.
 
 | **Competitor**                                      | **Price (ZAR)** | **Country**  | **Year Founded** | **Manufacturer**        | **Key Features**                                                               | **Strengths**                             | **Weaknesses**                          |

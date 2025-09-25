@@ -1,0 +1,18 @@
+[
+  {
+    "fileName": "main-overview.mdc",
+    "description": "Complete system overview detailing the modular architecture, component interactions, and high-level system design of the PhoenixRooivalk counter-drone system"
+  },
+  {
+    "fileName": "countermeasure-algorithms.mdc",
+    "description": "Detailed documentation of the core algorithms for RF jamming, GPS spoofing, and signal disruption mechanisms, including logic flows and implementation details"
+  },
+  {
+    "fileName": "detection-systems.mdc",
+    "description": "Technical documentation of drone detection systems, sensor integration, and threat analysis algorithms, including data flow between detection and response components"
+  },
+  {
+    "fileName": "module-integration.mdc",
+    "description": "Documentation of the modular system architecture, component interfaces, and integration patterns for customizable deployment configurations"
+  }
+]
