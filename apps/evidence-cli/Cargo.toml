@@ -1,0 +1,17 @@
+[package]
+name = "evidence-cli"
+version = "0.1.0"
+edition = "2021"
+
+[[bin]]
+name = "record-evidence"
+path = "src/main.rs"
+
+[dependencies]
+phoenix-evidence = { path = "../../crates/evidence" }
+clap = { version = "4", features = ["derive"] }
+serde_json = "1"
+tokio = { version = "1.39", features = ["rt-multi-thread", "macros"] }
+reqwest = { version = "0.11", features = ["json"] }
+anyhow = "1"
+chrono = { version = "0.4", features = ["serde"] }

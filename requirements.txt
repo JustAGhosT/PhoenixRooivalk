@@ -1,7 +1,0 @@
-# Backend Python dependencies for blockchain services
-web3==6.11.3
-requests>=2.31,<3
-types-requests>=2.31,<3  # Type stubs for requests library
-pymongo>=4.6,<5  # Optional: required only when using a real MongoDB (not needed for in-memory)
-eth-utils>=2.3,<3  # For EIP-55 checksum validation/normalization
-eth-hash[pycryptodome]>=0.7,<1  # Keccak backend needed by eth-utils for checksum ops
