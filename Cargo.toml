@@ -1,0 +1,15 @@
+[workspace]
+resolver = "2"
+members = [
+  "apps/api",
+  "apps/keeper",
+  "crates/evidence",
+  "crates/anchor-etherlink",
+  "crates/anchor-solana",
+]
+
+[workspace.package]
+edition = "2021"
+
+[workspace.lints.rust]
+unsafe_code = "forbid"

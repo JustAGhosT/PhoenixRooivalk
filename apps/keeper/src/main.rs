@@ -1,0 +1,149 @@
+use axum::{routing::get, Router};
+use sqlx::{sqlite::SqlitePoolOptions, Sqlite, Pool, Row};
+use std::time::Duration;
+use tokio::signal;
+use tokio::time::sleep;
+use tracing_subscriber::{layer::SubscriberExt, util::SubscriberInitExt};
+
+#[tokio::main]
+async fn main() {
+    tracing_subscriber::registry()
+        .with(tracing_subscriber::EnvFilter::new(
+            std::env::var("RUST_LOG").unwrap_or_else(|_| "info".into()),
+        ))
+        .with(tracing_subscriber::fmt::layer())
+        .init();
+
+    // HTTP health endpoint
+    let app = Router::new().route("/health", get(|| async { "OK" }));
+    let http = tokio::spawn(async move {
+        let addr = "0.0.0.0:8081";
+        tracing::info!(%addr, "keeper http starting");
+        axum::Server::bind(&addr.parse().unwrap())
+            .serve(app.into_make_service())
+            .await
+            .unwrap();
+    });
+
+    // Job runner
+    let runner = tokio::spawn(async move {
+        let poll_interval = std::env::var("KEEPER_POLL_MS")
+            .ok()
+            .and_then(|v| v.parse::<u64>().ok())
+            .map(Duration::from_millis)
+            .unwrap_or_else(|| Duration::from_secs(5));
+
+        let db_url = std::env::var("KEEPER_DB_URL").ok();
+        if let Some(url) = db_url {
+            match SqlitePoolOptions::new().max_connections(5).connect(&url).await {
+                Ok(pool) => {
+                    if let Err(e) = ensure_schema(&pool).await { tracing::error!(error=%e, "schema init failed"); }
+                    let mut jp = SqliteJobProvider { pool };
+                    let anchor = LogEvidenceAnchor;
+                    run_job_loop(&mut jp, &anchor, poll_interval).await;
+                }
+                Err(e) => {
+                    tracing::error!(error=%e, "db connect failed, falling back to stdout provider");
+                    let mut jp = StdoutJobProvider;
+                    let anchor = LogEvidenceAnchor;
+                    run_job_loop(&mut jp, &anchor, poll_interval).await;
+                }
+            }
+        } else {
+            let mut jp = StdoutJobProvider;
+            let anchor = LogEvidenceAnchor;
+            run_job_loop(&mut jp, &anchor, poll_interval).await;
+        }
+    });
+
+    // Wait for Ctrl+C
+    tokio::select! {
+        _ = signal::ctrl_c() => {
+            tracing::info!("shutdown signal received");
+        }
+        _ = http => {}
+        _ = runner => {}
+    }
+}
+
+// --- Job model & traits ---
+#[derive(Debug, Clone)]
+pub struct EvidenceJob {
+    pub id: String,
+    pub payload_sha256: String,
+    pub created_ms: i64,
+}
+
+#[derive(Debug, thiserror::Error)]
+pub enum JobError {
+    #[error("temporary: {0}")]
+    Temporary(String),
+    #[error("permanent: {0}")]
+    Permanent(String),
+}
+
+#[async_trait::async_trait]
+pub trait JobProvider {
+    async fn fetch_next(&mut self) -> Result<Option<EvidenceJob>, JobError>;
+    async fn mark_done(&mut self, id: &str) -> Result<(), JobError>;
+    async fn mark_failed(&mut self, id: &str, reason: &str) -> Result<(), JobError>;
+}
+
+#[async_trait::async_trait]
+pub trait EvidenceAnchor {
+    async fn anchor(&self, job: &EvidenceJob) -> Result<(), JobError>;
+}
+
+pub async fn run_job_loop<J: JobProvider, A: EvidenceAnchor>(
+    provider: &mut J,
+    anchor: &A,
+    poll: Duration,
+) {
+    loop {
+        match provider.fetch_next().await {
+            Ok(Some(job)) => {
+                tracing::info!(job_id = %job.id, "processing job");
+                match anchor.anchor(&job).await {
+                    Ok(_) => {
+                        let _ = provider.mark_done(&job.id).await;
+                        tracing::info!(job_id = %job.id, "job done");
+                    }
+                    Err(e) => {
+                        tracing::warn!(job_id = %job.id, error = %e, "job failed");
+                        let _ = provider.mark_failed(&job.id, &e.to_string()).await;
+                    }
+                }
+            }
+            Ok(None) => {
+                sleep(poll).await;
+            }
+            Err(e) => {
+                tracing::error!(error=%e, "poll error");
+                sleep(poll).await;
+            }
+        }
+    }
+}
+
+// --- Simple stubs to demonstrate flow ---
+struct StdoutJobProvider;
+
+#[async_trait::async_trait]
+impl JobProvider for StdoutJobProvider {
+    async fn fetch_next(&mut self) -> Result<Option<EvidenceJob>, JobError> {
+        // In real use, pull from DB/queue. Here we simulate "no job".
+        Ok(None)
+    }
+    async fn mark_done(&mut self, _id: &str) -> Result<(), JobError> { Ok(()) }
+    async fn mark_failed(&mut self, _id: &str, _reason: &str) -> Result<(), JobError> { Ok(()) }
+}
+
+struct LogEvidenceAnchor;
+
+#[async_trait::async_trait]
+impl EvidenceAnchor for LogEvidenceAnchor {
+    async fn anchor(&self, job: &EvidenceJob) -> Result<(), JobError> {
+        tracing::info!(job_id = %job.id, sha256 = %job.payload_sha256, "anchoring evidence (stub)");
+        Ok(())
+    }
+}
