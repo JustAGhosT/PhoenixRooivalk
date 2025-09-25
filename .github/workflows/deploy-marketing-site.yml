@@ -1,0 +1,92 @@
+name: Deploy Marketing (Next.js)
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'apps/marketing/**'
+      - '.github/workflows/deploy-marketing-site.yml'
+  pull_request:
+    paths:
+      - 'apps/marketing/**'
+      - '.github/workflows/deploy-marketing-site.yml'
+  workflow_dispatch:
+
+jobs:
+  build-and-deploy:
+    if: github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: .
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'pnpm'
+          cache-dependency-path: 'pnpm-lock.yaml'
+
+      - name: Enable Corepack / Install deps (pnpm)
+        run: |
+          corepack enable
+          pnpm install
+
+      - name: Build (marketing)
+        run: pnpm --filter marketing build
+
+      - name: Deploy to Netlify (Marketing)
+        uses: nwtgck/actions-netlify@v3
+        with:
+          publish-dir: 'apps/marketing/out'
+          production-deploy: true
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          deploy-message: 'Automated deploy (marketing)'
+          enable-commit-comment: false
+          enable-commit-status: true
+          alias: 'prod'
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_MARKETING_SITE_ID }}
+
+  preview-deploy:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: .
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'pnpm'
+          cache-dependency-path: 'pnpm-lock.yaml'
+
+      - name: Enable Corepack / Install deps (pnpm)
+        run: |
+          corepack enable
+          pnpm install
+
+      - name: Build (marketing)
+        run: pnpm --filter marketing build
+
+      - name: Deploy Preview to Netlify (Marketing)
+        uses: nwtgck/actions-netlify@v3
+        with:
+          publish-dir: 'apps/marketing/out'
+          production-deploy: false
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          deploy-message: 'Deploy Preview (marketing) from PR #${{ github.event.pull_request.number }}'
+          enable-commit-comment: true
+          enable-commit-status: true
+          alias: ${{ github.head_ref }}
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_MARKETING_SITE_ID }}
