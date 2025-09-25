@@ -78,12 +78,33 @@ async fn ensure_schema(pool: &Pool<Sqlite>) -> Result<(), sqlx::Error> {
             attempts INTEGER NOT NULL DEFAULT 0,
             last_error TEXT,
             created_ms INTEGER NOT NULL,
-            updated_ms INTEGER NOT NULL
+            updated_ms INTEGER NOT NULL,
+            next_attempt_ms INTEGER NOT NULL DEFAULT 0
         );
         "#,
     )
     .execute(pool)
     .await?;
+    // Create tx refs table (if not exists)
+    sqlx::query(
+        r#"
+        CREATE TABLE IF NOT EXISTS outbox_tx_refs (
+            job_id TEXT NOT NULL,
+            network TEXT NOT NULL,
+            chain TEXT NOT NULL,
+            tx_id TEXT NOT NULL,
+            confirmed INTEGER NOT NULL,
+            timestamp INTEGER,
+            PRIMARY KEY (job_id, network, chain)
+        );
+        "#,
+    )
+    .execute(pool)
+    .await?;
+    // Try to add next_attempt_ms if missing (best-effort)
+    let _ = sqlx::query("ALTER TABLE outbox_jobs ADD COLUMN next_attempt_ms INTEGER NOT NULL DEFAULT 0")
+        .execute(pool)
+        .await;
     Ok(())
 }
 

@@ -4,6 +4,9 @@ use std::time::Duration;
 use tokio::signal;
 use tokio::time::sleep;
 use tracing_subscriber::{layer::SubscriberExt, util::SubscriberInitExt};
+use phoenix_evidence::anchor::{AnchorProvider, AnchorError};
+use phoenix_evidence::model::{ChainTxRef, EvidenceRecord, EvidenceDigest, DigestAlgo};
+use anchor_etherlink::EtherlinkProviderStub;
 
 #[tokio::main]
 async fn main() {
@@ -39,19 +42,19 @@ async fn main() {
                 Ok(pool) => {
                     if let Err(e) = ensure_schema(&pool).await { tracing::error!(error=%e, "schema init failed"); }
                     let mut jp = SqliteJobProvider { pool };
-                    let anchor = LogEvidenceAnchor;
+                    let anchor = EtherlinkProviderStub;
                     run_job_loop(&mut jp, &anchor, poll_interval).await;
                 }
                 Err(e) => {
                     tracing::error!(error=%e, "db connect failed, falling back to stdout provider");
                     let mut jp = StdoutJobProvider;
-                    let anchor = LogEvidenceAnchor;
+                    let anchor = EtherlinkProviderStub;
                     run_job_loop(&mut jp, &anchor, poll_interval).await;
                 }
             }
         } else {
             let mut jp = StdoutJobProvider;
-            let anchor = LogEvidenceAnchor;
+            let anchor = EtherlinkProviderStub;
             run_job_loop(&mut jp, &anchor, poll_interval).await;
         }
     });
@@ -77,56 +80,10 @@ pub struct EvidenceJob {
 #[derive(Debug, thiserror::Error)]
 pub enum JobError {
     #[error("temporary: {0}")]
-    Temporary(String),
-    #[error("permanent: {0}")]
-    Permanent(String),
 }
 
 #[async_trait::async_trait]
-pub trait JobProvider {
-    async fn fetch_next(&mut self) -> Result<Option<EvidenceJob>, JobError>;
-    async fn mark_done(&mut self, id: &str) -> Result<(), JobError>;
-    async fn mark_failed(&mut self, id: &str, reason: &str) -> Result<(), JobError>;
-}
-
-#[async_trait::async_trait]
-pub trait EvidenceAnchor {
-    async fn anchor(&self, job: &EvidenceJob) -> Result<(), JobError>;
-}
-
-pub async fn run_job_loop<J: JobProvider, A: EvidenceAnchor>(
-    provider: &mut J,
-    anchor: &A,
-    poll: Duration,
-) {
-    loop {
-        match provider.fetch_next().await {
-            Ok(Some(job)) => {
-                tracing::info!(job_id = %job.id, "processing job");
-                match anchor.anchor(&job).await {
-                    Ok(_) => {
-                        let _ = provider.mark_done(&job.id).await;
-                        tracing::info!(job_id = %job.id, "job done");
-                    }
-                    Err(e) => {
-                        tracing::warn!(job_id = %job.id, error = %e, "job failed");
-                        let _ = provider.mark_failed(&job.id, &e.to_string()).await;
-                    }
-                }
-            }
-            Ok(None) => {
-                sleep(poll).await;
-            }
-            Err(e) => {
-                tracing::error!(error=%e, "poll error");
-                sleep(poll).await;
-            }
-        }
-    }
-}
-
-// --- Simple stubs to demonstrate flow ---
-struct StdoutJobProvider;
+impl JobProvider for SqliteJobProvider {
 
 #[async_trait::async_trait]
 impl JobProvider for StdoutJobProvider {
@@ -138,12 +95,4 @@ impl JobProvider for StdoutJobProvider {
     async fn mark_failed(&mut self, _id: &str, _reason: &str) -> Result<(), JobError> { Ok(()) }
 }
 
-struct LogEvidenceAnchor;
-
-#[async_trait::async_trait]
-impl EvidenceAnchor for LogEvidenceAnchor {
-    async fn anchor(&self, job: &EvidenceJob) -> Result<(), JobError> {
-        tracing::info!(job_id = %job.id, sha256 = %job.payload_sha256, "anchoring evidence (stub)");
-        Ok(())
-    }
-}
+// removed: LogEvidenceAnchor (we use AnchorProvider impls from provider crates)
