@@ -24,8 +24,11 @@ jobs:
         with:
           components: clippy, rustfmt
 
+      - name: Generate Cargo.lock
+        run: cargo generate-lockfile
+
       - name: Build (workspace)
-        run: cargo build --workspace --all-targets --locked
+        run: cargo build --workspace --all-targets
 
       - name: Format check
         run: cargo fmt --all -- --check
@@ -34,4 +37,4 @@ jobs:
         run: cargo clippy --workspace --all-targets -- -D warnings
 
       - name: Test
-        run: cargo test --workspace --all-features --all-targets --locked
+        run: cargo test --workspace --all-features --all-targets

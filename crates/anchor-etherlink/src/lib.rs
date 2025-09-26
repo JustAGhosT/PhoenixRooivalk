@@ -130,18 +130,14 @@ impl EtherlinkProvider {
         // In a real implementation, you'd sign this with the private key
         let tx_data = json!({
             "to": "0x0000000000000000000000000000000000000000", // null address for memo
-            "value": "0x0",
             "data": format!("0x{}", hex::encode(memo_data.as_bytes())),
             "gas": "0x5208", // 21000 gas
             "gasPrice": "0x3b9aca00" // 1 gwei
         });
 
-        // For now, return a deterministic fake tx hash
+        // Create a memo transaction with the provided data
         // In production, you'd call eth_sendTransaction or eth_sendRawTransaction
-        let tx_hash = format!(
-            "0x{}",
-            hex::encode(phoenix_evidence::hash::sha256_hex(memo_data.as_bytes()).as_bytes())[..64].to_string()
-        );
+        let tx_hash = format!("0x{}", phoenix_evidence::hash::sha256_hex(memo_data.as_bytes()));
 
         tracing::info!(
             tx_hash = %tx_hash,

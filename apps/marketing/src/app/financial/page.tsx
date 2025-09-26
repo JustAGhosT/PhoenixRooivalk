@@ -28,7 +28,7 @@ export default function FinancialPage(): React.ReactElement {
         <div className="max-w-[1400px] mx-auto">
           <div className="text-center">
             <h1 className="text-4xl md:text-5xl font-extrabold bg-clip-text text-transparent bg-gradient-to-br from-white to-[var(--primary)]">Financial Projections</h1>
-            <p className="text-[var(--gray)] mt-4 max-w-3xl mx-auto">Break-even by Year 3, ZAR 170M revenue by Year 5 with 34.9% profit margins</p>
+            <p className="text-[var(--gray)] mt-4 max-w-3xl mx-auto">Break-even by Year 3, $9.4M revenue by Year 5 with 34.9% profit margins</p>
           </div>
         </div>
       </section>
@@ -39,9 +39,9 @@ export default function FinancialPage(): React.ReactElement {
           <h2 className="text-3xl font-bold mb-8 text-center text-[var(--primary)]">Key Financial Metrics</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
-              ['ZAR 850,000', 'Unit Price', 'Per system pricing'],
+              ['$47,000', 'Unit Price', 'Per system pricing'],
               ['Year 3', 'Break-Even Point', '50 units sold'],
-              ['ZAR 170M', 'Year 5 Revenue', 'Projected annual revenue'],
+              ['$9.4M', 'Year 5 Revenue', 'Projected annual revenue'],
               ['34.9%', 'Year 5 Profit Margin', 'Operational efficiency']
             ].map(([value, label, description]) => (
               <div key={label} className="text-center rounded-xl border border-[rgba(0,255,136,0.2)] bg-[rgba(15,23,42,0.8)] backdrop-blur p-6">
@@ -64,20 +64,20 @@ export default function FinancialPage(): React.ReactElement {
                 <tr className="bg-gradient-to-br from-[var(--primary)] to-[var(--secondary)] text-[var(--dark)]">
                   <th className="p-4 text-left font-bold">Year</th>
                   <th className="p-4 text-left font-bold">Units Sold</th>
-                  <th className="p-4 text-left font-bold">Revenue (ZAR)</th>
-                  <th className="p-4 text-left font-bold">Costs (ZAR)</th>
-                  <th className="p-4 text-left font-bold">Profit (ZAR)</th>
+                  <th className="p-4 text-left font-bold">Revenue (USD)</th>
+                  <th className="p-4 text-left font-bold">Costs (USD)</th>
+                  <th className="p-4 text-left font-bold">Profit (USD)</th>
                   <th className="p-4 text-left font-bold">Profit Margin</th>
                 </tr>
               </thead>
               <tbody className="bg-[rgba(15,23,42,0.8)]">
                 {[
-                  ['0', '0', '0', '15,000,000', '-15,000,000', '-100.0%'],
-                  ['1', '15', '12,750,000', '15,500,000', '-2,750,000', '-21.6%'],
-                  ['2', '35', '29,750,000', '26,500,000', '3,250,000', '10.9%'],
-                  ['3 (Break-Even)', '50', '42,500,000', '40,000,000', '2,500,000', '5.9%'],
-                  ['4', '100', '85,000,000', '58,000,000', '27,000,000', '31.8%'],
-                  ['5', '150', '127,500,000', '83,000,000', '44,500,000', '34.9%']
+                  ['0', '0', '0', '830,000', '-830,000', '-100.0%'],
+                  ['1', '15', '705,000', '858,000', '-152,000', '-21.6%'],
+                  ['2', '35', '1,645,000', '1,465,000', '180,000', '10.9%'],
+                  ['3 (Break-Even)', '50', '2,350,000', '2,210,000', '138,000', '5.9%'],
+                  ['4', '100', '4,700,000', '3,210,000', '1,490,000', '31.8%'],
+                  ['5', '150', '7,050,000', '4,590,000', '2,460,000', '34.9%']
                 ].map((row, index) => (
                   <tr key={index} className={`hover:bg-[rgba(0,255,136,0.05)] ${row[0].includes('Break-Even') ? 'bg-[rgba(0,255,136,0.1)]' : ''}`}>
                     <td className="p-4 border-b border-[rgba(0,255,136,0.1)] font-semibold">{row[0]}</td>
@@ -99,26 +99,26 @@ export default function FinancialPage(): React.ReactElement {
         <div className="max-w-[1400px] mx-auto">
           <h2 className="text-3xl font-bold mb-8 text-center text-[var(--primary)]">Initial Investment Allocation</h2>
           <div className="text-center mb-8">
-            <div className="text-4xl font-extrabold bg-clip-text text-transparent bg-gradient-to-br from-[var(--primary)] to-[var(--secondary)]">ZAR 15,000,000</div>
+            <div className="text-4xl font-extrabold bg-clip-text text-transparent bg-gradient-to-br from-[var(--primary)] to-[var(--secondary)]">$830,000</div>
             <p className="text-[var(--gray)] mt-2">Total initial investment required</p>
           </div>
           <div className="grid md:grid-cols-3 gap-8">
             {[
               {
                 category: 'Research & Development',
-                amount: 'ZAR 10,000,000',
+                amount: '$555,000',
                 percentage: '67%',
                 justification: 'Essential for prototyping, testing, and certifications. Core technology development and regulatory approvals.'
               },
               {
                 category: 'Marketing & Sales',
-                amount: 'ZAR 3,000,000',
+                amount: '$166,000',
                 percentage: '20%',
                 justification: 'Build market awareness and secure early adopters through trade shows, demonstrations, and partnerships.'
               },
               {
                 category: 'Operational Setup',
-                amount: 'ZAR 2,000,000',
+                amount: '$111,000',
                 percentage: '13%',
                 justification: 'Infrastructure and administrative costs for manufacturing setup and initial operations.'
               }

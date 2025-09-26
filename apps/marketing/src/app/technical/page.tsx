@@ -125,8 +125,63 @@ export default function TechnicalPage(): React.ReactElement {
         </div>
       </section>
 
-      {/* Power and Portability */}
+      {/* Coverage Map Simulator */}
       <section className="px-[5%] py-16 bg-[linear-gradient(180deg,transparent,rgba(0,136,255,0.05))]">
+        <div className="max-w-[1400px] mx-auto">
+          <h2 className="text-3xl font-bold mb-8 text-center text-[var(--primary)]">Detection Coverage Visualization</h2>
+          <div className="rounded-xl border border-[rgba(0,255,136,0.2)] bg-[rgba(15,23,42,0.8)] backdrop-blur p-6 mb-8">
+            <div className="relative h-96 bg-gradient-to-br from-slate-800 to-slate-900 rounded-lg overflow-hidden">
+              {/* Simulated satellite view */}
+              <div className="absolute inset-0 opacity-30">
+                <div className="w-full h-full bg-gradient-to-br from-green-900 to-green-800"></div>
+                {/* Simulated terrain features */}
+                <div className="absolute top-12 left-16 w-20 h-8 bg-gray-600 rounded opacity-50"></div>
+                <div className="absolute bottom-20 right-12 w-16 h-16 bg-blue-600 rounded-full opacity-40"></div>
+                <div className="absolute top-32 right-24 w-12 h-24 bg-gray-700 rounded opacity-45"></div>
+              </div>
+              
+              {/* Detection zones */}
+              <div className="absolute inset-0 flex items-center justify-center">
+                {/* 5km detection radius */}
+                <div className="absolute w-80 h-80 border-2 border-[var(--primary)] rounded-full opacity-40 animate-pulse">
+                  <div className="absolute -top-6 left-1/2 transform -translate-x-1/2 text-xs text-[var(--primary)] font-semibold">5km Detection</div>
+                </div>
+                {/* 2km neutralization radius */}
+                <div className="absolute w-48 h-48 border-2 border-red-400 rounded-full opacity-60">
+                  <div className="absolute -top-6 left-1/2 transform -translate-x-1/2 text-xs text-red-400 font-semibold">2km Neutralization</div>
+                </div>
+                
+                {/* System location */}
+                <div className="absolute w-8 h-8 bg-gradient-to-br from-[var(--primary)] to-[var(--secondary)] rounded-full flex items-center justify-center">
+                  <span className="text-xs">🛡️</span>
+                </div>
+                
+                {/* Animated threat paths */}
+                <div className="absolute top-8 left-8 w-3 h-3 bg-red-500 rounded-full animate-bounce">
+                  <div className="absolute -top-4 -left-2 text-xs text-red-400">Threat</div>
+                </div>
+                <div className="absolute bottom-12 right-16 w-3 h-3 bg-yellow-500 rounded-full animate-pulse">
+                  <div className="absolute -bottom-4 -left-2 text-xs text-yellow-400">Unknown</div>
+                </div>
+              </div>
+              
+              {/* Coverage stats */}
+              <div className="absolute bottom-4 left-4 bg-[rgba(0,0,0,0.7)] rounded-lg p-3 text-xs">
+                <div className="text-[var(--primary)] font-semibold mb-1">Coverage Analysis</div>
+                <div className="text-white">Area Protected: 78.5 km²</div>
+                <div className="text-green-400">Active Sensors: 5/5</div>
+                <div className="text-yellow-400">Threats Tracked: 2</div>
+              </div>
+            </div>
+            <div className="mt-4 text-center">
+              <p className="text-[var(--gray)] text-sm">Interactive coverage map showing 5km detection radius and 2km neutralization zone</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Power and Portability */}
+      <section className="px-[5%] py-16">
         <div className="max-w-[1400px] mx-auto">
           <h2 className="text-3xl font-bold mb-8 text-center text-[var(--primary)]">Power & Environmental Specifications</h2>
           <div className="grid md:grid-cols-2 gap-8">

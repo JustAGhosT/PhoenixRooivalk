@@ -124,7 +124,8 @@ impl SolanaProvider {
         // Create a memo transaction
         // In a real implementation, you'd create and sign a proper Solana transaction
         // For now, return a deterministic fake signature
-        let signature = base64::encode(phoenix_evidence::hash::sha256_hex(memo_data.as_bytes()).as_bytes());
+        // sha256_hex already returns a hex string, so we use it directly as the signature
+        let signature = phoenix_evidence::hash::sha256_hex(memo_data.as_bytes());
         
         tracing::info!(
             signature = %signature,
