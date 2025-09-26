@@ -27,14 +27,13 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20'
+          cache: 'pnpm'
+          cache-dependency-path: 'pnpm-lock.yaml'
 
-      - name: Install pnpm
-        uses: pnpm/action-setup@v4
-        with:
-          version: 9.6.0
-
-      - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+      - name: Enable Corepack / Install deps (pnpm)
+        run: |
+          corepack enable
+          pnpm install
 
       - name: Build (marketing)
         run: pnpm --filter marketing build
@@ -67,14 +66,13 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20'
+          cache: 'pnpm'
+          cache-dependency-path: 'pnpm-lock.yaml'
 
-      - name: Install pnpm
-        uses: pnpm/action-setup@v4
-        with:
-          version: 9.6.0
-
-      - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+      - name: Enable Corepack / Install deps (pnpm)
+        run: |
+          corepack enable
+          pnpm install
 
       - name: Build (marketing)
         run: pnpm --filter marketing build
