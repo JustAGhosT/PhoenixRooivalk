@@ -43,19 +43,16 @@ Profit margins are a critical indicator of efficiency and profitability. This ch
 - **Break-Even Year**: 3 (when profit becomes positive).
 - **Cumulative Revenue by Year 3**: ZAR 42.5 million.
 - **Key Insights**:
-  - Break-even occurs at **50 units sold**.
   - Profitability accelerates post-break-even, supported by reduced per-unit costs.
 
 ### **Visualizations**
-#### **Revenue, Costs, and Profit Over Time**
+#### **Revenue, Costs, and ProfitOver Time**
 This chart demonstrates overall financial performance, highlighting the growing gap between revenue and costs as profit increases.
-![Revenue, Costs, and Profit Over Time](assets/images/revenue_costs_profit_break_even.png)
+![Revenue, Costs, and Profit Over Time](pathname://assets/images/revenue_costs_profit_break_even.png)
 
 #### **Profit Margin Growth**
 This chart showcases operational improvements reflected in higher margins over time.
 ![Break-Even Point and Profit Growth](assets/images/profit_margin_growth_over_time.png)
-
-### **Funding Allocation**
 The initial investment of ZAR 15,000,000 is allocated strategically across critical areas to ensure sustainable growth:
 
 | **Category**          | **Amount (ZAR)** | **Percentage** | **Justification**                                         |
