@@ -11,11 +11,11 @@ const metrics = [
 export const MetricsSection: React.FC = () => {
   return (
     <section
-      className="px-[5%] py-16 bg-[linear-gradient(180deg,transparent,rgba(0,136,255,0.05))]"
+      className="px-[5%] py-12 bg-[linear-gradient(180deg,transparent,rgba(0,136,255,0.05))]"
       id="metrics"
     >
       <div className="max-w-[1400px] mx-auto">
-        <div className="text-center reveal mb-12">
+        <div className="text-center reveal mb-8">
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
             Revolutionary AI + Blockchain Performance
           </h2>

@@ -99,6 +99,26 @@ export default function HomePage(): React.ReactElement {
               </Link>
             </li>
             <li>
+              <a href="#metrics" className="hover:text-[var(--primary)]">
+                Metrics
+              </a>
+            </li>
+            <li>
+              <a href="#ukraine-challenge" className="hover:text-[var(--primary)]">
+                Ukraine Challenge
+              </a>
+            </li>
+            <li>
+              <a href="#capabilities" className="hover:text-[var(--primary)]">
+                Capabilities
+              </a>
+            </li>
+            <li>
+              <a href="#ai-benefits" className="hover:text-[var(--primary)]">
+                AI Benefits
+              </a>
+            </li>
+            <li>
               <a href="#contact" className="hover:text-[var(--primary)]">
                 Contact
               </a>
