@@ -72,14 +72,12 @@
 - **Importance Score**: A relative 0–100 heuristic indicating how critical a
   component is to mission outcomes and system integrity. Unless otherwise
   specified, scores are derived using the following weighting:
-
   - Operational impact (40%): effect on safety, mission continuity, compliance
   - Security exposure (25%): likelihood and consequence of exploitation
   - Architectural centrality (20%): dependency hub, failure blast radius
   - Change volatility (15%): rate of change, defect likelihood, maintainability
 
   Typical interpretation:
-
   - 80–100: Mission-critical. Requires strict reviews, tests, and hardening.
   - 60–79: High importance. Prioritize for monitoring and regression tests.
   - <60: Moderate/low. Standard engineering controls apply.

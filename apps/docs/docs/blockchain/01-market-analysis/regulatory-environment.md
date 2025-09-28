@@ -91,21 +91,18 @@ print(f"Total FAA Compliance Market: ${total_faa_market/1000000000:.1f}B")
 **Key FAA Regulatory Requirements**:
 
 1. **Detection and Identification**:
-
    - Mandatory detection systems for Class B airspace (major airports)
    - Real-time identification of unauthorized drones
    - Integration with air traffic control systems
    - 99.5% detection accuracy requirement
 
 2. **Response and Mitigation**:
-
    - Graduated response protocols (warning, diversion, neutralization)
    - Coordination with law enforcement and security agencies
    - Minimal impact on legitimate aviation operations
    - Safety-first approach to mitigation
 
 3. **Data Management and Reporting**:
-
    - Incident reporting to FAA within 24 hours
    - Data retention for 5 years minimum
    - Privacy protection for legitimate drone operations
@@ -219,14 +216,12 @@ print(f"Annual ITAR Compliance Cost: ${annual_itar_cost:,}")
 **ITAR Compliance Requirements for Counter-Drone Systems**:
 
 1. **Registration and Licensing**:
-
    - DDTC (Directorate of Defense Trade Controls) registration
    - Export license applications for international sales
    - Technical data protection and access controls
    - Employee security clearance requirements
 
 2. **Technology Transfer Restrictions**:
-
    - Prohibition on sharing technical data with foreign persons
    - Restrictions on foreign investment and ownership
    - Controlled access to manufacturing and development facilities
@@ -326,14 +321,12 @@ print(f"Maximum GDPR Fine: €{gdpr_compliance['penalties']['administrative_fine
 **GDPR Compliance Strategies**:
 
 1. **Privacy by Design**:
-
    - Data minimization in collection and processing
    - Purpose limitation for security operations
    - Storage limitation with automated deletion
    - Transparency in data processing activities
 
 2. **Technical Safeguards**:
-
    - Encryption of personal data at rest and in transit
    - Pseudonymization of identifiable information
    - Access controls and audit logging

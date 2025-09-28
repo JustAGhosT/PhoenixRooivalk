@@ -169,7 +169,6 @@ target audiences were selected and their relevance to the strategy.
 ### **Reputational Risks**
 
 1. **Negative Press**:
-
    - **Risk**: Poor reviews or social media backlash could damage the brand.
    - **Mitigation**: Ensure high-quality customer service and proactive
      communication.
@@ -177,7 +176,6 @@ target audiences were selected and their relevance to the strategy.
      negative publicity promptly.
 
 2. **Case Studies from Similar Companies**:
-
    - **Example**: Company X successfully mitigated a backlash by issuing a
      public apology and providing free updates to affected customers, which
      restored trust.

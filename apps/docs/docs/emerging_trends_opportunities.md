@@ -1,10 +1,10 @@
 ## **Emerging Trends, Risks, and Future Opportunities**
 
-> **Visual Enhancements To-Do** | **Task** | **Description** | |
-> -------------------- | ----------------------------------------------------- |
-> | **Heatmap** | Showcasing global demand for counter-drone systems. | |
-> **Infographic** | Comparing emerging trends and their projected growth. | |
-> **Timeline Diagram** | Highlighting future-proofing milestones. |
+> | **Visual Enhancements To-Do** | **Task**                                              | **Description** |     |
+> | ----------------------------- | ----------------------------------------------------- | --------------- | --- |
+> | **Heatmap**                   | Showcasing global demand for counter-drone systems.   |                 |
+> | **Infographic**               | Comparing emerging trends and their projected growth. |                 |
+> | **Timeline Diagram**          | Highlighting future-proofing milestones.              |
 
 ---
 
