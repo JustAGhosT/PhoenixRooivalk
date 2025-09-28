@@ -21,7 +21,7 @@ This section provides comprehensive security documentation for the Phoenix Rooiv
 - **Infrastructure Layer**: Container security, secrets management, HSM integration
 
 ### Key Security Metrics
-- **Threat Detection**: 99.4% accuracy with <1% false positives
+- **Threat Detection**: 99.4% accuracy with &lt;1% false positives
 - **Response Time**: <2 seconds for critical threats
 - **Availability**: 99.9% uptime under attack conditions
 - **Compliance**: NIST, FIPS 140-2, Common Criteria EAL4+

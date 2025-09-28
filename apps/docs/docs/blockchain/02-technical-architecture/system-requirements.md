@@ -15,11 +15,11 @@
 
 | Requirement | Specification | Rationale | Validation Method |
 |-------------|--------------|-----------|-------------------|
-| **Authentication Latency** | <2ms (p95) | Critical for drone identification | Hardware timing tests |
-| **Threat Detection** | <500ms | Enables defensive response | End-to-end testing |
-| **Response Authorization** | <3 seconds | Command chain requirement | Simulation testing |
-| **Swarm Coordination** | <250ms | Formation maintenance | Multi-drone testing |
-| **Data Logging** | <100ms | Forensic requirements | Stress testing |
+| **Authentication Latency** | &lt;2ms (p95) | Critical for drone identification | Hardware timing tests |
+| **Threat Detection** | &lt;500ms | Enables defensive response | End-to-end testing |
+| **Response Authorization** | &lt;3 seconds | Command chain requirement | Simulation testing |
+| **Swarm Coordination** | &lt;250ms | Formation maintenance | Multi-drone testing |
+| **Data Logging** | &lt;100ms | Forensic requirements | Stress testing |
 
 ### 1.2 Throughput Requirements
 ```yaml
@@ -173,19 +173,16 @@ swarm_coordination: drone_count: 100 formations: All types success_rate: >95% co
 system_integration: vendor_systems: All tier 1 data_accuracy: >99% latency: <100ms availability: >99.9%
 ```
 
-### 7.2 Key Performance Indicators
-
 | KPI | Target | Measurement | Frequency |
 |-----|--------|-------------|-----------|
 | **System Availability** | >99.9% | Uptime monitoring | Real-time |
 | **Threat Detection Rate** | >95% | True positive ratio | Daily |
-| **Response Time** | <3 sec | End-to-end latency | Per event |
+| **Response Time** | <2 seconds | End-to-end latency | Per event |
 | **False Positive Rate** | <3% | Manual validation | Weekly |
 | **Blockchain Finality** | <3 sec | Block confirmation | Per block |
 | **Cost per Transaction** | <$0.10 | Total cost / volume | Monthly |
 
 ## 8. Constraints and Assumptions
-
 ### 8.1 Technical Constraints
 
 - **Network Bandwidth**: Minimum 100 Mbps per site
