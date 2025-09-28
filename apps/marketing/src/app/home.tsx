@@ -84,6 +84,11 @@ export default function HomePage(): React.ReactElement {
           </Link>
           <ul className="hidden md:flex gap-6 text-[var(--gray)]">
             <li>
+              <Link href="/interactive-demo" className="hover:text-[var(--primary)]">
+                Interactive Demo
+              </Link>
+            </li>
+            <li>
               <Link href="/technical" className="hover:text-[var(--primary)]">
                 Technical
               </Link>
