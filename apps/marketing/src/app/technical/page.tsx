@@ -42,7 +42,7 @@ export default function TechnicalPage(): React.ReactElement {
               <h3 className="text-xl font-semibold mb-4 text-[var(--primary)]">AI Performance</h3>
               <ul className="space-y-2 text-[var(--gray)] text-sm">
                 <li>• 99.7% threat detection accuracy vs 60-70% industry standard</li>
-                <li>• < 200ms response time vs 1-3 seconds traditional systems</li>
+                <li>• &lt; 200ms response time vs 1-3 seconds traditional systems</li>
                 <li>• Multi-modal sensor fusion (RF, visual, acoustic, radar)</li>
                 <li>• Federated learning with blockchain consensus</li>
                 <li>• Explainable AI with transparent decision-making</li>
