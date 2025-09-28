@@ -6,7 +6,7 @@ import { RevealSection } from '@/components/RevealSection';
 export const ContactSection: React.FC = () => {
   return (
     <section
-      className="px-[5%] py-12 bg-[linear-gradient(180deg,rgba(0,136,255,0.05),transparent)]"
+      className="px-6 md:px-[5%] lg:px-8 py-12 bg-[linear-gradient(180deg,rgba(0,136,255,0.05),transparent)]"
       id="contact"
     >
       <RevealSection className="max-w-[1400px] mx-auto text-center">

@@ -5,7 +5,7 @@ import { Button } from '../ui/button';
 export const HeroSection: React.FC = () => {
   return (
     <section
-      className="flex items-center px-[5%] py-16 relative"
+      className="flex items-center px-6 md:px-[5%] lg:px-8 py-16 relative"
       id="hero"
     >
       <div className="mx-auto max-w-[1400px] grid md:grid-cols-2 gap-16 items-center">

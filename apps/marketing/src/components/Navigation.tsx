@@ -16,7 +16,7 @@ export const Navigation: React.FC = () => {
   ];
 
   return (
-    <nav className="sticky top-0 z-50 bg-[rgba(10,14,26,0.95)] backdrop-blur px-6 py-3">
+    <nav className="sticky top-0 z-50 bg-[rgba(10,14,26,0.95)] backdrop-blur px-6 md:px-[5%] lg:px-8 py-3">
       <div className="mx-auto max-w-[1400px] flex items-center justify-between">
         <Link
           href="/"

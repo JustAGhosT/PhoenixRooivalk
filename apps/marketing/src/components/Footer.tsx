@@ -9,7 +9,7 @@ export const Footer: React.FC = () => {
   ];
 
   return (
-    <footer className="px-[5%] py-6 text-center text-[var(--gray)] border-t border-[rgba(0,255,136,0.2)]">
+    <footer className="px-6 md:px-[5%] lg:px-8 py-6 text-center text-[var(--gray)] border-t border-[rgba(0,255,136,0.2)]">
       <div className="max-w-[1400px] mx-auto">
         <p>© 2025 Phoenix Rooivalk. All rights reserved. | ITAR Compliant | ISO 27001 Certified</p>
         <div className="mt-4">
