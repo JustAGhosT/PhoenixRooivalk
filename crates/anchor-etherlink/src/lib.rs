@@ -201,4 +201,3 @@ impl AnchorProvider for EtherlinkProvider {
         Ok(confirmed_tx)
     }
 }
-}
