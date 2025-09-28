@@ -11,7 +11,3 @@ export { useIntersectionObserver } from './hooks/useIntersectionObserver';
 
 // Types
 export type { ButtonProps } from './components/Button';
-export type { RevealSectionProps } from './components/RevealSection';
-export type { StickyHeaderProps } from './components/StickyHeader';
-export type { ExitIntentModalProps } from './components/ExitIntentModal';
-export type { QuickActionsWidgetProps } from './components/QuickActionsWidget';
