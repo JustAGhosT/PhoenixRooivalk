@@ -40,6 +40,7 @@ pub struct EtherlinkProvider {
 
 #[derive(Debug, Serialize)]
 struct JsonRpcRequest {
+    jsonrpc: String,
     method: String,
     params: Value,
     id: u64,
