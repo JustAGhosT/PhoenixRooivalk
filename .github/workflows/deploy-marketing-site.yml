@@ -5,10 +5,22 @@ on:
     branches: [ main ]
     paths:
       - 'apps/marketing/**'
+      - 'packages/**'
+      - 'package.json'
+      - 'pnpm-lock.yaml'
+      - 'turbo.json'
+      - 'tsconfig.base.json'
+      - '.eslintrc.js'
       - '.github/workflows/deploy-marketing-site.yml'
   pull_request:
     paths:
       - 'apps/marketing/**'
+      - 'packages/**'
+      - 'package.json'
+      - 'pnpm-lock.yaml'
+      - 'turbo.json'
+      - 'tsconfig.base.json'
+      - '.eslintrc.js'
       - '.github/workflows/deploy-marketing-site.yml'
   workflow_dispatch:
 
@@ -33,7 +45,12 @@ jobs:
       - name: Enable Corepack / Install deps (pnpm)
         run: |
           corepack enable
-          pnpm install
+          pnpm install --frozen-lockfile
+
+      - name: Lint and Type Check
+        run: |
+          pnpm lint
+          pnpm typecheck
 
       - name: Build (marketing)
         run: pnpm --filter marketing build
@@ -72,7 +89,12 @@ jobs:
       - name: Enable Corepack / Install deps (pnpm)
         run: |
           corepack enable
-          pnpm install
+          pnpm install --frozen-lockfile
+
+      - name: Lint and Type Check
+        run: |
+          pnpm lint
+          pnpm typecheck
 
       - name: Build (marketing)
         run: pnpm --filter marketing build
