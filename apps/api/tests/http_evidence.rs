@@ -1,6 +1,7 @@
-use phoenix_api::build_app;
-use phoenix_keeper::{ensure_schema, run_job_loop, SqliteJobProvider};
+use phoenix_api::main::build_app;
+use phoenix_keeper::{run_job_loop, SqliteJobProvider};
 use anchor_etherlink::EtherlinkProviderStub;
+use axum::Server;
 use reqwest::Client;
 use serde_json::json;
 use std::net::TcpListener;
@@ -30,7 +31,7 @@ async fn test_http_evidence_flow() {
     
     // Start API server
     let server = tokio::spawn(async move {
-        axum::Server::bind(&addr)
+        Server::bind(&addr)
             .serve(app.into_make_service())
             .await
             .unwrap();

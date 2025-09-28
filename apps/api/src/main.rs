@@ -1,8 +1,10 @@
-use axum::{routing::{get, post}, Router, extract::{Path, State}, Json};
+use axum::{routing::{get, post}, Router, extract::{Path, State}, Json, Server};
+use chrono::Utc;
 use serde::{Deserialize, Serialize};
 use sqlx::{sqlite::SqlitePoolOptions, Sqlite, Pool, Row};
 use std::net::SocketAddr;
 use tracing_subscriber::{layer::SubscriberExt, util::SubscriberInitExt};
+use uuid::Uuid;
 
 async fn health() -> &'static str { "OK" }
 
@@ -66,7 +68,7 @@ async fn main() {
     let addr = SocketAddr::from(([0, 0, 0, 0], port));
     tracing::info!(%addr, "starting phoenix-api");
 
-    axum::Server::bind(&addr)
+    Server::bind(&addr)
         .serve(app.into_make_service())
         .await
         .unwrap();
