@@ -282,9 +282,9 @@ export default function HomePage(): React.ReactElement {
                 </div>
               </div>
             </div>
-          </div>
+          </RevealSection>
           
-          <div className="text-center mt-12 reveal">
+          <RevealSection className="text-center mt-12">
             <div className="bg-[rgba(0,255,136,0.1)] border border-[var(--primary)]/30 rounded-xl p-8 max-w-4xl mx-auto">
               <h3 className="text-2xl font-bold text-white mb-4">18-Month AI + Blockchain Advantage</h3>
               <p className="text-[var(--gray)] text-lg mb-6">
@@ -300,13 +300,13 @@ export default function HomePage(): React.ReactElement {
                 </Button>
               </div>
             </div>
-          </div>
+          </RevealSection>
         </div>
       </section>
 
       {/* Contact */}
       <section className="px-[5%] py-16 bg-[linear-gradient(180deg,rgba(0,136,255,0.05),transparent)]" id="contact">
-        <div className="max-w-[1400px] mx-auto text-center reveal">
+        <RevealSection className="max-w-[1400px] mx-auto text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Ready to Deploy?</h2>
           <p className="text-[var(--gray)] mb-8 max-w-2xl mx-auto">
             Schedule a technical demonstration or request detailed specifications for your defense requirements.
@@ -319,7 +319,7 @@ export default function HomePage(): React.ReactElement {
               Download Whitepaper
             </Button>
           </div>
-        </div>
+        </RevealSection>
       </section>
 
       {/* Footer */}

@@ -11,7 +11,6 @@
     "forceConsistentCasingInFileNames": true,
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./apps/*/src/*"],
       "@/components/*": ["./packages/ui/src/components/*"],
       "@/types/*": ["./packages/types/src/*"],
       "@/utils/*": ["./packages/utils/src/*"]
