@@ -3,7 +3,7 @@ export const downloadWhitepaper = () => {
   const link = document.createElement("a");
 
   // Set the href to the whitepaper file in the public directory
-  link.href = "/Phoenix-Rooivalk-Technical-Whitepaper.md";
+  link.href = "/technical-whitepaper.md";
 
   // Set the download attribute to specify the filename
   link.download = "Phoenix-Rooivalk-Technical-Whitepaper.md";

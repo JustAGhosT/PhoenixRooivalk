@@ -500,6 +500,57 @@ export default function HomePage(): React.ReactElement {
         </div>
       </section>
 
+      {/* Technical Whitepaper Download */}
+      <section className="px-[5%] py-16 bg-[linear-gradient(180deg,rgba(0,255,136,0.1),rgba(0,136,255,0.1))]">
+        <div className="max-w-[1400px] mx-auto text-center">
+          <RevealSection>
+            <div className="inline-block bg-gradient-to-r from-[var(--primary)] to-[var(--secondary)] text-black px-4 py-2 rounded-full text-sm font-bold mb-6">
+              📋 COMPREHENSIVE TECHNICAL DOCUMENTATION
+            </div>
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+              Get the Complete Technical Whitepaper
+            </h2>
+            <p className="text-[var(--gray)] max-w-3xl mx-auto text-lg mb-8">
+              Download our detailed technical documentation covering system architecture,
+              security implementation, deployment configurations, and performance specifications.
+            </p>
+
+            {/* Whitepaper features */}
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8 max-w-4xl mx-auto">
+              <div className="bg-gray-800/50 p-4 rounded-lg border border-green-500/20">
+                <div className="text-2xl mb-2">🏗️</div>
+                <h3 className="text-green-400 font-semibold text-sm mb-1">System Architecture</h3>
+                <p className="text-xs text-gray-300">Complete technical design and component integration</p>
+              </div>
+              <div className="bg-gray-800/50 p-4 rounded-lg border border-blue-500/20">
+                <div className="text-2xl mb-2">🔒</div>
+                <h3 className="text-blue-400 font-semibold text-sm mb-1">Security Framework</h3>
+                <p className="text-xs text-gray-300">Blockchain security and compliance standards</p>
+              </div>
+              <div className="bg-gray-800/50 p-4 rounded-lg border border-purple-500/20">
+                <div className="text-2xl mb-2">📊</div>
+                <h3 className="text-purple-400 font-semibold text-sm mb-1">Performance Metrics</h3>
+                <p className="text-xs text-gray-300">Detailed benchmarks and testing results</p>
+              </div>
+              <div className="bg-gray-800/50 p-4 rounded-lg border border-yellow-500/20">
+                <div className="text-2xl mb-2">🚀</div>
+                <h3 className="text-yellow-400 font-semibold text-sm mb-1">Deployment Guide</h3>
+                <p className="text-xs text-gray-300">Implementation and configuration instructions</p>
+              </div>
+            </div>
+
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Button onClick={downloadWhitepaper} size="lg" className="bg-green-600 hover:bg-green-700">
+                📥 Download Technical Whitepaper
+              </Button>
+              <Button href="#contact" variant="outline" size="lg">
+                Request Full Documentation
+              </Button>
+            </div>
+          </RevealSection>
+        </div>
+      </section>
+
       {/* Contact */}
       <section
         className="px-[5%] py-16 bg-[linear-gradient(180deg,rgba(0,136,255,0.05),transparent)]"
@@ -511,13 +562,9 @@ export default function HomePage(): React.ReactElement {
           </h2>
           <p className="text-[var(--gray)] mb-8 max-w-2xl mx-auto">
             Schedule a technical demonstration or request detailed
-            specifications for your defense requirements.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button
-              href="mailto:smit.jurie@gmail.com?subject=Phoenix%20Rooivalk%20-%20Technical%20Demo"
-              size="lg"
-            >
+          <div className="mt-8 flex gap-4 animate-fadeInUp [animation-delay:600ms]">
+            <Button href="#contact" size="lg">
               Schedule Technical Demo
             </Button>
             <Button onClick={downloadWhitepaper} variant="outline" size="lg">
@@ -526,8 +573,6 @@ export default function HomePage(): React.ReactElement {
           </div>
         </RevealSection>
       </section>
-
-      {/* Footer */}
       <footer className="px-[5%] py-8 text-center text-[var(--gray)] border-t border-[rgba(0,255,136,0.2)]">
         <div className="max-w-[1400px] mx-auto">
           <p>
