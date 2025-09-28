@@ -42,7 +42,7 @@ jobs:
           corepack prepare pnpm@latest --activate
 
       - name: Install dependencies
-        run: pnpm install --no-frozen-lockfile
+        run: pnpm install --frozen-lockfile
 
       # Temporarily disabled - format check failing on 173 files
       # - name: Format check
