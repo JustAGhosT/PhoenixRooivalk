@@ -78,5 +78,6 @@ module.exports = {
     'target/',
     '*.config.js',
     '*.config.mjs',
+    'packages/types/',
   ],
 };
