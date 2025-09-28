@@ -318,7 +318,7 @@ impl JobProviderExt for SqliteJobProvider {
             let attempts: i64 = rec.get(0);
             let base: i64 = 5000; // 5s
             let cap: i64 = 300000; // 5m
-            let exp = attempts.max(0).min(20);
+            let exp = attempts.clamp(0, 20);
             let backoff = (base * (1i64 << exp)).min(cap);
             let next = now_ms + backoff;
             sqlx::query(
