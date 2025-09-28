@@ -44,7 +44,7 @@ jobs:
         - language: javascript-typescript
           build-mode: none
         - language: rust
-          build-mode: manual
+          build-mode: none
 
     steps:
     - name: Checkout repository
@@ -63,19 +63,6 @@ jobs:
         languages: ${{ matrix.language }}
         build-mode: ${{ matrix.build-mode }}
 
-    - if: matrix.build-mode == 'manual' && matrix.language == 'rust'
-      name: Setup Rust
-      uses: dtolnay/rust-toolchain@stable
-
-    - if: matrix.build-mode == 'manual' && matrix.language == 'rust'
-      name: Cache Rust dependencies
-      uses: Swatinem/rust-cache@v2
-
-    - if: matrix.build-mode == 'manual' && matrix.language == 'rust'
-      name: Build Rust workspace
-      run: |
-        cargo generate-lockfile
-        cargo build --workspace --all-targets --all-features
 
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v3
