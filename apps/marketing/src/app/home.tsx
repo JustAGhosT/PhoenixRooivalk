@@ -10,7 +10,7 @@ import { QuickActionsWidget } from "@/components/QuickActionsWidget";
 import { RevealSection } from "@/components/RevealSection";
 import { StickyHeader } from "@/components/StickyHeader";
 import { usePerformanceOptimizations } from "../hooks/usePerformanceOptimizations";
-import { downloadWhitepaper } from "../utils/downloadWhitepaper";
+import { downloadWhitepaper } from "@/utils/downloadWhitepaper";
 
 export default function HomePage(): React.ReactElement {
   const docsUrl = process.env.NEXT_PUBLIC_DOCS_URL || "";
