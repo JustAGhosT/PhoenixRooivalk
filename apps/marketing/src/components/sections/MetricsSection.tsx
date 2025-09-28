@@ -2,10 +2,10 @@ import React from 'react';
 import { MetricCard } from '../ui/MetricCard';
 
 const metrics = [
-  ['95%+', 'Hit Rate', 'vs 60-70% current systems'],
+  ['99.7%', 'AI Accuracy', 'vs 60-70% current systems'],
+  ['99.3%', 'Data Integrity', 'vs 85% traditional systems'],
+  ['< 200ms', 'Response Time', 'vs 1-3 seconds industry standard'],
   ['18 Months', 'Head Start', 'Ready before 2027 deadline'],
-  ['$0.00025', 'Per Transaction', 'vs $150+ per drone'],
-  ['Multi-Spectrum', 'Defense', 'Kinetic + EW + Laser'],
 ];
 
 export const MetricsSection: React.FC = () => {
@@ -14,10 +14,10 @@ export const MetricsSection: React.FC = () => {
       <div className="max-w-[1400px] mx-auto">
         <div className="text-center reveal mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-            Solving the 2027 Autonomous Warfare Challenge
+            Revolutionary AI + Blockchain Performance
           </h2>
           <p className="text-[var(--gray)] max-w-2xl mx-auto">
-            While Ukraine races against an 18-month deadline, Phoenix Rooivalk delivers the defensive advantage today. Superior reliability, EW resistance, and swarm coordination capabilities.
+            Phoenix Rooivalk combines cutting-edge AI with military-grade blockchain technology to deliver unprecedented performance. 99.7% accuracy with 99.3% data integrity protection, ready 18 months ahead of the 2027 deadline.
           </p>
         </div>
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 reveal">

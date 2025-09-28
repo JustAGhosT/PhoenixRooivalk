@@ -1,6 +1,6 @@
 "use client";
-import React from 'react';
 import Link from 'next/link';
+import React from 'react';
 
 export default function TechnicalPage(): React.ReactElement {
   return (
@@ -27,8 +27,39 @@ export default function TechnicalPage(): React.ReactElement {
       <section className="px-[5%] py-16">
         <div className="max-w-[1400px] mx-auto">
           <div className="text-center">
-            <h1 className="text-4xl md:text-5xl font-extrabold bg-clip-text text-transparent bg-gradient-to-br from-white to-[var(--primary)]">Technical Specifications</h1>
-            <p className="text-[var(--gray)] mt-4 max-w-3xl mx-auto">Multi-sensor detection and neutralization platform with modular architecture for diverse operational environments.</p>
+            <h1 className="text-4xl md:text-5xl font-extrabold bg-clip-text text-transparent bg-gradient-to-br from-white to-[var(--primary)]">AI + Blockchain Technical Specifications</h1>
+            <p className="text-[var(--gray)] mt-4 max-w-3xl mx-auto">Revolutionary AI-blockchain counter-drone system with 99.7% accuracy, 99.3% data integrity, and autonomous swarm coordination capabilities.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* AI + Blockchain Capabilities */}
+      <section className="px-[5%] py-16 bg-[linear-gradient(180deg,rgba(0,255,136,0.05),rgba(0,136,255,0.05))]">
+        <div className="max-w-[1400px] mx-auto">
+          <h2 className="text-3xl font-bold mb-8 text-center text-[var(--primary)]">AI + Blockchain Capabilities</h2>
+          <div className="grid md:grid-cols-2 gap-8 mb-12">
+            <div className="rounded-xl border border-[rgba(0,255,136,0.2)] bg-[rgba(15,23,42,0.8)] backdrop-blur p-6">
+              <h3 className="text-xl font-semibold mb-4 text-[var(--primary)]">AI Performance</h3>
+              <ul className="space-y-2 text-[var(--gray)] text-sm">
+                <li>• 99.7% threat detection accuracy vs 60-70% industry standard</li>
+                <li>• < 200ms response time vs 1-3 seconds traditional systems</li>
+                <li>• Multi-modal sensor fusion (RF, visual, acoustic, radar)</li>
+                <li>• Federated learning with blockchain consensus</li>
+                <li>• Explainable AI with transparent decision-making</li>
+                <li>• Continuous learning and adaptation</li>
+              </ul>
+            </div>
+            <div className="rounded-xl border border-[rgba(0,136,255,0.2)] bg-[rgba(15,23,42,0.8)] backdrop-blur p-6">
+              <h3 className="text-xl font-semibold mb-4 text-[var(--primary)]">Blockchain Security</h3>
+              <ul className="space-y-2 text-[var(--gray)] text-sm">
+                <li>• 99.3% data integrity protection vs 85% traditional</li>
+                <li>• < 2ms authentication latency vs 50-100ms standard</li>
+                <li>• Tamper-proof audit trails for military accountability</li>
+                <li>• Cryptographic identity management</li>
+                <li>• Byzantine fault tolerance (33% malicious nodes)</li>
+                <li>• Quantum-resistant cryptography</li>
+              </ul>
+            </div>
           </div>
         </div>
       </section>
@@ -50,14 +81,14 @@ export default function TechnicalPage(): React.ReactElement {
               </ul>
             </div>
             <div className="rounded-xl border border-[rgba(0,255,136,0.2)] bg-[rgba(15,23,42,0.8)] backdrop-blur p-6">
-              <h3 className="text-xl font-semibold mb-4 text-[var(--primary)]">Identification Module</h3>
+              <h3 className="text-xl font-semibold mb-4 text-[var(--primary)]">AI Identification Module</h3>
               <ul className="space-y-2 text-[var(--gray)] text-sm">
-                <li>• Database Integration: Known UAV model matching</li>
-                <li>• AI Classification: Friendly/neutral/hostile distinction</li>
-                <li>• Behavioral Analysis: Malicious intent detection</li>
-                <li>• Dynamic Signatures: Unknown drone identification</li>
-                <li>• Pattern Recognition: Flight behavior analysis</li>
-                <li>• Threat Assessment: Risk level evaluation</li>
+                <li>• 99.7% AI Classification: Friendly/neutral/hostile distinction</li>
+                <li>• Multi-Modal AI: RF, visual, acoustic, radar fusion</li>
+                <li>• Explainable AI: Transparent decision-making with audit trails</li>
+                <li>• Federated Learning: Distributed AI model training</li>
+                <li>• Behavioral Analysis: AI-powered malicious intent detection</li>
+                <li>• Continuous Learning: AI adapts to new threat patterns</li>
               </ul>
             </div>
             <div className="rounded-xl border border-[rgba(0,255,136,0.2)] bg-[rgba(15,23,42,0.8)] backdrop-blur p-6">
@@ -72,14 +103,14 @@ export default function TechnicalPage(): React.ReactElement {
               </ul>
             </div>
             <div className="rounded-xl border border-[rgba(0,255,136,0.2)] bg-[rgba(15,23,42,0.8)] backdrop-blur p-6">
-              <h3 className="text-xl font-semibold mb-4 text-[var(--primary)]">Command & Control</h3>
+              <h3 className="text-xl font-semibold mb-4 text-[var(--primary)]">Blockchain C2 System</h3>
               <ul className="space-y-2 text-[var(--gray)] text-sm">
-                <li>• Centralized Dashboard: Real-time monitoring</li>
-                <li>• Customizable Alerts: User-defined notifications</li>
-                <li>• Remote Operation: Off-site management</li>
-                <li>• Mobile App Control: Field operation support</li>
-                <li>• Data Analytics: Predictive threat analysis</li>
-                <li>• Multi-site Coordination: Distributed operations</li>
+                <li>• 99.3% Data Integrity: Tamper-proof audit trails</li>
+                <li>• < 2ms Authentication: Blockchain-verified commands</li>
+                <li>• Decentralized Control: No single points of failure</li>
+                <li>• Multi-Site Coordination: Blockchain consensus</li>
+                <li>• Immutable Logging: Complete forensic capabilities</li>
+                <li>• Quantum-Resistant: Future-proof security</li>
               </ul>
             </div>
           </div>
