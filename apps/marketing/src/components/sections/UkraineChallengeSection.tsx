@@ -39,7 +39,7 @@ export const UkraineChallengeSection: React.FC = () => {
               <ProblemCard
                 icon="🐝"
                 title="Swarm Coordination"
-                description='"Russia\'s drones coordinate in groups of six, Ukraine\'s hunt alone"'
+                description="Russia's drones coordinate in groups of six, Ukraine's hunt alone"
               />
             </div>
           </div>
