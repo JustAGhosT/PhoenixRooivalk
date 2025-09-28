@@ -40,9 +40,10 @@ pub async fn run_job_loop<J: JobProvider + JobProviderExt, A: AnchorProvider>(
 ) {
     loop {
         match provider.fetch_next().await {
+            Ok(Some(job)) => {
                 let ev = EvidenceRecord {
                     id: job.id.clone(),
-                    created_at: chrono::Utc::now(),
+                    created_at: Utc::now(),
                     digest: EvidenceDigest { algo: DigestAlgo::Sha256, hex: job.payload_sha256.clone() },
                     payload_mime: None,
                     metadata: serde_json::json!({}),
