@@ -24,6 +24,12 @@ impl AnchorProvider for EtherlinkProviderStub {
     }
 
     async fn confirm(&self, tx: &ChainTxRef) -> Result<ChainTxRef, AnchorError> {
+        // Stub implementation - always return the same transaction
+        Ok(tx.clone())
+    }
+}
+
+#[derive(Clone, Debug)]
 pub struct EtherlinkProvider {
     client: Client,
     endpoint: String,
