@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { ReactNode, RefObject } from 'react';
 import { useIntersectionObserver } from '../../hooks/useIntersectionObserver';
 
 interface RevealSectionProps {
@@ -12,7 +12,7 @@ export function RevealSection({ children, className = '', threshold = 0.1 }: Rev
 
   return (
     <div
-      ref={ref as React.RefObject<HTMLDivElement>}
+      ref={ref as RefObject<HTMLDivElement>}
       className={`transition-all duration-700 ${
         isIntersecting
           ? 'opacity-100 translate-y-0'
