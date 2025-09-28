@@ -32,20 +32,19 @@ export const Button: React.FC<ButtonProps> = ({
   disabled = false,
   ...rest
 }) => {
-  const { onClick, ...buttonProps } = rest as React.ButtonHTMLAttributes<HTMLButtonElement>;
   const baseClasses =
-    "inline-block rounded font-bold transition hover:-translate-y-0.5";
+    "inline-flex items-center justify-center font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 focus:ring-offset-gray-900 disabled:opacity-50 disabled:cursor-not-allowed";
 
   const variantClasses = {
-    primary: "bg-green-600 hover:bg-green-700 text-white",
-    secondary: "bg-blue-600 hover:bg-blue-700 text-white",
-    outline: "border border-green-500/30 text-green-400 hover:bg-green-500/10 hover:border-green-500/50",
+    primary: "bg-green-600 hover:bg-green-700 text-white shadow-lg hover:shadow-xl transform hover:scale-105",
+    secondary: "bg-blue-600 hover:bg-blue-700 text-white shadow-lg hover:shadow-xl transform hover:scale-105",
+    outline: "border border-green-500/30 text-green-400 hover:bg-green-500/10 hover:border-green-500/50 hover:text-green-300",
   };
 
   const sizeClasses = {
-    sm: "px-3 py-2 text-sm",
-    md: "px-4 py-2 text-base",
-    lg: "px-6 py-3 text-lg",
+    sm: "px-3 py-2 text-sm rounded",
+    md: "px-4 py-2 text-base rounded-lg",
+    lg: "px-6 py-3 text-lg rounded-lg",
   };
 
   const classes = `${baseClasses} ${variantClasses[variant]} ${sizeClasses[size]} ${className}`.trim();
@@ -63,7 +62,7 @@ export const Button: React.FC<ButtonProps> = ({
             event.stopPropagation();
             return;
           }
-          onClick?.(event as any);
+          rest.onClick?.(event as any);
         }}
         className={classes}
       >
@@ -76,7 +75,7 @@ export const Button: React.FC<ButtonProps> = ({
     <button
       {...(rest as React.ButtonHTMLAttributes<HTMLButtonElement>)}
       type={(rest as React.ButtonHTMLAttributes<HTMLButtonElement>).type ?? "button"}
-      onClick={(event) => onClick?.(event)}
+      onClick={rest.onClick}
       disabled={disabled}
       className={classes}
     >
