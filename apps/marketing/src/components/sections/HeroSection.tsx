@@ -1,6 +1,6 @@
 import React from 'react';
 import { ThreatSimulator } from '../ThreatSimulator';
-import { Button } from '../ui/Button';
+import { Button } from '@/components/Button';
 
 export const HeroSection: React.FC = () => {
   return (
