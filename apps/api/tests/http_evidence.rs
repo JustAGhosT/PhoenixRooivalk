@@ -1,12 +1,13 @@
 use phoenix_api::main::build_app;
 use phoenix_keeper::{run_job_loop, SqliteJobProvider};
 use anchor_etherlink::EtherlinkProviderStub;
-use axum::Server;
+use axum::serve;
 use reqwest::Client;
 use serde_json::json;
 use std::net::TcpListener;
 use std::time::Duration;
 use tempfile::NamedTempFile;
+use tokio::net::TcpListener as TokioTcpListener;
 use tokio::time::timeout;
 
 #[tokio::test]
@@ -31,8 +32,8 @@ async fn test_http_evidence_flow() {
     
     // Start API server
     let server = tokio::spawn(async move {
-        Server::bind(&addr)
-            .serve(app.into_make_service())
+        let listener = TokioTcpListener::bind(addr).await.unwrap();
+        serve(listener, app.into_make_service())
             .await
             .unwrap();
     });

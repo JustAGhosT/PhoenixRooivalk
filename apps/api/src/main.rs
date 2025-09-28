@@ -1,10 +1,12 @@
-use axum::{routing::{get, post}, Router, extract::{Path, State}, Json, Server};
-use chrono::Utc;
-use serde::{Deserialize, Serialize};
-use sqlx::{sqlite::SqlitePoolOptions, Sqlite, Pool, Row};
-use std::net::SocketAddr;
-use tracing_subscriber::{layer::SubscriberExt, util::SubscriberInitExt};
-use uuid::Uuid;
+use axum::{
+    routing::{get, post},
+    Router,
+    extract::{Path, State},
+    Json,
+    serve::Serve,
+    serve,
+};
+use tokio::net::TcpListener;
 
 async fn health() -> &'static str { "OK" }
 
@@ -65,11 +67,10 @@ async fn main() {
     let (app, _pool) = build_app().await;
 
     let port: u16 = std::env::var("PORT").ok().and_then(|s| s.parse().ok()).unwrap_or(8080);
-    let addr = SocketAddr::from(([0, 0, 0, 0], port));
+    let listener = TcpListener::bind(&addr).await.unwrap();
     tracing::info!(%addr, "starting phoenix-api");
 
-    Server::bind(&addr)
-        .serve(app.into_make_service())
+    serve(listener, app.into_make_service())
         .await
         .unwrap();
 }
