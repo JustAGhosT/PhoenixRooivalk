@@ -4,7 +4,7 @@ import { MetricCard } from '../ui/MetricCard';
 const metrics = [
   ['99.7%', 'AI Accuracy', 'vs 60-70% current systems'],
   ['99.3%', 'Data Integrity', 'vs 85% traditional systems'],
-  ['< 200ms', 'Response Time', 'vs 1-3 seconds industry standard'],
+  ['&lt; 200ms', 'Response Time', 'vs 1-3 seconds industry standard'],
   ['18 Months', 'Head Start', 'Ready before 2027 deadline'],
 ];
 
