@@ -40,13 +40,9 @@ pub async fn run_job_loop<J: JobProvider + JobProviderExt, A: AnchorProvider>(
 ) {
     loop {
         match provider.fetch_next().await {
-            Ok(Some(job)) => {
                 let ev = EvidenceRecord {
                     id: job.id.clone(),
-                    created_at: chrono::Utc
-                        .timestamp_millis_opt(job.created_ms)
-                        .single()
-                        .unwrap_or_else(chrono::Utc::now),
+                    created_at: chrono::Utc::now(),
                     digest: EvidenceDigest { algo: DigestAlgo::Sha256, hex: job.payload_sha256.clone() },
                     payload_mime: None,
                     metadata: serde_json::json!({}),
@@ -88,7 +84,6 @@ pub async fn run_confirmation_loop<A: AnchorProvider>(
                                     tracing::info!(
                                         tx_id = %updated_tx.tx_id,
                                         network = %updated_tx.network,
-                                        "Transaction confirmed"
                                     );
                                 }
                             }
@@ -122,7 +117,7 @@ async fn fetch_unconfirmed_tx_refs(pool: &Pool<Sqlite>) -> Result<Vec<ChainTxRef
     for row in rows {
         let timestamp_opt: Option<i64> = row.get("timestamp");
         let timestamp = timestamp_opt.and_then(|ts| {
-            chrono::Utc.timestamp_opt(ts, 0).single()
+            Utc.timestamp_opt(ts, 0).single()
         });
 
         tx_refs.push(ChainTxRef {
