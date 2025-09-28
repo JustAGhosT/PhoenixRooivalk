@@ -74,7 +74,7 @@ export default function HomePage(): React.ReactElement {
       <QuickActionsWidget actions={quickActions} />
 
       {/* Nav */}
-      <nav className="sticky top-0 z-50 bg-[rgba(10,14,26,0.95)] backdrop-blur px-6 py-4">
+      <nav className="sticky top-0 z-50 bg-[rgba(10,14,26,0.95)] backdrop-blur px-6 py-3">
         <div className="mx-auto max-w-[1400px] flex items-center justify-between">
           <Link
             href="/"
@@ -140,11 +140,11 @@ export default function HomePage(): React.ReactElement {
 
       {/* Ukraine Warfare Challenge Section */}
       <section
-        className="px-[5%] py-16 bg-[linear-gradient(180deg,rgba(255,0,0,0.05),rgba(255,136,0,0.05))]"
+        className="px-[5%] py-12 bg-[linear-gradient(180deg,rgba(255,0,0,0.05),rgba(255,136,0,0.05))]"
         id="ukraine-challenge"
       >
         <div className="max-w-[1400px] mx-auto">
-          <RevealSection className="text-center mb-12">
+          <RevealSection className="text-center mb-8">
             <div className="inline-block bg-red-500 text-white px-4 py-2 rounded-full text-sm font-bold mb-4">
               URGENT: 18-Month Deadline
             </div>
@@ -159,7 +159,7 @@ export default function HomePage(): React.ReactElement {
             </p>
           </RevealSection>
 
-          <RevealSection className="grid md:grid-cols-2 gap-12">
+          <RevealSection className="grid md:grid-cols-2 gap-8">
             <div className="space-y-6">
               <h3 className="text-2xl font-bold text-white mb-4">
                 Current Problems
@@ -272,9 +272,9 @@ export default function HomePage(): React.ReactElement {
       </section>
 
       {/* Core Capabilities */}
-      <section className="px-[5%] py-16" id="capabilities">
+      <section className="px-[5%] py-12" id="capabilities">
         <div className="max-w-[1400px] mx-auto">
-          <RevealSection className="text-center mb-12">
+          <RevealSection className="text-center mb-8">
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
               Core Capabilities
             </h2>
@@ -282,7 +282,7 @@ export default function HomePage(): React.ReactElement {
               Advanced counter-UAS technology with modular deployment options
             </p>
           </RevealSection>
-          <RevealSection className="grid md:grid-cols-3 gap-8">
+          <RevealSection className="grid md:grid-cols-3 gap-6">
             {[
               {
                 icon: "🎯",
@@ -320,11 +320,11 @@ export default function HomePage(): React.ReactElement {
 
       {/* AI Benefits Section */}
       <section
-        className="px-[5%] py-16 bg-[linear-gradient(180deg,rgba(0,255,136,0.05),rgba(0,136,255,0.05))]"
+        className="px-[5%] py-12 bg-[linear-gradient(180deg,rgba(0,255,136,0.05),rgba(0,136,255,0.05))]"
         id="ai-benefits"
       >
         <div className="max-w-[1400px] mx-auto">
-          <RevealSection className="text-center mb-12">
+          <RevealSection className="text-center mb-8">
             <div className="inline-block bg-[var(--primary)] text-black px-4 py-2 rounded-full text-sm font-bold mb-4">
               AI + BLOCKCHAIN REVOLUTION
             </div>
@@ -338,7 +338,7 @@ export default function HomePage(): React.ReactElement {
             </p>
           </RevealSection>
 
-          <RevealSection className="grid md:grid-cols-2 gap-12">
+          <RevealSection className="grid md:grid-cols-2 gap-8">
             <div className="space-y-6">
               <h3 className="text-2xl font-bold text-white mb-6">
                 AI + Blockchain Performance
@@ -501,7 +501,7 @@ export default function HomePage(): React.ReactElement {
       </section>
 
       {/* Technical Whitepaper Download */}
-      <section className="px-[5%] py-16 bg-[linear-gradient(180deg,rgba(0,255,136,0.1),rgba(0,136,255,0.1))]">
+      <section className="px-[5%] py-12 bg-[linear-gradient(180deg,rgba(0,255,136,0.1),rgba(0,136,255,0.1))]">
         <div className="max-w-[1400px] mx-auto text-center">
           <RevealSection>
             <div className="inline-block bg-gradient-to-r from-[var(--primary)] to-[var(--secondary)] text-black px-4 py-2 rounded-full text-sm font-bold mb-6">
@@ -510,7 +510,7 @@ export default function HomePage(): React.ReactElement {
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
               Get the Complete Technical Whitepaper
             </h2>
-            <p className="text-[var(--gray)] max-w-3xl mx-auto text-lg mb-8">
+            <p className="text-[var(--gray)] max-w-3xl mx-auto text-lg mb-6">
               Download our detailed technical documentation covering system architecture,
               security implementation, deployment configurations, and performance specifications.
             </p>
@@ -553,17 +553,17 @@ export default function HomePage(): React.ReactElement {
 
       {/* Contact */}
       <section
-        className="px-[5%] py-16 bg-[linear-gradient(180deg,rgba(0,136,255,0.05),transparent)]"
+        className="px-[5%] py-12 bg-[linear-gradient(180deg,rgba(0,136,255,0.05),transparent)]"
         id="contact"
       >
         <RevealSection className="max-w-[1400px] mx-auto text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
             Ready to Deploy?
           </h2>
-          <p className="text-[var(--gray)] mb-8 max-w-2xl mx-auto">
+          <p className="text-[var(--gray)] mb-6 max-w-2xl mx-auto">
             Schedule a technical demonstration or request detailed
           </p>
-          <div className="mt-8 flex gap-4 animate-fadeInUp [animation-delay:600ms]">
+          <div className="mt-6 flex gap-4 animate-fadeInUp [animation-delay:600ms]">
             <Button href="#contact" size="lg">
               Schedule Technical Demo
             </Button>
@@ -573,7 +573,7 @@ export default function HomePage(): React.ReactElement {
           </div>
         </RevealSection>
       </section>
-      <footer className="px-[5%] py-8 text-center text-[var(--gray)] border-t border-[rgba(0,255,136,0.2)]">
+      <footer className="px-[5%] py-6 text-center text-[var(--gray)] border-t border-[rgba(0,255,136,0.2)]">
         <div className="max-w-[1400px] mx-auto">
           <p>
             © 2025 Phoenix Rooivalk. All rights reserved. | ITAR Compliant |
