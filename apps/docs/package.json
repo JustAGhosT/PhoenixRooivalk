@@ -6,7 +6,10 @@
     "start": "docusaurus start",
     "build": "docusaurus build",
     "serve": "docusaurus serve",
-    "lint": "prettier -c . && markdownlint '**/*.md'"
+    "lint": "prettier --check . && markdownlint '**/*.md'",
+    "typecheck": "tsc --noEmit",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
   },
   "dependencies": {
     "@docusaurus/core": "^3.4.0",

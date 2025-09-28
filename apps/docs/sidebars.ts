@@ -6,7 +6,7 @@ const sidebars: SidebarsConfig = {
       type: 'category',
       label: 'Overview',
       collapsed: false,
-      items: ['overview'],
+      items: ['overview', 'ai_benefits', 'blockchain_benefits', 'ai_blockchain_benefits'],
     },
     {
       type: 'category',

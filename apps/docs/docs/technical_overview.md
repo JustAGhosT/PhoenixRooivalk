@@ -60,7 +60,9 @@ The **Multi-Tool Counter-Drone System** is designed as a modular and scalable pl
  > [Back to Glossary](./glossary.md)
 
 - **Radio Frequency (RF) Analysis**: Detects and disrupts drone communication signals, ensuring reliability in high-interference environments.
-- **Artificial Intelligence (AI)**: Enhances detection accuracy, reduces false positives, and enables autonomous operation. Real-world benefit: Automates threat identification for faster response times.
+- **Artificial Intelligence (AI)**: Enhances detection accuracy, reduces false positives, and enables autonomous operation. Real-world benefit: Automates threat identification for faster response times. **See [AI Benefits](./ai_benefits.md) for comprehensive AI capabilities and advantages.**
+- **Blockchain Technology**: Provides tamper-proof audit trails, decentralized coordination, and cryptographic identity management. Real-world benefit: Ensures data integrity and enables secure multi-site operations. **See [Blockchain Benefits](./blockchain_benefits.md) for comprehensive blockchain advantages.**
+- **AI + Blockchain Integration**: Revolutionary combination of AI and blockchain technology delivers unprecedented performance with federated learning, explainable AI, and autonomous swarm coordination. **See [AI + Blockchain Benefits](./ai_blockchain_benefits.md) for integrated capabilities.**
 - **Modular Hardware**: Allows for easy upgrades and customization based on client needs, reducing long-term operational costs.
 - **Edge Computing**: Processes data locally to ensure low latency and operational reliability in disconnected environments, crucial for remote operations.
 

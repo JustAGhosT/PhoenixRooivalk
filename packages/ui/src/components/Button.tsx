@@ -1,7 +1,8 @@
-import React from 'react';
-import Link from 'next/link';
+'use client';
 
-interface ButtonProps {
+import React from 'react';
+
+export interface ButtonProps {
   children: React.ReactNode;
   variant?: 'primary' | 'secondary' | 'outline';
   size?: 'sm' | 'md' | 'lg';
@@ -34,18 +35,35 @@ export const Button: React.FC<ButtonProps> = ({
     lg: 'px-8 py-4 text-lg'
   };
   
-  const classes = `${baseClasses} ${variantClasses[variant]} ${sizeClasses[size]} ${className} ${disabled ? 'opacity-50 cursor-not-allowed' : ''}`;
+  const classes = `${baseClasses} ${variantClasses[variant as keyof typeof variantClasses]} ${sizeClasses[size as keyof typeof sizeClasses]} ${className} ${disabled ? 'opacity-50 cursor-not-allowed' : ''}`;
   
   if (href) {
+    const handleLinkClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
+      if (disabled) {
+        event.preventDefault();
+        event.stopPropagation();
+        return;
+      }
+
+      onClick?.();
+    };
+
     return (
-      <Link href={href} className={classes}>
+      <a
+        href={disabled ? undefined : href}
+        aria-disabled={disabled ? 'true' : undefined}
+        tabIndex={disabled ? -1 : undefined}
+        onClick={handleLinkClick}
+        className={classes}
+      >
         {children}
-      </Link>
+      </a>
     );
   }
   
   return (
     <button 
+      type="button"
       onClick={onClick} 
       disabled={disabled}
       className={classes}
