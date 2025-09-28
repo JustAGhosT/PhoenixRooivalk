@@ -3,7 +3,6 @@
   "compilerOptions": {
     "composite": true,
     "outDir": "./build",
-    "rootDir": "./src",
     "jsx": "react-jsx",
     "allowJs": true,
     "skipLibCheck": true,
