@@ -1,3 +1,51 @@
+# === USER INSTRUCTIONS ===
+# main-overview
+## Development Guidelines
+- Only modify code directly relevant to the specific request. Avoid changing unrelated functionality.
+- Never replace code with placeholders like `# ... rest of the processing ...`. Always include complete code.
+- Break problems into smaller steps. Think through each step separately before implementing.
+- Always provide a complete PLAN with REASONING based on evidence from code and logs before making changes.
+- Explain your OBSERVATIONS clearly, then provide REASONING to identify the exact issue. Add console logs when needed to gather more information.
+The system architecture combines blockchain-based evidence logging with counter-UAS defense capabilities:
+## Core Blockchain Operations
+The blockchain integration layer handles mission-critical event anchoring and transaction management:
+### Evidence Anchoring System (Importance: 90)
+- Evidence logging with SHA-256 digest computation
+- Multi-chain anchoring across Solana and EtherLink networks
+- Append-only logging with atomic file operations
+- Transaction outbox pattern for reliable blockchain submissions
+Key components:
+```
+backend/services/
+├── blockchain_handler.py    # High-level blockchain operations
+├── evidence_log.py         # Secure event logging
+├── solana_anchor.py        # Solana chain integration
+└── blockchain/
+    └── outbox.py          # Reliable transaction handling
+```
+## Counter-UAS System Components
+### Defense Layer Management (Importance: 95)
+- Modular defense system with layered effector activation
+- Cost-optimization logic for effector selection
+- Resilient command and control in EW environments
+- Multiple operating modes:
+  - Mobile picket deployment
+  - Site-fixed overwatch
+  - Fiber-engage capabilities
+  - Logistics support
+### Access Control System (Importance: 85)
+- Partner vetting workflow
+- Export control compliance checks
+- Geofencing restrictions
+- Operational safeguards
+### Financial Operations (Importance: 80)
+- Cost-effective effector management
+- Break-even analysis integration
+- Profit margin optimization
+- Scalability metrics tracking
+$END$
+# === END USER INSTRUCTIONS ===
+
 
 # main-overview
 
@@ -10,50 +58,45 @@
 - Explain your OBSERVATIONS clearly, then provide REASONING to identify the exact issue. Add console logs when needed to gather more information.
 
 
-The system architecture combines blockchain-based evidence logging with counter-UAS defense capabilities:
+The system implements a military-grade Counter-UAS defense platform with blockchain-based evidence anchoring. Core functionality is organized into three primary domains:
 
-## Core Blockchain Operations
-The blockchain integration layer handles mission-critical event anchoring and transaction management:
+## Counter-UAS Defense Simulation
+Primary implementation in ThreatSimulator components orchestrates:
+- Threat classification and response modeling
+- Countermeasure effectiveness matrices
+- Dynamic difficulty scaling
+- Swarm attack pattern generation
+- Multi-level progression systems
 
-### Evidence Anchoring System (Importance: 90)
-- Evidence logging with SHA-256 digest computation
-- Multi-chain anchoring across Solana and EtherLink networks
-- Append-only logging with atomic file operations
-- Transaction outbox pattern for reliable blockchain submissions
+Score: 90/100
 
-Key components:
-```
-backend/services/
-├── blockchain_handler.py    # High-level blockchain operations
-├── evidence_log.py         # Secure event logging
-├── solana_anchor.py        # Solana chain integration
-└── blockchain/
-    └── outbox.py          # Reliable transaction handling
-```
+## Blockchain Evidence Anchoring
+Located in evidence and anchor crates:
+- Military engagement proof generation
+- Cross-chain transaction verification
+- Chain-specific address validation
+- Dual-chain failover mechanisms
+- Cryptographic evidence records
 
-## Counter-UAS System Components
+Score: 85/100
 
-### Defense Layer Management (Importance: 95)
-- Modular defense system with layered effector activation
-- Cost-optimization logic for effector selection
-- Resilient command and control in EW environments
-- Multiple operating modes:
-  - Mobile picket deployment
-  - Site-fixed overwatch
-  - Fiber-engage capabilities
-  - Logistics support
+## Automated Threat Response
+Implemented across threat spawning and game logic components:
+- Coordinated swarm attack generation
+- Battlefield positioning algorithms
+- Countermeasure cooldown systems
+- Threat-countermeasure relationship mapping
+- Auto-trigger capability management
 
-### Access Control System (Importance: 85)
-- Partner vetting workflow
-- Export control compliance checks
-- Geofencing restrictions
-- Operational safeguards
+Score: 82/100
 
-### Financial Operations (Importance: 80)
-- Cost-effective effector management
-- Break-even analysis integration
-- Profit margin optimization
-- Scalability metrics tracking
+The system integrates these domains through a unified architecture where threat detection feeds into both simulation and evidence anchoring subsystems, while blockchain components provide immutable engagement records.
+
+Key interconnections:
+- Threat detection triggers evidence anchoring
+- Countermeasure effectiveness data feeds blockchain records
+- Cross-chain validation ensures military-grade reliability
+- Address validation secures all blockchain interactions
 
 $END$
 

@@ -1,0 +1,11 @@
+[package]
+name = "address-validation"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+serde = { version = "1", features = ["derive"] }
+thiserror = "1"
+hex = "0.4"
+sha3 = "0.10"
+bs58 = "0.5"

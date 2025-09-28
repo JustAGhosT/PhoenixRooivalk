@@ -1,0 +1,17 @@
+[workspace]
+resolver = "2"
+members = [
+  "apps/api",
+  "apps/keeper",
+  "apps/evidence-cli",
+  "crates/evidence",
+  "crates/anchor-etherlink",
+  "crates/anchor-solana",
+  "crates/address-validation",
+]
+
+[workspace.package]
+edition = "2021"
+
+[workspace.lints.rust]
+unsafe_code = "forbid"

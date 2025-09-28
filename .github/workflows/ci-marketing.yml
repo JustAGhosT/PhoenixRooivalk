@@ -1,0 +1,41 @@
+name: CI - Marketing (ESLint & Prettier)
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'apps/marketing/**'
+      - '.github/workflows/ci-marketing.yml'
+  pull_request:
+    paths:
+      - 'apps/marketing/**'
+      - '.github/workflows/ci-marketing.yml'
+  workflow_dispatch:
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: .
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'pnpm'
+          cache-dependency-path: 'pnpm-lock.yaml'
+
+      - name: Enable Corepack / Install deps (pnpm)
+        run: |
+          corepack enable
+          pnpm install
+
+      - name: ESLint
+        run: pnpm --filter marketing lint
+
+      - name: Prettier (check)
+        run: pnpm --filter marketing format

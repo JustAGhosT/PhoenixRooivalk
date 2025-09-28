@@ -2,6 +2,76 @@
 
 Modular Counter‑UAS System (restricted partner access)
 
+## Monorepo overview
+
+This repository uses a Turborepo + pnpm monorepo to host multiple apps and shared packages.
+
+Structure:
+
+- `apps/`
+  - `docs/` — Docusaurus site (published under `/docs`).
+  - `marketing/` — Next.js 14 static marketing site.
+  - `api/` — Rust (axum) minimal API (`/health`).
+- `packages/` — Reserved for `ui`, `types`, and `sdk` (future).
+- `blockchain/` — Reserved scaffold for on‑chain programs, indexers, SDKs.
+- `infrastructure/` — Reserved scaffold for Terraform/K8s.
+
+Tooling:
+
+- Package manager: `pnpm` (via `corepack`).
+- Orchestrator: `turbo` (see `turbo.json`).
+
+### Development commands
+
+Run from the repository root:
+
+```bash
+# enable pnpm via corepack
+corepack enable
+
+# install workspace dependencies
+pnpm install
+
+# develop marketing (Next.js)
+pnpm --filter marketing dev
+
+# develop docs (Docusaurus)
+pnpm -C apps/docs start
+
+# build all
+pnpm build
+
+# build single app
+pnpm --filter marketing build
+pnpm -C apps/docs build
+
+# run Rust API locally
+cargo run --manifest-path apps/api/Cargo.toml
+```
+
+### Deployment
+
+Deployments are performed by GitHub Actions to two separate Netlify sites:
+
+- Docs: `.github/workflows/deploy-docs-site.yml` publishes `apps/docs/build`.
+  - Secrets: `NETLIFY_AUTH_TOKEN`, `NETLIFY_DOCS_SITE_ID`.
+- Marketing: `.github/workflows/deploy-marketing-site.yml` publishes `apps/marketing/out`.
+  - Secrets: `NETLIFY_AUTH_TOKEN`, `NETLIFY_MARKETING_SITE_ID`.
+
+Netlify’s “Deploys from Git” is disabled; Actions upload artifacts directly.
+
+### Cross‑site links (env)
+
+- Docs site can link back to marketing via `MARKETING_URL` (build‑time env for `apps/docs`).
+- Marketing site can link to docs via `NEXT_PUBLIC_DOCS_URL` (public runtime env for `apps/marketing`).
+
+Set these in each Netlify site’s Environment variables if you want absolute cross‑links.
+
+### Redirects
+
+- Marketing site publishes `public/_redirects` to forward common paths to the docs site.
+  Update the hostnames there to match your actual docs domain if it changes.
+
 > Notice: This repository contains restricted content intended for approved
 > defense partners. Redistribution or public disclosure is prohibited. See
 > `RESPONSIBLE_USE.md` and `ACCESS.md`.

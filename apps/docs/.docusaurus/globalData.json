@@ -1,0 +1,83 @@
+{
+  "docusaurus-plugin-content-docs": {
+    "default": {
+      "path": "/docs",
+      "versions": [
+        {
+          "name": "current",
+          "label": "Next",
+          "isLast": true,
+          "path": "/docs",
+          "mainDocId": "overview",
+          "docs": [
+            {
+              "id": "architecture/c2",
+              "path": "/docs/architecture/c2",
+              "sidebar": "docs"
+            },
+            {
+              "id": "architecture/comms",
+              "path": "/docs/architecture/comms",
+              "sidebar": "docs"
+            },
+            {
+              "id": "architecture/overview",
+              "path": "/docs/architecture/overview",
+              "sidebar": "docs"
+            },
+            {
+              "id": "architecture/safety",
+              "path": "/docs/architecture/safety",
+              "sidebar": "docs"
+            },
+            {
+              "id": "legal/compliance",
+              "path": "/docs/legal/compliance",
+              "sidebar": "docs"
+            },
+            {
+              "id": "legal/countermeasure-policy",
+              "path": "/docs/legal/countermeasure-policy",
+              "sidebar": "docs"
+            },
+            {
+              "id": "legal/responsible-use",
+              "path": "/docs/legal/responsible-use",
+              "sidebar": "docs"
+            },
+            {
+              "id": "operations/deployment",
+              "path": "/docs/operations/deployment",
+              "sidebar": "docs"
+            },
+            {
+              "id": "operations/modes",
+              "path": "/docs/operations/modes",
+              "sidebar": "docs"
+            },
+            {
+              "id": "operations/observability",
+              "path": "/docs/operations/observability",
+              "sidebar": "docs"
+            },
+            {
+              "id": "overview",
+              "path": "/docs/overview",
+              "sidebar": "docs"
+            }
+          ],
+          "draftIds": [],
+          "sidebars": {
+            "docs": {
+              "link": {
+                "path": "/docs/overview",
+                "label": "overview"
+              }
+            }
+          }
+        }
+      ],
+      "breadcrumbs": true
+    }
+  }
+}
