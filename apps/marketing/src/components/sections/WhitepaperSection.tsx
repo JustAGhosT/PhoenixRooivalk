@@ -1,10 +1,15 @@
 import React from 'react';
-import { Button } from '@/components/Button';
+import { Button } from '../ui/button';
 import { downloadWhitepaper } from '@/utils/downloadWhitepaper';
 import { RevealSection } from '@/components/RevealSection';
 
 export const WhitepaperSection: React.FC = () => {
-  const features = [
+  const features: Array<{
+    icon: string;
+    title: string;
+    description: string;
+    color: 'green' | 'blue' | 'purple' | 'yellow';
+  }> = [
     {
       icon: "🏗️",
       title: "System Architecture",
@@ -47,7 +52,13 @@ export const WhitepaperSection: React.FC = () => {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8 max-w-4xl mx-auto">
             {features.map((feature, index) => (
-              <FeatureCard key={index} {...feature} />
+              <FeatureCard
+                key={index}
+                icon={feature.icon}
+                title={feature.title}
+                description={feature.description}
+                color={feature.color}
+              />
             ))}
           </div>
 

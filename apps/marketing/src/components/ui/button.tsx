@@ -32,6 +32,7 @@ export const Button: React.FC<ButtonProps> = ({
   disabled = false,
   ...rest
 }) => {
+  const onClick = rest.onClick;
   const baseClasses =
     "inline-flex items-center justify-center font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 focus:ring-offset-gray-900 disabled:opacity-50 disabled:cursor-not-allowed";
 
@@ -62,7 +63,7 @@ export const Button: React.FC<ButtonProps> = ({
             event.stopPropagation();
             return;
           }
-          rest.onClick?.(event as any);
+          onClick?.(event as any);
         }}
         className={classes}
       >
@@ -75,7 +76,7 @@ export const Button: React.FC<ButtonProps> = ({
     <button
       {...(rest as React.ButtonHTMLAttributes<HTMLButtonElement>)}
       type={(rest as React.ButtonHTMLAttributes<HTMLButtonElement>).type ?? "button"}
-      onClick={rest.onClick}
+      onClick={onClick as React.MouseEventHandler<HTMLButtonElement>}
       disabled={disabled}
       className={classes}
     >

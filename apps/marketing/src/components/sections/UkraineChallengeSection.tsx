@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button } from '@/components/Button';
+import { Button } from '../ui/button';
 import { downloadWhitepaper } from '@/utils/downloadWhitepaper';
 import { RevealSection } from '@/components/RevealSection';
 

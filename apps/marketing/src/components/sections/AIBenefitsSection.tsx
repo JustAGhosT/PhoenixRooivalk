@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button } from '@/components/Button';
+import { Button } from '../ui/button';
 import { RevealSection } from '@/components/RevealSection';
 
 export const AIBenefitsSection: React.FC = () => {

@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import { Button } from '@/components/Button';
+import { Button } from './ui/button';
 
 export const Navigation: React.FC = () => {
   const navigationItems = [
