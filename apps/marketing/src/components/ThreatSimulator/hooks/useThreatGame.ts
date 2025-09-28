@@ -1,5 +1,13 @@
 import { useState, useCallback, useRef } from "react";
-import { GameState, threatTypes, countermeasures } from "../types";
+import { GameState, GameSettings, threatTypes, countermeasures } from "../types";
+
+const DEFAULT_SETTINGS: GameSettings = {
+  fps: 60,
+  loopType: 'infinite',
+  loopCount: 100,
+  loopStart: 0,
+  loopEnd: 1000,
+};
 
 export const useThreatGame = () => {
   const [gameState, setGameState] = useState<GameState>({
@@ -22,7 +30,19 @@ export const useThreatGame = () => {
       electronic: 0,
       laser: 0,
     },
+    settings: DEFAULT_SETTINGS,
+    currentFrame: 0,
   });
+
+  const animationFrameRef = useRef<number>();
+  const lastTimeRef = useRef<number>(0);
+
+  const updateSettings = useCallback((newSettings: Partial<GameSettings>) => {
+    setGameState((prev) => ({
+      ...prev,
+      settings: { ...prev.settings, ...newSettings },
+    }));
+  }, []);
 
   const updateScore = useCallback((points: number) => {
     setGameState((prev) => ({ ...prev, score: prev.score + points }));
@@ -58,6 +78,7 @@ export const useThreatGame = () => {
       selectedCountermeasure: countermeasure,
     }));
   }, []);
+
   const gameOver = useCallback(() => {
     setGameState((prev) => ({ ...prev, gameRunning: false }));
   }, []);
@@ -170,7 +191,67 @@ export const useThreatGame = () => {
         electronic: 0,
         laser: 0,
       },
+      settings: DEFAULT_SETTINGS,
+      currentFrame: 0,
     });
+  }, []);
+
+  // Game loop with framerate control
+  const startGameLoop = useCallback(() => {
+    if (!gameState.gameRunning) return;
+
+    const gameLoop = (currentTime: number) => {
+      const deltaTime = currentTime - lastTimeRef.current;
+      const frameInterval = 1000 / gameState.settings.fps;
+
+      if (deltaTime >= frameInterval) {
+        lastTimeRef.current = currentTime - (deltaTime % frameInterval);
+
+        setGameState(prev => {
+          const newFrame = prev.currentFrame + 1;
+
+          // Check loop conditions
+          let shouldContinue = true;
+          if (prev.settings.loopType === 'count' && newFrame >= prev.settings.loopCount) {
+            shouldContinue = false;
+          } else if (prev.settings.loopType === 'range') {
+            if (newFrame < prev.settings.loopStart || newFrame > prev.settings.loopEnd) {
+              shouldContinue = false;
+            }
+          }
+
+          if (!shouldContinue) {
+            return { ...prev, gameRunning: false, currentFrame: 0 };
+          }
+
+          return {
+            ...prev,
+            currentFrame: newFrame,
+          };
+        });
+      }
+
+      if (gameState.gameRunning) {
+        animationFrameRef.current = requestAnimationFrame(gameLoop);
+      }
+    };
+
+    animationFrameRef.current = requestAnimationFrame(gameLoop);
+  }, [gameState.gameRunning, gameState.settings.fps, gameState.settings.loopType, gameState.settings.loopCount, gameState.settings.loopStart, gameState.settings.loopEnd]);
+
+  const toggleGameRunning = useCallback(() => {
+    setGameState((prev) => ({ ...prev, gameRunning: !prev.gameRunning }));
+  }, []);
+
+  const setGameRunning = useCallback((running: boolean) => {
+    setGameState((prev) => ({ ...prev, gameRunning: running }));
+  }, []);
+
+  const stopGameLoop = useCallback(() => {
+    if (animationFrameRef.current) {
+      cancelAnimationFrame(animationFrameRef.current);
+      animationFrameRef.current = undefined;
+    }
   }, []);
 
   return {
@@ -186,5 +267,10 @@ export const useThreatGame = () => {
     canUseCountermeasure,
     canGenerateSwarm,
     resetGame,
+    updateSettings,
+    startGameLoop,
+    stopGameLoop,
+    toggleGameRunning,
+    setGameRunning,
   };
 };

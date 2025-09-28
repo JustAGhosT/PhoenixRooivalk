@@ -4,6 +4,7 @@ import { GameInstructions } from "./GameInstructions";
 import { ThreatLegend } from "./ThreatLegend";
 import { ExternalControls } from "./ExternalControls";
 import { GameOverlay } from "./GameOverlay";
+import { FramerateLoopControls } from "./FramerateLoopControls";
 import { useThreatGame } from "./hooks/useThreatGame";
 import { useThreatSpawner } from "./hooks/useThreatSpawner";
 import { useDragAndDrop } from "./hooks/useDragAndDrop";
@@ -30,6 +31,10 @@ export const ThreatSimulator: React.FC<ThreatSimulatorProps> = ({
     canUseCountermeasure,
     canGenerateSwarm,
     resetGame,
+    updateSettings,
+    startGameLoop,
+    stopGameLoop,
+    toggleGameRunning,
   } = useThreatGame();
 
   // Neutralization function with enhanced effects
@@ -218,6 +223,9 @@ export const ThreatSimulator: React.FC<ThreatSimulatorProps> = ({
       }
     }, gameState.threatSpawnRate);
 
+    // Start the game loop
+    startGameLoop();
+
     // Spawn initial threats
     setTimeout(() => spawnThreat(), 1000);
     setTimeout(() => spawnThreat(), 2000);
@@ -227,6 +235,7 @@ export const ThreatSimulator: React.FC<ThreatSimulatorProps> = ({
       document.removeEventListener("mousemove", handleMouseMove);
       document.removeEventListener("mouseup", handleMouseUp);
       clearInterval(spawnInterval);
+      stopGameLoop();
     };
   }, [
     gameState.gameRunning,
@@ -234,6 +243,8 @@ export const ThreatSimulator: React.FC<ThreatSimulatorProps> = ({
     handleMouseMove,
     handleMouseUp,
     spawnThreat,
+    startGameLoop,
+    stopGameLoop,
   ]);
 
   // Handle fullscreen toggle - only for the game container
@@ -331,22 +342,35 @@ export const ThreatSimulator: React.FC<ThreatSimulatorProps> = ({
         />
       </div>
 
-      <ExternalControls
-        gameState={gameState}
-        selectedCountermeasure={gameState.selectedCountermeasure}
-        onCountermeasureChange={setCountermeasure}
-        canUseCountermeasure={canUseCountermeasure}
-        onGenerateSwarm={() => {
-          console.log("Main component generateSwarm called");
-          generateSwarm();
-        }}
-        canGenerateSwarm={canGenerateSwarm()}
-        isFullscreen={gameState.isFullscreen}
-        onToggleFullscreen={() => {
-          console.log("toggleFullscreen called from ExternalControls");
-          toggleFullscreen();
-        }}
-      />
+      {/* Game Controls */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <FramerateLoopControls
+          gameState={gameState}
+          onSettingsChange={updateSettings}
+          onTogglePlay={toggleGameRunning}
+          onReset={resetGame}
+          isPlaying={gameState.gameRunning}
+        />
+
+        <ExternalControls
+          gameState={gameState}
+          selectedCountermeasure={gameState.selectedCountermeasure}
+          onCountermeasureChange={setCountermeasure}
+          canUseCountermeasure={canUseCountermeasure}
+          onGenerateSwarm={() => {
+            console.log("Main component generateSwarm called");
+            generateSwarm();
+          }}
+          canGenerateSwarm={canGenerateSwarm()}
+          isFullscreen={gameState.isFullscreen}
+          onToggleFullscreen={() => {
+            console.log("toggleFullscreen called from ExternalControls");
+            toggleFullscreen();
+          }}
+        />
+      </div>
+
+      <ThreatLegend />
     </div>
   );
 };

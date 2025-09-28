@@ -17,6 +17,14 @@ export interface CountermeasureType {
   ammo?: number; // Limited ammo (undefined = unlimited)
 }
 
+export interface GameSettings {
+  fps: number;
+  loopType: 'infinite' | 'count' | 'range';
+  loopCount: number;
+  loopStart: number;
+  loopEnd: number;
+}
+
 export interface GameState {
   score: number;
   gameLevel: number;
@@ -29,6 +37,8 @@ export interface GameState {
   isFullscreen: boolean;
   countermeasureAmmo: Record<string, number>; // Track ammo for each countermeasure
   countermeasureCooldowns: Record<string, number>; // Track cooldown timestamps
+  settings: GameSettings;
+  currentFrame: number;
 }
 
 // Slower threat types for better gameplay with dynamic scaling
