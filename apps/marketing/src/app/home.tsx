@@ -5,7 +5,7 @@ import React, { useEffect, useState } from 'react';
 import { HeroSection } from '../components/sections/HeroSection';
 import { MetricsSection } from '../components/sections/MetricsSection';
 import { Button } from '../components/ui/Button';
-import { ExitIntentModal } from '../components/ui/ExitIntentModal';
+import { ExitIntentModal } from '@/components/ExitIntentModal';
 import { QuickActionsWidget } from '../components/ui/QuickActionsWidget';
 import { RevealSection } from '../components/ui/RevealSection';
 import { StickyHeader } from '../components/ui/StickyHeader';
