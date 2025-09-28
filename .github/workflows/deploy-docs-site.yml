@@ -30,13 +30,14 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20'
-          cache: 'pnpm'
-          cache-dependency-path: 'pnpm-lock.yaml'
 
-      - name: Enable Corepack / Install deps (pnpm)
+      - name: Enable Corepack and setup pnpm
         run: |
           corepack enable
-          pnpm install
+          corepack prepare pnpm@latest --activate
+
+      - name: Install dependencies
+        run: pnpm install
 
       - name: Build
         run: pnpm run build
@@ -78,13 +79,14 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20'
-          cache: 'pnpm'
-          cache-dependency-path: 'pnpm-lock.yaml'
 
-      - name: Enable Corepack / Install deps (pnpm)
+      - name: Enable Corepack and setup pnpm
         run: |
           corepack enable
-          pnpm install
+          corepack prepare pnpm@latest --activate
+
+      - name: Install dependencies
+        run: pnpm install
 
       - name: Build
         run: pnpm run build
