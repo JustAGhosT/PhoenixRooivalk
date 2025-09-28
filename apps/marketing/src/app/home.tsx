@@ -4,11 +4,11 @@ import React, { useEffect, useState } from 'react';
 
 import { HeroSection } from '../components/sections/HeroSection';
 import { MetricsSection } from '../components/sections/MetricsSection';
-import { Button } from '../components/ui/Button';
+import { Button } from '@/components/Button';
 import { ExitIntentModal } from '@/components/ExitIntentModal';
-import { QuickActionsWidget } from '../components/ui/QuickActionsWidget';
-import { RevealSection } from '../components/ui/RevealSection';
-import { StickyHeader } from '../components/ui/StickyHeader';
+import { QuickActionsWidget } from '@/components/QuickActionsWidget';
+import { RevealSection } from '@/components/RevealSection';
+import { StickyHeader } from '@/components/StickyHeader';
 import { usePerformanceOptimizations } from '../hooks/usePerformanceOptimizations';
 import { downloadWhitepaper } from '../utils/downloadWhitepaper';
 
@@ -18,6 +18,29 @@ export default function HomePage(): React.ReactElement {
   
   // Apply performance optimizations
   usePerformanceOptimizations();
+
+  const quickActions = [
+    {
+      icon: '📋',
+      label: 'Technical Specs',
+      action: () => window.location.href = 'mailto:smit.jurie@gmail.com?subject=Phoenix%20Rooivalk%20-%20Technical%20Specifications%20Request',
+    },
+    {
+      icon: '💰',
+      label: 'Pricing & ROI',
+      action: () => window.location.href = 'mailto:smit.jurie@gmail.com?subject=Phoenix%20Rooivalk%20-%20Pricing%20and%20ROI%20Information',
+    },
+    {
+      icon: '🎯',
+      label: 'Live Demo',
+      action: () => window.location.href = 'mailto:smit.jurie@gmail.com?subject=Phoenix%20Rooivalk%20-%20Live%20Demonstration%20Request',
+    },
+    {
+      icon: '📄',
+      label: 'Whitepaper',
+      action: downloadWhitepaper,
+    },
+  ];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -42,7 +65,7 @@ export default function HomePage(): React.ReactElement {
       <ExitIntentModal docsUrl={docsUrl} />
 
       {/* Quick Actions Widget */}
-      <QuickActionsWidget />
+      <QuickActionsWidget actions={quickActions} />
 
       {/* Nav */}
       <nav className="sticky top-0 z-50 bg-[rgba(10,14,26,0.95)] backdrop-blur px-6 py-4">

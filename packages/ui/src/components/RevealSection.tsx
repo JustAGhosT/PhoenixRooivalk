@@ -1,3 +1,5 @@
+'use client';
+
 import { ReactNode, RefObject } from 'react';
 import { useIntersectionObserver } from '../hooks/useIntersectionObserver';
 

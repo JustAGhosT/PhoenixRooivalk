@@ -1,6 +1,8 @@
+'use client';
+
 import React from 'react';
 
-interface ButtonProps {
+export interface ButtonProps {
   children: React.ReactNode;
   variant?: 'primary' | 'secondary' | 'outline';
   size?: 'sm' | 'md' | 'lg';
@@ -47,6 +49,7 @@ export const Button: React.FC<ButtonProps> = ({
     <button 
       onClick={onClick} 
       disabled={disabled}
+      type="button"
       className={classes}
     >
       {children}
