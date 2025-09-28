@@ -35,11 +35,27 @@ export const Button: React.FC<ButtonProps> = ({
     lg: 'px-8 py-4 text-lg'
   };
   
-  const classes = `${baseClasses} ${variantClasses[variant]} ${sizeClasses[size]} ${className} ${disabled ? 'opacity-50 cursor-not-allowed' : ''}`;
+  const classes = `${baseClasses} ${variantClasses[variant as keyof typeof variantClasses]} ${sizeClasses[size as keyof typeof sizeClasses]} ${className} ${disabled ? 'opacity-50 cursor-not-allowed' : ''}`;
   
   if (href) {
+    const handleLinkClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
+      if (disabled) {
+        event.preventDefault();
+        event.stopPropagation();
+        return;
+      }
+
+      onClick?.();
+    };
+
     return (
-      <a href={href} className={classes}>
+      <a
+        href={disabled ? undefined : href}
+        aria-disabled={disabled ? 'true' : undefined}
+        tabIndex={disabled ? -1 : undefined}
+        onClick={handleLinkClick}
+        className={classes}
+      >
         {children}
       </a>
     );
@@ -47,9 +63,9 @@ export const Button: React.FC<ButtonProps> = ({
   
   return (
     <button 
+      type="button"
       onClick={onClick} 
       disabled={disabled}
-      type="button"
       className={classes}
     >
       {children}
