@@ -1,129 +1,32 @@
 "use client";
-import React, { useEffect } from 'react';
 import Link from 'next/link';
+import React, { useEffect, useState } from 'react';
+
 import { HeroSection } from '../components/sections/HeroSection';
 import { MetricsSection } from '../components/sections/MetricsSection';
 import { Button } from '../components/ui/Button';
+import { ExitIntentModal } from '../components/ui/ExitIntentModal';
+import { QuickActionsWidget } from '../components/ui/QuickActionsWidget';
+import { RevealSection } from '../components/ui/RevealSection';
+import { StickyHeader } from '../components/ui/StickyHeader';
 import { usePerformanceOptimizations } from '../hooks/usePerformanceOptimizations';
 import { downloadWhitepaper } from '../utils/downloadWhitepaper';
 
 export default function HomePage(): React.ReactElement {
   const docsUrl = process.env.NEXT_PUBLIC_DOCS_URL || '';
+  const [showStickyHeader, setShowStickyHeader] = useState(false);
   
   // Apply performance optimizations
   usePerformanceOptimizations();
 
   useEffect(() => {
-    // Scroll reveal animation
-    const reveals = Array.from(document.querySelectorAll<HTMLElement>('.reveal'));
-    const revealOnScroll = () => {
-      const windowHeight = window.innerHeight;
-      const elementVisible = 150;
-      reveals.forEach(el => {
-        const rect = el.getBoundingClientRect();
-        if (rect.top < windowHeight - elementVisible) {
-          el.classList.add('active');
-        }
-      });
+    const handleScroll = () => {
+      setShowStickyHeader(window.scrollY > 100);
     };
-    window.addEventListener('scroll', revealOnScroll);
-    revealOnScroll();
 
-    // Sticky header CTA
-    const stickyHeader = document.createElement('div');
-    stickyHeader.className = 'fixed top-0 left-0 right-0 z-50 bg-[rgba(10,14,26,0.95)] backdrop-blur border-b border-[rgba(0,255,136,0.2)] transform -translate-y-full transition-transform duration-300';
-    stickyHeader.innerHTML = `
-      <div class="max-w-[1400px] mx-auto px-6 py-3 flex items-center justify-between">
-        <div class="text-sm text-[var(--gray)]">
-          <span class="text-[var(--primary)] font-semibold">Phoenix Rooivalk</span> - Counter-UAS Defense System
-        </div>
-        <a href="#contact" class="bg-gradient-to-br from-[var(--primary)] to-[var(--secondary)] text-[var(--dark)] px-4 py-2 rounded font-bold text-sm hover:-translate-y-0.5 transition">
-          Schedule Demo
-        </a>
-      </div>
-    `;
-    document.body.appendChild(stickyHeader);
-
-    const showStickyHeader = () => {
-      if (window.scrollY > 100) {
-        stickyHeader.style.transform = 'translateY(0)';
-      } else {
-        stickyHeader.style.transform = 'translateY(-100%)';
-      }
-    };
-    window.addEventListener('scroll', showStickyHeader);
-
-    // Exit intent popup
-    const exitIntentPopup = document.createElement('div');
-    exitIntentPopup.className = 'fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 opacity-0 pointer-events-none transition-opacity duration-300';
-    exitIntentPopup.innerHTML = `
-      <div class="bg-[var(--darker)] p-8 rounded-xl border border-[var(--primary)] max-w-md mx-4 text-center">
-        <h3 class="text-2xl font-bold text-white mb-4">Wait! Get Our Technical Whitepaper</h3>
-        <p class="text-[var(--gray)] mb-6">Download our comprehensive technical documentation before you leave.</p>
-        <div class="flex gap-4 justify-center">
-          <a href="${docsUrl}" class="bg-gradient-to-br from-[var(--primary)] to-[var(--secondary)] text-[var(--dark)] px-6 py-3 rounded font-bold hover:-translate-y-0.5 transition">
-            Download Now
-          </a>
-          <button onclick="this.parentElement.parentElement.parentElement.style.opacity='0'; this.parentElement.parentElement.parentElement.style.pointerEvents='none';" class="border border-[var(--primary)] text-[var(--primary)] px-6 py-3 rounded font-bold hover:bg-[var(--primary)] hover:text-[var(--dark)] transition">
-            Maybe Later
-          </button>
-        </div>
-      </div>
-    `;
-    document.body.appendChild(exitIntentPopup);
-
-    const handleMouseLeave = (e: MouseEvent) => {
-      if (e.clientY <= 0) {
-        exitIntentPopup.style.opacity = '1';
-        exitIntentPopup.style.pointerEvents = 'auto';
-      }
-    };
-    document.addEventListener('mouseleave', handleMouseLeave);
-
-    // Chat widget - smaller version
-    const chatWidget = document.createElement('div');
-    chatWidget.className = 'fixed bottom-6 right-6 z-50';
-    chatWidget.innerHTML = `
-      <div class="bg-[var(--darker)] border border-[var(--primary)] rounded-lg p-3 shadow-2xl max-w-xs">
-        <div class="text-[var(--primary)] font-bold mb-2 text-sm">Quick Actions</div>
-        <div class="space-y-1">
-          <button class="w-full text-left text-xs text-white hover:text-[var(--primary)] transition py-1" data-action="0">📋 Technical Specs</button>
-          <button class="w-full text-left text-xs text-white hover:text-[var(--primary)] transition py-1" data-action="1">💰 Pricing & ROI</button>
-          <button class="w-full text-left text-xs text-white hover:text-[var(--primary)] transition py-1" data-action="2">🎯 Live Demo</button>
-          <button class="w-full text-left text-xs text-white hover:text-[var(--primary)] transition py-1" data-action="3">📄 Whitepaper</button>
-        </div>
-      </div>
-    `;
-    document.body.appendChild(chatWidget);
-
-    // Chat widget functionality
-    chatWidget.querySelectorAll('button[data-action]').forEach((button, index) => {
-      button.addEventListener('click', () => {
-        const actions = [
-          () => window.location.href = 'mailto:smit.jurie@gmail.com?subject=Phoenix%20Rooivalk%20-%20Technical%20Specifications%20Request',
-          () => window.location.href = 'mailto:smit.jurie@gmail.com?subject=Phoenix%20Rooivalk%20-%20Pricing%20and%20ROI%20Information',
-          () => window.location.href = 'mailto:smit.jurie@gmail.com?subject=Phoenix%20Rooivalk%20-%20Live%20Demonstration%20Request',
-          () => downloadWhitepaper()
-        ];
-        actions[index]();
-      });
-    });
-
-    return () => {
-      window.removeEventListener('scroll', revealOnScroll);
-      window.removeEventListener('scroll', showStickyHeader);
-      document.removeEventListener('mouseleave', handleMouseLeave);
-      if (stickyHeader.parentNode) {
-        stickyHeader.parentNode.removeChild(stickyHeader);
-      }
-      if (exitIntentPopup.parentNode) {
-        exitIntentPopup.parentNode.removeChild(exitIntentPopup);
-      }
-      if (chatWidget.parentNode) {
-        chatWidget.parentNode.removeChild(chatWidget);
-      }
-    };
-  }, [docsUrl]);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
     <main className="relative overflow-hidden bg-[var(--darker)] text-white">
@@ -131,6 +34,15 @@ export default function HomePage(): React.ReactElement {
       <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_bottom,_#1b2735_0%,_#090a0f_100%)]">
         <div className="absolute inset-0 bg-[linear-gradient(rgba(0,255,136,0.03)_1px,_transparent_1px),_linear-gradient(90deg,_rgba(0,255,136,0.03)_1px,_transparent_1px)] bg-[length:50px_50px] animate-gridMove" />
       </div>
+
+      {/* Sticky Header */}
+      <StickyHeader isVisible={showStickyHeader} />
+
+      {/* Exit Intent Modal */}
+      <ExitIntentModal docsUrl={docsUrl} />
+
+      {/* Quick Actions Widget */}
+      <QuickActionsWidget />
 
       {/* Nav */}
       <nav className="sticky top-0 z-50 bg-[rgba(10,14,26,0.95)] backdrop-blur px-6 py-4">
@@ -156,7 +68,7 @@ export default function HomePage(): React.ReactElement {
       {/* Ukraine Warfare Challenge Section */}
       <section className="px-[5%] py-16 bg-[linear-gradient(180deg,rgba(255,0,0,0.05),rgba(255,136,0,0.05))]" id="ukraine-challenge">
         <div className="max-w-[1400px] mx-auto">
-          <div className="text-center reveal mb-12">
+          <RevealSection className="text-center mb-12">
             <div className="inline-block bg-red-500 text-white px-4 py-2 rounded-full text-sm font-bold mb-4">
               URGENT: 18-Month Deadline
             </div>
@@ -167,9 +79,9 @@ export default function HomePage(): React.ReactElement {
               Ukraine faces an existential challenge: outpace Russia in autonomous warfare by 2027 or lose their technological advantage. 
               Current AI drones fail 30-40% of the time, confusing trees for tanks and struggling against electronic warfare.
             </p>
-          </div>
+          </RevealSection>
           
-          <div className="grid md:grid-cols-2 gap-12 reveal">
+          <RevealSection className="grid md:grid-cols-2 gap-12">
             <div className="space-y-6">
               <h3 className="text-2xl font-bold text-white mb-4">Current Problems</h3>
               <div className="space-y-4">
@@ -223,9 +135,9 @@ export default function HomePage(): React.ReactElement {
                 </div>
               </div>
             </div>
-          </div>
+          </RevealSection>
           
-          <div className="text-center mt-12 reveal">
+          <RevealSection className="text-center mt-12">
             <div className="bg-[rgba(0,255,136,0.1)] border border-[var(--primary)]/30 rounded-xl p-8 max-w-4xl mx-auto">
               <h3 className="text-2xl font-bold text-white mb-4">The Stakes</h3>
               <p className="text-[var(--gray)] text-lg mb-6">
@@ -241,18 +153,18 @@ export default function HomePage(): React.ReactElement {
                 </Button>
               </div>
             </div>
-          </div>
+          </RevealSection>
         </div>
       </section>
 
       {/* Core Capabilities */}
       <section className="px-[5%] py-16" id="capabilities">
         <div className="max-w-[1400px] mx-auto">
-          <div className="text-center reveal mb-12">
+          <RevealSection className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Core Capabilities</h2>
             <p className="text-[var(--gray)] max-w-2xl mx-auto">Advanced counter-UAS technology with modular deployment options</p>
-          </div>
-          <div className="grid md:grid-cols-3 gap-8 reveal">
+          </RevealSection>
+          <RevealSection className="grid md:grid-cols-3 gap-8">
             {[
               {
                 icon: '🎯',
@@ -276,6 +188,118 @@ export default function HomePage(): React.ReactElement {
                 <p className="text-[var(--gray)]">{capability.description}</p>
               </div>
             ))}
+          </RevealSection>
+        </div>
+      </section>
+
+      {/* AI Benefits Section */}
+      <section className="px-[5%] py-16 bg-[linear-gradient(180deg,rgba(0,255,136,0.05),rgba(0,136,255,0.05))]" id="ai-benefits">
+        <div className="max-w-[1400px] mx-auto">
+          <RevealSection className="text-center mb-12">
+            <div className="inline-block bg-[var(--primary)] text-black px-4 py-2 rounded-full text-sm font-bold mb-4">
+              AI + BLOCKCHAIN REVOLUTION
+            </div>
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+              Revolutionary AI + Blockchain Performance
+            </h2>
+            <p className="text-[var(--gray)] max-w-3xl mx-auto text-lg">
+              PhoenixRooivalk combines cutting-edge AI with military-grade blockchain technology to deliver unprecedented performance: 99.7% accuracy with 99.3% data integrity protection.
+            </p>
+          </RevealSection>
+          
+          <RevealSection className="grid md:grid-cols-2 gap-12">
+            <div className="space-y-6">
+              <h3 className="text-2xl font-bold text-white mb-6">AI + Blockchain Performance</h3>
+              <div className="space-y-4">
+                <div className="flex items-center justify-between p-4 bg-[rgba(0,255,136,0.1)] border border-[var(--primary)]/30 rounded-lg">
+                  <div>
+                    <div className="font-bold text-[var(--primary)]">AI Detection Accuracy</div>
+                    <div className="text-sm text-gray-300">vs 60-70% industry standard</div>
+                  </div>
+                  <div className="text-2xl font-bold text-[var(--primary)]">99.7%</div>
+                </div>
+                <div className="flex items-center justify-between p-4 bg-[rgba(0,255,136,0.1)] border border-[var(--primary)]/30 rounded-lg">
+                  <div>
+                    <div className="font-bold text-[var(--primary)]">Data Integrity</div>
+                    <div className="text-sm text-gray-300">vs 85% traditional systems</div>
+                  </div>
+                  <div className="text-2xl font-bold text-[var(--primary)]">99.3%</div>
+                </div>
+                <div className="flex items-center justify-between p-4 bg-[rgba(0,255,136,0.1)] border border-[var(--primary)]/30 rounded-lg">
+                  <div>
+                    <div className="font-bold text-[var(--primary)]">Response Time</div>
+                    <div className="text-sm text-gray-300">vs 1-3 seconds industry standard</div>
+                  </div>
+                  <div className="text-2xl font-bold text-[var(--primary)]">&lt; 200ms</div>
+                </div>
+                <div className="flex items-center justify-between p-4 bg-[rgba(0,255,136,0.1)] border border-[var(--primary)]/30 rounded-lg">
+                  <div>
+                    <div className="font-bold text-[var(--primary)]">Authentication Latency</div>
+                    <div className="text-sm text-gray-300">vs 50-100ms traditional</div>
+                  </div>
+                  <div className="text-2xl font-bold text-[var(--primary)]">&lt; 2ms</div>
+                </div>
+              </div>
+            </div>
+            
+            <div className="space-y-6">
+              <h3 className="text-2xl font-bold text-white mb-6">AI + Blockchain Capabilities</h3>
+              <div className="space-y-4">
+                <div className="flex items-start gap-4 p-4 bg-[rgba(0,136,255,0.1)] border border-blue-500/30 rounded-lg">
+                  <span className="text-blue-400 text-2xl">🧠</span>
+                  <div>
+                    <div className="font-bold text-blue-400">Multi-Modal AI Intelligence</div>
+                    <div className="text-sm text-gray-300">Processes RF, visual, acoustic, and radar data with blockchain-verified results for comprehensive threat analysis</div>
+                  </div>
+                </div>
+                <div className="flex items-start gap-4 p-4 bg-[rgba(0,136,255,0.1)] border border-blue-500/30 rounded-lg">
+                  <span className="text-blue-400 text-2xl">🔗</span>
+                  <div>
+                    <div className="font-bold text-blue-400">Blockchain Security</div>
+                    <div className="text-sm text-gray-300">99.3% data integrity protection with tamper-proof audit trails and cryptographic identity management</div>
+                  </div>
+                </div>
+                <div className="flex items-start gap-4 p-4 bg-[rgba(0,136,255,0.1)] border border-blue-500/30 rounded-lg">
+                  <span className="text-blue-400 text-2xl">🔄</span>
+                  <div>
+                    <div className="font-bold text-blue-400">Federated Learning + Blockchain</div>
+                    <div className="text-sm text-gray-300">Distributed AI model training with blockchain consensus while maintaining data privacy and model provenance</div>
+                  </div>
+                </div>
+                <div className="flex items-start gap-4 p-4 bg-[rgba(0,136,255,0.1)] border border-blue-500/30 rounded-lg">
+                  <span className="text-blue-400 text-2xl">🎯</span>
+                  <div>
+                    <div className="font-bold text-blue-400">Explainable AI + Audit Trails</div>
+                    <div className="text-sm text-gray-300">Transparent AI decision-making with immutable blockchain audit trails for military accountability and regulatory compliance</div>
+                  </div>
+                </div>
+                <div className="flex items-start gap-4 p-4 bg-[rgba(0,136,255,0.1)] border border-blue-500/30 rounded-lg">
+                  <span className="text-blue-400 text-2xl">⚡</span>
+                  <div>
+                    <div className="font-bold text-blue-400">Autonomous Swarm Coordination</div>
+                    <div className="text-sm text-gray-300">AI-powered swarm intelligence with blockchain consensus for coordinated multi-drone operations in contested environments</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div className="text-center mt-12 reveal">
+            <div className="bg-[rgba(0,255,136,0.1)] border border-[var(--primary)]/30 rounded-xl p-8 max-w-4xl mx-auto">
+              <h3 className="text-2xl font-bold text-white mb-4">18-Month AI + Blockchain Advantage</h3>
+              <p className="text-[var(--gray)] text-lg mb-6">
+                While competitors race to meet the 2027 autonomous warfare deadline, PhoenixRooivalk's integrated AI-blockchain system is ready for immediate deployment, 
+                providing a decisive technological advantage in the critical race for autonomous warfare dominance.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <Button href="#contact" size="lg">
+                  Request AI + Blockchain Demo
+                </Button>
+                <Button href="mailto:smit.jurie@gmail.com?subject=Phoenix%20Rooivalk%20-%20AI%20%2B%20Blockchain%20Capabilities%20Inquiry" variant="outline" size="lg">
+                  Technical Brief
+                </Button>
+              </div>
+            </div>
           </div>
         </div>
       </section>

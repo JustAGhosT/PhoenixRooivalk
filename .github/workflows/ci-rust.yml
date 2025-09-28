@@ -1,14 +1,24 @@
-name: CI - Rust
+name: CI - Rust (Format, Lint, Test, Audit)
 
 on:
   push:
     branches: [ main ]
     paths:
       - 'apps/api/**'
+      - 'apps/keeper/**'
+      - 'apps/evidence-cli/**'
+      - 'crates/**'
+      - 'Cargo.toml'
+      - 'Cargo.lock'
       - '.github/workflows/ci-rust.yml'
   pull_request:
     paths:
       - 'apps/api/**'
+      - 'apps/keeper/**'
+      - 'apps/evidence-cli/**'
+      - 'crates/**'
+      - 'Cargo.toml'
+      - 'Cargo.lock'
       - '.github/workflows/ci-rust.yml'
   workflow_dispatch:
 
@@ -24,17 +34,28 @@ jobs:
         with:
           components: clippy, rustfmt
 
+      - name: Cache Rust dependencies
+        uses: Swatinem/rust-cache@v2
+        with:
+          cache-on-failure: true
+
       - name: Generate Cargo.lock
         run: cargo generate-lockfile
-
-      - name: Build (workspace)
-        run: cargo build --workspace --all-targets
 
       - name: Format check
         run: cargo fmt --all -- --check
 
       - name: Clippy (deny warnings)
-        run: cargo clippy --workspace --all-targets -- -D warnings
+        run: cargo clippy --workspace --all-targets --all-features -- -D warnings
+
+      - name: Build (workspace)
+        run: cargo build --workspace --all-targets --all-features
 
       - name: Test
         run: cargo test --workspace --all-features --all-targets
+
+      - name: Install cargo-audit
+        run: cargo install cargo-audit
+
+      - name: Security audit
+        run: cargo audit
