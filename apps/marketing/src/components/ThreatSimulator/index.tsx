@@ -316,7 +316,7 @@ export const ThreatSimulator: React.FC<ThreatSimulatorProps> = ({
   `;
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-8">
       <div ref={simulatorRef} className={containerClasses}>
         <GameInstructions />
 
@@ -343,7 +343,7 @@ export const ThreatSimulator: React.FC<ThreatSimulatorProps> = ({
       </div>
 
       {/* Game Controls */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-8">
         <FramerateLoopControls
           gameState={gameState}
           onSettingsChange={updateSettings}
