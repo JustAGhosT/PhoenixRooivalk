@@ -11,10 +11,17 @@ Structure:
 - `apps/`
   - `docs/` — Docusaurus site (published under `/docs`).
   - `marketing/` — Next.js 14 static marketing site.
-  - `api/` — Rust (axum) minimal API (`/health`).
-- `packages/` — Reserved for `ui`, `types`, and `sdk` (future).
-- `blockchain/` — Reserved scaffold for on‑chain programs, indexers, SDKs.
-- `infrastructure/` — Reserved scaffold for Terraform/K8s.
+  - `api/` — Rust (Axum) API server.
+  - `keeper/` — Rust blockchain keeper service.
+  - `evidence-cli/` — Rust CLI for evidence management.
+- `packages/`
+  - `types/` — Shared TypeScript type definitions.
+  - `ui/` — Shared React UI components and hooks.
+- `crates/`
+  - `evidence/` — Core evidence logging functionality.
+  - `anchor-solana/` — Solana blockchain anchoring.
+  - `anchor-etherlink/` — EtherLink blockchain anchoring.
+  - `address-validation/` — Blockchain address validation.
 
 Tooling:
 
@@ -135,34 +142,17 @@ If any link appears broken, verify filenames use underscores (not hyphens) in th
 
 ## Operational tasks
 
-### Outbox worker (process anchoring jobs)
+### Evidence management (CLI)
 
-- PowerShell helper: `./scripts/Invoke-OutboxWorker.ps1`
-- Example:
-
-```powershell
-# Optional anchoring env (Solana pilot)
-$env:EVIDENCE_ANCHOR_CHAIN = "solana"
-$env:SOLANA_RPC_URL = "https://api.mainnet-beta.solana.com"
-$env:SOLANA_SECRET_KEY = "file://C:/secrets/solana-keypair.json"
-
-./scripts/Invoke-OutboxWorker.ps1 -ProviderEndpoint "http://localhost" -IntervalSec 5 -BatchLimit 25 -MaxAttempts 10
-```
-
-Python entry (alternative):
-
-```powershell
-python -m backend.workers.outbox_worker
-```
-
-### Record evidence and enqueue anchoring (CLI)
-
-- Python CLI: `python -m backend.tools.record_evidence <event_type> <payload_or_@file.json> [--enqueue-anchor]`
+- Rust CLI: `cargo run --bin evidence-cli -- <command>`
 - Examples:
 
 ```powershell
-python -m backend.tools.record_evidence engagement_summary '{"missionId":"M-123","result":"success"}' --enqueue-anchor
-python -m backend.tools.record_evidence engagement_summary @C:\data\payload.json --enqueue-anchor
+# Record evidence
+cargo run --bin evidence-cli -- record engagement_summary '{"missionId":"M-123","result":"success"}'
+
+# Process anchoring jobs
+cargo run --bin keeper -- --interval 5 --batch-limit 25
 ```
 
 For runbook-style metrics capture, use the Operations Log template:
