@@ -53,7 +53,7 @@ export default function TechnicalPage(): React.ReactElement {
               <h3 className="text-xl font-semibold mb-4 text-[var(--primary)]">Blockchain Security</h3>
               <ul className="space-y-2 text-[var(--gray)] text-sm">
                 <li>• 99.3% data integrity protection vs 85% traditional</li>
-                <li>• < 2ms authentication latency vs 50-100ms standard</li>
+                <li>• &lt; 2ms authentication latency vs 50-100ms standard</li>
                 <li>• Tamper-proof audit trails for military accountability</li>
                 <li>• Cryptographic identity management</li>
                 <li>• Byzantine fault tolerance (33% malicious nodes)</li>
@@ -106,7 +106,7 @@ export default function TechnicalPage(): React.ReactElement {
               <h3 className="text-xl font-semibold mb-4 text-[var(--primary)]">Blockchain C2 System</h3>
               <ul className="space-y-2 text-[var(--gray)] text-sm">
                 <li>• 99.3% Data Integrity: Tamper-proof audit trails</li>
-                <li>• < 2ms Authentication: Blockchain-verified commands</li>
+                <li>• &lt; 2ms Authentication: Blockchain-verified commands</li>
                 <li>• Decentralized Control: No single points of failure</li>
                 <li>• Multi-Site Coordination: Blockchain consensus</li>
                 <li>• Immutable Logging: Complete forensic capabilities</li>
