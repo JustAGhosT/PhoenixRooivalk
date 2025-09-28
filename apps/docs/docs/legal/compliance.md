@@ -5,8 +5,10 @@ non-exhaustive and does not constitute legal advice.
 
 See repository policies:
 
-- Responsible use: [RESPONSIBLE_USE.md](https://github.com/JustAGhosT/PhoenixRooivalk/blob/main/RESPONSIBLE_USE.md)
-- Access request: [ACCESS.md](https://github.com/JustAGhosT/PhoenixRooivalk/blob/main/ACCESS.md)
+- Responsible use:
+  [RESPONSIBLE_USE.md](https://github.com/JustAGhosT/PhoenixRooivalk/blob/main/RESPONSIBLE_USE.md)
+- Access request:
+  [ACCESS.md](https://github.com/JustAGhosT/PhoenixRooivalk/blob/main/ACCESS.md)
 
 ## RF jamming — compliance and licensing (summary)
 

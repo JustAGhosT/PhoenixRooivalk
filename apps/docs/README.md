@@ -1,18 +1,24 @@
 # Docs site migration plan (Docusaurus-ready)
 
 - **Goal**
-  - Prepare to migrate from Jekyll to Docusaurus (MDX) without breaking current pages.
+
+  - Prepare to migrate from Jekyll to Docusaurus (MDX) without breaking current
+    pages.
 
 - **Proposed structure**
+
   - docs/overview.md (from repository index-level overview)
   - docs/architecture/ (C2, comms, autonomy, safety)
   - docs/operations/ (modes, deployment, observability)
   - docs/legal/ (responsible use, access, export control)
 
 - **Steps**
+
   1. Initialize Docusaurus in `docs-site/` (separate from current Jekyll root).
-  2. Migrate `index.md` high‑level content to `docs/overview.md` with restricted banner.
-  3. Move selected `docs/*.md` into topical folders; keep partner-only content out of the public build.
+  2. Migrate `index.md` high‑level content to `docs/overview.md` with restricted
+     banner.
+  3. Move selected `docs/*.md` into topical folders; keep partner-only content
+     out of the public build.
   4. Configure navbar/sidebar, add markdownlint/prettier hooks.
   5. Add deployment to GitHub Pages or Netlify (private or public per policy).
 

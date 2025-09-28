@@ -1,5 +1,5 @@
-import React from 'react';
-import { GameState } from './types';
+import React from "react";
+import { GameState } from "./types";
 
 interface StatusDisplayProps {
   gameState: GameState;
@@ -14,7 +14,9 @@ export const StatusDisplay: React.FC<StatusDisplayProps> = ({ gameState }) => {
       </div>
       <div className="text-white mb-1 flex justify-between">
         <span>Threats Active:</span>
-        <span className="text-red-400 font-bold">{gameState.activeThreats}</span>
+        <span className="text-red-400 font-bold">
+          {gameState.activeThreats}
+        </span>
       </div>
       <div className="text-green-400 mb-1 flex justify-between">
         <span>Neutralized:</span>

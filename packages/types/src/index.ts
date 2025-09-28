@@ -8,7 +8,7 @@ export interface ThreatDetection {
     longitude: number;
     altitude: number;
   };
-  threatType: 'drone' | 'swarm' | 'unknown';
+  threatType: "drone" | "swarm" | "unknown";
   confidence: number;
   sensorData: {
     rf?: RFSignature;
@@ -43,15 +43,15 @@ export interface OpticalSignature {
 export interface CountermeasureResponse {
   id: string;
   threatId: string;
-  type: 'kinetic' | 'electronic' | 'laser' | 'net';
-  status: 'pending' | 'active' | 'completed' | 'failed';
+  type: "kinetic" | "electronic" | "laser" | "net";
+  status: "pending" | "active" | "completed" | "failed";
   effectiveness: number;
   cost: number;
 }
 
 export interface BlockchainAnchor {
   transactionId: string;
-  chain: 'solana' | 'etherlink';
+  chain: "solana" | "etherlink";
   blockHeight: number;
   timestamp: Date;
   evidenceHash: string;

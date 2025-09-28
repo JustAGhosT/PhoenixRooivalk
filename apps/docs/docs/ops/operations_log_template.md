@@ -1,6 +1,7 @@
 # Operations Log Template — On-chain Anchoring Runs
 
-> Use this template to record metrics from outbox anchoring runs. One section per run/window.
+> Use this template to record metrics from outbox anchoring runs. One section
+> per run/window.
 
 ## Run metadata
 

@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import { useEffect, useState, useRef } from 'react';
-import { createPortal } from 'react-dom';
+import { useEffect, useState, useRef } from "react";
+import { createPortal } from "react-dom";
 
 interface ExitIntentModalProps {
   docsUrl: string;
@@ -22,10 +22,10 @@ export function ExitIntentModal({ docsUrl }: ExitIntentModalProps) {
       }
     };
 
-    document.addEventListener('mouseleave', handleMouseLeave);
+    document.addEventListener("mouseleave", handleMouseLeave);
 
     return () => {
-      document.removeEventListener('mouseleave', handleMouseLeave);
+      document.removeEventListener("mouseleave", handleMouseLeave);
     };
   }, [isVisible]);
 
@@ -36,19 +36,21 @@ export function ExitIntentModal({ docsUrl }: ExitIntentModalProps) {
 
       // Escape key handler
       const handleEscape = (e: KeyboardEvent) => {
-        if (e.key === 'Escape') {
+        if (e.key === "Escape") {
           handleClose();
         }
       };
 
       // Focus trap - keep focus within modal
       const handleFocusTrap = (e: KeyboardEvent) => {
-        if (e.key === 'Tab' && dialogRef.current) {
+        if (e.key === "Tab" && dialogRef.current) {
           const focusableElements = dialogRef.current.querySelectorAll(
-            'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+            'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])',
           );
           const firstElement = focusableElements[0] as HTMLElement;
-          const lastElement = focusableElements[focusableElements.length - 1] as HTMLElement;
+          const lastElement = focusableElements[
+            focusableElements.length - 1
+          ] as HTMLElement;
 
           if (e.shiftKey) {
             if (document.activeElement === firstElement) {
@@ -64,12 +66,12 @@ export function ExitIntentModal({ docsUrl }: ExitIntentModalProps) {
         }
       };
 
-      document.addEventListener('keydown', handleEscape);
-      document.addEventListener('keydown', handleFocusTrap);
+      document.addEventListener("keydown", handleEscape);
+      document.addEventListener("keydown", handleFocusTrap);
 
       return () => {
-        document.removeEventListener('keydown', handleEscape);
-        document.removeEventListener('keydown', handleFocusTrap);
+        document.removeEventListener("keydown", handleEscape);
+        document.removeEventListener("keydown", handleFocusTrap);
       };
     }
   }, [isVisible]);
@@ -87,7 +89,7 @@ export function ExitIntentModal({ docsUrl }: ExitIntentModalProps) {
   if (!mounted || !isVisible) return null;
 
   return createPortal(
-    <div 
+    <div
       className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 transition-opacity duration-300"
       onClick={handleBackdropClick}
       role="dialog"
@@ -95,12 +97,15 @@ export function ExitIntentModal({ docsUrl }: ExitIntentModalProps) {
       aria-labelledby="exit-intent-title"
       aria-describedby="exit-intent-description"
     >
-      <div 
+      <div
         ref={dialogRef}
         className="bg-[var(--darker)] p-8 rounded-xl border border-[var(--primary)] max-w-md mx-4 text-center"
         onClick={(e) => e.stopPropagation()}
       >
-        <h3 id="exit-intent-title" className="text-2xl font-bold text-white mb-4">
+        <h3
+          id="exit-intent-title"
+          className="text-2xl font-bold text-white mb-4"
+        >
           Wait! Get Our Technical Whitepaper
         </h3>
         <p id="exit-intent-description" className="text-[var(--gray)] mb-6">
@@ -124,6 +129,6 @@ export function ExitIntentModal({ docsUrl }: ExitIntentModalProps) {
         </div>
       </div>
     </div>,
-    document.body
+    document.body,
   );
 }

@@ -1,21 +1,32 @@
 # Implementation Code: Authentication System
 
 ## Document Context
-- **Location**: `03-implementation/phase-1-authentication/implementation-code.md`
+
+- **Location**:
+  `03-implementation/phase-1-authentication/implementation-code.md`
 - **Related Documents**:
   - [Authentication Requirements](./requirements.md) - Security specifications
   - [PUF Integration](./puf-integration.md) - Hardware-based authentication
-  - [System Requirements](../../02-technical-architecture/system-requirements.md) - Performance specs
+  - [System Requirements](../../02-technical-architecture/system-requirements.md) -
+    Performance specs
 
 ---
 
 ## Executive Summary
 
-This document provides complete implementation code for the military-grade authentication system, including multi-factor authentication, PUF integration, quantum-resistant cryptography, and blockchain verification. The implementation achieves < 2ms authentication latency while maintaining 99.999% security assurance through distributed identity verification.
+This document provides complete implementation code for the military-grade
+authentication system, including multi-factor authentication, PUF integration,
+quantum-resistant cryptography, and blockchain verification. The implementation
+achieves < 2ms authentication latency while maintaining 99.999% security
+assurance through distributed identity verification.
 
-**Key Innovation**: The implementation features Adaptive Authentication Flow (AAF) that dynamically selects optimal authentication methods based on threat level, network conditions, and user context, ensuring maximum security with minimal user friction.
+**Key Innovation**: The implementation features Adaptive Authentication Flow
+(AAF) that dynamically selects optimal authentication methods based on threat
+level, network conditions, and user context, ensuring maximum security with
+minimal user friction.
 
 ### Implementation Features:
+
 - **Multi-factor authentication** with seamless factor combination
 - **Hardware PUF integration** for device binding
 - **Quantum-resistant cryptography** using NIST-approved algorithms
@@ -87,18 +98,18 @@ pub struct AuthenticationManager {
 impl AuthenticationManager {
     pub async fn new() -> Result<Self, AuthError> {
         let mut factor_processors = HashMap::new();
-        
+
         // Initialize factor processors
         factor_processors.insert(
             FactorType::Password,
             Arc::new(PasswordProcessor::new().await?) as Arc<dyn FactorProcessor>
         );
-        
+
         factor_processors.insert(
             FactorType::PUF,
             Arc::new(PUFProcessor::new().await?) as Arc<dyn FactorProcessor>
         );
-        
+
         Ok(Self {
             factor_processors,
             session_manager: Arc::new(SessionManager::new().await?),
@@ -109,10 +120,10 @@ impl AuthenticationManager {
             policy_engine: Arc::new(PolicyEngine::new().await?),
         })
     }
-    
+
     pub async fn authenticate(&self, request: AuthenticationRequest) -> AuthenticationResult {
         let start_time = std::time::Instant::now();
-        
+
         // Step 1: Validate request
         if let Err(e) = self.validate_request(&request).await {
             return AuthenticationResult {
@@ -125,13 +136,13 @@ impl AuthenticationManager {
                 error_message: Some(e.to_string()),
             };
         }
-        
+
         // Step 2: Assess risk
         let risk_score = self.risk_engine.assess_risk(&request).await;
-        
+
         // Step 3: Process authentication factors
         let mut verified_factors = Vec::new();
-        
+
         for factor in &request.factors {
             if let Some(processor) = self.factor_processors.get(&factor.factor_type) {
                 match processor.verify_factor(factor, &request.context).await {
@@ -144,7 +155,7 @@ impl AuthenticationManager {
                 }
             }
         }
-        
+
         // Step 4: Create session if sufficient factors verified
         if verified_factors.len() >= 2 {  // Require at least 2 factors
             let session_token = match self.session_manager
@@ -164,10 +175,10 @@ impl AuthenticationManager {
                     };
                 }
             };
-            
+
             let processing_time = start_time.elapsed();
             println!("Authentication completed in {:?}", processing_time);
-            
+
             AuthenticationResult {
                 success: true,
                 user_id: Some(request.user_id.clone()),
@@ -189,20 +200,20 @@ impl AuthenticationManager {
             }
         }
     }
-    
+
     async fn validate_request(&self, request: &AuthenticationRequest) -> Result<(), AuthError> {
         if request.user_id.is_empty() {
             return Err(AuthError::InvalidRequest("User ID is required".to_string()));
         }
-        
+
         if request.device_id.is_empty() {
             return Err(AuthError::InvalidRequest("Device ID is required".to_string()));
         }
-        
+
         if request.factors.is_empty() {
             return Err(AuthError::InvalidRequest("At least one authentication factor required".to_string()));
         }
-        
+
         Ok(())
     }
 }
@@ -293,14 +304,14 @@ impl SessionManager {
     pub async fn new() -> Result<Self, AuthError> {
         let encoding_key = EncodingKey::from_secret(b"your-secret-key");
         let decoding_key = DecodingKey::from_secret(b"your-secret-key");
-        
+
         Ok(Self {
             encoding_key,
             decoding_key,
             active_sessions: Arc::new(RwLock::new(HashMap::new())),
         })
     }
-    
+
     pub async fn create_session(
         &self,
         user_id: &str,
@@ -309,7 +320,7 @@ impl SessionManager {
     ) -> Result<SessionToken, AuthError> {
         let now = Utc::now();
         let expires_at = now + Duration::hours(8);
-        
+
         let claims = TokenClaims {
             sub: user_id.to_string(),
             iat: now.timestamp(),
@@ -319,10 +330,10 @@ impl SessionManager {
             risk_score,
             permissions: vec!["read".to_string(), "write".to_string()],
         };
-        
+
         let token = encode(&Header::default(), &claims, &self.encoding_key)
             .map_err(|e| AuthError::SessionCreationFailed(e.to_string()))?;
-        
+
         let session_info = SessionInfo {
             user_id: user_id.to_string(),
             device_id: claims.device_id.clone(),
@@ -331,9 +342,9 @@ impl SessionManager {
             risk_score,
             factors_used: factors_used.to_vec(),
         };
-        
+
         self.active_sessions.write().await.insert(token.clone(), session_info);
-        
+
         Ok(SessionToken {
             token: token.clone(),
             user_id: user_id.to_string(),
@@ -345,13 +356,13 @@ impl SessionManager {
             permissions: claims.permissions,
         })
     }
-    
+
     pub async fn validate_session(&self, token: &str) -> Result<SessionInfo, AuthError> {
         let validation = Validation::default();
-        
+
         let token_data = decode::<TokenClaims>(token, &self.decoding_key, &validation)
             .map_err(|e| AuthError::SessionCreationFailed(e.to_string()))?;
-        
+
         let sessions = self.active_sessions.read().await;
         if let Some(session) = sessions.get(token) {
             Ok(session.clone())
@@ -383,39 +394,39 @@ impl CryptoEngine {
     pub async fn new() -> Result<Self, AuthError> {
         // Generate Dilithium keypair for signatures
         let (dilithium_pk, dilithium_sk) = dilithium5::keypair();
-        
+
         // Generate Kyber keypair for key exchange
         let (kyber_pk, kyber_sk) = kyber1024::keypair();
-        
+
         Ok(Self {
             dilithium_keypair: (dilithium_pk, dilithium_sk),
             kyber_keypair: (kyber_pk, kyber_sk),
         })
     }
-    
+
     pub fn sign_data(&self, data: &[u8]) -> Result<Vec<u8>, AuthError> {
         let signature = dilithium5::sign(data, &self.dilithium_keypair.1);
         Ok(signature.as_bytes().to_vec())
     }
-    
+
     pub fn verify_signature(&self, data: &[u8], signature: &[u8]) -> Result<bool, AuthError> {
         let sig = dilithium5::DetachedSignature::from_bytes(signature)
             .map_err(|e| AuthError::CryptoError(format!("Invalid signature: {:?}", e)))?;
-        
+
         match dilithium5::verify_detached_signature(&sig, data, &self.dilithium_keypair.0) {
             Ok(_) => Ok(true),
             Err(_) => Ok(false),
         }
     }
-    
+
     pub fn generate_shared_secret(&self, peer_public_key: &[u8]) -> Result<Vec<u8>, AuthError> {
         let peer_pk = kyber1024::PublicKey::from_bytes(peer_public_key)
             .map_err(|e| AuthError::CryptoError(format!("Invalid public key: {:?}", e)))?;
-        
+
         let (shared_secret, _ciphertext) = kyber1024::encapsulate(&peer_pk);
         Ok(shared_secret.as_bytes().to_vec())
     }
-    
+
     pub fn hash_data(&self, data: &[u8]) -> Vec<u8> {
         let mut hasher = Sha3_512::new();
         hasher.update(data);
@@ -440,21 +451,21 @@ authentication_performance = {
         "session_creation_ms": 2.8,
         "total_authentication_ms": 70.1
     },
-    
+
     "throughput_metrics": {
         "concurrent_authentications": 10000,
         "peak_requests_per_second": 5000,
         "sustained_requests_per_second": 3500,
         "session_validations_per_second": 50000
     },
-    
+
     "security_metrics": {
         "false_acceptance_rate": 0.0001,
         "false_rejection_rate": 0.001,
         "brute_force_resistance": "2^256",
         "quantum_resistance": "NIST Level 5"
     },
-    
+
     "reliability_metrics": {
         "system_availability": 0.99999,
         "authentication_success_rate": 0.9995,
@@ -473,84 +484,88 @@ authentication_performance = {
 ```typescript
 // TypeScript client for authentication system
 interface AuthenticationClient {
-    authenticate(request: AuthenticationRequest): Promise<AuthenticationResult>;
-    validateSession(token: string): Promise<SessionInfo>;
-    refreshSession(token: string): Promise<SessionToken>;
+  authenticate(request: AuthenticationRequest): Promise<AuthenticationResult>;
+  validateSession(token: string): Promise<SessionInfo>;
+  refreshSession(token: string): Promise<SessionToken>;
 }
 
 class PhoenixAuthClient implements AuthenticationClient {
-    private baseUrl: string;
-    private httpClient: HttpClient;
-    
-    constructor(baseUrl: string) {
-        this.baseUrl = baseUrl;
-        this.httpClient = new HttpClient();
+  private baseUrl: string;
+  private httpClient: HttpClient;
+
+  constructor(baseUrl: string) {
+    this.baseUrl = baseUrl;
+    this.httpClient = new HttpClient();
+  }
+
+  async authenticate(
+    request: AuthenticationRequest,
+  ): Promise<AuthenticationResult> {
+    const response = await this.httpClient.post(
+      `${this.baseUrl}/api/v1/authenticate`,
+      request,
+    );
+
+    if (response.status === 200) {
+      return response.data as AuthenticationResult;
+    } else {
+      throw new Error(`Authentication failed: ${response.statusText}`);
     }
-    
-    async authenticate(request: AuthenticationRequest): Promise<AuthenticationResult> {
-        const response = await this.httpClient.post(
-            `${this.baseUrl}/api/v1/authenticate`,
-            request
-        );
-        
-        if (response.status === 200) {
-            return response.data as AuthenticationResult;
-        } else {
-            throw new Error(`Authentication failed: ${response.statusText}`);
-        }
-    }
-    
-    async validateSession(token: string): Promise<SessionInfo> {
-        const response = await this.httpClient.get(
-            `${this.baseUrl}/api/v1/session/validate`,
-            {
-                headers: {
-                    'Authorization': `Bearer ${token}`
-                }
-            }
-        );
-        
-        return response.data as SessionInfo;
-    }
+  }
+
+  async validateSession(token: string): Promise<SessionInfo> {
+    const response = await this.httpClient.get(
+      `${this.baseUrl}/api/v1/session/validate`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      },
+    );
+
+    return response.data as SessionInfo;
+  }
 }
 
 // Usage example
-const authClient = new PhoenixAuthClient('https://auth.phoenixrooivalk.mil');
+const authClient = new PhoenixAuthClient("https://auth.phoenixrooivalk.mil");
 
 const authRequest: AuthenticationRequest = {
-    userId: 'operator001',
-    deviceId: 'device-12345',
-    factors: [
-        {
-            factorType: 'Password',
-            data: new TextEncoder().encode('secure-password'),
-            metadata: {}
-        },
-        {
-            factorType: 'PUF',
-            data: pufResponseData,
-            metadata: { deviceId: 'device-12345' }
-        }
-    ],
-    context: {
-        ipAddress: '192.168.1.100',
-        location: 'Base Alpha',
-        deviceInfo: { /* device info */ },
-        threatLevel: 'Medium'
+  userId: "operator001",
+  deviceId: "device-12345",
+  factors: [
+    {
+      factorType: "Password",
+      data: new TextEncoder().encode("secure-password"),
+      metadata: {},
     },
-    timestamp: new Date().toISOString()
+    {
+      factorType: "PUF",
+      data: pufResponseData,
+      metadata: { deviceId: "device-12345" },
+    },
+  ],
+  context: {
+    ipAddress: "192.168.1.100",
+    location: "Base Alpha",
+    deviceInfo: {
+      /* device info */
+    },
+    threatLevel: "Medium",
+  },
+  timestamp: new Date().toISOString(),
 };
 
 try {
-    const result = await authClient.authenticate(authRequest);
-    if (result.success) {
-        console.log('Authentication successful');
-        console.log('Session token:', result.sessionToken);
-    } else {
-        console.error('Authentication failed:', result.errorMessage);
-    }
+  const result = await authClient.authenticate(authRequest);
+  if (result.success) {
+    console.log("Authentication successful");
+    console.log("Session token:", result.sessionToken);
+  } else {
+    console.error("Authentication failed:", result.errorMessage);
+  }
 } catch (error) {
-    console.error('Authentication error:', error);
+  console.error("Authentication error:", error);
 }
 ```
 
@@ -558,9 +573,14 @@ try {
 
 ## 6. Conclusion
 
-The authentication system implementation provides military-grade security with multi-factor authentication, quantum-resistant cryptography, and hardware-based device binding. The system achieves < 2ms authentication latency while maintaining 99.999% security assurance through distributed identity verification and blockchain integration.
+The authentication system implementation provides military-grade security with
+multi-factor authentication, quantum-resistant cryptography, and hardware-based
+device binding. The system achieves < 2ms authentication latency while
+maintaining 99.999% security assurance through distributed identity verification
+and blockchain integration.
 
 ### Key Implementation Features:
+
 - **Multi-factor authentication** with biometric, PUF, and certificate support
 - **Quantum-resistant cryptography** using NIST-approved algorithms
 - **Hardware PUF integration** for uncloneable device identity
@@ -568,21 +588,27 @@ The authentication system implementation provides military-grade security with m
 - **Blockchain verification** for immutable audit trails
 
 ### Performance Achievements:
+
 - **< 2ms authentication latency** for cached credentials
 - **10,000 concurrent authentications** supported
 - **99.999% system availability** with automatic failover
 - **0.0001% false acceptance rate** for maximum security
 - **NIST Level 5 quantum resistance** for future-proof security
 
-This implementation provides the secure foundation required for military counter-drone operations while maintaining the performance and usability necessary for operational effectiveness.
+This implementation provides the secure foundation required for military
+counter-drone operations while maintaining the performance and usability
+necessary for operational effectiveness.
 
 ---
 
 **Related Documents:**
+
 - [Authentication Requirements](./requirements.md) - Security specifications
 - [PUF Integration](./puf-integration.md) - Hardware-based authentication
-- [System Requirements](../../02-technical-architecture/system-requirements.md) - Performance specs
+- [System Requirements](../../02-technical-architecture/system-requirements.md) -
+  Performance specs
 
 ---
 
-*Context improved by Giga AI - Used main overview development guidelines and blockchain integration system information for accurate technical documentation.*
+_Context improved by Giga AI - Used main overview development guidelines and
+blockchain integration system information for accurate technical documentation._

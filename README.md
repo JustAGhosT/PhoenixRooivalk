@@ -4,7 +4,8 @@ Modular Counter‑UAS System (restricted partner access)
 
 ## Monorepo overview
 
-This repository uses a Turborepo + pnpm monorepo to host multiple apps and shared packages.
+This repository uses a Turborepo + pnpm monorepo to host multiple apps and
+shared packages.
 
 Structure:
 
@@ -62,22 +63,27 @@ Deployments are performed by GitHub Actions to two separate Netlify sites:
 
 - Docs: `.github/workflows/deploy-docs-site.yml` publishes `apps/docs/build`.
   - Secrets: `NETLIFY_AUTH_TOKEN`, `NETLIFY_DOCS_SITE_ID`.
-- Marketing: `.github/workflows/deploy-marketing-site.yml` publishes `apps/marketing/out`.
+- Marketing: `.github/workflows/deploy-marketing-site.yml` publishes
+  `apps/marketing/out`.
   - Secrets: `NETLIFY_AUTH_TOKEN`, `NETLIFY_MARKETING_SITE_ID`.
 
 Netlify’s “Deploys from Git” is disabled; Actions upload artifacts directly.
 
 ### Cross‑site links (env)
 
-- Docs site can link back to marketing via `MARKETING_URL` (build‑time env for `apps/docs`).
-- Marketing site can link to docs via `NEXT_PUBLIC_DOCS_URL` (public runtime env for `apps/marketing`).
+- Docs site can link back to marketing via `MARKETING_URL` (build‑time env for
+  `apps/docs`).
+- Marketing site can link to docs via `NEXT_PUBLIC_DOCS_URL` (public runtime env
+  for `apps/marketing`).
 
-Set these in each Netlify site’s Environment variables if you want absolute cross‑links.
+Set these in each Netlify site’s Environment variables if you want absolute
+cross‑links.
 
 ### Redirects
 
-- Marketing site publishes `public/_redirects` to forward common paths to the docs site.
-  Update the hostnames there to match your actual docs domain if it changes.
+- Marketing site publishes `public/_redirects` to forward common paths to the
+  docs site. Update the hostnames there to match your actual docs domain if it
+  changes.
 
 > Notice: This repository contains restricted content intended for approved
 > defense partners. Redistribution or public disclosure is prohibited. See
@@ -87,10 +93,10 @@ Quick access: [Glossary](./docs/glossary.md)
 
 ## Overview
 
-PhoenixRooivalk delivers a layered, modular counter‑UAS capability for
-contested EM environments. The public materials in this repository provide a
-high‑level overview and governance. Partner‑only details (specifications,
-simulations, integration guides) are shared upon approval.
+PhoenixRooivalk delivers a layered, modular counter‑UAS capability for contested
+EM environments. The public materials in this repository provide a high‑level
+overview and governance. Partner‑only details (specifications, simulations,
+integration guides) are shared upon approval.
 
 ## Mission
 
@@ -138,7 +144,8 @@ For detailed specifications and planning baselines, see [`index.md`](./index.md)
     - [Financial projections](./docs/financial_projections.md)
     - [Implementation plan](./docs/implementation_plan.md)
 
-If any link appears broken, verify filenames use underscores (not hyphens) in the `docs/` directory.
+If any link appears broken, verify filenames use underscores (not hyphens) in
+the `docs/` directory.
 
 ## Operational tasks
 
@@ -162,8 +169,8 @@ For runbook-style metrics capture, use the Operations Log template:
 ## Access request (partners)
 
 Approved defense partners may request access to extended documentation and
-artifacts. Please see [`ACCESS.md`](./ACCESS.md) for intake details and
-required information.
+artifacts. Please see [`ACCESS.md`](./ACCESS.md) for intake details and required
+information.
 
 ## Responsible use
 
@@ -179,11 +186,13 @@ materials at:
 
 ## Contributing
 
-Contributions are limited to approved collaborators. Review [`CONTRIBUTING.md`](./CONTRIBUTING.md) for guidelines.
+Contributions are limited to approved collaborators. Review
+[`CONTRIBUTING.md`](./CONTRIBUTING.md) for guidelines.
 
 ## License
 
-This project is licensed under a proprietary license. See [`LICENSE`](./LICENSE) for details.
+This project is licensed under a proprietary license. See [`LICENSE`](./LICENSE)
+for details.
 
 ## Contact
 

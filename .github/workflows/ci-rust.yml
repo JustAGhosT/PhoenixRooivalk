@@ -2,24 +2,24 @@ name: CI - Rust (Format, Lint, Test, Audit)
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
     paths:
-      - 'apps/api/**'
-      - 'apps/keeper/**'
-      - 'apps/evidence-cli/**'
-      - 'crates/**'
-      - 'Cargo.toml'
-      - 'Cargo.lock'
-      - '.github/workflows/ci-rust.yml'
+      - "apps/api/**"
+      - "apps/keeper/**"
+      - "apps/evidence-cli/**"
+      - "crates/**"
+      - "Cargo.toml"
+      - "Cargo.lock"
+      - ".github/workflows/ci-rust.yml"
   pull_request:
     paths:
-      - 'apps/api/**'
-      - 'apps/keeper/**'
-      - 'apps/evidence-cli/**'
-      - 'crates/**'
-      - 'Cargo.toml'
-      - 'Cargo.lock'
-      - '.github/workflows/ci-rust.yml'
+      - "apps/api/**"
+      - "apps/keeper/**"
+      - "apps/evidence-cli/**"
+      - "crates/**"
+      - "Cargo.toml"
+      - "Cargo.lock"
+      - ".github/workflows/ci-rust.yml"
   workflow_dispatch:
 
 jobs:
@@ -49,7 +49,8 @@ jobs:
       #   run: cargo fmt --all -- --check
 
       - name: Clippy (deny warnings)
-        run: cargo clippy --workspace --all-targets --all-features -- -D warnings
+        run:
+          cargo clippy --workspace --all-targets --all-features -- -D warnings
 
       - name: Build (workspace)
         run: cargo build --workspace --all-targets --all-features

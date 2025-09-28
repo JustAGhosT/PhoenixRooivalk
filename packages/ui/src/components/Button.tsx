@@ -1,11 +1,11 @@
-'use client';
+"use client";
 
-import React from 'react';
+import React from "react";
 
 export interface ButtonProps {
   children: React.ReactNode;
-  variant?: 'primary' | 'secondary' | 'outline';
-  size?: 'sm' | 'md' | 'lg';
+  variant?: "primary" | "secondary" | "outline";
+  size?: "sm" | "md" | "lg";
   href?: string;
   onClick?: () => void;
   className?: string;
@@ -14,29 +14,32 @@ export interface ButtonProps {
 
 export const Button: React.FC<ButtonProps> = ({
   children,
-  variant = 'primary',
-  size = 'md',
+  variant = "primary",
+  size = "md",
   href,
   onClick,
-  className = '',
-  disabled = false
+  className = "",
+  disabled = false,
 }) => {
-  const baseClasses = 'inline-block rounded font-bold transition hover:-translate-y-0.5';
-  
+  const baseClasses =
+    "inline-block rounded font-bold transition hover:-translate-y-0.5";
+
   const variantClasses = {
-    primary: 'bg-gradient-to-br from-[var(--primary)] to-[var(--secondary)] text-[var(--dark)] shadow-glow',
-    secondary: 'bg-[var(--secondary)] text-[var(--dark)]',
-    outline: 'border-2 border-[var(--primary)] text-[var(--primary)] hover:bg-[var(--primary)] hover:text-[var(--dark)]'
+    primary:
+      "bg-gradient-to-br from-[var(--primary)] to-[var(--secondary)] text-[var(--dark)] shadow-glow",
+    secondary: "bg-[var(--secondary)] text-[var(--dark)]",
+    outline:
+      "border-2 border-[var(--primary)] text-[var(--primary)] hover:bg-[var(--primary)] hover:text-[var(--dark)]",
   };
-  
+
   const sizeClasses = {
-    sm: 'px-4 py-2 text-sm',
-    md: 'px-6 py-3',
-    lg: 'px-8 py-4 text-lg'
+    sm: "px-4 py-2 text-sm",
+    md: "px-6 py-3",
+    lg: "px-8 py-4 text-lg",
   };
-  
-  const classes = `${baseClasses} ${variantClasses[variant as keyof typeof variantClasses]} ${sizeClasses[size as keyof typeof sizeClasses]} ${className} ${disabled ? 'opacity-50 cursor-not-allowed' : ''}`;
-  
+
+  const classes = `${baseClasses} ${variantClasses[variant as keyof typeof variantClasses]} ${sizeClasses[size as keyof typeof sizeClasses]} ${className} ${disabled ? "opacity-50 cursor-not-allowed" : ""}`;
+
   if (href) {
     const handleLinkClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
       if (disabled) {
@@ -51,7 +54,7 @@ export const Button: React.FC<ButtonProps> = ({
     return (
       <a
         href={disabled ? undefined : href}
-        aria-disabled={disabled ? 'true' : undefined}
+        aria-disabled={disabled ? "true" : undefined}
         tabIndex={disabled ? -1 : undefined}
         onClick={handleLinkClick}
         className={classes}
@@ -60,11 +63,11 @@ export const Button: React.FC<ButtonProps> = ({
       </a>
     );
   }
-  
+
   return (
-    <button 
+    <button
       type="button"
-      onClick={onClick} 
+      onClick={onClick}
       disabled={disabled}
       className={classes}
     >

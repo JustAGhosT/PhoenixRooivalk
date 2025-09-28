@@ -12,7 +12,9 @@ export function QuickActionsWidget({ actions }: QuickActionsWidgetProps) {
   return (
     <div className="fixed bottom-6 right-6 z-50">
       <div className="bg-[var(--darker)] border border-[var(--primary)] rounded-lg p-3 shadow-2xl max-w-xs">
-        <div className="text-[var(--primary)] font-bold mb-2 text-sm">Quick Actions</div>
+        <div className="text-[var(--primary)] font-bold mb-2 text-sm">
+          Quick Actions
+        </div>
         <div className="space-y-1">
           {actions.map((action, index) => (
             <button

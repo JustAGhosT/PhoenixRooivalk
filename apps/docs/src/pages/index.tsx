@@ -1,63 +1,80 @@
-import React, { useEffect } from 'react';
-import Layout from '@theme/Layout';
+import React, { useEffect } from "react";
+import Layout from "@theme/Layout";
 
 export default function Home(): React.ReactElement {
   useEffect(() => {
     // Smooth scrolling for navigation-like anchors within this page
-    const anchors = Array.from(document.querySelectorAll<HTMLAnchorElement>('.marketing a[href^="#"]'));
+    const anchors = Array.from(
+      document.querySelectorAll<HTMLAnchorElement>('.marketing a[href^="#"]'),
+    );
     const onAnchorClick = (e: Event) => {
       const a = e.currentTarget as HTMLAnchorElement;
-      const targetSel = a.getAttribute('href');
+      const targetSel = a.getAttribute("href");
       if (!targetSel) return;
       const target = document.querySelector(targetSel);
       if (target) {
         e.preventDefault();
-        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        target.scrollIntoView({ behavior: "smooth", block: "start" });
       }
     };
-    anchors.forEach(a => a.addEventListener('click', onAnchorClick));
+    anchors.forEach((a) => a.addEventListener("click", onAnchorClick));
 
     // Reveal on scroll
-    const reveals = Array.from(document.querySelectorAll<HTMLElement>('.marketing .reveal'));
+    const reveals = Array.from(
+      document.querySelectorAll<HTMLElement>(".marketing .reveal"),
+    );
     const revealOnScroll = () => {
       const windowHeight = window.innerHeight;
       const elementVisible = 150;
-      reveals.forEach(el => {
+      reveals.forEach((el) => {
         const rect = el.getBoundingClientRect();
         if (rect.top < windowHeight - elementVisible) {
-          el.classList.add('active');
+          el.classList.add("active");
         }
       });
     };
-    window.addEventListener('scroll', revealOnScroll);
+    window.addEventListener("scroll", revealOnScroll);
     revealOnScroll();
 
     // Feature card hover effects (minor polish)
-    const featureCards = Array.from(document.querySelectorAll<HTMLElement>('.marketing .feature-card'));
-    const onEnter = (thisEl: HTMLElement) => () => { thisEl.style.transform = 'translateY(-10px) scale(1.02)'; };
-    const onLeave = (thisEl: HTMLElement) => () => { thisEl.style.transform = 'translateY(-5px) scale(1)'; };
-    const handlers: Array<{ el: HTMLElement; enter: () => void; leave: () => void }> = [];
-    featureCards.forEach(card => {
+    const featureCards = Array.from(
+      document.querySelectorAll<HTMLElement>(".marketing .feature-card"),
+    );
+    const onEnter = (thisEl: HTMLElement) => () => {
+      thisEl.style.transform = "translateY(-10px) scale(1.02)";
+    };
+    const onLeave = (thisEl: HTMLElement) => () => {
+      thisEl.style.transform = "translateY(-5px) scale(1)";
+    };
+    const handlers: Array<{
+      el: HTMLElement;
+      enter: () => void;
+      leave: () => void;
+    }> = [];
+    featureCards.forEach((card) => {
       const enter = onEnter(card);
       const leave = onLeave(card);
-      card.addEventListener('mouseenter', enter);
-      card.addEventListener('mouseleave', leave);
+      card.addEventListener("mouseenter", enter);
+      card.addEventListener("mouseleave", leave);
       handlers.push({ el: card, enter, leave });
     });
 
     // Cleanup
     return () => {
-      anchors.forEach(a => a.removeEventListener('click', onAnchorClick));
-      window.removeEventListener('scroll', revealOnScroll);
-      handlers.forEach(h => {
-        h.el.removeEventListener('mouseenter', h.enter);
-        h.el.removeEventListener('mouseleave', h.leave);
+      anchors.forEach((a) => a.removeEventListener("click", onAnchorClick));
+      window.removeEventListener("scroll", revealOnScroll);
+      handlers.forEach((h) => {
+        h.el.removeEventListener("mouseenter", h.enter);
+        h.el.removeEventListener("mouseleave", h.leave);
       });
     };
   }, []);
 
   return (
-    <Layout title="Phoenix Rooivalk" description="Blockchain-powered counter‑drone defense marketing overview">
+    <Layout
+      title="Phoenix Rooivalk"
+      description="Blockchain-powered counter‑drone defense marketing overview"
+    >
       <style>{`
         .marketing * { box-sizing: border-box; }
         .marketing {
@@ -191,13 +208,17 @@ export default function Home(): React.ReactElement {
             <div className="hero-text">
               <h1>Blockchain-Powered Counter-Drone Defense</h1>
               <p>
-                Revolutionary defense technology combining military-grade security with
-                blockchain integrity. Protect your airspace with 95% accuracy and sub-6 second
-                response times.
+                Revolutionary defense technology combining military-grade
+                security with blockchain integrity. Protect your airspace with
+                95% accuracy and sub-6 second response times.
               </p>
               <div className="hero-buttons">
-                <a href="/contact" className="cta-button">Get Started</a>
-                <a href="#features" className="secondary-button">Learn More</a>
+                <a href="/contact" className="cta-button">
+                  Get Started
+                </a>
+                <a href="#features" className="secondary-button">
+                  Learn More
+                </a>
               </div>
             </div>
             <div className="hero-visual" aria-hidden="true">
@@ -213,7 +234,9 @@ export default function Home(): React.ReactElement {
         <section className="section market-section" id="market">
           <div className="section-header reveal">
             <h2>$14.51B Market Opportunity by 2030</h2>
-            <p>Join the fastest-growing defense technology sector with 26.5% CAGR</p>
+            <p>
+              Join the fastest-growing defense technology sector with 26.5% CAGR
+            </p>
           </div>
           <div className="stats-grid reveal">
             <div className="stat-card">
@@ -245,32 +268,55 @@ export default function Home(): React.ReactElement {
             <div className="feature-card reveal">
               <div className="feature-icon">🎯</div>
               <h3>Advanced Detection</h3>
-              <p>Multi-sensor fusion combining RF, radar, optical, acoustic, and infrared detection for 5km range coverage with AI-powered threat classification.</p>
+              <p>
+                Multi-sensor fusion combining RF, radar, optical, acoustic, and
+                infrared detection for 5km range coverage with AI-powered threat
+                classification.
+              </p>
             </div>
             <div className="feature-card reveal">
               <div className="feature-icon">⚡</div>
               <h3>Rapid Neutralization</h3>
-              <p>RF jamming, GPS spoofing, and unique physical countermeasures including net entanglement for non-destructive drone capture.</p>
+              <p>
+                RF jamming, GPS spoofing, and unique physical countermeasures
+                including net entanglement for non-destructive drone capture.
+              </p>
             </div>
             <div className="feature-card reveal">
               <div className="feature-icon">🔗</div>
               <h3>Blockchain Security</h3>
-              <p>Immutable audit trails, distributed coordination, and tamper-proof evidence logging for military-grade operational integrity.</p>
+              <p>
+                Immutable audit trails, distributed coordination, and
+                tamper-proof evidence logging for military-grade operational
+                integrity.
+              </p>
             </div>
             <div className="feature-card reveal">
               <div className="feature-icon">🎮</div>
               <h3>Unified Command</h3>
-              <p>Real-time C2 dashboard with mobile support, customizable alerts, and remote operation capabilities for complete situational awareness.</p>
+              <p>
+                Real-time C2 dashboard with mobile support, customizable alerts,
+                and remote operation capabilities for complete situational
+                awareness.
+              </p>
             </div>
             <div className="feature-card reveal">
               <div className="feature-icon">🔧</div>
               <h3>Modular Design</h3>
-              <p>Scalable architecture allows customization for specific threats and easy upgrades as technology evolves, protecting your investment.</p>
+              <p>
+                Scalable architecture allows customization for specific threats
+                and easy upgrades as technology evolves, protecting your
+                investment.
+              </p>
             </div>
             <div className="feature-card reveal">
               <div className="feature-icon">🌍</div>
               <h3>Global Deployment</h3>
-              <p>Fixed installations, portable units, or vehicle-mounted systems with battery, solar, and hybrid power options for any environment.</p>
+              <p>
+                Fixed installations, portable units, or vehicle-mounted systems
+                with battery, solar, and hybrid power options for any
+                environment.
+              </p>
             </div>
           </div>
         </section>
@@ -288,28 +334,42 @@ export default function Home(): React.ReactElement {
                   <div className="tech-icon">📡</div>
                   <div>
                     <h4>Multi-Sensor Fusion</h4>
-                    <p>Combines RF, radar, optical, acoustic, and infrared sensors for comprehensive threat detection in all conditions.</p>
+                    <p>
+                      Combines RF, radar, optical, acoustic, and infrared
+                      sensors for comprehensive threat detection in all
+                      conditions.
+                    </p>
                   </div>
                 </li>
                 <li className="tech-item">
                   <div className="tech-icon">🧠</div>
                   <div>
                     <h4>AI-Powered Analysis</h4>
-                    <p>Machine learning algorithms reduce false positives to under 5% while identifying unknown drone models.</p>
+                    <p>
+                      Machine learning algorithms reduce false positives to
+                      under 5% while identifying unknown drone models.
+                    </p>
                   </div>
                 </li>
                 <li className="tech-item">
                   <div className="tech-icon">🔐</div>
                   <div>
                     <h4>Blockchain Integration</h4>
-                    <p>Evidence anchoring and append-only logs ensure data integrity across multiple chains with Byzantine fault tolerance.</p>
+                    <p>
+                      Evidence anchoring and append-only logs ensure data
+                      integrity across multiple chains with Byzantine fault
+                      tolerance.
+                    </p>
                   </div>
                 </li>
                 <li className="tech-item">
                   <div className="tech-icon">⚙️</div>
                   <div>
                     <h4>Edge Computing</h4>
-                    <p>Local processing ensures sub-second response times even in disconnected environments.</p>
+                    <p>
+                      Local processing ensures sub-second response times even in
+                      disconnected environments.
+                    </p>
                   </div>
                 </li>
               </ul>
@@ -340,52 +400,84 @@ export default function Home(): React.ReactElement {
               <tbody>
                 <tr>
                   <td>Price</td>
-                  <td><strong>R850,000</strong></td>
+                  <td>
+                    <strong>R850,000</strong>
+                  </td>
                   <td>R1,200,000</td>
                   <td>R1,500,000</td>
                   <td>R1,000,000</td>
                 </tr>
                 <tr>
                   <td>Detection Range</td>
-                  <td><strong>5 km</strong></td>
+                  <td>
+                    <strong>5 km</strong>
+                  </td>
                   <td>2 km</td>
                   <td>5 km</td>
                   <td>5 km</td>
                 </tr>
                 <tr>
                   <td>Response Time</td>
-                  <td><strong>3-6 seconds</strong></td>
+                  <td>
+                    <strong>3-6 seconds</strong>
+                  </td>
                   <td>5 seconds</td>
                   <td>3 seconds</td>
                   <td>4 seconds</td>
                 </tr>
                 <tr>
                   <td>Accuracy</td>
-                  <td><strong>95%+</strong></td>
+                  <td>
+                    <strong>95%+</strong>
+                  </td>
                   <td>90%</td>
                   <td>95%</td>
                   <td>94%</td>
                 </tr>
                 <tr>
                   <td>Blockchain Security</td>
-                  <td><span className="check">✔</span></td>
-                  <td><span className="cross">✗</span></td>
-                  <td><span className="cross">✗</span></td>
-                  <td><span className="cross">✗</span></td>
+                  <td>
+                    <span className="check">✔</span>
+                  </td>
+                  <td>
+                    <span className="cross">✗</span>
+                  </td>
+                  <td>
+                    <span className="cross">✗</span>
+                  </td>
+                  <td>
+                    <span className="cross">✗</span>
+                  </td>
                 </tr>
                 <tr>
                   <td>Modular Design</td>
-                  <td><span className="check">✔</span></td>
-                  <td><span className="cross">✗</span></td>
-                  <td><span className="cross">✗</span></td>
-                  <td><span className="cross">✗</span></td>
+                  <td>
+                    <span className="check">✔</span>
+                  </td>
+                  <td>
+                    <span className="cross">✗</span>
+                  </td>
+                  <td>
+                    <span className="cross">✗</span>
+                  </td>
+                  <td>
+                    <span className="cross">✗</span>
+                  </td>
                 </tr>
                 <tr>
                   <td>Physical Countermeasures</td>
-                  <td><span className="check">✔</span></td>
-                  <td><span className="cross">✗</span></td>
-                  <td><span className="check">✔</span></td>
-                  <td><span className="check">✔</span></td>
+                  <td>
+                    <span className="check">✔</span>
+                  </td>
+                  <td>
+                    <span className="cross">✗</span>
+                  </td>
+                  <td>
+                    <span className="check">✔</span>
+                  </td>
+                  <td>
+                    <span className="check">✔</span>
+                  </td>
                 </tr>
               </tbody>
             </table>
@@ -396,18 +488,30 @@ export default function Home(): React.ReactElement {
         <section className="section cta-section" id="contact">
           <div className="cta-content reveal">
             <h2>Secure Your Airspace Today</h2>
-            <p>Join leading organizations worldwide in deploying the most advanced counter-drone defense system available</p>
+            <p>
+              Join leading organizations worldwide in deploying the most
+              advanced counter-drone defense system available
+            </p>
             <div className="hero-buttons">
-              <a href="/contact" className="cta-button">Request a Demo</a>
-              <a href="/docs/overview" className="secondary-button">View Overview</a>
-              <a href="/whitepaper" className="secondary-button">Download Whitepaper</a>
+              <a href="/contact" className="cta-button">
+                Request a Demo
+              </a>
+              <a href="/docs/overview" className="secondary-button">
+                View Overview
+              </a>
+              <a href="/whitepaper" className="secondary-button">
+                Download Whitepaper
+              </a>
             </div>
           </div>
         </section>
 
         {/* Info footer (keeps Docusaurus site footer separate) */}
         <div className="footer">
-          <p>© 2025 Phoenix Rooivalk. All rights reserved. | ITAR Compliant | ISO 27001 Certified</p>
+          <p>
+            © 2025 Phoenix Rooivalk. All rights reserved. | ITAR Compliant |
+            ISO 27001 Certified
+          </p>
         </div>
       </main>
     </Layout>
