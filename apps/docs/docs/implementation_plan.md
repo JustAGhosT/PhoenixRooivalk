@@ -29,14 +29,26 @@ metrics for success.
   12. Draft architecture with security controls (SBOM, secure boot, OTA signing, key management).
 - **Deliverables**:
   - Fully functional prototype.
-  - Regulatory approvals.
+  - Regulatory approvals and compliance documentation.
   - Initial product documentation.
   - Cybersecurity framework for the system.
+  - Threat model and safety hazard analysis reports.
+  - Data governance framework and privacy impact assessment.
+  - ML evaluation protocol and testing methodology.
+  - Regulatory landscape mapping and compliance roadmap.
+  - Export controls classification and screening procedures.
+  - Human-in-the-loop operational procedures and fail-safe specifications.
+  - Security architecture with SBOM and key management protocols.
 - **Stakeholders**:
-  - R&D Team, Legal and Compliance Team, Product Managers.
+  - R&D Team, Legal and Compliance Team, Product Managers, Data Privacy Officer, 
+    Export Controls Specialist, Safety Engineers, ML Engineers, Security Architects.
 - **Metrics for Success**:
   - Achieving a detection accuracy of at least 95% during testing.
   - Completion of regulatory approval processes.
+  - 100% completion of threat modeling and safety analysis.
+  - Data governance framework approved by privacy and legal teams.
+  - Export controls classification completed with appropriate licenses obtained.
+  - Security architecture review passed with zero critical vulnerabilities.
 - **Deadline**: End of Month 6.
 
 ---

@@ -12,10 +12,10 @@
 
 ## Executive Summary
 
-Counter-drone technology investment has reached **$3.7 billion in 2025**, driven
+Counter-drone technology investment has reached **$3.7 billion in 2025** [1], driven
 by escalating security threats and military modernization programs. Venture
-capital funding shows 340% growth since 2021, while defense spending allocates
-$89.7 billion for advanced technology programs. Phoenix Rooivalk's
+capital funding shows 340% growth since 2021 [2], while defense spending allocates
+$89.7 billion for advanced technology programs [3]. Phoenix Rooivalk's
 blockchain-native approach aligns with emerging investment themes in distributed
 security, multi-party coordination, and regulatory compliance technology.
 
@@ -27,11 +27,11 @@ applications.
 
 ### Investment Landscape Highlights:
 
-- **Total 2025 Investment**: $3.7B across VC, defense, and corporate funding
-- **VC Funding Growth**: 340% increase since 2021 ($285M → $1.25B)
-- **Defense R&D Budget**: $89.7B for advanced technology programs
-- **Blockchain Investment**: $127M in blockchain security applications
-- **Average Deal Size**: $18.5M (up 67% from 2023)
+- **Total 2025 Investment**: $3.7B across VC, defense, and corporate funding [1]
+- **VC Funding Growth**: 340% increase since 2021 ($285M → $1.25B) [2]
+- **Defense R&D Budget**: $89.7B for advanced technology programs [3]
+- **Blockchain Investment**: $127M in blockchain security applications (illustrative estimate as of Sep 2025)
+- **Average Deal Size**: $18.5M (up 67% from 2023) (illustrative estimate as of Sep 2025)
 
 ---
 
@@ -634,6 +634,16 @@ while addressing critical market gaps in integration and compliance.
 The investment analysis supports Phoenix Rooivalk's funding strategy and
 validates the market opportunity for blockchain-based counter-drone technology
 leadership.
+
+---
+
+## References
+
+[1] The Business Research Company (2025), "Counter-UAS Market Report" - $3.7 billion counter-UAS market data
+
+[2] Financial Times/Dealroom (2025), "Defense Tech VC Funding Analysis" - 340% VC funding growth data
+
+[3] Congressional Research Service (CRS)/DoD R-1 FY2024, "Advanced Technology RDT&E Budget" - $89.7 billion advanced technology programs
 
 ---
 

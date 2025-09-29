@@ -6,7 +6,7 @@
 
 **Discovery**: The counter-drone market is at a critical inflection point,
 expanding from $3.75B to $14.51B by 2030 (26.5% CAGR), driven by regulatory
-mandates and escalating threats.
+mandates and escalating threats [1].
 
 **Implication**: First movers will capture disproportionate market share as
 enterprises scramble for proven solutions.
@@ -15,8 +15,8 @@ enterprises scramble for proven solutions.
 
 ### Finding #2: Venture Capital Validates Sector
 
-**Discovery**: Defense tech raised $3B across 102 deals in 2024 (+11% YoY), with
-Anduril's $1.5B Series F at $14B valuation setting precedent.
+**Discovery**: Defense tech raised $3B across 102 deals in 2024 (+11% YoY) [2], with
+Anduril's $1.5B Series F at $14B valuation (as of June 13, 2025) setting precedent [3].
 
 **Implication**: Abundant capital available for proven solutions with military
 validation.
@@ -134,8 +134,9 @@ foreign entities.
 
 ### Finding #13: FAA Part 108 Creates Urgency
 
-**Discovery**: BVLOS operations rule (August 2025) mandates
-blockchain-verifiable cybersecurity.
+**Discovery**: FAA Part 108 BVLOS operations NPRM published August 7, 2025
+(comments due October 6, 2025) proposes enhanced cybersecurity requirements.
+Note: NPRM does not mandate blockchain-specific solutions [4].
 
 **Implication**: Regulatory compliance becomes competitive advantage and sales
 accelerator.
@@ -144,8 +145,8 @@ accelerator.
 
 ### Finding #14: NATO Blockchain Commitment
 
-**Discovery**: NATO allocated $1T+ for cybersecurity including blockchain
-adoption across alliance.
+**Discovery**: NATO Innovation Fund targets ~€1 billion for emerging technologies
+including blockchain applications across alliance [5].
 
 **Implication**: International market opportunity with single qualification
 process.
@@ -209,6 +210,20 @@ valuations achievable.
 **Implication**: Clear path to liquidity within 36-60 months.
 
 **Action**: Build with acquisition in mind; maintain clean IP and documentation.
+
+---
+
+## References
+
+[1] MarketsandMarkets, "Anti-Drone Market Report," June 2025 (market data as of 2024)
+
+[2] Crunchbase News, "Defense Tech Venture Funding Gains Traction – YIR 2024"
+
+[3] Financial Times/TechCrunch, Anduril Series F funding announcement (as of June 13, 2025)
+
+[4] Federal Register, FAA Part 108 BVLOS NPRM, August 7, 2025. Docket: https://www.transportation.gov/regulations/federal-register-documents/2025-14992
+
+[5] NATO Innovation Fund documentation, ~€1 billion target for emerging technologies
 
 ---
 

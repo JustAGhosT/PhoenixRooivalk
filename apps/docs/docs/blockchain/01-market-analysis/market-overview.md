@@ -138,7 +138,7 @@ print(f"Composite Market Growth Score: {market_impact['composite_market_score']:
 
 3. **Regulatory Compliance Requirements**
    - 47 countries mandate counter-drone capabilities
-   - Pending US legislation (H.R. 5061) for counter-drone standards
+   - Pending US legislation H.R. 5061 ("Counter-UAS Authority Security, Safety, and Reauthorization Act"), introduced Aug. 29, 2025 (reported out of committee Sept. 3, 2025), to reauthorize and reform federal counter-UAS authorities
    - EASA drone security framework implementation
 
 4. **Technological Convergence**
@@ -155,9 +155,9 @@ print(f"Composite Market Growth Score: {market_impact['composite_market_score']:
 | **North America** | $2.39B (45%)    | 24.2% CAGR      | Defense spending, airport security       | Developing (pending legislation) |
 | **Europe**        | $1.48B (28%)    | 21.8% CAGR      | GDPR compliance, critical infrastructure | Harmonized (EASA)       |
 | **Asia-Pacific**  | $1.43B (27%)    | 26.7% CAGR      | Manufacturing security, smart cities     | Emerging frameworks     |
-| **Middle East**   | $0.32B (6%)     | 19.4% CAGR      | Military modernization, oil facilities   | Military-focused        |
-| **Latin America** | $0.21B (4%)     | 17.2% CAGR      | Border security, mining operations       | Developing              |
-| **Africa**        | $0.16B (3%)     | 15.8% CAGR      | Wildlife protection, infrastructure      | Limited frameworks      |
+| **Middle East**   | $0.32B          | 19.4% CAGR      | Military modernization, oil facilities   | Military-focused        |
+| **Latin America** | $0.21B          | 17.2% CAGR      | Border security, mining operations       | Developing              |
+| **Africa**        | $0.16B          | 15.8% CAGR      | Wildlife protection, infrastructure      | Limited frameworks      |
 
 **Market Penetration Opportunities**:
 
@@ -176,7 +176,7 @@ print(f"Composite Market Growth Score: {market_impact['composite_market_score']:
 pie title Counter-Drone Market by End User (2025)
     "Military & Defense" : 67
     "Critical Infrastructure" : 23
-    "Commercial Aviation" : 15
+    "Commercial Aviation" : 10
     "Government Facilities" : 12
     "Private Security" : 8
     "Events & Venues" : 6
@@ -203,7 +203,7 @@ pie title Counter-Drone Market by End User (2025)
 - **Blockchain Value Proposition**: Immutable incident records,
   multi-stakeholder coordination
 
-**Commercial Aviation Segment** ($0.62B - 15% market share):
+**Commercial Aviation Segment** ($0.41B - 10% market share):
 
 - **Primary Applications**: Airport perimeter security, flight path protection
 - **Key Requirements**: FAA compliance, passenger safety, operational continuity
@@ -390,10 +390,10 @@ for tech, score in sorted(readiness_scores.items(), key=lambda x: x[1], reverse=
 - **Key Differentiators**: Regulatory compliance, multi-party trust, incident
   transparency
 
-**Tertiary Target - Commercial Aviation** ($0.62B market):
+**Tertiary Target - Commercial Aviation** ($0.41B market):
 
-- **Addressable Segment**: $310M (50% requiring data sharing capabilities)
-- **Target Capture**: $62M (20% market share by 2030)
+- **Addressable Segment**: $205M (50% requiring data sharing capabilities)
+- **Target Capture**: $41M (20% market share by 2030)
 - **Key Differentiators**: Multi-airport coordination, regulatory reporting,
   data sovereignty
 
