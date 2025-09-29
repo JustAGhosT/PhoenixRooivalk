@@ -1,7 +1,7 @@
 {
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
-    "composite": true,
+    "composite": false,
     "outDir": "./build",
     "jsx": "react-jsx",
     "allowJs": true,
@@ -9,11 +9,12 @@
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "forceConsistentCasingInFileNames": true,
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true
   },
+  "types": ["node"],
   "include": ["src/**/*", "docusaurus.config.ts", "sidebars.ts"],
   "exclude": ["node_modules", "build", ".docusaurus"]
 }

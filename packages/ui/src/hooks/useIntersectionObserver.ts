@@ -19,6 +19,13 @@ export function useIntersectionObserver(
     setElement(node);
   }, []);
 
+  // Reset when a new element is attached
+  useEffect(() => {
+    if (!element) return;
+    setHasTriggered(false);
+    setIsIntersecting(false);
+  }, [element]);
+
   useEffect(() => {
     if (!element) return;
 

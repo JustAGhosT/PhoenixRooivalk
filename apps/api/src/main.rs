@@ -7,6 +7,10 @@ use axum::{
     serve,
 };
 use tokio::net::TcpListener;
+use serde::{Deserialize, Serialize};
+use sqlx::{Pool, Sqlite, SqlitePool};
+use sqlx::sqlite::SqlitePoolOptions;
+use std::net::SocketAddr;
 
 async fn health() -> &'static str { "OK" }
 
@@ -67,13 +71,19 @@ async fn main() {
     let (app, _pool) = build_app().await;
 
     let port: u16 = std::env::var("PORT").ok().and_then(|s| s.parse().ok()).unwrap_or(8080);
-    let addr = format!("0.0.0.0:{port}");
-    let listener = TcpListener::bind(&addr).await.unwrap();
-    tracing::info!(%addr, "starting phoenix-api");
-
-    serve(listener, app.into_make_service())
-        .await
-        .unwrap();
+    let addr: SocketAddr = ([0, 0, 0, 0], port).into();
+    let listener = match TcpListener::bind(addr).await {
+        Ok(l) => l,
+        Err(e) => {
+            tracing::error!(%addr, error=%e, "failed to bind TCP listener");
+            std::process::exit(1);
+        }
+    };
+    let bound = listener.local_addr().unwrap_or(addr);
+    tracing::info!(%bound, "starting phoenix-api");
+    if let Err(err) = serve(listener, app.into_make_service()).await {
+        tracing::error!(%err, "server error");
+    }
 }
 
 async fn ensure_schema(pool: &Pool<Sqlite>) -> Result<(), sqlx::Error> {

@@ -1,3 +1,5 @@
+"use client";
+
 import { RevealSection } from '@/components/RevealSection';
 import { downloadWhitepaper } from '@/utils/downloadWhitepaper';
 import React from 'react';

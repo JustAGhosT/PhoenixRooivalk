@@ -66,7 +66,10 @@ export const UkraineChallengeSection: React.FC = () => {
         </RevealSection>
 
         <RevealSection className="text-center mt-8">
-          <div className="bg-[rgba(0,255,136,0.1)] border border-[var(--primary)]/30 rounded-xl p-6 max-w-4xl mx-auto">
+          <div
+            className="bg-[rgba(0,255,136,0.1)] border rounded-xl p-6 max-w-4xl mx-auto"
+            style={{ borderColor: 'rgba(0, 255, 136, 0.3)' }}
+          >
             <h3 className="text-2xl font-bold text-white mb-4">The Stakes</h3>
             <p className="text-[var(--gray)] text-lg mb-6">
               "Ukraine's entire war strategy hinges on this race. They've survived three years by being smarter, not stronger. If they lose the AI warfare competition, they lose their main advantage over Russia's superior numbers."
@@ -103,7 +106,10 @@ const SolutionCard: React.FC<{ icon: string; title: string; description: string 
   title,
   description,
 }) => (
-  <div className="flex items-start gap-4 p-4 bg-[rgba(0,255,136,0.1)] border border-[var(--primary)]/30 rounded-lg">
+  <div
+    className="flex items-start gap-4 p-4 bg-[rgba(0,255,136,0.1)] border rounded-lg"
+    style={{ borderColor: 'rgba(0, 255, 136, 0.3)' }}
+  >
     <span className="text-[var(--primary)] text-2xl">{icon}</span>
     <div>
       <div className="font-bold text-[var(--primary)]">{title}</div>

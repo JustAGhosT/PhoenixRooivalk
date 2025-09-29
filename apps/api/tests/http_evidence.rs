@@ -1,5 +1,6 @@
 use phoenix_api::main::build_app;
 use phoenix_keeper::{run_job_loop, SqliteJobProvider};
+use sqlx::Row;
 use anchor_etherlink::EtherlinkProviderStub;
 use axum::serve;
 use reqwest::Client;

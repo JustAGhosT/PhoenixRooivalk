@@ -11,7 +11,7 @@ Structure:
 
 - `apps/`
   - `docs/` — Docusaurus site (published under `/docs`).
-  - `marketing/` — Next.js 14 static marketing site.
+  - `marketing/` — Next.js 14 static marketing site (exports to `out/`).
   - `api/` — Rust (Axum) API server.
   - `keeper/` — Rust blockchain keeper service.
   - `evidence-cli/` — Rust CLI for evidence management.
@@ -49,8 +49,8 @@ pnpm -C apps/docs start
 # build all
 pnpm build
 
-# build single app
-pnpm --filter marketing build
+# build single app (static export)
+pnpm --filter marketing build  # outputs to apps/marketing/out/
 pnpm -C apps/docs build
 
 # run Rust API locally

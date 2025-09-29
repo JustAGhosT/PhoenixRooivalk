@@ -22,13 +22,15 @@ track, and neutralize autonomous threats at scale.
 Our blockchain-enhanced counter-drone system integrates distributed ledger
 technology with edge computing and AI to deliver:
 
-- **99.3% threat detection accuracy** with blockchain-verified multi-sensor
-  correlation
-- **Sub-2ms authentication latency** through hybrid edge-blockchain architecture
+- **99.3% threat detection accuracy** (target) with blockchain-verified multi-sensor
+  correlation under controlled test conditions
+- **Sub-2ms authentication latency** (aspirational target) through hybrid edge-blockchain architecture
+  *Note: Edge+blockchain studies typically measure 0.16–2.5s without private/L2 optimizations;
+  requires specification of blockchain consensus mechanism, network topology, hardware specs*
 - **95% reduction in single points of failure** via decentralized consensus
 - **100% tamper-proof audit trails** for regulatory compliance and forensics
-- **Autonomous swarm coordination** supporting 100-200 drones in contested
-  environments
+- **Autonomous swarm coordination** supporting 100-200 drones (simulation/hierarchical control target;
+  field prototypes typically demonstrate ~20–30 UAVs)
 
 ### Market Dynamics
 
@@ -41,7 +43,7 @@ technology with edge computing and AI to deliver:
 
 ### Investment Requirements
 
-**Total Implementation Cost**: $8.95M over 18 months
+**Total Implementation Cost**: $8.99M over 18 months
 
 | Phase              | Timeline     | Investment | Deliverable                |
 | ------------------ | ------------ | ---------- | -------------------------- |
@@ -97,7 +99,7 @@ technology with edge computing and AI to deliver:
 
 **Immediate Actions Required**:
 
-1. Approve $8.95M implementation budget
+1. Approve $8.99M implementation budget
 2. Establish cross-functional implementation team
 3. Initiate Phase 0 foundation (Week 1)
 4. Engage regulatory bodies for early alignment

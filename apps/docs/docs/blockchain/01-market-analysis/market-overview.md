@@ -591,36 +591,39 @@ for year, data in revenue_projections.items():
 
 **Revenue Growth Trajectory**:
 
-- **2024**: $2.8M (pilot phase, defense focus)
-- **2025**: $18.1M (market validation, infrastructure entry)
-- **2026**: $68.2M (commercial expansion)
-- **2027**: $159.8M (international growth)
-- **2028**: $309.0M (market leadership)
-- **2029**: $535.5M (platform dominance)
-- **2030**: $842.1M (global scale)
+- **2025**: $2.1M (current year, pilot phase)
+- **2026**: $12M (market validation, infrastructure entry)
+- **2027**: $42M (commercial expansion)
+- **2028**: $126M (international growth)
+- **2029**: $294M (market leadership)
+- **2030**: $420M (blockchain segment dominance)
 
 **Key Growth Milestones**:
 
-- **$10M ARR**: Q3 2025 (market validation)
-- **$100M ARR**: Q2 2027 (commercial success)
-- **$500M ARR**: Q1 2029 (market leadership)
+- **$10M ARR**: Q2 2026 (market validation)
+- **$100M ARR**: Q4 2027 (commercial success)
+- **$300M ARR**: Q2 2029 (market leadership)
 - **$1B Valuation**: Q4 2028 (unicorn status)
 
 ### 6.2 Market Share Evolution
 
 **Blockchain Counter-Drone Market Leadership**:
 
-- **2024**: 15% of blockchain segment ($1.8M of $12M market)
-- **2026**: 35% of blockchain segment ($24M of $68M market)
-- **2028**: 55% of blockchain segment ($165M of $300M market)
-- **2030**: 65% of blockchain segment ($273M of $420M market)
+- **2025**: 5% of blockchain segment ($2.1M of $42M market)
+- **2026**: 12% of blockchain segment ($12M of $100M market)
+- **2027**: 25% of blockchain segment ($42M of $168M market)
+- **2028**: 45% of blockchain segment ($126M of $280M market)
+- **2029**: 70% of blockchain segment ($294M of $420M market)
+- **2030**: 100% of blockchain segment ($420M of $420M market)
 
 **Overall Counter-Drone Market Position**:
 
-- **2024**: 0.07% of total market
-- **2026**: 1.0% of total market
-- **2028**: 2.8% of total market
-- **2030**: 5.8% of total market
+- **2025**: 0.014% of total market ($2.1M of $15B)
+- **2026**: 0.08% of total market ($12M of $15B)
+- **2027**: 0.26% of total market ($42M of $16B)
+- **2028**: 0.76% of total market ($126M of $16.5B)
+- **2029**: 1.7% of total market ($294M of $17B)
+- **2030**: 2.9% of total market ($420M of $14.51B)
 
 ---
 
@@ -646,7 +649,7 @@ distributed coordination, positioning for significant market capture.
 ### Strategic Positioning:
 
 - **Target Market**: $4.2B blockchain-enabled segment of $14.51B total market
-- **Revenue Target**: $420M by 2030 (10% of blockchain segment)
+- **Revenue Target**: $420M by 2030 (100% of targeted blockchain segment)
 - **Competitive Moat**: Technology leadership, network effects, regulatory
   compliance
 - **Market Entry**: Defense-first strategy expanding to infrastructure and

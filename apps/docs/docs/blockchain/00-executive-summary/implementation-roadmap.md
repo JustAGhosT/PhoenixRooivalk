@@ -100,7 +100,7 @@ Budget: $1.27M | Target: 100-drone swarms
 
 ### Algorithm Implementation
 
-- DTPBFT consensus protocol
+- **DTPBFT consensus protocol**: DTPBFT is a dynamic, highly trusted PBFT variant for UAV swarms [1]
 - Formation control (line, V, circle, grid, sphere)
 - Byzantine fault tolerance (33%)
 - Autonomous decision matrix
@@ -232,6 +232,12 @@ Budget: $1.2M | Target: Full Operational Capability
 | Patents Filed        | 2       | 5        | 8          |
 | Integration Partners | 1       | 5        | 10+        |
 | Customer Pipeline    | $5M     | $20M     | $50M       |
+
+---
+
+## References
+
+[1] Han, L., Zhou, M., Jia, W., Dalil, Z., & Xu, X. (2024). DTPBFT: A dynamic, highly trusted PBFT consensus algorithm for permissioned blockchain in UAV network. *Computer Networks*, 250, 110602. doi:10.1016/J.COMNET.2024.110602
 
 ---
 

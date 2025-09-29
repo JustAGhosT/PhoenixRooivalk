@@ -1,8 +1,26 @@
 "use client";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 
 export default function ContactPage(): React.ReactElement {
+  const [email, setEmail] = useState('');
+  
+  // Obfuscate email at render time to prevent scraping
+  useEffect(() => {
+    const user = 'smit.jurie';
+    const domain = 'gmail.com';
+    setEmail(`${user}@${domain}`);
+  }, []);
+  
+  const handleEmailClick = (subject?: string, body?: string) => {
+    if (!email) return;
+    const params = new URLSearchParams();
+    if (subject) params.append('subject', subject);
+    if (body) params.append('body', body);
+    const queryString = params.toString();
+    window.location.href = `mailto:${email}${queryString ? '?' + queryString : ''}`;
+  };
+
   return (
     <main className="relative overflow-hidden bg-[var(--darker)] text-white">
       {/* Background */}
@@ -75,12 +93,13 @@ export default function ContactPage(): React.ReactElement {
                     <br />
                     PhoenixVC
                     <br />
-                    <a
-                      href="mailto:smit.jurie@gmail.com"
-                      className="text-[var(--primary)] hover:underline"
+                    <button
+                      onClick={() => handleEmailClick()}
+                      className="text-[var(--primary)] hover:underline cursor-pointer bg-transparent border-none p-0 font-inherit"
+                      disabled={!email}
                     >
-                      smit.jurie@gmail.com
-                    </a>
+                      {email || 'Loading...'}
+                    </button>
                   </p>
                 </div>
                 <div>
@@ -92,12 +111,16 @@ export default function ContactPage(): React.ReactElement {
                     multi-sensor detection, neutralization capabilities, and
                     blockchain evidence logging.
                   </p>
-                  <a
-                    href="mailto:smit.jurie@gmail.com?subject=Phoenix%20Rooivalk%20Technical%20Demo&body=I%20would%20like%20to%20schedule%20a%20technical%20demonstration%20of%20the%20Phoenix%20Rooivalk%20Counter-UAS%20System."
-                    className="inline-block mt-3 rounded bg-gradient-to-br from-[var(--primary)] to-[var(--secondary)] px-4 py-2 font-bold text-[var(--dark)] shadow-glow hover:-translate-y-0.5 transition"
+                  <button
+                    onClick={() => handleEmailClick(
+                      'Phoenix Rooivalk Technical Demo',
+                      'I would like to schedule a technical demonstration of the Phoenix Rooivalk Counter-UAS System.'
+                    )}
+                    className="inline-block mt-3 rounded bg-gradient-to-br from-[var(--primary)] to-[var(--secondary)] px-4 py-2 font-bold text-[var(--dark)] shadow-glow hover:-translate-y-0.5 transition disabled:opacity-50"
+                    disabled={!email}
                   >
                     Schedule Demo
-                  </a>
+                  </button>
                 </div>
                 <div>
                   <h3 className="font-semibold mb-2">Partnership Inquiries</h3>
@@ -106,12 +129,13 @@ export default function ContactPage(): React.ReactElement {
                     or custom deployment configurations? Contact us for
                     partnership opportunities.
                   </p>
-                  <a
-                    href="mailto:smit.jurie@gmail.com?subject=Phoenix%20Rooivalk%20Partnership%20Inquiry"
-                    className="inline-block mt-3 rounded border-2 border-[var(--primary)] px-4 py-2 font-bold text-[var(--primary)] hover:bg-[var(--primary)] hover:text-[var(--dark)] transition"
+                  <button
+                    onClick={() => handleEmailClick('Phoenix Rooivalk Partnership Inquiry')}
+                    className="inline-block mt-3 rounded border-2 border-[var(--primary)] px-4 py-2 font-bold text-[var(--primary)] hover:bg-[var(--primary)] hover:text-[var(--dark)] transition disabled:opacity-50"
+                    disabled={!email}
                   >
                     Partnership Inquiry
-                  </a>
+                  </button>
                 </div>
               </div>
             </div>
