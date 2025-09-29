@@ -7,7 +7,7 @@ export const Navigation: React.FC = () => {
     { href: '/interactive-demo', label: 'Try Demo' },
     { href: '/technical', label: 'Specs' },
     { href: '/financial', label: 'Pricing' },
-    { href: '#contact', label: 'Contact' },
+    { href: '/#contact', label: 'Contact' },
   ];
 
   return (
@@ -22,21 +22,18 @@ export const Navigation: React.FC = () => {
         <ul className="hidden md:flex gap-6 text-[var(--gray)]">
           {navigationItems.map((item) => (
             <li key={item.href}>
-              {item.href.startsWith('#') ? (
-                <a href={item.href} className="hover:text-[var(--primary)]">
-                  {item.label}
-                </a>
-              ) : (
-                <Link href={item.href} className="hover:text-[var(--primary)]">
-                  {item.label}
-                </Link>
-              )}
+              <Link href={item.href} className="hover:text-[var(--primary)]">
+                {item.label}
+              </Link>
             </li>
           ))}
         </ul>
-        <Button href="#contact" size="sm">
+        <Link 
+          href="/#contact"
+          className="inline-flex items-center justify-center rounded-md bg-[var(--primary)] px-4 py-2 text-sm font-medium text-[var(--dark)] hover:bg-[var(--primary)]/90 transition-colors"
+        >
           Get Demo
-        </Button>
+        </Link>
       </div>
     </nav>
   );

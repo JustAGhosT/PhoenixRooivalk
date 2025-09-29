@@ -1,7 +1,7 @@
 # Phoenix Rooivalk — Level-0 Autonomous Counter-UAS System
 
-**Technical Whitepaper v1.0** · 2025-01-28  
-**Proprietary & Confidential — Do not distribute without written consent.**
+**Technical Whitepaper v3.0** · 2025-01-28  
+**Public Technical Documentation**
 
 > **Purpose.** This whitepaper introduces the Phoenix Rooivalk Level-0
 > Autonomous Counter-UAS system, addressing the $26B market opportunity with
@@ -1061,4 +1061,4 @@ Request technical demonstration or SBIR collaboration:
 
 **Document Version**: v3.0  
 **Last Updated**: 2025-01-28  
-**Classification**: Proprietary & Confidential
+**Classification**: Public Technical Documentation

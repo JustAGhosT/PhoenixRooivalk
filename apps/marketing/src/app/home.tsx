@@ -81,15 +81,15 @@ export default function HomePage(): React.ReactElement {
                 name: "What is the market opportunity for Phoenix Rooivalk?",
                 acceptedAnswer: {
                   "@type": "Answer",
-                  text: "The counter-drone market is $2.3-4.5B currently, growing to $9-26B by 2030. Phoenix Rooivalk's 100x performance improvement and Level-0 autonomous capabilities position it to capture significant market share in this rapidly expanding sector.",
+                  text: "The counter-drone market is $2.3-4.5B currently, growing to $9-26B by 2030. Phoenix Rooivalk's Level-0 autonomous capabilities and multi-sensor fusion approach are designed to address key market gaps in this rapidly expanding sector.",
                 },
               },
               {
                 "@type": "Question",
-                name: "How does Phoenix Rooivalk compare to Anduril, Fortem, and DroneShield?",
+                name: "How does Phoenix Rooivalk perform compared to typical market offerings?",
                 acceptedAnswer: {
                   "@type": "Answer",
-                  text: "Phoenix Rooivalk responds in 120-195ms vs Anduril's 3-10 seconds, defeats RF-silent drones that Fortem cannot detect, and works 100% without network unlike DroneShield's communication-dependent systems. We're 250x faster when communications are jammed.",
+                  text: "Designed for ultra-low latency edge operation and RF-silent detection via multi-sensor fusion. Performance claims are based on internal benchmarks under defined test conditions and may vary by deployment. The system targets sub-200ms response times and autonomous operation without network connectivity.",
                 },
               },
               {

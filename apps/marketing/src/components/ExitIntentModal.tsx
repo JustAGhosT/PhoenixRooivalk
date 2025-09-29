@@ -48,7 +48,11 @@ export const ExitIntentModal: React.FC<ExitIntentModalProps> = ({ docsUrl }) => 
   }, [hasTriggered]);
 
   const handleDownloadNow = () => {
-    downloadWhitepaper();
+    if (docsUrl) {
+      downloadWhitepaper(docsUrl);
+    } else {
+      downloadWhitepaper();
+    }
     setIsVisible(false);
   };
 
@@ -69,7 +73,7 @@ export const ExitIntentModal: React.FC<ExitIntentModalProps> = ({ docsUrl }) => 
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm">
-      <div className="bg-gray-900 border border-green-500/30 rounded-xl p-8 max-w-md mx-4 shadow-2xl">
+      <div className="relative bg-gray-900 border border-green-500/30 rounded-xl p-8 max-w-md mx-4 shadow-2xl">
         {/* Close button */}
         <button
           onClick={handleStayOnPage}

@@ -38,7 +38,7 @@ export default function InteractiveDemoPage() {
                 </p>
               </div>
               <div className="space-y-2">
-                <h3 className="text-lg font-semibold text-magenta-400">🚀 Kinetic Interceptors</h3>
+                <h3 className="text-lg font-semibold text-fuchsia-400">🚀 Kinetic Interceptors</h3>
                 <p className="text-gray-300 text-sm">
                   Precision-guided interceptors neutralize threats with minimal collateral
                   damage using advanced targeting algorithms.

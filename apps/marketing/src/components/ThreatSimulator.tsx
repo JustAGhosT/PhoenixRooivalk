@@ -162,10 +162,9 @@ export const ThreatSimulator: React.FC = () => {
         className="absolute inset-0 w-full h-full"
         onClick={(e) => {
           const target = e.target as HTMLElement;
-          const threatId = target.dataset.threatId;
-          if (threatId) {
-            neutralizeThreat(threatId);
-          }
+          const el = target.closest<HTMLElement>('[data-threat-id]');
+          const threatId = el?.getAttribute('data-threat-id');
+          if (threatId) neutralizeThreat(threatId);
         }}
       >
         {/* Central Shield */}
