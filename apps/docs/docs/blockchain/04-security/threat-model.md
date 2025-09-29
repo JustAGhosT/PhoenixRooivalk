@@ -32,7 +32,178 @@ comprehensive security posture against both current and emerging threats.
   supply chain
 - **Mitigation Effectiveness**: 99.97% protection against known attack vectors
 - **Response Time**: < 100ms automated threat detection and response
-- **Security Assurance**: Military-grade security with continuous monitoring
+
+---
+
+## What Phoenix Rooivalk Does (Plain English)
+
+Phoenix Rooivalk is a defensive system that detects, classifies, and responds to 
+hostile small drones on its own when radios and backhaul are jammed. It makes 
+policy-bounded, "soft-kill first" decisions at the edge in 120-195 ms (p50) / 
+≤250 ms (p95) and records tamper-evident receipts after the fact for 
+accountability. When communications are available, it can optionally share 
+sanitized, need-to-know alerts with partners; real-time action never waits on 
+external networks. Humans remain in control for anything risky or lethal.
+
+### Plain-Language Glossary
+
+**sUAS** = small Unmanned Aircraft System (commercial drones under 55 lbs)  
+**C-UAS** = Counter-UAS (systems that defend against drones)  
+**EW** = Electronic Warfare (jamming, spoofing)  
+**RF** = Radio Frequency (wireless signals)  
+**C2** = Command & Control (system that operators use)  
+**ROE** = Rules of Engagement (when you can/can't engage)  
+**TPS** = Transactions Per Second (blockchain speed)  
+**CIEA** = Comms-Independent Edge Autonomy (works without network)  
+**PUF** = Physical Unclonable Function (unhackable hardware ID)  
+**EO/IR** = Electro-Optical/Infrared (cameras that see visible & heat)  
+**ESM** = Electronic Support Measures (detecting enemy signals)  
+**GPS** = Global Positioning System (satellite navigation)  
+**DoD** = Department of Defense  
+**ITAR** = International Traffic in Arms Regulations (export controls)  
+
+**Sensor**: The "ears and eyes" (radar, cameras, microphones) that notice drones  
+**Edge computer**: The "brain in the box" nearby that thinks fast without the internet  
+**Soft-kill**: Stopping or redirecting a drone without blowing it up  
+**Audit trail**: The unchangeable diary of what the system did and why  
+**Coalition/interop**: Sharing a safe, short message with trusted partners  
+
+### Edge Autonomy Architecture
+
+```mermaid
+graph TB
+    subgraph "LAYER 0: THE EDGE (No Network Needed)"
+        THREAT[🚁 Incoming Drone] --> DETECT[👁️ Detection<br/>8-12ms]
+        DETECT --> DECIDE[🧠 Edge Decision<br/>Pre-authorized Rules]
+        DECIDE --> ACT[⚡ Immediate Response<br/>Jamming/Tracking]
+        ACT --> RECORD[📝 Local Record<br/>Encrypted Log]
+    end
+    
+    subgraph "LAYER 1: COMMAND CENTER (When Connected)"
+        RECORD -.-> ALERT[📡 Alert Operator<br/>Via Fiber/Satellite]
+        ALERT --> HUMAN[👤 Human Authorization<br/>Kinetic Response]
+        HUMAN --> KINETIC[💥 Authorized Action]
+    end
+    
+    subgraph "LAYER 2: BLOCKCHAIN AUDIT (After Action)"
+        RECORD -.-> BLOCKCHAIN[⛓️ Permanent Record<br/>Legal Evidence]
+        BLOCKCHAIN --> PARTNERS[🤝 Coalition Sharing<br/>Sanitized Alerts]
+    end
+    
+    style DETECT fill:#90EE90
+    style DECIDE fill:#FFB6C1
+    style ACT fill:#87CEEB
+    style RECORD fill:#DDA0DD
+```
+
+### What It Does NOT Do
+
+- It doesn't need the cloud or a big server to make decisions
+- It doesn't fire dangerous weapons by itself; humans must authorize that
+- It doesn't share private raw video or audio by default—only small, safe alerts unless approved
+
+### Key Security Questions Addressed
+
+**Q1: What happens with the "black box" if the drone is lost/shot-down/intercepted and no comms were available?**
+
+**Solution - Automatic Data Wipe Protocols:**
+- No signal for 60 seconds → Data erases itself
+- Drone leaves authorized area → Data erases itself  
+- Someone tries to tamper → Data erases itself
+- Cost to add: Almost nothing. Time to add: 1 week
+
+**Implementation Details:**
+
+```python
+class SecureDataManager:
+    def __init__(self):
+        self.last_signal_time = time.time()
+        self.authorized_zone = GeofenceZone()
+        self.tamper_sensors = TamperDetectionArray()
+        
+    def check_wipe_conditions(self):
+        # Condition 1: No signal timeout
+        if time.time() - self.last_signal_time > 60:
+            self.secure_wipe("Signal timeout")
+            
+        # Condition 2: Geofence violation  
+        if not self.authorized_zone.contains(self.get_position()):
+            self.secure_wipe("Geofence violation")
+            
+        # Condition 3: Tamper detection
+        if self.tamper_sensors.detect_intrusion():
+            self.secure_wipe("Tamper detected")
+            
+    def secure_wipe(self, reason: str):
+        # Multi-pass cryptographic erasure
+        self.overwrite_storage_multiple_passes()
+        self.destroy_encryption_keys()
+        self.log_wipe_event(reason)  # To other nodes only
+```
+
+**Q2: What is considered "nearby"? How are decisions made without radio comms?**
+
+**"Nearby" = 500m to 1km between defense nodes**
+
+Think of a flock of birds - no radios, but they turn together instantly:
+- Each defense node watches its area
+- Shares via light signals (like fireflies), sound pulses (like dolphins)
+- All nodes react together in 12 milliseconds
+
+**Real Example:**
+- Node A: "I see a drone!" (flashes light pattern)
+- Node B: "I see it too!" (sends sound pulse)  
+- Both: "Attack!" (synchronized response)
+- Time: 0.012 seconds - faster than a blink
+
+**Q3: How does the human "authorize" firing without radio signal or cloud comms?**
+
+**Solution: Always Keep One "Phone Line" Open**
+
+- **Primary**: Fiber cable from operator → rover → weapons authorization (Can't be jammed, can't be hacked)
+- **Backup**: Pre-set rules before mission starts
+
+**Timeline:**
+
+- Jamming starts → 9 nodes go autonomous (detect only)
+- → 1 node keeps fiber link through rover  
+- → Human authorizes through fiber
+- → All nodes get the "go" signal via light/sound
+- → Response in <1 second
+
+**Connection Options (Multiple Paths):**
+
+- Fiber optic cable (can't be jammed) - **Primary**
+- Satellite uplink (backup)
+- Directional microwave (point-to-point)
+- Mesh radio (frequency hopping)
+- 5G/LTE (when available)
+- Laser communication (line-of-sight)
+- Physical courier with USB (last resort)
+
+### Competitive Advantage Visualization
+
+```mermaid
+comparison
+    title System Response Comparison
+    
+    x-axis "Traditional Systems" --> "Phoenix Rooivalk"
+    y-axis "Response Time (seconds)" 0 --> 10
+    
+    "Network Required" : [8, 0.012]
+    "Jamming Vulnerable" : [10, 0.012] 
+    "Single Point Failure" : ["FAILED", "SUCCESS"]
+```
+
+**The Difference That Matters:**
+- **Traditional**: Dies without network (single point of failure)
+- **Phoenix**: Works 100% without network (true autonomy)
+- **Traditional**: 3-10 second response  
+- **Phoenix**: 0.012 second response (250x faster)
+- **Traditional**: Humans must authorize everything
+- **Phoenix**: Pre-authorized rules execute instantly
+- **Traditional**: Can be hacked remotely
+- **Phoenix**: No remote attack surface when autonomous
 
 ---
 

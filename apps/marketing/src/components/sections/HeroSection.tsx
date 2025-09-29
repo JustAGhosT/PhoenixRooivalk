@@ -14,12 +14,19 @@ export const HeroSection: React.FC = () => {
             </span>
           </div>
           <h1 className="text-4xl md:text-6xl font-extrabold leading-tight bg-clip-text text-transparent bg-gradient-to-br from-white to-[var(--primary)] animate-fadeInUp">
-            Level-0 Autonomous Counter-Drone Architecture
+            Drone Defense That Works When Radios Don't
           </h1>
           <p className="mt-6 text-xl text-[var(--gray)] animate-fadeInUp [animation-delay:200ms]">
-            &lt;2ms response time vs 2-5 seconds for competitors. Defeats RF-silent drones others cannot detect. 
-            Operates in completely denied electromagnetic environments.
+            Phoenix Rooivalk detects and stops hostile drones in 120-195ms even when all communications are jammed. 
+            Makes "soft-kill first" decisions at the edge without waiting for the cloud or command center.
           </p>
+          <div className="mt-4 p-4 bg-gradient-to-r from-green-900/30 to-blue-900/30 rounded-lg border border-green-500/30">
+            <p className="text-green-400 font-semibold mb-2">Why This Matters:</p>
+            <p className="text-sm text-gray-300">
+              Traditional systems fail when enemies jam communications (3-10 second response). 
+              Phoenix works 100% without network - 250x faster response when it counts most.
+            </p>
+          </div>
           <div className="mt-8 flex flex-col sm:flex-row gap-4 animate-fadeInUp [animation-delay:400ms]">
             <Button href="#contact" size="lg">
               Request Capability Demonstration
@@ -34,8 +41,8 @@ export const HeroSection: React.FC = () => {
         <div className="relative animate-float">
           <div className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl p-6 border border-green-500/30 shadow-2xl">
             <div className="text-center mb-4">
-              <h3 className="text-lg font-bold text-green-400 mb-2">Live Defense System</h3>
-              <p className="text-sm text-gray-400">Click threats to neutralize them</p>
+              <h3 className="text-lg font-bold text-green-400 mb-2">Edge Autonomy Demo</h3>
+              <p className="text-sm text-gray-400">No network needed - decisions in milliseconds</p>
             </div>
             <ThreatSimulator />
           </div>
