@@ -178,11 +178,10 @@ This project is weapon‑agnostic by design. Integration of restricted payloads
 occurs only under applicable law and export controls. See
 [`RESPONSIBLE_USE.md`](./RESPONSIBLE_USE.md).
 
-## Site preview (if enabled)
+## Site preview
 
-If GitHub Pages is configured for this repository, you can view the rendered
-materials at:
-[JustAGhosT.github.io/PhoenixRooivalk](https://JustAGhosT.github.io/PhoenixRooivalk/)
+The documentation site is built with Docusaurus and deployed to Netlify via GitHub Actions. 
+You can view the rendered documentation at the configured Netlify domain.
 
 ## Contributing
 

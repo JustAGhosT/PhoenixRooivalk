@@ -16,7 +16,7 @@ enterprises scramble for proven solutions.
 ### Finding #2: Venture Capital Validates Sector
 
 **Discovery**: Defense tech raised $3B across 102 deals in 2024 (+11% YoY) [2], with
-Anduril's $1.5B Series F at $14B valuation (as of June 13, 2025) setting precedent [3].
+Anduril's $2.5B Series G at $30.5B valuation (June 5, 2025) setting precedent [3].
 
 **Implication**: Abundant capital available for proven solutions with military
 validation.
@@ -219,7 +219,7 @@ valuations achievable.
 
 [2] Crunchbase News, "Defense Tech Venture Funding Gains Traction – YIR 2024"
 
-[3] Financial Times/TechCrunch, Anduril Series F funding announcement (as of June 13, 2025)
+[3] Reuters, Anduril Series G funding announcement, $2.5B at $30.5B valuation (June 5, 2025)
 
 [4] Federal Register, FAA Part 108 BVLOS NPRM, August 7, 2025. Docket: https://www.transportation.gov/regulations/federal-register-documents/2025-14992
 

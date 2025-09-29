@@ -183,17 +183,12 @@ Think of a flock of birds - no radios, but they turn together instantly:
 
 ### Competitive Advantage Visualization
 
-```mermaid
-comparison
-    title System Response Comparison
-    
-    x-axis "Traditional Systems" --> "Phoenix Rooivalk"
-    y-axis "Response Time (seconds)" 0 --> 10
-    
-    "Network Required" : [8, 0.012]
-    "Jamming Vulnerable" : [10, 0.012] 
-    "Single Point Failure" : ["FAILED", "SUCCESS"]
-```
+| Capability            | Traditional Systems | Phoenix Rooivalk |
+|-----------------------|---------------------|------------------|
+| Network Required      | Yes                 | No               |
+| Jamming Vulnerable    | High                | Minimal          |
+| Single Point Failure  | Likely              | Resilient        |
+| Typical Response Time | 3–10 s              | 0.012 s          |
 
 **The Difference That Matters:**
 - **Traditional**: Dies without network (single point of failure)

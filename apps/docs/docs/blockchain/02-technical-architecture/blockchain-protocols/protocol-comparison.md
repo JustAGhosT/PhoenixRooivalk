@@ -7,8 +7,7 @@
 - **Version**: 2.0.0
 - **Last Updated**: September 28, 2025
 - **Purpose**: Technical protocol selection for production deployment
-- **Decision Status**: Hyperledger Fabric selected, Polkadot approved, Solana
-  POC only
+- **Decision Status**: Hyperledger Fabric selected, Polkadot approved, Etherlink approved, Solana POC only
 
 ---
 

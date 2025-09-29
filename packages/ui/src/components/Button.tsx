@@ -13,7 +13,11 @@ export interface ButtonProps {
   type?: "button" | "submit" | "reset";
 }
 
-export const Button: React.FC<ButtonProps> = ({
+export const Button: React.FC<
+  ButtonProps &
+  React.AnchorHTMLAttributes<HTMLAnchorElement> &
+  React.ButtonHTMLAttributes<HTMLButtonElement>
+> = ({
   children,
   variant = "primary",
   size = "md",
@@ -22,6 +26,7 @@ export const Button: React.FC<ButtonProps> = ({
   className = "",
   disabled = false,
   type = "button",
+  ...rest
 }) => {
   const baseClasses =
     "inline-block rounded font-bold transition hover:-translate-y-0.5";
@@ -53,13 +58,21 @@ export const Button: React.FC<ButtonProps> = ({
       onClick?.(event);
     };
 
+    // Compute safe rel attribute when opening in a new tab
+    const anchorProps = rest as React.AnchorHTMLAttributes<HTMLAnchorElement>;
+    const computedRel = anchorProps?.target === "_blank"
+      ? ["noopener", "noreferrer", anchorProps.rel].filter(Boolean).join(" ")
+      : anchorProps?.rel;
+
     return (
       <a
         href={disabled ? undefined : href}
         aria-disabled={disabled ? "true" : undefined}
         tabIndex={disabled ? -1 : undefined}
+        rel={computedRel}
         onClick={handleLinkClick}
         className={classes}
+        {...rest}
       >
         {children}
       </a>
@@ -72,6 +85,7 @@ export const Button: React.FC<ButtonProps> = ({
       onClick={onClick}
       disabled={disabled}
       className={classes}
+      {...rest}
     >
       {children}
     </button>

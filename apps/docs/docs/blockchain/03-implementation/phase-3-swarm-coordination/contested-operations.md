@@ -124,7 +124,8 @@ class ThreatDetector:
         self.cyber_monitor = CyberSecurityMonitor()
         self.sensor_monitor = SensorIntegrityMonitor()
         self.threat_history = []
-        self.ml_detector = self._init_ml_detector()
+        # Wrap raw ML model in a thin adapter exposing detect_anomalies()
+        self.ml_detector = AnomalyDetector(self._init_ml_detector())
 
     def detect_threats(self) -> List[ThreatProfile]:
         """
@@ -236,6 +237,47 @@ class ThreatDetector:
 
         model.compile(optimizer='adam', loss='binary_crossentropy')
         return model
+
+class AnomalyDetector:
+    """Adapter for ML models to expose a detect_anomalies() API."""
+    def __init__(self, model, threshold: float = 0.95):
+        self.model = model
+        self.threshold = threshold
+
+    def detect_anomalies(self, X=None):
+        import numpy as np
+        # Default placeholder features if none provided (shape matches model input)
+        if X is None:
+            X = np.zeros((1, 100, 50), dtype=np.float32)
+        preds = self.model.predict(X)
+        return np.where(np.ravel(preds) >= self.threshold)[0].tolist()
+
+# Minimal stubs to keep the example runnable by avoiding NameError
+class RFSpectrumMonitor:
+    def get_spectrum(self):
+        import numpy as np
+        return np.random.normal(0, 1, 1024)
+    def get_baseline(self):
+        import numpy as np
+        return np.zeros(1024)
+    def get_duration(self):
+        return 1.0
+
+class CyberSecurityMonitor:
+    def scan(self):
+        return []
+
+class SensorIntegrityMonitor:
+    def get_gps_position(self):
+        return None
+    def get_glonass_position(self):
+        return None
+    def get_galileo_position(self):
+        return None
+    def get_inertial_position(self):
+        return None
+    def get_anomaly_duration(self):
+        return 0.0
 ```
 
 ---

@@ -11,7 +11,7 @@ const sidebars: SidebarsConfig = {
         "ai_benefits",
         "blockchain_benefits",
         "ai_blockchain_benefits",
-        "technical_analysis",
+        "technical_overview",
         "phoenix_rooivalk_whitepaper",
       ],
     },

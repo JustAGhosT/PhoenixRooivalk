@@ -1,6 +1,5 @@
 import Link from 'next/link';
 import React from 'react';
-import { Button } from './ui/button';
 
 export const Navigation: React.FC = () => {
   const navigationItems = [
@@ -28,7 +27,7 @@ export const Navigation: React.FC = () => {
             </li>
           ))}
         </ul>
-        <Link 
+        <Link
           href="/#contact"
           className="inline-flex items-center justify-center rounded-md bg-[var(--primary)] px-4 py-2 text-sm font-medium text-[var(--dark)] hover:bg-[var(--primary)]/90 transition-colors"
         >

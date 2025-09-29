@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "next build && next export",
     "start": "pnpm dlx serve out -l ${PORT:-3000}",
     "lint": "next lint",
     "typecheck": "tsc --noEmit",

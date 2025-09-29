@@ -186,9 +186,10 @@ impl DataSealingEngine {
 
         // Generate nonce for encryption
         let mut nonce_bytes = [0u8; 12];
-        rand::SystemRandom::new().fill(&mut nonce_bytes)
+        rand::SystemRandom::new()
+            .fill(&mut nonce_bytes)
             .map_err(|e| SealingError::CryptoError(e.to_string()))?;
-        let nonce = Nonce::from(nonce_bytes);
+        let nonce = Nonce::assume_unique_for_key(nonce_bytes);
 
         // Encrypt data
         let mut encrypted_data = data.to_vec();
@@ -250,7 +251,7 @@ impl DataSealingEngine {
         let start_time = std::time::Instant::now();
 
         // Step 1: Verify hash chain integrity
-        let hash_chain_valid = self.verify_hash_chain(&sealed_data.seal.hash_chain_link)?;
+        let hash_chain_valid = self.hash_chain.verify_chain_integrity()?;
 
         // Step 2: Verify HMAC signature
         let signature_data = format!("{}|{}|{}",
@@ -306,8 +307,13 @@ impl DataSealingEngine {
         }
 
         // Decrypt data
-        let nonce = Nonce::from_slice(&sealed_data.seal.nonce)
-            .ok_or_else(|| SealingError::CryptoError("Invalid nonce".to_string()))?;
+        let nonce_array: [u8; 12] = sealed_data
+            .seal
+            .nonce
+            .as_slice()
+            .try_into()
+            .map_err(|_| SealingError::CryptoError("Invalid nonce".to_string()))?;
+        let nonce = Nonce::assume_unique_for_key(nonce_array);
 
         let mut encrypted_data = sealed_data.encrypted_data.clone();
         let aad = Aad::from(sealed_data.data_id.as_bytes());
@@ -539,8 +545,14 @@ pub struct HSMClient {
 
 impl HSMClient {
     pub async fn new() -> Result<Self, HSMError> {
-        // Initialize PKCS#11 context
-        let ctx = Arc::new(Ctx::new_and_initialize(CKF_OS_LOCKING_OK)?);
+        // Initialize PKCS#11 context using module path (example: SoftHSM2)
+        let ctx = Arc::new(Ctx::new_and_initialize("/usr/lib/softhsm/libsofthsm2.so")?);
+        // If OS locking flags are required, pass via CK_C_INITIALIZE_ARGS in a separate initialize call
+        // Example:
+        // ctx.initialize(CK_C_INITIALIZE_ARGS {
+        //     flags: CKF_OS_LOCKING_OK,
+        //     ..Default::default()
+        // })?;
 
         // Get available slots
         let slots = ctx.get_slot_list(true)?;

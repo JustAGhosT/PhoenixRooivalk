@@ -161,7 +161,7 @@ class OperationalCostAnalyzer:
         total_automation_savings = 0
 
         # Revenue scaling factor (how much larger the business is vs base year)
-        revenue_scale = revenue / self.revenue_projections[0]  # Scale from 2025 base
+        revenue_scale = revenue / self.revenue_projections[0]  # Scale from 2026 base
 
         for category in self.cost_categories:
             # Calculate base scaled cost
@@ -557,6 +557,10 @@ delivery.
   analysis
 - [ROI Analysis](./roi-analysis.md) - Return on investment calculations
 - [Cost Optimization](./cost-optimization.md) - Cost reduction strategies
+
+---
+
+**GitHub Repository:** [PhoenixRooivalk](https://github.com/JustAGhosT/PhoenixRooivalk)
 
 ---
 
