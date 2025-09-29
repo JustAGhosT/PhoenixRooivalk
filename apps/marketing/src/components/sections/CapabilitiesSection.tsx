@@ -1,22 +1,37 @@
-import React from 'react';
 import { RevealSection } from '@/components/RevealSection';
+import React from 'react';
 
 export const CapabilitiesSection: React.FC = () => {
   const capabilities = [
     {
-      icon: "🎯",
-      title: "Eliminates False Positives",
-      description: 'Multi-sensor fusion (RF + acoustic + optical) with AI classification prevents "puddles mistaken for tanks" failures plaguing current systems.',
+      icon: "⚡",
+      title: "100x Performance Improvement",
+      description: '<2ms response time vs 2-5 seconds for competitors. Edge-only processing with 275 TOPS AI inference.',
+    },
+    {
+      icon: "🔍",
+      title: "RF-Silent Drone Detection",
+      description: "Defeats autonomous drones others cannot detect. Multi-sensor fusion handles RF-silent threats.",
+    },
+    {
+      icon: "🌐",
+      title: "Level-0 Autonomous Operation",
+      description: "Complete edge operation without communications. Byzantine fault-tolerant consensus for resilience.",
     },
     {
       icon: "🔗",
-      title: "EW-Resistant Coordination",
-      description: "Blockchain-anchored swarm coordination defeats electronic warfare attacks that cripple traditional drone communications.",
+      title: "Blockchain Audit Trails",
+      description: "Tamper-proof engagement records for legal compliance. Solana-based evidence chain.",
     },
     {
-      icon: "⚡",
-      title: "Immediate Deployment",
-      description: "Ready for field deployment today, providing 18-month advantage over competitors racing toward 2027 deadline.",
+      icon: "🎯",
+      title: "Swarm Defense Capability",
+      description: "Handles coordinated swarm attacks in real-time. Scales to hundreds of simultaneous threats.",
+    },
+    {
+      icon: "🛡️",
+      title: "DoD Compliance Ready",
+      description: "Operator-supervised autonomous system. Human-on-the-loop with override mechanisms.",
     },
   ];
 
@@ -24,12 +39,12 @@ export const CapabilitiesSection: React.FC = () => {
     <section className="px-6 md:px-[5%] lg:px-8 py-12" id="capabilities">
       <div className="max-w-[1400px] mx-auto">
         <RevealSection className="text-center mb-8">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Core Capabilities</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Level-0 Autonomous Capabilities</h2>
           <p className="text-[var(--gray)] max-w-2xl mx-auto">
-            Advanced counter-UAS technology with modular deployment options
+            First true autonomous counter-drone platform addressing $26B market opportunity with 100x performance improvement
           </p>
         </RevealSection>
-        <RevealSection className="grid md:grid-cols-3 gap-6">
+        <RevealSection className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {capabilities.map((capability, index) => (
             <CapabilityCard key={index} {...capability} />
           ))}

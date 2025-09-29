@@ -1,19 +1,14 @@
 "use client";
 import React, { useEffect, useState } from "react";
 
-import { HeroSection } from "../components/sections/HeroSection";
-import { MetricsSection } from "../components/sections/MetricsSection";
-import { UkraineChallengeSection } from "../components/sections/UkraineChallengeSection";
-import { CapabilitiesSection } from "../components/sections/CapabilitiesSection";
-import { AIBenefitsSection } from "../components/sections/AIBenefitsSection";
-import { WhitepaperSection } from "../components/sections/WhitepaperSection";
-import { ContactSection } from "../components/sections/ContactSection";
-import { Navigation } from "../components/Navigation";
-import { Footer } from "../components/Footer";
 import { StickyHeader } from "@/components/StickyHeader";
-import { ExitIntentModal } from "@/components/ExitIntentModal";
-import { QuickActionsWidget } from "@/components/QuickActionsWidget";
-import { downloadWhitepaper } from "@/utils/downloadWhitepaper";
+import { Footer } from "../components/Footer";
+import { Navigation } from "../components/Navigation";
+import { CapabilitiesSection } from "../components/sections/CapabilitiesSection";
+import { ContactSection } from "../components/sections/ContactSection";
+import { CredibilitySection } from "../components/sections/CredibilitySection";
+import { HeroSection } from "../components/sections/HeroSection";
+import { MarketIntelligenceSection } from "../components/sections/MarketIntelligenceSection";
 import { usePerformanceOptimizations } from "../hooks/usePerformanceOptimizations";
 
 export default function HomePage(): React.ReactElement {
@@ -23,34 +18,6 @@ export default function HomePage(): React.ReactElement {
   // Apply performance optimizations
   usePerformanceOptimizations();
 
-  const quickActions = [
-    {
-      icon: "📋",
-      label: "Technical Specs",
-      action: () =>
-        (window.location.href =
-          "mailto:smit.jurie@gmail.com?subject=Phoenix%20Rooivalk%20-%20Technical%20Specifications%20Request"),
-    },
-    {
-      icon: "💰",
-      label: "Pricing & ROI",
-      action: () =>
-        (window.location.href =
-          "mailto:smit.jurie@gmail.com?subject=Phoenix%20Rooivalk%20-%20Pricing%20and%20ROI%20Information"),
-    },
-    {
-      icon: "🎯",
-      label: "Live Demo",
-      action: () =>
-        (window.location.href =
-          "mailto:smit.jurie@gmail.com?subject=Phoenix%20Rooivalk%20-%20Live%20Demonstration%20Request"),
-    },
-    {
-      icon: "📄",
-      label: "Whitepaper",
-      action: downloadWhitepaper,
-    },
-  ];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -70,19 +37,15 @@ export default function HomePage(): React.ReactElement {
 
       {/* Global Components */}
       <StickyHeader isVisible={showStickyHeader} />
-      <ExitIntentModal docsUrl={docsUrl} />
-      <QuickActionsWidget actions={quickActions} />
 
       {/* Navigation */}
       <Navigation />
 
       {/* Main Content Sections */}
       <HeroSection />
-      <MetricsSection />
-      <UkraineChallengeSection />
+      <MarketIntelligenceSection />
       <CapabilitiesSection />
-      <AIBenefitsSection />
-      <WhitepaperSection />
+      <CredibilitySection />
       <ContactSection />
 
       {/* Footer */}
@@ -98,42 +61,42 @@ export default function HomePage(): React.ReactElement {
             mainEntity: [
               {
                 "@type": "Question",
-                name: "How does Phoenix Rooivalk address the 2027 autonomous warfare deadline?",
+                name: "What is Level-0 autonomous architecture in counter-drone systems?",
                 acceptedAnswer: {
                   "@type": "Answer",
-                  text: "Phoenix Rooivalk is ready for deployment today, providing an 18-month advantage over the 2027 autonomous warfare deadline. While others race to build offensive swarms, we've solved the defensive challenge with multi-sensor fusion, blockchain coordination, and EW-resistant architecture.",
+                  text: "Level-0 autonomous architecture enables complete edge operation without communications dependency. Phoenix Rooivalk achieves <2ms response time vs 2-5 seconds for competitors, with Byzantine fault-tolerant consensus for resilience in contested environments.",
                 },
               },
               {
                 "@type": "Question",
-                name: "How does Phoenix Rooivalk eliminate false positives in AI targeting?",
+                name: "How does Phoenix Rooivalk detect RF-silent autonomous drones?",
                 acceptedAnswer: {
                   "@type": "Answer",
-                  text: "Phoenix Rooivalk uses multi-sensor fusion combining RF, acoustic, and optical sensors with AI classification to prevent environmental confusion. This eliminates the 'puddles mistaken for tanks' problem plaguing current AI drone systems with 95%+ hit rates vs 60-70% for competitors.",
+                  text: "Phoenix Rooivalk uses multi-sensor fusion combining radar, optical, acoustic, and infrared sensors to detect RF-silent threats that 64% of current market systems cannot handle. This addresses the fastest-growing threat vector in the $26B counter-drone market.",
                 },
               },
               {
                 "@type": "Question",
-                name: "How does Phoenix Rooivalk resist electronic warfare attacks?",
+                name: "What is the market opportunity for Phoenix Rooivalk?",
                 acceptedAnswer: {
                   "@type": "Answer",
-                  text: "Phoenix Rooivalk uses blockchain-anchored coordination on Solana and EtherLink networks, creating tamper-proof swarm communication that defeats electronic warfare jamming. Unlike traditional systems vulnerable to EW attacks, our architecture maintains coordination even under heavy jamming.",
+                  text: "The counter-drone market is $2.3-4.5B currently, growing to $9-26B by 2030. Phoenix Rooivalk's 100x performance improvement and Level-0 autonomous capabilities position it to capture significant market share in this rapidly expanding sector.",
                 },
               },
               {
                 "@type": "Question",
-                name: "Can Phoenix Rooivalk coordinate swarm defenses like Russia's group attacks?",
+                name: "How does Phoenix Rooivalk compare to Anduril, Fortem, and DroneShield?",
                 acceptedAnswer: {
                   "@type": "Answer",
-                  text: "Yes, Phoenix Rooivalk's blockchain architecture enables coordination of hundreds of defensive units simultaneously. While Russia's drones coordinate in groups of six, our system scales to coordinate entire defensive networks with sub-second response times and cryptographic security.",
+                  text: "Phoenix Rooivalk offers <2ms latency vs Anduril's 2-5 seconds, defeats RF-silent drones that Fortem cannot detect, and provides complete autonomous operation unlike DroneShield's RF-dependent systems. Our Level-0 architecture provides 100x performance improvement over all competitors.",
                 },
               },
               {
                 "@type": "Question",
-                name: "What makes Phoenix Rooivalk superior to $150 per drone AI systems?",
+                name: "What is Phoenix Rooivalk's SBIR strategy for market entry?",
                 acceptedAnswer: {
                   "@type": "Answer",
-                  text: "Phoenix Rooivalk offers complete system integration at $0.00025 per transaction vs $150+ per drone for basic AI targeting. Our system includes multi-spectrum countermeasures (kinetic, EW, laser), blockchain coordination, and 95%+ reliability compared to declining hit rates of current systems.",
+                  text: "Phoenix Rooivalk is applying for Air Force SBIR Phase I ($350K) following Anduril's proven path to $14B valuation. We're targeting CMMC 2.0 Level 2 certification and partnerships with established defense contractors for market credibility.",
                 },
               },
             ],

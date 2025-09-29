@@ -1,17 +1,12 @@
-import React from 'react';
 import Link from 'next/link';
+import React from 'react';
 import { Button } from './ui/button';
 
 export const Navigation: React.FC = () => {
   const navigationItems = [
-    { href: '/interactive-demo', label: 'Interactive Demo' },
-    { href: '/technical', label: 'Technical' },
-    { href: '/financial', label: 'Financial' },
-    { href: '/compliance', label: 'Compliance' },
-    { href: '#metrics', label: 'Metrics' },
-    { href: '#ukraine-challenge', label: 'Ukraine Challenge' },
-    { href: '#capabilities', label: 'Capabilities' },
-    { href: '#ai-benefits', label: 'AI Benefits' },
+    { href: '/interactive-demo', label: 'Try Demo' },
+    { href: '/technical', label: 'Specs' },
+    { href: '/financial', label: 'Pricing' },
     { href: '#contact', label: 'Contact' },
   ];
 
@@ -40,7 +35,7 @@ export const Navigation: React.FC = () => {
           ))}
         </ul>
         <Button href="#contact" size="sm">
-          Request Demo
+          Get Demo
         </Button>
       </div>
     </nav>
