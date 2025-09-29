@@ -11,7 +11,17 @@
   --gray: #8892b0;
 }
 
-body { background: var(--darker); color: var(--light); }
+body {
+  background: var(--darker);
+  color: var(--light);
+}
 
-.reveal { opacity: 0; transform: translateY(30px); transition: all .8s ease; }
-.reveal.active { opacity: 1; transform: translateY(0); }
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease;
+}
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}

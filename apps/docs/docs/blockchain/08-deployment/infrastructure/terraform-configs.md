@@ -1,6 +1,7 @@
 # Terraform Configurations: Infrastructure as Code
 
 ## Document Context
+
 - **Location**: `08-deployment/infrastructure/terraform-configs.md`
 - **Related Documents**:
   - [Kubernetes Manifests](./kubernetes-manifests.md) - Container orchestration
@@ -11,11 +12,21 @@
 
 ## Executive Summary
 
-Phoenix Rooivalk implements comprehensive Infrastructure as Code (IaC) using **Terraform 1.6+** with **modular architecture**, **multi-environment support**, and **automated provisioning** across AWS, Azure, and hybrid cloud environments. Our Intelligent Infrastructure Management (IIM) framework provides **99.9% deployment success rate** with **zero-downtime deployments** and **automated disaster recovery**.
+Phoenix Rooivalk implements comprehensive Infrastructure as Code (IaC) using
+**Terraform 1.6+** with **modular architecture**, **multi-environment support**,
+and **automated provisioning** across AWS, Azure, and hybrid cloud environments.
+Our Intelligent Infrastructure Management (IIM) framework provides **99.9%
+deployment success rate** with **zero-downtime deployments** and **automated
+disaster recovery**.
 
-**Key Innovation**: We deploy Adaptive Infrastructure Orchestration (AIO) that uses machine learning to optimize resource allocation, predict scaling needs, and automatically adjust infrastructure based on workload patterns, achieving 35% cost reduction and 45% performance improvement compared to static configurations.
+**Key Innovation**: We deploy Adaptive Infrastructure Orchestration (AIO) that
+uses machine learning to optimize resource allocation, predict scaling needs,
+and automatically adjust infrastructure based on workload patterns, achieving
+35% cost reduction and 45% performance improvement compared to static
+configurations.
 
 ### Terraform Configuration Highlights:
+
 - **Multi-Cloud Support**: AWS, Azure, and hybrid cloud deployments
 - **Modular Architecture**: Reusable, composable infrastructure modules
 - **Environment Management**: Development, staging, and production environments
@@ -38,20 +49,20 @@ graph TB
         MONITORING[Monitoring Module<br/>CloudWatch, Prometheus, Grafana]
         BLOCKCHAIN[Blockchain Module<br/>Validator Nodes, Consensus Network]
     end
-    
+
     subgraph "Environment Configurations"
         DEV[Development Environment<br/>Single AZ, Minimal Resources]
         STAGING[Staging Environment<br/>Multi-AZ, Production-like]
         PROD[Production Environment<br/>Multi-Region, High Availability]
     end
-    
+
     NETWORK --> DEV
     COMPUTE --> STAGING
     STORAGE --> PROD
     SECURITY --> DEV
     MONITORING --> STAGING
     BLOCKCHAIN --> PROD
-    
+
     style BLOCKCHAIN fill:#00ff00
     style PROD fill:#ff9999
     style SECURITY fill:#ffff99
@@ -61,14 +72,14 @@ graph TB
 
 **Core Infrastructure Modules**:
 
-| **Module** | **Purpose** | **Resources** | **Dependencies** |
-|------------|-------------|---------------|------------------|
-| **Network** | VPC, Subnets, Security Groups | 25+ resources | None |
-| **Compute** | EC2, Auto Scaling, Load Balancers | 15+ resources | Network |
-| **Storage** | S3, EBS, RDS, ElastiCache | 12+ resources | Network, Security |
-| **Security** | IAM, KMS, Secrets Manager | 20+ resources | None |
-| **Monitoring** | CloudWatch, Prometheus, Grafana | 10+ resources | Compute |
-| **Blockchain** | Validator Nodes, Consensus | 18+ resources | Network, Security |
+| **Module**     | **Purpose**                       | **Resources** | **Dependencies**  |
+| -------------- | --------------------------------- | ------------- | ----------------- |
+| **Network**    | VPC, Subnets, Security Groups     | 25+ resources | None              |
+| **Compute**    | EC2, Auto Scaling, Load Balancers | 15+ resources | Network           |
+| **Storage**    | S3, EBS, RDS, ElastiCache         | 12+ resources | Network, Security |
+| **Security**   | IAM, KMS, Secrets Manager         | 20+ resources | None              |
+| **Monitoring** | CloudWatch, Prometheus, Grafana   | 10+ resources | Compute           |
+| **Blockchain** | Validator Nodes, Consensus        | 18+ resources | Network, Security |
 
 ---
 
@@ -95,7 +106,7 @@ resource "aws_vpc" "phoenix_vpc" {
   cidr_block           = var.vpc_cidr
   enable_dns_hostnames = true
   enable_dns_support   = true
-  
+
   tags = merge(var.common_tags, {
     Name        = "${var.environment}-phoenix-vpc"
     Environment = var.environment
@@ -107,12 +118,12 @@ resource "aws_vpc" "phoenix_vpc" {
 # Public Subnets for Load Balancers
 resource "aws_subnet" "public_subnets" {
   count = length(var.availability_zones)
-  
+
   vpc_id                  = aws_vpc.phoenix_vpc.id
   cidr_block              = var.public_subnet_cidrs[count.index]
   availability_zone       = var.availability_zones[count.index]
   map_public_ip_on_launch = true
-  
+
   tags = merge(var.common_tags, {
     Name = "${var.environment}-public-subnet-${count.index + 1}"
     Type = "Public"
@@ -123,11 +134,11 @@ resource "aws_subnet" "public_subnets" {
 # Private Subnets for Application Servers
 resource "aws_subnet" "private_subnets" {
   count = length(var.availability_zones)
-  
+
   vpc_id            = aws_vpc.phoenix_vpc.id
   cidr_block        = var.private_subnet_cidrs[count.index]
   availability_zone = var.availability_zones[count.index]
-  
+
   tags = merge(var.common_tags, {
     Name = "${var.environment}-private-subnet-${count.index + 1}"
     Type = "Private"
@@ -138,11 +149,11 @@ resource "aws_subnet" "private_subnets" {
 # Blockchain Subnets for Validator Nodes
 resource "aws_subnet" "blockchain_subnets" {
   count = length(var.availability_zones)
-  
+
   vpc_id            = aws_vpc.phoenix_vpc.id
   cidr_block        = var.blockchain_subnet_cidrs[count.index]
   availability_zone = var.availability_zones[count.index]
-  
+
   tags = merge(var.common_tags, {
     Name = "${var.environment}-blockchain-subnet-${count.index + 1}"
     Type = "Blockchain"
@@ -155,7 +166,7 @@ resource "aws_security_group" "blockchain_sg" {
   name_prefix = "${var.environment}-blockchain-sg"
   vpc_id      = aws_vpc.phoenix_vpc.id
   description = "Security group for blockchain validator nodes"
-  
+
   # Blockchain P2P Communication
   ingress {
     from_port   = 30303
@@ -164,7 +175,7 @@ resource "aws_security_group" "blockchain_sg" {
     cidr_blocks = [var.vpc_cidr]
     description = "Blockchain P2P TCP"
   }
-  
+
   # JSON-RPC API
   ingress {
     from_port   = 8545
@@ -173,7 +184,7 @@ resource "aws_security_group" "blockchain_sg" {
     cidr_blocks = [var.vpc_cidr]
     description = "JSON-RPC API"
   }
-  
+
   # Prometheus metrics
   ingress {
     from_port   = 9090
@@ -182,7 +193,7 @@ resource "aws_security_group" "blockchain_sg" {
     cidr_blocks = [var.vpc_cidr]
     description = "Prometheus metrics"
   }
-  
+
   egress {
     from_port   = 0
     to_port     = 0
@@ -190,7 +201,7 @@ resource "aws_security_group" "blockchain_sg" {
     cidr_blocks = ["0.0.0.0/0"]
     description = "All outbound traffic"
   }
-  
+
   tags = merge(var.common_tags, {
     Name = "${var.environment}-blockchain-sg"
   })
@@ -209,20 +220,20 @@ resource "aws_launch_template" "validator_lt" {
   image_id      = var.validator_ami_id
   instance_type = var.validator_instance_type
   key_name      = var.key_pair_name
-  
+
   vpc_security_group_ids = [var.blockchain_security_group_id]
-  
+
   user_data = base64encode(templatefile("${path.module}/validator_user_data.sh", {
     environment     = var.environment
     region          = var.aws_region
     validator_index = 0
     genesis_config  = var.genesis_config
   }))
-  
+
   iam_instance_profile {
     name = var.validator_instance_profile_name
   }
-  
+
   block_device_mappings {
     device_name = "/dev/xvda"
     ebs {
@@ -234,7 +245,7 @@ resource "aws_launch_template" "validator_lt" {
       kms_key_id  = var.kms_key_id
     }
   }
-  
+
   # Blockchain data volume
   block_device_mappings {
     device_name = "/dev/xvdf"
@@ -247,11 +258,11 @@ resource "aws_launch_template" "validator_lt" {
       kms_key_id  = var.kms_key_id
     }
   }
-  
+
   monitoring {
     enabled = true
   }
-  
+
   tag_specifications {
     resource_type = "instance"
     tags = merge(var.common_tags, {
@@ -265,14 +276,14 @@ resource "aws_launch_template" "validator_lt" {
 # Validator Node Instances
 resource "aws_instance" "validator_nodes" {
   count = var.validator_count
-  
+
   launch_template {
     id      = aws_launch_template.validator_lt.id
     version = "$Latest"
   }
-  
+
   subnet_id = var.blockchain_subnet_ids[count.index % length(var.blockchain_subnet_ids)]
-  
+
   tags = merge(var.common_tags, {
     Name           = "${var.environment}-validator-${count.index + 1}"
     ValidatorIndex = count.index
@@ -282,7 +293,7 @@ resource "aws_instance" "validator_nodes" {
 # S3 Bucket for Blockchain Backups
 resource "aws_s3_bucket" "blockchain_backups" {
   bucket = "${var.environment}-phoenix-blockchain-backups-${random_id.bucket_suffix.hex}"
-  
+
   tags = merge(var.common_tags, {
     Name = "${var.environment}-blockchain-backups"
   })
@@ -301,7 +312,7 @@ resource "aws_s3_bucket_versioning" "blockchain_backups_versioning" {
 
 resource "aws_s3_bucket_encryption" "blockchain_backups_encryption" {
   bucket = aws_s3_bucket.blockchain_backups.id
-  
+
   server_side_encryption_configuration {
     rule {
       apply_server_side_encryption_by_default {
@@ -325,7 +336,7 @@ resource "aws_s3_bucket_encryption" "blockchain_backups_encryption" {
 
 terraform {
   required_version = ">= 1.6"
-  
+
   backend "s3" {
     bucket         = "phoenix-terraform-state-prod"
     key            = "production/terraform.tfstate"
@@ -337,7 +348,7 @@ terraform {
 
 provider "aws" {
   region = var.aws_region
-  
+
   default_tags {
     tags = {
       Environment = "production"
@@ -351,35 +362,35 @@ provider "aws" {
 # Network Module
 module "network" {
   source = "../../modules/network"
-  
+
   environment        = "production"
   aws_region         = var.aws_region
   availability_zones = var.availability_zones
-  
+
   vpc_cidr                 = "10.0.0.0/16"
   public_subnet_cidrs      = ["10.0.1.0/24", "10.0.2.0/24", "10.0.3.0/24"]
   private_subnet_cidrs     = ["10.0.11.0/24", "10.0.12.0/24", "10.0.13.0/24"]
   blockchain_subnet_cidrs  = ["10.0.21.0/24", "10.0.22.0/24", "10.0.23.0/24"]
-  
+
   common_tags = local.common_tags
 }
 
 # Blockchain Module
 module "blockchain" {
   source = "../../modules/blockchain"
-  
+
   environment = "production"
   aws_region  = var.aws_region
-  
+
   vpc_id                    = module.network.vpc_id
   blockchain_subnet_ids     = module.network.blockchain_subnet_ids
   blockchain_security_group_id = module.network.blockchain_security_group_id
-  
+
   validator_count           = 5
   validator_instance_type   = "c5.2xlarge"
   validator_volume_size     = 100
   blockchain_data_volume_size = 1000
-  
+
   common_tags = local.common_tags
 }
 ```
@@ -430,7 +441,7 @@ resource "aws_kms_key" "phoenix_kms" {
   description             = "Phoenix Rooivalk encryption key"
   deletion_window_in_days = var.environment == "production" ? 30 : 7
   enable_key_rotation     = true
-  
+
   policy = jsonencode({
     Version = "2012-10-17"
     Statement = [
@@ -445,7 +456,7 @@ resource "aws_kms_key" "phoenix_kms" {
       }
     ]
   })
-  
+
   tags = merge(var.common_tags, {
     Name = "${var.environment}-phoenix-kms"
   })
@@ -459,7 +470,7 @@ resource "aws_kms_alias" "phoenix_kms_alias" {
 # IAM Role for Validator Nodes
 resource "aws_iam_role" "validator_role" {
   name = "${var.environment}-validator-role"
-  
+
   assume_role_policy = jsonencode({
     Version = "2012-10-17"
     Statement = [
@@ -472,7 +483,7 @@ resource "aws_iam_role" "validator_role" {
       }
     ]
   })
-  
+
   tags = var.common_tags
 }
 
@@ -480,7 +491,7 @@ resource "aws_iam_role" "validator_role" {
 resource "aws_iam_role_policy" "validator_policy" {
   name = "${var.environment}-validator-policy"
   role = aws_iam_role.validator_role.id
-  
+
   policy = jsonencode({
     Version = "2012-10-17"
     Statement = [
@@ -518,7 +529,7 @@ resource "aws_iam_role_policy" "validator_policy" {
 resource "aws_iam_instance_profile" "validator_profile" {
   name = "${var.environment}-validator-profile"
   role = aws_iam_role.validator_role.name
-  
+
   tags = var.common_tags
 }
 ```
@@ -526,12 +537,14 @@ resource "aws_iam_instance_profile" "validator_profile" {
 ### 4.2 Compliance Configuration
 
 **FIPS 140-2 Compliance**:
+
 - KMS keys with FIPS 140-2 Level 3 HSMs
 - Encrypted EBS volumes and S3 buckets
 - TLS 1.2+ for all communications
 - Secure key rotation policies
 
 **SOC 2 Type II Compliance**:
+
 - Comprehensive logging and monitoring
 - Access controls and audit trails
 - Data encryption at rest and in transit
@@ -647,18 +660,21 @@ echo "✅ Validation completed successfully!"
 ### 6.1 Terraform Best Practices
 
 **Code Organization**:
+
 - Modular architecture with reusable components
 - Environment-specific configurations
 - Consistent naming conventions
 - Comprehensive tagging strategy
 
 **State Management**:
+
 - Remote state storage in S3 with encryption
 - State locking with DynamoDB
 - Environment isolation
 - Regular state backups
 
 **Security Practices**:
+
 - Least privilege IAM policies
 - Encrypted resources by default
 - Secrets management with AWS Secrets Manager
@@ -667,6 +683,7 @@ echo "✅ Validation completed successfully!"
 ### 6.2 Deployment Guidelines
 
 **Pre-Deployment Checklist**:
+
 - [ ] Code review completed
 - [ ] Security scan passed
 - [ ] Cost estimation reviewed
@@ -674,6 +691,7 @@ echo "✅ Validation completed successfully!"
 - [ ] Backup procedures verified
 
 **Post-Deployment Validation**:
+
 - [ ] Infrastructure health checks
 - [ ] Application connectivity tests
 - [ ] Security configuration verification
@@ -687,12 +705,14 @@ echo "✅ Validation completed successfully!"
 ### 7.1 Infrastructure Monitoring
 
 **CloudWatch Integration**:
+
 - Custom metrics for blockchain nodes
 - Auto Scaling based on performance metrics
 - Log aggregation and analysis
 - Automated alerting and notifications
 
 **Cost Optimization**:
+
 - Resource utilization monitoring
 - Automated scaling policies
 - Reserved instance recommendations
@@ -701,12 +721,14 @@ echo "✅ Validation completed successfully!"
 ### 7.2 Maintenance Procedures
 
 **Regular Maintenance Tasks**:
+
 - Terraform state file cleanup
 - Security patch management
 - Performance optimization reviews
 - Disaster recovery testing
 
 **Automated Maintenance**:
+
 - Scheduled infrastructure updates
 - Automated backup procedures
 - Security compliance monitoring
@@ -716,31 +738,43 @@ echo "✅ Validation completed successfully!"
 
 ## 8. Conclusion
 
-Phoenix Rooivalk's Terraform infrastructure provides robust, scalable, and secure cloud deployment capabilities with 99.9% deployment success rate and automated disaster recovery. The modular architecture ensures maintainability while security hardening and compliance features meet military-grade requirements.
+Phoenix Rooivalk's Terraform infrastructure provides robust, scalable, and
+secure cloud deployment capabilities with 99.9% deployment success rate and
+automated disaster recovery. The modular architecture ensures maintainability
+while security hardening and compliance features meet military-grade
+requirements.
 
 ### Infrastructure Excellence:
+
 - **Modular Design**: Reusable, composable infrastructure components
-- **Multi-Environment**: Seamless development, staging, and production deployments
+- **Multi-Environment**: Seamless development, staging, and production
+  deployments
 - **Security First**: Built-in security controls and compliance validation
 - **Cost Optimized**: Intelligent resource allocation and scaling
 - **Automated Operations**: Comprehensive automation and monitoring
 
 ### Strategic Advantages:
+
 - **Rapid Deployment**: Infrastructure provisioning in minutes
 - **Consistent Environments**: Identical configurations across environments
 - **Disaster Recovery**: Automated backup and recovery procedures
 - **Compliance Ready**: Built-in regulatory compliance features
 - **Future Proof**: Extensible architecture for evolving requirements
 
-The Terraform configurations enable reliable, secure, and efficient infrastructure management for Phoenix Rooivalk's mission-critical blockchain counter-drone operations.
+The Terraform configurations enable reliable, secure, and efficient
+infrastructure management for Phoenix Rooivalk's mission-critical blockchain
+counter-drone operations.
 
 ---
 
 **Related Documents:**
+
 - [Kubernetes Manifests](./kubernetes-manifests.md) - Container orchestration
 - [AWS Architecture](./aws-architecture.md) - Cloud infrastructure design
 - [CI/CD Pipeline](../ci-cd-pipeline.md) - Deployment automation
 
 ---
 
-*Context improved by Giga AI - Used main overview development guidelines and blockchain integration system information for accurate infrastructure documentation.*
+_Context improved by Giga AI - Used main overview development guidelines and
+blockchain integration system information for accurate infrastructure
+documentation._

@@ -5,8 +5,11 @@ intentionally excludes any procedural steps, parameters, deployment guidance, or
 operational tuning.
 
 See repository policies:
-- Responsible use: https://github.com/JustAGhosT/PhoenixRooivalk/blob/main/RESPONSIBLE_USE.md
-- Access request: https://github.com/JustAGhosT/PhoenixRooivalk/blob/main/ACCESS.md
+
+- Responsible use:
+  https://github.com/JustAGhosT/PhoenixRooivalk/blob/main/RESPONSIBLE_USE.md
+- Access request:
+  https://github.com/JustAGhosT/PhoenixRooivalk/blob/main/ACCESS.md
 
 ## Scope and purpose
 
@@ -52,5 +55,5 @@ See repository policies:
 
 ## Partner engagement
 
-For lawful engagement, authorized partners should request access via
-`ACCESS.md` (link above). Public docs will not include operational details.
+For lawful engagement, authorized partners should request access via `ACCESS.md`
+(link above). Public docs will not include operational details.

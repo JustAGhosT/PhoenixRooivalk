@@ -8,6 +8,19 @@
     "jsx": "preserve",
     "allowJs": false,
     "resolveJsonModule": true,
-    "forceConsistentCasingInFileNames": true
-  }
+    "forceConsistentCasingInFileNames": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/components/*": ["./packages/ui/src/components/*"],
+      "@/types/*": ["./packages/types/src/*"],
+      "@/utils/*": ["./packages/utils/src/*"]
+    }
+  },
+  "references": [
+    { "path": "./apps/marketing" },
+    { "path": "./apps/docs" },
+    { "path": "./packages/types" },
+    { "path": "./packages/ui" },
+    { "path": "./packages/utils" }
+  ]
 }

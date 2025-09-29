@@ -1,23 +1,32 @@
-name: CI - Marketing (ESLint & Prettier)
+name: CI - Marketing (Lint, TypeCheck, Build)
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
     paths:
-      - 'apps/marketing/**'
-      - '.github/workflows/ci-marketing.yml'
+      - "apps/marketing/**"
+      - "apps/docs/**"
+      - "package.json"
+      - "pnpm-lock.yaml"
+      - "turbo.json"
+      - "tsconfig.base.json"
+      - ".eslintrc.js"
+      - ".github/workflows/ci-marketing.yml"
   pull_request:
     paths:
-      - 'apps/marketing/**'
-      - '.github/workflows/ci-marketing.yml'
+      - "apps/marketing/**"
+      - "apps/docs/**"
+      - "package.json"
+      - "pnpm-lock.yaml"
+      - "turbo.json"
+      - "tsconfig.base.json"
+      - ".eslintrc.js"
+      - ".github/workflows/ci-marketing.yml"
   workflow_dispatch:
 
 jobs:
-  lint:
+  lint-and-build:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: .
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -25,17 +34,24 @@ jobs:
       - name: Setup Node.js 20
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
-          cache: 'pnpm'
-          cache-dependency-path: 'pnpm-lock.yaml'
+          node-version: "20"
 
-      - name: Enable Corepack / Install deps (pnpm)
+      - name: Enable Corepack and setup pnpm
         run: |
           corepack enable
-          pnpm install
+          corepack use
 
-      - name: ESLint
-        run: pnpm --filter marketing lint
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
 
-      - name: Prettier (check)
-        run: pnpm --filter marketing format
+      - name: Format check
+        run: pnpm format:check
+
+      - name: Lint
+        run: pnpm lint
+
+      - name: TypeScript check
+        run: pnpm typecheck
+
+      - name: Build
+        run: pnpm build

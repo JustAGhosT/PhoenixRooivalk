@@ -1,0 +1,1 @@
+export { downloadWhitepaper } from './downloadWhitepaper';

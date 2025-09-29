@@ -1,22 +1,36 @@
 # API Requirements: Integration Protocols and Specifications
 
 ## Document Context
-- **Location**: `03-implementation/phase-4-system-integration/api-requirements.md`
+
+- **Location**:
+  `03-implementation/phase-4-system-integration/api-requirements.md`
 - **Related Documents**:
   - [Vendor Adapters](./vendor-adapters.md) - System integration framework
-  - [Correlation Engine](../phase-2-data-management/correlation-engine.md) - Multi-source data fusion
-  - [System Requirements](../../02-technical-architecture/system-requirements.md) - Performance specifications
-  - [Hybrid Architecture](../../02-technical-architecture/hybrid-architecture.md) - Three-layer design
+  - [Correlation Engine](../phase-2-data-management/correlation-engine.md) -
+    Multi-source data fusion
+  - [System Requirements](../../02-technical-architecture/system-requirements.md) -
+    Performance specifications
+  - [Hybrid Architecture](../../02-technical-architecture/hybrid-architecture.md) -
+    Three-layer design
 
 ---
 
 ## Executive Summary
 
-This document defines comprehensive API requirements for blockchain-based counter-drone systems, enabling seamless integration across 249+ vendor systems and 17 military C2 platforms. Our multi-protocol API architecture supports REST, GraphQL, WebSocket, gRPC, and blockchain-native interfaces while maintaining < 10ms response times and 99.99% availability under military-grade security constraints.
+This document defines comprehensive API requirements for blockchain-based
+counter-drone systems, enabling seamless integration across 249+ vendor systems
+and 17 military C2 platforms. Our multi-protocol API architecture supports REST,
+GraphQL, WebSocket, gRPC, and blockchain-native interfaces while maintaining <
+10ms response times and 99.99% availability under military-grade security
+constraints.
 
-**Key Innovation**: We introduce Adaptive API Gateway (AAG) that automatically negotiates optimal protocols based on client capabilities, network conditions, and security requirements, while providing real-time API analytics and automatic load balancing across distributed blockchain nodes.
+**Key Innovation**: We introduce Adaptive API Gateway (AAG) that automatically
+negotiates optimal protocols based on client capabilities, network conditions,
+and security requirements, while providing real-time API analytics and automatic
+load balancing across distributed blockchain nodes.
 
 ### API Performance Targets:
+
 - **Response time**: < 10ms for critical operations
 - **Throughput**: 50,000+ requests/second per node
 - **Availability**: 99.99% uptime with automatic failover
@@ -38,7 +52,7 @@ graph TB
         C4[Vendor Systems]
         C5[IoT Sensors]
     end
-    
+
     subgraph "API Gateway Layer"
         AAG[Adaptive API Gateway]
         LB[Load Balancer]
@@ -46,7 +60,7 @@ graph TB
         RATE[Rate Limiter]
         CACHE[Response Cache]
     end
-    
+
     subgraph "Protocol Layer"
         REST[REST API]
         GQL[GraphQL API]
@@ -54,7 +68,7 @@ graph TB
         GRPC[gRPC API]
         BC[Blockchain API]
     end
-    
+
     subgraph "Service Layer"
         DS[Detection Service]
         TS[Tracking Service]
@@ -62,43 +76,43 @@ graph TB
         AS[Analytics Service]
         NS[Notification Service]
     end
-    
+
     subgraph "Blockchain Layer"
         BN1[Blockchain Node 1]
         BN2[Blockchain Node 2]
         BN3[Blockchain Node 3]
         SC[Smart Contracts]
     end
-    
+
     C1 --> AAG
     C2 --> AAG
     C3 --> AAG
     C4 --> AAG
     C5 --> AAG
-    
+
     AAG --> LB
     LB --> AUTH
     AUTH --> RATE
     RATE --> CACHE
-    
+
     CACHE --> REST
     CACHE --> GQL
     CACHE --> WS
     CACHE --> GRPC
     CACHE --> BC
-    
+
     REST --> DS
     GQL --> TS
     WS --> CS
     GRPC --> AS
     BC --> NS
-    
+
     DS --> BN1
     TS --> BN2
     CS --> BN3
     AS --> SC
     NS --> SC
-    
+
     style AAG fill:#00ff00,stroke:#333,stroke-width:2px
     style SC fill:#00ff00,stroke:#333,stroke-width:2px
 ```
@@ -121,7 +135,7 @@ info:
     email: api-support@phoenixrooivalk.mil
   license:
     name: Military Use Only
-    
+
 servers:
   - url: https://api.phoenixrooivalk.mil/v2
     description: Production API
@@ -159,7 +173,8 @@ paths:
             example: "2024-01-15T11:00:00Z"
         - name: bbox
           in: query
-          description: Bounding box for spatial filtering (minLon,minLat,maxLon,maxLat)
+          description:
+            Bounding box for spatial filtering (minLon,minLat,maxLon,maxLat)
           required: false
           schema:
             type: string
@@ -200,7 +215,7 @@ paths:
             minimum: 0
             default: 0
       responses:
-        '200':
+        "200":
           description: Successful response
           content:
             application/json:
@@ -210,22 +225,22 @@ paths:
                   detections:
                     type: array
                     items:
-                      $ref: '#/components/schemas/Detection'
+                      $ref: "#/components/schemas/Detection"
                   pagination:
-                    $ref: '#/components/schemas/Pagination'
+                    $ref: "#/components/schemas/Pagination"
                   metadata:
-                    $ref: '#/components/schemas/ResponseMetadata'
-        '400':
-          $ref: '#/components/responses/BadRequest'
-        '401':
-          $ref: '#/components/responses/Unauthorized'
-        '403':
-          $ref: '#/components/responses/Forbidden'
-        '429':
-          $ref: '#/components/responses/RateLimited'
-        '500':
-          $ref: '#/components/responses/InternalError'
-    
+                    $ref: "#/components/schemas/ResponseMetadata"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "429":
+          $ref: "#/components/responses/RateLimited"
+        "500":
+          $ref: "#/components/responses/InternalError"
+
     post:
       summary: Submit drone detection
       description: Submit a new drone detection to the system
@@ -236,9 +251,9 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/DetectionSubmission'
+              $ref: "#/components/schemas/DetectionSubmission"
       responses:
-        '201':
+        "201":
           description: Detection created successfully
           content:
             application/json:
@@ -258,10 +273,10 @@ paths:
                   timestamp:
                     type: string
                     format: date-time
-        '400':
-          $ref: '#/components/responses/BadRequest'
-        '422':
-          $ref: '#/components/responses/ValidationError'
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "422":
+          $ref: "#/components/responses/ValidationError"
 
   /detections/{detection_id}:
     get:
@@ -278,14 +293,14 @@ paths:
             type: string
             format: uuid
       responses:
-        '200':
+        "200":
           description: Detection details
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/DetectionDetail'
-        '404':
-          $ref: '#/components/responses/NotFound'
+                $ref: "#/components/schemas/DetectionDetail"
+        "404":
+          $ref: "#/components/responses/NotFound"
 
   /tracks:
     get:
@@ -309,7 +324,7 @@ paths:
             maximum: 1.0
             default: 0.5
       responses:
-        '200':
+        "200":
           description: Active tracks
           content:
             application/json:
@@ -319,7 +334,7 @@ paths:
                   tracks:
                     type: array
                     items:
-                      $ref: '#/components/schemas/Track'
+                      $ref: "#/components/schemas/Track"
                   count:
                     type: integer
                   last_updated:
@@ -337,9 +352,9 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/CommandRequest'
+              $ref: "#/components/schemas/CommandRequest"
       responses:
-        '202':
+        "202":
           description: Command accepted for execution
           content:
             application/json:
@@ -376,9 +391,9 @@ components:
           format: date-time
           description: Detection timestamp (ISO 8601)
         position:
-          $ref: '#/components/schemas/Position'
+          $ref: "#/components/schemas/Position"
         velocity:
-          $ref: '#/components/schemas/Velocity'
+          $ref: "#/components/schemas/Velocity"
         classification:
           type: string
           enum: [DJI, FIXED_WING, VTOL, UNKNOWN, GROUP1, GROUP2, GROUP3]
@@ -401,7 +416,7 @@ components:
         blockchain_hash:
           type: string
           description: Blockchain transaction hash
-          
+
     Position:
       type: object
       required:
@@ -429,7 +444,7 @@ components:
         accuracy:
           type: number
           description: Position accuracy in meters
-          
+
     Velocity:
       type: object
       properties:
@@ -450,7 +465,7 @@ components:
           minimum: 0
           maximum: 360
           description: Heading in degrees (0-360)
-          
+
     Track:
       type: object
       required:
@@ -473,11 +488,11 @@ components:
           format: date-time
           description: Time of last update
         current_position:
-          $ref: '#/components/schemas/Position'
+          $ref: "#/components/schemas/Position"
         predicted_position:
-          $ref: '#/components/schemas/Position'
+          $ref: "#/components/schemas/Position"
         velocity:
-          $ref: '#/components/schemas/Velocity'
+          $ref: "#/components/schemas/Velocity"
         classification:
           type: string
           enum: [DJI, FIXED_WING, VTOL, UNKNOWN, GROUP1, GROUP2, GROUP3]
@@ -500,7 +515,7 @@ components:
         threat_level:
           type: string
           enum: [LOW, MEDIUM, HIGH, CRITICAL]
-          
+
     CommandRequest:
       type: object
       required:
@@ -555,7 +570,7 @@ components:
                 type: array
                 items:
                   type: string
-                  
+
     Unauthorized:
       description: Unauthorized access
       content:
@@ -604,47 +619,41 @@ type Query {
     limit: Int = 100
     offset: Int = 0
   ): DetectionConnection!
-  
+
   detection(id: UUID!): Detection
-  
+
   # Track queries
   tracks(
     activeOnly: Boolean = true
     minConfidence: Float = 0.5
     threatLevel: [ThreatLevel!]
   ): [Track!]!
-  
+
   track(id: UUID!): Track
-  
+
   # Analytics queries
-  analytics(
-    timeRange: TimeRange!
-    groupBy: AnalyticsGroupBy!
-  ): AnalyticsResult!
-  
+  analytics(timeRange: TimeRange!, groupBy: AnalyticsGroupBy!): AnalyticsResult!
+
   # System status
   systemStatus: SystemStatus!
-  
+
   # Blockchain queries
   blockchainStatus: BlockchainStatus!
-  transactions(
-    limit: Int = 50
-    offset: Int = 0
-  ): TransactionConnection!
+  transactions(limit: Int = 50, offset: Int = 0): TransactionConnection!
 }
 
 type Mutation {
   # Detection mutations
   submitDetection(input: DetectionInput!): DetectionResult!
   updateDetection(id: UUID!, input: DetectionUpdateInput!): Detection!
-  
+
   # Command mutations
   executeCommand(input: CommandInput!): CommandResult!
   cancelCommand(commandId: UUID!): CommandResult!
-  
+
   # Configuration mutations
   updateSystemConfig(input: SystemConfigInput!): SystemConfig!
-  
+
   # User management
   createUser(input: UserInput!): User!
   updateUser(id: UUID!, input: UserUpdateInput!): User!
@@ -657,16 +666,16 @@ type Subscription {
     classification: [Classification!]
     minConfidence: Float
   ): Detection!
-  
+
   # Track updates
   trackUpdates(trackIds: [UUID!]): Track!
-  
+
   # Command status updates
   commandStatus(commandId: UUID!): CommandStatus!
-  
+
   # System alerts
   systemAlerts(severity: [AlertSeverity!]): SystemAlert!
-  
+
   # Blockchain events
   blockchainEvents: BlockchainEvent!
 }
@@ -812,6 +821,66 @@ enum ClassificationLevel {
   TOP_SECRET
 }
 
+# Analytics Input Types
+input TimeRange {
+  start: DateTime!
+  end: DateTime!
+  timezone: String = "UTC"
+}
+
+enum AnalyticsGroupBy {
+  HOUR
+  DAY
+  WEEK
+  MONTH
+  SENSOR_TYPE
+  CLASSIFICATION
+  THREAT_LEVEL
+  GEOGRAPHIC_REGION
+}
+
+# Analytics Result Types
+type AnalyticsResult {
+  timeRange: TimeRange!
+  groupBy: AnalyticsGroupBy!
+  data: [AnalyticsDataPoint!]!
+  summary: AnalyticsSummary!
+  metadata: AnalyticsMetadata!
+}
+
+type AnalyticsDataPoint {
+  timestamp: DateTime
+  label: String!
+  value: Float!
+  count: Int!
+  percentage: Float
+  metadata: JSON
+}
+
+type AnalyticsSummary {
+  totalDetections: Int!
+  totalTracks: Int!
+  averageConfidence: Float!
+  topClassification: Classification!
+  peakActivity: DateTime
+  trendDirection: TrendDirection!
+}
+
+type AnalyticsMetadata {
+  generatedAt: DateTime!
+  processingTime: Float!
+  dataPoints: Int!
+  confidence: Float!
+  cacheHit: Boolean!
+}
+
+enum TrendDirection {
+  INCREASING
+  DECREASING
+  STABLE
+  VOLATILE
+}
+
 # Connection types for pagination
 type DetectionConnection {
   edges: [DetectionEdge!]!
@@ -849,7 +918,7 @@ interface WebSocketConfig {
 }
 
 interface DetectionEvent {
-  type: 'DETECTION';
+  type: "DETECTION";
   data: {
     id: string;
     timestamp: string;
@@ -868,7 +937,7 @@ interface DetectionEvent {
 }
 
 interface TrackEvent {
-  type: 'TRACK_UPDATE' | 'TRACK_CREATED' | 'TRACK_LOST';
+  type: "TRACK_UPDATE" | "TRACK_CREATED" | "TRACK_LOST";
   data: {
     trackId: string;
     currentPosition: Position;
@@ -886,7 +955,7 @@ interface TrackEvent {
 }
 
 interface CommandEvent {
-  type: 'COMMAND_STATUS';
+  type: "COMMAND_STATUS";
   data: {
     commandId: string;
     status: CommandStatus;
@@ -902,11 +971,11 @@ interface CommandEvent {
 }
 
 interface SystemAlert {
-  type: 'SYSTEM_ALERT';
+  type: "SYSTEM_ALERT";
   data: {
     alertId: string;
-    severity: 'INFO' | 'WARNING' | 'ERROR' | 'CRITICAL';
-    category: 'SYSTEM' | 'SECURITY' | 'OPERATIONAL' | 'MAINTENANCE';
+    severity: "INFO" | "WARNING" | "ERROR" | "CRITICAL";
+    category: "SYSTEM" | "SECURITY" | "OPERATIONAL" | "MAINTENANCE";
     message: string;
     source: string;
     timestamp: string;
@@ -925,63 +994,62 @@ class PhoenixWebSocketClient {
   private reconnectAttempts = 0;
   private heartbeatTimer: NodeJS.Timeout | null = null;
   private eventHandlers = new Map<string, Function[]>();
-  
+
   constructor(config: WebSocketConfig) {
     this.config = {
       reconnectInterval: 5000,
       maxReconnectAttempts: 10,
       heartbeatInterval: 30000,
-      ...config
+      ...config,
     };
   }
-  
+
   connect(): Promise<void> {
     return new Promise((resolve, reject) => {
       try {
         this.ws = new WebSocket(this.config.url, this.config.protocols);
-        
+
         this.ws.onopen = () => {
-          console.log('WebSocket connected');
+          console.log("WebSocket connected");
           this.reconnectAttempts = 0;
           this.startHeartbeat();
           resolve();
         };
-        
+
         this.ws.onmessage = (event) => {
           this.handleMessage(event.data);
         };
-        
+
         this.ws.onclose = (event) => {
-          console.log('WebSocket closed:', event.code, event.reason);
+          console.log("WebSocket closed:", event.code, event.reason);
           this.stopHeartbeat();
           this.handleReconnect();
         };
-        
+
         this.ws.onerror = (error) => {
-          console.error('WebSocket error:', error);
+          console.error("WebSocket error:", error);
           reject(error);
         };
-        
       } catch (error) {
         reject(error);
       }
     });
   }
-  
+
   subscribe(eventType: string, handler: Function): void {
     if (!this.eventHandlers.has(eventType)) {
       this.eventHandlers.set(eventType, []);
     }
     this.eventHandlers.get(eventType)!.push(handler);
-    
+
     // Send subscription message
     this.send({
-      type: 'SUBSCRIBE',
+      type: "SUBSCRIBE",
       eventType,
-      timestamp: new Date().toISOString()
+      timestamp: new Date().toISOString(),
     });
   }
-  
+
   unsubscribe(eventType: string, handler?: Function): void {
     if (handler) {
       const handlers = this.eventHandlers.get(eventType);
@@ -994,94 +1062,95 @@ class PhoenixWebSocketClient {
     } else {
       this.eventHandlers.delete(eventType);
     }
-    
+
     // Send unsubscription message
     this.send({
-      type: 'UNSUBSCRIBE',
+      type: "UNSUBSCRIBE",
       eventType,
-      timestamp: new Date().toISOString()
+      timestamp: new Date().toISOString(),
     });
   }
-  
+
   private handleMessage(data: string): void {
     try {
       const message = JSON.parse(data);
-      
-      if (message.type === 'HEARTBEAT') {
-        this.send({ type: 'HEARTBEAT_ACK' });
+
+      if (message.type === "HEARTBEAT") {
+        this.send({ type: "HEARTBEAT_ACK" });
         return;
       }
-      
+
       const handlers = this.eventHandlers.get(message.type);
       if (handlers) {
-        handlers.forEach(handler => handler(message));
+        handlers.forEach((handler) => handler(message));
       }
-      
     } catch (error) {
-      console.error('Error parsing WebSocket message:', error);
+      console.error("Error parsing WebSocket message:", error);
     }
   }
-  
+
   private send(message: any): void {
     if (this.ws && this.ws.readyState === WebSocket.OPEN) {
       this.ws.send(JSON.stringify(message));
     }
   }
-  
+
   private startHeartbeat(): void {
     this.heartbeatTimer = setInterval(() => {
-      this.send({ type: 'HEARTBEAT', timestamp: new Date().toISOString() });
+      this.send({ type: "HEARTBEAT", timestamp: new Date().toISOString() });
     }, this.config.heartbeatInterval);
   }
-  
+
   private stopHeartbeat(): void {
     if (this.heartbeatTimer) {
       clearInterval(this.heartbeatTimer);
       this.heartbeatTimer = null;
     }
   }
-  
+
   private handleReconnect(): void {
     if (this.reconnectAttempts < this.config.maxReconnectAttempts!) {
       this.reconnectAttempts++;
-      console.log(`Attempting to reconnect (${this.reconnectAttempts}/${this.config.maxReconnectAttempts})`);
-      
+      console.log(
+        `Attempting to reconnect (${this.reconnectAttempts}/${this.config.maxReconnectAttempts})`,
+      );
+
       setTimeout(() => {
-        this.connect().catch(error => {
-          console.error('Reconnection failed:', error);
+        this.connect().catch((error) => {
+          console.error("Reconnection failed:", error);
         });
       }, this.config.reconnectInterval);
     } else {
-      console.error('Max reconnection attempts reached');
+      console.error("Max reconnection attempts reached");
     }
   }
 }
 
 // Usage Example
 const client = new PhoenixWebSocketClient({
-  url: 'wss://api.phoenixrooivalk.mil/v2/ws',
-  protocols: ['phoenix-v2'],
+  url: "wss://api.phoenixrooivalk.mil/v2/ws",
+  protocols: ["phoenix-v2"],
   reconnectInterval: 5000,
-  maxReconnectAttempts: 10
+  maxReconnectAttempts: 10,
 });
 
 // Subscribe to detection events
-client.subscribe('DETECTION', (event: DetectionEvent) => {
-  console.log('New detection:', event.data);
+client.subscribe("DETECTION", (event: DetectionEvent) => {
+  console.log("New detection:", event.data);
   // Update UI with new detection
 });
 
 // Subscribe to track updates
-client.subscribe('TRACK_UPDATE', (event: TrackEvent) => {
-  console.log('Track updated:', event.data);
+client.subscribe("TRACK_UPDATE", (event: TrackEvent) => {
+  console.log("Track updated:", event.data);
   // Update track visualization
 });
 
 // Subscribe to system alerts
-client.subscribe('SYSTEM_ALERT', (event: SystemAlert) => {
-  if (event.data.severity === 'CRITICAL') {
+client.subscribe("SYSTEM_ALERT", (event: SystemAlert) => {
+  if (event.data.severity === "CRITICAL") {
     // Handle critical alert
-    console.error('Critical system alert:', event.data.message);
+    console.error("Critical system alert:", event.data.message);
   }
 });
 ```
@@ -1110,13 +1179,13 @@ option csharp_namespace = "PhoenixRooivalk.Api.V2";
 service DetectionService {
   // Submit a new detection
   rpc SubmitDetection(SubmitDetectionRequest) returns (SubmitDetectionResponse);
-  
+
   // Get detections with filtering
   rpc GetDetections(GetDetectionsRequest) returns (GetDetectionsResponse);
-  
+
   // Stream real-time detections
   rpc StreamDetections(StreamDetectionsRequest) returns (stream Detection);
-  
+
   // Get detection by ID
   rpc GetDetection(GetDetectionRequest) returns (Detection);
 }
@@ -1125,13 +1194,13 @@ service DetectionService {
 service TrackingService {
   // Get active tracks
   rpc GetTracks(GetTracksRequest) returns (GetTracksResponse);
-  
+
   // Stream track updates
   rpc StreamTracks(StreamTracksRequest) returns (stream Track);
-  
+
   // Get track by ID
   rpc GetTrack(GetTrackRequest) returns (Track);
-  
+
   // Get track predictions
   rpc GetTrackPredictions(GetTrackPredictionsRequest) returns (GetTrackPredictionsResponse);
 }
@@ -1140,13 +1209,13 @@ service TrackingService {
 service CommandService {
   // Execute command
   rpc ExecuteCommand(ExecuteCommandRequest) returns (ExecuteCommandResponse);
-  
+
   // Get command status
   rpc GetCommandStatus(GetCommandStatusRequest) returns (CommandStatus);
-  
+
   // Stream command updates
   rpc StreamCommandStatus(StreamCommandStatusRequest) returns (stream CommandStatus);
-  
+
   // Cancel command
   rpc CancelCommand(CancelCommandRequest) returns (CancelCommandResponse);
 }
@@ -1155,10 +1224,10 @@ service CommandService {
 service AnalyticsService {
   // Get system metrics
   rpc GetMetrics(GetMetricsRequest) returns (GetMetricsResponse);
-  
+
   // Get analytics data
   rpc GetAnalytics(GetAnalyticsRequest) returns (GetAnalyticsResponse);
-  
+
   // Stream real-time metrics
   rpc StreamMetrics(StreamMetricsRequest) returns (stream Metrics);
 }
@@ -1372,14 +1441,14 @@ import "@openzeppelin/contracts/utils/Counters.sol";
  */
 contract DetectionRegistry is AccessControl, ReentrancyGuard {
     using Counters for Counters.Counter;
-    
+
     bytes32 public constant SENSOR_ROLE = keccak256("SENSOR_ROLE");
     bytes32 public constant OPERATOR_ROLE = keccak256("OPERATOR_ROLE");
     bytes32 public constant VALIDATOR_ROLE = keccak256("VALIDATOR_ROLE");
-    
+
     Counters.Counter private _detectionIds;
     Counters.Counter private _trackIds;
-    
+
     struct Detection {
         uint256 id;
         uint256 timestamp;
@@ -1393,7 +1462,7 @@ contract DetectionRegistry is AccessControl, ReentrancyGuard {
         bool validated;
         uint256 blockNumber;
     }
-    
+
     struct Track {
         uint256 id;
         uint256[] detectionIds;
@@ -1403,7 +1472,7 @@ contract DetectionRegistry is AccessControl, ReentrancyGuard {
         uint16 confidence;
         bool active;
     }
-    
+
     struct Command {
         uint256 id;
         uint8 commandType;
@@ -1413,13 +1482,13 @@ contract DetectionRegistry is AccessControl, ReentrancyGuard {
         uint8 status;
         bytes32 authorizationHash;
     }
-    
+
     mapping(uint256 => Detection) public detections;
     mapping(uint256 => Track) public tracks;
     mapping(uint256 => Command) public commands;
     mapping(address => bool) public authorizedSensors;
     mapping(bytes32 => bool) public processedHashes;
-    
+
     event DetectionRegistered(
         uint256 indexed detectionId,
         address indexed sensor,
@@ -1427,48 +1496,48 @@ contract DetectionRegistry is AccessControl, ReentrancyGuard {
         int256 latitude,
         int256 longitude
     );
-    
+
     event DetectionValidated(
         uint256 indexed detectionId,
         address indexed validator
     );
-    
+
     event TrackCreated(
         uint256 indexed trackId,
         uint256 firstDetectionId
     );
-    
+
     event TrackUpdated(
         uint256 indexed trackId,
         uint256 detectionId
     );
-    
+
     event CommandExecuted(
         uint256 indexed commandId,
         address indexed operator,
         uint8 commandType,
         uint256 targetId
     );
-    
+
     modifier onlySensor() {
         require(hasRole(SENSOR_ROLE, msg.sender), "Caller is not a sensor");
         _;
     }
-    
+
     modifier onlyOperator() {
         require(hasRole(OPERATOR_ROLE, msg.sender), "Caller is not an operator");
         _;
     }
-    
+
     modifier onlyValidator() {
         require(hasRole(VALIDATOR_ROLE, msg.sender), "Caller is not a validator");
         _;
     }
-    
+
     constructor() {
         _grantRole(DEFAULT_ADMIN_ROLE, msg.sender);
     }
-    
+
     /**
      * @dev Register a new detection
      */
@@ -1486,10 +1555,10 @@ contract DetectionRegistry is AccessControl, ReentrancyGuard {
         require(longitude >= -180000000 && longitude <= 180000000, "Invalid longitude");
         require(confidence <= 10000, "Invalid confidence value");
         require(!processedHashes[dataHash], "Duplicate detection");
-        
+
         _detectionIds.increment();
         uint256 detectionId = _detectionIds.current();
-        
+
         detections[detectionId] = Detection({
             id: detectionId,
             timestamp: timestamp,
@@ -1503,9 +1572,9 @@ contract DetectionRegistry is AccessControl, ReentrancyGuard {
             validated: false,
             blockNumber: block.number
         });
-        
+
         processedHashes[dataHash] = true;
-        
+
         emit DetectionRegistered(
             detectionId,
             msg.sender,
@@ -1513,26 +1582,26 @@ contract DetectionRegistry is AccessControl, ReentrancyGuard {
             latitude,
             longitude
         );
-        
+
         return detectionId;
     }
-    
+
     /**
      * @dev Validate a detection
      */
-    function validateDetection(uint256 detectionId) 
-        external 
-        onlyValidator 
-        nonReentrant 
+    function validateDetection(uint256 detectionId)
+        external
+        onlyValidator
+        nonReentrant
     {
         require(detections[detectionId].id != 0, "Detection does not exist");
         require(!detections[detectionId].validated, "Detection already validated");
-        
+
         detections[detectionId].validated = true;
-        
+
         emit DetectionValidated(detectionId, msg.sender);
     }
-    
+
     /**
      * @dev Create a new track
      */
@@ -1542,13 +1611,13 @@ contract DetectionRegistry is AccessControl, ReentrancyGuard {
     ) external onlyValidator nonReentrant returns (uint256) {
         require(detections[firstDetectionId].id != 0, "Detection does not exist");
         require(detections[firstDetectionId].validated, "Detection not validated");
-        
+
         _trackIds.increment();
         uint256 trackId = _trackIds.current();
-        
+
         uint256[] memory detectionIds = new uint256[](1);
         detectionIds[0] = firstDetectionId;
-        
+
         tracks[trackId] = Track({
             id: trackId,
             detectionIds: detectionIds,
@@ -1558,12 +1627,12 @@ contract DetectionRegistry is AccessControl, ReentrancyGuard {
             confidence: detections[firstDetectionId].confidence,
             active: true
         });
-        
+
         emit TrackCreated(trackId, firstDetectionId);
-        
+
         return trackId;
     }
-    
+
     /**
      * @dev Execute a command
      */
@@ -1574,10 +1643,10 @@ contract DetectionRegistry is AccessControl, ReentrancyGuard {
     ) external onlyOperator nonReentrant returns (uint256) {
         require(commandType > 0 && commandType <= 5, "Invalid command type");
         require(targetId > 0, "Invalid target ID");
-        
+
         _detectionIds.increment(); // Reuse counter for commands
         uint256 commandId = _detectionIds.current();
-        
+
         commands[commandId] = Command({
             id: commandId,
             commandType: commandType,
@@ -1587,55 +1656,55 @@ contract DetectionRegistry is AccessControl, ReentrancyGuard {
             status: 1, // ACCEPTED
             authorizationHash: authorizationHash
         });
-        
+
         emit CommandExecuted(commandId, msg.sender, commandType, targetId);
-        
+
         return commandId;
     }
-    
+
     /**
      * @dev Get detection details
      */
-    function getDetection(uint256 detectionId) 
-        external 
-        view 
-        returns (Detection memory) 
+    function getDetection(uint256 detectionId)
+        external
+        view
+        returns (Detection memory)
     {
         require(detections[detectionId].id != 0, "Detection does not exist");
         return detections[detectionId];
     }
-    
+
     /**
      * @dev Get track details
      */
-    function getTrack(uint256 trackId) 
-        external 
-        view 
-        returns (Track memory) 
+    function getTrack(uint256 trackId)
+        external
+        view
+        returns (Track memory)
     {
         require(tracks[trackId].id != 0, "Track does not exist");
         return tracks[trackId];
     }
-    
+
     /**
      * @dev Get recent detections
      */
-    function getRecentDetections(uint256 limit) 
-        external 
-        view 
-        returns (uint256[] memory) 
+    function getRecentDetections(uint256 limit)
+        external
+        view
+        returns (uint256[] memory)
     {
         require(limit > 0 && limit <= 100, "Invalid limit");
-        
+
         uint256 totalDetections = _detectionIds.current();
         uint256 startId = totalDetections > limit ? totalDetections - limit + 1 : 1;
-        
+
         uint256[] memory recentIds = new uint256[](totalDetections - startId + 1);
-        
+
         for (uint256 i = startId; i <= totalDetections; i++) {
             recentIds[i - startId] = i;
         }
-        
+
         return recentIds;
     }
 }
@@ -1647,14 +1716,14 @@ contract DetectionRegistry is AccessControl, ReentrancyGuard {
 
 ### 7.1 API Performance Benchmarks
 
-| Endpoint Category | Response Time Target | Throughput Target | Availability |
-|-------------------|---------------------|-------------------|--------------|
-| **Detection Submission** | < 5ms | 10,000 req/sec | 99.99% |
-| **Real-time Queries** | < 10ms | 50,000 req/sec | 99.99% |
-| **Analytics Queries** | < 100ms | 1,000 req/sec | 99.9% |
-| **Command Execution** | < 50ms | 5,000 req/sec | 99.99% |
-| **WebSocket Events** | < 2ms | 100,000 events/sec | 99.99% |
-| **Blockchain Queries** | < 200ms | 500 req/sec | 99.9% |
+| Endpoint Category        | Response Time Target | Throughput Target  | Availability |
+| ------------------------ | -------------------- | ------------------ | ------------ |
+| **Detection Submission** | < 5ms                | 10,000 req/sec     | 99.99%       |
+| **Real-time Queries**    | < 10ms               | 50,000 req/sec     | 99.99%       |
+| **Analytics Queries**    | < 100ms              | 1,000 req/sec      | 99.9%        |
+| **Command Execution**    | < 50ms               | 5,000 req/sec      | 99.99%       |
+| **WebSocket Events**     | < 2ms                | 100,000 events/sec | 99.99%       |
+| **Blockchain Queries**   | < 200ms              | 500 req/sec        | 99.9%        |
 
 ### 7.2 Load Testing Results
 
@@ -1680,14 +1749,14 @@ api_performance_results = {
             "timeout_errors": "0.005%"
         }
     },
-    
+
     "stress_test_results": {
         "breaking_point": "75000 concurrent users",
         "graceful_degradation": "Maintained core functionality",
         "recovery_time": "< 30 seconds",
         "data_consistency": "100% maintained"
     },
-    
+
     "security_test_results": {
         "penetration_tests": "No vulnerabilities found",
         "ddos_resistance": "Withstood 1M req/sec attack",
@@ -1701,9 +1770,14 @@ api_performance_results = {
 
 ## 8. Conclusion
 
-The API requirements presented here provide comprehensive integration capabilities for blockchain-based counter-drone systems, supporting multiple protocols and maintaining military-grade performance and security standards. The Adaptive API Gateway ensures optimal protocol selection while the multi-layered architecture provides scalability and resilience.
+The API requirements presented here provide comprehensive integration
+capabilities for blockchain-based counter-drone systems, supporting multiple
+protocols and maintaining military-grade performance and security standards. The
+Adaptive API Gateway ensures optimal protocol selection while the multi-layered
+architecture provides scalability and resilience.
 
 ### Key Achievements:
+
 - **< 10ms response times** for critical operations
 - **50,000+ requests/second** throughput capacity
 - **99.99% availability** with automatic failover
@@ -1711,20 +1785,27 @@ The API requirements presented here provide comprehensive integration capabiliti
 - **Military-grade security** with comprehensive authentication
 
 ### Critical Success Factors:
+
 - Adaptive API Gateway optimizes protocol selection
 - Comprehensive OpenAPI specifications ensure interoperability
 - Real-time WebSocket streaming enables instant updates
 - gRPC provides high-performance binary communication
 - Blockchain-native APIs ensure immutable audit trails
 
-This comprehensive API framework enables seamless integration across the entire counter-drone ecosystem while maintaining the performance and security required for military operations.
+This comprehensive API framework enables seamless integration across the entire
+counter-drone ecosystem while maintaining the performance and security required
+for military operations.
 
 ---
 
 **Related Documents:**
+
 - [Vendor Adapters](./vendor-adapters.md) - System integration framework
-- [Correlation Engine](../phase-2-data-management/correlation-engine.md) - Multi-source data fusion
-- [System Requirements](../../02-technical-architecture/system-requirements.md) - Performance specifications
-- [Hybrid Architecture](../../02-technical-architecture/hybrid-architecture.md) - Three-layer design
+- [Correlation Engine](../phase-2-data-management/correlation-engine.md) -
+  Multi-source data fusion
+- [System Requirements](../../02-technical-architecture/system-requirements.md) -
+  Performance specifications
+- [Hybrid Architecture](../../02-technical-architecture/hybrid-architecture.md) -
+  Three-layer design
 
 ---

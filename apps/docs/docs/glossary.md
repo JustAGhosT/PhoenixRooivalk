@@ -4,6 +4,7 @@
 > documentation.
 
 <!-- Mini Table of Contents -->
+
 - [Operations and concepts](#operations-and-concepts)
 - [Messaging and observability](#messaging-and-observability)
 - [Communications and EW](#communications-and-ew)
@@ -31,7 +32,8 @@
 - **ISR (Intelligence, Surveillance, Reconnaissance)**: Sensing and data fusion
   activities to build situational awareness.
 - **Swarm**: Coordinated operation of multiple drones to achieve emergent
-  effects (e.g., distributed sensing or denial). See [Future Enhancements](./technical_overview.md#future-enhancements).
+  effects (e.g., distributed sensing or denial). See
+  [Future Enhancements](./technical_overview.md#future-enhancements).
 - **VTOL (Vertical Take‑Off and Landing)**: Aircraft capable of vertical
   take‑off, hover, and landing without a runway.
 - **Kill Chain (Detect‑Identify‑Decide‑Act)**: Operational sequence guiding
@@ -46,17 +48,22 @@
 ## Messaging and observability
 
 - **gRPC**: High‑performance, HTTP/2‑based RPC framework used for control plane
-  APIs. See [Architecture: Data plane & messaging](./architecture/overview.md#data-plane--messaging).
+  APIs. See
+  [Architecture: Data plane & messaging](./architecture/overview.md#data-plane--messaging).
 - **Kafka**: Distributed event streaming platform for high‑throughput message
-  processing. See [Architecture: Data plane & messaging](./architecture/overview.md#data-plane--messaging).
+  processing. See
+  [Architecture: Data plane & messaging](./architecture/overview.md#data-plane--messaging).
 - **NATS**: Lightweight messaging system for low‑latency pub/sub and request‑
-  reply patterns. See [Architecture: Data plane & messaging](./architecture/overview.md#data-plane--messaging).
+  reply patterns. See
+  [Architecture: Data plane & messaging](./architecture/overview.md#data-plane--messaging).
 - **OpenTelemetry (OTel)**: Open standard for telemetry collection and export
-  (traces, metrics, logs) used for observability. See [Architecture: Data plane & messaging](./architecture/overview.md#data-plane--messaging).
+  (traces, metrics, logs) used for observability. See
+  [Architecture: Data plane & messaging](./architecture/overview.md#data-plane--messaging).
 - **QoS (Quality of Service)**: Prioritization and guarantees for data
   transport, especially for flight control vs. payload data.
 - **WORM Storage (Write Once, Read Many)**: Immutable storage used for
-  evidence/forensics retention. See [Architecture: Data plane & messaging](./architecture/overview.md#data-plane--messaging).
+  evidence/forensics retention. See
+  [Architecture: Data plane & messaging](./architecture/overview.md#data-plane--messaging).
 
 [Back to top](#glossary)
 
@@ -86,7 +93,8 @@
   receiver (visual or RF).
 - **RF (Radio Frequency)**: Part of the EM spectrum used for wireless links.
 - **RF Jamming**: Intentional transmission to degrade or deny RF communications
-  between a drone and its controller. See [Core Technologies](./technical_overview.md#core-technologies).
+  between a drone and its controller. See
+  [Core Technologies](./technical_overview.md#core-technologies).
 - **Beamforming**: Steering transmit/receive energy in specific directions to
   improve link margin and reduce interference.
 - **FHSS (Frequency‑Hopping Spread Spectrum)**: Rapidly changing frequencies to
@@ -102,8 +110,8 @@
 - **DF/TDOA (Direction Finding / Time Difference of Arrival)**: Methods to
   estimate emitter bearing/location using multi‑sensor timing/angle
   measurements.
-- **Link Budget**: Power balance calculation for a radio link including
-  transmit power, path loss, antenna gain, and receiver sensitivity. See
+- **Link Budget**: Power balance calculation for a radio link including transmit
+  power, path loss, antenna gain, and receiver sensitivity. See
   [Core Technologies](./technical_overview.md#core-technologies).
 
 [Back to top](#glossary)
@@ -111,7 +119,8 @@
 ## Navigation and PNT
 
 - **GPS Spoofing**: Technique to mislead a receiver’s position/timing by
-  injecting forged satellite signals. See [Core Technologies](./technical_overview.md#core-technologies).
+  injecting forged satellite signals. See
+  [Core Technologies](./technical_overview.md#core-technologies).
 - **Anti‑Spoofing**: Techniques to detect and reject falsified GNSS signals
   (e.g., consistency checks, multi‑constellation, signal quality tests).
 - **INS Aiding (IMU/GNSS Fusion)**: Blending inertial sensors with GNSS to
@@ -126,13 +135,17 @@
 ## System components
 
 - **RKV‑C2**: PhoenixRooivalk C2 and data plane component coordinating all
-  modules with strict QoS and observability. See [System components](./technical_overview.md#system-components-and-combined-approach).
+  modules with strict QoS and observability. See
+  [System components](./technical_overview.md#system-components-and-combined-approach).
 - **RKV‑G**: Ground rover providing mobile GCS, mast, logistics, and fiber link
-  support. See [System components](./technical_overview.md#system-components-and-combined-approach).
+  support. See
+  [System components](./technical_overview.md#system-components-and-combined-approach).
 - **RKV‑I**: Deployable minis (interceptor, decoy, ISR) with RF or optional
-  fiber control. See [System components](./technical_overview.md#system-components-and-combined-approach).
+  fiber control. See
+  [System components](./technical_overview.md#system-components-and-combined-approach).
 - **RKV‑M**: VTOL mothership acting as picket, relay, and mini‑launcher with
-  land‑relaunch capability. See [System components](./technical_overview.md#system-components-and-combined-approach).
+  land‑relaunch capability. See
+  [System components](./technical_overview.md#system-components-and-combined-approach).
 - **Multi‑Sensor Fusion**: Combining RF, radar, optical, acoustic and other
   sensors to improve detection, classification, and spoof resilience. See
   [System Architecture](./technical_overview.md#system-architecture).

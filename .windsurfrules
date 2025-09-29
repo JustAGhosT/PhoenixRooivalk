@@ -44,6 +44,46 @@ backend/services/
 - Profit margin optimization
 - Scalability metrics tracking
 $END$
+
+# main-overview
+## Development Guidelines
+- Only modify code directly relevant to the specific request. Avoid changing unrelated functionality.
+- Never replace code with placeholders like `# ... rest of the processing ...`. Always include complete code.
+- Break problems into smaller steps. Think through each step separately before implementing.
+- Always provide a complete PLAN with REASONING based on evidence from code and logs before making changes.
+- Explain your OBSERVATIONS clearly, then provide REASONING to identify the exact issue. Add console logs when needed to gather more information.
+The system implements a military-grade Counter-UAS defense platform with blockchain-based evidence anchoring. Core functionality is organized into three primary domains:
+## Counter-UAS Defense Simulation
+Primary implementation in ThreatSimulator components orchestrates:
+- Threat classification and response modeling
+- Countermeasure effectiveness matrices
+- Dynamic difficulty scaling
+- Swarm attack pattern generation
+- Multi-level progression systems
+Score: 90/100
+## Blockchain Evidence Anchoring
+Located in evidence and anchor crates:
+- Military engagement proof generation
+- Cross-chain transaction verification
+- Chain-specific address validation
+- Dual-chain failover mechanisms
+- Cryptographic evidence records
+Score: 85/100
+## Automated Threat Response
+Implemented across threat spawning and game logic components:
+- Coordinated swarm attack generation
+- Battlefield positioning algorithms
+- Countermeasure cooldown systems
+- Threat-countermeasure relationship mapping
+- Auto-trigger capability management
+Score: 82/100
+The system integrates these domains through a unified architecture where threat detection feeds into both simulation and evidence anchoring subsystems, while blockchain components provide immutable engagement records.
+Key interconnections:
+- Threat detection triggers evidence anchoring
+- Countermeasure effectiveness data feeds blockchain records
+- Cross-chain validation ensures military-grade reliability
+- Address validation secures all blockchain interactions
+$END$
 # === END USER INSTRUCTIONS ===
 
 
@@ -58,45 +98,51 @@ $END$
 - Explain your OBSERVATIONS clearly, then provide REASONING to identify the exact issue. Add console logs when needed to gather more information.
 
 
-The system implements a military-grade Counter-UAS defense platform with blockchain-based evidence anchoring. Core functionality is organized into three primary domains:
+The Phoenix-Rooivalk system implements a layered military defense architecture with three core pillars:
 
-## Counter-UAS Defense Simulation
-Primary implementation in ThreatSimulator components orchestrates:
-- Threat classification and response modeling
-- Countermeasure effectiveness matrices
-- Dynamic difficulty scaling
-- Swarm attack pattern generation
-- Multi-level progression systems
+## Counter-UAS Defense Core (Importance: 95)
+Located in `apps/api` and `crates/evidence`
+- Modular threat detection system with RKV components:
+  - RKV-M: Aerial VTOL mothership coordination
+  - RKV-I: Deployable mini interceptors
+  - RKV-G: Ground support rover integration
+  - RKV-C2: Command and control data plane
 
-Score: 90/100
+## Blockchain Evidence System (Importance: 90)
+Located in `crates/anchor-etherlink` and `crates/anchor-solana`
+- Dual-chain evidence anchoring
+- Military-grade cryptographic proof generation
+- Tamper-proof audit trails
+- Federated learning integration
+- Autonomous swarm coordination protocols
 
-## Blockchain Evidence Anchoring
-Located in evidence and anchor crates:
-- Military engagement proof generation
-- Cross-chain transaction verification
-- Chain-specific address validation
-- Dual-chain failover mechanisms
-- Cryptographic evidence records
+## Threat Response Engine (Importance: 85)
+Located in `apps/keeper`
+- Specialized threat categorization:
+  ```
+  drone: kinetic countermeasures
+  radar: electronic warfare
+  stealth: laser-based detection
+  swarm: distributed response
+  heavy: laser neutralization
+  ```
+- Non-destructive neutralization systems
+- Geofenced operation boundaries
+- Do-not-engage zone enforcement
 
-Score: 85/100
+## Evidence Management Pipeline (Importance: 80)
+Located in `crates/evidence`
+- Cryptographic chain of custody
+- Multi-chain evidence anchoring
+- Military-grade address validation
+- Engagement proof verification
+- Automated compliance logging
 
-## Automated Threat Response
-Implemented across threat spawning and game logic components:
-- Coordinated swarm attack generation
-- Battlefield positioning algorithms
-- Countermeasure cooldown systems
-- Threat-countermeasure relationship mapping
-- Auto-trigger capability management
-
-Score: 82/100
-
-The system integrates these domains through a unified architecture where threat detection feeds into both simulation and evidence anchoring subsystems, while blockchain components provide immutable engagement records.
-
-Key interconnections:
-- Threat detection triggers evidence anchoring
-- Countermeasure effectiveness data feeds blockchain records
-- Cross-chain validation ensures military-grade reliability
-- Address validation secures all blockchain interactions
+The system maintains strict operational boundaries through:
+- Mandatory geofencing
+- Fail-safe return protocols
+- Export control compliance
+- Audit logging requirements
 
 $END$
 

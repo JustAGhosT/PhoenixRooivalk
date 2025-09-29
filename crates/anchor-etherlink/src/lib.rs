@@ -24,17 +24,19 @@ impl AnchorProvider for EtherlinkProviderStub {
     }
 
     async fn confirm(&self, tx: &ChainTxRef) -> Result<ChainTxRef, AnchorError> {
-        let mut t = tx.clone();
-        t.confirmed = true;
-        Ok(t)
+        // Stub implementation - always report the transaction as confirmed
+        let mut confirmed_tx = tx.clone();
+        confirmed_tx.confirmed = true;
+        Ok(confirmed_tx)
     }
 }
 
-#[derive(Debug, Clone)]
+#[derive(Clone, Debug)]
 pub struct EtherlinkProvider {
     client: Client,
     endpoint: String,
     network: String,
+    #[allow(dead_code)]
     private_key: Option<String>,
 }
 
@@ -48,7 +50,9 @@ struct JsonRpcRequest {
 
 #[derive(Debug, Deserialize)]
 struct JsonRpcResponse {
+    #[allow(dead_code)]
     jsonrpc: String,
+    #[allow(dead_code)]
     id: u64,
     result: Option<Value>,
     error: Option<JsonRpcError>,
@@ -58,12 +62,14 @@ struct JsonRpcResponse {
 struct JsonRpcError {
     code: i32,
     message: String,
+    #[allow(dead_code)]
     data: Option<Value>,
 }
 
 #[derive(Debug, Deserialize)]
 struct TransactionReceipt {
     #[serde(rename = "transactionHash")]
+    #[allow(dead_code)]
     transaction_hash: String,
     #[serde(rename = "blockNumber")]
     block_number: Option<String>,
@@ -128,7 +134,7 @@ impl EtherlinkProvider {
     async fn send_memo_transaction(&self, memo_data: &str) -> Result<String, AnchorError> {
         // Create a simple transaction with memo data
         // In a real implementation, you'd sign this with the private key
-        let tx_data = json!({
+        let _tx_data = json!({
             "to": "0x0000000000000000000000000000000000000000", // null address for memo
             "data": format!("0x{}", hex::encode(memo_data.as_bytes())),
             "gas": "0x5208", // 21000 gas

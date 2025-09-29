@@ -1,6 +1,7 @@
 ## **Competitor Analysis**
 
-> **To Do**: Add visual aids to enhance understanding of competitor metrics and system performance:
+> **To Do**: Add visual aids to enhance understanding of competitor metrics and
+> system performance:
 >
 > - Heatmap: Detection ranges across competitors.
 > - Bar Graph: Comparison of response times and accuracy rates.
@@ -14,7 +15,10 @@
 > [Neutralization and Countermeasures](./glossary.md#neutralization-and-countermeasures),
 > and [Operations and concepts](./glossary.md#operations-and-concepts).
 
-The counter-drone market is highly competitive, with established players offering a range of solutions. Below is a comparison of key competitors based on price, country of manufacture, year founded, manufacturer name, features, strengths, and weaknesses.
+The counter-drone market is highly competitive, with established players
+offering a range of solutions. Below is a comparison of key competitors based on
+price, country of manufacture, year founded, manufacturer name, features,
+strengths, and weaknesses.
 
 | **Competitor**                                      | **Price (ZAR)** | **Country**  | **Year Founded** | **Manufacturer**        | **Key Features**                                                               | **Strengths**                             | **Weaknesses**                          |
 | --------------------------------------------------- | --------------- | ------------ | ---------------- | ----------------------- | ------------------------------------------------------------------------------ | ----------------------------------------- | --------------------------------------- |
@@ -60,12 +64,15 @@ The counter-drone market is highly competitive, with established players offerin
   - DroneShield employs robotic assembly for consistent quality.
   - AI-driven quality checks minimize manual errors.
 - **Environmentally Friendly Practices**:
-  - SkyFence 360 uses low-emission production facilities, aligning with global green standards.
+  - SkyFence 360 uses low-emission production facilities, aligning with global
+    green standards.
 
 #### **Our System’s Advantage**:
 
-- Incorporates a hybrid manufacturing process combining **3D printing** and **modular assembly lines**, ensuring scalability and cost efficiency.
-- **Localized production** reduces logistics costs and allows for rapid deployment in emerging markets.
+- Incorporates a hybrid manufacturing process combining **3D printing** and
+  **modular assembly lines**, ensuring scalability and cost efficiency.
+- **Localized production** reduces logistics costs and allows for rapid
+  deployment in emerging markets.
 
 ---
 
@@ -73,23 +80,29 @@ The counter-drone market is highly competitive, with established players offerin
 
 #### **NVIDIA Jetson Platforms**:
 
-- Used in AI-enhanced counter-drone systems for real-time threat analysis and decision-making.
-- Dedrone and AeroDefender leverage Jetson for faster object recognition and tracking.
+- Used in AI-enhanced counter-drone systems for real-time threat analysis and
+  decision-making.
+- Dedrone and AeroDefender leverage Jetson for faster object recognition and
+  tracking.
 
 #### **Commercial Drone Platforms**:
 
 - DJI Mavic platforms inspire design in lightweight and portable systems.
-- Components like rotors, batteries, and chassis are sometimes adapted for industrial applications.
+- Components like rotors, batteries, and chassis are sometimes adapted for
+  industrial applications.
 
 #### **Fiber-Optic-Controlled Drones**:
 
-- Emerging drones bypass traditional RF detection, posing challenges to existing systems.
-- Competitors like DroneShield are researching adaptive detection methods, including **optical sensors** and **laser-based interception**.
+- Emerging drones bypass traditional RF detection, posing challenges to existing
+  systems.
+- Competitors like DroneShield are researching adaptive detection methods,
+  including **optical sensors** and **laser-based interception**.
 
 #### **Our System’s Potential**:
 
 - Future integration of NVIDIA Jetson modules for improved **AI processing**.
-- Exploring custom-built chassis inspired by lightweight commercial designs for tactical applications.
+- Exploring custom-built chassis inspired by lightweight commercial designs for
+  tactical applications.
 
 ---
 
@@ -103,17 +116,22 @@ The counter-drone market is highly competitive, with established players offerin
 
 #### **Power and Portability**:
 
-- Emerging systems, like FortiDrone Shield, are piloting **solar-powered units** for extended deployment in remote areas.
-- **Compact batteries** and swappable power units are being tested by DroneGuard Pro.
+- Emerging systems, like FortiDrone Shield, are piloting **solar-powered units**
+  for extended deployment in remote areas.
+- **Compact batteries** and swappable power units are being tested by DroneGuard
+  Pro.
 
 #### **C2 Enhancements**:
 
-- AR-based interfaces for better situational awareness, already under development by competitors like Dedrone.
+- AR-based interfaces for better situational awareness, already under
+  development by competitors like Dedrone.
 
 #### **Our System’s Edge**:
 
-- Plans for modular swappable battery packs and lightweight designs to ensure operational flexibility.
-- Incorporation of AR-based Command and Control (C2) interfaces for intuitive operation.
+- Plans for modular swappable battery packs and lightweight designs to ensure
+  operational flexibility.
+- Incorporation of AR-based Command and Control (C2) interfaces for intuitive
+  operation.
 
 ---
 
@@ -121,70 +139,87 @@ The counter-drone market is highly competitive, with established players offerin
 
 #### **Price Advantage**
 
-- Our system is priced **lower than all major competitors**, making it an attractive option for budget-conscious clients without compromising on features.
+- Our system is priced **lower than all major competitors**, making it an
+  attractive option for budget-conscious clients without compromising on
+  features.
 
 #### **Feature Comparison**
 
-- **Unique Physical Countermeasures**: Unlike competitors that focus heavily on RF jamming and detection, our system offers **non-destructive physical countermeasures** (e.g., net entanglement), which are ideal for civilian environments.
-- **Modularity**: Our system's modular design allows for easy customization and upgrades, addressing client-specific needs more effectively than competitors.
+- **Unique Physical Countermeasures**: Unlike competitors that focus heavily on
+  RF jamming and detection, our system offers **non-destructive physical
+  countermeasures** (e.g., net entanglement), which are ideal for civilian
+  environments.
+- **Modularity**: Our system's modular design allows for easy customization and
+  upgrades, addressing client-specific needs more effectively than competitors.
 
 #### **Strengths of Competitors**
 
 - **DroneGuard Pro**: Strong global presence and reliable detection.
-- **AeroDefender**: Industry leader in AI-based detection and swarm neutralization.
+- **AeroDefender**: Industry leader in AI-based detection and swarm
+  neutralization.
 - **SkyFence 360**: Seamless integration with existing security infrastructure.
 - **FortiDrone Shield**: Balanced solution with excellent customer support.
 
 #### **Weaknesses of Competitors**
 
-- **High Cost**: Most competitors are significantly more expensive, limiting accessibility for smaller organizations.
-- **Maintenance Requirements**: Systems like SkyFence 360 require frequent maintenance, increasing operational costs.
-- **Lack of Modularity**: Many competitors do not offer modular designs, restricting their flexibility for different use cases.
-- **Limited Physical Countermeasures**: Few competitors provide effective non-destructive neutralization methods, which are critical in civilian settings.
+- **High Cost**: Most competitors are significantly more expensive, limiting
+  accessibility for smaller organizations.
+- **Maintenance Requirements**: Systems like SkyFence 360 require frequent
+  maintenance, increasing operational costs.
+- **Lack of Modularity**: Many competitors do not offer modular designs,
+  restricting their flexibility for different use cases.
+- **Limited Physical Countermeasures**: Few competitors provide effective
+  non-destructive neutralization methods, which are critical in civilian
+  settings.
 
 ---
 
 ### **Competitor Innovations**
 
 1. **DroneGuard Pro**:
-
-   - Developing a hybrid RF and laser neutralization system to improve effectiveness against fiber-optic-controlled drones.
+   - Developing a hybrid RF and laser neutralization system to improve
+     effectiveness against fiber-optic-controlled drones.
    - Exploring AI-powered predictive threat analysis for swarm attacks.
 
 2. **SkyFence 360**:
-
-   - Adding modular hardware for multi-sensor integration to enhance detection in urban environments.
-   - Partnering with universities to research low-cost drone neutralization methods.
+   - Adding modular hardware for multi-sensor integration to enhance detection
+     in urban environments.
+   - Partnering with universities to research low-cost drone neutralization
+     methods.
 
 3. **AeroDefender**:
-
-   - Introducing adaptive machine learning algorithms for real-time decision-making in high-density drone scenarios.
-   - Upgrading physical countermeasures to kinetic interceptors with non-lethal options.
+   - Introducing adaptive machine learning algorithms for real-time
+     decision-making in high-density drone scenarios.
+   - Upgrading physical countermeasures to kinetic interceptors with non-lethal
+     options.
 
 4. **FortiDrone Shield**:
-
-   - Integrating cloud-based analytics for coordinated responses across multiple systems.
-   - Piloting solar-powered counter-drone systems for extended deployment in remote areas.
+   - Integrating cloud-based analytics for coordinated responses across multiple
+     systems.
+   - Piloting solar-powered counter-drone systems for extended deployment in
+     remote areas.
 
 5. **Dedrone**:
-
    - Enhancing cloud-based AI to detect drones with low RF signatures.
-   - Rolling out region-specific updates for compliance with international drone regulations.
+   - Rolling out region-specific updates for compliance with international drone
+     regulations.
 
 6. **DroneShield**:
-
    - Testing lightweight portable systems for tactical military units.
    - Developing swappable hardware modules for specific mission needs.
 
 7. **Our System**:
-
    - Planning integration with AR-based C2 interfaces.
-   - Expanding modularity to support future upgrades with minimal hardware changes.
+   - Expanding modularity to support future upgrades with minimal hardware
+     changes.
 
 ---
 
 ### **Summary**
 
-The counter-drone market is evolving rapidly, with competitors investing heavily in advanced features and technologies. PhoenixRooivalk’s modularity, cost-effectiveness, and ease of use position it uniquely to address emerging threats and capitalize on growing demand.
+The counter-drone market is evolving rapidly, with competitors investing heavily
+in advanced features and technologies. PhoenixRooivalk’s modularity,
+cost-effectiveness, and ease of use position it uniquely to address emerging
+threats and capitalize on growing demand.
 
 [Next Page: Emerging Trends and Opportunities](./emerging_trends_opportunities.md)

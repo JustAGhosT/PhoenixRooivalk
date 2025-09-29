@@ -2,14 +2,14 @@ name: Deploy Docusaurus (docs-site)
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
     paths:
-      - 'apps/docs/**'
-      - '.github/workflows/deploy-docs-site.yml'
+      - "apps/docs/**"
+      - ".github/workflows/deploy-docs-site.yml"
   pull_request:
     paths:
-      - 'apps/docs/**'
-      - '.github/workflows/deploy-docs-site.yml'
+      - "apps/docs/**"
+      - ".github/workflows/deploy-docs-site.yml"
   workflow_dispatch:
 
 jobs:
@@ -29,14 +29,21 @@ jobs:
       - name: Use Node.js 20
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
-          cache: 'pnpm'
-          cache-dependency-path: 'pnpm-lock.yaml'
+          node-version: "20"
 
-      - name: Enable Corepack / Install deps (pnpm)
+      - name: Enable Corepack and setup pnpm
         run: |
           corepack enable
-          pnpm install
+          corepack use pnpm@9.6.0
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Format check
+        run: pnpm format:check
+
+      - name: Lint
+        run: pnpm lint
 
       - name: Build
         run: pnpm run build
@@ -50,13 +57,13 @@ jobs:
       - name: Deploy to Netlify
         uses: nwtgck/actions-netlify@v3
         with:
-          publish-dir: 'apps/docs/build'
+          publish-dir: "apps/docs/build"
           production-deploy: true
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          deploy-message: 'Automated deploy from GitHub Actions'
+          deploy-message: "Automated deploy from GitHub Actions"
           enable-commit-comment: false
           enable-commit-status: true
-          alias: 'prod'
+          alias: "prod"
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_DOCS_SITE_ID }}
@@ -77,14 +84,21 @@ jobs:
       - name: Use Node.js 20
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
-          cache: 'pnpm'
-          cache-dependency-path: 'pnpm-lock.yaml'
+          node-version: "20"
 
-      - name: Enable Corepack / Install deps (pnpm)
+      - name: Enable Corepack and setup pnpm
         run: |
           corepack enable
-          pnpm install
+          corepack use pnpm@9.6.0
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Format check
+        run: pnpm format:check
+
+      - name: Lint
+        run: pnpm lint
 
       - name: Build
         run: pnpm run build
@@ -92,10 +106,10 @@ jobs:
       - name: Deploy Preview to Netlify
         uses: nwtgck/actions-netlify@v3
         with:
-          publish-dir: 'apps/docs/build'
+          publish-dir: "apps/docs/build"
           production-deploy: false
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          deploy-message: 'Deploy Preview from PR #${{ github.event.pull_request.number }}'
+          deploy-message: "Deploy Preview from PR #${{ github.event.pull_request.number }}"
           enable-commit-comment: true
           enable-commit-status: true
           alias: ${{ github.head_ref }}

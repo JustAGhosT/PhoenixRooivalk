@@ -1,8 +1,16 @@
-use axum::{routing::{get, post}, Router, extract::{Path, State}, Json};
+use axum::{
+    routing::{get, post},
+    Router,
+    extract::{Path, State},
+    Json,
+    serve::Serve,
+    serve,
+};
+use tokio::net::TcpListener;
 use serde::{Deserialize, Serialize};
-use sqlx::{sqlite::SqlitePoolOptions, Sqlite, Pool, Row};
+use sqlx::{Pool, Sqlite, SqlitePool};
+use sqlx::sqlite::SqlitePoolOptions;
 use std::net::SocketAddr;
-use tracing_subscriber::{layer::SubscriberExt, util::SubscriberInitExt};
 
 async fn health() -> &'static str { "OK" }
 
@@ -63,13 +71,19 @@ async fn main() {
     let (app, _pool) = build_app().await;
 
     let port: u16 = std::env::var("PORT").ok().and_then(|s| s.parse().ok()).unwrap_or(8080);
-    let addr = SocketAddr::from(([0, 0, 0, 0], port));
-    tracing::info!(%addr, "starting phoenix-api");
-
-    axum::Server::bind(&addr)
-        .serve(app.into_make_service())
-        .await
-        .unwrap();
+    let addr: SocketAddr = ([0, 0, 0, 0], port).into();
+    let listener = match TcpListener::bind(addr).await {
+        Ok(l) => l,
+        Err(e) => {
+            tracing::error!(%addr, error=%e, "failed to bind TCP listener");
+            std::process::exit(1);
+        }
+    };
+    let bound = listener.local_addr().unwrap_or(addr);
+    tracing::info!(%bound, "starting phoenix-api");
+    if let Err(err) = serve(listener, app.into_make_service()).await {
+        tracing::error!(%err, "server error");
+    }
 }
 
 async fn ensure_schema(pool: &Pool<Sqlite>) -> Result<(), sqlx::Error> {

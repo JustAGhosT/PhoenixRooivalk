@@ -3,18 +3,23 @@
 ## Architecture Overview
 
 The system consists of three main components:
-- **API** (`apps/api`): HTTP endpoints for evidence submission and status queries
-- **Keeper** (`apps/keeper`): Background worker for evidence anchoring and confirmation polling
+
+- **API** (`apps/api`): HTTP endpoints for evidence submission and status
+  queries
+- **Keeper** (`apps/keeper`): Background worker for evidence anchoring and
+  confirmation polling
 - **Database**: SQLite (development) or PostgreSQL (production)
 
 ## Development Setup
 
 ### Prerequisites
+
 - Rust 1.70+
 - Node.js 20+
 - pnpm
 
 ### Local Development
+
 ```bash
 # Install dependencies
 pnpm install
@@ -35,6 +40,7 @@ curl -X POST http://localhost:8080/evidence \
 ### Environment Variables
 
 #### Database
+
 ```bash
 # PostgreSQL (recommended for production)
 KEEPER_DB_URL=postgresql://user:pass@host:5432/phoenix_db
@@ -46,6 +52,7 @@ API_DB_URL=sqlite://blockchain_outbox.sqlite3
 ```
 
 #### Keeper Configuration
+
 ```bash
 # Provider selection
 KEEPER_PROVIDER=etherlink  # or 'solana', 'multi', 'stub'
@@ -55,7 +62,7 @@ ETHERLINK_ENDPOINT=https://node.ghostnet.etherlink.com
 ETHERLINK_NETWORK=ghostnet
 ETHERLINK_PRIVATE_KEY=0x...  # Optional, for signing transactions
 
-# Solana configuration  
+# Solana configuration
 SOLANA_ENDPOINT=https://api.devnet.solana.com
 SOLANA_NETWORK=devnet
 
@@ -68,18 +75,21 @@ KEEPER_HTTP_PORT=8081
 ```
 
 #### API Configuration
+
 ```bash
 PORT=8080  # API server port
 ```
 
 #### Logging
+
 ```bash
 RUST_LOG=info  # or debug, warn, error
 ```
 
 ### Multi-Chain Configuration
 
-For multi-chain anchoring, set `KEEPER_PROVIDER=multi` and configure both chains:
+For multi-chain anchoring, set `KEEPER_PROVIDER=multi` and configure both
+chains:
 
 ```bash
 KEEPER_PROVIDER=multi
@@ -121,6 +131,7 @@ CREATE TABLE outbox_tx_refs (
 ### Docker Deployment
 
 #### API Service
+
 ```dockerfile
 FROM rust:1.70 as builder
 WORKDIR /app
@@ -135,6 +146,7 @@ CMD ["phoenix-api"]
 ```
 
 #### Keeper Service
+
 ```dockerfile
 FROM rust:1.70 as builder
 WORKDIR /app
@@ -149,8 +161,9 @@ CMD ["phoenix-keeper"]
 ```
 
 #### Docker Compose
+
 ```yaml
-version: '3.8'
+version: "3.8"
 services:
   postgres:
     image: postgres:15
@@ -213,18 +226,18 @@ spec:
         app: phoenix-api
     spec:
       containers:
-      - name: api
-        image: phoenix-api:latest
-        ports:
-        - containerPort: 8080
-        env:
-        - name: API_DB_URL
-          valueFrom:
-            secretKeyRef:
-              name: phoenix-secrets
-              key: database-url
-        - name: RUST_LOG
-          value: "info"
+        - name: api
+          image: phoenix-api:latest
+          ports:
+            - containerPort: 8080
+          env:
+            - name: API_DB_URL
+              valueFrom:
+                secretKeyRef:
+                  name: phoenix-secrets
+                  key: database-url
+            - name: RUST_LOG
+              value: "info"
 
 ---
 apiVersion: apps/v1
@@ -232,7 +245,7 @@ kind: Deployment
 metadata:
   name: phoenix-keeper
 spec:
-  replicas: 2  # Multiple keepers for redundancy
+  replicas: 2 # Multiple keepers for redundancy
   selector:
     matchLabels:
       app: phoenix-keeper
@@ -242,39 +255,44 @@ spec:
         app: phoenix-keeper
     spec:
       containers:
-      - name: keeper
-        image: phoenix-keeper:latest
-        ports:
-        - containerPort: 8081
-        env:
-        - name: KEEPER_DB_URL
-          valueFrom:
-            secretKeyRef:
-              name: phoenix-secrets
-              key: database-url
-        - name: KEEPER_PROVIDER
-          value: "etherlink"
-        - name: ETHERLINK_ENDPOINT
-          value: "https://node.ghostnet.etherlink.com"
-        - name: RUST_LOG
-          value: "info"
+        - name: keeper
+          image: phoenix-keeper:latest
+          ports:
+            - containerPort: 8081
+          env:
+            - name: KEEPER_DB_URL
+              valueFrom:
+                secretKeyRef:
+                  name: phoenix-secrets
+                  key: database-url
+            - name: KEEPER_PROVIDER
+              value: "etherlink"
+            - name: ETHERLINK_ENDPOINT
+              value: "https://node.ghostnet.etherlink.com"
+            - name: RUST_LOG
+              value: "info"
 ```
 
 ### Monitoring and Observability
 
 #### Health Checks
+
 - API: `GET /health` (port 8080)
 - Keeper: `GET /health` (port 8081)
 
 #### Metrics
+
 Both services emit structured logs with tracing. Key metrics to monitor:
+
 - Job processing rate
 - Confirmation success rate
 - Database connection health
 - RPC endpoint availability
 
 #### Alerting
+
 Set up alerts for:
+
 - High job failure rate
 - Confirmation delays
 - Database connectivity issues
@@ -290,16 +308,20 @@ Set up alerts for:
 ### Scaling
 
 #### Horizontal Scaling
+
 - **API**: Stateless, can scale horizontally behind load balancer
-- **Keeper**: Multiple instances supported with PostgreSQL (job locking prevents conflicts)
+- **Keeper**: Multiple instances supported with PostgreSQL (job locking prevents
+  conflicts)
 
 #### Vertical Scaling
+
 - Monitor memory usage (primarily from HTTP clients and DB connections)
 - CPU usage scales with job processing volume
 
 ### Backup and Recovery
 
 #### Database Backups
+
 ```bash
 # PostgreSQL
 pg_dump phoenix_db > backup.sql
@@ -309,6 +331,7 @@ psql phoenix_db < backup.sql
 ```
 
 #### Disaster Recovery
+
 - Evidence jobs are idempotent (safe to retry)
 - Transaction references provide audit trail
 - Failed jobs automatically retry with exponential backoff
@@ -316,11 +339,13 @@ psql phoenix_db < backup.sql
 ### Performance Tuning
 
 #### Database
+
 - Index on `(status, next_attempt_ms)` for job selection
 - Index on `(confirmed)` for confirmation polling
 - Connection pooling (5-10 connections per service)
 
 #### Network
+
 - Configure HTTP client timeouts (30s default)
 - Use connection pooling for RPC endpoints
 - Monitor rate limits on blockchain RPCs
@@ -328,12 +353,14 @@ psql phoenix_db < backup.sql
 ### Troubleshooting
 
 #### Common Issues
+
 1. **Jobs stuck in 'queued'**: Check keeper logs and RPC connectivity
 2. **High confirmation delays**: Verify blockchain network status
 3. **Database locks**: Ensure PostgreSQL for multi-keeper deployments
 4. **Memory leaks**: Monitor HTTP client connection pools
 
 #### Debug Commands
+
 ```bash
 # Check job status
 curl http://localhost:8080/evidence/{job_id}

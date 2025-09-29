@@ -25,5 +25,5 @@ FSO and RF links.
 
 ## Responsible use
 
-Weapon‑agnostic public docs. Restricted integrations occur only under
-applicable law and export control. See repository `RESPONSIBLE_USE.md`.
+Weapon‑agnostic public docs. Restricted integrations occur only under applicable
+law and export control. See repository `RESPONSIBLE_USE.md`.

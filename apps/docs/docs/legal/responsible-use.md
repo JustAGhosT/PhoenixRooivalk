@@ -1,7 +1,7 @@
 # Responsible Use (Public-safe)
 
-This page summarizes the public-safe responsible use stance for the project.
-For the full repo policy, see:
+This page summarizes the public-safe responsible use stance for the project. For
+the full repo policy, see:
 
 - [RESPONSIBLE_USE.md](https://github.com/JustAGhosT/PhoenixRooivalk/blob/main/RESPONSIBLE_USE.md)
 - [ACCESS.md](https://github.com/JustAGhosT/PhoenixRooivalk/blob/main/ACCESS.md)

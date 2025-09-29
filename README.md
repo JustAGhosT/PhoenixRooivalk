@@ -4,17 +4,25 @@ Modular Counter‑UAS System (restricted partner access)
 
 ## Monorepo overview
 
-This repository uses a Turborepo + pnpm monorepo to host multiple apps and shared packages.
+This repository uses a Turborepo + pnpm monorepo to host multiple apps and
+shared packages.
 
 Structure:
 
 - `apps/`
   - `docs/` — Docusaurus site (published under `/docs`).
-  - `marketing/` — Next.js 14 static marketing site.
-  - `api/` — Rust (axum) minimal API (`/health`).
-- `packages/` — Reserved for `ui`, `types`, and `sdk` (future).
-- `blockchain/` — Reserved scaffold for on‑chain programs, indexers, SDKs.
-- `infrastructure/` — Reserved scaffold for Terraform/K8s.
+  - `marketing/` — Next.js 14 static marketing site (exports to `out/`).
+  - `api/` — Rust (Axum) API server.
+  - `keeper/` — Rust blockchain keeper service.
+  - `evidence-cli/` — Rust CLI for evidence management.
+- `packages/`
+  - `types/` — Shared TypeScript type definitions.
+  - `ui/` — Shared React UI components and hooks.
+- `crates/`
+  - `evidence/` — Core evidence logging functionality.
+  - `anchor-solana/` — Solana blockchain anchoring.
+  - `anchor-etherlink/` — EtherLink blockchain anchoring.
+  - `address-validation/` — Blockchain address validation.
 
 Tooling:
 
@@ -41,8 +49,8 @@ pnpm -C apps/docs start
 # build all
 pnpm build
 
-# build single app
-pnpm --filter marketing build
+# build single app (static export)
+pnpm --filter marketing build  # outputs to apps/marketing/out/
 pnpm -C apps/docs build
 
 # run Rust API locally
@@ -55,22 +63,27 @@ Deployments are performed by GitHub Actions to two separate Netlify sites:
 
 - Docs: `.github/workflows/deploy-docs-site.yml` publishes `apps/docs/build`.
   - Secrets: `NETLIFY_AUTH_TOKEN`, `NETLIFY_DOCS_SITE_ID`.
-- Marketing: `.github/workflows/deploy-marketing-site.yml` publishes `apps/marketing/out`.
+- Marketing: `.github/workflows/deploy-marketing-site.yml` publishes
+  `apps/marketing/out`.
   - Secrets: `NETLIFY_AUTH_TOKEN`, `NETLIFY_MARKETING_SITE_ID`.
 
 Netlify’s “Deploys from Git” is disabled; Actions upload artifacts directly.
 
 ### Cross‑site links (env)
 
-- Docs site can link back to marketing via `MARKETING_URL` (build‑time env for `apps/docs`).
-- Marketing site can link to docs via `NEXT_PUBLIC_DOCS_URL` (public runtime env for `apps/marketing`).
+- Docs site can link back to marketing via `MARKETING_URL` (build‑time env for
+  `apps/docs`).
+- Marketing site can link to docs via `NEXT_PUBLIC_DOCS_URL` (public runtime env
+  for `apps/marketing`).
 
-Set these in each Netlify site’s Environment variables if you want absolute cross‑links.
+Set these in each Netlify site’s Environment variables if you want absolute
+cross‑links.
 
 ### Redirects
 
-- Marketing site publishes `public/_redirects` to forward common paths to the docs site.
-  Update the hostnames there to match your actual docs domain if it changes.
+- Marketing site publishes `public/_redirects` to forward common paths to the
+  docs site. Update the hostnames there to match your actual docs domain if it
+  changes.
 
 > Notice: This repository contains restricted content intended for approved
 > defense partners. Redistribution or public disclosure is prohibited. See
@@ -80,10 +93,10 @@ Quick access: [Glossary](./docs/glossary.md)
 
 ## Overview
 
-PhoenixRooivalk delivers a layered, modular counter‑UAS capability for
-contested EM environments. The public materials in this repository provide a
-high‑level overview and governance. Partner‑only details (specifications,
-simulations, integration guides) are shared upon approval.
+PhoenixRooivalk delivers a layered, modular counter‑UAS capability for contested
+EM environments. The public materials in this repository provide a high‑level
+overview and governance. Partner‑only details (specifications, simulations,
+integration guides) are shared upon approval.
 
 ## Mission
 
@@ -131,38 +144,22 @@ For detailed specifications and planning baselines, see [`index.md`](./index.md)
     - [Financial projections](./docs/financial_projections.md)
     - [Implementation plan](./docs/implementation_plan.md)
 
-If any link appears broken, verify filenames use underscores (not hyphens) in the `docs/` directory.
+If any link appears broken, verify filenames use underscores (not hyphens) in
+the `docs/` directory.
 
 ## Operational tasks
 
-### Outbox worker (process anchoring jobs)
+### Evidence management (CLI)
 
-- PowerShell helper: `./scripts/Invoke-OutboxWorker.ps1`
-- Example:
-
-```powershell
-# Optional anchoring env (Solana pilot)
-$env:EVIDENCE_ANCHOR_CHAIN = "solana"
-$env:SOLANA_RPC_URL = "https://api.mainnet-beta.solana.com"
-$env:SOLANA_SECRET_KEY = "file://C:/secrets/solana-keypair.json"
-
-./scripts/Invoke-OutboxWorker.ps1 -ProviderEndpoint "http://localhost" -IntervalSec 5 -BatchLimit 25 -MaxAttempts 10
-```
-
-Python entry (alternative):
-
-```powershell
-python -m backend.workers.outbox_worker
-```
-
-### Record evidence and enqueue anchoring (CLI)
-
-- Python CLI: `python -m backend.tools.record_evidence <event_type> <payload_or_@file.json> [--enqueue-anchor]`
+- Rust CLI: `cargo run --bin evidence-cli -- <command>`
 - Examples:
 
 ```powershell
-python -m backend.tools.record_evidence engagement_summary '{"missionId":"M-123","result":"success"}' --enqueue-anchor
-python -m backend.tools.record_evidence engagement_summary @C:\data\payload.json --enqueue-anchor
+# Record evidence
+cargo run --bin evidence-cli -- record engagement_summary '{"missionId":"M-123","result":"success"}'
+
+# Process anchoring jobs
+cargo run --bin keeper -- --interval 5 --batch-limit 25
 ```
 
 For runbook-style metrics capture, use the Operations Log template:
@@ -172,8 +169,8 @@ For runbook-style metrics capture, use the Operations Log template:
 ## Access request (partners)
 
 Approved defense partners may request access to extended documentation and
-artifacts. Please see [`ACCESS.md`](./ACCESS.md) for intake details and
-required information.
+artifacts. Please see [`ACCESS.md`](./ACCESS.md) for intake details and required
+information.
 
 ## Responsible use
 
@@ -189,11 +186,13 @@ materials at:
 
 ## Contributing
 
-Contributions are limited to approved collaborators. Review [`CONTRIBUTING.md`](./CONTRIBUTING.md) for guidelines.
+Contributions are limited to approved collaborators. Review
+[`CONTRIBUTING.md`](./CONTRIBUTING.md) for guidelines.
 
 ## License
 
-This project is licensed under a proprietary license. See [`LICENSE`](./LICENSE) for details.
+This project is licensed under a proprietary license. See [`LICENSE`](./LICENSE)
+for details.
 
 ## Contact
 

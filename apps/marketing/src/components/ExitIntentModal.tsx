@@ -1,0 +1,153 @@
+"use client";
+import React, { useState, useEffect, useRef } from 'react';
+import { Button } from './ui/button';
+import { downloadWhitepaper } from '@/utils/downloadWhitepaper';
+
+interface ExitIntentModalProps {
+  docsUrl?: string;
+}
+
+export const ExitIntentModal: React.FC<ExitIntentModalProps> = ({ docsUrl }) => {
+  const [isVisible, setIsVisible] = useState(false);
+  const [hasTriggered, setHasTriggered] = useState(false);
+  const beforeUnloadHandlerRef = useRef<((e: BeforeUnloadEvent) => void) | null>(null);
+
+  useEffect(() => {
+    const handleMouseLeave = (e: MouseEvent) => {
+      // Only trigger if mouse is leaving towards the top of the screen
+      // and hasn't been triggered before
+      if (e.clientY <= 0 && !hasTriggered) {
+        setIsVisible(true);
+        setHasTriggered(true);
+      }
+    };
+
+    const handleBeforeUnload = (e: BeforeUnloadEvent) => {
+      // Show modal when user is about to leave via navigation
+      if (!hasTriggered) {
+        setIsVisible(true);
+        setHasTriggered(true);
+
+        // Prevent default to show modal (will be cancelled if user stays)
+        e.preventDefault();
+        e.returnValue = '';
+      }
+    };
+    beforeUnloadHandlerRef.current = handleBeforeUnload;
+
+    document.addEventListener('mouseleave', handleMouseLeave);
+    window.addEventListener('beforeunload', handleBeforeUnload);
+
+    return () => {
+      document.removeEventListener('mouseleave', handleMouseLeave);
+      window.removeEventListener('beforeunload', handleBeforeUnload);
+      if (beforeUnloadHandlerRef.current === handleBeforeUnload) {
+        beforeUnloadHandlerRef.current = null;
+      }
+    };
+  }, [hasTriggered]);
+
+  const handleDownloadNow = () => {
+    if (docsUrl) {
+      downloadWhitepaper(docsUrl);
+    } else {
+      downloadWhitepaper();
+    }
+    setIsVisible(false);
+  };
+
+  const handleMaybeLater = () => {
+    setIsVisible(false);
+  };
+
+  const handleStayOnPage = () => {
+    setIsVisible(false);
+    // Remove the beforeunload listener to prevent modal on actual navigation
+    if (beforeUnloadHandlerRef.current) {
+      window.removeEventListener('beforeunload', beforeUnloadHandlerRef.current);
+      beforeUnloadHandlerRef.current = null;
+    }
+  };
+
+  if (!isVisible) return null;
+
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm">
+      <div className="relative bg-gray-900 border border-green-500/30 rounded-xl p-8 max-w-md mx-4 shadow-2xl">
+        {/* Close button */}
+        <button
+          onClick={handleStayOnPage}
+          className="absolute top-4 right-4 text-gray-400 hover:text-white text-2xl leading-none"
+        >
+          ×
+        </button>
+
+        {/* Icon */}
+        <div className="text-center mb-6">
+          <div className="text-6xl mb-4">📋</div>
+          <h2 className="text-2xl font-bold text-green-400 mb-2">
+            Wait! Get Our Technical Whitepaper
+          </h2>
+          <p className="text-gray-300 text-sm">
+            Download our comprehensive technical documentation before you leave.
+          </p>
+        </div>
+
+        {/* Whitepaper preview */}
+        <div className="bg-gray-800/50 rounded-lg p-4 mb-6 border border-green-500/20">
+          <h3 className="text-green-400 font-semibold text-sm mb-2">What's Inside:</h3>
+          <ul className="text-xs text-gray-300 space-y-1">
+            <li>• Complete system architecture</li>
+            <li>• Technical specifications</li>
+            <li>• Security implementation details</li>
+            <li>• Deployment configurations</li>
+            <li>• Performance benchmarks</li>
+          </ul>
+        </div>
+
+        {/* Action buttons */}
+        <div className="space-y-3">
+          <Button
+            onClick={handleDownloadNow}
+            className="w-full bg-green-600 hover:bg-green-700 text-white py-3 text-base font-semibold"
+          >
+            📥 Download Now
+          </Button>
+
+          <div className="grid grid-cols-2 gap-3">
+            <Button
+              onClick={handleMaybeLater}
+              variant="outline"
+              className="text-sm"
+            >
+              Maybe Later
+            </Button>
+            <Button
+              onClick={handleStayOnPage}
+              variant="outline"
+              className="text-sm"
+            >
+              Stay Here
+            </Button>
+          </div>
+        </div>
+
+        {/* Additional links */}
+        <div className="mt-6 pt-4 border-t border-gray-700 text-center">
+          <p className="text-xs text-gray-400 mb-2">Or explore more:</p>
+          <div className="flex justify-center gap-4 text-xs">
+            <a href="/technical" className="text-green-400 hover:text-green-300">
+              Technical Docs
+            </a>
+            <a href="/interactive-demo" className="text-green-400 hover:text-green-300">
+              Live Demo
+            </a>
+            <a href="#contact" className="text-green-400 hover:text-green-300">
+              Contact Us
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};

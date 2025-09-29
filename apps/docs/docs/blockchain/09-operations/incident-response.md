@@ -1,20 +1,26 @@
 # Incident Response Procedures
 
 ## Document Context
+
 - **Location**: `09-operations/incident-response.md`
 - **Related Documents**:
   - [Standard Procedures](./standard-procedures.md) - Daily operations
   - [Maintenance Guide](./maintenance-guide.md) - System maintenance
   - [Training Materials](./training-materials.md) - Response training
-  - [Operations Playbook](../03-implementation/phase-5-production/operations-playbook.md) - Detailed runbooks
+  - [Operations Playbook](../03-implementation/phase-5-production/operations-playbook.md) -
+    Detailed runbooks
 
 ---
 
 ## Executive Summary
 
-This document defines comprehensive incident response procedures for the Phoenix Rooivalk blockchain-based counter-drone system. Our incident response framework ensures rapid detection, containment, and resolution of system issues while maintaining complete audit trails and operational continuity.
+This document defines comprehensive incident response procedures for the Phoenix
+Rooivalk blockchain-based counter-drone system. Our incident response framework
+ensures rapid detection, containment, and resolution of system issues while
+maintaining complete audit trails and operational continuity.
 
 **Key Capabilities:**
+
 - Automated incident detection and classification
 - Rapid response protocols with < 5-minute MTTD
 - Blockchain-verified incident audit trails
@@ -39,7 +45,7 @@ severity_levels:
       - "Security breach confirmed"
       - "Data corruption detected"
       - "Blockchain consensus failure"
-  
+
   high:
     description: "Significant service degradation"
     response_time: "15_minutes"
@@ -50,7 +56,7 @@ severity_levels:
       - "Single node failure"
       - "Database connectivity issues"
       - "Authentication system problems"
-  
+
   medium:
     description: "Service impact with workaround available"
     response_time: "1_hour"
@@ -61,7 +67,7 @@ severity_levels:
       - "Non-critical feature failures"
       - "Monitoring alert anomalies"
       - "Capacity warnings"
-  
+
   low:
     description: "Minimal impact, informational"
     response_time: "next_business_day"
@@ -82,19 +88,19 @@ incident_categories:
     - "network_connectivity"
     - "storage_issues"
     - "power_systems"
-  
+
   application:
     - "service_failures"
     - "performance_degradation"
     - "configuration_errors"
     - "deployment_issues"
-  
+
   security:
     - "unauthorized_access"
     - "malware_detection"
     - "data_breach"
     - "policy_violations"
-  
+
   blockchain:
     - "consensus_failure"
     - "node_synchronization"
@@ -160,11 +166,11 @@ class IncidentDetectionEngine:
     """
     Automated incident detection and classification system
     """
-    
+
     def __init__(self):
         self.detection_rules = self.load_detection_rules()
         self.active_alerts = {}
-        
+
     def load_detection_rules(self) -> Dict[str, Dict]:
         """Load incident detection rules"""
         return {
@@ -177,7 +183,7 @@ class IncidentDetectionEngine:
                 "auto_response": True,
                 "escalation_time": 300
             },
-            
+
             "high_resource_usage": {
                 "conditions": [
                     {"metric": "cpu_usage", "operator": "greater_than", "value": 90},
@@ -187,7 +193,7 @@ class IncidentDetectionEngine:
                 "auto_response": True,
                 "escalation_time": 900
             },
-            
+
             "consensus_failure": {
                 "conditions": [
                     {"metric": "consensus_participation", "operator": "less_than", "value": 0.67},
@@ -198,43 +204,43 @@ class IncidentDetectionEngine:
                 "escalation_time": 180
             }
         }
-    
+
     async def process_alert(self, alert: Alert) -> Optional[str]:
         """Process incoming alert and determine if incident should be created"""
-        
+
         # Check against detection rules
         for rule_name, rule_config in self.detection_rules.items():
             if self.evaluate_conditions(alert, rule_config["conditions"]):
                 incident_id = await self.create_incident(alert, rule_name, rule_config)
                 return incident_id
-        
+
         return None
-    
+
     def evaluate_conditions(self, alert: Alert, conditions: List[Dict]) -> bool:
         """Evaluate if alert matches rule conditions"""
-        
+
         for condition in conditions:
             metric_value = alert.metrics.get(condition["metric"])
             if metric_value is None:
                 return False
-            
+
             operator = condition["operator"]
             threshold = condition["value"]
-            
+
             if operator == "greater_than" and metric_value <= threshold:
                 return False
             elif operator == "less_than" and metric_value >= threshold:
                 return False
             elif operator == "equals" and metric_value != threshold:
                 return False
-        
+
         return True
-    
+
     async def create_incident(self, alert: Alert, rule_name: str, rule_config: Dict) -> str:
         """Create incident from alert"""
-        
+
         incident_id = f"INC-{datetime.utcnow().strftime('%Y%m%d%H%M%S')}"
-        
+
         incident_data = {
             "incident_id": incident_id,
             "alert_id": alert.alert_id,
@@ -245,11 +251,11 @@ class IncidentDetectionEngine:
             "auto_response_enabled": rule_config.get("auto_response", False),
             "escalation_time": rule_config.get("escalation_time", 3600)
         }
-        
+
         # Store incident and trigger response
         await self.store_incident(incident_data)
         await self.trigger_response(incident_data)
-        
+
         return incident_id
 ```
 
@@ -269,7 +275,7 @@ response_teams:
       - "Stakeholder communication"
       - "Resource coordination"
       - "Decision making authority"
-  
+
   technical_response:
     role: "Technical investigation and resolution"
     members: ["senior_engineer", "blockchain_specialist", "security_analyst"]
@@ -278,7 +284,7 @@ response_teams:
       - "Technical remediation"
       - "System recovery"
       - "Impact assessment"
-  
+
   communications:
     role: "Internal and external communications"
     members: ["communications_lead", "documentation_specialist"]
@@ -287,7 +293,7 @@ response_teams:
       - "Stakeholder notifications"
       - "Documentation"
       - "Media coordination"
-  
+
   security:
     role: "Security-related incident handling"
     members: ["security_lead", "forensics_analyst", "compliance_officer"]
@@ -305,26 +311,46 @@ escalation_matrix:
   level_1:
     title: "Operations Team"
     response_time: "immediate"
-    capabilities: ["basic_troubleshooting", "system_restart", "alert_acknowledgment"]
-    escalation_criteria: ["unable_to_resolve_in_15_minutes", "requires_specialized_knowledge"]
-  
+    capabilities:
+      ["basic_troubleshooting", "system_restart", "alert_acknowledgment"]
+    escalation_criteria:
+      ["unable_to_resolve_in_15_minutes", "requires_specialized_knowledge"]
+
   level_2:
     title: "Technical Specialists"
     response_time: "15_minutes"
-    capabilities: ["advanced_troubleshooting", "configuration_changes", "performance_tuning"]
-    escalation_criteria: ["system_wide_impact", "security_implications", "data_integrity_concerns"]
-  
+    capabilities:
+      [
+        "advanced_troubleshooting",
+        "configuration_changes",
+        "performance_tuning",
+      ]
+    escalation_criteria:
+      ["system_wide_impact", "security_implications", "data_integrity_concerns"]
+
   level_3:
     title: "Senior Engineering"
     response_time: "30_minutes"
-    capabilities: ["architecture_changes", "emergency_deployments", "disaster_recovery"]
-    escalation_criteria: ["business_critical_impact", "regulatory_implications", "major_system_failure"]
-  
+    capabilities:
+      ["architecture_changes", "emergency_deployments", "disaster_recovery"]
+    escalation_criteria:
+      [
+        "business_critical_impact",
+        "regulatory_implications",
+        "major_system_failure",
+      ]
+
   level_4:
     title: "Executive Leadership"
     response_time: "1_hour"
-    capabilities: ["business_decisions", "external_communications", "resource_authorization"]
-    escalation_criteria: ["public_impact", "legal_implications", "strategic_decisions_required"]
+    capabilities:
+      [
+        "business_decisions",
+        "external_communications",
+        "resource_authorization",
+      ]
+    escalation_criteria:
+      ["public_impact", "legal_implications", "strategic_decisions_required"]
 ```
 
 ---
@@ -402,51 +428,51 @@ class SecurityIncidentResponse:
     """
     Automated security incident response system
     """
-    
+
     def __init__(self):
         self.forensic_tools = self.initialize_forensic_tools()
         self.isolation_policies = self.load_isolation_policies()
-    
+
     async def handle_security_incident(self, incident_data: Dict):
         """Handle security incident with automated response"""
-        
+
         incident_type = incident_data.get("security_type", "unknown")
         severity = incident_data.get("severity", "medium")
-        
+
         # Immediate containment for critical incidents
         if severity == "critical":
             await self.immediate_containment(incident_data)
-        
+
         # Evidence collection
         evidence_id = await self.collect_evidence(incident_data)
-        
+
         # Threat analysis
         threat_assessment = await self.analyze_threat(incident_data, evidence_id)
-        
+
         # Response execution
         await self.execute_response(incident_data, threat_assessment)
-        
+
         # Notification and escalation
         await self.notify_stakeholders(incident_data, threat_assessment)
-    
+
     async def immediate_containment(self, incident_data: Dict):
         """Immediate containment actions for critical security incidents"""
-        
+
         affected_systems = incident_data.get("affected_systems", [])
-        
+
         for system in affected_systems:
             # Isolate affected system
             await self.isolate_system(system)
-            
+
             # Capture memory dump
             await self.capture_memory_dump(system)
-            
+
             # Preserve logs
             await self.preserve_logs(system)
-    
+
     async def isolate_system(self, system_id: str):
         """Isolate system using network policies"""
-        
+
         isolation_policy = f"""
 apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
@@ -467,27 +493,27 @@ spec:
         matchLabels:
           name: security-tools
 """
-        
+
         # Apply isolation policy
         with open(f"/tmp/isolate-{system_id}.yaml", "w") as f:
             f.write(isolation_policy)
-        
+
         # Execute kubectl apply
         import subprocess
         subprocess.run(["kubectl", "apply", "-f", f"/tmp/isolate-{system_id}.yaml"])
-    
+
     async def collect_evidence(self, incident_data: Dict) -> str:
         """Collect forensic evidence"""
-        
+
         evidence_id = f"EVIDENCE-{datetime.utcnow().strftime('%Y%m%d%H%M%S')}"
-        
+
         evidence_collection = {
             "evidence_id": evidence_id,
             "incident_id": incident_data.get("incident_id"),
             "collection_timestamp": datetime.utcnow().isoformat(),
             "collected_artifacts": []
         }
-        
+
         # Collect system logs
         logs = await self.collect_system_logs(incident_data)
         evidence_collection["collected_artifacts"].append({
@@ -495,7 +521,7 @@ spec:
             "location": f"s3://security-evidence/{evidence_id}/logs/",
             "hash": self.calculate_hash(logs)
         })
-        
+
         # Collect network traffic
         network_data = await self.collect_network_traffic(incident_data)
         evidence_collection["collected_artifacts"].append({
@@ -503,10 +529,10 @@ spec:
             "location": f"s3://security-evidence/{evidence_id}/network/",
             "hash": self.calculate_hash(network_data)
         })
-        
+
         # Store evidence metadata on blockchain
         await self.store_evidence_blockchain(evidence_collection)
-        
+
         return evidence_id
 ```
 
@@ -522,13 +548,13 @@ notification_framework:
     channels: ["pager", "sms", "email"]
     recipients: ["incident_commander", "on_call_engineer"]
     triggers: ["critical_incidents", "security_breaches"]
-  
+
   status_updates:
     frequency: "every_30_minutes"
     channels: ["slack", "email", "dashboard"]
     recipients: ["stakeholders", "management", "affected_teams"]
     content: ["current_status", "actions_taken", "estimated_resolution"]
-  
+
   resolution_notifications:
     channels: ["email", "slack", "dashboard"]
     recipients: ["all_stakeholders"]
@@ -538,6 +564,7 @@ notification_framework:
 ### 5.2 Communication Templates
 
 **Critical Incident Notification:**
+
 ```
 SUBJECT: CRITICAL INCIDENT - [INCIDENT_ID] - [BRIEF_DESCRIPTION]
 
@@ -570,13 +597,13 @@ post_incident_review:
     initial_review: "within_24_hours"
     detailed_analysis: "within_72_hours"
     final_report: "within_1_week"
-  
+
   participants:
     - incident_commander
     - technical_responders
     - affected_stakeholders
     - management_representative
-  
+
   analysis_areas:
     - incident_timeline
     - root_cause_analysis
@@ -589,6 +616,7 @@ post_incident_review:
 ### 6.2 Continuous Improvement
 
 **Monthly Incident Metrics Review:**
+
 ```python
 incident_metrics = {
     "detection_metrics": {
@@ -596,13 +624,13 @@ incident_metrics = {
         "false_positive_rate": "< 5%",
         "automated_detection_rate": "> 80%"
     },
-    
+
     "response_metrics": {
         "mean_time_to_response": "< 15_minutes",
         "mean_time_to_resolution": "< 2_hours",
         "escalation_rate": "< 20%"
     },
-    
+
     "quality_metrics": {
         "customer_satisfaction": "> 4.0/5.0",
         "repeat_incident_rate": "< 10%",
@@ -615,9 +643,14 @@ incident_metrics = {
 
 ## Conclusion
 
-The incident response procedures ensure rapid, coordinated response to system issues while maintaining complete audit trails and continuous improvement. The combination of automated detection, structured response processes, and comprehensive post-incident analysis enables effective incident management for mission-critical counter-drone operations.
+The incident response procedures ensure rapid, coordinated response to system
+issues while maintaining complete audit trails and continuous improvement. The
+combination of automated detection, structured response processes, and
+comprehensive post-incident analysis enables effective incident management for
+mission-critical counter-drone operations.
 
 **Key Success Factors:**
+
 - Automated incident detection and classification
 - Clear escalation paths and response procedures
 - Comprehensive evidence collection and audit trails
@@ -627,10 +660,13 @@ The incident response procedures ensure rapid, coordinated response to system is
 ---
 
 **Related Documents:**
+
 - [Standard Procedures](./standard-procedures.md) - Daily operations
 - [Maintenance Guide](./maintenance-guide.md) - System maintenance
 - [Training Materials](./training-materials.md) - Response training
 
 ---
 
-*Context improved by Giga AI - Used main overview development guidelines and blockchain integration system information for accurate incident response procedures.*
+_Context improved by Giga AI - Used main overview development guidelines and
+blockchain integration system information for accurate incident response
+procedures._
