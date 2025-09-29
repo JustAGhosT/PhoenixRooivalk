@@ -35,10 +35,14 @@
    enhanced drone security, such as safeguarding high-profile individuals from
    surveillance and unauthorized drone activity in gated communities and
    high-security zones. This audience prioritizes privacy and rapid-response
-   solutions, making advanced drone countermeasures indispensable. Including
-   this segment broadens the market scope and aligns the system's features with
-   real-world privacy and security challenges, emphasizing modularity and
-   reliability.
+   solutions, making advanced drone countermeasures indispensable.
+
+   **⚠️ Legal/Compliance Notice**: Counter-UAS operations near residences are
+   highly regulated regarding airspace restrictions, communications interference,
+   and privacy laws. All residential deployments must comply with applicable
+   federal, state, and local regulations. Phoenix Rooivalk recommends routing
+   residential offerings through authorized entities only and obtaining proper
+   regulatory approvals before deployment.
 
 ---
 
@@ -55,15 +59,16 @@
   - **Basic Warranty**: 1-year coverage, providing essential repairs and
     replacements.
   - **Premium Warranty**: 3-year extended coverage with priority on-site
-    service, unmatched by competitors like DroneGuard Pro and AeroDefender.
+    service, providing industry-leading support and reliability.
   - **Support Channels**: 24/7 hotline, email support, and a comprehensive
     online resource library, ensuring rapid resolutions and seamless user
     experience.
 - **Early Adopter Testimonials**: Leverage feedback from initial users to create
   promotional material that demonstrates real-world impact.
 
-> **Example Comparison**: Competitor X offers only a basic warranty with email
-> support, which highlights our comprehensive and customer-centric approach.
+> **Our Commitment**: Phoenix Rooivalk provides comprehensive warranty coverage
+> with 24/7 technical support, online resource library, and dedicated customer
+> success management to ensure optimal system performance and user satisfaction.
 
 ---
 
@@ -171,10 +176,11 @@
    - **Contingency Plan**: Establish a crisis management team to respond to
      negative publicity promptly.
 
-2. **Case Studies from Similar Companies**:
-   - **Example**: Company X successfully mitigated a backlash by issuing a
-     public apology and providing free updates to affected customers, which
-     restored trust.
+2. **Industry Best Practices**:
+   - **Approach**: Proactive communication and transparency in addressing
+     customer concerns builds long-term trust and loyalty.
+   - **Strategy**: Swift response to issues with clear resolution timelines
+     and follow-up support demonstrates commitment to customer success.
    - **Lesson Learned**: Transparency and swift action can convert negative
      experiences into opportunities for showcasing accountability and customer
      care.

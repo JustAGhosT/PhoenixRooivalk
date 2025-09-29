@@ -5,7 +5,7 @@
 
 > **Purpose.** This whitepaper introduces the Phoenix Rooivalk Level-0
 > Autonomous Counter-UAS system, addressing the $26B market opportunity with
-> 100x performance improvement over existing solutions.
+> 10-40x performance improvement over existing solutions (120-195ms vs 2-5s baseline).
 >
 > Written for technical evaluators, program managers, and procurement
 > stakeholders.
@@ -36,7 +36,7 @@ detection-to-neutralization latency, vulnerability to RF-silent drones
 
 **Key Technical Differentiators:**
 
-- **100x Performance Improvement**: 120-195 ms p50 vs 2-5 seconds for current
+- **10-40x Performance Improvement**: 120-195 ms p50 vs 2-5 seconds for current
   systems
 - **RF-Silent Drone Detection**: Multi-sensor fusion handles autonomous threats
 - **Level-0 Autonomous Operation**: Complete edge operation without
@@ -293,9 +293,9 @@ external networks. Humans remain in control for anything risky or lethal.
 
 **Performance Metrics:**
 
-- True throughput: ~2,000 TPS (not 65,000 marketed)
+- **Solana**: Steady mainnet non-vote TPS ≈2,000 [1]; legacy finality ~12.8s vs Alpenglow target ~100–150ms [2]
+- **Hyperledger Fabric (SmartBFT)**: LAN throughput >2,000 TPS, WAN ≈1,000 TPS with large batches [3]
 - Block time: 400 milliseconds
-- Finality: 12.8 seconds
 - Transaction cost: ~$0.000025
 - **Threat detection latency**: < 500ms end-to-end
 - **System availability**: 99.99% with automatic failover
@@ -304,7 +304,7 @@ external networks. Humans remain in control for anything risky or lethal.
 
 **Technical Rationale:**
 
-- Blockchain protocols cannot achieve <2ms authentication latency required for
+- Blockchain protocols cannot achieve the 120-195ms p50 (≤250ms p95) end-to-end latency required for
   real-time drone operations
 - Solana offers exceptional performance but suffers from reliability issues
 - Level-0 autonomous base layer operates independently of blockchain
@@ -825,7 +825,7 @@ published pass/fail criteria.
 - $26B market by 2030 with significant growth potential
 - Phoenix Rooivalk positioned to capture market share through technical
   superiority
-- 100x performance improvement creates compelling value proposition
+- 10-40x performance improvement creates compelling value proposition
 
 ### 12.2 Cost Structure
 
@@ -1058,6 +1058,18 @@ Request technical demonstration or SBIR collaboration:
 
 - **Technical Demo**: [jurie@nexamesh.com](mailto:jurie@nexamesh.com)
 - **Partnership Inquiries**: [partnership@nexamesh.com](mailto:partnership@nexamesh.com)
+
+---
+
+## References
+
+[1] Solana Network Health Report (June 2025) - Steady mainnet non-vote TPS measurements
+
+[2] Alpenglow documentation - Finality improvements from ~12.8s to ~100–150ms target
+
+[3] Hyperledger Fabric RFC 006 and SmartBFT evaluation paper - LAN/WAN throughput benchmarks
+
+---
 
 **Document Version**: v3.0  
 **Last Updated**: 2025-01-28  
