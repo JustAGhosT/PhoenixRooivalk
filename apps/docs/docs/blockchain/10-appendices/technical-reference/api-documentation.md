@@ -1,19 +1,25 @@
 # API Documentation
 
 ## Document Context
+
 - **Location**: `10-appendices/technical-reference/api-documentation.md`
 - **Related Documents**:
   - [Smart Contracts](./smart-contracts.md) - Contract interfaces
   - [Code Examples](./code-examples.md) - Implementation examples
-  - [API Specifications](../../03-implementation/phase-4-system-integration/api-specifications.md) - Integration specs
+  - [API Specifications](../../03-implementation/phase-4-system-integration/api-specifications.md) -
+    Integration specs
 
 ---
 
 ## Executive Summary
 
-This document provides comprehensive API documentation for the Phoenix Rooivalk blockchain-based counter-drone system. Our REST API architecture enables secure, scalable integration with external systems while maintaining complete audit trails and operational transparency.
+This document provides comprehensive API documentation for the Phoenix Rooivalk
+blockchain-based counter-drone system. Our REST API architecture enables secure,
+scalable integration with external systems while maintaining complete audit
+trails and operational transparency.
 
 **API Capabilities:**
+
 - Evidence logging and retrieval
 - Real-time system monitoring
 - Threat detection and response
@@ -37,12 +43,12 @@ authentication:
     header: "Authorization: Bearer <token>"
     expiry: "24_hours"
     refresh: "supported"
-  
+
   secondary:
     method: "mTLS Client Certificates"
     validation: "certificate_chain"
     revocation: "OCSP_checking"
-  
+
   api_keys:
     method: "X-API-Key header"
     usage: "service_to_service"
@@ -89,6 +95,7 @@ Obtain JWT access token for API authentication.
 ```
 
 **Example Request:**
+
 ```bash
 curl -X POST https://api.phoenixrooivalk.mil/v2/auth/token \
   -H "Content-Type: application/json" \
@@ -153,6 +160,7 @@ Submit evidence to blockchain for immutable logging.
 ```
 
 **Example Request:**
+
 ```bash
 curl -X POST https://api.phoenixrooivalk.mil/v2/evidence/log \
   -H "Authorization: Bearer eyJhbGciOiJSUzI1NiIs..." \
@@ -614,7 +622,7 @@ websocket_events:
   connection:
     url: "wss://api.phoenixrooivalk.mil/v2/ws/events"
     authentication: "Bearer token in Sec-WebSocket-Protocol header"
-    
+
   event_types:
     detection:
       description: "New drone detection events"
@@ -624,7 +632,7 @@ websocket_events:
         sensor_id: "string"
         timestamp: "ISO8601"
         target_info: "object"
-        
+
     response:
       description: "Response action events"
       payload:
@@ -632,7 +640,7 @@ websocket_events:
         action_id: "uuid"
         status: "string"
         timestamp: "ISO8601"
-        
+
     alert:
       description: "System alerts and warnings"
       payload:
@@ -641,7 +649,7 @@ websocket_events:
         component: "string"
         message: "string"
         timestamp: "ISO8601"
-        
+
     system_status:
       description: "System status changes"
       payload:
@@ -653,26 +661,29 @@ websocket_events:
 ```
 
 **Example WebSocket Client:**
-```javascript
-const ws = new WebSocket('wss://api.phoenixrooivalk.mil/v2/ws/events', ['bearer-token-' + accessToken]);
 
-ws.onmessage = function(event) {
-    const data = JSON.parse(event.data);
-    
-    switch(data.event_type) {
-        case 'detection':
-            handleDetectionEvent(data);
-            break;
-        case 'response':
-            handleResponseEvent(data);
-            break;
-        case 'alert':
-            handleAlertEvent(data);
-            break;
-        case 'system_status':
-            handleStatusEvent(data);
-            break;
-    }
+```javascript
+const ws = new WebSocket("wss://api.phoenixrooivalk.mil/v2/ws/events", [
+  "bearer-token-" + accessToken,
+]);
+
+ws.onmessage = function (event) {
+  const data = JSON.parse(event.data);
+
+  switch (data.event_type) {
+    case "detection":
+      handleDetectionEvent(data);
+      break;
+    case "response":
+      handleResponseEvent(data);
+      break;
+    case "alert":
+      handleAlertEvent(data);
+      break;
+    case "system_status":
+      handleStatusEvent(data);
+      break;
+  }
 };
 ```
 
@@ -725,19 +736,19 @@ rate_limits:
   authentication:
     endpoint: "/auth/token"
     limit: "5 requests per minute per IP"
-    
+
   evidence_logging:
     endpoint: "/evidence/log"
     limit: "100 requests per minute per API key"
-    
+
   detection_reporting:
     endpoint: "/detection/report"
     limit: "1000 requests per minute per API key"
-    
+
   general_api:
     limit: "1000 requests per minute per API key"
     burst: "50 requests per second"
-    
+
   websocket:
     connections: "10 concurrent connections per API key"
 ```
@@ -756,9 +767,13 @@ response_headers:
 
 ## Conclusion
 
-The Phoenix Rooivalk API provides comprehensive, secure access to all system capabilities while maintaining performance, security, and auditability requirements. The RESTful design with WebSocket support enables both synchronous operations and real-time monitoring integration.
+The Phoenix Rooivalk API provides comprehensive, secure access to all system
+capabilities while maintaining performance, security, and auditability
+requirements. The RESTful design with WebSocket support enables both synchronous
+operations and real-time monitoring integration.
 
 **API Key Features:**
+
 - Comprehensive authentication and authorization
 - Complete evidence management with blockchain integration
 - Real-time detection and response capabilities
@@ -769,10 +784,13 @@ The Phoenix Rooivalk API provides comprehensive, secure access to all system cap
 ---
 
 **Related Documents:**
+
 - [Smart Contracts](./smart-contracts.md) - Contract interfaces
 - [Code Examples](./code-examples.md) - Implementation examples
-- [API Specifications](../../03-implementation/phase-4-system-integration/api-specifications.md) - Integration specs
+- [API Specifications](../../03-implementation/phase-4-system-integration/api-specifications.md) -
+  Integration specs
 
 ---
 
-*Context improved by Giga AI - Used main overview development guidelines and blockchain integration system information for accurate API documentation.*
+_Context improved by Giga AI - Used main overview development guidelines and
+blockchain integration system information for accurate API documentation._

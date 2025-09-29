@@ -19,8 +19,8 @@ too-many-lines-threshold = 100
 # Trivial copy pass by reference threshold
 trivial-copy-size-limit = 64
 
-# Single char lifetime names threshold
-single-char-lifetime-names-threshold = 4
+# Single char binding names threshold (corrected field name)
+single-char-binding-names-threshold = 4
 
 # Literal representation threshold
 literal-representation-threshold = 10

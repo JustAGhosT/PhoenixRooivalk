@@ -1,6 +1,6 @@
-'use client';
+"use client";
 
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useState } from "react";
 
 interface UseIntersectionObserverOptions {
   threshold?: number;
@@ -9,21 +9,35 @@ interface UseIntersectionObserverOptions {
 }
 
 export function useIntersectionObserver(
-  options: UseIntersectionObserverOptions = {}
+  options: UseIntersectionObserverOptions = {},
 ) {
-  const { threshold = 0.1, rootMargin = '0px', triggerOnce = true } = options;
+  const { threshold = 0.1, rootMargin = "0px", triggerOnce = true } = options;
   const [isIntersecting, setIsIntersecting] = useState(false);
   const [hasTriggered, setHasTriggered] = useState(false);
-  const targetRef = useRef<HTMLElement>(null);
+  const [element, setElement] = useState<HTMLElement | null>(null);
+  const targetRef = useCallback((node: HTMLElement | null) => {
+    setElement(node);
+  }, []);
+
+  // Reset when a new element is attached
+  useEffect(() => {
+    if (!element) return;
+    setHasTriggered(false);
+    setIsIntersecting(false);
+  }, [element]);
 
   useEffect(() => {
-    const element = targetRef.current;
     if (!element) return;
+    // Guard: environments without IntersectionObserver (e.g., jsdom) or SSR
+    if (typeof window === "undefined" || !("IntersectionObserver" in window)) {
+      setIsIntersecting(true);
+      return;
+    }
 
     const observer = new IntersectionObserver(
       ([entry]) => {
         const isVisible = entry.isIntersecting;
-        
+
         if (isVisible && (!triggerOnce || !hasTriggered)) {
           setIsIntersecting(true);
           if (triggerOnce) {
@@ -33,15 +47,15 @@ export function useIntersectionObserver(
           setIsIntersecting(isVisible);
         }
       },
-      { threshold, rootMargin }
+      { threshold, rootMargin },
     );
 
     observer.observe(element);
 
     return () => {
-      observer.unobserve(element);
+      observer.disconnect();
     };
-  }, [threshold, rootMargin, triggerOnce, hasTriggered]);
+  }, [element, threshold, rootMargin, triggerOnce, hasTriggered]);
 
   return { ref: targetRef, isIntersecting };
 }

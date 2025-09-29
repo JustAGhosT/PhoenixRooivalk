@@ -20,6 +20,7 @@
     { "path": "./apps/marketing" },
     { "path": "./apps/docs" },
     { "path": "./packages/types" },
-    { "path": "./packages/ui" }
+    { "path": "./packages/ui" },
+    { "path": "./packages/utils" }
   ]
 }

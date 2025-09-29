@@ -1,4 +1,5 @@
 use async_trait::async_trait;
+use chrono::{TimeZone, Utc};
 use phoenix_evidence::anchor::{AnchorError, AnchorProvider};
 use phoenix_evidence::model::{ChainTxRef, EvidenceDigest, EvidenceRecord, DigestAlgo};
 use sqlx::{Pool, Row, Sqlite};
@@ -43,10 +44,7 @@ pub async fn run_job_loop<J: JobProvider + JobProviderExt, A: AnchorProvider>(
             Ok(Some(job)) => {
                 let ev = EvidenceRecord {
                     id: job.id.clone(),
-                    created_at: chrono::Utc
-                        .timestamp_millis_opt(job.created_ms)
-                        .single()
-                        .unwrap_or_else(chrono::Utc::now),
+                    created_at: Utc::now(),
                     digest: EvidenceDigest { algo: DigestAlgo::Sha256, hex: job.payload_sha256.clone() },
                     payload_mime: None,
                     metadata: serde_json::json!({}),
@@ -88,7 +86,6 @@ pub async fn run_confirmation_loop<A: AnchorProvider>(
                                     tracing::info!(
                                         tx_id = %updated_tx.tx_id,
                                         network = %updated_tx.network,
-                                        "Transaction confirmed"
                                     );
                                 }
                             }
@@ -122,7 +119,7 @@ async fn fetch_unconfirmed_tx_refs(pool: &Pool<Sqlite>) -> Result<Vec<ChainTxRef
     for row in rows {
         let timestamp_opt: Option<i64> = row.get("timestamp");
         let timestamp = timestamp_opt.and_then(|ts| {
-            chrono::Utc.timestamp_opt(ts, 0).single()
+            Utc.timestamp_opt(ts, 0).single()
         });
 
         tx_refs.push(ChainTxRef {
@@ -321,14 +318,13 @@ impl JobProviderExt for SqliteJobProvider {
             let attempts: i64 = rec.get(0);
             let base: i64 = 5000; // 5s
             let cap: i64 = 300000; // 5m
-            let exp = attempts.max(0).min(20);
-            let backoff = (base * (1i64 << exp)).min(cap);
+            let exp: u32 = attempts.clamp(0, 20) as u32;
+            let backoff = (base.saturating_mul(1i64.saturating_shl(exp))).min(cap);
             let next = now_ms + backoff;
             sqlx::query(
                 "UPDATE outbox_jobs SET status='queued', last_error=?1, updated_ms=?2, next_attempt_ms=?3 WHERE id=?4",
             )
             .bind(reason)
-            .bind(now_ms)
             .bind(next)
             .bind(id)
             .execute(&self.pool)

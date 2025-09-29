@@ -1,7 +1,8 @@
 # Blockchain Integration for PhoenixRooivalk
 
-> Public-safe overview of how a distributed ledger can harden PhoenixRooivalk operations. This
-> document outlines optional patterns; it is not a commitment to deploy.
+> Public-safe overview of how a distributed ledger can harden PhoenixRooivalk
+> operations. This document outlines optional patterns; it is not a commitment
+> to deploy.
 
 ## Why blockchain here
 
@@ -13,49 +14,62 @@
 
 ### 1. Enhanced cybersecurity and data integrity
 
-- Append-only evidence hashing of mission events (flight logs, summaries of sensor fusion,
-  and operator actions) using SHA-256 and timestamping.
-- Optional on-chain anchoring (posting only the content hash + metadata) to detect tampering
-  without disclosing sensitive content.
-- Lightweight, deferred submission via an outbox to survive link loss or rate limits.
+- Append-only evidence hashing of mission events (flight logs, summaries of
+  sensor fusion, and operator actions) using SHA-256 and timestamping.
+- Optional on-chain anchoring (posting only the content hash + metadata) to
+  detect tampering without disclosing sensitive content.
+- Lightweight, deferred submission via an outbox to survive link loss or rate
+  limits.
 
-See also: [Glossary → Messaging and observability](./glossary.md#messaging-and-observability).
+See also:
+[Glossary → Messaging and observability](./glossary.md#messaging-and-observability).
 
 ### 2. Secure swarm coordination and decentralized command
 
-- Use signed messages and quorum-based tasking; optional on-chain dispute resolution anchors
-  for high-value phases.
-- Avoid central single points of failure; combine with fiber or LPI/LPD RF links.
+- Use signed messages and quorum-based tasking; optional on-chain dispute
+  resolution anchors for high-value phases.
+- Avoid central single points of failure; combine with fiber or LPI/LPD RF
+  links.
 
-See also: [Glossary → Communications and EW](./glossary.md#communications-and-ew).
+See also:
+[Glossary → Communications and EW](./glossary.md#communications-and-ew).
 
 ### 3. Authentication, tracking, and supply chain
 
-- Per-UAS cryptographic identities; component provenance records (parts, firmware lineage).
-- Smart-contract mediated access control (e.g., temporary keys, time-locked mission windows).
+- Per-UAS cryptographic identities; component provenance records (parts,
+  firmware lineage).
+- Smart-contract mediated access control (e.g., temporary keys, time-locked
+  mission windows).
 
-See also: [Glossary → Operations and concepts](./glossary.md#operations-and-concepts).
+See also:
+[Glossary → Operations and concepts](./glossary.md#operations-and-concepts).
 
 ### 4. Immutable logging and compliance assurance
 
-- Tamper-evident logs enabling post-mission audits and ROE/SoP conformance checks.
+- Tamper-evident logs enabling post-mission audits and ROE/SoP conformance
+  checks.
 - Anchors support legal discovery while keeping raw data off-chain.
 
 ### 5. Integration with emerging technologies
 
-- AI + blockchain for autonomous marketplace behaviors (energy/data exchange between nodes).
-- Micropayments or credits only where policy permits; otherwise use signed IOUs off-chain.
+- AI + blockchain for autonomous marketplace behaviors (energy/data exchange
+  between nodes).
+- Micropayments or credits only where policy permits; otherwise use signed IOUs
+  off-chain.
 
 ## Minimal implementation pattern (recommended)
 
 - Append-only JSONL evidence log in `backend/services/evidence_log.py`:
-  - Canonicalize event payload, compute SHA-256, store `{ts, type, sha256, payload}`
+  - Canonicalize event payload, compute SHA-256, store
+    `{ts, type, sha256, payload}`
   - Return the hex digest for downstream use.
 - Extend `BlockchainHandler` with `record_event_evidence(...)`:
   - Records event to evidence log and returns the content hash.
-  - Optional `enqueue_anchor=True` adds an outbox job to anchor the hash on-chain later.
+  - Optional `enqueue_anchor=True` adds an outbox job to anchor the hash
+    on-chain later.
 
-This keeps sensitive data local while still enabling tamper detection via hashes.
+This keeps sensitive data local while still enabling tamper detection via
+hashes.
 
 ## Blockchain layers (L0–L3)
 
@@ -107,67 +121,76 @@ flowchart TD
 
 ### Comparative summary (examples are illustrative)
 
-| Layer | Definition | Primary uses | Example in drone ops |
-| --- | --- | --- | --- |
-| L0 | Foundational infra for interconnecting blockchains | Cross-chain interoperability; shared resources | Integrate data across allied drone networks |
-| L1 | Base protocol for consensus and settlement | Core security and decentralization | Tamper-proof logging of flight paths, sensor data |
-| L2 | Scaling solutions built on L1 | High-throughput, low-cost operations | Real-time swarm command distribution |
-| L3 | App-specific and interop protocols | Custom dApps and multi-chain integrations | Cross-system compliance verification |
+| Layer | Definition                                         | Primary uses                                   | Example in drone ops                              |
+| ----- | -------------------------------------------------- | ---------------------------------------------- | ------------------------------------------------- |
+| L0    | Foundational infra for interconnecting blockchains | Cross-chain interoperability; shared resources | Integrate data across allied drone networks       |
+| L1    | Base protocol for consensus and settlement         | Core security and decentralization             | Tamper-proof logging of flight paths, sensor data |
+| L2    | Scaling solutions built on L1                      | High-throughput, low-cost operations           | Real-time swarm command distribution              |
+| L3    | App-specific and interop protocols                 | Custom dApps and multi-chain integrations      | Cross-system compliance verification              |
 
-See also: [Glossary → Operations and concepts](./glossary.md#operations-and-concepts).
+See also:
+[Glossary → Operations and concepts](./glossary.md#operations-and-concepts).
 
 ## Evaluation of Layer 0 (L0) blockchains and adapters
 
 > L0s provide cross-chain interoperability and customizable networks. Useful for
-> allied operations and subnet-style isolated swarms. Consider trade-offs vs L1/L2.
+> allied operations and subnet-style isolated swarms. Consider trade-offs vs
+> L1/L2.
 
 ### Role of L0 in drone operations
 
-- **Cross-chain coordination**: Combine secure logging (L1) with low-latency control (L1/L2) across parties.
-- **Customizable subnets**: Mission-specific chains with tailored latency and policy.
-- **Resilient infra**: Reduced single points of failure; decentralization across the base layer.
-- **Scalable interop**: XCM/IBC-style adapters for high-throughput data exchange across allied networks.
+- **Cross-chain coordination**: Combine secure logging (L1) with low-latency
+  control (L1/L2) across parties.
+- **Customizable subnets**: Mission-specific chains with tailored latency and
+  policy.
+- **Resilient infra**: Reduced single points of failure; decentralization across
+  the base layer.
+- **Scalable interop**: XCM/IBC-style adapters for high-throughput data exchange
+  across allied networks.
 
 Challenges:
 
 - Cross-chain messaging may add latency.
-- Bridges/adapters increase operational complexity and require strong security controls.
+- Bridges/adapters increase operational complexity and require strong security
+  controls.
 
 ### Suitability matrix (H/M/L)
 
-| Chain / Adapter | Security | Scalability | Latency | Interoperability | Resilience | Efficiency |
-| --- | --- | --- | --- | --- | --- | --- |
-| Polkadot (XCM) | H | H | M | H | H | M |
-| Cosmos (IBC) | M | M | M | H | M | M |
-| Avalanche (Subnets) | H | H | H | M | H | H |
+| Chain / Adapter     | Security | Scalability | Latency | Interoperability | Resilience | Efficiency |
+| ------------------- | -------- | ----------- | ------- | ---------------- | ---------- | ---------- |
+| Polkadot (XCM)      | H        | H           | M       | H                | H          | M          |
+| Cosmos (IBC)        | M        | M           | M       | H                | M          | M          |
+| Avalanche (Subnets) | H        | H           | H       | M                | H          | H          |
 
 Notes:
 
 - Polkadot: strong shared security and interop; XCM adds moderate latency—
-    suited for audit trails and cross-force data.
-- Cosmos: excellent interop; security/resilience depend on connected zones—
-    fit for lower-threat or regional ops.
-- Avalanche: subnets are high-perf and configurable—fit for isolated,
-    real-time swarm networks.
+  suited for audit trails and cross-force data.
+- Cosmos: excellent interop; security/resilience depend on connected zones— fit
+  for lower-threat or regional ops.
+- Avalanche: subnets are high-perf and configurable—fit for isolated, real-time
+  swarm networks.
 
 ### Comparison to L1/L2/L3
 
-Related ADR appendix: see [ADR 0004 — Layered strategy (Appendix)](./adr/0004-layered-strategy-l1-l2-l3.md).
+Related ADR appendix: see
+[ADR 0004 — Layered strategy (Appendix)](./adr/0004-layered-strategy-l1-l2-l3.md).
 
 #### L1 suitability matrix
 
 L1 adapters include native bridges or basic interop to L2/L3. Best for strong
 security and archival integrity; scalability can be limiting for swarms.
 
-| Chain / Adapter example | Security | Scalability | Latency | Interoperability | Resilience | Efficiency |
-| --- | --- | --- | --- | --- | --- | --- |
-| Ethereum (with Wormhole bridge) | H | M | M | M | H | M |
-| Solana (with native cross-chain tools) | H | H | H | M | M | H |
-| Bitcoin (with Lightning adapters) | H | L | L | L | H | L |
+| Chain / Adapter example                | Security | Scalability | Latency | Interoperability | Resilience | Efficiency |
+| -------------------------------------- | -------- | ----------- | ------- | ---------------- | ---------- | ---------- |
+| Ethereum (with Wormhole bridge)        | H        | M           | M       | M                | H          | M          |
+| Solana (with native cross-chain tools) | H        | H           | H       | M                | M          | H          |
+| Bitcoin (with Lightning adapters)      | H        | L           | L       | L                | H          | L          |
 
 Notes:
-- Ethereum: robust security; moderate scalability; suitable for verifiable
-  logs. Bridges enable interop but introduce bridge risk.
+
+- Ethereum: robust security; moderate scalability; suitable for verifiable logs.
+  Bridges enable interop but introduce bridge risk.
 - Solana: ideal for low-latency anchoring/commands; resilience should be
   monitored under load or targeted conditions.
 - Bitcoin: unmatched immutability for archival audit trails; not suited for
@@ -179,13 +202,14 @@ L2 adapters (rollup bridges, channels) offload execution and settle to L1.
 Excellent fit for scalable, low-latency swarm coordination while inheriting L1
 security.
 
-| Chain / Adapter example | Security | Scalability | Latency | Interoperability | Resilience | Efficiency |
-| --- | --- | --- | --- | --- | --- | --- |
-| Arbitrum (with Orbit chains) | H | H | H | H | M | H |
-| Polygon (with AggLayer bridges) | M | H | H | H | M | H |
-| Optimism (with Superchain adapters) | H | H | M | H | H | M |
+| Chain / Adapter example             | Security | Scalability | Latency | Interoperability | Resilience | Efficiency |
+| ----------------------------------- | -------- | ----------- | ------- | ---------------- | ---------- | ---------- |
+| Arbitrum (with Orbit chains)        | H        | H           | H       | H                | M          | H          |
+| Polygon (with AggLayer bridges)     | M        | H           | H       | H                | M          | H          |
+| Optimism (with Superchain adapters) | H        | H           | M       | H                | H          | M          |
 
 Notes:
+
 - Arbitrum: high scalability; Orbit helps L3 app integration; strong candidate
   for high-volume reconnaissance and coordination.
 - Polygon: cost-effective interop; may require L1 anchoring for elevated
@@ -198,13 +222,14 @@ Notes:
 L3 adapters interconnect multiple L1/L2 networks for cross-chain apps. Useful
 for multi-network sharing, with dependencies on lower layers.
 
-| Protocol / Adapter example | Security | Scalability | Latency | Interoperability | Resilience | Efficiency |
-| --- | --- | --- | --- | --- | --- | --- |
-| IBC protocol (Cosmos-based) | M | M | M | H | M | M |
-| Quant (Overledger bridges) | H | M | M | H | H | M |
-| Icon (with BTP adapters) | M | H | H | H | M | H |
+| Protocol / Adapter example  | Security | Scalability | Latency | Interoperability | Resilience | Efficiency |
+| --------------------------- | -------- | ----------- | ------- | ---------------- | ---------- | ---------- |
+| IBC protocol (Cosmos-based) | M        | M           | M       | H                | M          | M          |
+| Quant (Overledger bridges)  | H        | M           | M       | H                | H          | M          |
+| Icon (with BTP adapters)    | M        | H           | H       | H                | M          | H          |
 
 Notes:
+
 - IBC: strong interop across zones; overall guarantees depend on connected
   chains and relayers.
 - Quant: emphasizes secure cross-chain overlays; suitable for hybrid networks
@@ -214,33 +239,41 @@ Notes:
 
 ### Recommendations
 
-- Prioritize L0 (Avalanche subnets or Polkadot) for multi-protocol or multinational ops where interop is first-class.
-- Use L2 for single-chain, high-speed swarm command; periodically anchor to L1 for integrity.
+- Prioritize L0 (Avalanche subnets or Polkadot) for multi-protocol or
+  multinational ops where interop is first-class.
+- Use L2 for single-chain, high-speed swarm command; periodically anchor to L1
+  for integrity.
 - Mitigate bridge risks via multi-sig, audits, and minimized trust assumptions.
 
 ## Solana on-chain anchoring (pilot)
 
-> Goal: fast, low-cost anchoring of evidence digests using Solana's Memo program.
+> Goal: fast, low-cost anchoring of evidence digests using Solana's Memo
+> program.
 
 ### How it works
 
-- The digest returned by `evidence_log.record_event(...)` is submitted to Solana in a
-  transaction that includes a Memo instruction carrying the hex digest as memo data.
+- The digest returned by `evidence_log.record_event(...)` is submitted to Solana
+  in a transaction that includes a Memo instruction carrying the hex digest as
+  memo data.
 - No raw mission data is placed on-chain—only the digest (tamper-evidence).
 
 ### Configuration
 
 - Set environment variables (runtime):
   - `EVIDENCE_ANCHOR_CHAIN=solana`
-  - `SOLANA_RPC_URL` (e.g., `https://api.mainnet-beta.solana.com` or a private RPC)
-  - `SOLANA_SECRET_KEY` (JSON array or `file://` path to a JSON array output by `solana-keygen`)
-  - Optional: `SOLANA_COMMITMENT` = `processed|confirmed|finalized` (default: `confirmed`)
+  - `SOLANA_RPC_URL` (e.g., `https://api.mainnet-beta.solana.com` or a private
+    RPC)
+  - `SOLANA_SECRET_KEY` (JSON array or `file://` path to a JSON array output by
+    `solana-keygen`)
+  - Optional: `SOLANA_COMMITMENT` = `processed|confirmed|finalized` (default:
+    `confirmed`)
 
 ### Code paths
 
 - Anchor helper: `backend/services/solana_anchor.py`
-- Outbox integration: `backend/services/blockchain_handler.py` in `process_outbox_batch()`
-  handles `op_type == "anchor_digest"` by calling the Solana anchor if `EVIDENCE_ANCHOR_CHAIN=solana`.
+- Outbox integration: `backend/services/blockchain_handler.py` in
+  `process_outbox_batch()` handles `op_type == "anchor_digest"` by calling the
+  Solana anchor if `EVIDENCE_ANCHOR_CHAIN=solana`.
 
 ### Usage
 
@@ -263,22 +296,28 @@ handler.process_outbox_batch()
 ### Dependencies (Solana only)
 
 - Install when anchoring is enabled: `pip install solana solders`
-- If missing, the code logs/import-errors gracefully and treats anchoring as a permanent no-op until installed.
+- If missing, the code logs/import-errors gracefully and treats anchoring as a
+  permanent no-op until installed.
 
 ## Networks and address formats (current internal support)
 
-- EVM family (e.g., Ethereum/Etherlink) — see `backend/api/blockchain/networks.py` for
-  address validation guidance and examples.
+- EVM family (e.g., Ethereum/Etherlink) — see
+  `backend/api/blockchain/networks.py` for address validation guidance and
+  examples.
 - Additional networks can be added behind the same high-level handler.
 
 ## Operational cautions
 
-- Do not place classified raw data on public chains; anchor only hashes + minimal metadata.
-- Respect export controls and rules of engagement. Use private/permissioned ledgers if required.
-- Account for device resource limits; use outbox + batch anchoring to control costs and latency.
+- Do not place classified raw data on public chains; anchor only hashes +
+  minimal metadata.
+- Respect export controls and rules of engagement. Use private/permissioned
+  ledgers if required.
+- Account for device resource limits; use outbox + batch anchoring to control
+  costs and latency.
 
 ## Next steps
 
-- Pilot: enable evidence hashing in dev/test; evaluate anchoring cadence and cost.
+- Pilot: enable evidence hashing in dev/test; evaluate anchoring cadence and
+  cost.
 - Expand address/network metadata as required by deployments.
 - Add redaction policies to canonicalization steps if needed.

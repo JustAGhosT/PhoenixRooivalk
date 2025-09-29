@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build && next export",
-    "start": "next start",
+    "start": "pnpm dlx serve out -l ${PORT:-3000}",
     "lint": "next lint",
     "typecheck": "tsc --noEmit",
     "format": "prettier --write .",

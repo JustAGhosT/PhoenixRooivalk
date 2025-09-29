@@ -1,55 +1,51 @@
-import React from 'react';
-import { ThreatSimulator } from '../ThreatSimulator';
-import { Button } from '../ui/Button';
+import React from "react";
+import { ThreatSimulator } from "../ThreatSimulator";
+import { Button } from '../ui/button';
 
 export const HeroSection: React.FC = () => {
   return (
-    <section className="min-h-[90vh] flex items-center px-[5%] py-12 relative" id="hero">
-      <div className="mx-auto max-w-[1400px] grid md:grid-cols-2 gap-16 items-center">
+    <section className="flex items-center px-6 md:px-[5%] lg:px-8 py-16 relative min-h-screen bg-gradient-to-br from-gray-900 to-black" id="hero">
+      <div className="mx-auto max-w-[1400px] grid lg:grid-cols-2 gap-16 items-center">
+        {/* Left: Clean messaging */}
         <div>
-          <div className="mb-4">
-            <span className="inline-block bg-gradient-to-r from-[var(--primary)] to-[var(--secondary)] text-[var(--dark)] px-3 py-1 rounded-full text-sm font-bold">
-              AI + Blockchain Revolution
+          <div className="mb-6">
+            <span className="inline-block bg-gradient-to-r from-[var(--primary)] to-[var(--secondary)] text-[var(--dark)] px-4 py-2 rounded-full text-sm font-bold">
+              In Development • Prototype Phase
             </span>
           </div>
           <h1 className="text-4xl md:text-6xl font-extrabold leading-tight bg-clip-text text-transparent bg-gradient-to-br from-white to-[var(--primary)] animate-fadeInUp">
-            Revolutionary AI + Blockchain Defense
+            Drone Defense That Works When Radios Don't
           </h1>
-          <div className="mt-2 text-xl text-[var(--secondary)] font-bold animate-fadeInUp [animation-delay:100ms]">
-            Phoenix Rooivalk Counter-UAS Defense System
-          </div>
-          <p className="mt-4 text-lg text-[var(--gray)] animate-fadeInUp [animation-delay:200ms]">
-            The world's first AI-blockchain counter-drone system. 99.7% AI accuracy with 99.3% data integrity protection. Federated learning, explainable AI, and autonomous swarm coordination. Ready now, 18 months ahead of the 2027 deadline.
+          <p className="mt-6 text-xl text-[var(--gray)] animate-fadeInUp [animation-delay:200ms]">
+            Phoenix Rooivalk detects and stops hostile drones in 120-195ms even when all communications are jammed. 
+            Makes "soft-kill first" decisions at the edge without waiting for the cloud or command center.
           </p>
-          <div className="mt-8 space-y-4 animate-fadeInUp [animation-delay:400ms]">
-            <div className="flex items-center gap-4 text-sm">
-              <span className="text-[var(--primary)]">✓</span>
-              <span>99.7% AI accuracy eliminates false positives (no more "puddles mistaken for tanks")</span>
-            </div>
-            <div className="flex items-center gap-4 text-sm">
-              <span className="text-[var(--primary)]">✓</span>
-              <span>99.3% data integrity with blockchain-verified audit trails</span>
-            </div>
-            <div className="flex items-center gap-4 text-sm">
-              <span className="text-[var(--primary)]">✓</span>
-              <span>Federated learning with blockchain consensus for distributed AI training</span>
-            </div>
-            <div className="flex items-center gap-4 text-sm">
-              <span className="text-[var(--primary)]">✓</span>
-              <span>Autonomous swarm coordination with explainable AI and blockchain security</span>
-            </div>
+          <div className="mt-4 p-4 bg-gradient-to-r from-green-900/30 to-blue-900/30 rounded-lg border border-green-500/30">
+            <p className="text-green-400 font-semibold mb-2">Why This Matters:</p>
+            <p className="text-sm text-gray-300">
+              Traditional systems fail when enemies jam communications (3-10 second response). 
+              Phoenix works 100% without network - 250x faster response when it counts most.
+            </p>
           </div>
-          <div className="mt-8 flex gap-4 animate-fadeInUp [animation-delay:600ms]">
+          <div className="mt-8 flex flex-col sm:flex-row gap-4 animate-fadeInUp [animation-delay:400ms]">
             <Button href="#contact" size="lg">
-              Schedule Technical Demo
+              Request Capability Demonstration
             </Button>
-            <Button href="/financial" variant="outline" size="lg">
-              View Projections
+            <Button href="/interactive-demo" variant="outline" size="lg">
+              View Technical Demo
             </Button>
           </div>
         </div>
+
+        {/* Right: ThreatSimulator as candy bait */}
         <div className="relative animate-float">
-          <ThreatSimulator />
+          <div className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl p-6 border border-green-500/30 shadow-2xl">
+            <div className="text-center mb-4">
+              <h3 className="text-lg font-bold text-green-400 mb-2">Edge Autonomy Demo</h3>
+              <p className="text-sm text-gray-400">No network needed - decisions in milliseconds</p>
+            </div>
+            <ThreatSimulator />
+          </div>
         </div>
       </div>
     </section>

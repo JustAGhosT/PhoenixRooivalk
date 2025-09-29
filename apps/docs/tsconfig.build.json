@@ -1,0 +1,12 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "composite": true,
+    "declaration": true,
+    "noEmit": false,
+    "emitDeclarationOnly": true,
+    "allowJs": false,
+    "outDir": "./dist"
+  },
+  "exclude": ["node_modules", "build", ".docusaurus", "**/*.test.*", "**/*.spec.*"]
+}

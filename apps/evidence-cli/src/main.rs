@@ -1,10 +1,10 @@
 use anyhow::{Context, Result};
+use chrono::Utc;
 use clap::{Arg, Command};
 use phoenix_evidence::hash::sha256_hex;
 use reqwest::Client;
 use serde_json::{json, Value};
 use std::fs;
-use std::path::Path;
 
 #[tokio::main]
 async fn main() -> Result<()> {
@@ -50,8 +50,7 @@ async fn main() -> Result<()> {
     let output_format = matches.get_one::<String>("output-format").unwrap();
 
     // Load payload
-    let payload: Value = if payload_arg.starts_with('@') {
-        let path = &payload_arg[1..];
+    let payload: Value = if let Some(path) = payload_arg.strip_prefix('@') {
         let content = fs::read_to_string(path)
             .with_context(|| format!("Failed to read payload file: {}", path))?;
         serde_json::from_str(&content)
@@ -86,7 +85,7 @@ async fn main() -> Result<()> {
         });
 
         let response = client
-            .post(&format!("{}/evidence", api_url))
+            .post(format!("{}/evidence", api_url))
             .json(&submit_payload)
             .send()
             .await

@@ -1,6 +1,7 @@
 # Operational Training Materials
 
 ## Document Context
+
 - **Location**: `09-operations/training-materials.md`
 - **Related Documents**:
   - [Standard Procedures](./standard-procedures.md) - Daily operations
@@ -11,9 +12,13 @@
 
 ## Executive Summary
 
-This document provides comprehensive training materials for Phoenix Rooivalk blockchain-based counter-drone system operations. Our training program ensures operational personnel have the knowledge and skills required for effective system operation, maintenance, and incident response.
+This document provides comprehensive training materials for Phoenix Rooivalk
+blockchain-based counter-drone system operations. Our training program ensures
+operational personnel have the knowledge and skills required for effective
+system operation, maintenance, and incident response.
 
 **Training Objectives:**
+
 - Operational competency in system management
 - Incident response and troubleshooting skills
 - Security compliance and best practices
@@ -36,7 +41,7 @@ training_levels:
       - basic_troubleshooting
       - alert_response
       - documentation
-    
+
   advanced_operator:
     duration: "80_hours"
     prerequisites: ["basic_operator_certification"]
@@ -45,7 +50,7 @@ training_levels:
       - performance_optimization
       - security_procedures
       - change_management
-    
+
   specialist:
     duration: "120_hours"
     prerequisites: ["advanced_operator_certification"]
@@ -67,7 +72,7 @@ training_modules:
       - understand_system_architecture
       - identify_key_components
       - recognize_operational_interfaces
-    
+
   module_2_daily_operations:
     title: "Daily Operations and Monitoring"
     duration: "16_hours"
@@ -75,7 +80,7 @@ training_modules:
       - execute_daily_procedures
       - monitor_system_health
       - respond_to_alerts
-    
+
   module_3_incident_response:
     title: "Incident Response Procedures"
     duration: "24_hours"
@@ -83,7 +88,7 @@ training_modules:
       - classify_incidents
       - execute_response_procedures
       - coordinate_with_teams
-    
+
   module_4_maintenance:
     title: "System Maintenance"
     duration: "20_hours"
@@ -91,7 +96,7 @@ training_modules:
       - perform_preventive_maintenance
       - execute_updates
       - validate_backups
-    
+
   module_5_security:
     title: "Security Operations"
     duration: "16_hours"
@@ -108,27 +113,30 @@ training_modules:
 ### 2.1 Architecture Fundamentals
 
 **Learning Objectives:**
+
 - Understand blockchain-based counter-drone architecture
 - Identify system components and interfaces
 - Recognize data flow and processing patterns
 
 **Key Concepts:**
+
 ```yaml
 architecture_concepts:
   blockchain_layer:
     components: ["consensus_nodes", "smart_contracts", "transaction_processing"]
     purpose: "immutable_audit_trail"
-    
+
   application_layer:
     components: ["api_gateway", "processing_services", "user_interfaces"]
     purpose: "business_logic_execution"
-    
+
   infrastructure_layer:
     components: ["kubernetes_cluster", "storage_systems", "networking"]
     purpose: "platform_services"
 ```
 
 **Hands-on Exercise:**
+
 ```bash
 # System Component Identification Exercise
 kubectl get pods -A | grep phoenix-rooivalk
@@ -139,12 +147,14 @@ kubectl describe deployment blockchain-node -n phoenix-rooivalk
 ### 2.2 Operational Interfaces
 
 **Dashboard Navigation:**
+
 - System health monitoring dashboard
 - Performance metrics visualization
 - Alert management interface
 - Incident tracking system
 
 **Command Line Tools:**
+
 ```bash
 # Essential kubectl commands
 kubectl get nodes
@@ -160,6 +170,7 @@ kubectl exec -it blockchain-node-0 -n phoenix-rooivalk -- bash
 ### 3.1 Shift Procedures
 
 **Shift Start Checklist:**
+
 1. Review overnight alerts and incidents
 2. Execute system health checks
 3. Verify backup completion
@@ -167,6 +178,7 @@ kubectl exec -it blockchain-node-0 -n phoenix-rooivalk -- bash
 5. Update operational dashboard
 
 **Practical Exercise:**
+
 ```bash
 #!/bin/bash
 # Training Exercise: Shift Start Procedure
@@ -190,22 +202,24 @@ echo "=== Exercise Complete ==="
 ### 3.2 Monitoring and Alerting
 
 **Alert Response Matrix:**
+
 ```yaml
 alert_responses:
   critical_alerts:
     response_time: "immediate"
     actions: ["acknowledge", "assess", "escalate_if_needed"]
-    
+
   warning_alerts:
     response_time: "15_minutes"
     actions: ["investigate", "document", "monitor"]
-    
+
   info_alerts:
     response_time: "next_business_day"
     actions: ["review", "update_documentation"]
 ```
 
 **Monitoring Tools Training:**
+
 - Grafana dashboard navigation
 - Prometheus query basics
 - Log aggregation with ELK stack
@@ -218,17 +232,18 @@ alert_responses:
 ### 4.1 Incident Classification
 
 **Severity Assessment Exercise:**
+
 ```yaml
 scenario_1:
   description: "Single blockchain node becomes unresponsive"
   expected_classification: "high"
   rationale: "impacts_consensus_but_system_operational"
-  
+
 scenario_2:
   description: "Complete system outage affecting all services"
   expected_classification: "critical"
   rationale: "mission_critical_impact"
-  
+
 scenario_3:
   description: "Performance degradation during peak hours"
   expected_classification: "medium"
@@ -238,17 +253,18 @@ scenario_3:
 ### 4.2 Response Procedures
 
 **Tabletop Exercise: Security Incident**
+
 ```yaml
 exercise_scenario:
   title: "Suspected Security Breach"
   description: "Unusual network traffic detected from blockchain nodes"
-  
+
   participant_roles:
     - incident_commander
     - security_analyst
     - technical_responder
     - communications_lead
-  
+
   exercise_flow:
     - initial_detection
     - assessment_and_classification
@@ -265,31 +281,32 @@ exercise_scenario:
 ### 5.1 Preventive Maintenance
 
 **Weekly Maintenance Simulation:**
+
 ```python
 # Training Simulation: Weekly Maintenance
 class MaintenanceTrainingSimulation:
     def __init__(self):
         self.tasks = [
             "security_updates",
-            "performance_optimization", 
+            "performance_optimization",
             "backup_validation",
             "certificate_renewal"
         ]
-    
+
     def simulate_maintenance_window(self):
         print("=== Weekly Maintenance Simulation ===")
-        
+
         for task in self.tasks:
             print(f"Executing: {task}")
             # Simulate task execution
             success = self.simulate_task_execution(task)
-            
+
             if success:
                 print(f"✓ {task} completed successfully")
             else:
                 print(f"✗ {task} failed - initiating rollback")
                 self.simulate_rollback(task)
-    
+
     def simulate_task_execution(self, task):
         # Training simulation logic
         return True  # Simplified for training
@@ -298,6 +315,7 @@ class MaintenanceTrainingSimulation:
 ### 5.2 Backup and Recovery
 
 **Recovery Drill Exercise:**
+
 1. Simulate system failure scenario
 2. Execute disaster recovery procedures
 3. Validate data integrity
@@ -311,6 +329,7 @@ class MaintenanceTrainingSimulation:
 ### 6.1 Security Monitoring
 
 **Security Event Analysis:**
+
 ```bash
 # Security Training Exercise
 echo "=== Security Event Analysis ==="
@@ -328,6 +347,7 @@ kubectl get secrets -n phoenix-rooivalk -o json | jq -r '.items[] | select(.type
 ### 6.2 Compliance Procedures
 
 **Compliance Checklist Training:**
+
 - STIG compliance validation
 - Security policy enforcement
 - Audit log management
@@ -349,14 +369,14 @@ assessment_criteria:
       - troubleshooting
       - incident_response
       - maintenance_execution
-  
+
   theoretical_knowledge:
     weight: 25
     components:
       - system_architecture
       - security_principles
       - operational_procedures
-  
+
   communication_skills:
     weight: 15
     components:
@@ -368,12 +388,14 @@ assessment_criteria:
 ### 7.2 Certification Levels
 
 **Basic Operator Certification:**
+
 - Pass written examination (80% minimum)
 - Complete practical assessment
 - Demonstrate incident response skills
 - Valid for 2 years
 
 **Advanced Operator Certification:**
+
 - Hold basic certification
 - Complete advanced training modules
 - Pass comprehensive practical exam
@@ -392,12 +414,12 @@ continuous_learning:
     - security_briefings
     - system_updates_training
     - new_procedure_orientation
-  
+
   quarterly_assessments:
     - skills_validation
     - knowledge_updates
     - performance_review
-  
+
   annual_recertification:
     - comprehensive_assessment
     - updated_training_modules
@@ -407,6 +429,7 @@ continuous_learning:
 ### 8.2 Knowledge Management
 
 **Documentation Standards:**
+
 - Maintain personal operation logs
 - Contribute to knowledge base
 - Update procedures based on experience
@@ -416,9 +439,13 @@ continuous_learning:
 
 ## Conclusion
 
-The comprehensive training program ensures operational personnel have the knowledge and skills required for effective Phoenix Rooivalk system operation. Regular training updates and assessments maintain operational competency while supporting mission-critical counter-drone capabilities.
+The comprehensive training program ensures operational personnel have the
+knowledge and skills required for effective Phoenix Rooivalk system operation.
+Regular training updates and assessments maintain operational competency while
+supporting mission-critical counter-drone capabilities.
 
 **Training Success Factors:**
+
 - Hands-on practical experience with real systems
 - Regular assessment and feedback
 - Continuous learning and skill development
@@ -428,10 +455,12 @@ The comprehensive training program ensures operational personnel have the knowle
 ---
 
 **Related Documents:**
+
 - [Standard Procedures](./standard-procedures.md) - Daily operations
-- [Incident Response](./incident-response.md) - Emergency procedures  
+- [Incident Response](./incident-response.md) - Emergency procedures
 - [Maintenance Guide](./maintenance-guide.md) - System maintenance
 
 ---
 
-*Context improved by Giga AI - Used main overview development guidelines and blockchain integration system information for accurate training materials.*
+_Context improved by Giga AI - Used main overview development guidelines and
+blockchain integration system information for accurate training materials._

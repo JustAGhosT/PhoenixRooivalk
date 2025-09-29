@@ -1,6 +1,7 @@
 # Kubernetes Manifests: Container Orchestration and Deployment
 
 ## Document Context
+
 - **Location**: `08-deployment/infrastructure/kubernetes-manifests.md`
 - **Related Documents**:
   - [Terraform Configurations](./terraform-configs.md) - Infrastructure as Code
@@ -11,11 +12,19 @@
 
 ## Executive Summary
 
-Phoenix Rooivalk implements comprehensive Kubernetes orchestration with **99.9% container uptime**, **sub-second scaling**, and **zero-downtime deployments** across development, staging, and production environments. Our Container Orchestration Framework (COF) manages **50+ microservices** with **automated scaling**, **service mesh integration**, and **advanced security policies**.
+Phoenix Rooivalk implements comprehensive Kubernetes orchestration with **99.9%
+container uptime**, **sub-second scaling**, and **zero-downtime deployments**
+across development, staging, and production environments. Our Container
+Orchestration Framework (COF) manages **50+ microservices** with **automated
+scaling**, **service mesh integration**, and **advanced security policies**.
 
-**Key Innovation**: We deploy Intelligent Container Management (ICM) that uses machine learning to predict resource needs, automatically optimize pod placement, and implement predictive scaling based on workload patterns, achieving 40% resource efficiency improvement and 60% faster deployment times.
+**Key Innovation**: We deploy Intelligent Container Management (ICM) that uses
+machine learning to predict resource needs, automatically optimize pod
+placement, and implement predictive scaling based on workload patterns,
+achieving 40% resource efficiency improvement and 60% faster deployment times.
 
 ### Kubernetes Deployment Highlights:
+
 - **Multi-Environment Support**: Development, staging, and production clusters
 - **Microservices Architecture**: 50+ containerized services with service mesh
 - **Auto-Scaling**: Horizontal and vertical pod auto-scaling
@@ -35,7 +44,7 @@ graph TB
         STAGING_CLUSTER[Staging Cluster<br/>Multi-AZ, 6 Nodes]
         PROD_CLUSTER[Production Cluster<br/>Multi-Region, 12+ Nodes]
     end
-    
+
     subgraph "Application Namespaces"
         BLOCKCHAIN_NS[Blockchain Namespace<br/>Validator Nodes, Consensus]
         API_NS[API Namespace<br/>REST APIs, GraphQL]
@@ -43,11 +52,11 @@ graph TB
         MONITORING_NS[Monitoring Namespace<br/>Prometheus, Grafana]
         SECURITY_NS[Security Namespace<br/>Vault, Cert-Manager]
     end
-    
+
     PROD_CLUSTER --> BLOCKCHAIN_NS
     STAGING_CLUSTER --> API_NS
     DEV_CLUSTER --> AI_NS
-    
+
     style BLOCKCHAIN_NS fill:#00ff00
     style PROD_CLUSTER fill:#ff9999
     style AI_NS fill:#ffff99
@@ -57,14 +66,14 @@ graph TB
 
 **Namespace Structure**:
 
-| **Namespace** | **Purpose** | **Services** | **Resource Limits** |
-|---------------|-------------|--------------|-------------------|
-| **blockchain** | Blockchain infrastructure | Validator nodes, consensus | 8 CPU, 16Gi RAM |
-| **api-gateway** | API services | REST, GraphQL, WebSocket | 4 CPU, 8Gi RAM |
-| **ai-ml** | AI/ML workloads | Inference, training | 16 CPU, 32Gi RAM |
-| **monitoring** | Observability stack | Prometheus, Grafana, Jaeger | 2 CPU, 4Gi RAM |
-| **security** | Security services | Vault, cert-manager | 1 CPU, 2Gi RAM |
-| **data** | Data services | Redis, PostgreSQL | 4 CPU, 8Gi RAM |
+| **Namespace**   | **Purpose**               | **Services**                | **Resource Limits** |
+| --------------- | ------------------------- | --------------------------- | ------------------- |
+| **blockchain**  | Blockchain infrastructure | Validator nodes, consensus  | 8 CPU, 16Gi RAM     |
+| **api-gateway** | API services              | REST, GraphQL, WebSocket    | 4 CPU, 8Gi RAM      |
+| **ai-ml**       | AI/ML workloads           | Inference, training         | 16 CPU, 32Gi RAM    |
+| **monitoring**  | Observability stack       | Prometheus, Grafana, Jaeger | 2 CPU, 4Gi RAM      |
+| **security**    | Security services         | Vault, cert-manager         | 1 CPU, 2Gi RAM      |
+| **data**        | Data services             | Redis, PostgreSQL           | 4 CPU, 8Gi RAM      |
 
 ---
 
@@ -110,76 +119,81 @@ spec:
         runAsUser: 1000
         fsGroup: 2000
       containers:
-      - name: validator
-        image: phoenix-rooivalk/blockchain-validator:v1.0.0
-        imagePullPolicy: Always
-        ports:
-        - containerPort: 8545
-          name: rpc
-          protocol: TCP
-        - containerPort: 30303
-          name: p2p
-          protocol: TCP
-        - containerPort: 9090
-          name: metrics
-          protocol: TCP
-        env:
-        - name: VALIDATOR_INDEX
-          valueFrom:
-            fieldRef:
-              fieldPath: metadata.annotations['validator.phoenix.io/index']
-        - name: NETWORK_ID
-          value: "phoenix-mainnet"
-        - name: GENESIS_CONFIG
-          valueFrom:
-            configMapKeyRef:
-              name: blockchain-config
-              key: genesis.json
-        resources:
-          requests:
-            cpu: 1000m
-            memory: 2Gi
-            ephemeral-storage: 10Gi
-          limits:
-            cpu: 2000m
-            memory: 4Gi
-            ephemeral-storage: 20Gi
-        volumeMounts:
-        - name: blockchain-data
-          mountPath: /data/blockchain
-        - name: validator-config
-          mountPath: /config
-          readOnly: true
-        livenessProbe:
-          httpGet:
-            path: /health
-            port: 8545
-          initialDelaySeconds: 60
-          periodSeconds: 30
-          timeoutSeconds: 10
-          failureThreshold: 3
-        readinessProbe:
-          httpGet:
-            path: /ready
-            port: 8545
-          initialDelaySeconds: 30
-          periodSeconds: 10
-          timeoutSeconds: 5
-          failureThreshold: 3
+        - name: validator
+          image: phoenix-rooivalk/blockchain-validator:v1.0.0
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8545
+              name: rpc
+              protocol: TCP
+            - containerPort: 30303
+              name: p2p
+              protocol: TCP
+            - containerPort: 9090
+              name: metrics
+              protocol: TCP
+          env:
+            - name: POD_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            # App should parse ordinal from POD_NAME (e.g., blockchain-validator-2) to derive VALIDATOR_INDEX
+            - name: NETWORK_ID
+              value: "phoenix-mainnet"
+            - name: GENESIS_CONFIG
+              valueFrom:
+                configMapKeyRef:
+                  name: blockchain-config
+                  key: genesis.json
+          resources:
+            requests:
+              cpu: 1000m
+              memory: 2Gi
+              ephemeral-storage: 10Gi
+            limits:
+              cpu: 2000m
+              memory: 4Gi
+              ephemeral-storage: 20Gi
+          volumeMounts:
+            - name: blockchain-data
+              mountPath: /data/blockchain
+            - name: validator-config
+              mountPath: /config
+              readOnly: true
+          livenessProbe:
+            exec:
+              command:
+              - /bin/sh
+              - -c
+              - |
+                curl -s -X POST -H "Content-Type: application/json" \
+                  --data '{"jsonrpc":"2.0","id":1,"method":"web3_clientVersion","params":[]}' \
+                  http://127.0.0.1:8545 | grep -q '"result"'
+            initialDelaySeconds: 60
+            periodSeconds: 30
+            timeoutSeconds: 10
+            failureThreshold: 3
+          readinessProbe:
+            tcpSocket:
+              port: 8545
+            initialDelaySeconds: 30
+            periodSeconds: 10
+            timeoutSeconds: 5
+            failureThreshold: 3
       volumes:
-      - name: blockchain-data
-        persistentVolumeClaim:
-          claimName: blockchain-data-pvc
-      - name: validator-config
-        configMap:
-          name: validator-config
+        - name: blockchain-data
+          persistentVolumeClaim:
+            claimName: blockchain-data-pvc
+        - name: validator-config
+          configMap:
+            name: blockchain-config
       nodeSelector:
         node-type: blockchain
       tolerations:
-      - key: "blockchain"
-        operator: "Equal"
-        value: "true"
-        effect: "NoSchedule"
+        - key: "blockchain"
+          operator: "Equal"
+          value: "true"
+          effect: "NoSchedule"
 
 ---
 apiVersion: v1
@@ -192,14 +206,18 @@ metadata:
 spec:
   type: ClusterIP
   ports:
-  - port: 8545
-    targetPort: 8545
-    protocol: TCP
-    name: rpc
-  - port: 30303
-    targetPort: 30303
-    protocol: TCP
-    name: p2p
+    - port: 8545
+      targetPort: 8545
+      protocol: TCP
+      name: rpc
+    - port: 30303
+      targetPort: 30303
+      protocol: TCP
+      name: p2p
+    - port: 30303
+      targetPort: 30303
+      protocol: UDP
+      name: p2p-udp
   selector:
     app: blockchain-validator
 ```
@@ -240,47 +258,47 @@ spec:
     spec:
       serviceAccountName: api-gateway-sa
       containers:
-      - name: api-gateway
-        image: phoenix-rooivalk/api-gateway:v1.0.0
-        imagePullPolicy: Always
-        ports:
-        - containerPort: 8080
-          name: http
-          protocol: TCP
-        - containerPort: 9090
-          name: metrics
-          protocol: TCP
-        env:
-        - name: PORT
-          value: "8080"
-        - name: BLOCKCHAIN_RPC_URL
-          value: "http://blockchain-validator-service.blockchain.svc.cluster.local:8545"
-        - name: DATABASE_URL
-          valueFrom:
-            secretKeyRef:
-              name: database-credentials
-              key: url
-        resources:
-          requests:
-            cpu: 500m
-            memory: 1Gi
-          limits:
-            cpu: 1000m
-            memory: 2Gi
-        livenessProbe:
-          httpGet:
-            path: /health
-            port: 8080
-          initialDelaySeconds: 30
-          periodSeconds: 30
-          timeoutSeconds: 10
-        readinessProbe:
-          httpGet:
-            path: /ready
-            port: 8080
-          initialDelaySeconds: 10
-          periodSeconds: 10
-          timeoutSeconds: 5
+        - name: api-gateway
+          image: phoenix-rooivalk/api-gateway:v1.0.0
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+              name: http
+              protocol: TCP
+            - containerPort: 9090
+              name: metrics
+              protocol: TCP
+          env:
+            - name: PORT
+              value: "8080"
+            - name: BLOCKCHAIN_RPC_URL
+              value: "http://blockchain-validator-service.blockchain.svc.cluster.local:8545"
+            - name: DATABASE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: database-credentials
+                  key: url
+          resources:
+            requests:
+              cpu: 500m
+              memory: 1Gi
+            limits:
+              cpu: 1000m
+              memory: 2Gi
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 8080
+            initialDelaySeconds: 30
+            periodSeconds: 30
+            timeoutSeconds: 10
+          readinessProbe:
+            httpGet:
+              path: /ready
+              port: 8080
+            initialDelaySeconds: 10
+            periodSeconds: 10
+            timeoutSeconds: 5
 
 ---
 apiVersion: autoscaling/v2
@@ -296,18 +314,18 @@ spec:
   minReplicas: 3
   maxReplicas: 20
   metrics:
-  - type: Resource
-    resource:
-      name: cpu
-      target:
-        type: Utilization
-        averageUtilization: 70
-  - type: Resource
-    resource:
-      name: memory
-      target:
-        type: Utilization
-        averageUtilization: 80
+    - type: Resource
+      resource:
+        name: cpu
+        target:
+          type: Utilization
+          averageUtilization: 70
+    - type: Resource
+      resource:
+        name: memory
+        target:
+          type: Utilization
+          averageUtilization: 80
 ```
 
 ### 2.3 AI/ML Inference Service
@@ -336,41 +354,41 @@ spec:
         version: v1.0.0
     spec:
       containers:
-      - name: inference
-        image: phoenix-rooivalk/ai-inference:v1.0.0
-        ports:
-        - containerPort: 8080
-          name: http
-        env:
-        - name: MODEL_PATH
-          value: "/models"
-        - name: BATCH_SIZE
-          value: "32"
-        - name: GPU_ENABLED
-          value: "true"
-        resources:
-          requests:
-            cpu: 2000m
-            memory: 4Gi
-            nvidia.com/gpu: 1
-          limits:
-            cpu: 4000m
-            memory: 8Gi
-            nvidia.com/gpu: 1
-        volumeMounts:
-        - name: model-storage
-          mountPath: /models
-          readOnly: true
+        - name: inference
+          image: phoenix-rooivalk/ai-inference:v1.0.0
+          ports:
+            - containerPort: 8080
+              name: http
+          env:
+            - name: MODEL_PATH
+              value: "/models"
+            - name: BATCH_SIZE
+              value: "32"
+            - name: GPU_ENABLED
+              value: "true"
+          resources:
+            requests:
+              cpu: 2000m
+              memory: 4Gi
+              nvidia.com/gpu: 1
+            limits:
+              cpu: 4000m
+              memory: 8Gi
+              nvidia.com/gpu: 1
+          volumeMounts:
+            - name: model-storage
+              mountPath: /models
+              readOnly: true
       volumes:
-      - name: model-storage
-        persistentVolumeClaim:
-          claimName: ai-models-pvc
+        - name: model-storage
+          persistentVolumeClaim:
+            claimName: ai-models-pvc
       nodeSelector:
         node-type: gpu
       tolerations:
-      - key: "nvidia.com/gpu"
-        operator: "Exists"
-        effect: "NoSchedule"
+        - key: "nvidia.com/gpu"
+          operator: "Exists"
+          effect: "NoSchedule"
 ```
 
 ---
@@ -439,13 +457,13 @@ data:
     port = 30303
     discovery = true
     max_peers = 50
-    
+
     [rpc]
     enabled = true
     port = 8545
-    cors = ["*"]
-    apis = ["eth", "net", "web3", "admin"]
-    
+    cors = ["https://internal.console.phoenix"]
+    apis = ["eth", "net", "web3"]
+
     [metrics]
     enabled = true
     port = 9090
@@ -482,20 +500,20 @@ metadata:
     cert-manager.io/cluster-issuer: "letsencrypt-prod"
 spec:
   tls:
-  - hosts:
-    - api.phoenix-rooivalk.com
-    secretName: phoenix-tls-secret
+    - hosts:
+        - api.phoenix-rooivalk.com
+      secretName: phoenix-tls-secret
   rules:
-  - host: api.phoenix-rooivalk.com
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: api-gateway-service
-            port:
-              number: 80
+    - host: api.phoenix-rooivalk.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: api-gateway-service
+                port:
+                  number: 80
 ```
 
 ### 4.2 Network Policies
@@ -512,37 +530,37 @@ spec:
     matchLabels:
       app: blockchain-validator
   policyTypes:
-  - Ingress
-  - Egress
+    - Ingress
+    - Egress
   ingress:
-  - from:
-    - namespaceSelector:
-        matchLabels:
-          name: api-gateway
-    ports:
-    - protocol: TCP
-      port: 8545
-  - from:
-    - podSelector:
-        matchLabels:
-          app: blockchain-validator
-    ports:
-    - protocol: TCP
-      port: 30303
+    - from:
+        - namespaceSelector:
+            matchLabels:
+              name: api-gateway
+      ports:
+        - protocol: TCP
+          port: 8545
+    - from:
+        - podSelector:
+            matchLabels:
+              app: blockchain-validator
+      ports:
+        - protocol: TCP
+          port: 30303
   egress:
-  - to: []
-    ports:
-    - protocol: TCP
-      port: 53
-    - protocol: UDP
-      port: 53
-  - to:
-    - podSelector:
-        matchLabels:
-          app: blockchain-validator
-    ports:
-    - protocol: TCP
-      port: 30303
+    - to: []
+      ports:
+        - protocol: TCP
+          port: 53
+        - protocol: UDP
+          port: 53
+    - to:
+        - podSelector:
+            matchLabels:
+              app: blockchain-validator
+      ports:
+        - protocol: TCP
+          port: 30303
 ```
 
 ---
@@ -563,7 +581,7 @@ data:
     global:
       scrape_interval: 15s
       evaluation_interval: 15s
-    
+
     scrape_configs:
     - job_name: 'kubernetes-pods'
       kubernetes_sd_configs:
@@ -572,13 +590,13 @@ data:
       - source_labels: [__meta_kubernetes_pod_annotation_prometheus_io_scrape]
         action: keep
         regex: true
-    
+
     - job_name: 'blockchain-validators'
       static_configs:
       - targets: ['blockchain-validator-service.blockchain.svc.cluster.local:9090']
       metrics_path: /metrics
       scrape_interval: 10s
-    
+
     - job_name: 'api-gateway'
       static_configs:
       - targets: ['api-gateway-service.api-gateway.svc.cluster.local:9090']
@@ -586,7 +604,162 @@ data:
       scrape_interval: 15s
 ```
 
-### 5.2 Service Accounts and RBAC
+### 5.2 Alertmanager Configuration
+
+```yaml
+# monitoring/alertmanager.yaml
+# Note: Store complete alertmanager.yml in Secret to avoid env var placeholders
+apiVersion: v1
+kind: Secret
+metadata:
+  name: alertmanager-config
+  namespace: monitoring
+type: Opaque
+data:
+  alertmanager.yml: |
+    # Base64 encode the complete config with real values, not placeholders
+    # Example structure (encode actual config):
+    global:
+      smtp_smarthost: 'smtp.example.com:587'
+      smtp_from: 'alerts@phoenix-rooivalk.com'
+      smtp_auth_username: 'alerts@phoenix-rooivalk.com'
+      smtp_auth_password: 'REAL_SMTP_PASSWORD_HERE'
+      smtp_require_tls: true
+
+    route:
+      group_by: ['alertname', 'cluster', 'service']
+      group_wait: 10s
+      group_interval: 10s
+      repeat_interval: 1h
+      receiver: 'default-receiver'
+      routes:
+      - match:
+          severity: critical
+        receiver: 'critical-alerts'
+      - match:
+          severity: warning
+        receiver: 'warning-alerts'
+
+    receivers:
+    - name: 'default-receiver'
+      email_configs:
+      - to: 'ops-team@phoenix-rooivalk.com'
+        subject: 'Phoenix Rooivalk Alert: {{ .GroupLabels.alertname }}'
+        body: |
+          {{ range .Alerts }}
+          Alert: {{ .Annotations.summary }}
+          Description: {{ .Annotations.description }}
+          {{ end }}
+
+    - name: 'critical-alerts'
+      email_configs:
+      - to: 'critical-ops@phoenix-rooivalk.com'
+        subject: 'CRITICAL: Phoenix Rooivalk Alert'
+      slack_configs:
+      - api_url: 'https://hooks.slack.com/services/REAL/WEBHOOK/URL'
+        channel: '#critical-alerts'
+        title: 'Critical Alert: {{ .GroupLabels.alertname }}'
+        text: '{{ range .Alerts }}{{ .Annotations.description }}{{ end }}'
+      pagerduty_configs:
+      - service_key: 'REAL_PAGERDUTY_SERVICE_KEY'
+        description: '{{ .GroupLabels.alertname }}: {{ .GroupLabels.instance }}'
+
+    - name: 'warning-alerts'
+      slack_configs:
+      - api_url: 'https://hooks.slack.com/services/REAL/WEBHOOK/URL'
+        channel: '#alerts'
+        title: 'Warning: {{ .GroupLabels.alertname }}'
+
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: alertmanager-secrets
+  namespace: monitoring
+type: Opaque
+data:
+  smtp-password: <base64-encoded-smtp-password>
+  slack-webhook-url: <base64-encoded-slack-webhook-url>
+  pagerduty-service-key: <base64-encoded-pagerduty-service-key>
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: alertmanager
+  namespace: monitoring
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: alertmanager
+  template:
+    metadata:
+      labels:
+        app: alertmanager
+    spec:
+      containers:
+      - name: alertmanager
+        image: prom/alertmanager:v0.25.0
+        ports:
+        - containerPort: 9093
+        volumeMounts:
+        - name: config
+          mountPath: /etc/alertmanager
+        command:
+        - /bin/alertmanager
+        - --config.file=/etc/alertmanager/alertmanager.yml
+        - --storage.path=/alertmanager
+        - --web.external-url=http://localhost:9093
+      volumes:
+      - name: config
+        secret:
+          secretName: alertmanager-config
+```
+
+**Secret Management Best Practices:**
+
+1. **Avoid Environment Variable Placeholders**: Store complete configuration with real values in Secrets, not ConfigMaps with placeholders
+2. **Kubernetes Secrets**: Store sensitive values in Kubernetes Secret objects with proper base64 encoding
+3. **External Secret Management**: Use External Secrets Operator with:
+   - AWS Secrets Manager
+   - HashiCorp Vault
+   - Azure Key Vault
+   - Google Secret Manager
+
+**Example External Secrets Configuration:**
+
+```yaml
+# monitoring/external-secret.yaml
+apiVersion: external-secrets.io/v1beta1
+kind: ExternalSecret
+metadata:
+  name: alertmanager-external-secret
+  namespace: monitoring
+spec:
+  refreshInterval: 1h
+  secretStoreRef:
+    name: vault-backend
+    kind: SecretStore
+  target:
+    name: alertmanager-secrets
+    creationPolicy: Owner
+  data:
+  - secretKey: smtp-password
+    remoteRef:
+      key: phoenix-rooivalk/alerting
+      property: smtp_password
+  - secretKey: slack-webhook-url
+    remoteRef:
+      key: phoenix-rooivalk/alerting
+      property: slack_webhook_url
+  - secretKey: pagerduty-service-key
+    remoteRef:
+      key: phoenix-rooivalk/alerting
+      property: pagerduty_service_key
+```
+
+### 5.3 Service Accounts and RBAC
 
 ```yaml
 # security/rbac.yaml
@@ -603,9 +776,9 @@ metadata:
   namespace: blockchain
   name: blockchain-validator-role
 rules:
-- apiGroups: [""]
-  resources: ["pods", "services", "endpoints"]
-  verbs: ["get", "list", "watch"]
+  - apiGroups: [""]
+    resources: ["pods", "services", "endpoints"]
+    verbs: ["get", "list", "watch"]
 
 ---
 apiVersion: rbac.authorization.k8s.io/v1
@@ -614,9 +787,9 @@ metadata:
   name: blockchain-validator-rolebinding
   namespace: blockchain
 subjects:
-- kind: ServiceAccount
-  name: blockchain-validator-sa
-  namespace: blockchain
+  - kind: ServiceAccount
+    name: blockchain-validator-sa
+    namespace: blockchain
 roleRef:
   kind: Role
   name: blockchain-validator-role
@@ -630,6 +803,7 @@ roleRef:
 ### 6.1 Blue-Green Deployment
 
 **Blue-Green Deployment Configuration**:
+
 - **Blue Environment**: Current production version
 - **Green Environment**: New version for testing
 - **Traffic Switching**: Instant traffic cutover
@@ -638,6 +812,7 @@ roleRef:
 ### 6.2 Canary Deployment
 
 **Canary Deployment with Istio**:
+
 - **Traffic Splitting**: 5% canary, 95% stable
 - **Gradual Rollout**: Increase canary traffic incrementally
 - **Automated Rollback**: Based on error rates and metrics
@@ -650,6 +825,7 @@ roleRef:
 ### 7.1 Horizontal Pod Autoscaler
 
 **HPA Configuration**:
+
 - **CPU-based Scaling**: 70% CPU utilization threshold
 - **Memory-based Scaling**: 80% memory utilization threshold
 - **Custom Metrics**: Request rate and response time
@@ -658,6 +834,7 @@ roleRef:
 ### 7.2 Vertical Pod Autoscaler
 
 **VPA Configuration**:
+
 - **Resource Optimization**: Automatic resource right-sizing
 - **Cost Efficiency**: Optimal resource allocation
 - **Performance Tuning**: Continuous resource adjustment
@@ -670,6 +847,7 @@ roleRef:
 ### 8.1 Pod Security Standards
 
 **Security Policies**:
+
 - **Non-root Execution**: All containers run as non-root
 - **Read-only Filesystems**: Immutable container filesystems
 - **Capability Dropping**: Minimal Linux capabilities
@@ -678,6 +856,7 @@ roleRef:
 ### 8.2 Secret Management
 
 **Secret Management Strategy**:
+
 - **External Secrets**: Integration with AWS Secrets Manager
 - **Encryption at Rest**: Kubernetes etcd encryption
 - **Secret Rotation**: Automated secret rotation
@@ -687,9 +866,13 @@ roleRef:
 
 ## 9. Conclusion
 
-Phoenix Rooivalk's Kubernetes manifests provide robust container orchestration with 99.9% uptime, automated scaling, and comprehensive security. The microservices architecture enables independent scaling and deployment while maintaining system reliability and performance.
+Phoenix Rooivalk's Kubernetes manifests provide robust container orchestration
+with 99.9% uptime, automated scaling, and comprehensive security. The
+microservices architecture enables independent scaling and deployment while
+maintaining system reliability and performance.
 
 ### Container Orchestration Excellence:
+
 - **High Availability**: 99.9% container uptime with automated recovery
 - **Scalable Architecture**: Dynamic scaling based on demand
 - **Security Hardened**: Comprehensive security policies and controls
@@ -697,21 +880,27 @@ Phoenix Rooivalk's Kubernetes manifests provide robust container orchestration w
 - **Efficient Operations**: Automated deployment and management
 
 ### Strategic Advantages:
+
 - **Microservices Ready**: Independent service scaling and deployment
 - **Cloud Native**: Kubernetes-native design patterns
 - **DevOps Optimized**: GitOps and CI/CD integration
 - **Cost Efficient**: Optimal resource utilization and scaling
 - **Future Proof**: Extensible architecture for growth
 
-The Kubernetes manifests enable reliable, scalable, and secure container orchestration for Phoenix Rooivalk's mission-critical blockchain counter-drone operations.
+The Kubernetes manifests enable reliable, scalable, and secure container
+orchestration for Phoenix Rooivalk's mission-critical blockchain counter-drone
+operations.
 
 ---
 
 **Related Documents:**
+
 - [Terraform Configurations](./terraform-configs.md) - Infrastructure as Code
 - [AWS Architecture](./aws-architecture.md) - Cloud infrastructure design
 - [CI/CD Pipeline](../ci-cd-pipeline.md) - Deployment automation
 
 ---
 
-*Context improved by Giga AI - Used main overview development guidelines and blockchain integration system information for accurate Kubernetes documentation.*
+_Context improved by Giga AI - Used main overview development guidelines and
+blockchain integration system information for accurate Kubernetes
+documentation._

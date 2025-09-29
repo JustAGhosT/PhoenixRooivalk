@@ -1,20 +1,26 @@
 # Standard Operating Procedures
 
 ## Document Context
+
 - **Location**: `09-operations/standard-procedures.md`
 - **Related Documents**:
   - [Incident Response](./incident-response.md) - Emergency procedures
   - [Maintenance Guide](./maintenance-guide.md) - System maintenance
   - [Training Materials](./training-materials.md) - Operational training
-  - [Operations Playbook](../03-implementation/phase-5-production/operations-playbook.md) - Detailed runbooks
+  - [Operations Playbook](../03-implementation/phase-5-production/operations-playbook.md) -
+    Detailed runbooks
 
 ---
 
 ## Executive Summary
 
-This document establishes standard operating procedures (SOPs) for the Phoenix Rooivalk blockchain-based counter-drone system. These procedures ensure consistent, reliable, and secure operations across all deployment environments while maintaining compliance with military operational standards.
+This document establishes standard operating procedures (SOPs) for the Phoenix
+Rooivalk blockchain-based counter-drone system. These procedures ensure
+consistent, reliable, and secure operations across all deployment environments
+while maintaining compliance with military operational standards.
 
 **Key Focus Areas:**
+
 - Daily operational routines and health checks
 - System monitoring and performance validation
 - Security compliance verification
@@ -38,13 +44,13 @@ shift_start_checklist:
     - check_blockchain_consensus
     - validate_network_connectivity
     - review_overnight_alerts
-  
+
   security_validation:
     - verify_access_controls_active
     - check_security_policy_compliance
     - review_audit_logs
     - validate_encryption_status
-  
+
   performance_check:
     - monitor_resource_utilization
     - verify_transaction_throughput
@@ -103,18 +109,19 @@ curl -s http://blockchain-service:9090/metrics | grep transaction_count || echo 
 ### 2.1 Continuous Monitoring Requirements
 
 **Blockchain Network Monitoring:**
+
 ```yaml
 monitoring_targets:
   consensus_health:
     metric: "consensus_participation_rate"
     threshold: "> 95%"
     alert_level: "critical"
-  
+
   transaction_processing:
     metric: "transactions_per_second"
     threshold: "> 1000 TPS"
     alert_level: "warning"
-  
+
   node_synchronization:
     metric: "block_height_difference"
     threshold: "< 2 blocks"
@@ -122,20 +129,21 @@ monitoring_targets:
 ```
 
 **Infrastructure Monitoring:**
+
 ```yaml
 infrastructure_metrics:
   cpu_utilization:
     threshold: "< 80%"
     measurement_interval: "1_minute"
-  
+
   memory_usage:
     threshold: "< 85%"
     measurement_interval: "1_minute"
-  
+
   disk_usage:
     threshold: "< 90%"
     measurement_interval: "5_minutes"
-  
+
   network_latency:
     threshold: "< 100ms"
     measurement_interval: "30_seconds"
@@ -192,6 +200,7 @@ kubectl logs -n kube-system $(kubectl get pods -n kube-system -l component=kube-
 ### 3.2 Access Control Verification
 
 **Weekly Access Review:**
+
 1. Review all user accounts and permissions
 2. Validate role-based access controls (RBAC)
 3. Check for unused or expired accounts
@@ -199,6 +208,7 @@ kubectl logs -n kube-system $(kubectl get pods -n kube-system -l component=kube-
 5. Document access control changes
 
 **Monthly Security Assessment:**
+
 1. Vulnerability scanning of all systems
 2. Penetration testing coordination
 3. Security policy compliance audit
@@ -218,19 +228,19 @@ change_types:
     testing_required: false
     rollback_plan: "mandatory"
     documentation: "post_implementation"
-  
+
   urgent:
     approval_time: "4_hours"
     testing_required: "limited"
     rollback_plan: "mandatory"
     documentation: "concurrent"
-  
+
   standard:
     approval_time: "24_hours"
     testing_required: "full"
     rollback_plan: "mandatory"
     documentation: "pre_implementation"
-  
+
   routine:
     approval_time: "72_hours"
     testing_required: "full"
@@ -271,18 +281,21 @@ change_types:
 ### 5.1 Required Documentation
 
 **Daily Documentation:**
+
 - System health status reports
 - Incident logs and resolutions
 - Performance metrics summaries
 - Security compliance checks
 
 **Weekly Documentation:**
+
 - System performance trends
 - Capacity utilization reports
 - Security assessment summaries
 - Change implementation reports
 
 **Monthly Documentation:**
+
 - Operational metrics dashboard
 - Service level agreement compliance
 - Security audit reports
@@ -299,13 +312,13 @@ audit_requirements:
     - implementation_timestamp
     - operator_identity
     - before_and_after_states
-  
+
   access_events:
     - user_identity
     - access_timestamp
     - resources_accessed
     - actions_performed
-  
+
   security_events:
     - event_type
     - timestamp
@@ -325,12 +338,12 @@ performance_targets:
     system_uptime: "99.99%"
     planned_downtime: "< 4_hours_monthly"
     unplanned_downtime: "< 30_minutes_monthly"
-  
+
   response_times:
     incident_detection: "< 5_minutes"
     incident_response: "< 15_minutes"
     change_implementation: "< 2_hours"
-  
+
   quality_metrics:
     change_success_rate: "> 99%"
     backup_success_rate: "> 99.9%"
@@ -340,6 +353,7 @@ performance_targets:
 ### 6.2 Continuous Improvement
 
 **Monthly Performance Review:**
+
 1. Analyze operational metrics against targets
 2. Identify improvement opportunities
 3. Update procedures based on lessons learned
@@ -350,9 +364,13 @@ performance_targets:
 
 ## Conclusion
 
-These standard operating procedures ensure consistent, reliable operation of the Phoenix Rooivalk blockchain-based counter-drone system. Regular adherence to these procedures maintains operational excellence while supporting mission-critical defense capabilities.
+These standard operating procedures ensure consistent, reliable operation of the
+Phoenix Rooivalk blockchain-based counter-drone system. Regular adherence to
+these procedures maintains operational excellence while supporting
+mission-critical defense capabilities.
 
 **Key Success Factors:**
+
 - Consistent execution of daily operational routines
 - Proactive monitoring and rapid incident response
 - Strict security compliance and audit requirements
@@ -362,10 +380,12 @@ These standard operating procedures ensure consistent, reliable operation of the
 ---
 
 **Related Documents:**
+
 - [Incident Response](./incident-response.md) - Emergency procedures
 - [Maintenance Guide](./maintenance-guide.md) - System maintenance
 - [Training Materials](./training-materials.md) - Operational training
 
 ---
 
-*Context improved by Giga AI - Used main overview development guidelines and blockchain integration system information for accurate operational procedures.*
+_Context improved by Giga AI - Used main overview development guidelines and
+blockchain integration system information for accurate operational procedures._

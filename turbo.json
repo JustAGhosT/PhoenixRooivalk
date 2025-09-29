@@ -12,7 +12,11 @@
     "lint": {
       "dependsOn": ["^lint"],
       "outputs": [],
-      "inputs": ["**/*.{js,jsx,ts,tsx,json,md,mdx}", ".eslintrc.*", "eslint.config.*"]
+      "inputs": [
+        "**/*.{js,jsx,ts,tsx,json,md,mdx}",
+        ".eslintrc.*",
+        "eslint.config.*"
+      ]
     },
     "typecheck": {
       "dependsOn": ["^typecheck"],
@@ -21,11 +25,19 @@
     },
     "format": {
       "outputs": [],
-      "inputs": ["**/*.{js,jsx,ts,tsx,json,md,mdx,css}", ".prettierrc*", "prettier.config.*"]
+      "inputs": [
+        "**/*.{js,jsx,ts,tsx,json,md,mdx,css}",
+        ".prettierrc*",
+        "prettier.config.*"
+      ]
     },
     "format:check": {
       "outputs": [],
-      "inputs": ["**/*.{js,jsx,ts,tsx,json,md,mdx,css}", ".prettierrc*", "prettier.config.*"]
+      "inputs": [
+        "**/*.{js,jsx,ts,tsx,json,md,mdx,css}",
+        ".prettierrc*",
+        "prettier.config.*"
+      ]
     }
   }
 }

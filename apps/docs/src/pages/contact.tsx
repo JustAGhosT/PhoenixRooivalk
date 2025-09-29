@@ -1,5 +1,5 @@
-import React from 'react';
-import Layout from '@theme/Layout';
+import React from "react";
+import Layout from "@theme/Layout";
 
 export default function Contact(): React.ReactElement {
   return (
@@ -8,7 +8,8 @@ export default function Contact(): React.ReactElement {
         <section className="contactSection">
           <h1>Contact Us</h1>
           <p>
-            Please share your details and a short message. Our team will respond within one business day.
+            Please share your details and a short message. Our team will respond
+            within one business day.
           </p>
           <form
             name="contact"
@@ -28,26 +29,57 @@ export default function Contact(): React.ReactElement {
             <div className="contactGrid">
               <label>
                 Name
-                <input type="text" name="name" required placeholder="Jane Doe" className="contactInput" />
+                <input
+                  type="text"
+                  name="name"
+                  required
+                  placeholder="Jane Doe"
+                  className="contactInput"
+                />
               </label>
               <label>
                 Organization
-                <input type="text" name="organization" placeholder="Acme Defense" className="contactInput" />
+                <input
+                  type="text"
+                  name="organization"
+                  placeholder="Acme Defense"
+                  className="contactInput"
+                />
               </label>
               <label>
                 Email
-                <input type="email" name="email" required placeholder="jane@example.com" className="contactInput" />
+                <input
+                  type="email"
+                  name="email"
+                  required
+                  placeholder="jane@example.com"
+                  className="contactInput"
+                />
               </label>
               <label>
                 Message
-                <textarea name="message" rows={6} required placeholder="Tell us about your requirements" className="contactTextarea" />
+                <textarea
+                  name="message"
+                  rows={6}
+                  required
+                  placeholder="Tell us about your requirements"
+                  className="contactTextarea"
+                />
               </label>
-              <button type="submit" className="button button--primary button--lg">Send</button>
+              <button
+                type="submit"
+                className="button button--primary button--lg"
+              >
+                Send
+              </button>
             </div>
           </form>
 
           <p>
-            Prefer email? <a href="mailto:info@phoenixrooivalk.com">info@phoenixrooivalk.com</a>
+            Prefer email?{" "}
+            <a href="mailto:info@phoenixrooivalk.com">
+              info@phoenixrooivalk.com
+            </a>
           </p>
         </section>
       </main>

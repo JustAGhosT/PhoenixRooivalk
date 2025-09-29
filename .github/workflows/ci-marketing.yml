@@ -2,26 +2,26 @@ name: CI - Marketing (Lint, TypeCheck, Build)
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
     paths:
-      - 'apps/marketing/**'
-      - 'apps/docs/**'
-      - 'package.json'
-      - 'pnpm-lock.yaml'
-      - 'turbo.json'
-      - 'tsconfig.base.json'
-      - '.eslintrc.js'
-      - '.github/workflows/ci-marketing.yml'
+      - "apps/marketing/**"
+      - "packages/**"
+      - "package.json"
+      - "pnpm-lock.yaml"
+      - "turbo.json"
+      - "tsconfig.base.json"
+      - ".eslintrc.js"
+      - ".github/workflows/ci-marketing.yml"
   pull_request:
     paths:
-      - 'apps/marketing/**'
-      - 'apps/docs/**'
-      - 'package.json'
-      - 'pnpm-lock.yaml'
-      - 'turbo.json'
-      - 'tsconfig.base.json'
-      - '.eslintrc.js'
-      - '.github/workflows/ci-marketing.yml'
+      - "apps/marketing/**"
+      - "packages/**"
+      - "package.json"
+      - "pnpm-lock.yaml"
+      - "turbo.json"
+      - "tsconfig.base.json"
+      - ".eslintrc.js"
+      - ".github/workflows/ci-marketing.yml"
   workflow_dispatch:
 
 jobs:
@@ -34,12 +34,12 @@ jobs:
       - name: Setup Node.js 20
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
-          cache: 'pnpm'
-          cache-dependency-path: 'pnpm-lock.yaml'
+          node-version: "20"
 
-      - name: Enable Corepack
-        run: corepack enable
+      - name: Enable Corepack and setup pnpm
+        run: |
+          corepack enable
+          corepack use pnpm@9.6.0
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile

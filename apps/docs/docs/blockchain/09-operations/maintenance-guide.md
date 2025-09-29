@@ -1,6 +1,7 @@
 # System Maintenance Guide
 
 ## Document Context
+
 - **Location**: `09-operations/maintenance-guide.md`
 - **Related Documents**:
   - [Standard Procedures](./standard-procedures.md) - Daily operations
@@ -12,9 +13,14 @@
 
 ## Executive Summary
 
-This document provides comprehensive maintenance procedures for the Phoenix Rooivalk blockchain-based counter-drone system. Our maintenance framework ensures optimal system performance, security compliance, and operational reliability through proactive maintenance, automated monitoring, and systematic upgrade procedures.
+This document provides comprehensive maintenance procedures for the Phoenix
+Rooivalk blockchain-based counter-drone system. Our maintenance framework
+ensures optimal system performance, security compliance, and operational
+reliability through proactive maintenance, automated monitoring, and systematic
+upgrade procedures.
 
 **Key Maintenance Areas:**
+
 - Preventive maintenance schedules and procedures
 - System health monitoring and optimization
 - Security updates and patch management
@@ -38,7 +44,7 @@ maintenance_windows:
       - temporary_file_cleanup
       - cache_optimization
       - health_checks
-  
+
   weekly:
     time: "Sunday_02:00-06:00_UTC"
     duration: "4_hours"
@@ -48,7 +54,7 @@ maintenance_windows:
       - performance_optimization
       - backup_validation
       - certificate_renewal
-  
+
   monthly:
     time: "First_Sunday_02:00-08:00_UTC"
     duration: "6_hours"
@@ -58,7 +64,7 @@ maintenance_windows:
       - capacity_planning
       - disaster_recovery_testing
       - security_audits
-  
+
   quarterly:
     time: "Scheduled_maintenance_weekend"
     duration: "12_hours"
@@ -82,7 +88,7 @@ maintenance_types:
       - "routine_updates"
       - "performance_optimization"
       - "security_patches"
-  
+
   corrective:
     description: "Maintenance to fix identified issues"
     frequency: "as_needed"
@@ -91,7 +97,7 @@ maintenance_types:
       - "bug_fixes"
       - "configuration_corrections"
       - "performance_issues"
-  
+
   adaptive:
     description: "Maintenance to adapt to changing requirements"
     frequency: "planned"
@@ -100,7 +106,7 @@ maintenance_types:
       - "feature_updates"
       - "compliance_changes"
       - "capacity_increases"
-  
+
   perfective:
     description: "Maintenance to improve system performance"
     frequency: "planned"
@@ -169,11 +175,11 @@ class WeeklyMaintenanceManager:
     """
     Automated weekly maintenance task manager
     """
-    
+
     def __init__(self):
         self.maintenance_tasks = self.load_maintenance_tasks()
         self.completion_status = {}
-    
+
     def load_maintenance_tasks(self) -> Dict[str, Dict]:
         """Load weekly maintenance task definitions"""
         return {
@@ -184,7 +190,7 @@ class WeeklyMaintenanceManager:
                 "dependencies": [],
                 "rollback_required": True
             },
-            
+
             "performance_optimization": {
                 "description": "Optimize system performance",
                 "priority": "medium",
@@ -192,7 +198,7 @@ class WeeklyMaintenanceManager:
                 "dependencies": ["security_updates"],
                 "rollback_required": False
             },
-            
+
             "backup_validation": {
                 "description": "Validate backup integrity and recovery procedures",
                 "priority": "high",
@@ -200,7 +206,7 @@ class WeeklyMaintenanceManager:
                 "dependencies": [],
                 "rollback_required": False
             },
-            
+
             "certificate_management": {
                 "description": "Renew expiring certificates",
                 "priority": "high",
@@ -208,7 +214,7 @@ class WeeklyMaintenanceManager:
                 "dependencies": [],
                 "rollback_required": True
             },
-            
+
             "capacity_analysis": {
                 "description": "Analyze system capacity and resource usage",
                 "priority": "medium",
@@ -217,22 +223,22 @@ class WeeklyMaintenanceManager:
                 "rollback_required": False
             }
         }
-    
+
     async def execute_weekly_maintenance(self):
         """Execute weekly maintenance tasks"""
-        
+
         print(f"=== Weekly Maintenance - {datetime.now().strftime('%Y-%m-%d')} ===")
-        
+
         # Execute tasks in dependency order
         task_order = self.resolve_dependencies()
-        
+
         for task_name in task_order:
             task_config = self.maintenance_tasks[task_name]
-            
+
             print(f"Executing task: {task_name}")
             print(f"Description: {task_config['description']}")
             print(f"Estimated duration: {task_config['estimated_duration']}")
-            
+
             try:
                 await self.execute_task(task_name, task_config)
                 self.completion_status[task_name] = "completed"
@@ -240,16 +246,16 @@ class WeeklyMaintenanceManager:
             except Exception as e:
                 self.completion_status[task_name] = f"failed: {str(e)}"
                 print(f"✗ Task {task_name} failed: {str(e)}")
-                
+
                 if task_config.get("rollback_required", False):
                     await self.rollback_task(task_name)
-        
+
         # Generate maintenance report
         await self.generate_maintenance_report()
-    
+
     async def execute_task(self, task_name: str, task_config: Dict):
         """Execute specific maintenance task"""
-        
+
         task_handlers = {
             "security_updates": self.apply_security_updates,
             "performance_optimization": self.optimize_performance,
@@ -257,102 +263,102 @@ class WeeklyMaintenanceManager:
             "certificate_management": self.manage_certificates,
             "capacity_analysis": self.analyze_capacity
         }
-        
+
         handler = task_handlers.get(task_name)
         if handler:
             await handler()
         else:
             raise ValueError(f"Unknown task: {task_name}")
-    
+
     async def apply_security_updates(self):
         """Apply security updates to system components"""
-        
+
         # Update container images
         deployments = [
             "blockchain-node",
             "api-gateway",
             "monitoring-stack"
         ]
-        
+
         for deployment in deployments:
             # Check for image updates
             result = subprocess.run([
-                "kubectl", "get", "deployment", deployment, 
-                "-n", "phoenix-rooivalk", 
+                "kubectl", "get", "deployment", deployment,
+                "-n", "phoenix-rooivalk",
                 "-o", "jsonpath={.spec.template.spec.containers[0].image}"
             ], capture_output=True, text=True)
-            
+
             current_image = result.stdout.strip()
             print(f"Current image for {deployment}: {current_image}")
-            
+
             # Update to latest security patch
             await self.update_deployment_image(deployment, current_image)
-    
+
     async def optimize_performance(self):
         """Optimize system performance"""
-        
+
         # Database optimization
         await self.optimize_database()
-        
+
         # Cache optimization
         await self.optimize_caches()
-        
+
         # Resource optimization
         await self.optimize_resources()
-    
+
     async def validate_backups(self):
         """Validate backup integrity and recovery procedures"""
-        
+
         # List recent backups
         backup_validation = {
             "database_backups": await self.validate_database_backups(),
             "blockchain_backups": await self.validate_blockchain_backups(),
             "configuration_backups": await self.validate_config_backups()
         }
-        
+
         # Test restore procedures
         await self.test_restore_procedures()
-        
+
         return backup_validation
-    
+
     async def manage_certificates(self):
         """Manage SSL/TLS certificates"""
-        
+
         # Check certificate expiration
         expiring_certs = await self.check_certificate_expiration()
-        
+
         # Renew certificates expiring within 30 days
         for cert in expiring_certs:
             if cert["days_until_expiry"] < 30:
                 await self.renew_certificate(cert["name"])
-    
+
     def resolve_dependencies(self) -> List[str]:
         """Resolve task dependencies and return execution order"""
-        
+
         # Simple topological sort for task dependencies
         visited = set()
         temp_visited = set()
         result = []
-        
+
         def visit(task_name: str):
             if task_name in temp_visited:
                 raise ValueError(f"Circular dependency detected involving {task_name}")
             if task_name in visited:
                 return
-            
+
             temp_visited.add(task_name)
-            
+
             for dependency in self.maintenance_tasks[task_name].get("dependencies", []):
                 visit(dependency)
-            
+
             temp_visited.remove(task_name)
             visited.add(task_name)
             result.append(task_name)
-        
+
         for task_name in self.maintenance_tasks:
             if task_name not in visited:
                 visit(task_name)
-        
+
         return result
 ```
 
@@ -365,25 +371,25 @@ monthly_maintenance_checklist:
     - analyze_performance_trends
     - update_capacity_planning
     - review_cost_optimization
-  
+
   security_assessment:
     - vulnerability_scanning
     - penetration_testing_coordination
     - security_policy_review
     - compliance_audit
-  
+
   disaster_recovery_testing:
     - backup_restore_testing
     - failover_procedure_validation
     - recovery_time_verification
     - documentation_updates
-  
+
   system_optimization:
     - database_performance_tuning
     - network_optimization
     - storage_optimization
     - application_performance_review
-  
+
   documentation_maintenance:
     - procedure_updates
     - configuration_documentation
@@ -479,11 +485,11 @@ class PerformanceMonitor:
     """
     System performance monitoring and optimization
     """
-    
+
     def __init__(self):
         self.metrics_collectors = self.initialize_collectors()
         self.performance_thresholds = self.load_thresholds()
-    
+
     def load_thresholds(self) -> Dict[str, Dict]:
         """Load performance thresholds"""
         return {
@@ -494,80 +500,95 @@ class PerformanceMonitor:
             "transaction_throughput": {"warning": 800, "critical": 500},
             "response_time": {"warning": 2000, "critical": 5000}
         }
-    
+
     async def collect_performance_metrics(self) -> Dict[str, float]:
         """Collect current performance metrics"""
-        
+
         metrics = {}
-        
+
         # CPU utilization
         cpu_result = subprocess.run([
             "kubectl", "top", "nodes", "--no-headers"
         ], capture_output=True, text=True)
-        
+
         cpu_usage = []
         for line in cpu_result.stdout.strip().split('\n'):
             if line:
                 parts = line.split()
                 cpu_percent = int(parts[1].replace('%', ''))
                 cpu_usage.append(cpu_percent)
-        
+
         metrics["cpu_utilization"] = sum(cpu_usage) / len(cpu_usage) if cpu_usage else 0
-        
+
         # Memory utilization
         memory_result = subprocess.run([
             "kubectl", "top", "nodes", "--no-headers"
         ], capture_output=True, text=True)
-        
+
         memory_usage = []
         for line in memory_result.stdout.strip().split('\n'):
             if line:
                 parts = line.split()
                 memory_percent = int(parts[3].replace('%', ''))
                 memory_usage.append(memory_percent)
-        
+
         metrics["memory_utilization"] = sum(memory_usage) / len(memory_usage) if memory_usage else 0
-        
+
         # Transaction throughput
         metrics["transaction_throughput"] = await self.measure_transaction_throughput()
-        
+
         # Response time
         metrics["response_time"] = await self.measure_response_time()
-        
+
         return metrics
-    
+
     async def measure_transaction_throughput(self) -> float:
         """Measure blockchain transaction throughput"""
-        
+
         # Get transaction count over last minute
         result = subprocess.run([
             "kubectl", "exec", "-n", "phoenix-rooivalk", "blockchain-node-0", "--",
             "curl", "-s", "http://localhost:9090/metrics"
         ], capture_output=True, text=True)
-        
+
         # Parse metrics for transaction count
         for line in result.stdout.split('\n'):
             if 'transaction_count' in line and 'rate' in line:
                 return float(line.split()[-1])
-        
+
         return 0.0
-    
+
     async def analyze_performance_trends(self) -> Dict[str, str]:
         """Analyze performance trends and provide recommendations"""
-        
+
         current_metrics = await self.collect_performance_metrics()
         recommendations = {}
-        
+
         for metric_name, value in current_metrics.items():
             thresholds = self.performance_thresholds.get(metric_name, {})
-            
+
+            if metric_name == "transaction_throughput":
+                if value < thresholds.get("critical", 0):
+                    recommendations[metric_name] = (
+                        f"CRITICAL: {metric_name} at {value} tx/s - immediate action required"
+                    )
+                elif value < thresholds.get("warning", 0):
+                    recommendations[metric_name] = (
+                        f"WARNING: {metric_name} at {value} tx/s - monitor closely"
+                    )
+                else:
+                    recommendations[metric_name] = (
+                        f"OK: {metric_name} at {value} tx/s - within normal range"
+                    )
+                continue
+
             if value > thresholds.get("critical", 100):
                 recommendations[metric_name] = f"CRITICAL: {metric_name} at {value}% - immediate action required"
             elif value > thresholds.get("warning", 80):
                 recommendations[metric_name] = f"WARNING: {metric_name} at {value}% - monitor closely"
             else:
                 recommendations[metric_name] = f"OK: {metric_name} at {value}% - within normal range"
-        
+
         return recommendations
 ```
 
@@ -652,35 +673,35 @@ capacity_planning:
       - memory_usage_trend
       - storage_growth_rate
       - network_bandwidth_usage
-    
+
     application_metrics:
       - transaction_volume_growth
       - user_activity_trends
       - data_storage_requirements
       - processing_time_trends
-    
+
     infrastructure_metrics:
       - node_capacity_utilization
       - storage_capacity_trends
       - network_capacity_usage
       - backup_storage_growth
-  
+
   forecasting_models:
     linear_growth:
       description: "Simple linear projection"
       use_case: "steady_growth_patterns"
       accuracy: "moderate"
-    
+
     seasonal_analysis:
       description: "Seasonal pattern analysis"
       use_case: "cyclical_usage_patterns"
       accuracy: "high"
-    
+
     machine_learning:
       description: "ML-based forecasting"
       use_case: "complex_patterns"
       accuracy: "very_high"
-  
+
   scaling_thresholds:
     cpu_utilization: 70
     memory_utilization: 75
@@ -692,9 +713,14 @@ capacity_planning:
 
 ## Conclusion
 
-The comprehensive maintenance guide ensures optimal system performance, security, and reliability through systematic preventive maintenance, proactive monitoring, and continuous optimization. Regular adherence to these maintenance procedures maintains operational excellence while supporting mission-critical counter-drone capabilities.
+The comprehensive maintenance guide ensures optimal system performance,
+security, and reliability through systematic preventive maintenance, proactive
+monitoring, and continuous optimization. Regular adherence to these maintenance
+procedures maintains operational excellence while supporting mission-critical
+counter-drone capabilities.
 
 **Key Maintenance Principles:**
+
 - Proactive maintenance prevents issues before they impact operations
 - Systematic health monitoring enables early issue detection
 - Regular performance optimization maintains system efficiency
@@ -704,10 +730,12 @@ The comprehensive maintenance guide ensures optimal system performance, security
 ---
 
 **Related Documents:**
+
 - [Standard Procedures](./standard-procedures.md) - Daily operations
 - [Incident Response](./incident-response.md) - Emergency procedures
 - [Training Materials](./training-materials.md) - Maintenance training
 
 ---
 
-*Context improved by Giga AI - Used main overview development guidelines and blockchain integration system information for accurate maintenance procedures.*
+_Context improved by Giga AI - Used main overview development guidelines and
+blockchain integration system information for accurate maintenance procedures._
