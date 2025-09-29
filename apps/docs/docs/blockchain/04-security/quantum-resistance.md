@@ -171,7 +171,7 @@ class PostQuantumCrypto:
     def hybrid_key_exchange(self, classical_key: bytes, pqc_key: bytes) -> bytes:
         """Hybrid classical + post-quantum key exchange"""
         # Combine classical ECDH with Kyber KEM
-        classical_secret = secrets.token_bytes(32)
+        classical_secret = hashlib.sha3_256(classical_key).digest()
         pqc_ciphertext, pqc_secret = self.kyber_encapsulate(pqc_key)
 
         # Derive combined secret

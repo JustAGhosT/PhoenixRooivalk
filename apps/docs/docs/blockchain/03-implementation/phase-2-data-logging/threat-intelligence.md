@@ -308,18 +308,21 @@ class IntelligenceCollector:
 
         # Confidence and type features
         features.append(indicator.confidence.value)
-        features.append(hash(indicator.intelligence_type.value) % 1000 / 1000.0)
+        type_hash = int(hashlib.sha256(indicator.intelligence_type.value.encode()).hexdigest(), 16)
+        features.append((type_hash % 1000) / 1000.0)
 
         # Source features
-        features.append(hash(indicator.source) % 1000 / 1000.0)
+        source_hash = int(hashlib.sha256(indicator.source.encode()).hexdigest(), 16)
+        features.append((source_hash % 1000) / 1000.0)
 
         # Tag features (simplified)
-        tag_hash = hash(''.join(sorted(indicator.tags))) % 1000 / 1000.0
-        features.append(tag_hash)
+        tag_string = ''.join(sorted(indicator.tags))
+        tag_hash = int(hashlib.sha256(tag_string.encode()).hexdigest(), 16)
+        features.append((tag_hash % 1000) / 1000.0)
 
         # Value features (simplified)
-        value_hash = hash(indicator.value) % 1000 / 1000.0
-        features.append(value_hash)
+        value_hash = int(hashlib.sha256(indicator.value.encode()).hexdigest(), 16)
+        features.append((value_hash % 1000) / 1000.0)
 
         return features
 
@@ -398,6 +401,61 @@ class IntelligenceCollector:
         # Return actor with highest score
         best_actor = max(actor_scores, key=actor_scores.get)
         return best_actor if actor_scores[best_actor] > 0.6 else "UNKNOWN-ACTOR"
+
+    def calculate_actor_similarity(self, indicators: List[IntelligenceIndicator], 
+                                 patterns: Dict[str, Any], actor: str) -> float:
+        """Calculate similarity score between observed patterns and known threat actor"""
+        
+        # Simplified similarity calculation based on known actor characteristics
+        # In practice, this would use sophisticated ML models and threat intelligence databases
+        
+        score = 0.0
+        
+        # Actor-specific scoring logic
+        if actor == "APT-DRONE-001":
+            # Advanced persistent threat with sophisticated drone capabilities
+            if patterns.get('technical_pattern', {}).get('complexity_score', 0) > 0.8:
+                score += 0.3
+            if len([i for i in indicators if 'advanced' in i.tags]) > 0:
+                score += 0.2
+                
+        elif actor == "COMMERCIAL-THREAT-GROUP":
+            # Commercial actors using readily available equipment
+            if patterns.get('technical_pattern', {}).get('commercial_indicators', 0) > 0.7:
+                score += 0.4
+            if any('commercial' in i.source.lower() for i in indicators):
+                score += 0.2
+                
+        elif actor == "INSIDER-THREAT":
+            # Internal threats with system knowledge
+            if patterns.get('behavioral_pattern', {}).get('insider_indicators', 0) > 0.6:
+                score += 0.5
+            if patterns.get('temporal_pattern', {}).get('working_hours_activity', 0) > 0.8:
+                score += 0.3
+                
+        elif actor == "CRIMINAL-ORGANIZATION":
+            # Criminal groups with profit motive
+            if patterns.get('geospatial_pattern', {}).get('high_value_targets', 0) > 0.7:
+                score += 0.4
+            if any('financial' in i.tags for i in indicators):
+                score += 0.3
+                
+        elif actor == "STATE-SPONSORED-ACTOR":
+            # Nation-state actors with advanced capabilities
+            if patterns.get('technical_pattern', {}).get('sophistication_level', 0) > 0.9:
+                score += 0.4
+            if patterns.get('geospatial_pattern', {}).get('strategic_targets', 0) > 0.8:
+                score += 0.3
+                
+        else:  # UNKNOWN-ACTOR
+            # Default scoring for unknown actors
+            score = 0.1
+            
+        # Add randomness to prevent deterministic attribution in edge cases
+        import random
+        score += random.uniform(-0.05, 0.05)
+        
+        return max(0.0, min(1.0, score))  # Clamp between 0 and 1
 
     def calculate_provenance_hash(self, indicator: IntelligenceIndicator) -> str:
         """Calculate cryptographic hash for intelligence provenance"""

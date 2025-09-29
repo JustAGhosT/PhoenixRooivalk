@@ -1,7 +1,9 @@
+import type { ReactNode } from "react";
+
 interface QuickAction {
-  icon: string;
+  icon: ReactNode;
   label: string;
-  action: () => void;
+  action: () => void | Promise<void>;
 }
 
 interface QuickActionsWidgetProps {

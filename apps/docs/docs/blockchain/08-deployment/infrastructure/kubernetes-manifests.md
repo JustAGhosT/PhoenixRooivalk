@@ -181,7 +181,7 @@ spec:
             claimName: blockchain-data-pvc
         - name: validator-config
           configMap:
-            name: validator-config
+            name: blockchain-config
       nodeSelector:
         node-type: blockchain
       tolerations:
@@ -595,7 +595,174 @@ data:
       scrape_interval: 15s
 ```
 
-### 5.2 Service Accounts and RBAC
+### 5.2 Alertmanager Configuration
+
+```yaml
+# monitoring/alertmanager.yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: alertmanager-config
+  namespace: monitoring
+data:
+  alertmanager.yml: |
+    global:
+      smtp_smarthost: 'smtp.example.com:587'
+      smtp_from: 'alerts@phoenix-rooivalk.com'
+      smtp_auth_username: 'alerts@phoenix-rooivalk.com'
+      smtp_auth_password: ${SMTP_PASSWORD}
+      smtp_require_tls: true
+
+    route:
+      group_by: ['alertname', 'cluster', 'service']
+      group_wait: 10s
+      group_interval: 10s
+      repeat_interval: 1h
+      receiver: 'default-receiver'
+      routes:
+      - match:
+          severity: critical
+        receiver: 'critical-alerts'
+      - match:
+          severity: warning
+        receiver: 'warning-alerts'
+
+    receivers:
+    - name: 'default-receiver'
+      email_configs:
+      - to: 'ops-team@phoenix-rooivalk.com'
+        subject: 'Phoenix Rooivalk Alert: {{ .GroupLabels.alertname }}'
+        body: |
+          {{ range .Alerts }}
+          Alert: {{ .Annotations.summary }}
+          Description: {{ .Annotations.description }}
+          {{ end }}
+
+    - name: 'critical-alerts'
+      email_configs:
+      - to: 'critical-ops@phoenix-rooivalk.com'
+        subject: 'CRITICAL: Phoenix Rooivalk Alert'
+      slack_configs:
+      - api_url: ${SLACK_WEBHOOK_URL}
+        channel: '#critical-alerts'
+        title: 'Critical Alert: {{ .GroupLabels.alertname }}'
+        text: '{{ range .Alerts }}{{ .Annotations.description }}{{ end }}'
+      pagerduty_configs:
+      - service_key: ${PAGERDUTY_SERVICE_KEY}
+        description: '{{ .GroupLabels.alertname }}: {{ .GroupLabels.instance }}'
+
+    - name: 'warning-alerts'
+      slack_configs:
+      - api_url: ${SLACK_WEBHOOK_URL}
+        channel: '#alerts'
+        title: 'Warning: {{ .GroupLabels.alertname }}'
+
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: alertmanager-secrets
+  namespace: monitoring
+type: Opaque
+data:
+  smtp-password: <base64-encoded-smtp-password>
+  slack-webhook-url: <base64-encoded-slack-webhook-url>
+  pagerduty-service-key: <base64-encoded-pagerduty-service-key>
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: alertmanager
+  namespace: monitoring
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: alertmanager
+  template:
+    metadata:
+      labels:
+        app: alertmanager
+    spec:
+      containers:
+      - name: alertmanager
+        image: prom/alertmanager:v0.25.0
+        ports:
+        - containerPort: 9093
+        env:
+        - name: SMTP_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: alertmanager-secrets
+              key: smtp-password
+        - name: SLACK_WEBHOOK_URL
+          valueFrom:
+            secretKeyRef:
+              name: alertmanager-secrets
+              key: slack-webhook-url
+        - name: PAGERDUTY_SERVICE_KEY
+          valueFrom:
+            secretKeyRef:
+              name: alertmanager-secrets
+              key: pagerduty-service-key
+        volumeMounts:
+        - name: config
+          mountPath: /etc/alertmanager
+        command:
+        - /bin/alertmanager
+        - --config.file=/etc/alertmanager/alertmanager.yml
+        - --storage.path=/alertmanager
+        - --web.external-url=http://localhost:9093
+      volumes:
+      - name: config
+        configMap:
+          name: alertmanager-config
+```
+
+**Secret Management Best Practices:**
+
+1. **Environment Variable Substitution**: Use `${VARIABLE_NAME}` placeholders in configuration
+2. **Kubernetes Secrets**: Store sensitive values in Kubernetes Secret objects
+3. **External Secret Management**: Consider using External Secrets Operator with:
+   - AWS Secrets Manager
+   - HashiCorp Vault
+   - Azure Key Vault
+   - Google Secret Manager
+
+**Example External Secrets Configuration:**
+
+```yaml
+# monitoring/external-secret.yaml
+apiVersion: external-secrets.io/v1beta1
+kind: ExternalSecret
+metadata:
+  name: alertmanager-external-secret
+  namespace: monitoring
+spec:
+  refreshInterval: 1h
+  secretStoreRef:
+    name: vault-backend
+    kind: SecretStore
+  target:
+    name: alertmanager-secrets
+    creationPolicy: Owner
+  data:
+  - secretKey: smtp-password
+    remoteRef:
+      key: phoenix-rooivalk/alerting
+      property: smtp_password
+  - secretKey: slack-webhook-url
+    remoteRef:
+      key: phoenix-rooivalk/alerting
+      property: slack_webhook_url
+  - secretKey: pagerduty-service-key
+    remoteRef:
+      key: phoenix-rooivalk/alerting
+      property: pagerduty_service_key
+```
+
+### 5.3 Service Accounts and RBAC
 
 ```yaml
 # security/rbac.yaml

@@ -97,7 +97,7 @@ class BudgetAnalyzer:
 
     def __init__(self):
         self.rd_budget_categories = self.initialize_rd_budget()
-        self.years = [2024, 2025, 2026, 2027, 2028]
+        self.years = [2025, 2026, 2027, 2028, 2029]
 
     def initialize_rd_budget(self) -> List[BudgetCategory]:
         """Initialize R&D budget categories"""
@@ -470,7 +470,7 @@ print(f"Overall Confidence: {risk_analysis['overall_confidence']:.1%}")
 ## 8. Conclusion
 
 Phoenix Rooivalk's $145M budget allocation over 5 years prioritizes technology
-development (45%) and market expansion (25%) to achieve $842M revenue by 2030.
+development (45%) and market expansion (25%) to achieve $842M revenue by 2031.
 Our Value-Based Cost Engineering approach ensures optimal resource allocation
 while maintaining military-grade security and performance standards.
 

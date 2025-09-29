@@ -138,7 +138,7 @@ print(f"Composite Market Growth Score: {market_impact['composite_market_score']:
 
 3. **Regulatory Compliance Requirements**
    - 47 countries mandate counter-drone capabilities
-   - FAA Part 107 security requirements (2025)
+   - Pending US legislation (H.R. 5061) for counter-drone standards
    - EASA drone security framework implementation
 
 4. **Technological Convergence**
@@ -152,12 +152,12 @@ print(f"Composite Market Growth Score: {market_impact['composite_market_score']:
 
 | **Region**        | **Market Size** | **Growth Rate** | **Key Drivers**                          | **Regulatory Status**   |
 | ----------------- | --------------- | --------------- | ---------------------------------------- | ----------------------- |
-| **North America** | $1.85B (45%)    | 24.2% CAGR      | Defense spending, airport security       | Advanced (FAA Part 107) |
-| **Europe**        | $1.15B (28%)    | 21.8% CAGR      | GDPR compliance, critical infrastructure | Harmonized (EASA)       |
-| **Asia-Pacific**  | $1.11B (27%)    | 26.7% CAGR      | Manufacturing security, smart cities     | Emerging frameworks     |
-| **Middle East**   | $0.32B (8%)     | 19.4% CAGR      | Military modernization, oil facilities   | Military-focused        |
-| **Latin America** | $0.18B (4%)     | 17.2% CAGR      | Border security, mining operations       | Developing              |
-| **Africa**        | $0.12B (3%)     | 15.8% CAGR      | Wildlife protection, infrastructure      | Limited frameworks      |
+| **North America** | $2.39B (45%)    | 24.2% CAGR      | Defense spending, airport security       | Developing (pending legislation) |
+| **Europe**        | $1.48B (28%)    | 21.8% CAGR      | GDPR compliance, critical infrastructure | Harmonized (EASA)       |
+| **Asia-Pacific**  | $1.43B (27%)    | 26.7% CAGR      | Manufacturing security, smart cities     | Emerging frameworks     |
+| **Middle East**   | $0.32B (6%)     | 19.4% CAGR      | Military modernization, oil facilities   | Military-focused        |
+| **Latin America** | $0.21B (4%)     | 17.2% CAGR      | Border security, mining operations       | Developing              |
+| **Africa**        | $0.16B (3%)     | 15.8% CAGR      | Wildlife protection, infrastructure      | Limited frameworks      |
 
 **Market Penetration Opportunities**:
 

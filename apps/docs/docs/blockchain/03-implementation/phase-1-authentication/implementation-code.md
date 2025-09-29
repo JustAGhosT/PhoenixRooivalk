@@ -525,6 +525,24 @@ class PhoenixAuthClient implements AuthenticationClient {
 
     return response.data as SessionInfo;
   }
+
+  async refreshSession(token: string): Promise<SessionToken> {
+    const response = await this.httpClient.post(
+      `${this.baseUrl}/api/v1/session/refresh`,
+      {},
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      },
+    );
+
+    if (response.status === 200) {
+      return response.data as SessionToken;
+    }
+
+    throw new Error(`Session refresh failed: ${response.statusText}`);
+  }
 }
 
 // Usage example

@@ -872,9 +872,11 @@ contract SystemIntegration {
     ) external {
 
         // 1. Check permissions
-        (bool hasAccess,) = accessContract.call(
+        (bool success, bytes memory result) = accessContract.call(
             abi.encodeWithSignature("checkPermission(address,string)", msg.sender, _operation)
         );
+        require(success, "Access check failed");
+        bool hasAccess = abi.decode(result, (bool));
         require(hasAccess, "Access denied");
 
         // 2. Log evidence

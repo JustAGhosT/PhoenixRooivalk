@@ -44,9 +44,8 @@ jobs:
       - name: Generate Cargo.lock
         run: cargo generate-lockfile
 
-      # Temporarily disabled - format check failing, needs cargo fmt --all
-      # - name: Format check
-      #   run: cargo fmt --all -- --check
+      - name: Format check
+        run: cargo fmt --all -- --check
 
       - name: Clippy (deny warnings)
         run:

@@ -25,6 +25,7 @@ export default function HomePage(): React.ReactElement {
     };
 
     window.addEventListener("scroll", handleScroll);
+    handleScroll();
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -64,7 +65,7 @@ export default function HomePage(): React.ReactElement {
                 name: "What is Level-0 autonomous architecture in counter-drone systems?",
                 acceptedAnswer: {
                   "@type": "Answer",
-                  text: "Level-0 autonomous architecture enables complete edge operation without communications dependency. Phoenix Rooivalk achieves <2ms response time vs 2-5 seconds for competitors, with Byzantine fault-tolerant consensus for resilience in contested environments.",
+                  text: "Level-0 autonomous architecture enables complete edge operation without communications dependency. Phoenix Rooivalk achieves &lt;2ms response time vs 2-5 seconds for competitors, with Byzantine fault-tolerant consensus for resilience in contested environments.",
                 },
               },
               {
@@ -88,7 +89,7 @@ export default function HomePage(): React.ReactElement {
                 name: "How does Phoenix Rooivalk compare to Anduril, Fortem, and DroneShield?",
                 acceptedAnswer: {
                   "@type": "Answer",
-                  text: "Phoenix Rooivalk offers <2ms latency vs Anduril's 2-5 seconds, defeats RF-silent drones that Fortem cannot detect, and provides complete autonomous operation unlike DroneShield's RF-dependent systems. Our Level-0 architecture provides 100x performance improvement over all competitors.",
+                  text: "Phoenix Rooivalk offers &lt;2ms latency vs Anduril's 2-5 seconds, defeats RF-silent drones that Fortem cannot detect, and provides complete autonomous operation unlike DroneShield's RF-dependent systems. Our Level-0 architecture provides 100x performance improvement over all competitors.",
                 },
               },
               {

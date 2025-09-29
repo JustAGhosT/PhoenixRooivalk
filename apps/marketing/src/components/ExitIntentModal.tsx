@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Button } from './ui/button';
 import { downloadWhitepaper } from '@/utils/downloadWhitepaper';
 
@@ -10,6 +10,7 @@ interface ExitIntentModalProps {
 export const ExitIntentModal: React.FC<ExitIntentModalProps> = ({ docsUrl }) => {
   const [isVisible, setIsVisible] = useState(false);
   const [hasTriggered, setHasTriggered] = useState(false);
+  const beforeUnloadHandlerRef = useRef<((e: BeforeUnloadEvent) => void) | null>(null);
 
   useEffect(() => {
     const handleMouseLeave = (e: MouseEvent) => {
@@ -32,6 +33,7 @@ export const ExitIntentModal: React.FC<ExitIntentModalProps> = ({ docsUrl }) => 
         e.returnValue = '';
       }
     };
+    beforeUnloadHandlerRef.current = handleBeforeUnload;
 
     document.addEventListener('mouseleave', handleMouseLeave);
     window.addEventListener('beforeunload', handleBeforeUnload);
@@ -39,6 +41,9 @@ export const ExitIntentModal: React.FC<ExitIntentModalProps> = ({ docsUrl }) => 
     return () => {
       document.removeEventListener('mouseleave', handleMouseLeave);
       window.removeEventListener('beforeunload', handleBeforeUnload);
+      if (beforeUnloadHandlerRef.current === handleBeforeUnload) {
+        beforeUnloadHandlerRef.current = null;
+      }
     };
   }, [hasTriggered]);
 
@@ -54,7 +59,10 @@ export const ExitIntentModal: React.FC<ExitIntentModalProps> = ({ docsUrl }) => 
   const handleStayOnPage = () => {
     setIsVisible(false);
     // Remove the beforeunload listener to prevent modal on actual navigation
-    window.removeEventListener('beforeunload', () => {});
+    if (beforeUnloadHandlerRef.current) {
+      window.removeEventListener('beforeunload', beforeUnloadHandlerRef.current);
+      beforeUnloadHandlerRef.current = null;
+    }
   };
 
   if (!isVisible) return null;

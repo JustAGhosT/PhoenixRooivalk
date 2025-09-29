@@ -272,7 +272,7 @@ The system is designed for flexibility and can be deployed in various scenarios:
 - **Ease of Use**: Minimal training required for operators, with intuitive
   interfaces and automation options.
 - **Outperforms Competitors**: Achieves detection accuracy of over 95% and
-  response times of under 3 seconds, significantly exceeding industry standards
+  response times of 3-6 seconds, significantly exceeding industry standards
   for reliability and efficiency.
 
 ---

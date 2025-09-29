@@ -6,7 +6,7 @@ export const CapabilitiesSection: React.FC = () => {
     {
       icon: "⚡",
       title: "100x Performance Improvement",
-      description: '<2ms response time vs 2-5 seconds for competitors. Edge-only processing with 275 TOPS AI inference.',
+      description: '&lt;2ms response time vs 2-5 seconds for competitors. Edge-only processing with 275 TOPS AI inference.',
     },
     {
       icon: "🔍",

@@ -5,7 +5,7 @@
 ### Document Information
 
 - **Version**: 2.0.0
-- **Last Updated**: [Current Date]
+- **Last Updated**: September 28, 2025
 - **Purpose**: Technical protocol selection for production deployment
 - **Decision Status**: Hyperledger Fabric selected, Polkadot approved, Solana
   POC only
@@ -360,7 +360,7 @@ operational_requirements:
 | Security            | 25%    | 9/10   | 9/10     | 9/10   | 3/10   |
 | Maturity            | 15%    | 10/10  | 8/10     | 7/10   | 6/10   |
 | Cost                | 10%    | 7/10   | 6/10     | 8/10   | 9/10   |
-| Total Score         | 100%   | 8.65   | 7.75     | 7.5    | 4.8    |
+| Total Score         | 100%   | 8.85   | 7.75     | 7.5    | 4.55   |
 
 ### 6.2 Final Protocol Selection
 

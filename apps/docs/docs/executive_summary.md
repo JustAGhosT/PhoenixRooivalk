@@ -63,10 +63,10 @@ The counter-drone market is projected to grow at a compound annual growth rate
   non-destructive drone neutralization.
 - **Ease of Deployment**: Lightweight, portable, and user-friendly, requiring
   minimal training.
-- **Detection Accuracy**: Over 95% accuracy in identifying and neutralizing
-  threats, with a response time of under 3 seconds.
-- **AI-Powered Intelligence**: Advanced machine learning achieves 99.7% threat
-  detection accuracy with < 200ms response time, providing superior performance
+- **Overall System Accuracy**: Over 95% accuracy in complete threat identification 
+  and neutralization cycles, with full engagement response time of under 3 seconds.
+- **AI Detection Module**: Advanced machine learning achieves 99.7% threat
+  detection accuracy with &lt; 200ms initial detection response time, providing superior performance
   over conventional systems.
 - **Blockchain Security**: Military-grade blockchain technology ensures 99.3%
   data integrity protection with tamper-proof audit trails and cryptographic

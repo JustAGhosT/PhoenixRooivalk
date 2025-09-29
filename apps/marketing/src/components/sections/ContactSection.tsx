@@ -22,7 +22,7 @@ export const ContactSection: React.FC = () => {
             <h3 className="text-xl font-bold text-white mb-4">Request Capability Demonstration</h3>
             <p className="text-gray-300 mb-6">
               See Phoenix Rooivalk's Level-0 autonomous architecture in action. 
-              Demonstrate <2ms response time, RF-silent drone detection, and swarm defense capabilities.
+              Demonstrate &lt;2ms response time, RF-silent drone detection, and swarm defense capabilities.
             </p>
             <div className="space-y-4">
               <Button href="mailto:demo@phoenixrooivalk.com" size="lg" className="w-full">

@@ -11,7 +11,7 @@ export const MarketIntelligenceSection: React.FC = () => {
     {
       metric: "100x",
       label: "Performance Improvement",
-      description: "<2ms vs 2-5 seconds for current systems",
+      description: "&lt;2ms vs 2-5 seconds for current systems",
     },
     {
       metric: "64%",
@@ -96,7 +96,7 @@ export const MarketIntelligenceSection: React.FC = () => {
             <div className="grid md:grid-cols-3 gap-6 text-left">
               <div>
                 <div className="text-lg font-semibold text-[var(--primary)] mb-2">Speed</div>
-                <div className="text-sm text-gray-300"><2ms latency vs 2-5 seconds for competitors</div>
+                <div className="text-sm text-gray-300">&lt;2ms latency vs 2-5 seconds for competitors</div>
               </div>
               <div>
                 <div className="text-lg font-semibold text-[var(--primary)] mb-2">Autonomy</div>

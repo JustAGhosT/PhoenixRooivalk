@@ -567,6 +567,21 @@ class PerformanceMonitor:
         for metric_name, value in current_metrics.items():
             thresholds = self.performance_thresholds.get(metric_name, {})
 
+            if metric_name == "transaction_throughput":
+                if value < thresholds.get("critical", 0):
+                    recommendations[metric_name] = (
+                        f"CRITICAL: {metric_name} at {value} tx/s - immediate action required"
+                    )
+                elif value < thresholds.get("warning", 0):
+                    recommendations[metric_name] = (
+                        f"WARNING: {metric_name} at {value} tx/s - monitor closely"
+                    )
+                else:
+                    recommendations[metric_name] = (
+                        f"OK: {metric_name} at {value} tx/s - within normal range"
+                    )
+                continue
+
             if value > thresholds.get("critical", 100):
                 recommendations[metric_name] = f"CRITICAL: {metric_name} at {value}% - immediate action required"
             elif value > thresholds.get("warning", 80):

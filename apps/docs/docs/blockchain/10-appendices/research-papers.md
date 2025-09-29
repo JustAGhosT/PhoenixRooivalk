@@ -262,7 +262,7 @@ counter-drone systems.
 **Publisher**: DoD Command and Control Research Program  
 **ISBN**: 978-1893723016
 
-**Department of Defense (2017)**  
+**Department of Defense (2019)**  
 _DoD Digital Modernization Strategy_  
 **Abstract**: Strategic framework for digital transformation in defense
 systems.  

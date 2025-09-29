@@ -79,6 +79,7 @@ Comprehensive ROI analysis for Phoenix Rooivalk
 """
 import numpy as np
 import pandas as pd
+from copy import deepcopy
 from dataclasses import dataclass
 from typing import Dict, List, Tuple, Any
 
@@ -248,11 +249,10 @@ class ROIAnalyzer:
         # Revenue sensitivity
         revenue_scenarios = {'pessimistic': 0.8, 'base': 1.0, 'optimistic': 1.2}
         sensitivity_results['revenue'] = {}
+        baseline = deepcopy(self.financial_projections)
 
         for scenario, multiplier in revenue_scenarios.items():
-            # Temporarily adjust revenues
-            original_projections = self.financial_projections.copy()
-
+            self.financial_projections = deepcopy(baseline)
             for projection in self.financial_projections:
                 projection.revenue *= multiplier
                 projection.gross_profit = projection.revenue - projection.operating_costs
@@ -261,17 +261,14 @@ class ROIAnalyzer:
             scenario_roi = self.calculate_roi_metrics()['profit_roi']
             sensitivity_results['revenue'][scenario] = scenario_roi
 
-            # Restore original projections
-            self.financial_projections = original_projections
+        self.financial_projections = baseline
 
         # Cost sensitivity
         cost_scenarios = {'optimistic': 0.9, 'base': 1.0, 'pessimistic': 1.1}
         sensitivity_results['costs'] = {}
 
         for scenario, multiplier in cost_scenarios.items():
-            # Temporarily adjust costs
-            original_projections = self.financial_projections.copy()
-
+            self.financial_projections = deepcopy(baseline)
             for projection in self.financial_projections:
                 projection.operating_costs *= multiplier
                 projection.gross_profit = projection.revenue - projection.operating_costs
@@ -280,8 +277,7 @@ class ROIAnalyzer:
             scenario_roi = self.calculate_roi_metrics()['profit_roi']
             sensitivity_results['costs'][scenario] = scenario_roi
 
-            # Restore original projections
-            self.financial_projections = original_projections
+        self.financial_projections = baseline
 
         return sensitivity_results
 
@@ -320,9 +316,8 @@ class ROIAnalyzer:
             # Calculate adjusted costs (competition affects marketing costs)
             cost_multiplier = factors['competition']
 
-            # Temporarily adjust projections
-            original_projections = self.financial_projections.copy()
-
+            # Apply scenario adjustments to clean baseline
+            baseline = deepcopy(self.financial_projections)
             for projection in self.financial_projections:
                 projection.revenue *= revenue_multiplier
                 projection.operating_costs *= cost_multiplier
@@ -332,8 +327,8 @@ class ROIAnalyzer:
             scenario_metrics = self.calculate_roi_metrics()
             scenario_results[scenario_name] = scenario_metrics
 
-            # Restore original projections
-            self.financial_projections = original_projections
+            # Restore baseline for next scenario
+            self.financial_projections = baseline
 
         return scenario_results
 

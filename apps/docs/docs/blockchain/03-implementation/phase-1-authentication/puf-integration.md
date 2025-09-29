@@ -187,7 +187,7 @@ int sram_puf_challenge_response(sram_puf_t *puf, const uint8_t *challenge,
     sram_puf_select_bits(puf, challenge, selected_bits);
 
     // Extract response bits from selected SRAM locations
-    uint8_t raw_response[32];
+    uint8_t raw_response[32] = {0};
     for (int i = 0; i < PUF_RESPONSE_BITS; i++) {
         uint32_t byte_idx = selected_bits[i] / 8;
         uint32_t bit_idx = selected_bits[i] % 8;

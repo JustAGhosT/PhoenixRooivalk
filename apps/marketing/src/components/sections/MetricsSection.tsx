@@ -4,7 +4,7 @@ import { MetricCard } from "../ui/MetricCard";
 const metrics = [
   ["Military-Grade", "Detection Accuracy", "Multi-sensor fusion approach"],
   ["Blockchain-Secured", "Evidence Integrity", "Tamper-proof audit trails"],
-  ["&lt; 200ms", "Response Time", "Edge computing architecture"],
+  ["< 200ms", "Response Time", "Edge computing architecture"],
   
   ["Contested", "Environment Ready", "Designed for degraded networks"],
 ];

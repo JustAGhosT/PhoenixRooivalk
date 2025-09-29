@@ -645,6 +645,62 @@ class BlockchainSecurityManager:
                     return True
         return False
 
+    def check_access_control(self, contract_code: str) -> bool:
+        """Check for access control vulnerabilities"""
+        # Look for functions without proper access modifiers
+        access_patterns = ['onlyOwner', 'require(msg.sender', 'modifier', 'private', 'internal']
+        function_patterns = ['function ', 'public ']
+        
+        lines = contract_code.split('\n')
+        for line in lines:
+            if any(pattern in line for pattern in function_patterns):
+                if not any(pattern in line for pattern in access_patterns):
+                    return True
+        return False
+
+    def check_external_calls(self, contract_code: str) -> bool:
+        """Check for unchecked external calls"""
+        # Look for external calls without proper error handling
+        external_call_patterns = ['.call(', '.delegatecall(', '.staticcall(']
+        error_handling_patterns = ['require(', 'assert(', 'if (', 'try ', 'catch']
+        
+        lines = contract_code.split('\n')
+        for i, line in enumerate(lines):
+            if any(pattern in line for pattern in external_call_patterns):
+                # Check for error handling in surrounding lines
+                context_start = max(0, i-2)
+                context_end = min(len(lines), i+3)
+                context_lines = lines[context_start:context_end]
+                
+                if not any(any(pattern in context_line for pattern in error_handling_patterns) 
+                          for context_line in context_lines):
+                    return True
+        return False
+
+    def generate_recommendations(self, vulnerabilities: List[str]) -> List[str]:
+        """Generate security recommendations based on identified vulnerabilities"""
+        recommendations = []
+        
+        for vulnerability in vulnerabilities:
+            if "reentrancy" in vulnerability.lower():
+                recommendations.append("Implement checks-effects-interactions pattern")
+                recommendations.append("Use ReentrancyGuard modifier")
+            elif "overflow" in vulnerability.lower():
+                recommendations.append("Use SafeMath library for arithmetic operations")
+                recommendations.append("Upgrade to Solidity 0.8+ with built-in overflow protection")
+            elif "access control" in vulnerability.lower():
+                recommendations.append("Implement proper access control modifiers")
+                recommendations.append("Use OpenZeppelin's Ownable or AccessControl contracts")
+            elif "external calls" in vulnerability.lower():
+                recommendations.append("Always check return values of external calls")
+                recommendations.append("Use try-catch blocks for external contract interactions")
+        
+        if not recommendations:
+            recommendations.append("Continue following security best practices")
+            recommendations.append("Regular security audits recommended")
+        
+        return recommendations
+
     def calculate_risk_level(self, vulnerabilities: List[str]) -> str:
         """Calculate overall risk level based on vulnerabilities"""
         if len(vulnerabilities) == 0:

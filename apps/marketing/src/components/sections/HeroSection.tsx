@@ -17,7 +17,7 @@ export const HeroSection: React.FC = () => {
             Level-0 Autonomous Counter-Drone Architecture
           </h1>
           <p className="mt-6 text-xl text-[var(--gray)] animate-fadeInUp [animation-delay:200ms]">
-            <2ms response time vs 2-5 seconds for competitors. Defeats RF-silent drones others cannot detect. 
+            &lt;2ms response time vs 2-5 seconds for competitors. Defeats RF-silent drones others cannot detect. 
             Operates in completely denied electromagnetic environments.
           </p>
           <div className="mt-8 flex flex-col sm:flex-row gap-4 animate-fadeInUp [animation-delay:400ms]">

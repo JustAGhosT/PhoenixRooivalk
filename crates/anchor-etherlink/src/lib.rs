@@ -24,8 +24,10 @@ impl AnchorProvider for EtherlinkProviderStub {
     }
 
     async fn confirm(&self, tx: &ChainTxRef) -> Result<ChainTxRef, AnchorError> {
-        // Stub implementation - always return the same transaction
-        Ok(tx.clone())
+        // Stub implementation - always report the transaction as confirmed
+        let mut confirmed_tx = tx.clone();
+        confirmed_tx.confirmed = true;
+        Ok(confirmed_tx)
     }
 }
 

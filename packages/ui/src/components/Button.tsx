@@ -7,7 +7,7 @@ export interface ButtonProps {
   variant?: "primary" | "secondary" | "outline";
   size?: "sm" | "md" | "lg";
   href?: string;
-  onClick?: () => void;
+  onClick?: React.MouseEventHandler<HTMLButtonElement | HTMLAnchorElement>;
   className?: string;
   disabled?: boolean;
   type?: "button" | "submit" | "reset";
@@ -50,7 +50,7 @@ export const Button: React.FC<ButtonProps> = ({
         return;
       }
 
-      onClick?.();
+      onClick?.(event);
     };
 
     return (

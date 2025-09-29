@@ -19,7 +19,7 @@ provides inherent compliance advantages through immutable audit trails,
 automated reporting, and distributed data sovereignty capabilities that address
 key regulatory challenges.
 
-**Key Regulatory Drivers**: FAA Part 107 security requirements, ITAR export
+**Key Regulatory Drivers**: Pending US counter-drone legislation (H.R. 5061), ITAR export
 controls, GDPR data protection, and emerging blockchain regulations create
 complex compliance landscapes. Our blockchain platform provides built-in
 compliance capabilities that reduce regulatory burden while enabling
@@ -28,7 +28,7 @@ multi-jurisdiction operations.
 ### Regulatory Environment Highlights:
 
 - **Global Mandates**: 47 countries require counter-drone capabilities
-- **FAA Compliance**: Part 107 security framework affects 2.4M commercial drones
+- **FAA Status**: Part 107 governs 2.4M commercial drones; counter-drone mandates under Congressional review
 - **ITAR Classification**: Export controls on advanced counter-drone technology
 - **Data Sovereignty**: GDPR and national data residency requirements
 - **Blockchain Regulation**: Emerging frameworks in 23 jurisdictions
@@ -42,34 +42,39 @@ multi-jurisdiction operations.
 **FAA Part 107 - Small Unmanned Aircraft Systems**:
 
 - **Effective Date**: August 29, 2016 (latest amendments December 2023)
-- **Scope**: Commercial drone operations under 55 pounds
-- **Security Requirements**: Counter-drone capabilities for critical
-  infrastructure
-- **Compliance Timeline**: Full implementation by December 2025
+- **Scope**: Commercial drone operations under 55 pounds (operational limits, VLOS, altitude restrictions)
+- **Current Status**: Does not mandate counter-drone deployment at critical infrastructure
+- **Pending Legislation**: H.R. 5061 and similar bills propose FAA/DHS counter-drone standards (under Congressional review)
 
 ```python
 # FAA regulatory impact analysis
 faa_regulatory_framework = {
-    "part_107_requirements": {
-        "registered_drones": 2400000,  # 2.4M commercial drones
+    "part_107_current_scope": {
+        "registered_drones": 2400000,  # 2.4M commercial drones under Part 107
         "certified_pilots": 450000,    # 450K certified pilots
-        "security_zones": 3200,        # 3,200 protected areas
-        "compliance_deadline": "2025-12-31"
+        "operational_limits": ["weight_under_55lbs", "visual_line_of_sight", "altitude_400ft"],
+        "no_counter_drone_mandates": True  # Part 107 does not require counter-drone systems
     },
 
-    "security_requirements": {
-        "critical_infrastructure": {
-            "airports": 5170,           # US airports requiring protection
-            "power_plants": 7300,       # Power generation facilities
-            "military_bases": 850,      # Military installations
-            "government_facilities": 12000  # Federal facilities
+    "pilot_programs_ongoing": {
+        "faa_detection_pilots": {
+            "cape_may_test": "April 2025",  # Recent FAA detection pilot
+            "status": "evaluation_phase",
+            "scope": "limited_testing"
         },
+        "congressional_proposals": {
+            "hr_5061": "pending",  # H.R. 5061 counter-drone standards bill
+            "status": "under_review",
+            "timeline": "uncertain"
+        }
+    },
 
-        "detection_mandates": {
-            "class_b_airspace": True,   # Major airports
-            "restricted_areas": True,   # Military and sensitive areas
-            "temporary_flight_restrictions": True,  # Event-based restrictions
-            "critical_infrastructure": True  # Power, water, communications
+    "potential_future_requirements": {
+        "critical_infrastructure": {
+            "airports": 5170,           # Potential future coverage
+            "power_plants": 7300,       # If legislation passes
+            "military_bases": 850,      # Already covered under other authorities
+            "government_facilities": 12000  # Potential federal requirements
         }
     },
 
@@ -81,11 +86,12 @@ faa_regulatory_framework = {
     }
 }
 
-# Calculate total FAA compliance market
-total_faa_market = (faa_regulatory_framework["security_requirements"]["critical_infrastructure"]["airports"] *
-                   faa_regulatory_framework["compliance_costs"]["detection_system_cost"])
+# Calculate potential future FAA compliance market (if legislation passes)
+potential_faa_market = (faa_regulatory_framework["potential_future_requirements"]["critical_infrastructure"]["airports"] *
+                       faa_regulatory_framework["compliance_costs"]["detection_system_cost"])
 
-print(f"Total FAA Compliance Market: ${total_faa_market/1000000000:.1f}B")
+print(f"Potential Future FAA Compliance Market: ${potential_faa_market/1000000000:.1f}B")
+print("Note: This represents potential market if pending legislation (H.R. 5061) becomes law")
 ```
 
 **Key FAA Regulatory Requirements**:

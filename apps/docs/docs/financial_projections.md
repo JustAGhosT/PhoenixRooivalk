@@ -63,11 +63,11 @@ growth, peaking at 34.9% in Year 5.
 
 ### **Visualizations**
 
-#### **Revenue, Costs, and ProfitOver Time**
+#### **Revenue, Costs, and Profit Over Time**
 
 This chart demonstrates overall financial performance, highlighting the growing
 gap between revenue and costs as profit increases.
-![Revenue, Costs, and Profit Over Time](pathname://assets/images/revenue_costs_profit_break_even.png)
+![Revenue, Costs, and Profit Over Time](assets/images/revenue_costs_profit_break_even.png)
 
 #### **Profit Margin Growth**
 

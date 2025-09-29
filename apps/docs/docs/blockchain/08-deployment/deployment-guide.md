@@ -282,14 +282,18 @@ validate_prerequisites() {
 backup_current_deployment() {
     log "Creating backup of current deployment..."
 
+    BACKUP_FILE="backup-$(date +%Y%m%d-%H%M%S).yaml"
+
     # Backup Kubernetes resources
-    kubectl get all -n $NAMESPACE -o yaml > "backup-$(date +%Y%m%d-%H%M%S).yaml"
+    kubectl get all -n $NAMESPACE -o yaml > "$BACKUP_FILE"
 
     # Backup Hyperledger Fabric configuration
-    kubectl get configmaps -n $NAMESPACE -o yaml >> "backup-$(date +%Y%m%d-%H%M%S).yaml"
+    kubectl get configmaps -n $NAMESPACE -o yaml >> "$BACKUP_FILE"
 
     # Backup secrets (metadata only)
-    kubectl get secrets -n $NAMESPACE -o yaml | grep -v 'data:' >> "backup-$(date +%Y%m%d-%H%M%S).yaml"
+    kubectl get secrets -n $NAMESPACE \
+        -o jsonpath='{range .items[*]}apiVersion: {.apiVersion}{"\n"}kind: Secret{"\n"}metadata:{"\n"}  name: {.metadata.name}{"\n"}  namespace: {.metadata.namespace}{"\n"}type: {.type}{"\n"}---{"\n"}{end}' \
+        >> "$BACKUP_FILE"
 
     log "Backup completed"
 }
@@ -320,21 +324,22 @@ validate_deployment() {
     kubectl wait --for=condition=ready pod -l app=phoenix-rooivalk -n $NAMESPACE --timeout=300s
 
     # Check Hyperledger Fabric network
-    kubectl exec -n $NAMESPACE deployment/fabric-peer0 -- peer channel list
+    kubectl exec -n $NAMESPACE "$(kubectl get pod -l app=fabric-peer0 -n $NAMESPACE -o jsonpath='{.items[0].metadata.name}')" -- peer channel list
 
     # Validate API endpoints
     API_URL=$(kubectl get service phoenix-rooivalk-api -n $NAMESPACE -o jsonpath='{.status.loadBalancer.ingress[0].ip}')
     curl -f "http://$API_URL/health" || error "API health check failed"
 
     # Check blockchain consensus
-    kubectl logs -n $NAMESPACE deployment/fabric-orderer --tail=10 | grep -q "consensus" || warn "Consensus logs not found"
+    kubectl logs -n $NAMESPACE "$(kubectl get pod -l app=fabric-orderer -n $NAMESPACE -o jsonpath='{.items[0].metadata.name}')" --tail=10 | grep -q "consensus" || warn "Consensus logs not found"
 
     log "Health validation completed"
 }
 
 # Rollback on failure
 rollback_deployment() {
-    error "Deployment failed, initiating rollback..."
+    warn "Deployment failed, initiating rollback..."
+    trap - ERR
 
     # Rollback Helm release
     helm rollback $RELEASE_NAME -n $NAMESPACE
@@ -343,6 +348,7 @@ rollback_deployment() {
     kubectl wait --for=condition=ready pod -l app=phoenix-rooivalk -n $NAMESPACE --timeout=300s
 
     log "Rollback completed"
+    exit 1
 }
 
 # Main deployment function
@@ -496,14 +502,14 @@ check_api_health() {
 
 check_blockchain_health() {
     echo "Checking blockchain health..."
-    kubectl exec -n phoenix-rooivalk deployment/fabric-peer0 -- \
+    kubectl exec -n phoenix-rooivalk "$(kubectl get pod -l app=fabric-peer0 -n phoenix-rooivalk -o jsonpath='{.items[0].metadata.name}')" -- \
         peer channel list | grep -q "mychannel" || return 1
     echo "Blockchain health check passed"
 }
 
 check_database_health() {
     echo "Checking database health..."
-    kubectl exec -n phoenix-rooivalk deployment/postgres -- \
+    kubectl exec -n phoenix-rooivalk "$(kubectl get pod -l app=postgres -n phoenix-rooivalk -o jsonpath='{.items[0].metadata.name}')" -- \
         pg_isready -U phoenix || return 1
     echo "Database health check passed"
 }
@@ -651,8 +657,8 @@ kubectl exec -it <pod-name> -n phoenix-rooivalk -- nslookup <service-name>
 kubectl exec -it <pod-name> -n phoenix-rooivalk -- curl -v <service-url>
 
 # Blockchain diagnostics
-kubectl exec -n phoenix-rooivalk deployment/fabric-peer0 -- peer channel list
-kubectl exec -n phoenix-rooivalk deployment/fabric-peer0 -- peer chaincode list --installed
+kubectl exec -n phoenix-rooivalk "$(kubectl get pod -l app=fabric-peer0 -n phoenix-rooivalk -o jsonpath='{.items[0].metadata.name}')" -- peer channel list
+kubectl exec -n phoenix-rooivalk "$(kubectl get pod -l app=fabric-peer0 -n phoenix-rooivalk -o jsonpath='{.items[0].metadata.name}')" -- peer chaincode list --installed
 
 # Resource diagnostics
 kubectl top nodes

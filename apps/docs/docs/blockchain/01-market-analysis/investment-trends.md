@@ -610,7 +610,7 @@ while addressing critical market gaps in integration and compliance.
 
 ### Key Investment Insights:
 
-- **Strong Growth**: 340% VC funding increase since 2020
+- **Strong Growth**: 340% VC funding increase since 2021
 - **Defense Priority**: $89.7B defense R&D budget with $2.3B counter-UAS
   allocation
 - **Blockchain Opportunity**: $127M current investment growing to $623M by 2030

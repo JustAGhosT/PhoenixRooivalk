@@ -821,6 +821,66 @@ enum ClassificationLevel {
   TOP_SECRET
 }
 
+# Analytics Input Types
+input TimeRange {
+  start: DateTime!
+  end: DateTime!
+  timezone: String = "UTC"
+}
+
+enum AnalyticsGroupBy {
+  HOUR
+  DAY
+  WEEK
+  MONTH
+  SENSOR_TYPE
+  CLASSIFICATION
+  THREAT_LEVEL
+  GEOGRAPHIC_REGION
+}
+
+# Analytics Result Types
+type AnalyticsResult {
+  timeRange: TimeRange!
+  groupBy: AnalyticsGroupBy!
+  data: [AnalyticsDataPoint!]!
+  summary: AnalyticsSummary!
+  metadata: AnalyticsMetadata!
+}
+
+type AnalyticsDataPoint {
+  timestamp: DateTime
+  label: String!
+  value: Float!
+  count: Int!
+  percentage: Float
+  metadata: JSON
+}
+
+type AnalyticsSummary {
+  totalDetections: Int!
+  totalTracks: Int!
+  averageConfidence: Float!
+  topClassification: Classification!
+  peakActivity: DateTime
+  trendDirection: TrendDirection!
+}
+
+type AnalyticsMetadata {
+  generatedAt: DateTime!
+  processingTime: Float!
+  dataPoints: Int!
+  confidence: Float!
+  cacheHit: Boolean!
+}
+
+enum TrendDirection {
+  INCREASING
+  DECREASING
+  STABLE
+  VOLATILE
+}
+
 # Connection types for pagination
 type DetectionConnection {
   edges: [DetectionEdge!]!

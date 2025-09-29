@@ -1,6 +1,5 @@
 import React from 'react';
 import { Button } from '../ui/button';
-import { downloadWhitepaper } from '@/utils/downloadWhitepaper';
 import { RevealSection } from '@/components/RevealSection';
 
 export const UkraineChallengeSection: React.FC = () => {

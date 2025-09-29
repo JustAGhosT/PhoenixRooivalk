@@ -104,7 +104,7 @@ graph TB
 
 **Cryptographic Standards Compliance**:
 
-- **FIPS 140-2 Level 3**: Full compliance achieved
+- **FIPS 140-2 Level 3**: Certification in progress
 - **Common Criteria EAL 4+**: Certification in progress
 - **Post-Quantum Cryptography**: NIST-approved algorithms implemented
 - **Key Management**: HSM-based secure key storage

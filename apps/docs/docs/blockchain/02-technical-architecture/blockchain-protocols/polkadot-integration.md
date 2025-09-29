@@ -162,7 +162,7 @@ Async_Backing_Configuration:
   Performance_Improvements:
     Throughput_Increase: 6-10x
     Latency_Reduction: 2-3x
-    Block_Utilization: >90
+    Block_Utilization: >90%
 
   Military_Benefits:
     Faster_Threat_Response: <12 seconds end-to-end

@@ -3,7 +3,7 @@
 ## Document Context
 
 - **Location**:
-  `03-implementation/phase-2-data-management/correlation-engine.md`
+  `03-implementation/phase-4-system-integration/correlation-engine.md`
 - **Related Documents**:
   - [Vendor Adapters](../phase-4-system-integration/vendor-adapters.md) - System
     integration framework
