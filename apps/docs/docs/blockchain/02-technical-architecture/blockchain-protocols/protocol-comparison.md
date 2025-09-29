@@ -20,6 +20,7 @@
 | **Polkadot**                | ✅ Yes           | 1,000 TPS/chain | Excellent | Good         | $4-6M | Medium    | **✅ APPROVED** |
 | **Hedera Hashgraph**        | ✅ Yes           | 10,000 TPS      | Excellent | Limited      | $3-4M | Medium    | ⚠️ Conditional  |
 | **Avalanche**               | ✅ Yes           | 4,500 TPS       | Very Good | None         | $3-5M | Medium    | ⚠️ Conditional  |
+| **Etherlink Integration (Tezos Smart Rollup for EVM)** | ✅ Yes | 1,000+ TPS | Excellent | Good | $2-3M | Low | ⚠️ Approved |
 | **Ethereum Private**        | ✅ Yes           | 400 TPS         | Good      | Good         | $2-4M | Low       | ⚠️ Backup       |
 | **Algorand**                | ✅ Yes           | 6,000 TPS       | Good\*    | None         | $2-3M | Medium    | ⚠️ Future       |
 | **Solana**                  | ⚠️ Unreliable    | 65,000 TPS      | Poor      | None         | $2M   | Very High | **🔬 POC ONLY** |
@@ -402,6 +403,27 @@ testing_only:
 - Extract optimizations
 - Document lessons learned
 - Never connect to production
+
+### Etherlink Integration (Tezos Smart Rollup for EVM)
+
+**Network Details:**
+- **Mainnet RPC**: https://node.mainnet.etherlink.com
+- **Testnet (Ghostnet) RPC**: https://node.ghostnet.etherlink.com  
+- **Relay**: https://relay.ghostnet.etherlink.com
+
+**Technical Specifications:**
+- **Chain ID**: Mainnet: 42793, Testnet: 128123
+- **Native Token**: XTZ (Tezos)
+- **EVM Compatibility**: Full Ethereum Virtual Machine support
+- **Interoperability**: Native Tezos Smart Rollup integration
+
+**Integration Benefits:**
+- EVM compatibility with Tezos security model
+- Lower transaction costs compared to Ethereum mainnet
+- Formal verification capabilities from Tezos ecosystem
+- Smart rollup architecture for scalability
+
+**Reference**: Official Etherlink documentation for complete chain specifications and interoperability guidelines.
 
 ---
 

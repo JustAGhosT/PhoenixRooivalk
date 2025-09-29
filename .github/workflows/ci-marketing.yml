@@ -5,7 +5,7 @@ on:
     branches: [main]
     paths:
       - "apps/marketing/**"
-      - "apps/docs/**"
+      - "packages/**"
       - "package.json"
       - "pnpm-lock.yaml"
       - "turbo.json"
@@ -15,7 +15,7 @@ on:
   pull_request:
     paths:
       - "apps/marketing/**"
-      - "apps/docs/**"
+      - "packages/**"
       - "package.json"
       - "pnpm-lock.yaml"
       - "turbo.json"
@@ -39,7 +39,7 @@ jobs:
       - name: Enable Corepack and setup pnpm
         run: |
           corepack enable
-          corepack use
+          corepack use pnpm@9.6.0
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile

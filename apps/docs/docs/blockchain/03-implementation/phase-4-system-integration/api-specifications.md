@@ -1798,6 +1798,44 @@ for military operations.
 
 ---
 
+## Secure WebSocket Endpoints
+
+**Real-time Communication Channels:**
+
+All WebSocket connections use TLS encryption for secure real-time data transmission:
+
+- **Events Stream**: `wss://api.phoenixrooivalk.com/events`
+  - Real-time threat detection events
+  - System status updates
+  - Engagement notifications
+
+- **Status Monitoring**: `wss://api.phoenixrooivalk.com/status`
+  - Node health monitoring
+  - Performance metrics
+  - Network connectivity status
+
+- **Alert System**: `wss://api.phoenixrooivalk.com/alerts`
+  - Critical system alerts
+  - Security notifications
+  - Operational warnings
+
+**Security Features:**
+- TLS 1.3 encryption for all connections
+- JWT token authentication required
+- Rate limiting: 1000 messages/minute per client
+- Automatic reconnection with exponential backoff
+
+**Connection Example:**
+```javascript
+const ws = new WebSocket('wss://api.phoenixrooivalk.com/events', {
+  headers: {
+    'Authorization': 'Bearer <JWT_TOKEN>'
+  }
+});
+```
+
+---
+
 **Related Documents:**
 
 - [Vendor Adapters](./vendor-adapters.md) - System integration framework

@@ -133,10 +133,11 @@ spec:
               name: metrics
               protocol: TCP
           env:
-            - name: VALIDATOR_INDEX
+            - name: POD_NAME
               valueFrom:
                 fieldRef:
-                  fieldPath: metadata.annotations['validator.phoenix.io/index']
+                  fieldPath: metadata.name
+            # App should parse ordinal from POD_NAME (e.g., blockchain-validator-2) to derive VALIDATOR_INDEX
             - name: NETWORK_ID
               value: "phoenix-mainnet"
             - name: GENESIS_CONFIG
@@ -160,16 +161,20 @@ spec:
               mountPath: /config
               readOnly: true
           livenessProbe:
-            httpGet:
-              path: /health
-              port: 8545
+            exec:
+              command:
+              - /bin/sh
+              - -c
+              - |
+                curl -s -X POST -H "Content-Type: application/json" \
+                  --data '{"jsonrpc":"2.0","id":1,"method":"web3_clientVersion","params":[]}' \
+                  http://127.0.0.1:8545 | grep -q '"result"'
             initialDelaySeconds: 60
             periodSeconds: 30
             timeoutSeconds: 10
             failureThreshold: 3
           readinessProbe:
-            httpGet:
-              path: /ready
+            tcpSocket:
               port: 8545
             initialDelaySeconds: 30
             periodSeconds: 10
@@ -209,6 +214,10 @@ spec:
       targetPort: 30303
       protocol: TCP
       name: p2p
+    - port: 30303
+      targetPort: 30303
+      protocol: UDP
+      name: p2p-udp
   selector:
     app: blockchain-validator
 ```
@@ -452,8 +461,8 @@ data:
     [rpc]
     enabled = true
     port = 8545
-    cors = ["*"]
-    apis = ["eth", "net", "web3", "admin"]
+    cors = ["https://internal.console.phoenix"]
+    apis = ["eth", "net", "web3"]
 
     [metrics]
     enabled = true
@@ -599,18 +608,22 @@ data:
 
 ```yaml
 # monitoring/alertmanager.yaml
+# Note: Store complete alertmanager.yml in Secret to avoid env var placeholders
 apiVersion: v1
-kind: ConfigMap
+kind: Secret
 metadata:
   name: alertmanager-config
   namespace: monitoring
+type: Opaque
 data:
   alertmanager.yml: |
+    # Base64 encode the complete config with real values, not placeholders
+    # Example structure (encode actual config):
     global:
       smtp_smarthost: 'smtp.example.com:587'
       smtp_from: 'alerts@phoenix-rooivalk.com'
       smtp_auth_username: 'alerts@phoenix-rooivalk.com'
-      smtp_auth_password: ${SMTP_PASSWORD}
+      smtp_auth_password: 'REAL_SMTP_PASSWORD_HERE'
       smtp_require_tls: true
 
     route:
@@ -643,17 +656,17 @@ data:
       - to: 'critical-ops@phoenix-rooivalk.com'
         subject: 'CRITICAL: Phoenix Rooivalk Alert'
       slack_configs:
-      - api_url: ${SLACK_WEBHOOK_URL}
+      - api_url: 'https://hooks.slack.com/services/REAL/WEBHOOK/URL'
         channel: '#critical-alerts'
         title: 'Critical Alert: {{ .GroupLabels.alertname }}'
         text: '{{ range .Alerts }}{{ .Annotations.description }}{{ end }}'
       pagerduty_configs:
-      - service_key: ${PAGERDUTY_SERVICE_KEY}
+      - service_key: 'REAL_PAGERDUTY_SERVICE_KEY'
         description: '{{ .GroupLabels.alertname }}: {{ .GroupLabels.instance }}'
 
     - name: 'warning-alerts'
       slack_configs:
-      - api_url: ${SLACK_WEBHOOK_URL}
+      - api_url: 'https://hooks.slack.com/services/REAL/WEBHOOK/URL'
         channel: '#alerts'
         title: 'Warning: {{ .GroupLabels.alertname }}'
 
@@ -690,22 +703,6 @@ spec:
         image: prom/alertmanager:v0.25.0
         ports:
         - containerPort: 9093
-        env:
-        - name: SMTP_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: alertmanager-secrets
-              key: smtp-password
-        - name: SLACK_WEBHOOK_URL
-          valueFrom:
-            secretKeyRef:
-              name: alertmanager-secrets
-              key: slack-webhook-url
-        - name: PAGERDUTY_SERVICE_KEY
-          valueFrom:
-            secretKeyRef:
-              name: alertmanager-secrets
-              key: pagerduty-service-key
         volumeMounts:
         - name: config
           mountPath: /etc/alertmanager
@@ -716,15 +713,15 @@ spec:
         - --web.external-url=http://localhost:9093
       volumes:
       - name: config
-        configMap:
-          name: alertmanager-config
+        secret:
+          secretName: alertmanager-config
 ```
 
 **Secret Management Best Practices:**
 
-1. **Environment Variable Substitution**: Use `${VARIABLE_NAME}` placeholders in configuration
-2. **Kubernetes Secrets**: Store sensitive values in Kubernetes Secret objects
-3. **External Secret Management**: Consider using External Secrets Operator with:
+1. **Avoid Environment Variable Placeholders**: Store complete configuration with real values in Secrets, not ConfigMaps with placeholders
+2. **Kubernetes Secrets**: Store sensitive values in Kubernetes Secret objects with proper base64 encoding
+3. **External Secret Management**: Use External Secrets Operator with:
    - AWS Secrets Manager
    - HashiCorp Vault
    - Azure Key Vault
