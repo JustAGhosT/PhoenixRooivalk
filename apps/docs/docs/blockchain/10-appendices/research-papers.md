@@ -546,8 +546,3 @@ Phoenix Rooivalk system design, implementation, and ongoing development.
 - [Technical Reference](./technical-reference/) - Implementation details
 - [Vendor Comparisons](./vendor-comparisons.md) - Technology analysis
 - [Glossary](./glossary.md) - Terminology definitions
-
----
-
-_Context improved by Giga AI - Used main overview development guidelines and
-blockchain integration system information for accurate research references._

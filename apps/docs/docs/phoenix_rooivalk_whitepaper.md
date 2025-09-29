@@ -126,10 +126,9 @@ external networks. Humans remain in control for anything risky or lethal.
 
 **Competitive Landscape:**
 
-- **Anduril**: $14B valuation, 2-5 second latency, cloud dependency
-- **Fortem**: 4,500+ drone kills in Ukraine, kinetic only, no RF-silent
-  detection
-- **DroneShield**: 700+ global deployments, RF-dependent, no kinetic capability
+- **Anduril**: Series G $2.5B at $30.5B valuation (2025), Army IVAS program award, 2-5 second latency, cloud dependency
+- **Fortem**: Kinetic counter-drone systems, no RF-silent detection
+- **DroneShield**: 4,000+ systems sold, RF-dependent, no kinetic capability
 
 ### 1.3 Threat Evolution
 
@@ -297,7 +296,7 @@ external networks. Humans remain in control for anything risky or lethal.
 - **Hyperledger Fabric (SmartBFT)**: LAN throughput >2,000 TPS, WAN ≈1,000 TPS with large batches [3]
 - Block time: 400 milliseconds
 - Transaction cost: ~$0.000025
-- **Threat detection latency**: < 500ms end-to-end
+- **Soft-kill cueing E2E**: 120-195 ms p50 (≤250 ms p95)
 - **System availability**: 99.99% with automatic failover
 
 ### 4.2 Level-0 Autonomous Architecture (ADR 0003)
@@ -406,14 +405,14 @@ external networks. Humans remain in control for anything risky or lethal.
 
 ### 5.5 Comprehensive Performance Benchmarks
 
-**Sustained Performance Metrics:**
+Resolve latency contradiction (“<2ms” vs 120–195 ms).
 
-- **Transaction throughput**: 3,500+ TPS sustained
-- **Threat detection latency**: < 500ms end-to-end
-- **System availability**: 99.99% with automatic failover
-- **Scalability**: Linear performance scaling to 10,000+ nodes
-- **Network resilience**: Maintains 80% performance with 50% packet loss
+Table claims “Response Time <2ms,” but Sections 2 and 5 set E2E p50 = 120–195 ms (p95 ≤ 250 ms). Use one authoritative spec.
 
+Apply:
+
+-| **Response Time**        | <2ms             | 2-5 seconds | 2-5 seconds | 2-5 seconds |
++| **Response Time**        | 120–195 ms p50 (≤250 ms p95) | 2–5 seconds | 2–5 seconds | 2–5 seconds |
 **Predictive Performance Modeling (PPM):**
 
 - Forecasts system behavior under various load conditions
@@ -545,9 +544,9 @@ external networks. Humans remain in control for anything risky or lethal.
 
 - **2017**: Founded with clear mission focus
 - **2019**: First Air Force SBIR contract
-- **2021**: $99M DIU contract for automated C-UAS
-- **2022**: $967.6M SOCOM IDIQ award
-- **2025**: $642M Marine Corps contract
+- **2021**: Series D funding, $99M DIU contract for automated C-UAS
+- **2024**: Series F $1.5B at $14B valuation
+- **2025**: Series G $2.5B at $30.5B valuation, $642M Marine Corps contract
 
 **Phoenix Rooivalk SBIR Strategy:**
 
@@ -581,7 +580,7 @@ external networks. Humans remain in control for anything risky or lethal.
 
 | Capability               | Phoenix Rooivalk | Anduril     | Fortem      | DroneShield |
 | ------------------------ | ---------------- | ----------- | ----------- | ----------- |
-| **Response Time**        | <2ms             | 2-5 seconds | 2-5 seconds | 2-5 seconds |
+| **Response Time**        | 120–195 ms p50 (≤250 ms p95) | 2–5 seconds | 2–5 seconds | 2–5 seconds |
 | **RF-Silent Detection**  | Yes              | No          | No          | No          |
 | **Swarm Handling**       | 100+ threats     | Limited     | Sequential  | Limited     |
 | **Autonomous Operation** | Level-0          | Partial     | Partial     | No          |
@@ -754,7 +753,7 @@ published pass/fail criteria.
 - **Kinetic effects are HITL by default. HOTL only where authorized; no lethal
   autonomy claims**
 
-### 11.4 Operational Risk Management
+### 11.5 Operational Risk Management
 
 **Deployment Controls:**
 
@@ -818,7 +817,7 @@ published pass/fail criteria.
 
 ### 12.3 Financial Projections & ROI
 
-### 12.1 Market Opportunity
+### 12.4 Market Opportunity
 
 **Revenue Potential:**
 
@@ -827,7 +826,7 @@ published pass/fail criteria.
   superiority
 - 10-40x performance improvement creates compelling value proposition
 
-### 12.2 Cost Structure
+### 12.5 Cost Structure
 
 **Development Investment:**
 
@@ -836,7 +835,7 @@ published pass/fail criteria.
 - Private investment for dual-use development
 - Partnership revenue from established contractors
 
-### 12.3 ROI Drivers
+### 12.6 ROI Drivers
 
 **Value Proposition:**
 
@@ -926,7 +925,7 @@ capability.
 - $2.3-4.5B current market growing to $9-26B by 2030
 - Current systems suffer from 2-5 second latency, RF-silent drone vulnerability,
   and swarm handling limitations
-- Phoenix's 100x latency improvement positions for significant market share
+- Phoenix's 10–40x latency improvement positions for significant market share
 
 **Success Factors:**
 

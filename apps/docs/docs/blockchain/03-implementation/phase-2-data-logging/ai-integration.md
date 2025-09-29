@@ -194,7 +194,9 @@ class SpatialAttention(nn.Module):
 class ThreatDetectionTrainer:
     """Training pipeline for threat detection models"""
 
-    def __init__(self, model: nn.Module, device: str = 'cuda'):
+    def __init__(self, model: nn.Module, device: str | None = None):
+        if device is None:
+            device = 'cuda' if torch.cuda.is_available() else 'cpu'
         self.model = model.to(device)
         self.device = device
         self.optimizer = torch.optim.AdamW(model.parameters(), lr=1e-4, weight_decay=0.01)
@@ -480,14 +482,13 @@ class FederatedLearningCoordinator:
         # Get parameter names from first update
         param_names = list(updates[0].model_weights.keys())
 
-        for param_name in param_names:
-            # Weighted average of parameters
-            weighted_params = []
-            for i, update in enumerate(updates):
-                weighted_param = update.model_weights[param_name] * weights[i]
-                weighted_params.append(weighted_param)
-
-            aggregated_weights[param_name] = torch.sum(torch.stack(weighted_params), dim=0)
+        with torch.no_grad():
+            for param_name in param_names:
+                weighted_params = []
+                for i, update in enumerate(updates):
+                    p = update.model_weights[param_name].detach().to('cpu', dtype=torch.float32)
+                    weighted_params.append(p * weights[i])
+                aggregated_weights[param_name] = torch.stack(weighted_params).sum(dim=0)
 
         return aggregated_weights
 

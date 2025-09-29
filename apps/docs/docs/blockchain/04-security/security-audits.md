@@ -297,8 +297,8 @@ print(f"Verification Coverage: {verification_report['verification_summary']['ver
 
 | **Standard**              | **Compliance Score** | **Status** | **Key Controls**                      |
 | ------------------------- | -------------------- | ---------- | ------------------------------------- |
-| **FIPS 140-2 Level 3**    | 98.5%                | Compliant  | Cryptographic modules, key management |
-| **Common Criteria EAL 4** | 96.2%                | Compliant  | Security architecture, testing        |
+| **FIPS 140-3 (Level 3 target)** | 98.5%          | In progress | Cryptographic modules, key management |
+| **Common Criteria EAL 4** | 96.2%                | In progress | Security architecture, testing        |
 | **NIST SP 800-53**        | 99.1%                | Compliant  | Access control, audit, encryption     |
 | **DISA STIG**             | 97.8%                | Compliant  | Configuration, hardening              |
 | **ISO 27001**             | 98.9%                | Compliant  | Information security management       |

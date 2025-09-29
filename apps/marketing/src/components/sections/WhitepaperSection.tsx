@@ -63,7 +63,7 @@ export const WhitepaperSection: React.FC = () => {
           </div>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button onClick={downloadWhitepaper} size="lg" className="bg-green-600 hover:bg-green-700">
+            <Button onClick={() => downloadWhitepaper()} size="lg" className="bg-green-600 hover:bg-green-700">
               📥 Download Technical Whitepaper
             </Button>
             <Button href="#contact" variant="outline" size="lg">

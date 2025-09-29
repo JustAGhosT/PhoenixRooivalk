@@ -12,7 +12,6 @@ import { MarketIntelligenceSection } from "../components/sections/MarketIntellig
 import { usePerformanceOptimizations } from "../hooks/usePerformanceOptimizations";
 
 export default function HomePage(): React.ReactElement {
-  const docsUrl = process.env.NEXT_PUBLIC_DOCS_URL || "";
   const [showStickyHeader, setShowStickyHeader] = useState(false);
 
   // Apply performance optimizations

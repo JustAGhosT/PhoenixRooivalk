@@ -10,7 +10,9 @@ interface ExitIntentModalProps {
 export const ExitIntentModal: React.FC<ExitIntentModalProps> = ({ docsUrl }) => {
   const [isVisible, setIsVisible] = useState(false);
   const [hasTriggered, setHasTriggered] = useState(false);
-  const beforeUnloadHandlerRef = useRef<((e: BeforeUnloadEvent) => void) | null>(null);
+  const beforeUnloadHandlerRef = useRef<null>(null); // deprecated: no custom UI on beforeunload
+  const dialogRef = useRef<HTMLDivElement>(null);
+  const closeBtnRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     const handleMouseLeave = (e: MouseEvent) => {
@@ -22,37 +24,40 @@ export const ExitIntentModal: React.FC<ExitIntentModalProps> = ({ docsUrl }) => 
       }
     };
 
-    const handleBeforeUnload = (e: BeforeUnloadEvent) => {
-      // Show modal when user is about to leave via navigation
-      if (!hasTriggered) {
-        setIsVisible(true);
-        setHasTriggered(true);
-
-        // Prevent default to show modal (will be cancelled if user stays)
-        e.preventDefault();
-        e.returnValue = '';
-      }
-    };
-    beforeUnloadHandlerRef.current = handleBeforeUnload;
-
     document.addEventListener('mouseleave', handleMouseLeave);
-    window.addEventListener('beforeunload', handleBeforeUnload);
-
     return () => {
       document.removeEventListener('mouseleave', handleMouseLeave);
-      window.removeEventListener('beforeunload', handleBeforeUnload);
-      if (beforeUnloadHandlerRef.current === handleBeforeUnload) {
-        beforeUnloadHandlerRef.current = null;
-      }
     };
   }, [hasTriggered]);
 
+  // Focus and scroll management
+  useEffect(() => {
+    if (!isVisible) return;
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    closeBtnRef.current?.focus();
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') handleStayOnPage();
+      if (e.key === 'Tab' && dialogRef.current) {
+        const focusables = dialogRef.current.querySelectorAll<HTMLElement>(
+          'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+        );
+        if (focusables.length === 0) return; // guard: nothing to trap
+        const first = focusables[0];
+        const last = focusables[focusables.length - 1];
+        if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+        else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+      }
+    };
+    window.addEventListener('keydown', onKeyDown);
+    return () => {
+      document.body.style.overflow = prevOverflow;
+      window.removeEventListener('keydown', onKeyDown);
+    };
+  }, [isVisible]);
+
   const handleDownloadNow = () => {
-    if (docsUrl) {
-      downloadWhitepaper(docsUrl);
-    } else {
-      downloadWhitepaper();
-    }
+    downloadWhitepaper(docsUrl);
     setIsVisible(false);
   };
 
@@ -62,20 +67,25 @@ export const ExitIntentModal: React.FC<ExitIntentModalProps> = ({ docsUrl }) => 
 
   const handleStayOnPage = () => {
     setIsVisible(false);
-    // Remove the beforeunload listener to prevent modal on actual navigation
-    if (beforeUnloadHandlerRef.current) {
-      window.removeEventListener('beforeunload', beforeUnloadHandlerRef.current);
-      beforeUnloadHandlerRef.current = null;
-    }
   };
 
   if (!isVisible) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm">
-      <div className="relative bg-gray-900 border border-green-500/30 rounded-xl p-8 max-w-md mx-4 shadow-2xl">
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="exit-intent-title"
+      aria-describedby="exit-intent-desc"
+    >
+      <div
+        ref={dialogRef}
+        className="relative bg-gray-900 border border-green-500/30 rounded-xl p-8 max-w-md mx-4 shadow-2xl"
+      >
         {/* Close button */}
         <button
+          ref={closeBtnRef}
           onClick={handleStayOnPage}
           className="absolute top-4 right-4 text-gray-400 hover:text-white text-2xl leading-none"
         >
@@ -85,10 +95,10 @@ export const ExitIntentModal: React.FC<ExitIntentModalProps> = ({ docsUrl }) => 
         {/* Icon */}
         <div className="text-center mb-6">
           <div className="text-6xl mb-4">📋</div>
-          <h2 className="text-2xl font-bold text-green-400 mb-2">
+          <h2 id="exit-intent-title" className="text-2xl font-bold text-green-400 mb-2">
             Wait! Get Our Technical Whitepaper
           </h2>
-          <p className="text-gray-300 text-sm">
+          <p id="exit-intent-desc" className="text-gray-300 text-sm">
             Download our comprehensive technical documentation before you leave.
           </p>
         </div>

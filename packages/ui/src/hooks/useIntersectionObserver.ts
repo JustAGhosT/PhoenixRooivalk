@@ -28,6 +28,11 @@ export function useIntersectionObserver(
 
   useEffect(() => {
     if (!element) return;
+    // Guard: environments without IntersectionObserver (e.g., jsdom) or SSR
+    if (typeof window === "undefined" || !("IntersectionObserver" in window)) {
+      setIsIntersecting(true);
+      return;
+    }
 
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -48,7 +53,7 @@ export function useIntersectionObserver(
     observer.observe(element);
 
     return () => {
-      observer.unobserve(element);
+      observer.disconnect();
     };
   }, [element, threshold, rootMargin, triggerOnce, hasTriggered]);
 

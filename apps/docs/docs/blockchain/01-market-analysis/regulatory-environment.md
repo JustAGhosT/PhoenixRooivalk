@@ -41,7 +41,7 @@ multi-jurisdiction operations.
 
 **FAA Part 107 - Small Unmanned Aircraft Systems**:
 
-- **Effective Date**: August 29, 2016 (latest amendments December 2023)
+- **Effective Date**: August 29, 2016 (latest amendments December 30, 2024)
 - **Scope**: Commercial drone operations under 55 pounds (operational limits, VLOS, altitude restrictions)
 - **Current Status**: Does not mandate counter-drone deployment at critical infrastructure
 - **Pending Legislation**: H.R. 5061 and similar bills propose FAA/DHS counter-drone standards (under Congressional review)

@@ -146,12 +146,17 @@ impl QuantumFormationController {
     ) -> Vec<PotentialFormation> {
         let mut formations = Vec::new();
 
-        // Base formation
-        formations.push(PotentialFormation {
-            template: self.formation_library[base_formation].clone(),
-            probability: 0.4,
-            fitness: 1.0,
-        });
+        // Base formation (guard against unknown key)
+        if let Some(template) = self.formation_library.get(base_formation) {
+            formations.push(PotentialFormation {
+                template: template.clone(),
+                probability: 0.4,
+                fitness: 1.0,
+            });
+        } else {
+            // Unknown formation: return empty set (caller may fallback)
+            return formations;
+        }
 
         // Variations based on threat
         if let Some(threat_vec) = threat {

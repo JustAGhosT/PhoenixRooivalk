@@ -798,7 +798,7 @@ class ConsensusTestSuite:
             results[size] = {
                 'optical_ms': optical_time,
                 'byzantine_ms': byzantine_time,
-                'meets_requirement': optical_time &lt; 50
+                'meets_requirement': optical_time < 50
             }
 
         return results
@@ -846,7 +846,7 @@ field_test_results = {
             "defenders_lost": 2,
             "false_positives": 0,
             "network_partitions": 3,
-            "partition_recovery": "all recovered &lt; 2s"
+            "partition_recovery": "all recovered < 2s"
         }
     },
     "urban_environment": {

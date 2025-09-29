@@ -29,6 +29,12 @@ export const ThreatSimulator: React.FC = () => {
     isRunning: true,
     selectedWeapon: 'kinetic'
   });
+  const swarmTimeouts = useRef<ReturnType<typeof setTimeout>[]>([]);
+
+  const clearSwarmTimeouts = useCallback(() => {
+    swarmTimeouts.current.forEach(timeoutId => clearTimeout(timeoutId));
+    swarmTimeouts.current = [];
+  }, []);
 
   // Spawn new threat
   const spawnThreat = useCallback(() => {
@@ -124,13 +130,16 @@ export const ThreatSimulator: React.FC = () => {
 
   // Generate swarm
   const generateSwarm = useCallback(() => {
+    clearSwarmTimeouts();
     for (let i = 0; i < 8; i++) {
-      setTimeout(() => spawnThreat(), i * 150);
+      const timeoutId = setTimeout(() => spawnThreat(), i * 150);
+      swarmTimeouts.current.push(timeoutId);
     }
-  }, [spawnThreat]);
+  }, [clearSwarmTimeouts, spawnThreat]);
 
   // Reset game
   const resetGame = useCallback(() => {
+    clearSwarmTimeouts();
     setGameState(prev => ({ 
       ...prev, 
       score: 0, 
@@ -138,7 +147,11 @@ export const ThreatSimulator: React.FC = () => {
       neutralized: 0, 
       level: 1 
     }));
-  }, []);
+  }, [clearSwarmTimeouts]);
+
+  useEffect(() => {
+    return () => clearSwarmTimeouts();
+  }, [clearSwarmTimeouts]);
 
   // Get threat appearance
   const getThreatAppearance = (type: string) => {

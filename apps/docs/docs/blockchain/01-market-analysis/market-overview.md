@@ -591,12 +591,13 @@ for year, data in revenue_projections.items():
 
 **Revenue Growth Trajectory**:
 
-- **2025**: $2.1M (current year, pilot phase)
-- **2026**: $12M (market validation, infrastructure entry)
-- **2027**: $42M (commercial expansion)
-- **2028**: $126M (international growth)
-- **2029**: $294M (market leadership)
-- **2030**: $420M (blockchain segment dominance)
+- **2024**: ~$2.75M (initial defense pilots)
+- **2025**: ~$19.6M (pilot-to-program conversions)
+- **2026**: ~$75.3M (infrastructure and aviation entry)
+- **2027**: ~$202.9M (commercial expansion)
+- **2028**: ~$447.0M (international growth)
+- **2029**: ~$945.0M (scale-up across segments)
+- **2030**: ~$1,881.0M (mature multi-segment penetration)
 
 **Key Growth Milestones**:
 

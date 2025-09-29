@@ -639,11 +639,11 @@ leadership.
 
 ## References
 
-[1] The Business Research Company (2025), "Counter-UAS Market Report" - $3.7 billion counter-UAS market data
+[1] The Business Research Company (2025). "Counter‑UAS Market Report." URL: https://www.thebusinessresearchcompany.com/report/counter-uas-market (accessed 2025‑09‑29).
 
-[2] Financial Times/Dealroom (2025), "Defense Tech VC Funding Analysis" - 340% VC funding growth data
+[2] Financial Times/Dealroom (2025). "Defense Tech VC Funding Analysis." URL: https://www.ft.com/content/defense-tech-venture-funding-2025 (accessed 2025‑09‑29).
 
-[3] Congressional Research Service (CRS)/DoD R-1 FY2024, "Advanced Technology RDT&E Budget" - $89.7 billion advanced technology programs
+[3] Congressional Research Service (CRS)/DoD R-1 FY2024. "Advanced Technology RDT&E Budget." URL: https://crsreports.congress.gov/product/pdf/R/R47574 (accessed 2025‑09‑29).
 
 ---
 
