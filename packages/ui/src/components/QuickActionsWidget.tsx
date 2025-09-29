@@ -21,7 +21,7 @@ export function QuickActionsWidget({ actions }: QuickActionsWidgetProps) {
               key={index}
               onClick={action.action}
               type="button"
-              className="w-full text-left text-xs text-white hover:text-[var(--primary)] transition py-1 flex items-center gap-2"
+              className="w-full text-left text-xs text-white hover:text-[var(--primary)] hover:-translate-y-0.5 transform transition py-1 flex items-center gap-2"
             >
               <span>{action.icon}</span>
               <span>{action.label}</span>

@@ -2,7 +2,7 @@
 
 ## Document Context
 
-- **Location**: `02-technical-architecture/blockchain-protocols/hyperledger.md`
+- **Location**: `02-technical-architecture/blockchain-protocols/hyperledger-fabric.md`
 - **Related Documents**:
   - [Protocol Comparison](./protocol-comparison.md) - Blockchain protocol
     analysis
@@ -182,7 +182,11 @@ func (dc *DetectionContract) CreateDetection(ctx contractapi.TransactionContextI
 
     // Set metadata
     detection.CreatedBy = clientID
-    detection.CreatedAt = time.Now()
+    txTimestamp, err := ctx.GetStub().GetTxTimestamp()
+    if err != nil {
+        return fmt.Errorf("failed to get transaction timestamp: %v", err)
+    }
+    detection.CreatedAt = time.Unix(txTimestamp.Seconds, int64(txTimestamp.Nanos)).UTC()
     detection.Validated = false
     detection.DataHash = dc.calculateDetectionHash(&detection)
 

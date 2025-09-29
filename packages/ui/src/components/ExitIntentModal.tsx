@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState, useRef } from "react";
+import type { MouseEvent as ReactMouseEvent } from "react";
 import { createPortal } from "react-dom";
 
 interface ExitIntentModalProps {
@@ -12,12 +13,17 @@ export function ExitIntentModal({ docsUrl }: ExitIntentModalProps) {
   const [mounted, setMounted] = useState(false);
   const dialogRef = useRef<HTMLDivElement>(null);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
+  const previousFocusRef = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
     setMounted(true);
 
     const handleMouseLeave = (e: MouseEvent) => {
       if (e.clientY <= 0 && !isVisible) {
+        previousFocusRef.current =
+          document.activeElement instanceof HTMLElement
+            ? document.activeElement
+            : null;
         setIsVisible(true);
       }
     };
@@ -74,13 +80,18 @@ export function ExitIntentModal({ docsUrl }: ExitIntentModalProps) {
         document.removeEventListener("keydown", handleFocusTrap);
       };
     }
+
+    if (previousFocusRef.current && !isVisible) {
+      previousFocusRef.current.focus();
+      previousFocusRef.current = null;
+    }
   }, [isVisible]);
 
   const handleClose = () => {
     setIsVisible(false);
   };
 
-  const handleBackdropClick = (e: React.MouseEvent) => {
+  const handleBackdropClick = (e: ReactMouseEvent<HTMLDivElement>) => {
     if (e.target === e.currentTarget) {
       handleClose();
     }

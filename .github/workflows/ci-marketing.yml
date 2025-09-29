@@ -39,18 +39,16 @@ jobs:
       - name: Enable Corepack and setup pnpm
         run: |
           corepack enable
-          corepack prepare pnpm@latest --activate
+          corepack use
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      # Temporarily disabled - format check failing on 173 files
-      # - name: Format check
-      #   run: pnpm format:check
+      - name: Format check
+        run: pnpm format:check
 
-      # Temporarily disabled - ESLint config issues with @typescript-eslint/recommended
-      # - name: Lint
-      #   run: pnpm lint
+      - name: Lint
+        run: pnpm lint
 
       - name: TypeScript check
         run: pnpm typecheck

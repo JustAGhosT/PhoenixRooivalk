@@ -67,6 +67,7 @@ async fn main() {
     let (app, _pool) = build_app().await;
 
     let port: u16 = std::env::var("PORT").ok().and_then(|s| s.parse().ok()).unwrap_or(8080);
+    let addr = format!("0.0.0.0:{port}");
     let listener = TcpListener::bind(&addr).await.unwrap();
     tracing::info!(%addr, "starting phoenix-api");
 

@@ -604,7 +604,7 @@ for round_name, valuation in valuations.items():
 ## 7. Conclusion
 
 The counter-drone investment landscape shows robust growth with $3.7 billion in
-2024 funding driven by security threats and military modernization. Phoenix
+2025 funding driven by security threats and military modernization. Phoenix
 Rooivalk's blockchain-native approach aligns with emerging investment themes
 while addressing critical market gaps in integration and compliance.
 
