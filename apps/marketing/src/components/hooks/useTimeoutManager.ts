@@ -11,6 +11,16 @@ export const useTimeoutManager = () => {
     timeoutRefs.current = [];
   }, []);
 
+  // Remove a specific timeout from the list
+  const removeTimeout = useCallback(
+    (timeoutId: ReturnType<typeof setTimeout>) => {
+      timeoutRefs.current = timeoutRefs.current.filter(
+        (id) => id !== timeoutId,
+      );
+    },
+    [],
+  );
+
   // Add a new timeout
   const addTimeout = useCallback(
     (callback: () => void, delay: number) => {
@@ -21,16 +31,6 @@ export const useTimeoutManager = () => {
       timeoutRefs.current.push(timeoutId);
     },
     [removeTimeout],
-  );
-
-  // Remove a specific timeout from the list
-  const removeTimeout = useCallback(
-    (timeoutId: ReturnType<typeof setTimeout>) => {
-      timeoutRefs.current = timeoutRefs.current.filter(
-        (id) => id !== timeoutId,
-      );
-    },
-    [],
   );
 
   return { addTimeout, clearTimeouts };
