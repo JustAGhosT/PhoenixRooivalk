@@ -19,6 +19,10 @@ jobs:
       ENV_NAME: production
       BRANCH: ${{ github.ref_name }}
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      statuses: write
+      pull-requests: write
     defaults:
       run:
         working-directory: apps/docs
@@ -84,6 +88,10 @@ jobs:
       ENV_NAME: preview
       BRANCH: ${{ github.head_ref }}
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      statuses: write
+      pull-requests: write
     defaults:
       run:
         working-directory: apps/docs
@@ -129,8 +137,7 @@ jobs:
           publish-dir: "apps/docs/build"
           production-deploy: false
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          deploy-message:
-            "Deploy Preview from PR #${{ github.event.pull_request.number }}"
+          deploy-message: "Deploy Preview from PR #${{ github.event.pull_request.number }}"
           enable-commit-comment: false
           enable-commit-status: false
           enable-pull-request-comment: false
