@@ -147,7 +147,7 @@ export const ThreatSimulator: React.FC = (): JSX.Element => {
           if (threatId) neutralizeThreat(threatId);
         }}
         onKeyDown={(e) => {
-          if (e.key === 'Enter' || e.key === ' ') {
+          if (e.key === "Enter" || e.key === " ") {
             e.preventDefault();
             const target = e.target as HTMLElement;
             const el = target.closest<HTMLElement>("[data-threat-id]");
@@ -210,7 +210,7 @@ export const ThreatSimulator: React.FC = (): JSX.Element => {
                 neutralizeThreat(threat.id);
               }}
               onKeyDown={(e) => {
-                if (e.key === 'Enter' || e.key === ' ') {
+                if (e.key === "Enter" || e.key === " ") {
                   e.preventDefault();
                   e.stopPropagation();
                   neutralizeThreat(threat.id);
