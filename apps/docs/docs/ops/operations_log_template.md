@@ -15,13 +15,13 @@
 
 - Total outbox items processed: &lt;n&gt;
 - Anchor attempts: &lt;n&gt;
-- Anchor successes: <n>
-- Anchor failures (permanent): <n>
-- Transient retries triggered: <n>
-- Average latency (submit→signature): <ms>
-- P50 / P95 / P99 latency: <ms> / <ms> / <ms>
-- Average fee per tx (native units): <value>
-- Estimated cost per tx (ZAR): <value>
+- Anchor successes: &lt;n&gt;
+- Anchor failures (permanent): &lt;n&gt;
+- Transient retries triggered: &lt;n&gt;
+- Average latency (submit→signature): &lt;ms&gt;
+- P50 / P95 / P99 latency: &lt;ms&gt; / &lt;ms&gt; / &lt;ms&gt;
+- Average fee per tx (native units): &lt;value&gt;
+- Estimated cost per tx (ZAR): &lt;value&gt;
 
 ## RPC and reliability
 

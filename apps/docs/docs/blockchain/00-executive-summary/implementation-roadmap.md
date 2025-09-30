@@ -149,7 +149,7 @@ Budget: $1.2M | Target: Full Operational Capability
 ## Critical Decision Gates
 
 - **Gate 1: Technology Validation (Month 3)**
-  - Criteria: Latency &lt;2ms, throughput &gt;100 TPS, cost <$10M
+  - Criteria: Latency &lt;2ms, throughput &gt;100 TPS, cost &lt;$10M
   - Go Decision: Proceed to Phase 1
   - No-Go: Pivot technology stack
 - **Gate 2: Security Certification (Month 6)**

@@ -95,7 +95,7 @@ response_matrix: level_1: Monitor and track level_2: Issue warnings level_3: Jam
 | ------------------------ | ------------------------------------------- | --------------------- |
 | **Formation Types**      | Line, V-shape, Circle, Grid, Sphere, Custom | Visual confirmation   |
 | **Max Swarm Size**       | 200 drones                                  | Stress testing        |
-| **Coordination Latency** | &lt;250ms consensus                            | Network analysis      |
+| **Coordination Latency** | &lt;250ms consensus                         | Network analysis      |
 | **Autonomous Operation** | 72 hours                                    | Endurance testing     |
 | **Collision Avoidance**  | 100% success rate                           | Simulation validation |
 
@@ -183,14 +183,14 @@ swarm_coordination: drone_count: 100 formations: All types success_rate: &gt;95%
 system_integration: vendor_systems: All tier 1 data_accuracy: &gt;99% latency: &lt;100ms availability: &gt;99.9%
 ```
 
-| KPI                       | Target     | Measurement         | Frequency |
-| ------------------------- | ---------- | ------------------- | --------- |
+| KPI                       | Target        | Measurement         | Frequency |
+| ------------------------- | ------------- | ------------------- | --------- |
 | **System Availability**   | &gt;99.9%     | Uptime monitoring   | Real-time |
 | **Threat Detection Rate** | &gt;95%       | True positive ratio | Daily     |
 | **Response Time**         | &lt;2 seconds | End-to-end latency  | Per event |
 | **False Positive Rate**   | &lt;3%        | Manual validation   | Weekly    |
 | **Blockchain Finality**   | &lt;3 sec     | Block confirmation  | Per block |
-| **Cost per Transaction**  | <$0.10     | Total cost / volume | Monthly   |
+| **Cost per Transaction**  | &lt;$0.10     | Total cost / volume | Monthly   |
 
 ## 8. Constraints and Assumptions
 
