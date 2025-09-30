@@ -109,6 +109,28 @@ export const InteractiveElementsSection: React.FC = () => {
             <div className="grid lg:grid-cols-2 gap-8">
               {/* Input Controls */}
               <div className="space-y-6">
+                {/* Sensitivity Toggle */}
+                <div>
+                  <label className="block text-[var(--text-primary)] font-semibold mb-3">
+                    Analysis Sensitivity (Default: Conservative)
+                  </label>
+                  <div className="flex gap-2">
+                    {(['conservative', 'median', 'aggressive'] as const).map((option) => (
+                      <button
+                        key={option}
+                        onClick={() => setSensitivity(option)}
+                        className={`btn ${
+                          sensitivity === option ? 'btn--primary' : 'btn--secondary'
+                        } text-sm capitalize`}
+                      >
+                        {option}
+                      </button>
+                    ))}
+                  </div>
+                  <p className="text-xs text-[var(--text-muted)] mt-2">
+                    Conservative uses lower success rates and incident costs for realistic projections.
+                  </p>
+                </div>
                 <div>
                   <label
                     htmlFor="roi-threat-frequency"
