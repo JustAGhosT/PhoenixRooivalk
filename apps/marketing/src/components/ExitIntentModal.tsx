@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useEffect, useRef } from "react";
 import { Button } from "./ui/button";
-import { downloadWhitepaper } from "@/utils/downloadWhitepaper";
+import { downloadWhitepaper } from "@phoenix-rooivalk/utils";
 
 interface ExitIntentModalProps {
   docsUrl?: string;
@@ -64,11 +64,7 @@ export const ExitIntentModal: React.FC<ExitIntentModalProps> = ({
   }, [isVisible]);
 
   const handleDownloadNow = () => {
-    if (docsUrl) {
-      downloadWhitepaper(docsUrl);
-    } else {
-      downloadWhitepaper();
-    }
+    downloadWhitepaper(docsUrl);
     setIsVisible(false);
   };
 

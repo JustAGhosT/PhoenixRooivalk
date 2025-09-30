@@ -1,14 +1,16 @@
-export const downloadWhitepaper = () => {
-  // Create a link element
+export const downloadWhitepaper = (customUrl?: string): void => {
+  if (typeof window === "undefined") return; // SSR guard
+
+  const url = customUrl || "/technical-whitepaper.md";
   const link = document.createElement("a");
-
-  // Set the href to the whitepaper file in the public directory
-  link.href = "/technical-whitepaper.md";
-
-  // Set the download attribute to specify the filename
+  
+  link.href = url;
   link.download = "Phoenix-Rooivalk-Technical-Whitepaper.md";
 
-  // Append to body, click, and remove
+  // Optional: open in new tab (not needed for download). If kept, add rel.
+  // link.target = '_blank';
+  // link.rel = 'noopener noreferrer';
+
   document.body.appendChild(link);
   link.click();
   document.body.removeChild(link);
