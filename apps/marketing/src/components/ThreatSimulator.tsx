@@ -6,7 +6,6 @@ import { useGameState } from "./hooks/useGameState";
 import { useTimeoutManager } from "./hooks/useTimeoutManager";
 import { moveThreats, spawnThreat } from "./utils/threatUtils";
 
-
 export const ThreatSimulator: React.FC = (): JSX.Element => {
   const gameRef = useRef<HTMLDivElement>(null);
 
@@ -117,18 +116,38 @@ export const ThreatSimulator: React.FC = (): JSX.Element => {
   const getThreatAppearance = (type: string) => {
     switch (type) {
       case "drone":
-        return { emoji: "🚁", color: "bg-red-500" };
+        return { emoji: "🚁", color: "bg-red-600 shadow-lg shadow-red-600/50" };
       case "swarm":
-        return { emoji: "🐝", color: "bg-orange-500" };
+        return {
+          emoji: "🐝",
+          color: "bg-orange-500 shadow-lg shadow-orange-500/50",
+        };
       case "stealth":
-        return { emoji: "👻", color: "bg-purple-500" };
+        return {
+          emoji: "👻",
+          color: "bg-gray-600 shadow-lg shadow-gray-600/50",
+        };
       default:
-        return { emoji: "🚁", color: "bg-red-500" };
+        return { emoji: "🚁", color: "bg-red-600 shadow-lg shadow-red-600/50" };
     }
   };
 
   return (
-    <div className="relative w-full h-[600px] bg-gradient-to-br from-gray-900 to-gray-800 rounded-xl border border-green-500/30 overflow-hidden">
+    <div className="relative w-full h-[600px] bg-gradient-to-br from-gray-900 via-black to-gray-900 rounded-xl border border-orange-500/30 overflow-hidden shadow-2xl">
+      {/* Technical grid background */}
+      <div className="absolute inset-0 opacity-10">
+        <div
+          className="w-full h-full"
+          style={{
+            backgroundImage: `
+            linear-gradient(rgba(255, 165, 0, 0.1) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(255, 165, 0, 0.1) 1px, transparent 1px)
+          `,
+            backgroundSize: "20px 20px",
+          }}
+        ></div>
+      </div>
+
       <div
         ref={gameRef}
         className="absolute inset-0 w-full h-full"
@@ -139,13 +158,39 @@ export const ThreatSimulator: React.FC = (): JSX.Element => {
           if (threatId) neutralizeThreat(threatId);
         }}
       >
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-16 h-16 bg-gradient-to-br from-blue-500 to-green-500 rounded-full flex items-center justify-center shadow-2xl z-20">
-          <span className="text-2xl">🛡️</span>
+        {/* Phoenix Rooivalk Logo - Central Defense System */}
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-20 h-20 flex items-center justify-center z-20">
+          <div className="relative">
+            {/* Phoenix Logo - Stylized */}
+            <div className="relative w-16 h-16">
+              {/* Phoenix Head */}
+              <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-3 h-3 bg-yellow-400 rounded-full shadow-lg shadow-yellow-400/50"></div>
+
+              {/* Phoenix Wings */}
+              <div className="absolute top-2 left-1 w-6 h-8 bg-gradient-to-r from-red-500 via-orange-500 to-red-600 transform -rotate-12 rounded-tl-full shadow-lg"></div>
+              <div className="absolute top-2 right-1 w-6 h-8 bg-gradient-to-l from-red-500 via-orange-500 to-red-600 transform rotate-12 rounded-tr-full shadow-lg"></div>
+
+              {/* Phoenix Body */}
+              <div className="absolute top-4 left-1/2 transform -translate-x-1/2 w-4 h-8 bg-gradient-to-b from-orange-600 via-red-500 to-red-700 rounded-full"></div>
+              <div className="absolute top-8 left-1/2 transform -translate-x-1/2 w-3 h-6 bg-gradient-to-b from-red-600 to-red-800 rounded-full"></div>
+
+              {/* Phoenix Tail */}
+              <div className="absolute top-10 left-1/2 transform -translate-x-1/2 w-2 h-4 bg-gradient-to-b from-red-700 to-orange-600 rounded-b-full"></div>
+              <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-2 h-1 bg-yellow-400 rounded-full"></div>
+            </div>
+
+            {/* Glow effect */}
+            <div className="absolute inset-0 bg-orange-500/20 rounded-full blur-lg animate-pulse"></div>
+          </div>
         </div>
 
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-80 h-80 border-2 border-green-500/30 rounded-full opacity-20">
-          <div className="absolute top-1/2 left-1/2 w-full h-0.5 bg-gradient-to-r from-transparent via-green-500 to-transparent animate-spin origin-left"></div>
+        {/* Radar Sweep Circle */}
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-80 h-80 border-2 border-orange-500/30 rounded-full opacity-20">
+          <div className="absolute top-1/2 left-1/2 w-full h-0.5 bg-gradient-to-r from-transparent via-orange-500 to-transparent animate-spin origin-left"></div>
         </div>
+
+        {/* Inner defense ring */}
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-40 h-40 border border-orange-400/20 rounded-full opacity-30"></div>
 
         {gameState.threats.map((threat) => {
           const appearance = getThreatAppearance(threat.type);
