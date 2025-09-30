@@ -130,7 +130,8 @@
 }
 
 .controlButtonGray {
-  @apply text-gray-300;
+  @apply font-semibold;
+  color: rgb(var(--tactical-gray-light));
   background-color: rgb(var(--tactical-gray-dark));
   border-color: rgb(var(--tactical-gray));
 }
@@ -186,7 +187,8 @@
 }
 
 .weaponButtonInactive {
-  @apply text-gray-300;
+  @apply font-semibold;
+  color: rgb(var(--tactical-gray-light));
   background-color: rgb(var(--tactical-gray-dark));
   border-color: rgb(var(--tactical-gray));
 }
