@@ -217,7 +217,7 @@ export const Navigation: React.FC = () => {
             href="/#contact"
             className="inline-flex items-center justify-center rounded-xl bg-gradient-to-r from-[rgb(var(--primary))] to-[rgb(var(--accent))] px-8 py-3 text-sm font-semibold text-white hover:from-[rgb(var(--accent))] hover:to-[rgb(var(--primary))] transition-all duration-300 shadow-xl shadow-[rgba(var(--primary),0.3)] hover:shadow-[rgba(var(--primary),0.5)] transform hover:scale-105 border border-[rgba(var(--primary),0.2)]"
           >
-            Get Demo
+            Join Program
           </Link>
         </div>
       </div>

@@ -76,11 +76,12 @@ export const InteractiveElementsSection: React.FC = () => {
           {/* Section Header */}
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-br from-[rgb(var(--phoenix-white))] to-[rgb(var(--primary))] mb-6">
-              Interactive ROI Calculator
+              Projected ROI Analysis
             </h2>
             <p className="text-xl text-[rgb(var(--gray))] max-w-3xl mx-auto">
-              Calculate the return on investment for Phoenix Rooivalk's 120ms
-              response time in your specific threat environment.
+              Explore the potential return on investment for Phoenix Rooivalk's
+              target 120ms response time based on current market analysis and
+              projected performance.
             </p>
           </div>
 
@@ -331,11 +332,12 @@ export const InteractiveElementsSection: React.FC = () => {
           {/* CTA */}
           <div className="text-center mt-16">
             <h3 className="text-3xl font-bold text-[rgb(var(--phoenix-white))] mb-4">
-              Ready to Calculate Your Savings?
+              Interested in the Technology?
             </h3>
             <p className="text-[rgb(var(--gray))] mb-6 max-w-2xl mx-auto">
-              See how Phoenix Rooivalk's 120ms response time can transform your
-              defense capabilities and deliver measurable ROI.
+              Learn more about Phoenix Rooivalk's innovative approach to
+              autonomous counter-drone defense and explore partnership
+              opportunities.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button
@@ -343,7 +345,7 @@ export const InteractiveElementsSection: React.FC = () => {
                 size="lg"
                 className="bg-gradient-to-r from-[rgb(var(--primary))] to-[rgb(var(--accent))] hover:from-[rgb(var(--accent))] hover:to-[rgb(var(--primary))] shadow-xl"
               >
-                Schedule Demo
+                Join Development Program
               </Button>
               <Button
                 href="/technical"
@@ -351,7 +353,7 @@ export const InteractiveElementsSection: React.FC = () => {
                 size="lg"
                 className="border-[rgb(var(--primary))] text-[rgb(var(--primary))] hover:bg-[rgba(var(--primary),0.1)]"
               >
-                View Technical Specs
+                View Technical Concept
               </Button>
             </div>
           </div>

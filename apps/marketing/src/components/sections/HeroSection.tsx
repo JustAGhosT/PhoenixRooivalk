@@ -29,9 +29,10 @@ export const HeroSection: React.FC = () => {
             </span>
           </h1>
           <p className="mt-6 text-xl text-[rgb(var(--gray))] animate-fadeInUp [animation-delay:200ms]">
-            Phoenix Rooivalk is designed to detect and neutralize hostile drones in 120-195ms even
-            when communications are jammed. The system will make "soft-kill first"
-            decisions at the edge without requiring network connectivity.
+            Phoenix Rooivalk is designed to detect and neutralize hostile drones
+            in 120-195ms even when communications are jammed. The system will
+            make "soft-kill first" decisions at the edge without requiring
+            network connectivity.
           </p>
           <div className="mt-4 p-4 bg-gradient-to-r from-[rgba(var(--primary),0.1)] to-[rgba(var(--secondary),0.1)] rounded-lg border border-[rgba(var(--primary),0.2)]">
             <p className="text-[rgb(var(--primary))] font-semibold mb-2">
@@ -39,8 +40,9 @@ export const HeroSection: React.FC = () => {
             </p>
             <p className="text-sm text-[rgb(var(--gray))]">
               Traditional systems fail when enemies jam communications (3-10
-              second response). Phoenix Rooivalk is designed to work 100% without network - targeting 250x faster
-              response when it counts most.
+              second response). Phoenix Rooivalk is designed to work 100%
+              without network - targeting 250x faster response when it counts
+              most.
             </p>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
               <div className="text-center">
@@ -71,7 +73,8 @@ export const HeroSection: React.FC = () => {
               </div>
             </div>
             <div className="text-xs text-[rgb(var(--gray))] text-center border-t border-[rgba(var(--primary),0.1)] pt-3 mt-4">
-              Designed to address 64% market vulnerability gap in RF-silent drone detection
+              Designed to address 64% market vulnerability gap in RF-silent
+              drone detection
             </div>
           </div>
 

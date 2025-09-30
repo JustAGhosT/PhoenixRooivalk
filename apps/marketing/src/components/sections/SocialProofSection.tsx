@@ -46,7 +46,7 @@ export const SocialProofSection: React.FC = () => {
     },
     {
       icon: "🚀",
-      title: "SBIR Strategy", 
+      title: "SBIR Strategy",
       description: "Air Force SBIR Phase I application preparation",
       status: "Planned",
     },
@@ -99,19 +99,20 @@ export const SocialProofSection: React.FC = () => {
           {/* Section Header */}
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-br from-[rgb(var(--phoenix-white))] to-[rgb(var(--primary))] mb-6">
-              Trusted by Defense Leaders
+              Innovation in Counter-Drone Defense
             </h2>
             <p className="text-xl text-[rgb(var(--gray))] max-w-3xl mx-auto">
-              Phoenix Rooivalk is actively deployed in pilot programs and
-              trusted by leading defense organizations worldwide.
+              Phoenix Rooivalk represents the next generation of autonomous
+              counter-drone defense technology, designed to address critical
+              gaps in current market solutions.
             </p>
           </div>
 
-              {/* Industry Analysis */}
-              <div className="mb-20">
-                <h3 className="text-2xl font-bold text-[rgb(var(--primary))] mb-8 text-center">
-                  Industry Analysis & Potential
-                </h3>
+          {/* Industry Analysis */}
+          <div className="mb-20">
+            <h3 className="text-2xl font-bold text-[rgb(var(--primary))] mb-8 text-center">
+              Industry Analysis & Potential
+            </h3>
             <div className="grid md:grid-cols-2 gap-8">
               {testimonials.map((testimonial, index) => (
                 <div
