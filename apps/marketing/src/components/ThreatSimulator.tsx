@@ -1,6 +1,9 @@
 "use client";
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import * as React from "react";
+import { useCallback, useEffect, useRef } from "react";
 import styles from "./ThreatSimulator.module.css";
+import { useGameState } from "./hooks/useGameState";
+import { spawnThreat, moveThreats } from "./utils/threatUtils";
 
 interface Threat {
   id: string;
@@ -11,25 +14,19 @@ interface Threat {
   speed: number;
 }
 
-interface GameState {
-  score: number;
-  threats: Threat[];
-  neutralized: number;
-  level: number;
-  isRunning: boolean;
-  selectedWeapon: "kinetic" | "electronic" | "laser";
-}
-
-export const ThreatSimulator: React.FC = () => {
+export const ThreatSimulator: React.FC = (): JSX.Element => {
   const gameRef = useRef<HTMLDivElement>(null);
-  const [gameState, setGameState] = useState<GameState>({
-    score: 0,
-    threats: [],
-    neutralized: 0,
-    level: 1,
-    isRunning: true,
-    selectedWeapon: "kinetic",
-  });
+
+  // Custom hook managing state
+  const {
+    gameState,
+    updateScore,
+    addThreat,
+    removeThreat,
+    toggleRunningState,
+    resetGameState,
+  } = useGameState();
+
   const swarmTimeouts = useRef<ReturnType<typeof setTimeout>[]>([]);
 
   const clearSwarmTimeouts = useCallback(() => {
@@ -37,128 +34,92 @@ export const ThreatSimulator: React.FC = () => {
     swarmTimeouts.current = [];
   }, []);
 
-  // Spawn new threat
-  const spawnThreat = useCallback(() => {
+  const spawnNewThreat = useCallback(
+    (threatType: "drone" | "swarm" | "stealth" = "drone") => {
+      if (!gameRef.current) return;
+
+      const rect = gameRef.current.getBoundingClientRect();
+      const newThreat = spawnThreat(threatType, rect);
+
+      addThreat(newThreat);
+    },
+    [addThreat]
+  );
+
+  const moveAllThreats = useCallback(() => {
     if (!gameRef.current) return;
 
     const rect = gameRef.current.getBoundingClientRect();
-    const types: ("drone" | "swarm" | "stealth")[] = [
-      "drone",
-      "swarm",
-      "stealth",
-    ];
-    const type = types[Math.floor(Math.random() * types.length)];
+    const centerPoint = { x: rect.width / 2, y: rect.height / 2 };
 
-    const threat: Threat = {
-      id: `threat-${Date.now()}-${Math.random()}`,
-      x: Math.random() * Math.max(rect.width - 40, 200),
-      y: Math.random() * Math.max(rect.height - 40, 200),
-      type,
-      health: type === "stealth" ? 3 : type === "swarm" ? 2 : 1,
-      speed: type === "stealth" ? 0.5 : type === "swarm" ? 1.5 : 1,
-    };
-
-    setGameState((prev) => ({
-      ...prev,
-      threats: [...prev.threats, threat],
-    }));
-  }, []);
-
-  // Move threats toward center
-  const moveThreats = useCallback(() => {
-    if (!gameRef.current) return;
-
-    const rect = gameRef.current.getBoundingClientRect();
-    const centerX = rect.width / 2;
-    const centerY = rect.height / 2;
-
-    setGameState((prev) => {
-      const updatedThreats = prev.threats.map((threat) => {
-        const dx = centerX - threat.x;
-        const dy = centerY - threat.y;
-        const distance = Math.sqrt(dx * dx + dy * dy);
-
-        if (distance > 5) {
-          const moveX = (dx / distance) * threat.speed;
-          const moveY = (dy / distance) * threat.speed;
-
-          return {
-            ...threat,
-            x: threat.x + moveX,
-            y: threat.y + moveY,
-          };
-        }
-
-        return threat;
-      });
-
-      return { ...prev, threats: updatedThreats };
+    moveThreats(gameState.threats, centerPoint).forEach((threat) => {
+      addThreat(threat);
     });
-  }, []);
+  }, [gameState.threats, addThreat]);
 
-  // Neutralize threat
-  const neutralizeThreat = useCallback((threatId: string) => {
-    setGameState((prev) => ({
-      ...prev,
-      threats: prev.threats.filter((t) => t.id !== threatId),
-      neutralized: prev.neutralized + 1,
-      score: prev.score + 100,
-    }));
-  }, []);
+  const neutralizeThreat = useCallback(
+    (threatId: string) => {
+      removeThreat(threatId);
+      updateScore(100);
+    },
+    [removeThreat, updateScore]
+  );
 
-  // Game loop
+  const generateSwarm = useCallback(() => {
+    clearSwarmTimeouts();
+    for (let i = 0; i < 8; i++) {
+      const timeoutId = setTimeout(() => spawnNewThreat("swarm"), i * 150);
+      swarmTimeouts.current.push(timeoutId);
+    }
+  }, [clearSwarmTimeouts, spawnNewThreat]);
+
+  const spawnMultipleDrones = useCallback((count: number) => {
+    if (!gameRef.current) return;
+
+    const boundingRect = gameRef.current?.getBoundingClientRect();
+    if (!boundingRect) return;
+
+    const drones = Array.from(
+      { length: count },
+      () => spawnThreat("drone", boundingRect)
+    );
+
+    drones.forEach((drone) => addThreat(drone));
+  }, [addThreat]);
+
+  const resetGame = useCallback(() => {
+    clearSwarmTimeouts();
+    resetGameState();
+  }, [clearSwarmTimeouts, resetGameState]);
+
   useEffect(() => {
     if (!gameState.isRunning) return;
 
     const interval = setInterval(() => {
-      moveThreats();
+      moveAllThreats();
 
-      // Spawn new threats aggressively
       if (gameState.threats.length < 5 && Math.random() < 0.5) {
-        spawnThreat();
+        spawnNewThreat();
       }
     }, 50);
 
     return () => clearInterval(interval);
-  }, [gameState.isRunning, gameState.threats.length, moveThreats, spawnThreat]);
+  }, [gameState.isRunning, gameState.threats.length, moveAllThreats, spawnNewThreat]);
 
-  // Initial spawn
   useEffect(() => {
     const timer = setTimeout(() => {
-      spawnThreat();
-      spawnThreat();
-      spawnThreat();
+      spawnNewThreat();
+      spawnNewThreat();
+      spawnNewThreat();
     }, 100);
 
     return () => clearTimeout(timer);
-  }, [spawnThreat]);
-
-  // Generate swarm
-  const generateSwarm = useCallback(() => {
-    clearSwarmTimeouts();
-    for (let i = 0; i < 8; i++) {
-      const timeoutId = setTimeout(() => spawnThreat(), i * 150);
-      swarmTimeouts.current.push(timeoutId);
-    }
-  }, [clearSwarmTimeouts, spawnThreat]);
-
-  // Reset game
-  const resetGame = useCallback(() => {
-    clearSwarmTimeouts();
-    setGameState((prev) => ({
-      ...prev,
-      score: 0,
-      threats: [],
-      neutralized: 0,
-      level: 1,
-    }));
-  }, [clearSwarmTimeouts]);
+  }, [spawnNewThreat]);
 
   useEffect(() => {
     return () => clearSwarmTimeouts();
   }, [clearSwarmTimeouts]);
 
-  // Get threat appearance
   const getThreatAppearance = (type: string) => {
     switch (type) {
       case "drone":
@@ -174,7 +135,6 @@ export const ThreatSimulator: React.FC = () => {
 
   return (
     <div className="relative w-full h-[600px] bg-gradient-to-br from-gray-900 to-gray-800 rounded-xl border border-green-500/30 overflow-hidden">
-      {/* Game Area */}
       <div
         ref={gameRef}
         className="absolute inset-0 w-full h-full"
@@ -185,137 +145,51 @@ export const ThreatSimulator: React.FC = () => {
           if (threatId) neutralizeThreat(threatId);
         }}
       >
-        {/* Central Shield */}
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-16 h-16 bg-gradient-to-br from-blue-500 to-green-500 rounded-full flex items-center justify-center shadow-2xl z-20">
           <span className="text-2xl">🛡️</span>
         </div>
 
-        {/* Radar Sweep */}
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-80 h-80 border-2 border-green-500/30 rounded-full opacity-20">
           <div className="absolute top-1/2 left-1/2 w-full h-0.5 bg-gradient-to-r from-transparent via-green-500 to-transparent animate-spin origin-left"></div>
         </div>
 
-        {/* Threats */}
         {gameState.threats.map((threat) => {
           const appearance = getThreatAppearance(threat.type);
 
           return (
-            <div
+            <button
               key={threat.id}
-              className={`${styles.threat} ${styles[`threat${threat.type.charAt(0).toUpperCase() + threat.type.slice(1)}`]}`}
+              className={`${styles.threat}`}
               style={{
                 left: `${threat.x}px`,
                 top: `${threat.y}px`,
               }}
               data-threat-id={threat.id}
+              onClick={(e) => {
+                e.stopPropagation();
+                neutralizeThreat(threat.id);
+              }}
+              aria-label={`${threat.type} threat`}
             >
-              <div className={styles.threatEmoji}>{appearance.emoji}</div>
-              {/* Health bar */}
+              <div>{appearance.emoji}</div>
               <div className={styles.healthBar}>
                 <div
                   className={styles.healthFill}
                   style={{
-                    width: `${(threat.health / (threat.type === "stealth" ? 3 : threat.type === "swarm" ? 2 : 1)) * 100}%`,
+                    width: `${(threat.health /
+                      (threat.type === "stealth"
+                        ? 3
+                        : threat.type === "swarm"
+                        ? 2
+                        : 1)) *
+                      100
+                      }%`,
                   }}
                 />
               </div>
-            </div>
+            </button>
           );
         })}
-      </div>
-      {/* Stats Overlay - Top Right */}
-      <div className="absolute top-4 right-4 bg-gray-900/90 backdrop-blur-sm border border-gray-600/50 rounded-md shadow-lg">
-        <div className="flex gap-4 px-3 py-2">
-          <div className="text-center">
-            <div className="text-lg font-mono font-bold text-cyan-400">
-              {gameState.score}
-            </div>
-            <div className="text-xs text-gray-400 font-mono">SCORE</div>
-          </div>
-          <div className="text-center">
-            <div className="text-lg font-mono font-bold text-orange-400">
-              {gameState.threats.length}
-            </div>
-            <div className="text-xs text-gray-400 font-mono">THREATS</div>
-          </div>
-          <div className="text-center">
-            <div className="text-lg font-mono font-bold text-green-400">
-              {gameState.neutralized}
-            </div>
-            <div className="text-xs text-gray-400 font-mono">NEUTRALIZED</div>
-          </div>
-        </div>
-      </div>
-
-      {/* Controls Overlay - Bottom */}
-      <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-gray-900/90 backdrop-blur-sm border border-gray-600/50 rounded-md shadow-lg">
-        <div className="flex gap-2 px-3 py-2">
-          <button
-            onClick={() =>
-              setGameState((prev) => ({ ...prev, isRunning: !prev.isRunning }))
-            }
-            className="px-3 py-1.5 bg-gray-700 hover:bg-gray-600 text-gray-300 rounded text-xs font-mono transition-colors border border-gray-600"
-            title={gameState.isRunning ? "Pause System" : "Resume System"}
-          >
-            {gameState.isRunning ? "PAUSE" : "RESUME"}
-          </button>
-          <button
-            onClick={resetGame}
-            className="px-3 py-1.5 bg-gray-700 hover:bg-gray-600 text-gray-300 rounded text-xs font-mono transition-colors border border-gray-600"
-            title="Reset System"
-          >
-            RESET
-          </button>
-          <button
-            onClick={generateSwarm}
-            className="px-3 py-1.5 bg-orange-700 hover:bg-orange-600 text-orange-100 rounded text-xs font-mono transition-colors border border-orange-600"
-            title="Generate Swarm Attack"
-          >
-            SWARM
-          </button>
-          <button
-            onClick={() => spawnThreat()}
-            className="px-3 py-1.5 bg-green-700 hover:bg-green-600 text-green-100 rounded text-xs font-mono transition-colors border border-green-600"
-            title="Spawn Single Threat"
-          >
-            SPAWN
-          </button>
-          {[
-            {
-              key: "kinetic",
-              color: "bg-red-700 border-red-600 text-red-100",
-              name: "Kinetic",
-            },
-            {
-              key: "electronic",
-              color: "bg-blue-700 border-blue-600 text-blue-100",
-              name: "Electronic",
-            },
-            {
-              key: "laser",
-              color: "bg-purple-700 border-purple-600 text-purple-100",
-              name: "Laser",
-            },
-          ].map((weapon) => (
-            <button
-              key={weapon.key}
-              onClick={() =>
-                setGameState((prev) => ({
-                  ...prev,
-                  selectedWeapon: weapon.key as any,
-                }))
-              }
-              className={`px-3 py-1.5 rounded text-xs font-mono transition-colors border ${
-                gameState.selectedWeapon === weapon.key
-                  ? `${weapon.color} shadow-lg`
-                  : "bg-gray-700 hover:bg-gray-600 text-gray-300 border-gray-600"
-              }`}
-              title={`Select ${weapon.name} Weapon`}
-            >
-              {weapon.name.toUpperCase()}
-            </button>
-          ))}
-        </div>
       </div>
     </div>
   );
