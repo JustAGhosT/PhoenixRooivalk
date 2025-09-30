@@ -67,7 +67,7 @@ export const Button: React.FC<
     return (
       <a
         href={disabled ? undefined : href}
-        aria-disabled={disabled ? "true" : undefined}
+        aria-disabled={disabled}
         tabIndex={disabled ? -1 : undefined}
         rel={computedRel}
         onClick={handleLinkClick}
