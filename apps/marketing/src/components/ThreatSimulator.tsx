@@ -23,7 +23,7 @@ export const ThreatSimulator: React.FC = (): JSX.Element => {
   const { addTimeout, clearTimeouts } = useTimeoutManager();
 
   const spawnNewThreat = useCallback(
-    (threatType: "drone" | "swarm" | "stealth" = "drone") => {
+    (threatType?: "drone" | "swarm" | "stealth") => {
       if (!gameRef.current) return;
 
       const rect = gameRef.current.getBoundingClientRect();
@@ -87,7 +87,7 @@ export const ThreatSimulator: React.FC = (): JSX.Element => {
       moveAllThreats();
 
       if (gameState.threats.length < 5 && Math.random() < 0.5) {
-        spawnNewThreat();
+        spawnNewThreat(); // Random threat type
       }
     }, 50);
 
@@ -101,9 +101,9 @@ export const ThreatSimulator: React.FC = (): JSX.Element => {
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      spawnNewThreat();
-      spawnNewThreat();
-      spawnNewThreat();
+      spawnNewThreat(); // Random threat type
+      spawnNewThreat(); // Random threat type
+      spawnNewThreat(); // Random threat type
     }, 100);
 
     return () => clearTimeout(timer);

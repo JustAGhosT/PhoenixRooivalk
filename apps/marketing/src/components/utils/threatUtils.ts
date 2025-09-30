@@ -29,7 +29,7 @@ export const moveThreats = (
 
 // Function to spawn a single threat
 export const spawnThreat = (
-  threatType: "drone" | "swarm" | "stealth",
+  threatType: "drone" | "swarm" | "stealth" | undefined = undefined,
   boundingRect: DOMRect,
 ): Threat => {
   const types: ("drone" | "swarm" | "stealth")[] = [
