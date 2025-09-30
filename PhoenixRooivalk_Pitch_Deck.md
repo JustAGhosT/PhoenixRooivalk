@@ -10,7 +10,7 @@
 
 ### **"Drone Defense That Works When Radios Don't"**
 
-> Modular Counter-UAS Defense with Blockchain Evidence_
+> Modular Counter-UAS Defense with Blockchain Evidence\_
 
 ---
 
