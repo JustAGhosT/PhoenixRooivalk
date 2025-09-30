@@ -179,6 +179,7 @@ export const ThreatSimulator: React.FC = (): JSX.Element => {
             <button
               key={threat.id}
               className={`${styles.threat} ${styles.threatPosition}`}
+              // eslint-disable-next-line react/forbid-dom-props
               style={
                 {
                   "--threat-x": `${threat.x}px`,
@@ -203,6 +204,7 @@ export const ThreatSimulator: React.FC = (): JSX.Element => {
               <div className={styles.healthBar}>
                 <div
                   className={`${styles.healthFill} ${styles.healthBarWidth}`}
+                  // eslint-disable-next-line react/forbid-dom-props
                   style={
                     {
                       "--health-width": `${
