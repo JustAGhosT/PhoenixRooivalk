@@ -25,7 +25,6 @@ export const Navigation: React.FC = () => {
     },
   ];
 
-
   return (
     <nav className="sticky top-0 z-50 bg-[var(--bg-primary)] border-b border-[var(--border)] px-6 py-4">
       <div className="container flex items-center justify-between">

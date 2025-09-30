@@ -66,7 +66,8 @@ export const Button: React.FC<ButtonProps> = ({
     }
   };
 
-  const classes = `${getVariantClass(variant)} ${getSizeClass(size)} ${className}`.trim();
+  const classes =
+    `${getVariantClass(variant)} ${getSizeClass(size)} ${className}`.trim();
 
   if (href) {
     return (
