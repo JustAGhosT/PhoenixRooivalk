@@ -194,7 +194,10 @@
     "FIPS",
     "MTBF",
     "MTTR",
-    "eoir"
+    "eoir",
+    "Turborepo",
+    "hostnames",
+    "runbook"
   ],
   "ignorePaths": [
     "node_modules/**",
