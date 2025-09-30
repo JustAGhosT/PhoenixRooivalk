@@ -1,4 +1,14 @@
-<svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+<svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="phoenix-title phoenix-desc">
+  <title id="phoenix-title">Phoenix Rooivalk</title>
+  <desc id="phoenix-desc">Tactical autonomous drone systems logo featuring a phoenix-inspired design with upward sweeping wings, tactical hexagonal frame, and fire gradient effects representing resilience and advanced aerial capabilities</desc>
+  
+  <style>
+    @media (prefers-reduced-motion: reduce) {
+      .animated { animation: none !important; }
+      * { animation-play-state: paused !important; }
+    }
+  </style>
+  
   <defs>
     <!-- Refined fire gradients with sharper transitions -->
     <radialGradient id="fireCore" cx="50%" cy="30%">
@@ -73,6 +83,14 @@
       <stop offset="50%" style="stop-color:#00ff00;stop-opacity:0.3"/>
       <stop offset="100%" style="stop-color:#00ff00;stop-opacity:0"/>
     </radialGradient>
+    
+    <!-- Circular vignette for better circle fitting -->
+    <radialGradient id="circularVignette" cx="50%" cy="50%">
+      <stop offset="0%" style="stop-color:#000000;stop-opacity:0"/>
+      <stop offset="65%" style="stop-color:#000000;stop-opacity:0.1"/>
+      <stop offset="85%" style="stop-color:#000000;stop-opacity:0.3"/>
+      <stop offset="100%" style="stop-color:#000000;stop-opacity:0.8"/>
+    </radialGradient>
   </defs>
   
   <!-- Background with circular emphasis -->
@@ -82,16 +100,9 @@
   <!-- Orange reference dot in top left -->
   <circle cx="20" cy="20" r="3" fill="#ff6b00" opacity="0.8"/>
   
-  <!-- Circular vignette for better circle fitting -->
-  <radialGradient id="circularVignette" cx="50%" cy="50%">
-    <stop offset="0%" style="stop-color:#000000;stop-opacity:0"/>
-    <stop offset="65%" style="stop-color:#000000;stop-opacity:0.1"/>
-    <stop offset="85%" style="stop-color:#000000;stop-opacity:0.3"/>
-    <stop offset="100%" style="stop-color:#000000;stop-opacity:0.8"/>
-  </radialGradient>
   <rect width="400" height="400" fill="url(#circularVignette)"/>
   
-  <!-- Hexagonal frame - inset from edges -->
+  <!-- Hexagonal frame -->
   <g>
     <path d="M 200 55 L 320 130 L 320 270 L 200 345 L 80 270 L 80 130 Z" 
           fill="none" stroke="url(#metalFrame)" stroke-width="5" opacity="0.6"/>
@@ -99,20 +110,20 @@
           fill="none" stroke="#ff2200" stroke-width="1.5" opacity="0.4"/>
   </g>
   
-  <!-- Phoenix Core System - SCALED AND REPOSITIONED to fit within bounds -->
+  <!-- Phoenix Core System -->
   <g transform="translate(200, 215) scale(0.92)">
     
-    <!-- 360° Sensor Ring - adjusted for circular boundary -->
+    <!-- 360° Sensor Ring -->
     <g opacity="0.15">
-      <circle cx="0" cy="0" r="120" fill="none" stroke="#ffa500" stroke-width="0.5" stroke-dasharray="2 8">
+      <circle cx="0" cy="0" r="120" fill="none" stroke="#ffa500" stroke-width="0.5" stroke-dasharray="2 8" class="animated">
         <animate attributeName="stroke-dashoffset" from="0" to="10" dur="0.25s" repeatCount="indefinite"/>
       </circle>
-      <circle cx="0" cy="0" r="110" fill="none" stroke="#ff8800" stroke-width="0.3" stroke-dasharray="1 12">
+      <circle cx="0" cy="0" r="110" fill="none" stroke="#ff8800" stroke-width="0.3" stroke-dasharray="1 12" class="animated">
         <animate attributeName="stroke-dashoffset" from="0" to="-13" dur="0.3s" repeatCount="indefinite"/>
       </circle>
     </g>
     
-    <!-- Rotor system - scaled down -->
+    <!-- Rotor system -->
     <g opacity="0.12">
       <line x1="-140" y1="0" x2="140" y2="0" stroke="#888888" stroke-width="2" transform="rotate(0)"/>
       <line x1="-140" y1="0" x2="140" y2="0" stroke="#888888" stroke-width="2" transform="rotate(60)"/>
@@ -121,41 +132,39 @@
       <circle cx="0" cy="0" r="4" fill="#888888"/>
       
       <!-- High-speed rotor blur effect -->
-      <g opacity="0.4">
+      <g opacity="0.4" class="animated">
         <line x1="-140" y1="0" x2="140" y2="0" stroke="#aaaaaa" stroke-width="1" transform="rotate(30)">
           <animateTransform attributeName="transform" type="rotate" from="0 0 0" to="360 0 0" dur="0.25s" repeatCount="indefinite"/>
         </line>
       </g>
     </g>
     
-    <!-- Swarm coordination indicators - moved closer -->
+    <!-- Swarm coordination indicators -->
     <g opacity="0.12">
-      <!-- Mini drone positions -->
-      <circle cx="-90" cy="-60" r="2" fill="#ffa500">
+      <circle cx="-90" cy="-60" r="2" fill="#ffa500" class="animated">
         <animate attributeName="opacity" values="0.12;0.3;0.12" dur="2.2s" repeatCount="indefinite"/>
       </circle>
-      <circle cx="90" cy="-60" r="2" fill="#ffa500">
+      <circle cx="90" cy="-60" r="2" fill="#ffa500" class="animated">
         <animate attributeName="opacity" values="0.12;0.3;0.12" dur="2.5s" repeatCount="indefinite" begin="0.3s"/>
       </circle>
-      <circle cx="-80" cy="50" r="2" fill="#ffa500">
+      <circle cx="-80" cy="50" r="2" fill="#ffa500" class="animated">
         <animate attributeName="opacity" values="0.12;0.3;0.12" dur="2.1s" repeatCount="indefinite" begin="0.6s"/>
       </circle>
-      <circle cx="80" cy="50" r="2" fill="#ffa500">
+      <circle cx="80" cy="50" r="2" fill="#ffa500" class="animated">
         <animate attributeName="opacity" values="0.12;0.3;0.12" dur="2.3s" repeatCount="indefinite" begin="0.9s"/>
       </circle>
       
-      <!-- Network connections -->
       <line x1="0" y1="0" x2="-90" y2="-60" stroke="#ff8800" stroke-width="0.3"/>
       <line x1="0" y1="0" x2="90" y2="-60" stroke="#ff8800" stroke-width="0.3"/>
       <line x1="0" y1="0" x2="-80" y2="50" stroke="#ff8800" stroke-width="0.3"/>
       <line x1="0" y1="0" x2="80" y2="50" stroke="#ff8800" stroke-width="0.3"/>
     </g>
     
-    <!-- WINGS - Upward sweeping V-formation for aggressive stance -->
+    <!-- WINGS - Upward sweeping V-formation -->
     <g filter="url(#glow)">
       
-      <!-- Speed/agility lines - subtle -->
-      <g opacity="0.2">
+      <!-- Speed/agility lines -->
+      <g opacity="0.2" class="animated">
         <line x1="-165" y1="-185" x2="-145" y2="-165" stroke="#ffffff" stroke-width="1">
           <animate attributeName="opacity" values="0.2;0.05;0.2" dur="0.2s" repeatCount="indefinite"/>
         </line>
@@ -164,7 +173,7 @@
         </line>
       </g>
       
-      <!-- Primary wing layer - UPWARD V FORMATION -->
+      <!-- Primary wing layer -->
       <path d="M 0 -32
                C -5 -35, -15 -42, -35 -58
                C -55 -74, -75 -92, -95 -112
@@ -189,7 +198,7 @@
                Z" 
             fill="url(#wingFire2)" opacity="0.95"/>
       
-      <!-- Secondary wing layer - UPWARD -->
+      <!-- Secondary wing layer -->
       <path d="M 0 -36
                C -8 -40, -20 -48, -40 -66
                C -60 -84, -78 -102, -93 -120
@@ -212,7 +221,7 @@
                Z" 
             fill="#cc0000" opacity="0.85"/>
       
-      <!-- Inner flame layer - UPWARD -->
+      <!-- Inner flame layer -->
       <path d="M 0 -40
                C -10 -44, -25 -54, -43 -74
                C -60 -92, -75 -108, -87 -122
@@ -232,16 +241,16 @@
             fill="#ff4400" opacity="0.75"/>
     </g>
     
-    <!-- Wing detail feathers - adjusted for lower wings -->
+    <!-- Wing detail feathers -->
     <g opacity="0.85" filter="url(#innerGlow)">
-      <!-- Left feathers - lower -->
+      <!-- Left feathers -->
       <path d="M -9 -28 L -11 -31 L -12 -32 L -10 -30 L -9 -28 Z" fill="#fffacd" opacity="0.6"/>
       <path d="M -13 -35 L -16 -39 L -17 -40 L -15 -38 L -13 -35 Z" fill="#ffd700" opacity="0.7"/>
       <path d="M -17 -42 L -20 -46 L -21 -47 L -19 -45 L -17 -42 Z" fill="#ffa500" opacity="0.75"/>
       <path d="M -21 -49 L -24 -54 L -25 -55 L -23 -53 L -21 -49 Z" fill="#ff6b00" opacity="0.75"/>
       <path d="M -25 -56 L -28 -61 L -29 -62 L -27 -60 L -25 -56 Z" fill="#ff2200" opacity="0.75"/>
       
-      <!-- Right feathers - lower -->
+      <!-- Right feathers -->
       <path d="M 9 -28 L 11 -31 L 12 -32 L 10 -30 L 9 -28 Z" fill="#fffacd" opacity="0.6"/>
       <path d="M 13 -35 L 16 -39 L 17 -40 L 15 -38 L 13 -35 Z" fill="#ffd700" opacity="0.7"/>
       <path d="M 17 -42 L 20 -46 L 21 -47 L 19 -45 L 17 -42 Z" fill="#ffa500" opacity="0.75"/>
@@ -249,13 +258,11 @@
       <path d="M 25 -56 L 28 -61 L 29 -62 L 27 -60 L 25 -56 Z" fill="#ff2200" opacity="0.75"/>
     </g>
     
-    <!-- Central body - streamlined with tactical shield core -->
+    <!-- Central body -->
     <g filter="url(#heavyShadow)">
-      <!-- Dark tactical shield backing - reduced opacity -->
       <ellipse cx="0" cy="0" rx="22" ry="45" fill="#1a1a1a" opacity="0.65"/>
       <ellipse cx="0" cy="0" rx="18" ry="42" fill="#0a0a0a" stroke="#2a2a2a" stroke-width="0.5" opacity="0.7"/>
       
-      <!-- Main body shape - elongated -->
       <path d="M 0 -42 C -10 -40, -16 -37, -18 -32 C -19 -28, -18 -23, -16 -18
                L -14 -10 L -11 0 L -9 10 L -7 20 L -5 30 L -3 38
                L 0 45
@@ -263,7 +270,6 @@
                L 16 -18 C 18 -23, 19 -28, 18 -32 C 16 -37, 10 -40, 0 -42 Z"
             fill="#0a0a0a" stroke="#2a2a2a" stroke-width="0.5" opacity="0.8"/>
       
-      <!-- Inner fire gradient - elongated -->
       <path d="M 0 -40 C -8 -38, -13 -35, -15 -30 C -16 -26, -15 -21, -13 -16
                L -11 -8 L -9 2 L -7 12 L -5 22 L -3 32 L -1 38
                L 0 43
@@ -271,7 +277,7 @@
                L 13 -16 C 15 -21, 16 -26, 15 -30 C 13 -35, 8 -38, 0 -40 Z"
             fill="url(#fireCore)" opacity="0.95"/>
       
-      <!-- Body segments - more defined -->
+      <!-- Body segments -->
       <ellipse cx="0" cy="-25" rx="7" ry="5" fill="#ff0000" opacity="0.95"/>
       <ellipse cx="0" cy="-15" rx="9" ry="6" fill="#ff2200" opacity="0.9"/>
       <ellipse cx="0" cy="-5" rx="10" ry="7" fill="#ff4400" opacity="0.85"/>
@@ -280,7 +286,7 @@
       <ellipse cx="0" cy="25" rx="7" ry="5" fill="#ffaa00" opacity="0.7"/>
       <ellipse cx="0" cy="35" rx="5" ry="4" fill="#ffcc00" opacity="0.65"/>
       
-      <!-- Segmentation lines for tactical look - using gradient colors -->
+      <!-- Segmentation lines -->
       <line x1="-10" y1="-20" x2="10" y2="-20" stroke="#ff2200" stroke-width="0.4" opacity="0.3"/>
       <line x1="-11" y1="-10" x2="11" y2="-10" stroke="#ff4400" stroke-width="0.4" opacity="0.3"/>
       <line x1="-11" y1="0" x2="11" y2="0" stroke="#ff6600" stroke-width="0.4" opacity="0.3"/>
@@ -288,95 +294,85 @@
       <line x1="-10" y1="20" x2="10" y2="20" stroke="#ffaa00" stroke-width="0.4" opacity="0.3"/>
       <line x1="-8" y1="30" x2="8" y2="30" stroke="#ffcc00" stroke-width="0.4" opacity="0.3"/>
       
-      <!-- Sensor dots on body - changed to amber -->
-      <circle cx="-6" cy="-10" r="0.8" fill="#ffa500" opacity="0.5">
+      <!-- Sensor dots -->
+      <circle cx="-6" cy="-10" r="0.8" fill="#ffa500" opacity="0.5" class="animated">
         <animate attributeName="opacity" values="0.5;0.9;0.5" dur="0.18s" repeatCount="indefinite"/>
       </circle>
-      <circle cx="6" cy="-10" r="0.8" fill="#ffa500" opacity="0.5">
+      <circle cx="6" cy="-10" r="0.8" fill="#ffa500" opacity="0.5" class="animated">
         <animate attributeName="opacity" values="0.5;0.9;0.5" dur="0.22s" repeatCount="indefinite" begin="0.1s"/>
       </circle>
-      <circle cx="-7" cy="5" r="0.8" fill="#ffa500" opacity="0.5">
+      <circle cx="-7" cy="5" r="0.8" fill="#ffa500" opacity="0.5" class="animated">
         <animate attributeName="opacity" values="0.5;0.9;0.5" dur="0.2s" repeatCount="indefinite" begin="0.05s"/>
       </circle>
-      <circle cx="7" cy="5" r="0.8" fill="#ffa500" opacity="0.5">
+      <circle cx="7" cy="5" r="0.8" fill="#ffa500" opacity="0.5" class="animated">
         <animate attributeName="opacity" values="0.5;0.9;0.5" dur="0.19s" repeatCount="indefinite" begin="0.15s"/>
       </circle>
-      <circle cx="-6" cy="20" r="0.8" fill="#ffa500" opacity="0.5">
+      <circle cx="-6" cy="20" r="0.8" fill="#ffa500" opacity="0.5" class="animated">
         <animate attributeName="opacity" values="0.5;0.9;0.5" dur="0.21s" repeatCount="indefinite" begin="0.08s"/>
       </circle>
-      <circle cx="6" cy="20" r="0.8" fill="#ffa500" opacity="0.5">
+      <circle cx="6" cy="20" r="0.8" fill="#ffa500" opacity="0.5" class="animated">
         <animate attributeName="opacity" values="0.5;0.9;0.5" dur="0.17s" repeatCount="indefinite" begin="0.18s"/>
       </circle>
     </g>
     
-    <!-- Arrow Head Top - Adjusted lower to match wings -->
+    <!-- Arrow Head Top -->
     <g filter="url(#glow)">
-      <!-- Central rising column - positioned lower -->
       <rect x="-3" y="-52" width="6" height="18" fill="url(#fireCore)" opacity="0.95" rx="1"/>
       
-      <!-- Primary arrow point -->
       <path d="M 0 -65 L -8 -54 L -6 -52 L -3 -51 L -1 -50 L 0 -49
                L 1 -50 L 3 -51 L 6 -52 L 8 -54 Z"
             fill="#ffffff" opacity="0.95" stroke="#ff6b00" stroke-width="0.3"/>
       
-      <!-- Secondary chevron -->
       <path d="M 0 -61 L -10 -48 L -8 -46 L -5 -45 L 0 -44
                L 5 -45 L 8 -46 L 10 -48 Z"
             fill="#ffd700" opacity="0.85"/>
       
-      <!-- Third chevron -->
       <path d="M 0 -57 L -12 -43 L -10 -41 L -6 -40 L 0 -39
                L 6 -40 L 10 -41 L 12 -43 Z"
             fill="#ffa500" opacity="0.75"/>
       
-      <!-- Energy waves - compact -->
       <path d="M 0 -39 L -14 -35 L -15 -33 L -14 -32 L 0 -37 L 14 -32 L 15 -33 L 14 -35 Z"
-            fill="#ff6b00" opacity="0.6">
+            fill="#ff6b00" opacity="0.6" class="animated">
         <animate attributeName="opacity" values="0.6;0.2;0.6" dur="0.18s" repeatCount="indefinite"/>
       </path>
       
       <path d="M 0 -36 L -16 -32 L -17 -30 L -16 -29 L 0 -34 L 16 -29 L 17 -30 L 16 -32 Z"
-            fill="#ff2200" opacity="0.4">
+            fill="#ff2200" opacity="0.4" class="animated">
         <animate attributeName="opacity" values="0.4;0.1;0.4" dur="0.23s" repeatCount="indefinite"/>
       </path>
       
-      <!-- Core energy point -->
-      <circle cx="0" cy="-52" r="4" fill="#ffffff" opacity="1" filter="url(#innerGlow)">
+      <circle cx="0" cy="-52" r="4" fill="#ffffff" opacity="1" filter="url(#innerGlow)" class="animated">
         <animate attributeName="r" values="4;5.5;4" dur="0.21s" repeatCount="indefinite"/>
       </circle>
       <circle cx="0" cy="-52" r="2" fill="#ffffff" opacity="1"/>
     </g>
     
-    <!-- Tail system - shortened for better balance -->
+    <!-- Tail system -->
     <g filter="url(#glow)">
-      <!-- Primary tail - shortened -->
       <path d="M 0 43 L -12 56 L -15 68 L -14 78 L -11 83 L -8 81 L -5 72 L -2 60 L 0 48 Z" 
             fill="url(#wingFire1)" opacity="0.9"/>
       <path d="M 0 43 L 12 56 L 15 68 L 14 78 L 11 83 L 8 81 L 5 72 L 2 60 L 0 48 Z" 
             fill="url(#wingFire2)" opacity="0.9"/>
       
-      <!-- Secondary tail -->
       <path d="M 0 45 L -9 59 L -11 69 L -9 76 L -6 74 L -3 66 L 0 55 Z" 
             fill="#ff2200" opacity="0.8"/>
       <path d="M 0 45 L 9 59 L 11 69 L 9 76 L 6 74 L 3 66 L 0 55 Z" 
             fill="#ff2200" opacity="0.8"/>
       
-      <!-- Inner tail -->
       <path d="M 0 50 L -5 63 L -6 71 L -4 75 L -2 71 L 0 62 Z" 
             fill="#ff6b00" opacity="0.7"/>
       <path d="M 0 50 L 5 63 L 6 71 L 4 75 L 2 71 L 0 62 Z" 
             fill="#ff6b00" opacity="0.7"/>
       
-      <!-- Center flame - shortened -->
       <path d="M 0 62 L -2 75 L 0 80 L 2 75 Z" fill="#ffa500" opacity="0.8"/>
-      <path d="M 0 80 L 0 88" stroke="#ffd700" stroke-width="5" opacity="0.7">
+      <path d="M 0 80 L 0 88" stroke="#ffd700" stroke-width="5" opacity="0.7" class="animated">
         <animate attributeName="stroke-width" values="5;3;5" dur="0.18s" repeatCount="indefinite"/>
       </path>
       <path d="M 0 80 L 0 88" stroke="#ffffff" stroke-width="1.5" opacity="0.6"/>
     </g>
     
-    <!-- Ember particles - subtle -->
-    <g opacity="0.5" filter="url(#innerGlow)">
+    <!-- Ember particles -->
+    <g opacity="0.5" filter="url(#innerGlow)" class="animated">
       <circle cx="-35" cy="-50" r="1" fill="#fffacd"><animate attributeName="cy" values="-50;-58;-50" dur="3s" repeatCount="indefinite"/></circle>
       <circle cx="-60" cy="-70" r="0.8" fill="#ffd700"><animate attributeName="cy" values="-70;-78;-70" dur="3.5s" repeatCount="indefinite"/></circle>
       <circle cx="-85" cy="-90" r="0.6" fill="#ffa500"><animate attributeName="cy" values="-90;-98;-90" dur="4s" repeatCount="indefinite"/></circle>
@@ -389,13 +385,13 @@
     </g>
   </g>
   
-  <!-- Text - centered for circular space -->
+  <!-- Text -->
   <g filter="url(#heavyShadow)">
-    <text x="200" y="330" font-family="Bebas Neue, Impact, Arial Black, sans-serif" font-size="42" font-weight="900" 
+    <text x="200" y="330" font-family="'Bebas Neue', Impact, Arial Black, sans-serif" font-size="42" font-weight="900" 
           text-anchor="middle" fill="#ffffff" letter-spacing="4" stroke="#1a1a1a" stroke-width="0.5">
       PHOENIX
     </text>
-    <text x="200" y="365" font-family="Bebas Neue, Impact, Arial Black, sans-serif" font-size="42" font-weight="900" 
+    <text x="200" y="365" font-family="'Bebas Neue', Impact, Arial Black, sans-serif" font-size="42" font-weight="900" 
           text-anchor="middle" fill="#ff6b00" letter-spacing="4" stroke="#4a0000" stroke-width="0.5">
       ROOIVALK
     </text>

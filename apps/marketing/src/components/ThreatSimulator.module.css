@@ -75,21 +75,23 @@
 }
 
 .healthBar {
-  @apply absolute -bottom-1 left-0 right-0 h-1 bg-gray-700 rounded border;
-  border-color: rgba(251, 191, 36, 0.2);
+  @apply absolute -bottom-1 left-0 right-0 h-1 rounded border;
+  background-color: rgb(var(--tactical-gray-dark));
+  border-color: rgba(var(--phoenix-amber), 0.2);
 }
 
 .healthFill {
   @apply h-full rounded transition-all shadow-sm;
-  background: linear-gradient(to right, #f97316, #dc2626);
+  background: linear-gradient(to right, rgb(var(--phoenix-orange)), rgb(var(--phoenix-red)));
 }
 
 .statsOverlay {
-  @apply absolute top-4 right-4 bg-black/90 backdrop-blur-sm border rounded-md shadow-lg;
-  border-color: rgba(249, 115, 22, 0.5);
+  @apply absolute top-4 right-4 backdrop-blur-sm border rounded-md shadow-lg;
+  background-color: rgba(var(--tactical-black), 0.9);
+  border-color: rgba(var(--phoenix-orange), 0.5);
   box-shadow:
-    0 10px 15px -3px rgba(249, 115, 22, 0.2),
-    0 4px 6px -2px rgba(249, 115, 22, 0.2);
+    0 10px 15px -3px rgba(var(--phoenix-orange), 0.2),
+    0 4px 6px -2px rgba(var(--phoenix-orange), 0.2);
 }
 
 .statsContent {
@@ -102,19 +104,21 @@
 
 .statValue {
   @apply text-lg font-mono font-bold;
-  color: #fb923c;
+  color: rgb(var(--phoenix-amber));
 }
 
 .statLabel {
-  @apply text-xs text-gray-400 font-mono;
+  @apply text-xs font-mono;
+  color: rgb(var(--tactical-gray));
 }
 
 .controlsOverlay {
-  @apply absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-black/90 backdrop-blur-sm border rounded-md shadow-lg;
-  border-color: rgba(249, 115, 22, 0.5);
+  @apply absolute bottom-4 left-1/2 transform -translate-x-1/2 backdrop-blur-sm border rounded-md shadow-lg;
+  background-color: rgba(var(--tactical-black), 0.9);
+  border-color: rgba(var(--phoenix-orange), 0.5);
   box-shadow:
-    0 10px 15px -3px rgba(249, 115, 22, 0.2),
-    0 4px 6px -2px rgba(249, 115, 22, 0.2);
+    0 10px 15px -3px rgba(var(--phoenix-orange), 0.2),
+    0 4px 6px -2px rgba(var(--phoenix-orange), 0.2);
 }
 
 .controlsContent {
@@ -126,17 +130,23 @@
 }
 
 .controlButtonGray {
-  @apply bg-gray-800 hover:bg-gray-700 text-gray-300 border-gray-600 hover:border-gray-500;
+  @apply text-gray-300;
+  background-color: rgb(var(--tactical-gray-dark));
+  border-color: rgb(var(--tactical-gray));
+}
+.controlButtonGray:hover {
+  background-color: rgb(var(--tactical-gray));
+  border-color: rgb(var(--tactical-gray-light));
 }
 
 .controlButtonOrange {
   @apply text-white shadow-sm;
-  background-color: #ea580c;
-  border-color: #f97316;
+  background-color: rgb(var(--phoenix-orange));
+  border-color: rgb(var(--phoenix-amber));
 }
 .controlButtonOrange:hover {
-  background-color: #f97316;
-  border-color: #fb923c;
+  background-color: rgb(var(--phoenix-amber));
+  border-color: rgb(var(--phoenix-gold));
   box-shadow:
     0 10px 15px -3px rgba(249, 115, 22, 0.3),
     0 4px 6px -2px rgba(249, 115, 22, 0.3);
@@ -176,5 +186,10 @@
 }
 
 .weaponButtonInactive {
-  @apply bg-gray-700 hover:bg-gray-600 text-gray-300 border-gray-600;
+  @apply text-gray-300;
+  background-color: rgb(var(--tactical-gray-dark));
+  border-color: rgb(var(--tactical-gray));
+}
+.weaponButtonInactive:hover {
+  background-color: rgb(var(--tactical-gray));
 }
