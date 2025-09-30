@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 
-import { StickyHeader } from "@/components/StickyHeader";
+import { StickyHeader } from "../../components/StickyHeader";
 import { Footer } from "../components/Footer";
 import { Navigation } from "../components/Navigation";
 import { CapabilitiesSection } from "../components/sections/CapabilitiesSection";
