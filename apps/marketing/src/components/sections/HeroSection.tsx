@@ -43,7 +43,7 @@ export const HeroSection: React.FC = () => {
               second response). Phoenix works 100% without network - 250x faster
               response when it counts most.
             </p>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
               <div className="text-center">
                 <div className="text-[rgb(var(--accent))] font-bold text-lg">
                   120ms
@@ -64,6 +64,15 @@ export const HeroSection: React.FC = () => {
                   Faster Than Traditional
                 </div>
               </div>
+              <div className="text-center">
+                <div className="text-[rgb(var(--accent))] font-bold text-lg">
+                  $26B
+                </div>
+                <div className="text-[rgb(var(--gray))]">Market by 2030</div>
+              </div>
+            </div>
+            <div className="text-xs text-[rgb(var(--gray))] text-center border-t border-[rgba(var(--primary),0.1)] pt-3 mt-4">
+              Addresses 64% market vulnerability gap in RF-silent drone detection
             </div>
           </div>
 

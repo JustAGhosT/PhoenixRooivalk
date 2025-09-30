@@ -6,11 +6,9 @@ import { Footer } from "../components/Footer";
 import { Navigation } from "../components/Navigation";
 import { CapabilitiesSection } from "../components/sections/CapabilitiesSection";
 import { ContactSection } from "../components/sections/ContactSection";
-import { CredibilitySection } from "../components/sections/CredibilitySection";
 import { HeroSection } from "../components/sections/HeroSection";
-import { MarketIntelligenceSection } from "../components/sections/MarketIntelligenceSection";
-import { SocialProofSection } from "../components/sections/SocialProofSection";
 import { InteractiveElementsSection } from "../components/sections/InteractiveElementsSection";
+import { SocialProofSection } from "../components/sections/SocialProofSection";
 import { usePerformanceOptimizations } from "../hooks/usePerformanceOptimizations";
 
 export default function HomePage(): React.ReactElement {
@@ -46,9 +44,7 @@ export default function HomePage(): React.ReactElement {
       <HeroSection />
       <SocialProofSection />
       <InteractiveElementsSection />
-      <MarketIntelligenceSection />
       <CapabilitiesSection />
-      <CredibilitySection />
       <ContactSection />
 
       {/* Footer */}

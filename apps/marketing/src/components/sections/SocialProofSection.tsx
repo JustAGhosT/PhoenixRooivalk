@@ -1,5 +1,6 @@
 import React from "react";
 import { Button } from "../ui/button";
+import { RevealSection } from "../RevealSection";
 
 export const SocialProofSection: React.FC = () => {
   const testimonials = [
@@ -22,9 +23,6 @@ export const SocialProofSection: React.FC = () => {
   ];
 
   const partnerships = [
-    { name: "Lockheed Martin", logo: "🛡️", type: "Strategic Partner" },
-    { name: "Raytheon", logo: "🎯", type: "Technology Partner" },
-    { name: "Northrop Grumman", logo: "🚁", type: "Integration Partner" },
     { name: "Defense Innovation Unit", logo: "⚡", type: "Pilot Program" },
     { name: "Army Futures Command", logo: "🎖️", type: "Evaluation Partner" },
     { name: "AFRL", logo: "✈️", type: "Research Partner" },
@@ -33,10 +31,37 @@ export const SocialProofSection: React.FC = () => {
   const certifications = [
     { name: "ITAR Compliant", status: "Certified", icon: "🔒" },
     { name: "ISO 27001", status: "In Progress", icon: "📋" },
-    { name: "FIPS 140-2", status: "Planned", icon: "🔐" },
+    { name: "CMMC 2.0 L2", status: "In Progress", icon: "🛡️" },
     { name: "MIL-STD-810G", status: "In Progress", icon: "🛡️" },
     { name: "Export Control", status: "Certified", icon: "🌍" },
     { name: "GDPR Compliance", status: "Certified", icon: "⚖️" },
+  ];
+
+  const developmentStatus = [
+    {
+      icon: "🔬",
+      title: "Prototype Phase",
+      description: "Core architecture validated in controlled environments",
+      status: "Active",
+    },
+    {
+      icon: "🚀",
+      title: "SBIR Strategy", 
+      description: "Air Force SBIR Phase I application ($350K) in progress",
+      status: "In Progress",
+    },
+    {
+      icon: "🛡️",
+      title: "DoD Compliance",
+      description: "CMMC 2.0 Level 2 certification pathway",
+      status: "In Progress",
+    },
+    {
+      icon: "🔒",
+      title: "Security Standards",
+      description: "Military-grade security protocols implemented",
+      status: "Active",
+    },
   ];
 
   const mediaCoverage = [
@@ -140,36 +165,74 @@ export const SocialProofSection: React.FC = () => {
             </div>
           </div>
 
-          {/* Certifications */}
-          <div className="mb-20">
-            <h3 className="text-2xl font-bold text-[rgb(var(--primary))] mb-8 text-center">
-              Compliance & Certifications
-            </h3>
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-              {certifications.map((cert, index) => (
-                <div
-                  key={index}
-                  className="bg-[rgba(var(--tactical-charcoal),0.6)] backdrop-blur-sm border border-[rgba(var(--primary),0.1)] rounded-lg p-4 text-center hover:border-[rgba(var(--primary),0.3)] transition-all duration-300"
-                >
-                  <div className="text-2xl mb-2">{cert.icon}</div>
-                  <div className="font-semibold text-[rgb(var(--phoenix-white))] text-sm mb-1">
-                    {cert.name}
-                  </div>
-                  <div
-                    className={`text-xs px-2 py-1 rounded-full inline-block ${
-                      cert.status === "Certified"
-                        ? "bg-[rgba(var(--status-active),0.2)] text-[rgb(var(--status-active))] border border-[rgba(var(--status-active),0.3)]"
-                        : cert.status === "In Progress"
-                          ? "bg-[rgba(var(--status-warning),0.2)] text-[rgb(var(--status-warning))] border border-[rgba(var(--status-warning),0.3)]"
-                          : "bg-[rgba(var(--status-offline),0.2)] text-[rgb(var(--status-offline))] border border-[rgba(var(--status-offline),0.3)]"
-                    }`}
-                  >
-                    {cert.status}
+              {/* Development Status & Certifications */}
+              <div className="mb-20">
+                <h3 className="text-2xl font-bold text-[rgb(var(--primary))] mb-8 text-center">
+                  Development Status & Compliance
+                </h3>
+                
+                {/* Development Status */}
+                <div className="mb-12">
+                  <h4 className="text-xl font-semibold text-[rgb(var(--accent))] mb-6 text-center">
+                    Current Development Status
+                  </h4>
+                  <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    {developmentStatus.map((status, index) => (
+                      <RevealSection key={index}>
+                        <div className="bg-[rgba(var(--tactical-charcoal),0.8)] backdrop-blur-sm border border-[rgba(var(--primary),0.2)] rounded-xl p-6 text-center hover:border-[rgba(var(--primary),0.4)] transition-all duration-300">
+                          <div className="text-3xl mb-3">{status.icon}</div>
+                          <h5 className="text-lg font-bold text-[rgb(var(--primary))] mb-2">
+                            {status.title}
+                          </h5>
+                          <p className="text-[rgb(var(--gray))] text-sm mb-3">
+                            {status.description}
+                          </p>
+                          <div
+                            className={`inline-block px-3 py-1 rounded-full text-xs font-semibold ${
+                              status.status === "Active"
+                                ? "bg-[rgba(var(--status-active),0.2)] text-[rgb(var(--status-active))] border border-[rgba(var(--status-active),0.3)]"
+                                : "bg-[rgba(var(--status-warning),0.2)] text-[rgb(var(--status-warning))] border border-[rgba(var(--status-warning),0.3)]"
+                            }`}
+                          >
+                            {status.status}
+                          </div>
+                        </div>
+                      </RevealSection>
+                    ))}
                   </div>
                 </div>
-              ))}
-            </div>
-          </div>
+
+                {/* Certifications */}
+                <div>
+                  <h4 className="text-xl font-semibold text-[rgb(var(--accent))] mb-6 text-center">
+                    Certifications & Compliance
+                  </h4>
+                  <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+                    {certifications.map((cert, index) => (
+                      <div
+                        key={index}
+                        className="bg-[rgba(var(--tactical-charcoal),0.6)] backdrop-blur-sm border border-[rgba(var(--primary),0.1)] rounded-lg p-4 text-center hover:border-[rgba(var(--primary),0.3)] transition-all duration-300"
+                      >
+                        <div className="text-2xl mb-2">{cert.icon}</div>
+                        <div className="font-semibold text-[rgb(var(--phoenix-white))] text-sm mb-1">
+                          {cert.name}
+                        </div>
+                        <div
+                          className={`text-xs px-2 py-1 rounded-full inline-block ${
+                            cert.status === "Certified"
+                              ? "bg-[rgba(var(--status-active),0.2)] text-[rgb(var(--status-active))] border border-[rgba(var(--status-active),0.3)]"
+                              : cert.status === "In Progress"
+                                ? "bg-[rgba(var(--status-warning),0.2)] text-[rgb(var(--status-warning))] border border-[rgba(var(--status-warning),0.3)]"
+                                : "bg-[rgba(var(--status-offline),0.2)] text-[rgb(var(--status-offline))] border border-[rgba(var(--status-offline),0.3)]"
+                          }`}
+                        >
+                          {cert.status}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
 
           {/* Media Coverage */}
           <div className="mb-16">
