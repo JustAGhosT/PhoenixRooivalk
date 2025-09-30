@@ -155,7 +155,9 @@ export default function ContactPage(): React.ReactElement {
                   <div className="grid md:grid-cols-2 gap-4">
                     <div className="space-y-3">
                       <div className="text-sm">
-                        <div className="font-semibold text-[var(--action-primary)] mb-1">Civilian Applications</div>
+                        <div className="font-semibold text-[var(--action-primary)] mb-1">
+                          Civilian Applications
+                        </div>
                         <ul className="text-[var(--text-muted)] space-y-1">
                           <li>• Airport security & perimeter protection</li>
                           <li>• Critical infrastructure monitoring</li>
@@ -164,7 +166,9 @@ export default function ContactPage(): React.ReactElement {
                         </ul>
                       </div>
                       <div className="text-sm">
-                        <div className="font-semibold text-[var(--action-primary)] mb-1">Commercial Security</div>
+                        <div className="font-semibold text-[var(--action-primary)] mb-1">
+                          Commercial Security
+                        </div>
                         <ul className="text-[var(--text-muted)] space-y-1">
                           <li>• Corporate campus protection</li>
                           <li>• Data center security</li>
@@ -175,7 +179,9 @@ export default function ContactPage(): React.ReactElement {
                     </div>
                     <div className="space-y-3">
                       <div className="text-sm">
-                        <div className="font-semibold text-[var(--action-primary)] mb-1">Research Partnerships</div>
+                        <div className="font-semibold text-[var(--action-primary)] mb-1">
+                          Research Partnerships
+                        </div>
                         <ul className="text-[var(--text-muted)] space-y-1">
                           <li>• University research collaboration</li>
                           <li>• Government laboratory partnerships</li>
@@ -184,7 +190,9 @@ export default function ContactPage(): React.ReactElement {
                         </ul>
                       </div>
                       <div className="text-sm">
-                        <div className="font-semibold text-[var(--action-primary)] mb-1">Technology Licensing</div>
+                        <div className="font-semibold text-[var(--action-primary)] mb-1">
+                          Technology Licensing
+                        </div>
                         <ul className="text-[var(--text-muted)] space-y-1">
                           <li>• Sensor fusion algorithms</li>
                           <li>• Edge processing capabilities</li>
@@ -196,8 +204,10 @@ export default function ContactPage(): React.ReactElement {
                   </div>
                   <div className="mt-4 p-3 bg-[var(--action-warning)]/10 border border-[var(--action-warning)]/20 rounded-lg">
                     <p className="text-xs text-[var(--action-warning)] text-center font-semibold">
-                      💡 These are potential applications under exploration. Actual deployment would require 
-                      regulatory approval, market validation, and technology adaptation for specific use cases.
+                      💡 These are potential applications under exploration.
+                      Actual deployment would require regulatory approval,
+                      market validation, and technology adaptation for specific
+                      use cases.
                     </p>
                   </div>
                 </div>

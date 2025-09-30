@@ -2,7 +2,11 @@
 
 ## Overview
 
-The Phoenix Rooivalk system architecture is designed with modularity and adaptability as core principles, enabling the technology to evolve and adapt to different operational environments, threat scenarios, and market requirements. This document outlines the flexible design patterns and adaptation mechanisms built into the system.
+The Phoenix Rooivalk system architecture is designed with modularity and
+adaptability as core principles, enabling the technology to evolve and adapt to
+different operational environments, threat scenarios, and market requirements.
+This document outlines the flexible design patterns and adaptation mechanisms
+built into the system.
 
 ## Modular Architecture Principles
 
@@ -10,10 +14,13 @@ The Phoenix Rooivalk system architecture is designed with modularity and adaptab
 
 The system employs a plugin-based sensor architecture that allows for:
 
-- **Multi-modal Detection**: Integration of radar, optical, acoustic, and RF sensors
-- **Vendor Agnostic Design**: Standardized interfaces for different sensor manufacturers
+- **Multi-modal Detection**: Integration of radar, optical, acoustic, and RF
+  sensors
+- **Vendor Agnostic Design**: Standardized interfaces for different sensor
+  manufacturers
 - **Hot-swappable Components**: Runtime sensor replacement and configuration
-- **Scalable Detection Networks**: Distributed sensor arrays with centralized coordination
+- **Scalable Detection Networks**: Distributed sensor arrays with centralized
+  coordination
 
 ```mermaid
 graph TB
@@ -23,7 +30,7 @@ graph TB
     B --> E[Acoustic Sensors]
     B --> F[RF Sensors]
     B --> G[Custom Sensors]
-    
+
     A --> H[Data Fusion Engine]
     H --> I[Threat Classification]
     I --> J[Decision Engine]
@@ -31,12 +38,15 @@ graph TB
 
 ### 2. Configurable Decision Algorithms
 
-The autonomous decision-making system supports multiple algorithm configurations:
+The autonomous decision-making system supports multiple algorithm
+configurations:
 
 - **Rule-based Systems**: Deterministic logic for well-defined scenarios
 - **Machine Learning Models**: Adaptive algorithms for complex threat patterns
-- **Hybrid Approaches**: Combination of rule-based and ML for robust decision-making
-- **A/B Testing Framework**: Runtime algorithm switching for performance comparison
+- **Hybrid Approaches**: Combination of rule-based and ML for robust
+  decision-making
+- **A/B Testing Framework**: Runtime algorithm switching for performance
+  comparison
 
 ### 3. Adaptable Countermeasure Selection
 
@@ -44,7 +54,8 @@ The countermeasure system provides flexible response options:
 
 - **Soft-kill First**: Non-destructive countermeasures (jamming, spoofing)
 - **Escalation Protocols**: Progressive response based on threat assessment
-- **Environmental Adaptation**: Countermeasures tailored to operational constraints
+- **Environmental Adaptation**: Countermeasures tailored to operational
+  constraints
 - **Legal Compliance**: Configurable response limits based on jurisdiction
 
 ## Multi-Domain Application Potential
@@ -52,16 +63,20 @@ The countermeasure system provides flexible response options:
 ### Civilian Applications
 
 #### Airport Security
-- **Perimeter Protection**: Automated detection and response for restricted airspace
+
+- **Perimeter Protection**: Automated detection and response for restricted
+  airspace
 - **Runway Monitoring**: Real-time threat assessment during aircraft operations
 - **Passenger Safety**: Integration with airport security systems
 
 #### Critical Infrastructure
+
 - **Power Plants**: Protection of nuclear and conventional power facilities
 - **Water Facilities**: Security for dams, treatment plants, and reservoirs
 - **Communication Towers**: Protection of telecommunications infrastructure
 
 #### Event Security
+
 - **Stadiums**: Crowd protection during sporting events
 - **Concerts**: Public safety for entertainment venues
 - **Public Gatherings**: General event security applications
@@ -69,16 +84,19 @@ The countermeasure system provides flexible response options:
 ### Commercial Security
 
 #### Corporate Campus Protection
+
 - **Headquarters Security**: Protection of corporate facilities
 - **R&D Facilities**: Intellectual property protection
 - **Executive Protection**: VIP security services
 
 #### Data Center Security
+
 - **Server Farm Protection**: Critical infrastructure security
 - **Cloud Infrastructure**: Distributed security systems
 - **Network Operations Centers**: Communication facility protection
 
 #### Port Security
+
 - **Shipping Terminals**: Cargo and facility protection
 - **Cargo Facilities**: Supply chain security
 - **Maritime Operations**: Port authority security
@@ -86,16 +104,19 @@ The countermeasure system provides flexible response options:
 ### Research & Development Applications
 
 #### University Partnerships
+
 - **Academic Research**: Collaborative development programs
 - **Student Projects**: Educational applications
 - **Technology Transfer**: Research commercialization
 
 #### Government Laboratories
+
 - **DARPA Programs**: Defense research initiatives
 - **NSF Projects**: National science foundation research
 - **National Laboratories**: Government research facilities
 
 #### International Cooperation
+
 - **NATO Programs**: Allied defense research
 - **Allied Defense Research**: International collaboration
 - **Technology Sharing**: Multinational development
@@ -104,7 +125,8 @@ The countermeasure system provides flexible response options:
 
 ### 1. Software-Defined Architecture
 
-- **Modular Components**: Independent system modules with standardized interfaces
+- **Modular Components**: Independent system modules with standardized
+  interfaces
 - **Configuration Management**: Runtime system reconfiguration
 - **Plugin Ecosystem**: Third-party component integration
 - **API-First Design**: External system integration capabilities
@@ -210,6 +232,13 @@ Pre-defined market segments for rapid adaptation:
 
 ## Conclusion
 
-The Phoenix Rooivalk system's modular and adaptable architecture provides a solid foundation for addressing multiple market segments and operational requirements. The design flexibility enables rapid adaptation to changing market conditions, regulatory requirements, and technological advances while maintaining core system capabilities and performance standards.
+The Phoenix Rooivalk system's modular and adaptable architecture provides a
+solid foundation for addressing multiple market segments and operational
+requirements. The design flexibility enables rapid adaptation to changing market
+conditions, regulatory requirements, and technological advances while
+maintaining core system capabilities and performance standards.
 
-The system's multi-domain application potential, combined with robust adaptation mechanisms, positions Phoenix Rooivalk as a versatile technology platform capable of serving diverse markets and use cases while maintaining its core value proposition of autonomous, edge-based counter-drone defense.
+The system's multi-domain application potential, combined with robust adaptation
+mechanisms, positions Phoenix Rooivalk as a versatile technology platform
+capable of serving diverse markets and use cases while maintaining its core
+value proposition of autonomous, edge-based counter-drone defense.
