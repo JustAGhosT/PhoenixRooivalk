@@ -133,6 +133,7 @@ jobs:
             "Deploy Preview from PR #${{ github.event.pull_request.number }}"
           enable-commit-comment: false
           enable-commit-status: false
+          enable-pull-request-comment: false
           alias: ${{ github.head_ref }}
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
