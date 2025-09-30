@@ -4,7 +4,7 @@
 
 - **Location**: `10-appendices/glossary.md`
 - **Related Documents**:
-  - [Technical Reference](./technical-reference/) - Implementation details
+  - [Technical Reference](./technical-reference/api-documentation.md) - Implementation details
   - [Research Papers](./research-papers.md) - Academic references
   - [Vendor Comparisons](./vendor-comparisons.md) - Technology analysis
 
@@ -538,7 +538,7 @@ added.
 
 **Related Documents:**
 
-- [Technical Reference](./technical-reference/) - Implementation details
+- [Technical Reference](./technical-reference/api-documentation.md) - Implementation details
 - [Research Papers](./research-papers.md) - Academic references
 - [Vendor Comparisons](./vendor-comparisons.md) - Technology analysis
 

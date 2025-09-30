@@ -160,7 +160,7 @@
   defeat (e.g., jamming, spoofing, nets).
 - **Spectrum Management / EW Deconfliction**: Allocation and prioritization of
   frequencies and power to minimize mutual interference across systems. See
-  [Neutralization Module](./technical_overview.md#neutralization-module) and
+  [Neutralization Module](./technical_overview.md) and
   [Core Technologies](./technical_overview.md#core-technologies).
 - **Swarm Disruption**: Tactics and tools to degrade coordinated multi‑drone
   behavior (e.g., comms denial, leader isolation, decoying). See

@@ -44,6 +44,6 @@ When to prefer a smart contract:
 - Implementation (Memo):
   [Solana Anchor Implementation](../blockchain/03-implementation/phase-1-authentication/implementation-code.md)
 - Integration:
-  [Blockchain Handler](../blockchain/03-implementation/phase-4-system-integration/api-specifications.md#blockchain-integration)
+  [Blockchain Handler](../blockchain/03-implementation/phase-4-system-integration/api-specifications.md)
 - Ops:
-  [Solana on-chain anchoring pilot](../blockchain_integration.md#solana-on-chain-anchoring-pilot)
+  [Solana on-chain anchoring pilot](../blockchain_integration.md)

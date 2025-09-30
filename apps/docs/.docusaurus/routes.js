@@ -14,15 +14,15 @@ export default [
   },
   {
     path: '/docs',
-    component: ComponentCreator('/docs', '2da'),
+    component: ComponentCreator('/docs', '2db'),
     routes: [
       {
         path: '/docs',
-        component: ComponentCreator('/docs', '189'),
+        component: ComponentCreator('/docs', '354'),
         routes: [
           {
             path: '/docs',
-            component: ComponentCreator('/docs', '88c'),
+            component: ComponentCreator('/docs', 'a23'),
             routes: [
               {
                 path: '/docs/adr/l0-adoption-strategy',
@@ -169,6 +169,11 @@ export default [
               {
                 path: '/docs/blockchain/deployment/deployment-guide',
                 component: ComponentCreator('/docs/blockchain/deployment/deployment-guide', 'a21'),
+                exact: true
+              },
+              {
+                path: '/docs/blockchain/deployment/infrastructure',
+                component: ComponentCreator('/docs/blockchain/deployment/infrastructure', '455'),
                 exact: true
               },
               {

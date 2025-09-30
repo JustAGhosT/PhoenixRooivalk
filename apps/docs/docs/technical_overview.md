@@ -307,4 +307,4 @@ make it a valuable asset across multiple sectors.
 
 ### **Next Section**
 
-Continue reading in [Competitor Analysis](./competitor_analysis.html).
+Continue reading in [Competitor Analysis](./competitor_analysis.md).

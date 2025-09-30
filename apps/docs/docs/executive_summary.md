@@ -35,7 +35,7 @@ diverse clients, including governments, event organizers, and private
 enterprises.
 
 > For a detailed overview of the system's technological features, see
-> [Technical Overview](./technical_overview.html).
+> [Technical Overview](./technical_overview.md).
 
 ---
 
@@ -50,7 +50,7 @@ The counter-drone market is projected to grow at a compound annual growth rate
   cost-effective tools for surveillance and warfare.
 
 > For competitive positioning and market analysis, see
-> [Competitor Analysis](./competitor_analysis.html).
+> [Competitor Analysis](./competitor_analysis.md).
 
 ---
 
@@ -79,7 +79,7 @@ The counter-drone market is projected to grow at a compound annual growth rate
   fiber-optic-controlled drones and swarm scenarios.
 
 > Learn how our modular design and technological advancements outperform
-> competitors in [Technical Overview](./technical_overview.html).
+> competitors in [Technical Overview](./technical_overview.md).
 
 ---
 
@@ -115,7 +115,7 @@ sector.
 | **Unique Features** | Modularity, Affordability, Countermeasures |
 
 > For a comprehensive breakdown of revenue, costs, and profit margins, see
-> [Financial Projections](./financial_projections.html).
+> [Financial Projections](./financial_projections.md).
 
 ---
 
@@ -145,10 +145,10 @@ to secure early access to our innovative solution and become a leader in
 counter-drone defense.
 
 > Learn more about the next steps and deployment strategies in the
-> [Implementation Plan](./implementation_plan.html).
+> [Implementation Plan](./implementation_plan.md).
 
 ---
 
 ### **Next Section**
 
-Continue reading in [Technical Overview](./technical_overview.html).
+Continue reading in [Technical Overview](./technical_overview.md).

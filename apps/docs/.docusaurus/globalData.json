@@ -122,6 +122,10 @@
               "path": "/docs/blockchain/deployment/deployment-guide"
             },
             {
+              "id": "blockchain/deployment/infrastructure",
+              "path": "/docs/blockchain/deployment/infrastructure"
+            },
+            {
               "id": "blockchain/deployment/infrastructure/aws-architecture",
               "path": "/docs/blockchain/deployment/infrastructure/aws-architecture"
             },

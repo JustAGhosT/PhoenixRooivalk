@@ -7,7 +7,7 @@
   - [Production Checklist](./production-checklist.md) - Pre-deployment
     validation
   - [CI/CD Pipeline](./ci-cd-pipeline.md) - Automated deployment processes
-  - [Infrastructure](./infrastructure/) - Infrastructure as code configurations
+  - [Infrastructure](./infrastructure.md) - Infrastructure as code configurations
 
 ---
 
@@ -750,7 +750,7 @@ consistency and reliability.
 
 - [Production Checklist](./production-checklist.md) - Pre-deployment validation
 - [CI/CD Pipeline](./ci-cd-pipeline.md) - Automated deployment processes
-- [Infrastructure](./infrastructure/) - Infrastructure as code configurations
+- [Infrastructure](./infrastructure.md) - Infrastructure as code configurations
 
 ---
 

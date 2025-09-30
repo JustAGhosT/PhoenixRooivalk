@@ -42,14 +42,14 @@ Adopt Solana as the initial pilot chain for anchoring evidence digests.
 ## Links
 
 - Implementation: [Solana Anchor](../blockchain/03-implementation/phase-1-authentication/implementation-code.md),
-  [Blockchain Handler](../blockchain/03-implementation/phase-4-system-integration/api-specifications.md#blockchain-integration)
+  [Blockchain Handler](../blockchain/03-implementation/phase-4-system-integration/api-specifications.md)
 - Operations:
-  [Solana on-chain anchoring pilot](../blockchain_integration.md#solana-on-chain-anchoring-pilot)
+  [Solana on-chain anchoring pilot](../blockchain_integration.md)
 
 ## Appendix: L1 suitability snapshot (canonical in blockchain_integration.md)
 
 Reference: see
-[Evaluation of L1/L2/L3 and their adapters](../blockchain_integration.md#evaluation-of-l1-l2-and-l3-and-their-adapters)
+[Evaluation of L1/L2/L3 and their adapters](../blockchain_integration.md)
 
 | Chain / Adapter example                | Security | Scalability | Latency | Interoperability | Resilience | Efficiency |
 | -------------------------------------- | -------- | ----------- | ------- | ---------------- | ---------- | ---------- |

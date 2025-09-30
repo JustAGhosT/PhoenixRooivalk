@@ -4,7 +4,7 @@
 
 - **Location**: `10-appendices/vendor-comparisons.md`
 - **Related Documents**:
-  - [Technical Reference](./technical-reference/) - Implementation details
+  - [Technical Reference](./technical-reference/api-documentation.md) - Implementation details
   - [Research Papers](./research-papers.md) - Academic references
   - [Glossary](./glossary.md) - Terminology definitions
 
@@ -33,11 +33,11 @@ provide guidance for future system evolution and vendor partnerships.
 
 | Platform                | Consensus    | TPS    | Smart Contracts         | Enterprise Features         | Military Suitability | Score  |
 | ----------------------- | ------------ | ------ | ----------------------- | --------------------------- | -------------------- | ------ |
-| **Hyperledger Fabric**  | PBFT/Raft    | 3,500+ | Yes (Go, Java, Node.js) | Permissioned, Channels, MSP | ⭐⭐⭐⭐⭐           | 95/100 |
-| **R3 Corda**            | Notary-based | 1,000+ | Yes (Kotlin, Java)      | Privacy, Legal Framework    | ⭐⭐⭐⭐             | 85/100 |
-| **Ethereum Enterprise** | PoA/Clique   | 1,000+ | Yes (Solidity)          | EVM Compatibility           | ⭐⭐⭐               | 75/100 |
-| **Quorum**              | Istanbul BFT | 1,500+ | Yes (Solidity)          | Privacy, JP Morgan          | ⭐⭐⭐⭐             | 80/100 |
-| **Multichain**          | Round-robin  | 1,000+ | Limited                 | Simple Deployment           | ⭐⭐                 | 60/100 |
+| **Hyperledger Fabric**  | PBFT/Raft    | 3,500+ | Yes (Go, Java, Node.js) | Permissioned, Channels, MSP | ⭐⭐⭐⭐⭐                | 95/100 |
+| **R3 Corda**            | Notary-based | 1,000+ | Yes (Kotlin, Java)      | Privacy, Legal Framework    | ⭐⭐⭐⭐                 | 85/100 |
+| **Ethereum Enterprise** | PoA/Clique   | 1,000+ | Yes (Solidity)          | EVM Compatibility           | ⭐⭐⭐                  | 75/100 |
+| **Quorum**              | Istanbul BFT | 1,500+ | Yes (Solidity)          | Privacy, JP Morgan          | ⭐⭐⭐⭐                 | 80/100 |
+| **Multichain**          | Round-robin  | 1,000+ | Limited                 | Simple Deployment           | ⭐⭐                   | 60/100 |
 
 **Selected Platform: Hyperledger Fabric**
 
@@ -103,11 +103,11 @@ consensus_comparison:
 
 | Vendor       | System            | Detection Range | Target Size  | False Alarm Rate | Cost  | Military Grade | Score  |
 | ------------ | ----------------- | --------------- | ------------ | ---------------- | ----- | -------------- | ------ |
-| **Thales**   | Ground Master 200 | 20 km           | 0.01 m² RCS  | < 1%             | $2.5M | ⭐⭐⭐⭐⭐     | 92/100 |
-| **Raytheon** | KuRFS             | 15 km           | 0.005 m² RCS | < 0.5%           | $3.2M | ⭐⭐⭐⭐⭐     | 90/100 |
-| **HENSOLDT** | Spexer 2000       | 40 km           | 0.01 m² RCS  | < 2%             | $1.8M | ⭐⭐⭐⭐       | 88/100 |
-| **Blighter** | A400 Series       | 8 km            | 0.001 m² RCS | < 3%             | $150K | ⭐⭐⭐         | 75/100 |
-| **Echodyne** | EchoGuard         | 5 km            | 0.01 m² RCS  | < 5%             | $50K  | ⭐⭐           | 65/100 |
+| **Thales**   | Ground Master 200 | 20 km           | 0.01 m² RCS  | < 1%             | $2.5M | ⭐⭐⭐⭐⭐          | 92/100 |
+| **Raytheon** | KuRFS             | 15 km           | 0.005 m² RCS | < 0.5%           | $3.2M | ⭐⭐⭐⭐⭐          | 90/100 |
+| **HENSOLDT** | Spexer 2000       | 40 km           | 0.01 m² RCS  | < 2%             | $1.8M | ⭐⭐⭐⭐           | 88/100 |
+| **Blighter** | A400 Series       | 8 km            | 0.001 m² RCS | < 3%             | $150K | ⭐⭐⭐            | 75/100 |
+| **Echodyne** | EchoGuard         | 5 km            | 0.01 m² RCS  | < 5%             | $50K  | ⭐⭐             | 65/100 |
 
 **Selected Primary: Thales Ground Master 200** **Selected Secondary: Blighter
 A400 Series**
@@ -464,7 +464,7 @@ competitive pricing and innovation through vendor competition.
 
 **Related Documents:**
 
-- [Technical Reference](./technical-reference/) - Implementation details
+- [Technical Reference](./technical-reference/api-documentation.md) - Implementation details
 - [Research Papers](./research-papers.md) - Academic references
 - [Glossary](./glossary.md) - Terminology definitions
 

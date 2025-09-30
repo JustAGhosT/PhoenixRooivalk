@@ -4,7 +4,7 @@
 
 - **Location**: `10-appendices/research-papers.md`
 - **Related Documents**:
-  - [Technical Reference](./technical-reference/) - Implementation details
+  - [Technical Reference](./technical-reference/api-documentation.md) - Implementation details
   - [Vendor Comparisons](./vendor-comparisons.md) - Technology analysis
   - [Glossary](./glossary.md) - Terminology definitions
 
@@ -543,6 +543,6 @@ Phoenix Rooivalk system design, implementation, and ongoing development.
 
 **Related Documents:**
 
-- [Technical Reference](./technical-reference/) - Implementation details
+- [Technical Reference](./technical-reference/api-documentation.md) - Implementation details
 - [Vendor Comparisons](./vendor-comparisons.md) - Technology analysis
 - [Glossary](./glossary.md) - Terminology definitions
