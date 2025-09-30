@@ -3,15 +3,16 @@
 @tailwind utilities;
 
 :root {
-  --primary: #f97316;
-  --secondary: #dc2626;
-  --accent: #fbbf24;
-  --dark: #0a0e1a;
-  --darker: #000000;
+  --primary: #1e40af;
+  --secondary: #374151;
+  --accent: #f59e0b;
+  --dark: #0f172a;
+  --darker: #020617;
   --light: #ffffff;
-  --gray: #9ca3af;
-  --orange-glow: rgba(249, 115, 22, 0.3);
-  --red-glow: rgba(220, 38, 38, 0.3);
+  --gray: #6b7280;
+  --steel: #94a3b8;
+  --navy-glow: rgba(30, 64, 175, 0.2);
+  --amber-glow: rgba(245, 158, 11, 0.15);
 }
 
 body {
