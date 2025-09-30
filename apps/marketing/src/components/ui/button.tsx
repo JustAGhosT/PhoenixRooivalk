@@ -40,20 +40,33 @@ export const Button: React.FC<ButtonProps> = ({
   const onClick = rest.onClick;
 
   // Use the new CSS classes from globals.css
-  const variantClasses = {
-    primary: "btn btn--primary",
-    secondary: "btn btn--secondary",
-    ghost: "btn btn--ghost",
+  const getVariantClass = (variant: string) => {
+    switch (variant) {
+      case "primary":
+        return "btn btn--primary";
+      case "secondary":
+        return "btn btn--secondary";
+      case "ghost":
+        return "btn btn--ghost";
+      default:
+        return "btn btn--primary";
+    }
   };
 
-  const sizeClasses = {
-    sm: "text-sm py-2 px-3",
-    md: "text-base py-3 px-4",
-    lg: "text-lg py-4 px-6",
+  const getSizeClass = (size: string) => {
+    switch (size) {
+      case "sm":
+        return "text-sm py-2 px-3";
+      case "md":
+        return "text-base py-3 px-4";
+      case "lg":
+        return "text-lg py-4 px-6";
+      default:
+        return "text-base py-3 px-4";
+    }
   };
 
-  const classes =
-    `${variantClasses[variant]} ${sizeClasses[size]} ${className}`.trim();
+  const classes = `${getVariantClass(variant)} ${getSizeClass(size)} ${className}`.trim();
 
   if (href) {
     return (
