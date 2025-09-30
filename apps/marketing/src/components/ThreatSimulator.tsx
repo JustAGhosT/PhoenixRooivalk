@@ -4,16 +4,8 @@ import { useCallback, useEffect, useRef } from "react";
 import styles from "./ThreatSimulator.module.css";
 import { useGameState } from "./hooks/useGameState";
 import { useTimeoutManager } from "./hooks/useTimeoutManager";
-import { spawnThreat, moveThreats } from "./utils/threatUtils";
+import { moveThreats, spawnThreat } from "./utils/threatUtils";
 
-interface Threat {
-  id: string;
-  x: number;
-  y: number;
-  type: "drone" | "swarm" | "stealth";
-  health: number;
-  speed: number;
-}
 
 export const ThreatSimulator: React.FC = (): JSX.Element => {
   const gameRef = useRef<HTMLDivElement>(null);
@@ -49,10 +41,9 @@ export const ThreatSimulator: React.FC = (): JSX.Element => {
     const rect = gameRef.current.getBoundingClientRect();
     const centerPoint = { x: rect.width / 2, y: rect.height / 2 };
 
-    moveThreats(gameState.threats, centerPoint).forEach((threat) => {
-      addThreat(threat);
-    });
-  }, [gameState.threats, addThreat]);
+    const movedThreats = moveThreats(gameState.threats, centerPoint);
+    updateThreats(movedThreats);
+  }, [gameState.threats, updateThreats]);
 
   const neutralizeThreat = useCallback(
     (threatId: string) => {
