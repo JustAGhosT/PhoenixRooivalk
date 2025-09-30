@@ -25,26 +25,6 @@ export const Navigation: React.FC = () => {
     },
   ];
 
-  const audienceMenus = {
-    military: [
-      { href: "/technical", label: "Technical Specifications" },
-      { href: "/compliance", label: "Security Standards" },
-      { href: "/financial", label: "Deployment Costs" },
-      { href: "#contact", label: "Schedule Briefing" },
-    ],
-    contractors: [
-      { href: "/financial", label: "ROI Calculator" },
-      { href: "/technical", label: "Integration Guide" },
-      { href: "/compliance", label: "Certification Process" },
-      { href: "#contact", label: "Partner Program" },
-    ],
-    government: [
-      { href: "/compliance", label: "Regulatory Compliance" },
-      { href: "/technical", label: "Security Architecture" },
-      { href: "/financial", label: "Budget Planning" },
-      { href: "#contact", label: "Government Relations" },
-    ],
-  };
 
   return (
     <nav className="sticky top-0 z-50 bg-[var(--bg-primary)] border-b border-[var(--border)] px-6 py-4">

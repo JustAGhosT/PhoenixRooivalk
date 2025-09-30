@@ -12,7 +12,6 @@ export const ExitIntentModal: React.FC<ExitIntentModalProps> = ({
 }) => {
   const [isVisible, setIsVisible] = useState(false);
   const [hasTriggered, setHasTriggered] = useState(false);
-  const beforeUnloadHandlerRef = useRef<null>(null); // deprecated: no custom UI on beforeunload
   const dialogRef = useRef<HTMLDivElement>(null);
   const closeBtnRef = useRef<HTMLButtonElement>(null);
 

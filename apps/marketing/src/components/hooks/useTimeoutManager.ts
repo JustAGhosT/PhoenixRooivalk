@@ -18,7 +18,7 @@ export const useTimeoutManager = () => {
       removeTimeout(timeoutId);
     }, delay);
     timeoutRefs.current.push(timeoutId);
-  }, []);
+  }, [removeTimeout]);
 
   // Remove a specific timeout from the list
   const removeTimeout = useCallback(
