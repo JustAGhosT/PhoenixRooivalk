@@ -1,5 +1,6 @@
 "use client";
 import React, { useCallback, useEffect, useRef, useState } from 'react';
+import styles from './ThreatSimulator.module.css';
 
 interface Threat {
   id: string;
@@ -197,27 +198,25 @@ export const ThreatSimulator: React.FC = () => {
           return (
             <div
               key={threat.id}
-              className={`absolute w-8 h-8 rounded-full flex items-center justify-center cursor-pointer transition-all duration-300 shadow-lg hover:scale-110 ${appearance.color}`}
+              className={`${styles.threat} ${styles[`threat${threat.type.charAt(0).toUpperCase() + threat.type.slice(1)}`]}`}
               style={{
-                left: threat.x,
-                top: threat.y,
-                zIndex: 15,
+                left: `${threat.x}px`,
+                top: `${threat.y}px`,
               }}
               data-threat-id={threat.id}
             >
-              <div className="text-lg">{appearance.emoji}</div>
+              <div className={styles.threatEmoji}>{appearance.emoji}</div>
               {/* Health bar */}
-              <div className="absolute -bottom-1 left-0 right-0 h-1 bg-gray-600 rounded">
+              <div className={styles.healthBar}>
                 <div
-                  className="h-full bg-red-500 rounded transition-all"
+                  className={styles.healthFill}
                   style={{ width: `${(threat.health / (threat.type === 'stealth' ? 3 : threat.type === 'swarm' ? 2 : 1)) * 100}%` }}
-                ></div>
+                />
               </div>
             </div>
           );
         })}
       </div>
-
       {/* Stats Overlay - Top Right */}
       <div className="absolute top-4 right-4 bg-gray-900/90 backdrop-blur-sm border border-gray-600/50 rounded-md shadow-lg">
         <div className="flex gap-4 px-3 py-2">
