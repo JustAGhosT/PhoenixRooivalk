@@ -88,12 +88,11 @@ jobs:
         uses: github/codeql-action/analyze@v3
         with:
           category: "/language:${{matrix.language}}"
-          upload: true
+          upload: false
           output: codeql-results.sarif
 
       - name: Upload SARIF results
-        if:
-          always() && steps.codeql-check.outputs.enabled == 'true' &&
+        if: always() && steps.codeql-check.outputs.enabled == 'true' &&
           (github.event_name != 'pull_request' ||
           github.event.pull_request.head.repo.full_name == github.repository)
         uses: github/codeql-action/upload-sarif@v3
