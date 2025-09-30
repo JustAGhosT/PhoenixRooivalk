@@ -88,11 +88,13 @@ curl -s http://blockchain-service:9090/metrics | grep transaction_count || echo 
 **Responsible**: Operations Team Lead
 
 1. **Incident Summary Review**
+
    - Document all incidents handled during shift
    - Update incident tracking system
    - Prepare handover notes for incoming team
 
 2. **System Status Documentation**
+
    - Record current system performance metrics
    - Note any ongoing maintenance activities
    - Update operational status dashboard
@@ -154,12 +156,14 @@ infrastructure_metrics:
 **Alert Severity Levels:**
 
 1. **Critical Alerts** (Response: Immediate)
+
    - System outage or service unavailability
    - Security breach indicators
    - Data integrity issues
    - Blockchain consensus failure
 
 2. **Warning Alerts** (Response: Within 15 minutes)
+
    - Performance degradation
    - Resource utilization approaching limits
    - Non-critical service failures
@@ -251,18 +255,21 @@ change_types:
 ### 4.2 Change Implementation Process
 
 1. **Change Request Submission**
+
    - Complete change request form
    - Provide technical impact assessment
    - Include rollback procedures
    - Specify testing requirements
 
 2. **Change Review and Approval**
+
    - Technical review by system architects
    - Security impact assessment
    - Operations impact evaluation
    - Final approval by change board
 
 3. **Change Implementation**
+
    - Execute pre-implementation checklist
    - Implement changes during approved window
    - Perform post-implementation validation

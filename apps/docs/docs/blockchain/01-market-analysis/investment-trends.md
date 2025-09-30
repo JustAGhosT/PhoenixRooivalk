@@ -377,16 +377,19 @@ print(f"Phoenix Rooivalk Addressable Market (2030): ${phoenix_addressable_market
 **Key Investment Themes in Blockchain Security**:
 
 1. **Data Integrity and Provenance** (40% of investment):
+
    - Immutable audit trails for regulatory compliance
    - Supply chain security and component authentication
    - Forensic analysis and incident investigation
 
 2. **Multi-Party Coordination** (30% of investment):
+
    - Distributed command and control systems
    - Cross-organizational data sharing
    - Coalition operations and information sharing
 
 3. **Regulatory Compliance** (20% of investment):
+
    - Automated compliance reporting and validation
    - Privacy-preserving data sharing
    - Cross-border data sovereignty
@@ -526,21 +529,25 @@ for round_name, valuation in valuations.items():
 **Phoenix Rooivalk Investment Highlights**:
 
 1. **Market Opportunity**:
+
    - $14.51B total addressable market by 2030
    - $4.2B blockchain-enabled segment
    - First-mover advantage in blockchain counter-drone
 
 2. **Technology Differentiation**:
+
    - Comprehensive blockchain integration platform
    - 249+ vendor compatibility
    - Military-grade security and compliance
 
 3. **Competitive Moat**:
+
    - 18-month technology lead
    - Patent portfolio protection
    - Network effects and switching costs
 
 4. **Revenue Model**:
+
    - Subscription-based platform revenue
    - Professional services and integration
    - Licensing and partnership revenue

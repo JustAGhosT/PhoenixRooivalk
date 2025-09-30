@@ -72,7 +72,8 @@ export const HeroSection: React.FC = () => {
               </div>
             </div>
             <div className="text-xs text-[rgb(var(--gray))] text-center border-t border-[rgba(var(--primary),0.1)] pt-3 mt-4">
-              Addresses 64% market vulnerability gap in RF-silent drone detection
+              Addresses 64% market vulnerability gap in RF-silent drone
+              detection
             </div>
           </div>
 

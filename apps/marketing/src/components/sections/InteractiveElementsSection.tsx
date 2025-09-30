@@ -79,7 +79,8 @@ export const InteractiveElementsSection: React.FC = () => {
               Interactive ROI Calculator
             </h2>
             <p className="text-xl text-[rgb(var(--gray))] max-w-3xl mx-auto">
-              Calculate the return on investment for Phoenix Rooivalk's 120ms response time in your specific threat environment.
+              Calculate the return on investment for Phoenix Rooivalk's 120ms
+              response time in your specific threat environment.
             </p>
           </div>
 
@@ -189,19 +190,25 @@ export const InteractiveElementsSection: React.FC = () => {
                   </h4>
                   <div className="space-y-3">
                     <div className="flex justify-between">
-                      <span className="text-[rgb(var(--gray))]">Success Rate:</span>
+                      <span className="text-[rgb(var(--gray))]">
+                        Success Rate:
+                      </span>
                       <span className="text-[rgb(var(--status-active))] font-bold">
                         {(roi.phoenix.successRate * 100).toFixed(1)}%
                       </span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-[rgb(var(--gray))]">Threats Prevented/Year:</span>
+                      <span className="text-[rgb(var(--gray))]">
+                        Threats Prevented/Year:
+                      </span>
                       <span className="text-[rgb(var(--phoenix-white))] font-bold">
                         {roi.phoenix.prevented.toFixed(1)}
                       </span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-[rgb(var(--gray))]">Annual Savings:</span>
+                      <span className="text-[rgb(var(--gray))]">
+                        Annual Savings:
+                      </span>
                       <span className="text-[rgb(var(--status-active))] font-bold">
                         ${roi.phoenix.savings.toLocaleString()}
                       </span>
@@ -221,19 +228,25 @@ export const InteractiveElementsSection: React.FC = () => {
                   </h4>
                   <div className="space-y-3">
                     <div className="flex justify-between">
-                      <span className="text-[rgb(var(--gray))]">Success Rate:</span>
+                      <span className="text-[rgb(var(--gray))]">
+                        Success Rate:
+                      </span>
                       <span className="text-[rgb(var(--status-warning))] font-bold">
                         {(roi.traditional.successRate * 100).toFixed(1)}%
                       </span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-[rgb(var(--gray))]">Threats Prevented/Year:</span>
+                      <span className="text-[rgb(var(--gray))]">
+                        Threats Prevented/Year:
+                      </span>
                       <span className="text-[rgb(var(--phoenix-white))] font-bold">
                         {roi.traditional.prevented.toFixed(1)}
                       </span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-[rgb(var(--gray))]">Annual Savings:</span>
+                      <span className="text-[rgb(var(--gray))]">
+                        Annual Savings:
+                      </span>
                       <span className="text-[rgb(var(--status-warning))] font-bold">
                         ${roi.traditional.savings.toLocaleString()}
                       </span>
@@ -256,39 +269,60 @@ export const InteractiveElementsSection: React.FC = () => {
               <h3 className="text-2xl font-bold text-[rgb(var(--primary))] mb-6 text-center">
                 Performance Comparison
               </h3>
-              
+
               <div className="grid md:grid-cols-3 gap-8">
                 <div className="text-center">
                   <div className="text-4xl font-bold text-[rgb(var(--status-critical))] mb-2">
                     3-10s
                   </div>
-                  <div className="text-[rgb(var(--gray))] font-semibold mb-2">Traditional Systems</div>
-                  <div className="w-full bg-[rgba(var(--status-critical),0.2)] rounded-full h-4 border border-[rgba(var(--status-critical),0.3)]">
-                    <div className="bg-gradient-to-r from-[rgb(var(--status-critical))] to-[rgb(var(--status-warning))] h-4 rounded-full" style={{width: '100%'}}></div>
+                  <div className="text-[rgb(var(--gray))] font-semibold mb-2">
+                    Traditional Systems
                   </div>
-                  <div className="text-xs text-[rgb(var(--gray))] mt-2">Network dependent</div>
+                  <div className="w-full bg-[rgba(var(--status-critical),0.2)] rounded-full h-4 border border-[rgba(var(--status-critical),0.3)]">
+                    <div
+                      className="bg-gradient-to-r from-[rgb(var(--status-critical))] to-[rgb(var(--status-warning))] h-4 rounded-full"
+                      style={{ width: "100%" }}
+                    ></div>
+                  </div>
+                  <div className="text-xs text-[rgb(var(--gray))] mt-2">
+                    Network dependent
+                  </div>
                 </div>
-                
+
                 <div className="text-center">
                   <div className="text-4xl font-bold text-[rgb(var(--primary))] mb-2">
                     1-3s
                   </div>
-                  <div className="text-[rgb(var(--gray))] font-semibold mb-2">Current Best</div>
-                  <div className="w-full bg-[rgba(var(--primary),0.2)] rounded-full h-4 border border-[rgba(var(--primary),0.3)]">
-                    <div className="bg-gradient-to-r from-[rgb(var(--primary))] to-[rgb(var(--accent))] h-4 rounded-full" style={{width: '30%'}}></div>
+                  <div className="text-[rgb(var(--gray))] font-semibold mb-2">
+                    Current Best
                   </div>
-                  <div className="text-xs text-[rgb(var(--gray))] mt-2">With network dependency</div>
+                  <div className="w-full bg-[rgba(var(--primary),0.2)] rounded-full h-4 border border-[rgba(var(--primary),0.3)]">
+                    <div
+                      className="bg-gradient-to-r from-[rgb(var(--primary))] to-[rgb(var(--accent))] h-4 rounded-full"
+                      style={{ width: "30%" }}
+                    ></div>
+                  </div>
+                  <div className="text-xs text-[rgb(var(--gray))] mt-2">
+                    With network dependency
+                  </div>
                 </div>
-                
+
                 <div className="text-center">
                   <div className="text-4xl font-bold text-[rgb(var(--status-active))] mb-2">
                     120ms
                   </div>
-                  <div className="text-[rgb(var(--gray))] font-semibold mb-2">Phoenix Rooivalk</div>
-                  <div className="w-full bg-[rgba(var(--status-active),0.2)] rounded-full h-4 border border-[rgba(var(--status-active),0.3)]">
-                    <div className="bg-gradient-to-r from-[rgb(var(--status-active))] to-[rgb(var(--accent))] h-4 rounded-full" style={{width: '4%'}}></div>
+                  <div className="text-[rgb(var(--gray))] font-semibold mb-2">
+                    Phoenix Rooivalk
                   </div>
-                  <div className="text-xs text-[rgb(var(--gray))] mt-2">Autonomous edge processing</div>
+                  <div className="w-full bg-[rgba(var(--status-active),0.2)] rounded-full h-4 border border-[rgba(var(--status-active),0.3)]">
+                    <div
+                      className="bg-gradient-to-r from-[rgb(var(--status-active))] to-[rgb(var(--accent))] h-4 rounded-full"
+                      style={{ width: "4%" }}
+                    ></div>
+                  </div>
+                  <div className="text-xs text-[rgb(var(--gray))] mt-2">
+                    Autonomous edge processing
+                  </div>
                 </div>
               </div>
             </div>
@@ -300,7 +334,8 @@ export const InteractiveElementsSection: React.FC = () => {
               Ready to Calculate Your Savings?
             </h3>
             <p className="text-[rgb(var(--gray))] mb-6 max-w-2xl mx-auto">
-              See how Phoenix Rooivalk's 120ms response time can transform your defense capabilities and deliver measurable ROI.
+              See how Phoenix Rooivalk's 120ms response time can transform your
+              defense capabilities and deliver measurable ROI.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button
