@@ -19,11 +19,11 @@ export default function CompliancePage(): React.ReactElement {
         <div className="max-w-[1400px] mx-auto">
           <div className="text-center">
             <h1 className="text-4xl md:text-5xl font-extrabold bg-clip-text text-transparent bg-gradient-to-br from-white to-[var(--primary)]">
-              Compliance & Certifications
+              Compliance & Assurance Roadmap
             </h1>
             <p className="text-[var(--gray)] mt-4 max-w-3xl mx-auto">
-              Meeting international standards for defense technology with
-              comprehensive regulatory compliance.
+              Planning compliance framework for defense technology development. 
+              All standards listed as targets, not current certifications.
             </p>
           </div>
         </div>
@@ -33,7 +33,7 @@ export default function CompliancePage(): React.ReactElement {
       <section className="px-[5%] py-16 bg-[linear-gradient(180deg,rgba(var(--primary),0.05),transparent)]">
         <div className="max-w-[1400px] mx-auto">
           <h2 className="text-3xl font-bold mb-8 text-center text-[var(--primary)]">
-            Compliance Status & Certifications
+            Assurance Roadmap (Targets, Post-Funding)
           </h2>
           <div className="grid md:grid-cols-2 xl:grid-cols-4 gap-6">
             {[
@@ -41,25 +41,25 @@ export default function CompliancePage(): React.ReactElement {
                 icon: "🇺🇸",
                 title: "ITAR Compliance",
                 description:
-                  "International Traffic in Arms Regulations compliance framework established. Export control procedures implemented.",
-                status: "In Progress",
-                progress: "75%",
+                  "ITAR compliance framework planning for defense technology export controls. Target standard, pre-audit.",
+                status: "Planned",
+                progress: "0%",
               },
               {
                 icon: "🔒",
                 title: "ISO 27001",
                 description:
-                  "Information security management system framework established. Audit preparation in progress.",
-                status: "In Progress",
-                progress: "60%",
+                  "ISO 27001 information security management system planning. Planned post-MVP.",
+                status: "Planned",
+                progress: "0%",
               },
               {
                 icon: "🌍",
                 title: "Export Control",
                 description:
                   "EAR and dual-use technology compliance framework established. Regional restrictions mapped.",
-                status: "In Progress",
-                progress: "85%",
+                status: "Planned",
+                progress: "0%",
               },
               {
                 icon: "✅",
@@ -67,7 +67,7 @@ export default function CompliancePage(): React.ReactElement {
                 description:
                   "CE marking, FCC certification, and regional approval processes initiated. Documentation prepared.",
                 status: "Planned",
-                progress: "30%",
+                progress: "0%",
               },
               {
                 icon: "🛡️",
@@ -75,7 +75,7 @@ export default function CompliancePage(): React.ReactElement {
                 description:
                   "MIL-STD-810G environmental testing and MIL-STD-461 electromagnetic compatibility standards compliance.",
                 status: "Planned",
-                progress: "20%",
+                progress: "0%",
               },
               {
                 icon: "🔐",
@@ -83,23 +83,23 @@ export default function CompliancePage(): React.ReactElement {
                 description:
                   "Federal Information Processing Standard for cryptographic modules. Hardware security module integration planned.",
                 status: "Planned",
-                progress: "15%",
+                progress: "0%",
               },
               {
                 icon: "🌐",
                 title: "GDPR Compliance",
                 description:
                   "General Data Protection Regulation compliance framework for European operations and data handling.",
-                status: "In Progress",
-                progress: "70%",
+                status: "Planned",
+                progress: "0%",
               },
               {
                 icon: "⚖️",
                 title: "Legal Framework",
                 description:
                   "Comprehensive legal compliance framework including liability, insurance, and operational restrictions.",
-                status: "In Progress",
-                progress: "65%",
+                status: "Planned",
+                progress: "0%",
               },
             ].map((cert) => (
               <div
