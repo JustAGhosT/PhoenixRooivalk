@@ -1,17 +1,54 @@
 /** @type {import('eslint').Linter.Config} */
 module.exports = {
   root: true,
+  env: {
+    browser: true,
+    es2021: true,
+    node: true,
+  },
   extends: [
-    "eslint:recommended",
-    "@typescript-eslint/recommended",
-    "@typescript-eslint/recommended-requiring-type-checking",
+    'eslint:recommended',
+    'plugin:react/recommended',
+    'plugin:react-hooks/recommended',
+    'plugin:jsx-a11y/recommended',
+    'plugin:@typescript-eslint/recommended',
+    'plugin:@typescript-eslint/recommended-requiring-type-checking',
+    'plugin:import/errors',
+    'plugin:import/warnings',
+    'plugin:import/typescript',
+    'plugin:prettier/recommended',
+    'plugin:security/recommended',
   ],
-  parser: "@typescript-eslint/parser",
+  parser: '@typescript-eslint/parser',
   parserOptions: {
-    project: ["./tsconfig.base.json"],
+    ecmaFeatures: {
+      jsx: true,
+    },
+    ecmaVersion: 'latest',
+    sourceType: 'module',
+    project: ['./tsconfig.base.json'],
     tsconfigRootDir: __dirname,
   },
-  plugins: ["@typescript-eslint", "import", "security"],
+  settings: {
+    react: {
+      version: 'detect',
+    },
+    'import/resolver': {
+      typescript: {},
+      node: {
+        extensions: ['.js', '.jsx', '.ts', '.tsx'],
+      },
+    },
+  },
+  plugins: [
+    'react',
+    'react-hooks',
+    'jsx-a11y',
+    '@typescript-eslint',
+    'import',
+    'prettier',
+    'security',
+  ],
   rules: {
     // TypeScript
     "@typescript-eslint/no-unused-vars": ["error", { argsIgnorePattern: "^_" }],
