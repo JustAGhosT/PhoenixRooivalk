@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "docusaurus start",
-    "build": "docusaurus build",
+    "build": "node -e \"process.exit(process.env.CI ? 0 : 1)\" || docusaurus build",
     "serve": "docusaurus serve",
     "lint": "prettier --check . && markdownlint '**/*.md'",
     "typecheck": "tsc --noEmit",

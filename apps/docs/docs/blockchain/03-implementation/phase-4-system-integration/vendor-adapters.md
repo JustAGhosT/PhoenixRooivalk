@@ -5,9 +5,9 @@
 - **Location**:
   `03-implementation/phase-4-system-integration/vendor-adapters.md`
 - **Related Documents**:
-  - [API Specifications](../phase-1-authentication/implementation-code.md) -
+  - [API Specifications](./api-specifications.md) -
     Integration protocols
-  - [Correlation Engine](../phase-2-data-logging/tamper-resistant-design.md) -
+  - [Correlation Engine](./correlation-engine.md) -
     Multi-source data fusion
   - [System Requirements](../../02-technical-architecture/system-requirements.md) -
     Performance specs

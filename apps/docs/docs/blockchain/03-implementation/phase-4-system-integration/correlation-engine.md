@@ -5,9 +5,9 @@
 - **Location**:
   `03-implementation/phase-4-system-integration/correlation-engine.md`
 - **Related Documents**:
-  - [Vendor Adapters](../phase-4-system-integration/vendor-adapters.md) - System
+  - [Vendor Adapters](./vendor-adapters.md) - System
     integration framework
-  - [API Specifications](../phase-1-authentication/implementation-code.md) -
+  - [API Specifications](./api-specifications.md) -
     Integration protocols
   - [System Requirements](../../02-technical-architecture/system-requirements.md) -
     Performance specifications
