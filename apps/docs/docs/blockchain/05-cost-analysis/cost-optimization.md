@@ -466,7 +466,7 @@ print(f"Implementation Timeline: {optimization_impact['implementation_timeline_m
 - **Short-term (1-3 months)**: 95% accuracy
 - **Medium-term (3-12 months)**: 92% accuracy
 - **Long-term (1-3 years)**: 87% accuracy
-- **Anomaly Detection**: 89% accuracy with <5% false positives
+- **Anomaly Detection**: 89% accuracy with &lt;5% false positives
 
 ---
 

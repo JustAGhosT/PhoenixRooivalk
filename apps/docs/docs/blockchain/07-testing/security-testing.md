@@ -143,7 +143,7 @@ graph TB
 - **Liveness**: Network operational under Byzantine faults
 - **Safety**: No conflicting transactions confirmed
 - **Recovery**: Automatic partition recovery
-- **Performance**: <5% degradation under attack
+- **Performance**: &lt;5% degradation under attack
 
 ### 3.2 Smart Contract Security
 
@@ -272,9 +272,9 @@ graph TB
 
 **Monitoring Performance Metrics**:
 
-- **Mean Time to Detection (MTTD)**: <5 minutes
-- **Mean Time to Response (MTTR)**: <15 minutes
-- **False Positive Rate**: <2%
+- **Mean Time to Detection (MTTD)**: &lt;5 minutes
+- **Mean Time to Response (MTTR)**: &lt;15 minutes
+- **False Positive Rate**: &lt;2%
 - **Alert Processing**: 99.7% automated
 - **Threat Coverage**: 98% detection rate
 
@@ -298,11 +298,11 @@ graph TB
 
 | **Incident Type**     | **Response Time** | **Containment** | **Recovery** |
 | --------------------- | ----------------- | --------------- | ------------ |
-| **Data Breach**       | <15 min           | <30 min         | <2 hours     |
-| **Malware Attack**    | <10 min           | <20 min         | <1 hour      |
-| **DDoS Attack**       | <5 min            | <10 min         | <30 min      |
-| **Insider Threat**    | <20 min           | <45 min         | <4 hours     |
-| **System Compromise** | <12 min           | <25 min         | <90 min      |
+| **Data Breach**       | &lt;15 min           | &lt;30 min         | &lt;2 hours     |
+| **Malware Attack**    | &lt;10 min           | &lt;20 min         | &lt;1 hour      |
+| **DDoS Attack**       | &lt;5 min            | &lt;10 min         | &lt;30 min      |
+| **Insider Threat**    | &lt;20 min           | &lt;45 min         | &lt;4 hours     |
+| **System Compromise** | &lt;12 min           | &lt;25 min         | &lt;90 min      |
 
 **Incident Response Capabilities**:
 
@@ -316,8 +316,8 @@ graph TB
 
 **Disaster Recovery Validation**:
 
-- **Recovery Time Objective (RTO)**: <4 hours
-- **Recovery Point Objective (RPO)**: <15 minutes
+- **Recovery Time Objective (RTO)**: &lt;4 hours
+- **Recovery Point Objective (RPO)**: &lt;15 minutes
 - **Backup Validation**: Regular backup testing
 - **Failover Testing**: Automated failover procedures
 - **Business Continuity**: Continuity plan validation
@@ -379,7 +379,7 @@ excellence.
 
 - **Military-Grade Protection**: Defense-level security standards
 - **Proactive Threat Detection**: AI-driven security analytics
-- **Rapid Incident Response**: <15 minute response times
+- **Rapid Incident Response**: &lt;15 minute response times
 - **Continuous Improvement**: Ongoing security enhancement
 - **Future-Ready Security**: Quantum-safe cryptography implementation
 

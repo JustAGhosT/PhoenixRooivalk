@@ -13,7 +13,7 @@ resilience.
 - **Market Opportunity**: $14.51B by 2030 (26.5% CAGR)
 - **Implementation Investment**: $8.95M over 18 months
 - **Return on Investment**: 247% within 36 months
-- **Performance**: 3,500+ TPS, <1s finality, 99.9% availability
+- **Performance**: 3,500+ TPS, &lt;1s finality, 99.9% availability
 - **Security**: Quantum-resistant, Byzantine fault tolerant
 
 ## 📚 Complete Documentation Structure
@@ -196,7 +196,7 @@ Technical reference materials and supporting documentation
 ### Technical Performance
 
 - **Throughput**: 3,500+ transactions per second sustained
-- **Latency**: <1 second transaction finality
+- **Latency**: &lt;1 second transaction finality
 - **Availability**: 99.9% system uptime
 - **Security**: Zero successful breaches or compromises
 

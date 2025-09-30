@@ -75,7 +75,7 @@ internet
 ```mermaid
 graph TB
     subgraph "LAYER 0: THE EDGE (No Network Needed)"
-        THREAT[🚁 Incoming Drone] --> DETECT[👁️ Detection<br/>8-12ms]
+        THREAT[🚁 Incoming Drone] --> DETECT[👁️ Detection<br/&gt;8-12ms]
         DETECT --> DECIDE[🧠 Edge Decision<br/>Pre-authorized Rules]
         DECIDE --> ACT[⚡ Immediate Response<br/>Jamming/Tracking]
         ACT --> RECORD[📝 Local Record<br/>Encrypted Log]
@@ -178,7 +178,7 @@ comms?**
 - → 1 node keeps fiber link through rover
 - → Human authorizes through fiber
 - → All nodes get the "go" signal via light/sound
-- → Response in <1 second
+- → Response in &lt;1 second
 
 **Connection Options (Multiple Paths):**
 

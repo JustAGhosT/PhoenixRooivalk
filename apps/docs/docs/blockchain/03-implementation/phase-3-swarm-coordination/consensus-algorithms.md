@@ -45,7 +45,7 @@ consensus rounds from 3 to 1 in 87% of cases.
 ```mermaid
 graph TB
     subgraph "Layer 3: Global Consensus"
-        GC[Blockchain Consensus<br/>1-10 seconds]
+        GC[Blockchain Consensus<br/&gt;1-10 seconds]
     end
 
     subgraph "Layer 2: Regional Consensus"

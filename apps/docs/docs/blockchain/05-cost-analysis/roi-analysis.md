@@ -383,7 +383,7 @@ print(f"Payback Period: {roi_metrics['payback_period']:.1f} years")
 - **Commercial Customers**: $50K average acquisition cost
 - **Blended CAC**: $150K weighted average
 
-**CLV/CAC Ratio**: 28:1 (Excellent - target >3:1)
+**CLV/CAC Ratio**: 28:1 (Excellent - target &gt;3:1)
 
 ---
 

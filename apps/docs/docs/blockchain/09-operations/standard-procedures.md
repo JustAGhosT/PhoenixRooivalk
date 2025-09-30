@@ -75,7 +75,7 @@ kubectl get nodes --no-headers | grep -v Ready && echo "ALERT: Node issues detec
 kubectl exec -n phoenix-rooivalk blockchain-node-0 -- peer node status | grep -q "ACTIVE" || echo "ALERT: Blockchain node inactive"
 
 # Monitor resource usage
-kubectl top nodes | awk 'NR>1 {if($3>80) print "ALERT: High CPU on "$1}'
+kubectl top nodes | awk 'NR&gt;1 {if($3&gt;80) print "ALERT: High CPU on "$1}'
 
 # Check transaction processing
 curl -s http://blockchain-service:9090/metrics | grep transaction_count || echo "ALERT: Transaction metrics unavailable"

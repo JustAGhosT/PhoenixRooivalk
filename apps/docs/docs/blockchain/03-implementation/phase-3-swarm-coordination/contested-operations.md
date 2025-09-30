@@ -939,7 +939,7 @@ attack_test_results = {
             "gps_spoofing": {
                 "type": "Sophisticated multi-constellation spoofing",
                 "result": "Detected in 47ms, rejected false position",
-                "navigation": "Continued with VIO, <8m error"
+                "navigation": "Continued with VIO, &lt;8m error"
             },
             "cyber_attack": {
                 "type": "Zero-day exploit attempt",

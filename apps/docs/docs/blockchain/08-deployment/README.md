@@ -120,16 +120,16 @@ gitops_pipeline:
 ### Key Performance Indicators
 
 - **System Availability**: 99.9% uptime target
-- **Response Time**: <1 second API response time
+- **Response Time**: &lt;1 second API response time
 - **Throughput**: 3,500+ transactions per second
-- **Error Rate**: <0.1% application error rate
+- **Error Rate**: &lt;0.1% application error rate
 
 ## Disaster Recovery
 
 ### Business Continuity
 
-- **Recovery Time Objective (RTO)**: <5 minutes
-- **Recovery Point Objective (RPO)**: <1 minute
+- **Recovery Time Objective (RTO)**: &lt;5 minutes
+- **Recovery Point Objective (RPO)**: &lt;1 minute
 - **Geographic Redundancy**: Multi-region deployment
 - **Automated Failover**: Health-based traffic routing
 

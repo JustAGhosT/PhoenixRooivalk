@@ -79,8 +79,8 @@ graph TB
 | **Performance Metric**   | **Target** | **Achieved** | **Performance** | **Grade** |
 | ------------------------ | ---------- | ------------ | --------------- | --------- |
 | **Detection Accuracy**   | 95%        | 97.3%        | +2.3pp          | A+        |
-| **Response Time**        | <5s        | 3.2s         | +36% faster     | A+        |
-| **False Positive Rate**  | <2%        | 0.8%         | +60% better     | A+        |
+| **Response Time**        | &lt;5s        | 3.2s         | +36% faster     | A+        |
+| **False Positive Rate**  | &lt;2%        | 0.8%         | +60% better     | A+        |
 | **System Availability**  | 99.9%      | 99.95%       | +0.05pp         | A+        |
 | **Partner Satisfaction** | 4.5/5      | 4.7/5        | +4.4% higher    | A         |
 
@@ -100,8 +100,8 @@ graph TB
 **Performance Results**:
 
 - **Detection Accuracy**: 97.8% (target: 95%)
-- **Response Time**: 3.4s (target: <5s)
-- **False Positive Rate**: 0.8% (target: <2%)
+- **Response Time**: 3.4s (target: &lt;5s)
+- **False Positive Rate**: 0.8% (target: &lt;2%)
 - **System Availability**: 99.95% (target: 99.9%)
 
 **Key Achievements**:
@@ -124,8 +124,8 @@ graph TB
 **Performance Results**:
 
 - **Detection Accuracy**: 98.7% (target: 98%)
-- **Response Time**: 1.6s (target: <2s)
-- **False Positive Rate**: 0.3% (target: <1%)
+- **Response Time**: 1.6s (target: &lt;2s)
+- **False Positive Rate**: 0.3% (target: &lt;1%)
 - **System Availability**: 99.99% (target: 99.99%)
 
 **Key Achievements**:
@@ -147,8 +147,8 @@ graph TB
 **Performance Results**:
 
 - **Detection Accuracy**: 96.7% (target: 94%)
-- **Response Time**: 4.2s (target: <4s)
-- **False Positive Rate**: 1.2% (target: <3%)
+- **Response Time**: 4.2s (target: &lt;4s)
+- **False Positive Rate**: 1.2% (target: &lt;3%)
 - **System Availability**: 99.92% (target: 99.5%)
 
 **Key Achievements**:
@@ -170,8 +170,8 @@ graph TB
 **Performance Results**:
 
 - **Detection Accuracy**: 98.1% (target: 97%)
-- **Response Time**: 2.8s (target: <3s)
-- **False Positive Rate**: 0.6% (target: <1.5%)
+- **Response Time**: 2.8s (target: &lt;3s)
+- **False Positive Rate**: 0.6% (target: &lt;1.5%)
 - **System Availability**: 99.97% (target: 99.95%)
 
 ---

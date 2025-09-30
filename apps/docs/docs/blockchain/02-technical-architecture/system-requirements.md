@@ -95,7 +95,7 @@ response_matrix: level_1: Monitor and track level_2: Issue warnings level_3: Jam
 | ------------------------ | ------------------------------------------- | --------------------- |
 | **Formation Types**      | Line, V-shape, Circle, Grid, Sphere, Custom | Visual confirmation   |
 | **Max Swarm Size**       | 200 drones                                  | Stress testing        |
-| **Coordination Latency** | <250ms consensus                            | Network analysis      |
+| **Coordination Latency** | &lt;250ms consensus                            | Network analysis      |
 | **Autonomous Operation** | 72 hours                                    | Endurance testing     |
 | **Collision Avoidance**  | 100% success rate                           | Simulation validation |
 
@@ -125,7 +125,7 @@ standards_compliance: - mavlink: v2.0 protocol - adsb: FAA compliant - remote_id
 
 ```yaml
 availability: system_uptime: 99.9% (8.76 hours downtime/year) mission_critical: 99.99% (52.56 minutes/year) data_durability: 99.999999999% (11 nines)
-reliability: mtbf: >10,000 hours mttr: <30 minutes rto: <4 hours rpo: <1 hour
+reliability: mtbf: &gt;10,000 hours mttr: &lt;30 minutes rto: &lt;4 hours rpo: &lt;1 hour
 maintenance_windows: scheduled: Monthly, 2-hour window emergency: As required rolling_updates: Zero-downtime
 ```
 
@@ -177,19 +177,19 @@ SOC 2 Type II: Service organization
 ### 7.1 Acceptance Testing
 
 ```yaml
-test_scenarios: authentication: test_count: 10,000 attempts success_rate: >99% latency_p95: <2ms false_positive: <3%
-threat_detection: scenarios: 100 diverse threats detection_rate: >95% correlation_accuracy: >90% response_time: <3 seconds
-swarm_coordination: drone_count: 100 formations: All types success_rate: >95% consensus_time: <250ms
-system_integration: vendor_systems: All tier 1 data_accuracy: >99% latency: <100ms availability: >99.9%
+test_scenarios: authentication: test_count: 10,000 attempts success_rate: &gt;99% latency_p95: &lt;2ms false_positive: &lt;3%
+threat_detection: scenarios: 100 diverse threats detection_rate: &gt;95% correlation_accuracy: &gt;90% response_time: &lt;3 seconds
+swarm_coordination: drone_count: 100 formations: All types success_rate: &gt;95% consensus_time: &lt;250ms
+system_integration: vendor_systems: All tier 1 data_accuracy: &gt;99% latency: &lt;100ms availability: &gt;99.9%
 ```
 
 | KPI                       | Target     | Measurement         | Frequency |
 | ------------------------- | ---------- | ------------------- | --------- |
-| **System Availability**   | >99.9%     | Uptime monitoring   | Real-time |
-| **Threat Detection Rate** | >95%       | True positive ratio | Daily     |
-| **Response Time**         | <2 seconds | End-to-end latency  | Per event |
-| **False Positive Rate**   | <3%        | Manual validation   | Weekly    |
-| **Blockchain Finality**   | <3 sec     | Block confirmation  | Per block |
+| **System Availability**   | &gt;99.9%     | Uptime monitoring   | Real-time |
+| **Threat Detection Rate** | &gt;95%       | True positive ratio | Daily     |
+| **Response Time**         | &lt;2 seconds | End-to-end latency  | Per event |
+| **False Positive Rate**   | &lt;3%        | Manual validation   | Weekly    |
+| **Blockchain Finality**   | &lt;3 sec     | Block confirmation  | Per block |
 | **Cost per Transaction**  | <$0.10     | Total cost / volume | Monthly   |
 
 ## 8. Constraints and Assumptions

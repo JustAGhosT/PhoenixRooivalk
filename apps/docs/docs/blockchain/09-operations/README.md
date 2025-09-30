@@ -32,8 +32,8 @@ and continuous improvement of system performance and security.
 ### Key Operational Metrics
 
 - **System Availability**: 99.9% uptime target
-- **Mean Time to Detection (MTTD)**: <5 minutes for critical issues
-- **Mean Time to Resolution (MTTR)**: <15 minutes for critical incidents
+- **Mean Time to Detection (MTTD)**: &lt;5 minutes for critical issues
+- **Mean Time to Resolution (MTTR)**: &lt;15 minutes for critical incidents
 - **Customer Satisfaction**: 95%+ operator satisfaction score
 
 ## Daily Operations
@@ -140,9 +140,9 @@ and continuous improvement of system performance and security.
 ### Service Level Agreements (SLAs)
 
 - **System Availability**: 99.9% monthly uptime
-- **Response Time**: <1 second API response time
-- **Support Response**: <15 minutes for critical issues
-- **Resolution Time**: <4 hours for high-priority incidents
+- **Response Time**: &lt;1 second API response time
+- **Support Response**: &lt;15 minutes for critical issues
+- **Resolution Time**: &lt;4 hours for high-priority incidents
 
 ### Continuous Improvement
 

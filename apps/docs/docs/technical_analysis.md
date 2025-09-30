@@ -19,7 +19,7 @@ conditions.
 
 - Achieving 99.7% reliably would require extensive multi-sensor cross-validation
   and training on diverse drone signatures to eliminate false alarms
-- The promise of <200ms reaction time suggests fully autonomous, edge-based
+- The promise of &lt;200ms reaction time suggests fully autonomous, edge-based
   processing
 - Most existing platforms still involve some human-in-loop or cloud processing
   that introduces seconds of latency
@@ -43,7 +43,7 @@ conditions.
 
 ### Blockchain Security & Latency
 
-The system uses cryptographic message authentication on the data path (<2ms on
+The system uses cryptographic message authentication on the data path (&lt;2ms on
 edge hardware) and records events to a permissioned ledger for post-mission
 audit (consensus/finality off the real-time path; commit latencies typically
 0.1–0.5s in Fabric testbeds, up to ~2s in PBFT/Tendermint). Target: 99.3%
@@ -214,7 +214,7 @@ Phoenix Rooivalk designed for multiple deployment configurations:
 - Companies like Fortem and DroneShield successful because they reduce operator
   burden
 - Phoenix's emphasis on AI and autonomy aligns with this trend
-- <200ms response could provide tactical edge if system is completely hands-off
+- &lt;200ms response could provide tactical edge if system is completely hands-off
 
 **Electronic Resilience:**
 
@@ -238,8 +238,8 @@ Phoenix Rooivalk designed for multiple deployment configurations:
 | ----------------------- | ------------------------------------------------------------- | ------------------------------------------------------- | ---------------------------------------------------- | ----------------------------------------- |
 | **Detection & Sensors** | Multi-sensor fusion; 99.7% accuracy (unverified); ~5 km range | Multi-sensor (radar, EO/IR); high accuracy; ~4 km range | Primarily radar with AI filtering; 3-5 km range      | Multi-sensor fusion; 1-2 km range with RF |
 | **Engagement Methods**  | Electronic + Kinetic + Directed Energy (all autonomous)       | Electronic (Epirus HPM) + Kinetic (Anvil)               | Kinetic focus (DroneHunter F700)                     | Electronic focus (RF jammers)             |
-| **Networking & Comms**  | Blockchain mesh network; <2ms auth latency                    | Secure mesh network (Lattice Link)                      | Standard secure wireless links                       | Traditional secure IP networking          |
-| **Autonomy & AI**       | Full autonomy detect-to-defeat; <0.2s; Federated learning     | High autonomy; automated engagement possible            | Detection/tracking autonomous; engagement supervised | AI-assisted detection; operator in loop   |
+| **Networking & Comms**  | Blockchain mesh network; &lt;2ms auth latency                    | Secure mesh network (Lattice Link)                      | Standard secure wireless links                       | Traditional secure IP networking          |
+| **Autonomy & AI**       | Full autonomy detect-to-defeat; &lt;0.2s; Federated learning     | High autonomy; automated engagement possible            | Detection/tracking autonomous; engagement supervised | AI-assisted detection; operator in loop   |
 | **Field Proven**        | Not yet                                                       | Yes - US military bases and border surveillance         | Yes - Active in Ukraine, 5,000+ kills                | Yes - Widely used by militaries           |
 
 ## Visual and Marketing Design Audit
@@ -315,7 +315,7 @@ systems suffer from critical technical gaps:
 - **Inability to handle coordinated swarms** limits effectiveness against
   emerging threats
 
-**Phoenix Rooivalk's target <2ms latency** represents significant performance
+**Phoenix Rooivalk's target &lt;2ms latency** represents significant performance
 improvement that could enhance counter-drone capabilities.
 
 ### Technical State-of-the-Art Reality
@@ -340,7 +340,7 @@ from government test centers expose substantial gaps:
   decision
 - Breakdown: radar detection (200-500ms), RF protocol analysis (100-300ms),
   multi-sensor data fusion (200ms), human decision time (2-10s)
-- Phoenix's <2ms requirement represents paradigm shift in response capability
+- Phoenix's &lt;2ms requirement represents paradigm shift in response capability
 
 ### Proven Market Entry Strategies
 
@@ -427,7 +427,7 @@ post-mission audit trails.
 
 4. **Technical Differentiation Messaging**
    - **Core positioning**: "First True Autonomous Counter-Drone Platform"
-   - **Three pillars**: Speed (<2ms vs 2-5s), Autonomy (edge operation),
+   - **Three pillars**: Speed (&lt;2ms vs 2-5s), Autonomy (edge operation),
      Accountability (blockchain audit)
    - **Specific advantages**: Defeats RF-silent drones, handles swarms, operates
      in denied environments
@@ -514,7 +514,7 @@ operation** through several key innovations:
 
 1. **Technical Validation**
 
-   - Develop simulation demonstrating <2ms latency achievement
+   - Develop simulation demonstrating &lt;2ms latency achievement
    - Build proof-of-concept showing Byzantine fault tolerance
    - Create video demonstrations of swarm defeat capabilities
 
@@ -534,7 +534,7 @@ operation** through several key innovations:
 Phoenix Rooivalk's Level-0 autonomous architecture addresses the three critical
 failures in current counter-drone systems: inadequate response speed,
 vulnerability to RF-silent threats, and inability to handle coordinated attacks.
-By achieving <2ms operational latency while maintaining blockchain-verified
+By achieving &lt;2ms operational latency while maintaining blockchain-verified
 accountability, Phoenix offers a genuine paradigm shift in counter-drone
 capability.
 
@@ -554,7 +554,7 @@ capability.
 
 **Key Differentiators:**
 
-- **Speed**: <2ms latency vs 2-5 seconds for competitors
+- **Speed**: &lt;2ms latency vs 2-5 seconds for competitors
 - **Autonomy**: Complete edge operation without communications
 - **Accountability**: Blockchain-verified engagement records
 - **Capability**: Defeats RF-silent autonomous drones others cannot detect
@@ -593,5 +593,5 @@ ceiling $967.6M
 
 - Fortem: Company PR for "5,500+ DroneHunter captures in Utah" and deployments
   in Ukraine, Middle East, Asia (company-reported)
-- DroneShield: Company releases for ">4,000 systems sold", $61.6M European
+- DroneShield: Company releases for "&gt;4,000 systems sold", $61.6M European
   contracts (June 25, 2025), US DoD handheld orders

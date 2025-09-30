@@ -33,7 +33,7 @@ Byzantine fault tolerance, and comprehensive threat modeling.
 ### Key Security Metrics
 
 - **Threat Detection**: 99.4% accuracy with &lt;1% false positives
-- **Response Time**: <2 seconds for critical threats
+- **Response Time**: &lt;2 seconds for critical threats
 - **Availability**: 99.9% uptime under attack conditions
 - **Compliance**: NIST, FIPS 140-2, Common Criteria EAL4+
 
@@ -87,7 +87,7 @@ Byzantine fault tolerance, and comprehensive threat modeling.
 
 ### Incident Response
 
-- **Rapid Response Team**: <15 minute response to critical incidents
+- **Rapid Response Team**: &lt;15 minute response to critical incidents
 - **Forensic Capabilities**: Complete audit trail and evidence preservation
 - **Recovery Procedures**: Automated backup and disaster recovery
 - **Lessons Learned**: Continuous improvement and threat intelligence
@@ -103,7 +103,7 @@ Byzantine fault tolerance, and comprehensive threat modeling.
 
 ### Business Continuity
 
-- **Disaster Recovery**: RTO <5 minutes, RPO <1 minute
+- **Disaster Recovery**: RTO &lt;5 minutes, RPO &lt;1 minute
 - **High Availability**: 99.9% uptime with geographic redundancy
 - **Backup Strategy**: Encrypted, immutable, and tested backups
 - **Crisis Management**: Executive communication and coordination

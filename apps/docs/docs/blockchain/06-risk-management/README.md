@@ -93,8 +93,8 @@ and strategic risks throughout the system lifecycle.
 
 ### Business Continuity
 
-- **Recovery Time Objective (RTO)**: <5 minutes for critical systems
-- **Recovery Point Objective (RPO)**: <1 minute data loss maximum
+- **Recovery Time Objective (RTO)**: &lt;5 minutes for critical systems
+- **Recovery Point Objective (RPO)**: &lt;1 minute data loss maximum
 - **Backup Strategy**: Geographic redundancy with automated testing
 - **Communication Plan**: Stakeholder notification and coordination
 
@@ -111,7 +111,7 @@ and strategic risks throughout the system lifecycle.
 
 - **System Availability**: 99.9% uptime target
 - **Security Incidents**: Zero successful breaches
-- **Budget Variance**: <5% deviation from approved budget
+- **Budget Variance**: &lt;5% deviation from approved budget
 - **Schedule Performance**: On-time delivery of all milestones
 
 ## Risk Governance
@@ -136,7 +136,7 @@ and strategic risks throughout the system lifecycle.
 
 - **Risk Identification**: 100% of critical risks identified and assessed
 - **Mitigation Effectiveness**: 90% reduction in high-risk exposures
-- **Incident Response**: <15 minutes response time to critical incidents
+- **Incident Response**: &lt;15 minutes response time to critical incidents
 - **Stakeholder Satisfaction**: 95% confidence in risk management
 
 ### Business Impact Metrics

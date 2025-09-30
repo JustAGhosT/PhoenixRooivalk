@@ -88,7 +88,7 @@ Standard: $8.95M implementation, $14.51B market by 2030
 ```
 Task: Standardize technical performance claims
 Files: Technical architecture, implementation, testing
-Standard: 3,500+ TPS, <1s finality, 99.9% availability
+Standard: 3,500+ TPS, &lt;1s finality, 99.9% availability
 ```
 
 #### 2.3 Harmonize Timeline References

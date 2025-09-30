@@ -38,7 +38,7 @@
 ```yaml
 performance:
   throughput: 3,000+ TPS with SmartBFT
-  latency: <1 second block time
+  latency: &lt;1 second block time
   finality: Immediate (no forks)
   scalability: 100,000+ participants proven
 

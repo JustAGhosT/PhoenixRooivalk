@@ -312,7 +312,7 @@ class TestStrategyManager:
                 expected_results=[
                     "System deploys successfully",
                     "Drone detected within 5 seconds",
-                    "Classification accuracy >95%",
+                    "Classification accuracy &gt;95%",
                     "Response initiated within 2 seconds",
                     "Threat neutralized effectively"
                 ],
@@ -545,9 +545,9 @@ print(f"AI-Generated Tests: {test_metrics['ai_generated_tests']*100:.1f}%")
 
 | **Function Domain**       | **Test Coverage** | **Automation Level** | **Critical Tests** | **Validation Criteria**     |
 | ------------------------- | ----------------- | -------------------- | ------------------ | --------------------------- |
-| **Drone Detection**       | 98.5%             | 92%                  | 247 test cases     | 95% accuracy, <5s detection |
+| **Drone Detection**       | 98.5%             | 92%                  | 247 test cases     | 95% accuracy, &lt;5s detection |
 | **Threat Classification** | 97.2%             | 89%                  | 189 test cases     | 98% classification accuracy |
-| **Response Coordination** | 96.8%             | 85%                  | 156 test cases     | <2s response initiation     |
+| **Response Coordination** | 96.8%             | 85%                  | 156 test cases     | &lt;2s response initiation     |
 | **Data Logging**          | 99.1%             | 95%                  | 134 test cases     | 100% data integrity         |
 | **API Integration**       | 98.9%             | 93%                  | 298 test cases     | All 249+ vendor APIs        |
 
@@ -626,10 +626,10 @@ print(f"AI-Generated Tests: {test_metrics['ai_generated_tests']*100:.1f}%")
 
 | **Test Category**       | **Validation Method**                 | **Success Criteria**     | **Automation Level** |
 | ----------------------- | ------------------------------------- | ------------------------ | -------------------- |
-| **Accuracy Testing**    | Cross-validation, holdout sets        | >95% accuracy            | 100%                 |
+| **Accuracy Testing**    | Cross-validation, holdout sets        | &gt;95% accuracy            | 100%                 |
 | **Bias Testing**        | Fairness metrics, demographic parity  | No significant bias      | 90%                  |
-| **Robustness Testing**  | Adversarial examples, noise injection | <5% accuracy degradation | 85%                  |
-| **Performance Testing** | Inference time, resource usage        | <100ms inference         | 95%                  |
+| **Robustness Testing**  | Adversarial examples, noise injection | &lt;5% accuracy degradation | 85%                  |
+| **Performance Testing** | Inference time, resource usage        | &lt;100ms inference         | 95%                  |
 | **Drift Detection**     | Statistical tests, monitoring         | Early drift detection    | 100%                 |
 
 **Model Lifecycle Testing**:
@@ -761,7 +761,7 @@ print(f"AI-Generated Tests: {test_metrics['ai_generated_tests']*100:.1f}%")
 | **Automation Rate**  | 80%        | 85%         | ↗ Improving | Target 90%          |
 | **Pass Rate**        | 95%        | 97.3%       | ↗ Improving | Maintain            |
 | **Defect Detection** | 90%        | 97%         | ↗ Improving | Maintain            |
-| **Execution Time**   | <2 hours   | 1.3 hours   | ↗ Improving | Optimize further    |
+| **Execution Time**   | &lt;2 hours   | 1.3 hours   | ↗ Improving | Optimize further    |
 
 **Test Efficiency Metrics**:
 

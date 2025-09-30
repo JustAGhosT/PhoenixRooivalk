@@ -82,7 +82,7 @@
 
   - 80–100: Mission-critical. Requires strict reviews, tests, and hardening.
   - 60–79: High importance. Prioritize for monitoring and regression tests.
-  - <60: Moderate/low. Standard engineering controls apply.
+  - &lt;60: Moderate/low. Standard engineering controls apply.
 
   Note: Scores are comparative within this repository; they are not universal.
   When absent, assume default importance per domain owner guidance.
