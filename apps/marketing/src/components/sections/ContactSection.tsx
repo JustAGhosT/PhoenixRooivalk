@@ -1,7 +1,7 @@
 "use client";
 
 import { RevealSection } from "@/components/RevealSection";
-import { downloadWhitepaper } from "@/utils/downloadWhitepaper";
+import { downloadWhitepaper } from "@phoenix-rooivalk/utils";
 import React from "react";
 import { Button } from "../ui/button";
 
@@ -62,12 +62,13 @@ export const ContactSection: React.FC = () => {
             </p>
             <div className="space-y-4">
               <Button 
-                onClick={(e) => {
+                onClick={(e: React.MouseEvent) => {
                   e.preventDefault();
                   downloadWhitepaper();
                 }} 
                 size="lg" 
                 className="w-full"
+                type="button"
               >
                 Download Technical Whitepaper
               </Button>

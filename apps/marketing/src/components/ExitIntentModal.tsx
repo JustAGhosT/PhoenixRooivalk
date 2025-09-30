@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useEffect, useRef } from "react";
 import { Button } from "./ui/button";
-import { downloadWhitepaper } from "@/utils/downloadWhitepaper";
+import { downloadWhitepaper } from "@phoenix-rooivalk/utils";
 
 interface ExitIntentModalProps {
   docsUrl?: string;
@@ -57,18 +57,20 @@ export const ExitIntentModal: React.FC<ExitIntentModalProps> = ({
       }
     };
     window.addEventListener("keydown", onKeyDown);
+    
     return () => {
       document.body.style.overflow = prevOverflow;
       window.removeEventListener("keydown", onKeyDown);
     };
   }, [isVisible]);
-
-  const handleDownloadNow = () => {
-    downloadWhitepaper(docsUrl);
+  
+  const handleMaybeLater = () => {
     setIsVisible(false);
   };
 
-  const handleMaybeLater = () => {
+  const handleDownloadNow = (e: React.MouseEvent) => {
+    e.preventDefault();
+    downloadWhitepaper(docsUrl);
     setIsVisible(false);
   };
 
@@ -77,7 +79,7 @@ export const ExitIntentModal: React.FC<ExitIntentModalProps> = ({
   };
 
   if (!isVisible) return null;
-
+{{ ... }}
   return (
     <div
       className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm"
