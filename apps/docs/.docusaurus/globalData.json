@@ -11,6 +11,32 @@
           "mainDocId": "overview",
           "docs": [
             {
+              "id": "adr/l0-adoption-strategy",
+              "path": "/docs/adr/l0-adoption-strategy"
+            },
+            {
+              "id": "adr/layered-strategy-l1-l2-l3",
+              "path": "/docs/adr/layered-strategy-l1-l2-l3"
+            },
+            {
+              "id": "adr/solana-memo-vs-contract",
+              "path": "/docs/adr/solana-memo-vs-contract"
+            },
+            {
+              "id": "adr/solana-vs-others",
+              "path": "/docs/adr/solana-vs-others"
+            },
+            {
+              "id": "ai_benefits",
+              "path": "/docs/ai_benefits",
+              "sidebar": "docs"
+            },
+            {
+              "id": "ai_blockchain_benefits",
+              "path": "/docs/ai_blockchain_benefits",
+              "sidebar": "docs"
+            },
+            {
               "id": "architecture/c2",
               "path": "/docs/architecture/c2",
               "sidebar": "docs"
@@ -31,6 +57,339 @@
               "sidebar": "docs"
             },
             {
+              "id": "blockchain_benefits",
+              "path": "/docs/blockchain_benefits",
+              "sidebar": "docs"
+            },
+            {
+              "id": "blockchain_integration",
+              "path": "/docs/blockchain_integration"
+            },
+            {
+              "id": "blockchain/appendices/glossary",
+              "path": "/docs/blockchain/appendices/glossary"
+            },
+            {
+              "id": "blockchain/appendices/research-papers",
+              "path": "/docs/blockchain/appendices/research-papers"
+            },
+            {
+              "id": "blockchain/appendices/technical-reference/api-documentation",
+              "path": "/docs/blockchain/appendices/technical-reference/api-documentation"
+            },
+            {
+              "id": "blockchain/appendices/technical-reference/code-examples",
+              "path": "/docs/blockchain/appendices/technical-reference/code-examples"
+            },
+            {
+              "id": "blockchain/appendices/technical-reference/smart-contracts",
+              "path": "/docs/blockchain/appendices/technical-reference/smart-contracts"
+            },
+            {
+              "id": "blockchain/appendices/vendor-comparisons",
+              "path": "/docs/blockchain/appendices/vendor-comparisons"
+            },
+            {
+              "id": "blockchain/cost-analysis/budget-breakdown",
+              "path": "/docs/blockchain/cost-analysis/budget-breakdown"
+            },
+            {
+              "id": "blockchain/cost-analysis/cost-optimization",
+              "path": "/docs/blockchain/cost-analysis/cost-optimization"
+            },
+            {
+              "id": "blockchain/cost-analysis/operational-costs",
+              "path": "/docs/blockchain/cost-analysis/operational-costs"
+            },
+            {
+              "id": "blockchain/cost-analysis/README",
+              "path": "/docs/blockchain/cost-analysis/"
+            },
+            {
+              "id": "blockchain/cost-analysis/roi-analysis",
+              "path": "/docs/blockchain/cost-analysis/roi-analysis"
+            },
+            {
+              "id": "blockchain/deployment/ci-cd-pipeline",
+              "path": "/docs/blockchain/deployment/ci-cd-pipeline"
+            },
+            {
+              "id": "blockchain/deployment/deployment-guide",
+              "path": "/docs/blockchain/deployment/deployment-guide"
+            },
+            {
+              "id": "blockchain/deployment/infrastructure/aws-architecture",
+              "path": "/docs/blockchain/deployment/infrastructure/aws-architecture"
+            },
+            {
+              "id": "blockchain/deployment/infrastructure/kubernetes-manifests",
+              "path": "/docs/blockchain/deployment/infrastructure/kubernetes-manifests"
+            },
+            {
+              "id": "blockchain/deployment/infrastructure/terraform-configs",
+              "path": "/docs/blockchain/deployment/infrastructure/terraform-configs"
+            },
+            {
+              "id": "blockchain/deployment/production-checklist",
+              "path": "/docs/blockchain/deployment/production-checklist"
+            },
+            {
+              "id": "blockchain/deployment/README",
+              "path": "/docs/blockchain/deployment/"
+            },
+            {
+              "id": "blockchain/executive-summary/implementation-roadmap",
+              "path": "/docs/blockchain/executive-summary/implementation-roadmap"
+            },
+            {
+              "id": "blockchain/executive-summary/index",
+              "path": "/docs/blockchain/executive-summary/"
+            },
+            {
+              "id": "blockchain/executive-summary/key-findings",
+              "path": "/docs/blockchain/executive-summary/key-findings"
+            },
+            {
+              "id": "blockchain/executive-summary/README",
+              "path": "/docs/blockchain/executive-summary/"
+            },
+            {
+              "id": "blockchain/implementation/phase-1-authentication/implementation-code",
+              "path": "/docs/blockchain/implementation/phase-1-authentication/implementation-code"
+            },
+            {
+              "id": "blockchain/implementation/phase-1-authentication/puf-integration",
+              "path": "/docs/blockchain/implementation/phase-1-authentication/puf-integration"
+            },
+            {
+              "id": "blockchain/implementation/phase-1-authentication/requirements",
+              "path": "/docs/blockchain/implementation/phase-1-authentication/requirements"
+            },
+            {
+              "id": "blockchain/implementation/phase-2-data-logging/ai-integration",
+              "path": "/docs/blockchain/implementation/phase-2-data-logging/ai-integration"
+            },
+            {
+              "id": "blockchain/implementation/phase-2-data-logging/tamper-resistant-design",
+              "path": "/docs/blockchain/implementation/phase-2-data-logging/tamper-resistant-design"
+            },
+            {
+              "id": "blockchain/implementation/phase-2-data-logging/threat-intelligence",
+              "path": "/docs/blockchain/implementation/phase-2-data-logging/threat-intelligence"
+            },
+            {
+              "id": "blockchain/implementation/phase-3-swarm-coordination/consensus-algorithms",
+              "path": "/docs/blockchain/implementation/phase-3-swarm-coordination/consensus-algorithms"
+            },
+            {
+              "id": "blockchain/implementation/phase-3-swarm-coordination/contested-operations",
+              "path": "/docs/blockchain/implementation/phase-3-swarm-coordination/contested-operations"
+            },
+            {
+              "id": "blockchain/implementation/phase-3-swarm-coordination/formation-control",
+              "path": "/docs/blockchain/implementation/phase-3-swarm-coordination/formation-control"
+            },
+            {
+              "id": "blockchain/implementation/phase-4-system-integration/api-specifications",
+              "path": "/docs/blockchain/implementation/phase-4-system-integration/api-specifications"
+            },
+            {
+              "id": "blockchain/implementation/phase-4-system-integration/correlation-engine",
+              "path": "/docs/blockchain/implementation/phase-4-system-integration/correlation-engine"
+            },
+            {
+              "id": "blockchain/implementation/phase-4-system-integration/vendor-adapters",
+              "path": "/docs/blockchain/implementation/phase-4-system-integration/vendor-adapters"
+            },
+            {
+              "id": "blockchain/implementation/phase-5-production/deployment-guide",
+              "path": "/docs/blockchain/implementation/phase-5-production/deployment-guide"
+            },
+            {
+              "id": "blockchain/implementation/phase-5-production/monitoring-setup",
+              "path": "/docs/blockchain/implementation/phase-5-production/monitoring-setup"
+            },
+            {
+              "id": "blockchain/implementation/phase-5-production/operations-playbook",
+              "path": "/docs/blockchain/implementation/phase-5-production/operations-playbook"
+            },
+            {
+              "id": "blockchain/implementation/README",
+              "path": "/docs/blockchain/implementation/"
+            },
+            {
+              "id": "blockchain/market-analysis/competitive-landscape",
+              "path": "/docs/blockchain/market-analysis/competitive-landscape"
+            },
+            {
+              "id": "blockchain/market-analysis/investment-trends",
+              "path": "/docs/blockchain/market-analysis/investment-trends"
+            },
+            {
+              "id": "blockchain/market-analysis/market-overview",
+              "path": "/docs/blockchain/market-analysis/market-overview"
+            },
+            {
+              "id": "blockchain/market-analysis/regulatory-environment",
+              "path": "/docs/blockchain/market-analysis/regulatory-environment"
+            },
+            {
+              "id": "blockchain/operations/incident-response",
+              "path": "/docs/blockchain/operations/incident-response"
+            },
+            {
+              "id": "blockchain/operations/maintenance-guide",
+              "path": "/docs/blockchain/operations/maintenance-guide"
+            },
+            {
+              "id": "blockchain/operations/README",
+              "path": "/docs/blockchain/operations/"
+            },
+            {
+              "id": "blockchain/operations/standard-procedures",
+              "path": "/docs/blockchain/operations/standard-procedures"
+            },
+            {
+              "id": "blockchain/operations/training-materials",
+              "path": "/docs/blockchain/operations/training-materials"
+            },
+            {
+              "id": "blockchain/README",
+              "path": "/docs/blockchain/"
+            },
+            {
+              "id": "blockchain/risk-management/contingency-plans",
+              "path": "/docs/blockchain/risk-management/contingency-plans"
+            },
+            {
+              "id": "blockchain/risk-management/mitigation-strategies",
+              "path": "/docs/blockchain/risk-management/mitigation-strategies"
+            },
+            {
+              "id": "blockchain/risk-management/operational-risks",
+              "path": "/docs/blockchain/risk-management/operational-risks"
+            },
+            {
+              "id": "blockchain/risk-management/README",
+              "path": "/docs/blockchain/risk-management/"
+            },
+            {
+              "id": "blockchain/risk-management/technical-risks",
+              "path": "/docs/blockchain/risk-management/technical-risks"
+            },
+            {
+              "id": "blockchain/security/byzantine-fault-tolerance",
+              "path": "/docs/blockchain/security/byzantine-fault-tolerance"
+            },
+            {
+              "id": "blockchain/security/quantum-resistance",
+              "path": "/docs/blockchain/security/quantum-resistance"
+            },
+            {
+              "id": "blockchain/security/README",
+              "path": "/docs/blockchain/security/"
+            },
+            {
+              "id": "blockchain/security/security-audits",
+              "path": "/docs/blockchain/security/security-audits"
+            },
+            {
+              "id": "blockchain/security/threat-model",
+              "path": "/docs/blockchain/security/threat-model"
+            },
+            {
+              "id": "blockchain/technical-architecture/blockchain-architecture",
+              "path": "/docs/blockchain/technical-architecture/blockchain-architecture"
+            },
+            {
+              "id": "blockchain/technical-architecture/blockchain-protocols/hyperledger-fabric",
+              "path": "/docs/blockchain/technical-architecture/blockchain-protocols/hyperledger-fabric"
+            },
+            {
+              "id": "blockchain/technical-architecture/blockchain-protocols/level-0-architecture",
+              "path": "/docs/blockchain/technical-architecture/blockchain-protocols/level-0-architecture"
+            },
+            {
+              "id": "blockchain/technical-architecture/blockchain-protocols/polkadot-integration",
+              "path": "/docs/blockchain/technical-architecture/blockchain-protocols/polkadot-integration"
+            },
+            {
+              "id": "blockchain/technical-architecture/blockchain-protocols/protocol-comparison",
+              "path": "/docs/blockchain/technical-architecture/blockchain-protocols/protocol-comparison"
+            },
+            {
+              "id": "blockchain/technical-architecture/blockchain-protocols/solana-poc",
+              "path": "/docs/blockchain/technical-architecture/blockchain-protocols/solana-poc"
+            },
+            {
+              "id": "blockchain/technical-architecture/hybrid-architecture",
+              "path": "/docs/blockchain/technical-architecture/hybrid-architecture"
+            },
+            {
+              "id": "blockchain/technical-architecture/performance-metrics",
+              "path": "/docs/blockchain/technical-architecture/performance-metrics"
+            },
+            {
+              "id": "blockchain/technical-architecture/README",
+              "path": "/docs/blockchain/technical-architecture/"
+            },
+            {
+              "id": "blockchain/technical-architecture/system-requirements",
+              "path": "/docs/blockchain/technical-architecture/system-requirements"
+            },
+            {
+              "id": "blockchain/testing/field-trials",
+              "path": "/docs/blockchain/testing/field-trials"
+            },
+            {
+              "id": "blockchain/testing/performance-benchmarks",
+              "path": "/docs/blockchain/testing/performance-benchmarks"
+            },
+            {
+              "id": "blockchain/testing/README",
+              "path": "/docs/blockchain/testing/"
+            },
+            {
+              "id": "blockchain/testing/security-testing",
+              "path": "/docs/blockchain/testing/security-testing"
+            },
+            {
+              "id": "blockchain/testing/test-strategy",
+              "path": "/docs/blockchain/testing/test-strategy"
+            },
+            {
+              "id": "civilian_use_cases",
+              "path": "/docs/civilian_use_cases"
+            },
+            {
+              "id": "competitor_analysis",
+              "path": "/docs/competitor_analysis"
+            },
+            {
+              "id": "DOCUMENTATION_FINALIZATION_PLAN",
+              "path": "/docs/DOCUMENTATION_FINALIZATION_PLAN"
+            },
+            {
+              "id": "emerging_trends_opportunities",
+              "path": "/docs/emerging_trends_opportunities"
+            },
+            {
+              "id": "executive_summary",
+              "path": "/docs/executive_summary"
+            },
+            {
+              "id": "financial_projections",
+              "path": "/docs/financial_projections"
+            },
+            {
+              "id": "glossary",
+              "path": "/docs/glossary"
+            },
+            {
+              "id": "implementation_plan",
+              "path": "/docs/implementation_plan"
+            },
+            {
               "id": "legal/compliance",
               "path": "/docs/legal/compliance",
               "sidebar": "docs"
@@ -44,6 +403,38 @@
               "id": "legal/responsible-use",
               "path": "/docs/legal/responsible-use",
               "sidebar": "docs"
+            },
+            {
+              "id": "marketing_and_risk_analysis",
+              "path": "/docs/marketing_and_risk_analysis"
+            },
+            {
+              "id": "mechanical/docs/ADR/ADR-0001-ducted-vs-open",
+              "path": "/docs/mechanical/docs/ADR/ADR-0001-ducted-vs-open"
+            },
+            {
+              "id": "mechanical/docs/ADR/ADR-0002-single-vs-coax",
+              "path": "/docs/mechanical/docs/ADR/ADR-0002-single-vs-coax"
+            },
+            {
+              "id": "mechanical/docs/ADR/ADR-0003-blade-count",
+              "path": "/docs/mechanical/docs/ADR/ADR-0003-blade-count"
+            },
+            {
+              "id": "mechanical/docs/ADR/ADR-0004-powerplant-classes",
+              "path": "/docs/mechanical/docs/ADR/ADR-0004-powerplant-classes"
+            },
+            {
+              "id": "mechanical/docs/ADR/ADR-0005-variant-strategy",
+              "path": "/docs/mechanical/docs/ADR/ADR-0005-variant-strategy"
+            },
+            {
+              "id": "mechanical/docs/ENGINEER_BRIEF",
+              "path": "/docs/mechanical/docs/ENGINEER_BRIEF"
+            },
+            {
+              "id": "mechanical/README",
+              "path": "/docs/mechanical/"
             },
             {
               "id": "operations/deployment",
@@ -61,8 +452,26 @@
               "sidebar": "docs"
             },
             {
+              "id": "ops/operations_log_template",
+              "path": "/docs/ops/operations_log_template"
+            },
+            {
               "id": "overview",
               "path": "/docs/overview",
+              "sidebar": "docs"
+            },
+            {
+              "id": "phoenix_rooivalk_whitepaper",
+              "path": "/docs/phoenix_rooivalk_whitepaper",
+              "sidebar": "docs"
+            },
+            {
+              "id": "technical_analysis",
+              "path": "/docs/technical_analysis"
+            },
+            {
+              "id": "technical_overview",
+              "path": "/docs/technical_overview",
               "sidebar": "docs"
             }
           ],
