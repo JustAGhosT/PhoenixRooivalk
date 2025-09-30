@@ -1,6 +1,6 @@
 import React from "react";
 import { Button } from "../ui/button";
-import { downloadWhitepaper } from "@/utils/downloadWhitepaper";
+import { downloadWhitepaper } from "@phoenix-rooivalk/utils";
 import { RevealSection } from "../RevealSection";
 
 export const WhitepaperSection: React.FC = () => {
