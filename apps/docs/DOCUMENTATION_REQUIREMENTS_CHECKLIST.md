@@ -136,7 +136,7 @@
 
 ---
 
-# Customer-Facing Documentation Suite
+## Customer-Facing Documentation Suite
 
 ## Sales & Marketing Materials
 

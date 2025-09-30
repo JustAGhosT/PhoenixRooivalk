@@ -1,7 +1,7 @@
-import React from "react";
-import { Button } from "../ui/button";
 import { downloadWhitepaper } from "@phoenix-rooivalk/utils";
+import React from "react";
 import { RevealSection } from "../RevealSection";
+import { Button } from "../ui/button";
 
 export const WhitepaperSection: React.FC = () => {
   const features: Array<{
@@ -72,7 +72,7 @@ export const WhitepaperSection: React.FC = () => {
             >
               📥 Download Technical Whitepaper
             </Button>
-            <Button href="#contact" variant="outline" size="lg">
+            <Button href="#contact" variant="ghost" size="lg">
               Request Full Documentation
             </Button>
           </div>

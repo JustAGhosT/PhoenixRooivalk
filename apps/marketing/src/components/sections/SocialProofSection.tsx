@@ -282,7 +282,7 @@ export const SocialProofSection: React.FC = () => {
               </Button>
               <Button
                 href="/compliance"
-                variant="outline"
+                variant="ghost"
                 size="lg"
                 className="border-[rgb(var(--primary))] text-[rgb(var(--primary))] hover:bg-[rgba(var(--primary),0.1)]"
               >

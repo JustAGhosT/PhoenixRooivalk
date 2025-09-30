@@ -1,6 +1,6 @@
 import React from "react";
-import { Button } from "../ui/button";
 import { RevealSection } from "../RevealSection";
+import { Button } from "../ui/button";
 
 export const UkraineChallengeSection: React.FC = () => {
   return (
@@ -90,7 +90,7 @@ export const UkraineChallengeSection: React.FC = () => {
               </Button>
               <Button
                 href="mailto:smit.jurie@gmail.com?subject=Phoenix%20Rooivalk%20-%20Ukraine%20Defense%20Inquiry"
-                variant="outline"
+                variant="ghost"
                 size="lg"
               >
                 Defense Partnership Inquiry
