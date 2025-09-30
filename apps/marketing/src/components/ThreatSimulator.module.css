@@ -3,6 +3,22 @@
   @apply relative w-full h-[600px] bg-gradient-to-br from-gray-900 via-black to-gray-900 rounded-xl border border-orange-500/30 overflow-hidden shadow-2xl;
 }
 
+.technicalGrid {
+  @apply absolute inset-0 opacity-10 w-full h-full;
+  background-image: 
+    linear-gradient(rgba(255, 165, 0, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 165, 0, 0.1) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+.gameArea {
+  @apply absolute inset-0 w-full h-full;
+}
+
+.threatPosition {
+  position: absolute;
+}
+
 .gameArea {
   @apply absolute inset-0 w-full h-full;
 }
