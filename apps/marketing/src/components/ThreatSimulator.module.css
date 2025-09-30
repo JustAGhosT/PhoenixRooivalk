@@ -82,7 +82,11 @@
 
 .healthFill {
   @apply h-full rounded transition-all shadow-sm;
-  background: linear-gradient(to right, rgb(var(--phoenix-orange)), rgb(var(--phoenix-red)));
+  background: linear-gradient(
+    to right,
+    rgb(var(--phoenix-orange)),
+    rgb(var(--phoenix-red))
+  );
 }
 
 .statsOverlay {

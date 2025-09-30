@@ -10,8 +10,8 @@
   - [Formation Control](./formation-control.md) - Physical coordination patterns
   - [Level-0 Architecture](../../02-technical-architecture/blockchain-protocols/level-0-architecture.md) -
     Autonomous base layer
-  - [Vendor Adapters](../phase-4-system-integration/vendor-adapters.md) - Integration with
-    defense systems
+  - [Vendor Adapters](../phase-4-system-integration/vendor-adapters.md) -
+    Integration with defense systems
 
 ---
 
@@ -1082,7 +1082,7 @@ maintaining core mission capabilities.
 - [Formation Control](./formation-control.md) - Physical coordination patterns
 - [Level-0 Architecture](../../02-technical-architecture/blockchain-protocols/level-0-architecture.md) -
   Autonomous base layer
-- [Vendor Adapters](../phase-4-system-integration/vendor-adapters.md) - Integration with
-  defense systems
+- [Vendor Adapters](../phase-4-system-integration/vendor-adapters.md) -
+  Integration with defense systems
 
 ---

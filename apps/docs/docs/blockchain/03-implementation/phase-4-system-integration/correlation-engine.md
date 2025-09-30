@@ -5,10 +5,8 @@
 - **Location**:
   `03-implementation/phase-4-system-integration/correlation-engine.md`
 - **Related Documents**:
-  - [Vendor Adapters](./vendor-adapters.md) - System
-    integration framework
-  - [API Specifications](./api-specifications.md) -
-    Integration protocols
+  - [Vendor Adapters](./vendor-adapters.md) - System integration framework
+  - [API Specifications](./api-specifications.md) - Integration protocols
   - [System Requirements](../../02-technical-architecture/system-requirements.md) -
     Performance specifications
   - [Hybrid Architecture](../../02-technical-architecture/hybrid-architecture.md) -

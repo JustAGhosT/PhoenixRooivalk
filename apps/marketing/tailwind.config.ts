@@ -15,7 +15,7 @@ const config: Config = {
         "phoenix-crimson": "rgb(var(--phoenix-crimson))",
         "phoenix-maroon": "rgb(var(--phoenix-maroon))",
         "phoenix-deep": "rgb(var(--phoenix-deep))",
-        
+
         // Tactical Neutrals
         "tactical-black": "rgb(var(--tactical-black))",
         "tactical-obsidian": "rgb(var(--tactical-obsidian))",
@@ -25,12 +25,12 @@ const config: Config = {
         "tactical-gray": "rgb(var(--tactical-gray))",
         "tactical-gray-light": "rgb(var(--tactical-gray-light))",
         "tactical-silver": "rgb(var(--tactical-silver))",
-        
+
         // Sensor Accents
         "sensor-green": "rgb(var(--sensor-green))",
         "sensor-amber": "rgb(var(--sensor-amber))",
         "sensor-red": "rgb(var(--sensor-red))",
-        
+
         // Legacy compatibility
         primary: "rgb(var(--primary))",
         secondary: "rgb(var(--secondary))",
@@ -42,7 +42,7 @@ const config: Config = {
         gray: "rgb(var(--gray))",
         steel: "rgb(var(--steel))",
         graytext: "rgb(var(--gray))",
-        
+
         // Semantic shortcuts
         "brand-primary": "rgb(var(--brand-primary))",
         "brand-accent": "rgb(var(--brand-accent))",
@@ -50,7 +50,7 @@ const config: Config = {
         "bg-secondary": "rgb(var(--bg-secondary))",
         "text-primary": "rgb(var(--text-primary))",
         "text-secondary": "rgb(var(--text-secondary))",
-        
+
         // Status colors
         "status-active": "rgb(var(--status-active))",
         "status-warning": "rgb(var(--status-warning))",
