@@ -53,7 +53,7 @@ goals.
 ## Appendix: L1/L2/L3 summary snapshot (canonical in blockchain_integration.md)
 
 Reference: see
-[Evaluation of L1/L2/L3 and their adapters](../blockchain_integration.md#evaluation-of-l1-l2-and-l3-and-their-adapters)
+[Evaluation of L1/L2/L3 and their adapters](../blockchain_integration.md)
 
 | Layer | Focus                 | Example entries                                                       |
 | ----- | --------------------- | --------------------------------------------------------------------- |

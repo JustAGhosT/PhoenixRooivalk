@@ -19,12 +19,12 @@ Risk management is critical for ensuring the success and security of the blockch
 - Resource constraints and availability
 
 ### Security Risks
-- [Security Risks](security-risks.md) - Security-related risks
+- [Security Risks](./security-risks.md) - Security-related risks
 - Cyber attacks and data breaches
 - Insider threats and unauthorized access
 
 ### Business Risks
-- [Business Risks](business-risks.md) - Business-related risks
+- [Business Risks](./business-risks.md) - Business-related risks
 - Market changes and competition
 - Regulatory and compliance issues
 
