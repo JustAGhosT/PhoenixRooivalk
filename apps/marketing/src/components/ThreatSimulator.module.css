@@ -19,8 +19,11 @@
   position: absolute;
 }
 
-.gameArea {
-  @apply absolute inset-0 w-full h-full;
+.healthBarWidth {
+  height: 100%;
+  border-radius: inherit;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
 }
 
 .centralShield {

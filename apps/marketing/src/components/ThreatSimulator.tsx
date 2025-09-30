@@ -135,28 +135,29 @@ export const ThreatSimulator: React.FC = (): JSX.Element => {
   return (
     <div className="relative w-full h-[600px] bg-gradient-to-br from-gray-900 via-black to-gray-900 rounded-xl border border-orange-500/30 overflow-hidden shadow-2xl">
       {/* Technical grid background */}
-      <div className="absolute inset-0 opacity-10">
-        <div
-          className="w-full h-full"
-          style={{
-            backgroundImage: `
-            linear-gradient(rgba(255, 165, 0, 0.1) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(255, 165, 0, 0.1) 1px, transparent 1px)
-          `,
-            backgroundSize: "20px 20px",
-          }}
-        ></div>
-      </div>
+      <div className={styles.technicalGrid}></div>
 
       <div
         ref={gameRef}
-        className="absolute inset-0 w-full h-full"
+        className={styles.gameArea}
         onClick={(e) => {
           const target = e.target as HTMLElement;
           const el = target.closest<HTMLElement>("[data-threat-id]");
           const threatId = el?.getAttribute("data-threat-id");
           if (threatId) neutralizeThreat(threatId);
         }}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            const target = e.target as HTMLElement;
+            const el = target.closest<HTMLElement>("[data-threat-id]");
+            const threatId = el?.getAttribute("data-threat-id");
+            if (threatId) neutralizeThreat(threatId);
+          }
+        }}
+        role="button"
+        tabIndex={0}
+        aria-label="Threat neutralization area"
       >
         {/* Phoenix Rooivalk Logo - Central Defense System */}
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-20 h-20 flex items-center justify-center z-20">
