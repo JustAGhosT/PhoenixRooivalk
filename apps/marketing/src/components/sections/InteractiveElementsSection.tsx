@@ -115,26 +115,29 @@ export const InteractiveElementsSection: React.FC = () => {
               <div className="space-y-6">
                 {/* Sensitivity Toggle */}
                 <div>
-                  <label className="block text-[var(--text-primary)] font-semibold mb-3">
-                    Analysis Sensitivity (Default: Conservative)
-                  </label>
-                  <div className="flex gap-2">
-                    {(["conservative", "median", "aggressive"] as const).map(
-                      (option) => (
-                        <button
-                          key={option}
-                          onClick={() => setSensitivity(option)}
-                          className={`btn ${
-                            sensitivity === option
-                              ? "btn--primary"
-                              : "btn--secondary"
-                          } text-sm capitalize`}
-                        >
-                          {option}
-                        </button>
-                      ),
-                    )}
-                  </div>
+                  <fieldset>
+                    <legend className="block text-[var(--text-primary)] font-semibold mb-3">
+                      Analysis Sensitivity (Default: Conservative)
+                    </legend>
+                    <div className="flex gap-2">
+                      {(["conservative", "median", "aggressive"] as const).map(
+                        (option) => (
+                          <button
+                            key={option}
+                            onClick={() => setSensitivity(option)}
+                            className={`btn ${
+                              sensitivity === option
+                                ? "btn--primary"
+                                : "btn--secondary"
+                            } text-sm capitalize`}
+                            aria-pressed={sensitivity === option}
+                          >
+                            {option}
+                          </button>
+                        ),
+                      )}
+                    </div>
+                  </fieldset>
                   <p className="text-xs text-[var(--text-muted)] mt-2">
                     Conservative uses lower success rates and incident costs for
                     realistic projections.
