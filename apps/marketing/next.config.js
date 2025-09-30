@@ -2,7 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
-  output: 'export',
+  output: "export",
   images: {
     unoptimized: true, // Required for static exports
   },
@@ -10,7 +10,7 @@ const nextConfig = {
     // This ensures that the @ alias works in both development and production
     config.resolve.alias = {
       ...config.resolve.alias,
-      '@': require('path').resolve(__dirname, 'src'),
+      "@": require("path").resolve(__dirname, "src"),
     };
     return config;
   },

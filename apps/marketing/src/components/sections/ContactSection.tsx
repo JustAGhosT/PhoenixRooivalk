@@ -60,12 +60,12 @@ export const ContactSection: React.FC = () => {
               and competitive positioning.
             </p>
             <div className="space-y-4">
-              <Button 
+              <Button
                 onClick={(e: React.MouseEvent) => {
                   e.preventDefault();
                   downloadWhitepaper();
-                }} 
-                size="lg" 
+                }}
+                size="lg"
                 className="w-full"
                 type="button"
               >
