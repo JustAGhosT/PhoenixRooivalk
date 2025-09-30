@@ -19,6 +19,10 @@ jobs:
       ENV_NAME: production
       BRANCH: ${{ github.ref_name }}
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      statuses: write
+      pull-requests: write
     defaults:
       run:
         working-directory: apps/docs
@@ -48,6 +52,15 @@ jobs:
       - name: Build
         run: pnpm run build
 
+      - name: Check build directory exists
+        id: check_build
+        run: |
+          if [ -d "apps/docs/build" ]; then
+            echo "exists=true" >> $GITHUB_OUTPUT
+          else
+            echo "exists=false" >> $GITHUB_OUTPUT
+          fi
+
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
@@ -55,6 +68,7 @@ jobs:
           path: apps/docs/build
 
       - name: Deploy to Netlify
+        if: steps.check_build.outputs.exists == 'true'
         uses: nwtgck/actions-netlify@v3
         with:
           publish-dir: "apps/docs/build"
@@ -74,6 +88,10 @@ jobs:
       ENV_NAME: preview
       BRANCH: ${{ github.head_ref }}
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      statuses: write
+      pull-requests: write
     defaults:
       run:
         working-directory: apps/docs
@@ -103,15 +121,27 @@ jobs:
       - name: Build
         run: pnpm run build
 
+      - name: Check build directory exists
+        id: check_build_preview
+        run: |
+          if [ -d "apps/docs/build" ]; then
+            echo "exists=true" >> $GITHUB_OUTPUT
+          else
+            echo "exists=false" >> $GITHUB_OUTPUT
+          fi
+
       - name: Deploy Preview to Netlify
+        if: steps.check_build_preview.outputs.exists == 'true'
         uses: nwtgck/actions-netlify@v3
         with:
           publish-dir: "apps/docs/build"
           production-deploy: false
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          deploy-message: "Deploy Preview from PR #${{ github.event.pull_request.number }}"
-          enable-commit-comment: true
-          enable-commit-status: true
+          deploy-message:
+            "Deploy Preview from PR #${{ github.event.pull_request.number }}"
+          enable-commit-comment: false
+          enable-commit-status: false
+          enable-pull-request-comment: false
           alias: ${{ github.head_ref }}
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}

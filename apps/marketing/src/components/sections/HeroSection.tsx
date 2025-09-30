@@ -1,10 +1,13 @@
 import React from "react";
 import { ThreatSimulator } from "../ThreatSimulator";
-import { Button } from '../ui/button';
+import { Button } from "../ui/button";
 
 export const HeroSection: React.FC = () => {
   return (
-    <section className="flex items-center px-6 md:px-[5%] lg:px-8 py-16 relative min-h-screen bg-gradient-to-br from-gray-900 to-black" id="hero">
+    <section
+      className="flex items-center px-6 md:px-[5%] lg:px-8 py-16 relative min-h-screen bg-gradient-to-br from-gray-900 to-black"
+      id="hero"
+    >
       <div className="mx-auto max-w-[1400px] grid lg:grid-cols-2 gap-16 items-center">
         {/* Left: Clean messaging */}
         <div>
@@ -17,14 +20,19 @@ export const HeroSection: React.FC = () => {
             Drone Defense That Works When Radios Don't
           </h1>
           <p className="mt-6 text-xl text-[var(--gray)] animate-fadeInUp [animation-delay:200ms]">
-            Phoenix Rooivalk detects and stops hostile drones in 120-195ms even when all communications are jammed. 
-            Makes "soft-kill first" decisions at the edge without waiting for the cloud or command center.
+            Phoenix Rooivalk detects and stops hostile drones in 120-195ms even
+            when all communications are jammed. Makes "soft-kill first"
+            decisions at the edge without waiting for the cloud or command
+            center.
           </p>
           <div className="mt-4 p-4 bg-gradient-to-r from-green-900/30 to-blue-900/30 rounded-lg border border-green-500/30">
-            <p className="text-green-400 font-semibold mb-2">Why This Matters:</p>
+            <p className="text-green-400 font-semibold mb-2">
+              Why This Matters:
+            </p>
             <p className="text-sm text-gray-300">
-              Traditional systems fail when enemies jam communications (3-10 second response). 
-              Phoenix works 100% without network - 250x faster response when it counts most.
+              Traditional systems fail when enemies jam communications (3-10
+              second response). Phoenix works 100% without network - 250x faster
+              response when it counts most.
             </p>
           </div>
           <div className="mt-8 flex flex-col sm:flex-row gap-4 animate-fadeInUp [animation-delay:400ms]">
@@ -41,8 +49,12 @@ export const HeroSection: React.FC = () => {
         <div className="relative animate-float">
           <div className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl p-6 border border-green-500/30 shadow-2xl">
             <div className="text-center mb-4">
-              <h3 className="text-lg font-bold text-green-400 mb-2">Edge Autonomy Demo</h3>
-              <p className="text-sm text-gray-400">No network needed - decisions in milliseconds</p>
+              <h3 className="text-lg font-bold text-green-400 mb-2">
+                Edge Autonomy Demo
+              </h3>
+              <p className="text-sm text-gray-400">
+                No network needed - decisions in milliseconds
+              </p>
             </div>
             <ThreatSimulator />
           </div>

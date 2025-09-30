@@ -75,8 +75,8 @@ security.
 
 **Hybrid Blockchain Design**:
 
-- **Hyperledger Fabric v3.1.1 with Raft ordering (SmartBFT available for BFT use cases)**: Primary chain for enterprise-grade permissioned
-  operations
+- **Hyperledger Fabric v3.1.1 with Raft ordering (SmartBFT available for BFT use
+  cases)**: Primary chain for enterprise-grade permissioned operations
 - **Polkadot Parachain**: Cross-chain interoperability and scalability
 - **Solana Integration**: High-performance processing for time-critical
   operations
@@ -84,7 +84,8 @@ security.
 
 **Performance Metrics**:
 
-- **Throughput**: 3,500+ TPS with Raft ordering (SmartBFT available for BFT use cases)
+- **Throughput**: 3,500+ TPS with Raft ordering (SmartBFT available for BFT use
+  cases)
 - **Latency**: < 1 second finality for mission-critical operations
 - **Scalability**: 100,000+ participants proven in production
 - **Availability**: 99.9% uptime with distributed architecture

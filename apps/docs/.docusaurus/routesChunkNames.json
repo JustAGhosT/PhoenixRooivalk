@@ -13,18 +13,42 @@
     },
     "config": "5e9f5e1a"
   },
-  "/docs-2f8": {
+  "/docs-e7b": {
     "__comp": "5e95c892",
     "__context": {
       "plugin": "aba21aa0"
     }
   },
-  "/docs-e0f": {
+  "/docs-e62": {
     "__comp": "a7bd4aaa",
     "__props": "0058b4c6"
   },
-  "/docs-18e": {
+  "/docs-385": {
     "__comp": "a94703ab"
+  },
+  "/docs/adr/l0-adoption-strategy-348": {
+    "__comp": "17896441",
+    "content": "c60a2432"
+  },
+  "/docs/adr/layered-strategy-l1-l2-l3-619": {
+    "__comp": "17896441",
+    "content": "a7e6229d"
+  },
+  "/docs/adr/solana-memo-vs-contract-a21": {
+    "__comp": "17896441",
+    "content": "d2141d2f"
+  },
+  "/docs/adr/solana-vs-others-c76": {
+    "__comp": "17896441",
+    "content": "23b597b9"
+  },
+  "/docs/ai_benefits-f25": {
+    "__comp": "17896441",
+    "content": "318cf1dd"
+  },
+  "/docs/ai_blockchain_benefits-a53": {
+    "__comp": "17896441",
+    "content": "a62198d9"
   },
   "/docs/architecture/c2-302": {
     "__comp": "17896441",
@@ -42,6 +66,338 @@
     "__comp": "17896441",
     "content": "b9c1ee12"
   },
+  "/docs/blockchain_benefits-5f5": {
+    "__comp": "17896441",
+    "content": "3ec7a258"
+  },
+  "/docs/blockchain_integration-685": {
+    "__comp": "17896441",
+    "content": "d9cb8cba"
+  },
+  "/docs/blockchain/-018": {
+    "__comp": "17896441",
+    "content": "018b1801"
+  },
+  "/docs/blockchain/appendices/glossary-be9": {
+    "__comp": "17896441",
+    "content": "949553af"
+  },
+  "/docs/blockchain/appendices/research-papers-4f4": {
+    "__comp": "17896441",
+    "content": "76ac7e75"
+  },
+  "/docs/blockchain/appendices/technical-reference/api-documentation-77b": {
+    "__comp": "17896441",
+    "content": "13236826"
+  },
+  "/docs/blockchain/appendices/technical-reference/code-examples-7d0": {
+    "__comp": "17896441",
+    "content": "6ba47fd4"
+  },
+  "/docs/blockchain/appendices/technical-reference/smart-contracts-e05": {
+    "__comp": "17896441",
+    "content": "27998fc1"
+  },
+  "/docs/blockchain/appendices/vendor-comparisons-97a": {
+    "__comp": "17896441",
+    "content": "a7328331"
+  },
+  "/docs/blockchain/cost-analysis/-483": {
+    "__comp": "17896441",
+    "content": "fee44061"
+  },
+  "/docs/blockchain/cost-analysis/budget-breakdown-463": {
+    "__comp": "17896441",
+    "content": "f87a9c93"
+  },
+  "/docs/blockchain/cost-analysis/cost-optimization-231": {
+    "__comp": "17896441",
+    "content": "ce74a862"
+  },
+  "/docs/blockchain/cost-analysis/operational-costs-ae7": {
+    "__comp": "17896441",
+    "content": "8eda1367"
+  },
+  "/docs/blockchain/cost-analysis/roi-analysis-52f": {
+    "__comp": "17896441",
+    "content": "1e6bb853"
+  },
+  "/docs/blockchain/deployment/-0ca": {
+    "__comp": "17896441",
+    "content": "311500be"
+  },
+  "/docs/blockchain/deployment/ci-cd-pipeline-9cd": {
+    "__comp": "17896441",
+    "content": "8df0110e"
+  },
+  "/docs/blockchain/deployment/deployment-guide-a21": {
+    "__comp": "17896441",
+    "content": "ecec624a"
+  },
+  "/docs/blockchain/deployment/infrastructure/aws-architecture-0e4": {
+    "__comp": "17896441",
+    "content": "6384e4c0"
+  },
+  "/docs/blockchain/deployment/infrastructure/kubernetes-manifests-ac8": {
+    "__comp": "17896441",
+    "content": "aa819a35"
+  },
+  "/docs/blockchain/deployment/infrastructure/terraform-configs-b4f": {
+    "__comp": "17896441",
+    "content": "85a20418"
+  },
+  "/docs/blockchain/deployment/production-checklist-ddc": {
+    "__comp": "17896441",
+    "content": "3fe1ec54"
+  },
+  "/docs/blockchain/executive-summary/-434": {
+    "__comp": "17896441",
+    "content": "088e440a"
+  },
+  "/docs/blockchain/executive-summary/-406": {
+    "__comp": "17896441",
+    "content": "97b14a95"
+  },
+  "/docs/blockchain/executive-summary/implementation-roadmap-153": {
+    "__comp": "17896441",
+    "content": "9fad71a3"
+  },
+  "/docs/blockchain/executive-summary/key-findings-7e1": {
+    "__comp": "17896441",
+    "content": "f725aeea"
+  },
+  "/docs/blockchain/implementation/-79f": {
+    "__comp": "17896441",
+    "content": "da772321"
+  },
+  "/docs/blockchain/implementation/phase-1-authentication/implementation-code-767": {
+    "__comp": "17896441",
+    "content": "2483da96"
+  },
+  "/docs/blockchain/implementation/phase-1-authentication/puf-integration-913": {
+    "__comp": "17896441",
+    "content": "4cfcdc81"
+  },
+  "/docs/blockchain/implementation/phase-1-authentication/requirements-25e": {
+    "__comp": "17896441",
+    "content": "52753b11"
+  },
+  "/docs/blockchain/implementation/phase-2-data-logging/ai-integration-797": {
+    "__comp": "17896441",
+    "content": "44e00b52"
+  },
+  "/docs/blockchain/implementation/phase-2-data-logging/tamper-resistant-design-482": {
+    "__comp": "17896441",
+    "content": "db60609e"
+  },
+  "/docs/blockchain/implementation/phase-2-data-logging/threat-intelligence-c19": {
+    "__comp": "17896441",
+    "content": "d6ce7b1e"
+  },
+  "/docs/blockchain/implementation/phase-3-swarm-coordination/consensus-algorithms-dd8": {
+    "__comp": "17896441",
+    "content": "e4b9870d"
+  },
+  "/docs/blockchain/implementation/phase-3-swarm-coordination/contested-operations-5fb": {
+    "__comp": "17896441",
+    "content": "486f7f6c"
+  },
+  "/docs/blockchain/implementation/phase-3-swarm-coordination/formation-control-838": {
+    "__comp": "17896441",
+    "content": "a29bc8f4"
+  },
+  "/docs/blockchain/implementation/phase-4-system-integration/api-specifications-8a5": {
+    "__comp": "17896441",
+    "content": "5f9115ae"
+  },
+  "/docs/blockchain/implementation/phase-4-system-integration/correlation-engine-7ad": {
+    "__comp": "17896441",
+    "content": "8e052a74"
+  },
+  "/docs/blockchain/implementation/phase-4-system-integration/vendor-adapters-f30": {
+    "__comp": "17896441",
+    "content": "dfc8c2b0"
+  },
+  "/docs/blockchain/implementation/phase-5-production/deployment-guide-335": {
+    "__comp": "17896441",
+    "content": "25a06b42"
+  },
+  "/docs/blockchain/implementation/phase-5-production/monitoring-setup-d95": {
+    "__comp": "17896441",
+    "content": "97061ad0"
+  },
+  "/docs/blockchain/implementation/phase-5-production/operations-playbook-292": {
+    "__comp": "17896441",
+    "content": "f86dafb0"
+  },
+  "/docs/blockchain/market-analysis/competitive-landscape-999": {
+    "__comp": "17896441",
+    "content": "7f0e6914"
+  },
+  "/docs/blockchain/market-analysis/investment-trends-eef": {
+    "__comp": "17896441",
+    "content": "d4f35fc6"
+  },
+  "/docs/blockchain/market-analysis/market-overview-e0b": {
+    "__comp": "17896441",
+    "content": "29311ad9"
+  },
+  "/docs/blockchain/market-analysis/regulatory-environment-bb0": {
+    "__comp": "17896441",
+    "content": "59d831c0"
+  },
+  "/docs/blockchain/operations/-e2d": {
+    "__comp": "17896441",
+    "content": "8e113d53"
+  },
+  "/docs/blockchain/operations/incident-response-5f2": {
+    "__comp": "17896441",
+    "content": "d0500df7"
+  },
+  "/docs/blockchain/operations/maintenance-guide-2b7": {
+    "__comp": "17896441",
+    "content": "d3607afd"
+  },
+  "/docs/blockchain/operations/standard-procedures-14c": {
+    "__comp": "17896441",
+    "content": "565addd2"
+  },
+  "/docs/blockchain/operations/training-materials-c6f": {
+    "__comp": "17896441",
+    "content": "45edc637"
+  },
+  "/docs/blockchain/risk-management/-5de": {
+    "__comp": "17896441",
+    "content": "8a96b3de"
+  },
+  "/docs/blockchain/risk-management/contingency-plans-14c": {
+    "__comp": "17896441",
+    "content": "efe2c2d3"
+  },
+  "/docs/blockchain/risk-management/mitigation-strategies-3b7": {
+    "__comp": "17896441",
+    "content": "4594ee40"
+  },
+  "/docs/blockchain/risk-management/operational-risks-3a2": {
+    "__comp": "17896441",
+    "content": "9f293799"
+  },
+  "/docs/blockchain/risk-management/technical-risks-dc4": {
+    "__comp": "17896441",
+    "content": "1b92b1fd"
+  },
+  "/docs/blockchain/security/-246": {
+    "__comp": "17896441",
+    "content": "f766de1b"
+  },
+  "/docs/blockchain/security/byzantine-fault-tolerance-e9f": {
+    "__comp": "17896441",
+    "content": "dc5891dd"
+  },
+  "/docs/blockchain/security/quantum-resistance-3f5": {
+    "__comp": "17896441",
+    "content": "abb3fa30"
+  },
+  "/docs/blockchain/security/security-audits-150": {
+    "__comp": "17896441",
+    "content": "77453da7"
+  },
+  "/docs/blockchain/security/threat-model-820": {
+    "__comp": "17896441",
+    "content": "3e3d1d2e"
+  },
+  "/docs/blockchain/technical-architecture/-936": {
+    "__comp": "17896441",
+    "content": "71ddab25"
+  },
+  "/docs/blockchain/technical-architecture/blockchain-architecture-580": {
+    "__comp": "17896441",
+    "content": "649903c1"
+  },
+  "/docs/blockchain/technical-architecture/blockchain-protocols/hyperledger-fabric-cd8": {
+    "__comp": "17896441",
+    "content": "33e35d0c"
+  },
+  "/docs/blockchain/technical-architecture/blockchain-protocols/level-0-architecture-955": {
+    "__comp": "17896441",
+    "content": "5309e23a"
+  },
+  "/docs/blockchain/technical-architecture/blockchain-protocols/polkadot-integration-15d": {
+    "__comp": "17896441",
+    "content": "8d3ff065"
+  },
+  "/docs/blockchain/technical-architecture/blockchain-protocols/protocol-comparison-3cd": {
+    "__comp": "17896441",
+    "content": "14570d97"
+  },
+  "/docs/blockchain/technical-architecture/blockchain-protocols/solana-poc-3e3": {
+    "__comp": "17896441",
+    "content": "3fa79b20"
+  },
+  "/docs/blockchain/technical-architecture/hybrid-architecture-95a": {
+    "__comp": "17896441",
+    "content": "d079de5c"
+  },
+  "/docs/blockchain/technical-architecture/performance-metrics-9f4": {
+    "__comp": "17896441",
+    "content": "8105e183"
+  },
+  "/docs/blockchain/technical-architecture/system-requirements-aff": {
+    "__comp": "17896441",
+    "content": "d663a66a"
+  },
+  "/docs/blockchain/testing/-cca": {
+    "__comp": "17896441",
+    "content": "d7753450"
+  },
+  "/docs/blockchain/testing/field-trials-6f1": {
+    "__comp": "17896441",
+    "content": "f359f70a"
+  },
+  "/docs/blockchain/testing/performance-benchmarks-56f": {
+    "__comp": "17896441",
+    "content": "29bbb88a"
+  },
+  "/docs/blockchain/testing/security-testing-f73": {
+    "__comp": "17896441",
+    "content": "171b2f3a"
+  },
+  "/docs/blockchain/testing/test-strategy-a73": {
+    "__comp": "17896441",
+    "content": "45c047e1"
+  },
+  "/docs/civilian_use_cases-52f": {
+    "__comp": "17896441",
+    "content": "fef60d31"
+  },
+  "/docs/competitor_analysis-8cb": {
+    "__comp": "17896441",
+    "content": "2a3a8aa8"
+  },
+  "/docs/DOCUMENTATION_FINALIZATION_PLAN-568": {
+    "__comp": "17896441",
+    "content": "d56b67ee"
+  },
+  "/docs/emerging_trends_opportunities-4ef": {
+    "__comp": "17896441",
+    "content": "e502893e"
+  },
+  "/docs/executive_summary-27b": {
+    "__comp": "17896441",
+    "content": "2e6bda3d"
+  },
+  "/docs/financial_projections-10b": {
+    "__comp": "17896441",
+    "content": "00b3b521"
+  },
+  "/docs/glossary-12d": {
+    "__comp": "17896441",
+    "content": "e747ec83"
+  },
+  "/docs/implementation_plan-cfe": {
+    "__comp": "17896441",
+    "content": "95d580f9"
+  },
   "/docs/legal/compliance-9d5": {
     "__comp": "17896441",
     "content": "4e85792b"
@@ -53,6 +409,38 @@
   "/docs/legal/responsible-use-cbb": {
     "__comp": "17896441",
     "content": "d10d6088"
+  },
+  "/docs/marketing_and_risk_analysis-27a": {
+    "__comp": "17896441",
+    "content": "913e95e7"
+  },
+  "/docs/mechanical/-537": {
+    "__comp": "17896441",
+    "content": "99ecf0aa"
+  },
+  "/docs/mechanical/docs/ADR/ADR-0001-ducted-vs-open-74a": {
+    "__comp": "17896441",
+    "content": "3886cb7c"
+  },
+  "/docs/mechanical/docs/ADR/ADR-0002-single-vs-coax-802": {
+    "__comp": "17896441",
+    "content": "d899c769"
+  },
+  "/docs/mechanical/docs/ADR/ADR-0003-blade-count-a14": {
+    "__comp": "17896441",
+    "content": "fbceaa92"
+  },
+  "/docs/mechanical/docs/ADR/ADR-0004-powerplant-classes-2db": {
+    "__comp": "17896441",
+    "content": "34681e5f"
+  },
+  "/docs/mechanical/docs/ADR/ADR-0005-variant-strategy-4c5": {
+    "__comp": "17896441",
+    "content": "30f17e72"
+  },
+  "/docs/mechanical/docs/ENGINEER_BRIEF-a4b": {
+    "__comp": "17896441",
+    "content": "4a179543"
   },
   "/docs/operations/deployment-2df": {
     "__comp": "17896441",
@@ -66,9 +454,25 @@
     "__comp": "17896441",
     "content": "7aaa8fef"
   },
+  "/docs/ops/operations_log_template-e6c": {
+    "__comp": "17896441",
+    "content": "bed3c84c"
+  },
   "/docs/overview-f1b": {
     "__comp": "17896441",
     "content": "1db64337"
+  },
+  "/docs/phoenix_rooivalk_whitepaper-e11": {
+    "__comp": "17896441",
+    "content": "7f1044fa"
+  },
+  "/docs/technical_analysis-cb5": {
+    "__comp": "17896441",
+    "content": "aa158df9"
+  },
+  "/docs/technical_overview-a6b": {
+    "__comp": "17896441",
+    "content": "d08c7f5a"
   },
   "/-e5f": {
     "__comp": "1df93b7f",

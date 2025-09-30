@@ -180,8 +180,9 @@ occurs only under applicable law and export controls. See
 
 ## Site preview
 
-The documentation site is built with Docusaurus and deployed to Netlify via GitHub Actions. 
-You can view the rendered documentation at the configured Netlify domain.
+The documentation site is built with Docusaurus and deployed to Netlify via
+GitHub Actions. You can view the rendered documentation at the configured
+Netlify domain.
 
 ## Contributing
 

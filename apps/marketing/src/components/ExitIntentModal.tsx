@@ -1,13 +1,15 @@
 "use client";
-import React, { useState, useEffect, useRef } from 'react';
-import { Button } from './ui/button';
-import { downloadWhitepaper } from '@/utils/downloadWhitepaper';
+import React, { useState, useEffect, useRef } from "react";
+import { Button } from "./ui/button";
+import { downloadWhitepaper } from "@phoenix-rooivalk/utils";
 
 interface ExitIntentModalProps {
   docsUrl?: string;
 }
 
-export const ExitIntentModal: React.FC<ExitIntentModalProps> = ({ docsUrl }) => {
+export const ExitIntentModal: React.FC<ExitIntentModalProps> = ({
+  docsUrl,
+}) => {
   const [isVisible, setIsVisible] = useState(false);
   const [hasTriggered, setHasTriggered] = useState(false);
   const beforeUnloadHandlerRef = useRef<null>(null); // deprecated: no custom UI on beforeunload
@@ -24,9 +26,9 @@ export const ExitIntentModal: React.FC<ExitIntentModalProps> = ({ docsUrl }) => 
       }
     };
 
-    document.addEventListener('mouseleave', handleMouseLeave);
+    document.addEventListener("mouseleave", handleMouseLeave);
     return () => {
-      document.removeEventListener('mouseleave', handleMouseLeave);
+      document.removeEventListener("mouseleave", handleMouseLeave);
     };
   }, [hasTriggered]);
 
@@ -34,34 +36,41 @@ export const ExitIntentModal: React.FC<ExitIntentModalProps> = ({ docsUrl }) => 
   useEffect(() => {
     if (!isVisible) return;
     const prevOverflow = document.body.style.overflow;
-    document.body.style.overflow = 'hidden';
+    document.body.style.overflow = "hidden";
     closeBtnRef.current?.focus();
     const onKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') handleStayOnPage();
-      if (e.key === 'Tab' && dialogRef.current) {
+      if (e.key === "Escape") handleStayOnPage();
+      if (e.key === "Tab" && dialogRef.current) {
         const focusables = dialogRef.current.querySelectorAll<HTMLElement>(
-          'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+          'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])',
         );
         if (focusables.length === 0) return; // guard: nothing to trap
         const first = focusables[0];
         const last = focusables[focusables.length - 1];
-        if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
-        else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+        if (e.shiftKey && document.activeElement === first) {
+          e.preventDefault();
+          last.focus();
+        } else if (!e.shiftKey && document.activeElement === last) {
+          e.preventDefault();
+          first.focus();
+        }
       }
     };
-    window.addEventListener('keydown', onKeyDown);
+    window.addEventListener("keydown", onKeyDown);
+
     return () => {
       document.body.style.overflow = prevOverflow;
-      window.removeEventListener('keydown', onKeyDown);
+      window.removeEventListener("keydown", onKeyDown);
     };
   }, [isVisible]);
 
-  const handleDownloadNow = () => {
-    downloadWhitepaper(docsUrl);
+  const handleMaybeLater = () => {
     setIsVisible(false);
   };
 
-  const handleMaybeLater = () => {
+  const handleDownloadNow = (e: React.MouseEvent) => {
+    e.preventDefault();
+    downloadWhitepaper(docsUrl);
     setIsVisible(false);
   };
 
@@ -95,7 +104,10 @@ export const ExitIntentModal: React.FC<ExitIntentModalProps> = ({ docsUrl }) => 
         {/* Icon */}
         <div className="text-center mb-6">
           <div className="text-6xl mb-4">📋</div>
-          <h2 id="exit-intent-title" className="text-2xl font-bold text-green-400 mb-2">
+          <h2
+            id="exit-intent-title"
+            className="text-2xl font-bold text-green-400 mb-2"
+          >
             Wait! Get Our Technical Whitepaper
           </h2>
           <p id="exit-intent-desc" className="text-gray-300 text-sm">
@@ -105,7 +117,9 @@ export const ExitIntentModal: React.FC<ExitIntentModalProps> = ({ docsUrl }) => 
 
         {/* Whitepaper preview */}
         <div className="bg-gray-800/50 rounded-lg p-4 mb-6 border border-green-500/20">
-          <h3 className="text-green-400 font-semibold text-sm mb-2">What's Inside:</h3>
+          <h3 className="text-green-400 font-semibold text-sm mb-2">
+            What's Inside:
+          </h3>
           <ul className="text-xs text-gray-300 space-y-1">
             <li>• Complete system architecture</li>
             <li>• Technical specifications</li>
@@ -146,10 +160,16 @@ export const ExitIntentModal: React.FC<ExitIntentModalProps> = ({ docsUrl }) => 
         <div className="mt-6 pt-4 border-t border-gray-700 text-center">
           <p className="text-xs text-gray-400 mb-2">Or explore more:</p>
           <div className="flex justify-center gap-4 text-xs">
-            <a href="/technical" className="text-green-400 hover:text-green-300">
+            <a
+              href="/technical"
+              className="text-green-400 hover:text-green-300"
+            >
               Technical Docs
             </a>
-            <a href="/interactive-demo" className="text-green-400 hover:text-green-300">
+            <a
+              href="/interactive-demo"
+              className="text-green-400 hover:text-green-300"
+            >
               Live Demo
             </a>
             <a href="#contact" className="text-green-400 hover:text-green-300">

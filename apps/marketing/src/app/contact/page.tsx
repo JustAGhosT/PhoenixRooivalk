@@ -3,22 +3,22 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 
 export default function ContactPage(): React.ReactElement {
-  const [email, setEmail] = useState('');
-  
+  const [email, setEmail] = useState("");
+
   // Obfuscate email at render time to prevent scraping
   useEffect(() => {
-    const user = 'smit.jurie';
-    const domain = 'gmail.com';
+    const user = "smit.jurie";
+    const domain = "gmail.com";
     setEmail(`${user}@${domain}`);
   }, []);
-  
+
   const handleEmailClick = (subject?: string, body?: string) => {
     if (!email) return;
     const params = new URLSearchParams();
-    if (subject) params.append('subject', subject);
-    if (body) params.append('body', body);
+    if (subject) params.append("subject", subject);
+    if (body) params.append("body", body);
     const queryString = params.toString();
-    window.location.href = `mailto:${email}${queryString ? '?' + queryString : ''}`;
+    window.location.href = `mailto:${email}${queryString ? "?" + queryString : ""}`;
   };
 
   return (
@@ -98,7 +98,7 @@ export default function ContactPage(): React.ReactElement {
                       className="text-[var(--primary)] hover:underline cursor-pointer bg-transparent border-none p-0 font-inherit"
                       disabled={!email}
                     >
-                      {email || 'Loading...'}
+                      {email || "Loading..."}
                     </button>
                   </p>
                 </div>
@@ -112,10 +112,12 @@ export default function ContactPage(): React.ReactElement {
                     blockchain evidence logging.
                   </p>
                   <button
-                    onClick={() => handleEmailClick(
-                      'Phoenix Rooivalk Technical Demo',
-                      'I would like to schedule a technical demonstration of the Phoenix Rooivalk Counter-UAS System.'
-                    )}
+                    onClick={() =>
+                      handleEmailClick(
+                        "Phoenix Rooivalk Technical Demo",
+                        "I would like to schedule a technical demonstration of the Phoenix Rooivalk Counter-UAS System.",
+                      )
+                    }
                     className="inline-block mt-3 rounded bg-gradient-to-br from-[var(--primary)] to-[var(--secondary)] px-4 py-2 font-bold text-[var(--dark)] shadow-glow hover:-translate-y-0.5 transition disabled:opacity-50"
                     disabled={!email}
                   >
@@ -130,7 +132,9 @@ export default function ContactPage(): React.ReactElement {
                     partnership opportunities.
                   </p>
                   <button
-                    onClick={() => handleEmailClick('Phoenix Rooivalk Partnership Inquiry')}
+                    onClick={() =>
+                      handleEmailClick("Phoenix Rooivalk Partnership Inquiry")
+                    }
                     className="inline-block mt-3 rounded border-2 border-[var(--primary)] px-4 py-2 font-bold text-[var(--primary)] hover:bg-[var(--primary)] hover:text-[var(--dark)] transition disabled:opacity-50"
                     disabled={!email}
                   >

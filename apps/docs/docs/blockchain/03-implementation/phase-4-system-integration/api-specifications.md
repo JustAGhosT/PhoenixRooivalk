@@ -22,19 +22,17 @@ counter-drone systems, enabling seamless integration across 249+ vendor systems
 and 17 military C2 platforms. Our multi-protocol API architecture supports REST,
 GraphQL, WebSocket, gRPC, and blockchain-native interfaces while maintaining <
 10ms response times and 99.99% availability under military-grade security
-constraints.
+constraints. **Key Innovation**: We introduce Adaptive API Gateway (AAG) that
+automatically negotiates optimal protocols based on client capabilities, network
+conditions, and security requirements, while providing real-time API analytics
+and automatic load balancing across distributed blockchain nodes
 
-**Key Innovation**: We introduce Adaptive API Gateway (AAG) that automatically
-negotiates optimal protocols based on client capabilities, network conditions,
-and security requirements, while providing real-time API analytics and automatic
-load balancing across distributed blockchain nodes.
-
-### API Performance Targets:
+### API Performance Targets
 
 - **Response time**: < 10ms for critical operations
 - **Throughput**: 50,000+ requests/second per node
 - **Availability**: 99.99% uptime with automatic failover
-- **Security**: Military-grade encryption and authentication
+- **Security**: Military grade encryption and authentication {{ ... }}
 - **Scalability**: Horizontal scaling across blockchain network
 
 ---
@@ -1776,7 +1774,7 @@ protocols and maintaining military-grade performance and security standards. The
 Adaptive API Gateway ensures optimal protocol selection while the multi-layered
 architecture provides scalability and resilience.
 
-### Key Achievements:
+### Key Achievements
 
 - **< 10ms response times** for critical operations
 - **50,000+ requests/second** throughput capacity
@@ -1784,7 +1782,7 @@ architecture provides scalability and resilience.
 - **Multi-protocol support** (REST, GraphQL, WebSocket, gRPC, Blockchain)
 - **Military-grade security** with comprehensive authentication
 
-### Critical Success Factors:
+### Critical Success Factors
 
 - Adaptive API Gateway optimizes protocol selection
 - Comprehensive OpenAPI specifications ensure interoperability
@@ -1802,14 +1800,17 @@ for military operations.
 
 **Real-time Communication Channels:**
 
-All WebSocket connections use TLS encryption for secure real-time data transmission:
+All WebSocket connections use TLS encryption for secure real-time data
+transmission:
 
 - **Events Stream**: `wss://api.phoenixrooivalk.mil/events`
+
   - Real-time threat detection events
   - System status updates
   - Engagement notifications
 
 - **Status Monitoring**: `wss://api.phoenixrooivalk.mil/status`
+
   - Node health monitoring
   - Performance metrics
   - Network connectivity status
@@ -1820,17 +1821,19 @@ All WebSocket connections use TLS encryption for secure real-time data transmiss
   - Operational warnings
 
 **Security Features:**
+
 - TLS 1.3 encryption for all connections
 - JWT token authentication required
 - Rate limiting: 1000 messages/minute per client
 - Automatic reconnection with exponential backoff
 
 **Connection Example:**
+
 ```javascript
-const ws = new WebSocket('wss://api.phoenixrooivalk.mil/events', {
+const ws = new WebSocket("wss://api.phoenixrooivalk.mil/events", {
   headers: {
-    'Authorization': 'Bearer <JWT_TOKEN>'
-  }
+    Authorization: "Bearer <JWT_TOKEN>",
+  },
 });
 ```
 

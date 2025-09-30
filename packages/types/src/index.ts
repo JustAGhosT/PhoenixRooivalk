@@ -2,7 +2,10 @@
 
 // JSON-safe value type for serialization
 export type JSONValue =
-  | string | number | boolean | null
+  | string
+  | number
+  | boolean
+  | null
   | { [k: string]: JSONValue }
   | JSONValue[];
 
@@ -59,7 +62,7 @@ export interface BlockchainAnchor {
   readonly transactionId: string;
   readonly chain: "solana" | "etherlink";
   readonly blockHeight: string; // use string to avoid 53-bit issues
-  readonly timestamp: string;   // ISO 8601
+  readonly timestamp: string; // ISO 8601
   readonly evidenceHash: string;
 }
 

@@ -1,1 +1,1 @@
-export { downloadWhitepaper } from './downloadWhitepaper';
+export { downloadWhitepaper } from "./downloadWhitepaper";

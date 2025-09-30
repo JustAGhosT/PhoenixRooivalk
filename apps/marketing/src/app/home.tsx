@@ -17,7 +17,6 @@ export default function HomePage(): React.ReactElement {
   // Apply performance optimizations
   usePerformanceOptimizations();
 
-
   useEffect(() => {
     const handleScroll = () => {
       setShowStickyHeader(window.scrollY > 100);

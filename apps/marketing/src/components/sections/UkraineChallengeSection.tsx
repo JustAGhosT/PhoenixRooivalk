@@ -1,6 +1,6 @@
-import React from 'react';
-import { Button } from '../ui/button';
-import { RevealSection } from '@/components/RevealSection';
+import React from "react";
+import { Button } from "../ui/button";
+import { RevealSection } from "../RevealSection";
 
 export const UkraineChallengeSection: React.FC = () => {
   return (
@@ -17,13 +17,18 @@ export const UkraineChallengeSection: React.FC = () => {
             The 2027 Autonomous Warfare Race
           </h2>
           <p className="text-[var(--gray)] max-w-3xl mx-auto text-lg">
-            Ukraine faces an existential challenge: outpace Russia in autonomous warfare by 2027 or lose their technological advantage. Current AI drones fail 30-40% of the time, confusing trees for tanks and struggling against electronic warfare.
+            Ukraine faces an existential challenge: outpace Russia in autonomous
+            warfare by 2027 or lose their technological advantage. Current AI
+            drones fail 30-40% of the time, confusing trees for tanks and
+            struggling against electronic warfare.
           </p>
         </RevealSection>
 
         <RevealSection className="grid md:grid-cols-2 gap-8">
           <div className="space-y-6">
-            <h3 className="text-2xl font-bold text-white mb-4">Current Problems</h3>
+            <h3 className="text-2xl font-bold text-white mb-4">
+              Current Problems
+            </h3>
             <div className="space-y-4">
               <ProblemCard
                 icon="❌"
@@ -44,7 +49,9 @@ export const UkraineChallengeSection: React.FC = () => {
           </div>
 
           <div className="space-y-6">
-            <h3 className="text-2xl font-bold text-white mb-4">Phoenix Rooivalk Solutions</h3>
+            <h3 className="text-2xl font-bold text-white mb-4">
+              Phoenix Rooivalk Solutions
+            </h3>
             <div className="space-y-4">
               <SolutionCard
                 icon="✅"
@@ -68,15 +75,24 @@ export const UkraineChallengeSection: React.FC = () => {
         <RevealSection className="text-center mt-8">
           <div
             className="bg-[rgba(0,255,136,0.1)] border rounded-xl p-6 max-w-4xl mx-auto"
-            style={{ borderColor: 'rgba(0, 255, 136, 0.3)' }}
+            style={{ borderColor: "rgba(0, 255, 136, 0.3)" }}
           >
             <h3 className="text-2xl font-bold text-white mb-4">The Stakes</h3>
             <p className="text-[var(--gray)] text-lg mb-6">
-              "Ukraine's entire war strategy hinges on this race. They've survived three years by being smarter, not stronger. If they lose the AI warfare competition, they lose their main advantage over Russia's superior numbers."
+              "Ukraine's entire war strategy hinges on this race. They've
+              survived three years by being smarter, not stronger. If they lose
+              the AI warfare competition, they lose their main advantage over
+              Russia's superior numbers."
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button href="#contact" size="lg">Schedule Urgent Demo</Button>
-              <Button href="mailto:smit.jurie@gmail.com?subject=Phoenix%20Rooivalk%20-%20Ukraine%20Defense%20Inquiry" variant="outline" size="lg">
+              <Button href="#contact" size="lg">
+                Schedule Urgent Demo
+              </Button>
+              <Button
+                href="mailto:smit.jurie@gmail.com?subject=Phoenix%20Rooivalk%20-%20Ukraine%20Defense%20Inquiry"
+                variant="outline"
+                size="lg"
+              >
                 Defense Partnership Inquiry
               </Button>
             </div>
@@ -87,11 +103,11 @@ export const UkraineChallengeSection: React.FC = () => {
   );
 };
 
-const ProblemCard: React.FC<{ icon: string; title: string; description: string }> = ({
-  icon,
-  title,
-  description,
-}) => (
+const ProblemCard: React.FC<{
+  icon: string;
+  title: string;
+  description: string;
+}> = ({ icon, title, description }) => (
   <div className="flex items-start gap-4 p-4 bg-[rgba(255,0,0,0.1)] border border-red-500/30 rounded-lg">
     <span className="text-red-400 text-2xl">{icon}</span>
     <div>
@@ -101,14 +117,14 @@ const ProblemCard: React.FC<{ icon: string; title: string; description: string }
   </div>
 );
 
-const SolutionCard: React.FC<{ icon: string; title: string; description: string }> = ({
-  icon,
-  title,
-  description,
-}) => (
+const SolutionCard: React.FC<{
+  icon: string;
+  title: string;
+  description: string;
+}> = ({ icon, title, description }) => (
   <div
     className="flex items-start gap-4 p-4 bg-[rgba(0,255,136,0.1)] border rounded-lg"
-    style={{ borderColor: 'rgba(0, 255, 136, 0.3)' }}
+    style={{ borderColor: "rgba(0, 255, 136, 0.3)" }}
   >
     <span className="text-[var(--primary)] text-2xl">{icon}</span>
     <div>

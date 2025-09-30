@@ -44,7 +44,7 @@ jobs:
           - language: javascript-typescript
             build-mode: none
           - language: rust
-            build-mode: autobuild
+            build-mode: none # Rust doesn't support autobuild mode
 
     steps:
       - name: Checkout repository
@@ -52,18 +52,50 @@ jobs:
 
       - name: Check if CodeQL is enabled
         id: codeql-check
+        continue-on-error: true
         run: |
-          echo "CodeQL analysis will run. If it fails due to code scanning not being enabled,"
-          echo "please enable it in repository Settings > Security > Code scanning."
-          echo "enabled=true" >> $GITHUB_OUTPUT
+          # Check if code scanning is enabled
+          if [ -z "${{ secrets.GITHUB_TOKEN }}" ]; then
+            echo "::warning::GitHub token not available. Code scanning might not work properly."
+            echo "enabled=false" >> $GITHUB_OUTPUT
+            exit 0
+          fi
+
+          # Try to verify if code scanning is enabled
+          RESPONSE=$(curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+            -H "Accept: application/vnd.github.v3+json" \
+            "https://api.github.com/repos/${{ github.repository }}/code-scanning/analyses" || true)
+            
+          if [[ "$RESPONSE" == *"code scanning is not enabled"* ]]; then
+            echo "::warning::Code scanning is not enabled for this repository."
+            echo "::warning::Please enable it in repository Settings > Security > Code scanning."
+            echo "enabled=false" >> $GITHUB_OUTPUT
+          else
+            echo "Code scanning appears to be enabled."
+            echo "enabled=true" >> $GITHUB_OUTPUT
+          fi
 
       - name: Initialize CodeQL
+        if: steps.codeql-check.outputs.enabled == 'true'
         uses: github/codeql-action/init@v3
         with:
           languages: ${{ matrix.language }}
           build-mode: ${{ matrix.build-mode }}
+          debug: true
 
       - name: Perform CodeQL Analysis
+        if: steps.codeql-check.outputs.enabled == 'true'
         uses: github/codeql-action/analyze@v3
         with:
+          category: "/language:${{matrix.language}}"
+          upload: false
+          output: codeql-results.sarif
+
+      - name: Upload SARIF results (non-fatal)
+        if: steps.codeql-check.outputs.enabled == 'true'
+        continue-on-error: true
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: codeql-results.sarif
+          checkout_path: ${{ github.workspace }}
           category: "/language:${{matrix.language}}"

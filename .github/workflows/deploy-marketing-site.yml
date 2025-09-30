@@ -28,6 +28,10 @@ jobs:
   build-and-deploy:
     if: github.event_name != 'pull_request'
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      statuses: write
+      pull-requests: write
     defaults:
       run:
         working-directory: .
@@ -72,6 +76,10 @@ jobs:
   preview-deploy:
     if: github.event_name == 'pull_request'
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      statuses: write
+      pull-requests: write
     defaults:
       run:
         working-directory: .
@@ -105,9 +113,11 @@ jobs:
           publish-dir: "apps/marketing/out"
           production-deploy: false
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          deploy-message: "Deploy Preview (marketing) from PR #${{ github.event.pull_request.number }}"
-          enable-commit-comment: true
-          enable-commit-status: true
+          deploy-message:
+            "Deploy Preview (marketing) from PR #${{
+            github.event.pull_request.number }}"
+          enable-commit-comment: false
+          enable-commit-status: false
           alias: ${{ github.head_ref }}
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}

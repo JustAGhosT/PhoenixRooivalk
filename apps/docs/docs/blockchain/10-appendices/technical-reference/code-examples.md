@@ -247,14 +247,10 @@ class PhoenixRooivalkClient extends EventEmitter {
       throw new Error("Must authenticate before starting monitoring");
     }
 
-    this.ws = new WebSocket(
-      wsUrl,
-      undefined,
-      {
-        headers: { Authorization: `Bearer ${this.accessToken}` },
-        perMessageDeflate: false,
-      },
-    );
+    this.ws = new WebSocket(wsUrl, undefined, {
+      headers: { Authorization: `Bearer ${this.accessToken}` },
+      perMessageDeflate: false,
+    });
 
     this.ws.on("open", () => this.emit("monitoring_started"));
 

@@ -1,4 +1,4 @@
-import { ThreatSimulator } from '../../components/ThreatSimulator';
+import { ThreatSimulator } from "../../components/ThreatSimulator";
 
 export default function InteractiveDemoPage() {
   return (
@@ -13,7 +13,8 @@ export default function InteractiveDemoPage() {
           </p>
           <p className="text-gray-400 max-w-3xl mx-auto">
             Experience the power of advanced counter-UAS defense technology.
-            Control framerate, loop settings, and watch our defense systems neutralize aerial threats in real-time.
+            Control framerate, loop settings, and watch our defense systems
+            neutralize aerial threats in real-time.
           </p>
         </div>
 
@@ -21,27 +22,36 @@ export default function InteractiveDemoPage() {
 
         <div className="mt-12 text-center">
           <div className="bg-gray-800/50 p-8 rounded-lg max-w-4xl mx-auto">
-            <h2 className="text-2xl font-bold text-green-400 mb-4">System Capabilities</h2>
+            <h2 className="text-2xl font-bold text-green-400 mb-4">
+              System Capabilities
+            </h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-left">
               <div className="space-y-2">
-                <h3 className="text-lg font-semibold text-cyan-400">🛡️ Radar Detection</h3>
+                <h3 className="text-lg font-semibold text-cyan-400">
+                  🛡️ Radar Detection
+                </h3>
                 <p className="text-gray-300 text-sm">
-                  Advanced radar systems detect and track multiple aerial threats simultaneously
-                  with sub-meter precision and real-time updates.
+                  Advanced radar systems detect and track multiple aerial
+                  threats simultaneously with sub-meter precision and real-time
+                  updates.
                 </p>
               </div>
               <div className="space-y-2">
-                <h3 className="text-lg font-semibold text-yellow-400">📡 Electronic Warfare</h3>
+                <h3 className="text-lg font-semibold text-yellow-400">
+                  📡 Electronic Warfare
+                </h3>
                 <p className="text-gray-300 text-sm">
-                  Sophisticated jamming technology disrupts enemy communications and
-                  navigation systems, creating electronic safe zones.
+                  Sophisticated jamming technology disrupts enemy communications
+                  and navigation systems, creating electronic safe zones.
                 </p>
               </div>
               <div className="space-y-2">
-                <h3 className="text-lg font-semibold text-fuchsia-400">🚀 Kinetic Interceptors</h3>
+                <h3 className="text-lg font-semibold text-fuchsia-400">
+                  🚀 Kinetic Interceptors
+                </h3>
                 <p className="text-gray-300 text-sm">
-                  Precision-guided interceptors neutralize threats with minimal collateral
-                  damage using advanced targeting algorithms.
+                  Precision-guided interceptors neutralize threats with minimal
+                  collateral damage using advanced targeting algorithms.
                 </p>
               </div>
             </div>

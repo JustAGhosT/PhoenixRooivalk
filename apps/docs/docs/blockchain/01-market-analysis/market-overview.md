@@ -127,18 +127,24 @@ print(f"Composite Market Growth Score: {market_impact['composite_market_score']:
 **Primary Market Drivers**:
 
 1. **Drone Proliferation Explosion**
+
    - Commercial drone fleet: 2.4M units (2024) vs 1.1M (2020)
    - Consumer drone adoption: 118% CAGR
    - Industrial drone applications: 67 new use cases identified
 
 2. **Security Incident Escalation**
+
    - Airport disruptions: 400% increase (2021-2025)
    - Critical infrastructure threats: 340% rise
    - Military installation incidents: 280% growth
 
 3. **Regulatory Compliance Requirements**
+
    - 47 countries mandate counter-drone capabilities
-   - Pending US legislation H.R. 5061 ("Counter-UAS Authority Security, Safety, and Reauthorization Act"), introduced Aug. 29, 2025 (reported out of committee Sept. 3, 2025), to reauthorize and reform federal counter-UAS authorities
+   - Pending US legislation H.R. 5061 ("Counter-UAS Authority Security, Safety,
+     and Reauthorization Act"), introduced Aug. 29, 2025 (reported out of
+     committee Sept. 3, 2025), to reauthorize and reform federal counter-UAS
+     authorities
    - EASA drone security framework implementation
 
 4. **Technological Convergence**
@@ -150,14 +156,14 @@ print(f"Composite Market Growth Score: {market_impact['composite_market_score']:
 
 **Regional Market Analysis (2025)**:
 
-| **Region**        | **Market Size** | **Growth Rate** | **Key Drivers**                          | **Regulatory Status**   |
-| ----------------- | --------------- | --------------- | ---------------------------------------- | ----------------------- |
+| **Region**        | **Market Size** | **Growth Rate** | **Key Drivers**                          | **Regulatory Status**            |
+| ----------------- | --------------- | --------------- | ---------------------------------------- | -------------------------------- |
 | **North America** | $2.39B (45%)    | 24.2% CAGR      | Defense spending, airport security       | Developing (pending legislation) |
-| **Europe**        | $1.48B (28%)    | 21.8% CAGR      | GDPR compliance, critical infrastructure | Harmonized (EASA)       |
-| **Asia-Pacific**  | $1.43B (27%)    | 26.7% CAGR      | Manufacturing security, smart cities     | Emerging frameworks     |
-| **Middle East**   | $0.32B          | 19.4% CAGR      | Military modernization, oil facilities   | Military-focused        |
-| **Latin America** | $0.21B          | 17.2% CAGR      | Border security, mining operations       | Developing              |
-| **Africa**        | $0.16B          | 15.8% CAGR      | Wildlife protection, infrastructure      | Limited frameworks      |
+| **Europe**        | $1.48B (28%)    | 21.8% CAGR      | GDPR compliance, critical infrastructure | Harmonized (EASA)                |
+| **Asia-Pacific**  | $1.43B (27%)    | 26.7% CAGR      | Manufacturing security, smart cities     | Emerging frameworks              |
+| **Middle East**   | $0.32B          | 19.4% CAGR      | Military modernization, oil facilities   | Military-focused                 |
+| **Latin America** | $0.21B          | 17.2% CAGR      | Border security, mining operations       | Developing                       |
+| **Africa**        | $0.16B          | 15.8% CAGR      | Wildlife protection, infrastructure      | Limited frameworks               |
 
 **Market Penetration Opportunities**:
 
@@ -339,17 +345,20 @@ for tech, score in sorted(readiness_scores.items(), key=lambda x: x[1], reverse=
 **Technology Convergence Trends**:
 
 1. **AI/ML Integration** (34% → 78% adoption by 2030)
+
    - Automated threat classification and behavioral analysis
    - Predictive detection algorithms and false positive reduction
    - Real-time decision support and response optimization
 
 2. **Blockchain Adoption** (3% → 29% adoption by 2030)
+
    - **Phoenix Rooivalk Opportunity**: First-mover advantage in blockchain
      integration
    - Immutable audit trails for regulatory compliance
    - Multi-party coordination without central authority
 
 3. **Edge Computing Deployment** (28% → 67% adoption by 2030)
+
    - Reduced latency for real-time threat response
    - Offline operation capabilities for contested environments
    - Distributed processing for scalable architectures
@@ -429,6 +438,7 @@ graph TB
 **Sustainable Competitive Advantages**:
 
 1. **Technology Moat**:
+
    - **Blockchain Expertise**: 18-month head start in blockchain counter-drone
      integration
    - **Patent Portfolio**: 12 pending patents in blockchain security
@@ -437,12 +447,14 @@ graph TB
      development cycle)
 
 2. **Network Effects**:
+
    - **Multi-Party Value**: Each additional participant increases network value
    - **Data Network**: Shared threat intelligence improves detection for all
      participants
    - **Vendor Ecosystem**: 249+ integrated vendors create switching costs
 
 3. **Regulatory Compliance**:
+
    - **Built-in Audit**: Native blockchain audit trails reduce compliance costs
    - **Data Sovereignty**: Distributed architecture addresses data residency
      requirements

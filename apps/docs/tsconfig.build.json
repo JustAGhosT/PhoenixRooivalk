@@ -8,5 +8,11 @@
     "allowJs": false,
     "outDir": "./dist"
   },
-  "exclude": ["node_modules", "build", ".docusaurus", "**/*.test.*", "**/*.spec.*"]
+  "exclude": [
+    "node_modules",
+    "build",
+    ".docusaurus",
+    "**/*.test.*",
+    "**/*.spec.*"
+  ]
 }

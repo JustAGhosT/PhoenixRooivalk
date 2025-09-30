@@ -2,7 +2,8 @@
 
 ## Document Context
 
-- **Location**: `blockchain/02-technical-architecture/blockchain-protocols/hyperledger-fabric.md`
+- **Location**:
+  `blockchain/02-technical-architecture/blockchain-protocols/hyperledger-fabric.md`
 - **Related Documents**:
   - [Protocol Comparison](./protocol-comparison.md) - Blockchain protocol
     analysis

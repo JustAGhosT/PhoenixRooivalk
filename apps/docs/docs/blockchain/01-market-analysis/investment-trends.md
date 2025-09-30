@@ -12,10 +12,10 @@
 
 ## Executive Summary
 
-Counter-drone technology investment has reached **$3.7 billion in 2025** [1], driven
-by escalating security threats and military modernization programs. Venture
-capital funding shows 340% growth since 2021 [2], while defense spending allocates
-$89.7 billion for advanced technology programs [3]. Phoenix Rooivalk's
+Counter-drone technology investment has reached **$3.7 billion in 2025** [1],
+driven by escalating security threats and military modernization programs.
+Venture capital funding shows 340% growth since 2021 [2], while defense spending
+allocates $89.7 billion for advanced technology programs [3]. Phoenix Rooivalk's
 blockchain-native approach aligns with emerging investment themes in distributed
 security, multi-party coordination, and regulatory compliance technology.
 
@@ -30,8 +30,10 @@ applications.
 - **Total 2025 Investment**: $3.7B across VC, defense, and corporate funding [1]
 - **VC Funding Growth**: 340% increase since 2021 ($285M → $1.25B) [2]
 - **Defense R&D Budget**: $89.7B for advanced technology programs [3]
-- **Blockchain Investment**: $127M in blockchain security applications (illustrative estimate as of Sep 2025)
-- **Average Deal Size**: $18.5M (up 67% from 2023) (illustrative estimate as of Sep 2025)
+- **Blockchain Investment**: $127M in blockchain security applications
+  (illustrative estimate as of Sep 2025)
+- **Average Deal Size**: $18.5M (up 67% from 2023) (illustrative estimate as of
+  Sep 2025)
 
 ---
 
@@ -375,16 +377,19 @@ print(f"Phoenix Rooivalk Addressable Market (2030): ${phoenix_addressable_market
 **Key Investment Themes in Blockchain Security**:
 
 1. **Data Integrity and Provenance** (40% of investment):
+
    - Immutable audit trails for regulatory compliance
    - Supply chain security and component authentication
    - Forensic analysis and incident investigation
 
 2. **Multi-Party Coordination** (30% of investment):
+
    - Distributed command and control systems
    - Cross-organizational data sharing
    - Coalition operations and information sharing
 
 3. **Regulatory Compliance** (20% of investment):
+
    - Automated compliance reporting and validation
    - Privacy-preserving data sharing
    - Cross-border data sovereignty
@@ -524,21 +529,25 @@ for round_name, valuation in valuations.items():
 **Phoenix Rooivalk Investment Highlights**:
 
 1. **Market Opportunity**:
+
    - $14.51B total addressable market by 2030
    - $4.2B blockchain-enabled segment
    - First-mover advantage in blockchain counter-drone
 
 2. **Technology Differentiation**:
+
    - Comprehensive blockchain integration platform
    - 249+ vendor compatibility
    - Military-grade security and compliance
 
 3. **Competitive Moat**:
+
    - 18-month technology lead
    - Patent portfolio protection
    - Network effects and switching costs
 
 4. **Revenue Model**:
+
    - Subscription-based platform revenue
    - Professional services and integration
    - Licensing and partnership revenue
@@ -639,11 +648,17 @@ leadership.
 
 ## References
 
-[1] The Business Research Company (2025). "Counter‑UAS Market Report." URL: https://www.thebusinessresearchcompany.com/report/counter-uas-market (accessed 2025‑09‑29).
+[1] The Business Research Company (2025). "Counter‑UAS Market Report." URL:
+https://www.thebusinessresearchcompany.com/report/counter-uas-market (accessed
+2025‑09‑29).
 
-[2] Financial Times/Dealroom (2025). "Defense Tech VC Funding Analysis." URL: https://www.ft.com/content/defense-tech-venture-funding-2025 (accessed 2025‑09‑29).
+[2] Financial Times/Dealroom (2025). "Defense Tech VC Funding Analysis." URL:
+https://www.ft.com/content/defense-tech-venture-funding-2025 (accessed
+2025‑09‑29).
 
-[3] Congressional Research Service (CRS)/DoD R-1 FY2024. "Advanced Technology RDT&E Budget." URL: https://crsreports.congress.gov/product/pdf/R/R47574 (accessed 2025‑09‑29).
+[3] Congressional Research Service (CRS)/DoD R-1 FY2024. "Advanced Technology
+RDT&E Budget." URL: https://crsreports.congress.gov/product/pdf/R/R47574
+(accessed 2025‑09‑29).
 
 ---
 

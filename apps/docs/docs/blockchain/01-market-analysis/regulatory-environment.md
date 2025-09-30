@@ -19,16 +19,17 @@ provides inherent compliance advantages through immutable audit trails,
 automated reporting, and distributed data sovereignty capabilities that address
 key regulatory challenges.
 
-**Key Regulatory Drivers**: Pending US counter-drone legislation (H.R. 5061), ITAR export
-controls, GDPR data protection, and emerging blockchain regulations create
-complex compliance landscapes. Our blockchain platform provides built-in
+**Key Regulatory Drivers**: Pending US counter-drone legislation (H.R. 5061),
+ITAR export controls, GDPR data protection, and emerging blockchain regulations
+create complex compliance landscapes. Our blockchain platform provides built-in
 compliance capabilities that reduce regulatory burden while enabling
 multi-jurisdiction operations.
 
 ### Regulatory Environment Highlights:
 
 - **Global Mandates**: 47 countries require counter-drone capabilities
-- **FAA Status**: Part 107 governs 2.4M commercial drones; counter-drone mandates under Congressional review
+- **FAA Status**: Part 107 governs 2.4M commercial drones; counter-drone
+  mandates under Congressional review
 - **ITAR Classification**: Export controls on advanced counter-drone technology
 - **Data Sovereignty**: GDPR and national data residency requirements
 - **Blockchain Regulation**: Emerging frameworks in 23 jurisdictions
@@ -42,9 +43,12 @@ multi-jurisdiction operations.
 **FAA Part 107 - Small Unmanned Aircraft Systems**:
 
 - **Effective Date**: August 29, 2016 (latest amendments December 30, 2024)
-- **Scope**: Commercial drone operations under 55 pounds (operational limits, VLOS, altitude restrictions)
-- **Current Status**: Does not mandate counter-drone deployment at critical infrastructure
-- **Pending Legislation**: H.R. 5061 and similar bills propose FAA/DHS counter-drone standards (under Congressional review)
+- **Scope**: Commercial drone operations under 55 pounds (operational limits,
+  VLOS, altitude restrictions)
+- **Current Status**: Does not mandate counter-drone deployment at critical
+  infrastructure
+- **Pending Legislation**: H.R. 5061 and similar bills propose FAA/DHS
+  counter-drone standards (under Congressional review)
 
 ```python
 # FAA regulatory impact analysis
@@ -97,18 +101,21 @@ print("Note: This represents potential market if pending legislation (H.R. 5061)
 **Key FAA Regulatory Requirements**:
 
 1. **Detection and Identification**:
+
    - Mandatory detection systems for Class B airspace (major airports)
    - Real-time identification of unauthorized drones
    - Integration with air traffic control systems
    - 99.5% detection accuracy requirement
 
 2. **Response and Mitigation**:
+
    - Graduated response protocols (warning, diversion, neutralization)
    - Coordination with law enforcement and security agencies
    - Minimal impact on legitimate aviation operations
    - Safety-first approach to mitigation
 
 3. **Data Management and Reporting**:
+
    - Incident reporting to FAA within 24 hours
    - Data retention for 5 years minimum
    - Privacy protection for legitimate drone operations
@@ -222,12 +229,14 @@ print(f"Annual ITAR Compliance Cost: ${annual_itar_cost:,}")
 **ITAR Compliance Requirements for Counter-Drone Systems**:
 
 1. **Registration and Licensing**:
+
    - DDTC (Directorate of Defense Trade Controls) registration
    - Export license applications for international sales
    - Technical data protection and access controls
    - Employee security clearance requirements
 
 2. **Technology Transfer Restrictions**:
+
    - Prohibition on sharing technical data with foreign persons
    - Restrictions on foreign investment and ownership
    - Controlled access to manufacturing and development facilities
@@ -327,12 +336,14 @@ print(f"Maximum GDPR Fine: €{gdpr_compliance['penalties']['administrative_fine
 **GDPR Compliance Strategies**:
 
 1. **Privacy by Design**:
+
    - Data minimization in collection and processing
    - Purpose limitation for security operations
    - Storage limitation with automated deletion
    - Transparency in data processing activities
 
 2. **Technical Safeguards**:
+
    - Encryption of personal data at rest and in transit
    - Pseudonymization of identifiable information
    - Access controls and audit logging

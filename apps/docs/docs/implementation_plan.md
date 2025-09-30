@@ -20,13 +20,19 @@ metrics for success.
   4. Develop software for AI-based detection and threat analysis.
   5. Address cybersecurity concerns by incorporating robust system protections
      against hacking.
-  6. Perform threat modeling and safety hazard analysis (e.g., STRIDE, PHA/FMEA).
-  7. Establish data governance and privacy impact assessment (data sources, retention, consent).
-  8. Define ML evaluation protocol (train/val/test splits, adversarial/edge cases).
-  9. Map regulatory landscape (e.g., FCC/FAA/DHS guidance; state/local surveillance laws).
-  10. Conduct export controls assessment (e.g., ITAR/EAR) and sanctions screening.
+  6. Perform threat modeling and safety hazard analysis (e.g., STRIDE,
+     PHA/FMEA).
+  7. Establish data governance and privacy impact assessment (data sources,
+     retention, consent).
+  8. Define ML evaluation protocol (train/val/test splits, adversarial/edge
+     cases).
+  9. Map regulatory landscape (e.g., FCC/FAA/DHS guidance; state/local
+     surveillance laws).
+  10. Conduct export controls assessment (e.g., ITAR/EAR) and sanctions
+      screening.
   11. Define human-in-the-loop and fail-safe requirements for neutralization.
-  12. Draft architecture with security controls (SBOM, secure boot, OTA signing, key management).
+  12. Draft architecture with security controls (SBOM, secure boot, OTA signing,
+      key management).
 - **Deliverables**:
   - Fully functional prototype.
   - Regulatory approvals and compliance documentation.
@@ -40,8 +46,9 @@ metrics for success.
   - Human-in-the-loop operational procedures and fail-safe specifications.
   - Security architecture with SBOM and key management protocols.
 - **Stakeholders**:
-  - R&D Team, Legal and Compliance Team, Product Managers, Data Privacy Officer, 
-    Export Controls Specialist, Safety Engineers, ML Engineers, Security Architects.
+  - R&D Team, Legal and Compliance Team, Product Managers, Data Privacy Officer,
+    Export Controls Specialist, Safety Engineers, ML Engineers, Security
+    Architects.
 - **Metrics for Success**:
   - Achieving a detection accuracy of at least 95% during testing.
   - Completion of regulatory approval processes.
