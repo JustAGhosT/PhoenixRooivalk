@@ -14,55 +14,54 @@ export const HeroSection: React.FC = () => {
           {/* Development status indicators */}
           <div className="mb-6 flex flex-wrap gap-3">
             <span className="inline-block bg-gradient-to-r from-[rgb(var(--primary))] to-[rgb(var(--secondary))] text-white px-4 py-2 rounded-full text-sm font-bold shadow-lg shadow-[rgba(var(--primary),0.3)]">
-              Concept Phase • Seeking Funding
+              Concept Phase • Seeking Design Partners
             </span>
             <span className="inline-block bg-[rgba(var(--status-warning),0.2)] text-[rgb(var(--status-warning))] px-4 py-2 rounded-full text-sm font-semibold border border-[rgba(var(--status-warning),0.3)]">
-              SBIR Application Planned
+              Open to SBIR Collaboration
             </span>
           </div>
 
           {/* Vision-focused headline */}
           <h1 className="text-4xl md:text-6xl font-extrabold leading-tight bg-clip-text text-transparent bg-gradient-to-br from-white to-[rgb(var(--primary))] animate-fadeInUp">
-            Autonomous Counter-Drone Defense
+            Concept: Edge Autonomy in RF-Denied Environments
             <span className="block text-2xl md:text-4xl mt-2 text-[rgb(var(--accent))]">
-              Target: 120ms Response Time
+              Level-0 Local Decisioning
             </span>
           </h1>
           <p className="mt-6 text-xl text-[rgb(var(--gray))] animate-fadeInUp [animation-delay:200ms]">
-            Phoenix Rooivalk is designed to detect and neutralize hostile drones
-            in 120-195ms even when communications are jammed. The system will
-            make "soft-kill first" decisions at the edge without requiring
-            network connectivity.
+            We are exploring a Level-0 autonomy approach designed to make immediate, local decisions without network connectivity. 
+            This site presents concepts and a simulation—not a fielded system.
           </p>
           <div className="mt-4 p-4 bg-gradient-to-r from-[rgba(var(--primary),0.1)] to-[rgba(var(--secondary),0.1)] rounded-lg border border-[rgba(var(--primary),0.2)]">
             <p className="text-[rgb(var(--primary))] font-semibold mb-2">
-              Why This Matters:
+              Hypothesis (to be validated):
             </p>
             <p className="text-sm text-[rgb(var(--gray))]">
-              Traditional systems fail when enemies jam communications (3-10
-              second response). Phoenix Rooivalk is designed to work 100%
-              without network - targeting 250x faster response when it counts
-              most.
+              Local, on-device decisioning could reduce time-to-action from seconds to &lt;200ms in lab conditions.
+              <br />
+              <strong>Status:</strong> Planning (no field data).
+              <br />
+              <strong>Ask:</strong> Looking for design partners to define evaluation criteria and datasets.
             </p>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
               <div className="text-center">
                 <div className="text-[rgb(var(--accent))] font-bold text-lg">
-                  120ms
+                  &lt;200ms
                 </div>
-                <div className="text-[rgb(var(--gray))]">Target Response</div>
+                <div className="text-[rgb(var(--gray))]">Lab Target</div>
               </div>
               <div className="text-center">
                 <div className="text-[rgb(var(--accent))] font-bold text-lg">
                   100%
                 </div>
-                <div className="text-[rgb(var(--gray))]">Offline Design</div>
+                <div className="text-[rgb(var(--gray))]">Offline Concept</div>
               </div>
               <div className="text-center">
                 <div className="text-[rgb(var(--accent))] font-bold text-lg">
-                  250x
+                  TBD
                 </div>
                 <div className="text-[rgb(var(--gray))]">
-                  Performance Target
+                  Performance Validation
                 </div>
               </div>
               <div className="text-center">
@@ -73,8 +72,7 @@ export const HeroSection: React.FC = () => {
               </div>
             </div>
             <div className="text-xs text-[rgb(var(--gray))] text-center border-t border-[rgba(var(--primary),0.1)] pt-3 mt-4">
-              Designed to address 64% market vulnerability gap in RF-silent
-              drone detection
+              Concept designed to address 64% market vulnerability gap in RF-silent drone detection
             </div>
           </div>
 
@@ -86,7 +84,7 @@ export const HeroSection: React.FC = () => {
                 size="lg"
                 className="bg-gradient-to-r from-[rgb(var(--primary))] to-[rgb(var(--accent))] hover:from-[rgb(var(--accent))] hover:to-[rgb(var(--primary))] shadow-xl"
               >
-                Join Development Program
+                Try the Simulation (Concept UI)
               </Button>
               <Button
                 href="/interactive-demo"
@@ -94,7 +92,7 @@ export const HeroSection: React.FC = () => {
                 size="lg"
                 className="border-[rgb(var(--primary))] text-[rgb(var(--primary))] hover:bg-[rgba(var(--primary),0.1)]"
               >
-                View Technical Concept
+                Join Early Access
               </Button>
             </div>
             <div className="flex flex-wrap gap-4 text-sm">
