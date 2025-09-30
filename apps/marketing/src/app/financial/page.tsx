@@ -1,304 +1,437 @@
 "use client";
-import React from "react";
-import Link from "next/link";
+import React, { useState } from "react";
+import { Navigation } from "../../components/Navigation";
+import { Button } from "../../components/ui/button";
 
 export default function FinancialPage(): React.ReactElement {
+  const [inputs, setInputs] = useState({
+    threatFrequency: 5,
+    averageResponseTime: 3000,
+    deploymentCost: 250000,
+    personnelCost: 150000,
+    downtimeCost: 500000,
+  });
+
+  const calculateROI = () => {
+    const {
+      threatFrequency,
+      averageResponseTime,
+      deploymentCost,
+      personnelCost,
+      downtimeCost,
+    } = inputs;
+
+    // Calculate annual threat events
+    const annualThreats = threatFrequency * 12;
+
+    // Calculate success rates based on response time
+    const phoenixSuccessRate = averageResponseTime <= 120 ? 0.95 : 0.85;
+    const traditionalSuccessRate = averageResponseTime <= 3000 ? 0.65 : 0.45;
+
+    // Calculate prevented incidents
+    const phoenixPrevented = annualThreats * phoenixSuccessRate;
+    const traditionalPrevented = annualThreats * traditionalSuccessRate;
+
+    // Calculate savings
+    const phoenixSavings = phoenixPrevented * downtimeCost;
+    const traditionalSavings = traditionalPrevented * downtimeCost;
+
+    // Calculate ROI
+    const phoenixROI =
+      ((phoenixSavings - deploymentCost - personnelCost) /
+        (deploymentCost + personnelCost)) *
+      100;
+    const traditionalROI =
+      ((traditionalSavings - deploymentCost * 2 - personnelCost) /
+        (deploymentCost * 2 + personnelCost)) *
+      100;
+
+    return {
+      phoenix: {
+        prevented: phoenixPrevented,
+        savings: phoenixSavings,
+        roi: phoenixROI,
+        successRate: phoenixSuccessRate,
+        paybackPeriod: (deploymentCost + personnelCost) / phoenixSavings,
+      },
+      traditional: {
+        prevented: traditionalPrevented,
+        savings: traditionalSavings,
+        roi: traditionalROI,
+        successRate: traditionalSuccessRate,
+        paybackPeriod:
+          (deploymentCost * 2 + personnelCost) / traditionalSavings,
+      },
+    };
+  };
+
+  const roi = calculateROI();
+
   return (
-    <main className="relative overflow-hidden bg-[var(--darker)] text-white">
+    <main className="relative overflow-hidden bg-[rgb(var(--tactical-black))] text-white min-h-screen">
       {/* Background */}
       <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_bottom,_#1b2735_0%,_#090a0f_100%)]">
-        <div className="absolute inset-0 bg-[linear-gradient(rgba(0,255,136,0.03)_1px,_transparent_1px),_linear-gradient(90deg,_rgba(0,255,136,0.03)_1px,_transparent_1px)] bg-[length:50px_50px] animate-gridMove" />
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(var(--primary),0.03)_1px,_transparent_1px),_linear-gradient(90deg,_rgba(var(--primary),0.03)_1px,_transparent_1px)] bg-[length:50px_50px] animate-gridMove" />
       </div>
 
-      {/* Nav */}
-      <nav className="sticky top-0 z-50 bg-[rgba(10,14,26,0.95)] backdrop-blur px-6 py-4">
-        <div className="mx-auto max-w-[1400px] flex items-center justify-between">
-          <Link
-            href="/"
-            className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-br from-[var(--primary)] to-[var(--secondary)]"
-          >
-            Phoenix Rooivalk
-          </Link>
-          <ul className="hidden md:flex gap-6 text-[var(--gray)]">
-            <li>
-              <Link href="/" className="hover:text-[var(--primary)]">
-                Home
-              </Link>
-            </li>
-            <li>
-              <Link href="/technical" className="hover:text-[var(--primary)]">
-                Technical
-              </Link>
-            </li>
-            <li>
-              <Link href="/financial" className="text-[var(--primary)]">
-                Financial
-              </Link>
-            </li>
-            <li>
-              <Link href="/compliance" className="hover:text-[var(--primary)]">
-                Compliance
-              </Link>
-            </li>
-          </ul>
-        </div>
-      </nav>
+      <Navigation />
 
-      {/* Header */}
-      <section className="px-[5%] py-16">
+      <div className="px-6 md:px-[5%] lg:px-8 py-16">
         <div className="max-w-[1400px] mx-auto">
-          <div className="text-center">
-            <h1 className="text-4xl md:text-5xl font-extrabold bg-clip-text text-transparent bg-gradient-to-br from-white to-[var(--primary)]">
-              Financial Projections
+          {/* Header */}
+          <div className="text-center mb-16">
+            <h1 className="text-4xl md:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-br from-[rgb(var(--phoenix-white))] to-[rgb(var(--primary))] mb-6">
+              ROI Calculator & Financial Analysis
             </h1>
-            <p className="text-[var(--gray)] mt-4 max-w-3xl mx-auto">
-              Break-even by Year 3, $9.4M revenue by Year 5 with 34.9% profit
-              margins
+            <p className="text-xl text-[rgb(var(--gray))] max-w-3xl mx-auto">
+              Calculate the return on investment for Phoenix Rooivalk's
+              autonomous counter-drone defense system. Compare costs, savings,
+              and performance against traditional solutions.
             </p>
           </div>
-        </div>
-      </section>
 
-      {/* Key Metrics */}
-      <section className="px-[5%] py-16 bg-[linear-gradient(180deg,rgba(0,136,255,0.05),transparent)]">
-        <div className="max-w-[1400px] mx-auto">
-          <h2 className="text-3xl font-bold mb-8 text-center text-[var(--primary)]">
-            Key Financial Metrics
-          </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {[
-              ["$47,000", "Unit Price", "Per system pricing"],
-              ["Year 3", "Break-Even Point", "50 units sold"],
-              ["$9.4M", "Year 5 Revenue", "Projected annual revenue"],
-              ["34.9%", "Year 5 Profit Margin", "Operational efficiency"],
-            ].map(([value, label, description]) => (
-              <div
-                key={label}
-                className="text-center rounded-xl border border-[rgba(0,255,136,0.2)] bg-[rgba(15,23,42,0.8)] backdrop-blur p-6"
-              >
-                <div className="text-3xl font-extrabold bg-clip-text text-transparent bg-gradient-to-br from-[var(--primary)] to-[var(--secondary)] mb-2">
-                  {value}
+          {/* Calculator */}
+          <div className="grid lg:grid-cols-2 gap-12 mb-16">
+            {/* Input Controls */}
+            <div className="space-y-8">
+              <div className="bg-[rgba(var(--tactical-charcoal),0.8)] backdrop-blur-sm border border-[rgba(var(--primary),0.2)] rounded-2xl p-8">
+                <h2 className="text-2xl font-bold text-[rgb(var(--primary))] mb-6">
+                  Configure Your Scenario
+                </h2>
+
+                <div className="space-y-6">
+                  <div>
+                    <label
+                      htmlFor="threat-frequency"
+                      className="block text-[rgb(var(--phoenix-white))] font-semibold mb-3"
+                    >
+                      Threat Frequency (per month)
+                    </label>
+                    <input
+                      id="threat-frequency"
+                      type="range"
+                      min="1"
+                      max="50"
+                      value={inputs.threatFrequency}
+                      onChange={(e) =>
+                        setInputs((prev) => ({
+                          ...prev,
+                          threatFrequency: parseInt(e.target.value),
+                        }))
+                      }
+                      className="w-full h-3 bg-[rgb(var(--tactical-gray))] rounded-lg appearance-none cursor-pointer slider"
+                    />
+                    <div className="flex justify-between text-[rgb(var(--gray))] text-sm mt-2">
+                      <span>1</span>
+                      <span className="text-[rgb(var(--accent))] font-bold text-lg">
+                        {inputs.threatFrequency} threats/month
+                      </span>
+                      <span>50</span>
+                    </div>
+                  </div>
+
+                  <div>
+                    <label
+                      htmlFor="response-time"
+                      className="block text-[rgb(var(--phoenix-white))] font-semibold mb-3"
+                    >
+                      Current Response Time (milliseconds)
+                    </label>
+                    <input
+                      id="response-time"
+                      type="range"
+                      min="500"
+                      max="10000"
+                      step="100"
+                      value={inputs.averageResponseTime}
+                      onChange={(e) =>
+                        setInputs((prev) => ({
+                          ...prev,
+                          averageResponseTime: parseInt(e.target.value),
+                        }))
+                      }
+                      className="w-full h-3 bg-[rgb(var(--tactical-gray))] rounded-lg appearance-none cursor-pointer slider"
+                    />
+                    <div className="flex justify-between text-[rgb(var(--gray))] text-sm mt-2">
+                      <span>500ms</span>
+                      <span className="text-[rgb(var(--accent))] font-bold text-lg">
+                        {inputs.averageResponseTime.toLocaleString()}ms
+                      </span>
+                      <span>10s</span>
+                    </div>
+                  </div>
+
+                  <div>
+                    <label
+                      htmlFor="deployment-cost"
+                      className="block text-[rgb(var(--phoenix-white))] font-semibold mb-3"
+                    >
+                      System Deployment Cost (USD)
+                    </label>
+                    <input
+                      id="deployment-cost"
+                      type="range"
+                      min="50000"
+                      max="2000000"
+                      step="50000"
+                      value={inputs.deploymentCost}
+                      onChange={(e) =>
+                        setInputs((prev) => ({
+                          ...prev,
+                          deploymentCost: parseInt(e.target.value),
+                        }))
+                      }
+                      className="w-full h-3 bg-[rgb(var(--tactical-gray))] rounded-lg appearance-none cursor-pointer slider"
+                    />
+                    <div className="flex justify-between text-[rgb(var(--gray))] text-sm mt-2">
+                      <span>$50K</span>
+                      <span className="text-[rgb(var(--accent))] font-bold text-lg">
+                        ${inputs.deploymentCost.toLocaleString()}
+                      </span>
+                      <span>$2M</span>
+                    </div>
+                  </div>
+
+                  <div>
+                    <label
+                      htmlFor="personnel-cost"
+                      className="block text-[rgb(var(--phoenix-white))] font-semibold mb-3"
+                    >
+                      Annual Personnel Cost (USD)
+                    </label>
+                    <input
+                      id="personnel-cost"
+                      type="range"
+                      min="50000"
+                      max="500000"
+                      step="25000"
+                      value={inputs.personnelCost}
+                      onChange={(e) =>
+                        setInputs((prev) => ({
+                          ...prev,
+                          personnelCost: parseInt(e.target.value),
+                        }))
+                      }
+                      className="w-full h-3 bg-[rgb(var(--tactical-gray))] rounded-lg appearance-none cursor-pointer slider"
+                    />
+                    <div className="flex justify-between text-[rgb(var(--gray))] text-sm mt-2">
+                      <span>$50K</span>
+                      <span className="text-[rgb(var(--accent))] font-bold text-lg">
+                        ${inputs.personnelCost.toLocaleString()}
+                      </span>
+                      <span>$500K</span>
+                    </div>
+                  </div>
+
+                  <div>
+                    <label
+                      htmlFor="downtime-cost"
+                      className="block text-[rgb(var(--phoenix-white))] font-semibold mb-3"
+                    >
+                      Cost Per Successful Attack (USD)
+                    </label>
+                    <input
+                      id="downtime-cost"
+                      type="range"
+                      min="100000"
+                      max="10000000"
+                      step="100000"
+                      value={inputs.downtimeCost}
+                      onChange={(e) =>
+                        setInputs((prev) => ({
+                          ...prev,
+                          downtimeCost: parseInt(e.target.value),
+                        }))
+                      }
+                      className="w-full h-3 bg-[rgb(var(--tactical-gray))] rounded-lg appearance-none cursor-pointer slider"
+                    />
+                    <div className="flex justify-between text-[rgb(var(--gray))] text-sm mt-2">
+                      <span>$100K</span>
+                      <span className="text-[rgb(var(--accent))] font-bold text-lg">
+                        ${inputs.downtimeCost.toLocaleString()}
+                      </span>
+                      <span>$10M</span>
+                    </div>
+                  </div>
                 </div>
-                <div className="text-white font-semibold mb-1">{label}</div>
-                <div className="text-[var(--gray)] text-sm">{description}</div>
               </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Revenue Projections Table */}
-      <section className="px-[5%] py-16">
-        <div className="max-w-[1400px] mx-auto">
-          <h2 className="text-3xl font-bold mb-8 text-center text-[var(--primary)]">
-            Revenue and Profit Projections
-          </h2>
-          <div className="overflow-x-auto">
-            <table className="w-full border-collapse rounded-lg overflow-hidden">
-              <thead>
-                <tr className="bg-gradient-to-br from-[var(--primary)] to-[var(--secondary)] text-[var(--dark)]">
-                  <th className="p-4 text-left font-bold">Year</th>
-                  <th className="p-4 text-left font-bold">Units Sold</th>
-                  <th className="p-4 text-left font-bold">Revenue (USD)</th>
-                  <th className="p-4 text-left font-bold">Costs (USD)</th>
-                  <th className="p-4 text-left font-bold">Profit (USD)</th>
-                  <th className="p-4 text-left font-bold">Profit Margin</th>
-                </tr>
-              </thead>
-              <tbody className="bg-[rgba(15,23,42,0.8)]">
-                {[
-                  ["0", "0", "0", "830,000", "-830,000", "-100.0%"],
-                  ["1", "15", "705,000", "858,000", "-152,000", "-21.6%"],
-                  ["2", "35", "1,645,000", "1,465,000", "180,000", "10.9%"],
-                  [
-                    "3 (Break-Even)",
-                    "50",
-                    "2,350,000",
-                    "2,210,000",
-                    "138,000",
-                    "5.9%",
-                  ],
-                  ["4", "100", "4,700,000", "3,210,000", "1,490,000", "31.8%"],
-                  ["5", "150", "7,050,000", "4,590,000", "2,460,000", "34.9%"],
-                ].map((row, index) => (
-                  <tr
-                    key={index}
-                    className={`hover:bg-[rgba(0,255,136,0.05)] ${row[0].includes("Break-Even") ? "bg-[rgba(0,255,136,0.1)]" : ""}`}
-                  >
-                    <td className="p-4 border-b border-[rgba(0,255,136,0.1)] font-semibold">
-                      {row[0]}
-                    </td>
-                    <td className="p-4 border-b border-[rgba(0,255,136,0.1)]">
-                      {row[1]}
-                    </td>
-                    <td className="p-4 border-b border-[rgba(0,255,136,0.1)]">
-                      {row[2]}
-                    </td>
-                    <td className="p-4 border-b border-[rgba(0,255,136,0.1)]">
-                      {row[3]}
-                    </td>
-                    <td className="p-4 border-b border-[rgba(0,255,136,0.1)]">
-                      {row[4]}
-                    </td>
-                    <td className="p-4 border-b border-[rgba(0,255,136,0.1)]">
-                      {row[5]}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </section>
-
-      {/* Funding Allocation */}
-      <section className="px-[5%] py-16 bg-[linear-gradient(180deg,transparent,rgba(0,136,255,0.05))]">
-        <div className="max-w-[1400px] mx-auto">
-          <h2 className="text-3xl font-bold mb-8 text-center text-[var(--primary)]">
-            Initial Investment Allocation
-          </h2>
-          <div className="text-center mb-8">
-            <div className="text-4xl font-extrabold bg-clip-text text-transparent bg-gradient-to-br from-[var(--primary)] to-[var(--secondary)]">
-              $830,000
             </div>
-            <p className="text-[var(--gray)] mt-2">
-              Total initial investment required
+
+            {/* Results */}
+            <div className="space-y-6">
+              {/* Phoenix Rooivalk Results */}
+              <div className="bg-[rgba(var(--tactical-charcoal),0.8)] backdrop-blur-sm border border-[rgba(var(--primary),0.3)] rounded-2xl p-8">
+                <div className="flex items-center space-x-3 mb-6">
+                  <div className="w-8 h-8 bg-gradient-to-r from-[rgb(var(--primary))] to-[rgb(var(--accent))] rounded-lg flex items-center justify-center">
+                    <span className="text-white font-bold text-sm">P</span>
+                  </div>
+                  <h3 className="text-2xl font-bold text-[rgb(var(--primary))]">
+                    Phoenix Rooivalk
+                  </h3>
+                </div>
+
+                <div className="grid grid-cols-2 gap-6 mb-6">
+                  <div className="text-center p-4 bg-[rgba(var(--tactical-black),0.6)] rounded-lg border border-[rgba(var(--primary),0.2)]">
+                    <div className="text-3xl font-bold text-[rgb(var(--status-active))] mb-2">
+                      {(roi.phoenix.successRate * 100).toFixed(1)}%
+                    </div>
+                    <div className="text-[rgb(var(--gray))] text-sm">
+                      Success Rate
+                    </div>
+                  </div>
+                  <div className="text-center p-4 bg-[rgba(var(--tactical-black),0.6)] rounded-lg border border-[rgba(var(--primary),0.2)]">
+                    <div className="text-3xl font-bold text-[rgb(var(--phoenix-white))] mb-2">
+                      {roi.phoenix.prevented.toFixed(1)}
+                    </div>
+                    <div className="text-[rgb(var(--gray))] text-sm">
+                      Threats Prevented/Year
+                    </div>
+                  </div>
+                </div>
+
+                <div className="space-y-4">
+                  <div className="flex justify-between items-center py-3 border-b border-[rgba(var(--primary),0.1)]">
+                    <span className="text-[rgb(var(--gray))]">
+                      Annual Savings:
+                    </span>
+                    <span className="text-[rgb(var(--status-active))] font-bold text-xl">
+                      ${roi.phoenix.savings.toLocaleString()}
+                    </span>
+                  </div>
+                  <div className="flex justify-between items-center py-3 border-b border-[rgba(var(--primary),0.1)]">
+                    <span className="text-[rgb(var(--gray))]">
+                      Payback Period:
+                    </span>
+                    <span className="text-[rgb(var(--phoenix-white))] font-bold">
+                      {roi.phoenix.paybackPeriod < 1
+                        ? "< 1 year"
+                        : `${roi.phoenix.paybackPeriod.toFixed(1)} years`}
+                    </span>
+                  </div>
+                  <div className="flex justify-between items-center py-3">
+                    <span className="text-[rgb(var(--gray))]">3-Year ROI:</span>
+                    <span className="text-[rgb(var(--accent))] font-bold text-2xl">
+                      {roi.phoenix.roi.toFixed(0)}%
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Traditional Systems Comparison */}
+              <div className="bg-[rgba(var(--tactical-charcoal),0.8)] backdrop-blur-sm border border-[rgba(var(--tactical-gray),0.3)] rounded-2xl p-8">
+                <div className="flex items-center space-x-3 mb-6">
+                  <div className="w-8 h-8 bg-[rgb(var(--tactical-gray))] rounded-lg flex items-center justify-center">
+                    <span className="text-white font-bold text-sm">T</span>
+                  </div>
+                  <h3 className="text-2xl font-bold text-[rgb(var(--gray))]">
+                    Traditional Systems
+                  </h3>
+                </div>
+
+                <div className="grid grid-cols-2 gap-6 mb-6">
+                  <div className="text-center p-4 bg-[rgba(var(--tactical-black),0.6)] rounded-lg border border-[rgba(var(--tactical-gray),0.2)]">
+                    <div className="text-3xl font-bold text-[rgb(var(--status-warning))] mb-2">
+                      {(roi.traditional.successRate * 100).toFixed(1)}%
+                    </div>
+                    <div className="text-[rgb(var(--gray))] text-sm">
+                      Success Rate
+                    </div>
+                  </div>
+                  <div className="text-center p-4 bg-[rgba(var(--tactical-black),0.6)] rounded-lg border border-[rgba(var(--tactical-gray),0.2)]">
+                    <div className="text-3xl font-bold text-[rgb(var(--phoenix-white))] mb-2">
+                      {roi.traditional.prevented.toFixed(1)}
+                    </div>
+                    <div className="text-[rgb(var(--gray))] text-sm">
+                      Threats Prevented/Year
+                    </div>
+                  </div>
+                </div>
+
+                <div className="space-y-4">
+                  <div className="flex justify-between items-center py-3 border-b border-[rgba(var(--tactical-gray),0.1)]">
+                    <span className="text-[rgb(var(--gray))]">
+                      Annual Savings:
+                    </span>
+                    <span className="text-[rgb(var(--status-warning))] font-bold text-xl">
+                      ${roi.traditional.savings.toLocaleString()}
+                    </span>
+                  </div>
+                  <div className="flex justify-between items-center py-3 border-b border-[rgba(var(--tactical-gray),0.1)]">
+                    <span className="text-[rgb(var(--gray))]">
+                      Payback Period:
+                    </span>
+                    <span className="text-[rgb(var(--phoenix-white))] font-bold">
+                      {roi.traditional.paybackPeriod < 1
+                        ? "< 1 year"
+                        : `${roi.traditional.paybackPeriod.toFixed(1)} years`}
+                    </span>
+                  </div>
+                  <div className="flex justify-between items-center py-3">
+                    <span className="text-[rgb(var(--gray))]">3-Year ROI:</span>
+                    <span className="text-[rgb(var(--gray))] font-bold text-2xl">
+                      {roi.traditional.roi.toFixed(0)}%
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Savings Comparison */}
+              <div className="bg-[rgba(var(--tactical-charcoal),0.8)] backdrop-blur-sm border border-[rgba(var(--accent),0.3)] rounded-2xl p-8">
+                <h3 className="text-2xl font-bold text-[rgb(var(--accent))] mb-6 text-center">
+                  Annual Savings Difference
+                </h3>
+                <div className="text-center">
+                  <div className="text-4xl font-bold text-[rgb(var(--status-active))] mb-2">
+                    $
+                    {(
+                      roi.phoenix.savings - roi.traditional.savings
+                    ).toLocaleString()}
+                  </div>
+                  <div className="text-[rgb(var(--gray))] mb-4">
+                    Additional savings with Phoenix Rooivalk
+                  </div>
+                  <div className="text-lg font-bold text-[rgb(var(--accent))]">
+                    {(
+                      ((roi.phoenix.savings - roi.traditional.savings) /
+                        roi.traditional.savings) *
+                      100
+                    ).toFixed(0)}
+                    % more effective than traditional systems
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* CTA Section */}
+          <div className="text-center bg-[rgba(var(--tactical-charcoal),0.8)] backdrop-blur-sm border border-[rgba(var(--primary),0.2)] rounded-2xl p-12">
+            <h2 className="text-3xl font-bold text-[rgb(var(--phoenix-white))] mb-4">
+              Ready to Maximize Your ROI?
+            </h2>
+            <p className="text-[rgb(var(--gray))] mb-8 max-w-2xl mx-auto text-lg">
+              Get a detailed financial analysis tailored to your specific threat
+              environment and budget constraints.
             </p>
-          </div>
-          <div className="grid md:grid-cols-3 gap-8">
-            {[
-              {
-                category: "Research & Development",
-                amount: "$555,000",
-                percentage: "67%",
-                justification:
-                  "Essential for prototyping, testing, and certifications. Core technology development and regulatory approvals.",
-              },
-              {
-                category: "Marketing & Sales",
-                amount: "$166,000",
-                percentage: "20%",
-                justification:
-                  "Build market awareness and secure early adopters through trade shows, demonstrations, and partnerships.",
-              },
-              {
-                category: "Operational Setup",
-                amount: "$111,000",
-                percentage: "13%",
-                justification:
-                  "Infrastructure and administrative costs for manufacturing setup and initial operations.",
-              },
-            ].map((item) => (
-              <div
-                key={item.category}
-                className="rounded-xl border border-[rgba(0,255,136,0.2)] bg-[rgba(15,23,42,0.8)] backdrop-blur p-6"
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Button
+                href="#contact"
+                size="lg"
+                className="bg-gradient-to-r from-[rgb(var(--primary))] to-[rgb(var(--accent))] hover:from-[rgb(var(--accent))] hover:to-[rgb(var(--primary))] shadow-xl"
               >
-                <div className="text-center mb-4">
-                  <div className="text-2xl font-bold text-[var(--primary)] mb-1">
-                    {item.amount}
-                  </div>
-                  <div className="text-lg font-semibold mb-1">
-                    {item.category}
-                  </div>
-                  <div className="text-[var(--secondary)] font-bold">
-                    {item.percentage}
-                  </div>
-                </div>
-                <p className="text-[var(--gray)] text-sm">
-                  {item.justification}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Key Assumptions */}
-      <section className="px-[5%] py-16">
-        <div className="max-w-[1400px] mx-auto">
-          <h2 className="text-3xl font-bold mb-8 text-center text-[var(--primary)]">
-            Key Assumptions & Risk Mitigation
-          </h2>
-          <div className="grid md:grid-cols-2 gap-8">
-            <div className="rounded-xl border border-[rgba(0,255,136,0.2)] bg-[rgba(15,23,42,0.8)] backdrop-blur p-6">
-              <h3 className="text-xl font-semibold mb-4 text-[var(--primary)]">
-                Market Assumptions
-              </h3>
-              <ul className="space-y-3 text-[var(--gray)]">
-                <li>
-                  <strong>Target Market:</strong> Government and civilian
-                  sectors in Southern Africa
-                </li>
-                <li>
-                  <strong>Growth Trajectory:</strong> Early adopters in Year 1,
-                  market confidence by Year 3
-                </li>
-                <li>
-                  <strong>Competitive Advantage:</strong> 20-30% cost advantage
-                  over competitors
-                </li>
-                <li>
-                  <strong>Market Penetration:</strong> Focus on government
-                  agencies and critical infrastructure
-                </li>
-              </ul>
-            </div>
-            <div className="rounded-xl border border-[rgba(0,255,136,0.2)] bg-[rgba(15,23,42,0.8)] backdrop-blur p-6">
-              <h3 className="text-xl font-semibold mb-4 text-[var(--primary)]">
-                Risk Mitigation
-              </h3>
-              <ul className="space-y-3 text-[var(--gray)]">
-                <li>
-                  <strong>Market Adoption:</strong> Partner with government
-                  agencies for early validation
-                </li>
-                <li>
-                  <strong>Economic Volatility:</strong> Localize production to
-                  reduce import dependencies
-                </li>
-                <li>
-                  <strong>Technology Risk:</strong> Rigorous testing and quality
-                  control during R&D
-                </li>
-                <li>
-                  <strong>Regulatory Risk:</strong> Early engagement with
-                  regulatory bodies for approvals
-                </li>
-              </ul>
+                Request Detailed Analysis
+              </Button>
+              <Button
+                href="/interactive-demo"
+                variant="outline"
+                size="lg"
+                className="border-[rgb(var(--primary))] text-[rgb(var(--primary))] hover:bg-[rgba(var(--primary),0.1)]"
+              >
+                Try Interactive Demo
+              </Button>
             </div>
           </div>
         </div>
-      </section>
-
-      {/* Footer */}
-      <footer className="px-[5%] py-8 text-center text-[var(--gray)] border-t border-[rgba(0,255,136,0.2)]">
-        <div className="max-w-[1400px] mx-auto">
-          <p>
-            © 2025 Phoenix Rooivalk. All rights reserved. | ITAR Compliant |
-            ISO 27001 Certified
-          </p>
-          <div className="mt-4">
-            <Link
-              href="/"
-              className="text-[var(--primary)] hover:underline mr-6"
-            >
-              Home
-            </Link>
-            <Link
-              href="/technical"
-              className="text-[var(--primary)] hover:underline mr-6"
-            >
-              Technical
-            </Link>
-            <Link
-              href="/compliance"
-              className="text-[var(--primary)] hover:underline"
-            >
-              Compliance
-            </Link>
-          </div>
-        </div>
-      </footer>
+      </div>
     </main>
   );
 }
