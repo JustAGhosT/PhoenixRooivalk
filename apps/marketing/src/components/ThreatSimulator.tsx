@@ -3,6 +3,7 @@ import * as React from "react";
 import { useCallback, useEffect, useRef } from "react";
 import styles from "./ThreatSimulator.module.css";
 import { useGameState } from "./hooks/useGameState";
+import { useTimeoutManager } from "./hooks/useTimeoutManager";
 import { spawnThreat, moveThreats } from "./utils/threatUtils";
 
 interface Threat {
@@ -17,7 +18,7 @@ interface Threat {
 export const ThreatSimulator: React.FC = (): JSX.Element => {
   const gameRef = useRef<HTMLDivElement>(null);
 
-  // Custom hook managing state
+  // Custom hooks for state and timeouts
   const {
     gameState,
     updateScore,
@@ -27,12 +28,7 @@ export const ThreatSimulator: React.FC = (): JSX.Element => {
     resetGameState,
   } = useGameState();
 
-  const swarmTimeouts = useRef<ReturnType<typeof setTimeout>[]>([]);
-
-  const clearSwarmTimeouts = useCallback(() => {
-    swarmTimeouts.current.forEach((timeoutId) => clearTimeout(timeoutId));
-    swarmTimeouts.current = [];
-  }, []);
+  const { addTimeout, clearTimeouts } = useTimeoutManager();
 
   const spawnNewThreat = useCallback(
     (threatType: "drone" | "swarm" | "stealth" = "drone") => {
@@ -43,7 +39,7 @@ export const ThreatSimulator: React.FC = (): JSX.Element => {
 
       addThreat(newThreat);
     },
-    [addThreat]
+    [addThreat],
   );
 
   const moveAllThreats = useCallback(() => {
@@ -62,35 +58,36 @@ export const ThreatSimulator: React.FC = (): JSX.Element => {
       removeThreat(threatId);
       updateScore(100);
     },
-    [removeThreat, updateScore]
+    [removeThreat, updateScore],
   );
 
   const generateSwarm = useCallback(() => {
-    clearSwarmTimeouts();
+    clearTimeouts();
     for (let i = 0; i < 8; i++) {
-      const timeoutId = setTimeout(() => spawnNewThreat("swarm"), i * 150);
-      swarmTimeouts.current.push(timeoutId);
+      addTimeout(() => spawnNewThreat("swarm"), i * 150);
     }
-  }, [clearSwarmTimeouts, spawnNewThreat]);
+  }, [clearTimeouts, addTimeout, spawnNewThreat]);
 
-  const spawnMultipleDrones = useCallback((count: number) => {
-    if (!gameRef.current) return;
+  const spawnMultipleDrones = useCallback(
+    (count: number) => {
+      if (!gameRef.current) return;
 
-    const boundingRect = gameRef.current?.getBoundingClientRect();
-    if (!boundingRect) return;
+      const boundingRect = gameRef.current?.getBoundingClientRect();
+      if (!boundingRect) return;
 
-    const drones = Array.from(
-      { length: count },
-      () => spawnThreat("drone", boundingRect)
-    );
+      const drones = Array.from({ length: count }, () =>
+        spawnThreat("drone", boundingRect),
+      );
 
-    drones.forEach((drone) => addThreat(drone));
-  }, [addThreat]);
+      drones.forEach((drone) => addThreat(drone));
+    },
+    [addThreat],
+  );
 
   const resetGame = useCallback(() => {
-    clearSwarmTimeouts();
+    clearTimeouts();
     resetGameState();
-  }, [clearSwarmTimeouts, resetGameState]);
+  }, [clearTimeouts, resetGameState]);
 
   useEffect(() => {
     if (!gameState.isRunning) return;
@@ -104,7 +101,12 @@ export const ThreatSimulator: React.FC = (): JSX.Element => {
     }, 50);
 
     return () => clearInterval(interval);
-  }, [gameState.isRunning, gameState.threats.length, moveAllThreats, spawnNewThreat]);
+  }, [
+    gameState.isRunning,
+    gameState.threats.length,
+    moveAllThreats,
+    spawnNewThreat,
+  ]);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -117,8 +119,8 @@ export const ThreatSimulator: React.FC = (): JSX.Element => {
   }, [spawnNewThreat]);
 
   useEffect(() => {
-    return () => clearSwarmTimeouts();
-  }, [clearSwarmTimeouts]);
+    return () => clearTimeouts();
+  }, [clearTimeouts]);
 
   const getThreatAppearance = (type: string) => {
     switch (type) {
@@ -176,14 +178,15 @@ export const ThreatSimulator: React.FC = (): JSX.Element => {
                 <div
                   className={styles.healthFill}
                   style={{
-                    width: `${(threat.health /
-                      (threat.type === "stealth"
-                        ? 3
-                        : threat.type === "swarm"
-                        ? 2
-                        : 1)) *
+                    width: `${
+                      (threat.health /
+                        (threat.type === "stealth"
+                          ? 3
+                          : threat.type === "swarm"
+                            ? 2
+                            : 1)) *
                       100
-                      }%`,
+                    }%`,
                   }}
                 />
               </div>

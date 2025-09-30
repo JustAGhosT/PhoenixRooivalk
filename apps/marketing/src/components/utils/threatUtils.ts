@@ -5,7 +5,7 @@ import { Threat } from "./threatTypes";
 // Function to move threats toward a specified target position
 export const moveThreats = (
   threats: Threat[],
-  target: { x: number; y: number }
+  target: { x: number; y: number },
 ): Threat[] => {
   return threats.map((threat) => {
     const dx = target.x - threat.x;
@@ -30,9 +30,13 @@ export const moveThreats = (
 // Function to spawn a single threat
 export const spawnThreat = (
   threatType: "drone" | "swarm" | "stealth",
-  boundingRect: DOMRect
+  boundingRect: DOMRect,
 ): Threat => {
-  const types: ("drone" | "swarm" | "stealth")[] = ["drone", "swarm", "stealth"];
+  const types: ("drone" | "swarm" | "stealth")[] = [
+    "drone",
+    "swarm",
+    "stealth",
+  ];
   const type = threatType || types[Math.floor(Math.random() * types.length)];
 
   return {
