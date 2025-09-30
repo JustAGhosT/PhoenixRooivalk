@@ -199,7 +199,7 @@ export const ThreatSimulator: React.FC = (): JSX.Element => {
           return (
             <button
               key={threat.id}
-              className={`${styles.threat}`}
+              className={`${styles.threat} ${styles.threatPosition}`}
               style={{
                 left: `${threat.x}px`,
                 top: `${threat.y}px`,
@@ -209,12 +209,19 @@ export const ThreatSimulator: React.FC = (): JSX.Element => {
                 e.stopPropagation();
                 neutralizeThreat(threat.id);
               }}
-              aria-label={`${threat.type} threat`}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  neutralizeThreat(threat.id);
+                }
+              }}
+              aria-label={`${threat.type} threat with ${threat.health} health`}
             >
               <div>{appearance.emoji}</div>
               <div className={styles.healthBar}>
                 <div
-                  className={styles.healthFill}
+                  className={`${styles.healthFill} ${styles.healthBarWidth}`}
                   style={{
                     width: `${
                       (threat.health /
