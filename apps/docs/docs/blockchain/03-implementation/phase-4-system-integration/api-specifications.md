@@ -1804,13 +1804,11 @@ All WebSocket connections use TLS encryption for secure real-time data
 transmission:
 
 - **Events Stream**: `wss://api.phoenixrooivalk.mil/events`
-
   - Real-time threat detection events
   - System status updates
   - Engagement notifications
 
 - **Status Monitoring**: `wss://api.phoenixrooivalk.mil/status`
-
   - Node health monitoring
   - Performance metrics
   - Network connectivity status

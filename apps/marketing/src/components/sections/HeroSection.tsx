@@ -28,16 +28,20 @@ export const HeroSection: React.FC = () => {
               Even When Communications Are Jammed
             </span>
           </h1>
-
-          {/* Value proposition for different audiences */}
-          <div className="mt-6 p-6 bg-gradient-to-r from-[rgba(var(--primary),0.1)] to-[rgba(var(--secondary),0.1)] rounded-xl border border-[rgba(var(--primary),0.2)] animate-fadeInUp [animation-delay:200ms]">
-            <p className="text-lg font-semibold text-[rgb(var(--primary))] mb-3">
-              Mission-Critical Defense Solution
+          <p className="mt-6 text-xl text-[rgb(var(--gray))] animate-fadeInUp [animation-delay:200ms]">
+            Phoenix Rooivalk detects and stops hostile drones in 120-195ms even
+            when all communications are jammed. Makes "soft-kill first"
+            decisions at the edge without waiting for the cloud or command
+            center.
+          </p>
+          <div className="mt-4 p-4 bg-gradient-to-r from-[rgba(var(--primary),0.1)] to-[rgba(var(--secondary),0.1)] rounded-lg border border-[rgba(var(--primary),0.2)]">
+            <p className="text-[rgb(var(--primary))] font-semibold mb-2">
+              Why This Matters:
             </p>
-            <p className="text-[rgb(var(--gray))] mb-4">
-              Phoenix Rooivalk provides autonomous counter-drone defense that
-              operates independently of network infrastructure, delivering 250x
-              faster response than traditional systems.
+            <p className="text-sm text-[rgb(var(--gray))]">
+              Traditional systems fail when enemies jam communications (3-10
+              second response). Phoenix works 100% without network - 250x faster
+              response when it counts most.
             </p>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
               <div className="text-center">

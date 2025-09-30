@@ -14,6 +14,7 @@ The technical architecture is designed to provide:
 ## Key Components
 
 ### Blockchain Protocols
+
 - [Level-0 Architecture](blockchain-protocols/level-0-architecture.md)
 - [Solana POC](blockchain-protocols/solana-poc.md)
 - [Protocol Comparison](blockchain-protocols/protocol-comparison.md)
@@ -21,6 +22,7 @@ The technical architecture is designed to provide:
 - [Polkadot Integration](blockchain-protocols/polkadot-integration.md)
 
 ### System Architecture
+
 - [Blockchain Architecture](blockchain-architecture.md)
 - [Hybrid Architecture](hybrid-architecture.md)
 - [Performance Metrics](performance-metrics.md)
