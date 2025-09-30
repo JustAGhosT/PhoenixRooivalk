@@ -247,8 +247,14 @@ class PhoenixRooivalkClient extends EventEmitter {
       throw new Error("Must authenticate before starting monitoring");
     }
 
-    const wsProtocol = `bearer-token-${this.accessToken}`;
-    this.ws = new WebSocket(wsUrl, [wsProtocol]);
+    this.ws = new WebSocket(
+      wsUrl,
+      undefined,
+      {
+        headers: { Authorization: `Bearer ${this.accessToken}` },
+        perMessageDeflate: false,
+      },
+    );
 
     this.ws.on("open", () => this.emit("monitoring_started"));
 
@@ -307,6 +313,7 @@ const Web3 = require("web3");
 class SmartContractClient {
   constructor(rpcUrl, privateKey, contractAddresses) {
     this.web3 = new Web3(rpcUrl);
+    if (!privateKey) throw new Error("Missing private key");
     this.account = this.web3.eth.accounts.privateKeyToAccount(privateKey);
     this.web3.eth.accounts.wallet.add(this.account);
 
@@ -372,11 +379,11 @@ class SmartContractClient {
   }
 }
 
-// Example usage
+// Example usage (load from environment or keystore)
 const contractClient = new SmartContractClient(
-  "https://rpc.phoenixrooivalk.mil",
-  "0x1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef",
-  { evidence: "0x1234567890abcdef1234567890abcdef12345678" },
+  process.env.PHOENIX_RPC_URL,
+  process.env.PRIVATE_KEY,
+  { evidence: process.env.EVIDENCE_CONTRACT },
 );
 
 async function logDetection() {

@@ -137,7 +137,6 @@ spec:
               valueFrom:
                 fieldRef:
                   fieldPath: metadata.name
-            # App should parse ordinal from POD_NAME (e.g., blockchain-validator-2) to derive VALIDATOR_INDEX
             - name: NETWORK_ID
               value: "phoenix-mainnet"
             - name: GENESIS_CONFIG
@@ -608,22 +607,20 @@ data:
 
 ```yaml
 # monitoring/alertmanager.yaml
-# Note: Store complete alertmanager.yml in Secret to avoid env var placeholders
+# Note: Use stringData for human-readable content in examples. Kubernetes will handle base64 encoding.
 apiVersion: v1
 kind: Secret
 metadata:
   name: alertmanager-config
   namespace: monitoring
 type: Opaque
-data:
+stringData:
   alertmanager.yml: |
-    # Base64 encode the complete config with real values, not placeholders
-    # Example structure (encode actual config):
     global:
       smtp_smarthost: 'smtp.example.com:587'
       smtp_from: 'alerts@phoenix-rooivalk.com'
       smtp_auth_username: 'alerts@phoenix-rooivalk.com'
-      smtp_auth_password: 'REAL_SMTP_PASSWORD_HERE'
+      smtp_auth_password: 'REDACTED_FROM_SECRET'
       smtp_require_tls: true
 
     route:
@@ -656,17 +653,17 @@ data:
       - to: 'critical-ops@phoenix-rooivalk.com'
         subject: 'CRITICAL: Phoenix Rooivalk Alert'
       slack_configs:
-      - api_url: 'https://hooks.slack.com/services/REAL/WEBHOOK/URL'
+      - api_url: 'https://hooks.slack.com/services/REDACTED'
         channel: '#critical-alerts'
         title: 'Critical Alert: {{ .GroupLabels.alertname }}'
         text: '{{ range .Alerts }}{{ .Annotations.description }}{{ end }}'
       pagerduty_configs:
-      - service_key: 'REAL_PAGERDUTY_SERVICE_KEY'
+      - service_key: 'REDACTED'
         description: '{{ .GroupLabels.alertname }}: {{ .GroupLabels.instance }}'
 
     - name: 'warning-alerts'
       slack_configs:
-      - api_url: 'https://hooks.slack.com/services/REAL/WEBHOOK/URL'
+      - api_url: 'https://hooks.slack.com/services/REDACTED'
         channel: '#alerts'
         title: 'Warning: {{ .GroupLabels.alertname }}'
 

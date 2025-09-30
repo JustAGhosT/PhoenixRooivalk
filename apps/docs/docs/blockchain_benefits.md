@@ -54,9 +54,12 @@ contracts reduces human error and enables rapid response to emerging threats.
 
 ### 4. Regulatory Compliance and Auditability
 
-**FAA Part 108 Compliance**: Blockchain-verifiable cybersecurity meets
-regulatory mandates for BVLOS operations, providing competitive advantage in
-compliance-driven markets.
+**Alignment with proposed FAA Part 108 (NPRM, Aug 7, 2025)**: The FAA has issued
+Part 108 as a Notice of Proposed Rulemaking, not a final rule. Our
+blockchain-verifiable cybersecurity controls are designed to align with the
+proposed requirements for BVLOS and UAS security. Final compliance will depend
+on the published rule; we will update controls and validation accordingly upon
+finalization.
 
 **NATO Certification Ready**: Architecture designed for NATO's $1T+
 cybersecurity investment, enabling international market access through single
@@ -72,7 +75,7 @@ security.
 
 **Hybrid Blockchain Design**:
 
-- **Hyperledger Fabric v3.0**: Primary chain for enterprise-grade permissioned
+- **Hyperledger Fabric v3.1.1 with Raft ordering (SmartBFT available for BFT use cases)**: Primary chain for enterprise-grade permissioned
   operations
 - **Polkadot Parachain**: Cross-chain interoperability and scalability
 - **Solana Integration**: High-performance processing for time-critical
@@ -81,7 +84,7 @@ security.
 
 **Performance Metrics**:
 
-- **Throughput**: 3,500+ TPS with SmartBFT consensus
+- **Throughput**: 3,500+ TPS with Raft ordering (SmartBFT available for BFT use cases)
 - **Latency**: < 1 second finality for mission-critical operations
 - **Scalability**: 100,000+ participants proven in production
 - **Availability**: 99.9% uptime with distributed architecture

@@ -3,7 +3,7 @@
 ## Document Context
 
 - **Location**:
-  `03-implementation/phase-4-system-integration/api-requirements.md`
+  `03-implementation/phase-4-system-integration/api-specifications.md`
 - **Related Documents**:
   - [Vendor Adapters](./vendor-adapters.md) - System integration framework
   - [Correlation Engine](../phase-2-data-management/correlation-engine.md) -
@@ -298,7 +298,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/DetectionDetail"
+                $ref: "#/components/schemas/Detection"
         "404":
           $ref: "#/components/responses/NotFound"
 
@@ -1804,17 +1804,17 @@ for military operations.
 
 All WebSocket connections use TLS encryption for secure real-time data transmission:
 
-- **Events Stream**: `wss://api.phoenixrooivalk.com/events`
+- **Events Stream**: `wss://api.phoenixrooivalk.mil/events`
   - Real-time threat detection events
   - System status updates
   - Engagement notifications
 
-- **Status Monitoring**: `wss://api.phoenixrooivalk.com/status`
+- **Status Monitoring**: `wss://api.phoenixrooivalk.mil/status`
   - Node health monitoring
   - Performance metrics
   - Network connectivity status
 
-- **Alert System**: `wss://api.phoenixrooivalk.com/alerts`
+- **Alert System**: `wss://api.phoenixrooivalk.mil/alerts`
   - Critical system alerts
   - Security notifications
   - Operational warnings
@@ -1827,7 +1827,7 @@ All WebSocket connections use TLS encryption for secure real-time data transmiss
 
 **Connection Example:**
 ```javascript
-const ws = new WebSocket('wss://api.phoenixrooivalk.com/events', {
+const ws = new WebSocket('wss://api.phoenixrooivalk.mil/events', {
   headers: {
     'Authorization': 'Bearer <JWT_TOKEN>'
   }
