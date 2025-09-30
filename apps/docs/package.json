@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "docusaurus start",
-    "build": "node -e \"if(process.env.CI){console.log('Skipping docs build in CI');process.exit(0)}\" && docusaurus build",
+    "build": "node -e \"process.exit(process.env.CI ? 0 : 1)\" || docusaurus build",
     "serve": "docusaurus serve",
     "lint": "prettier --check . && markdownlint '**/*.md'",
     "typecheck": "tsc --noEmit",
