@@ -26,13 +26,20 @@ export const InteractiveElementsSection: React.FC = () => {
     const annualThreats = threatFrequency * 12;
 
     // Apply sensitivity multipliers
-    const sensitivityMultipliers = {
-      conservative: { phoenix: 0.7, traditional: 0.9, incidentCost: 300000 },
-      median: { phoenix: 0.85, traditional: 0.75, incidentCost: 500000 },
-      aggressive: { phoenix: 0.95, traditional: 0.6, incidentCost: 750000 },
+    const getSensitivityMultipliers = (sensitivity: string) => {
+      switch (sensitivity) {
+        case "conservative":
+          return { phoenix: 0.7, traditional: 0.9, incidentCost: 300000 };
+        case "median":
+          return { phoenix: 0.85, traditional: 0.75, incidentCost: 500000 };
+        case "aggressive":
+          return { phoenix: 0.95, traditional: 0.6, incidentCost: 750000 };
+        default:
+          return { phoenix: 0.7, traditional: 0.9, incidentCost: 300000 };
+      }
     };
 
-    const multiplier = sensitivityMultipliers[sensitivity];
+    const multiplier = getSensitivityMultipliers(sensitivity);
 
     // Calculate success rates based on response time and sensitivity
     const phoenixSuccessRate =

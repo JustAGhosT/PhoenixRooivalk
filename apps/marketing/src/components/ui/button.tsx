@@ -81,7 +81,7 @@ export const Button: React.FC<ButtonProps> = ({
             event.stopPropagation();
             return;
           }
-          onClick?.(event as any);
+          onClick?.(event as React.MouseEventHandler<HTMLAnchorElement>);
         }}
         className={classes}
       >
