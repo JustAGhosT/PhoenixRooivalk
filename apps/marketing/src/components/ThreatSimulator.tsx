@@ -179,7 +179,7 @@ export const ThreatSimulator: React.FC = (): JSX.Element => {
             <button
               key={threat.id}
               className={`${styles.threat} ${styles.threatPosition}`}
-              /* webhint-disable no-inline-styles */
+              /* eslint-disable react/forbid-dom-props */
               style={
                 {
                   "--threat-x": `${threat.x}px`,
@@ -204,7 +204,7 @@ export const ThreatSimulator: React.FC = (): JSX.Element => {
               <div className={styles.healthBar}>
                 <div
                   className={`${styles.healthFill} ${styles.healthBarWidth}`}
-                  /* webhint-disable no-inline-styles */
+                  /* eslint-disable react/forbid-dom-props */
                   style={
                     {
                       "--health-width": `${
