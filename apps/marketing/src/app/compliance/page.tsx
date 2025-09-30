@@ -22,7 +22,7 @@ export default function CompliancePage(): React.ReactElement {
               Compliance & Assurance Roadmap
             </h1>
             <p className="text-[var(--gray)] mt-4 max-w-3xl mx-auto">
-              Planning compliance framework for defense technology development. 
+              Planning compliance framework for defense technology development.
               All standards listed as targets, not current certifications.
             </p>
           </div>
