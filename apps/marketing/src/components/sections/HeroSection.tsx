@@ -13,10 +13,13 @@ export const HeroSection: React.FC = () => {
         <div>
           {/* Development status indicators */}
           <div className="mb-6 flex flex-wrap gap-3">
-            <span className="inline-block bg-gradient-to-r from-[rgb(var(--primary))] to-[rgb(var(--secondary))] text-white px-4 py-2 rounded-full text-sm font-bold shadow-lg shadow-[rgba(var(--primary),0.3)]">
-              Concept Phase • Seeking Design Partners
+            <span className="pill pill--concept">
+              Concept Phase
             </span>
-            <span className="inline-block bg-[rgba(var(--status-warning),0.2)] text-[rgb(var(--status-warning))] px-4 py-2 rounded-full text-sm font-semibold border border-[rgba(var(--status-warning),0.3)]">
+            <span className="pill pill--partners">
+              Seeking Design Partners
+            </span>
+            <span className="pill pill--sbir">
               Open to SBIR Collaboration
             </span>
           </div>
