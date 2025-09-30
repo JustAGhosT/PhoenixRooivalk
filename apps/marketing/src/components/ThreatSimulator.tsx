@@ -133,7 +133,7 @@ export const ThreatSimulator: React.FC = (): JSX.Element => {
   };
 
   return (
-      <div className="relative w-full h-[600px] bg-gradient-to-br from-slate-900 via-slate-950 to-slate-900 rounded-xl border border-blue-600/20 overflow-hidden shadow-2xl">
+    <div className="relative w-full h-[600px] bg-gradient-to-br from-slate-900 via-slate-950 to-slate-900 rounded-xl border border-blue-600/20 overflow-hidden shadow-2xl">
       {/* Technical grid background */}
       <div className={styles.technicalGrid}></div>
 
