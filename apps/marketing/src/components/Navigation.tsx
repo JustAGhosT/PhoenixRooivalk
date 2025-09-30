@@ -47,8 +47,8 @@ export const Navigation: React.FC = () => {
   };
 
   return (
-        <nav className="sticky top-0 z-50 bg-[var(--bg-primary)] border-b border-[var(--border)] px-6 py-4">
-          <div className="container flex items-center justify-between">
+    <nav className="sticky top-0 z-50 bg-[var(--bg-primary)] border-b border-[var(--border)] px-6 py-4">
+      <div className="container flex items-center justify-between">
         {/* Logo */}
         <Link href="/" className="flex items-center space-x-4 group">
           <div className="relative">
@@ -120,10 +120,7 @@ export const Navigation: React.FC = () => {
           </button>
 
           {/* Single CTA Button */}
-          <Link
-            href="/contact"
-            className="btn btn--primary"
-          >
+          <Link href="/contact" className="btn btn--primary">
             Join Early Access
           </Link>
         </div>

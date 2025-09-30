@@ -4,53 +4,53 @@
 
 :root {
   /* Improved Color System - High Contrast */
-  
+
   /* Text Colors - WCAG AA Compliant */
-  --text-primary: #f2f4f6;      /* High contrast white */
-  --text-secondary: #e2e6ea;    /* Body text - 11:1 contrast */
-  --text-muted: #94a3b8;        /* Muted text */
-  --text-accent: #f97316;       /* Orange for highlights only */
-  
+  --text-primary: #f2f4f6; /* High contrast white */
+  --text-secondary: #e2e6ea; /* Body text - 11:1 contrast */
+  --text-muted: #94a3b8; /* Muted text */
+  --text-accent: #f97316; /* Orange for highlights only */
+
   /* Background Colors */
-  --bg-primary: #0f172a;        /* Deep slate */
-  --bg-secondary: #1e293b;      /* Slate */
-  --bg-tertiary: #334155;       /* Light slate */
-  --bg-surface: #1e293b;        /* Card backgrounds */
-  --bg-elevated: #334155;       /* Elevated surfaces */
-  
+  --bg-primary: #0f172a; /* Deep slate */
+  --bg-secondary: #1e293b; /* Slate */
+  --bg-tertiary: #334155; /* Light slate */
+  --bg-surface: #1e293b; /* Card backgrounds */
+  --bg-elevated: #334155; /* Elevated surfaces */
+
   /* Border Colors */
-  --border: #28313b;            /* Subtle borders */
-  --border-accent: #f97316;     /* Orange borders for actions */
-  --border-muted: #475569;      /* Muted borders */
-  
+  --border: #28313b; /* Subtle borders */
+  --border-accent: #f97316; /* Orange borders for actions */
+  --border-muted: #475569; /* Muted borders */
+
   /* Action Colors */
-  --action-primary: #f97316;    /* Orange for primary actions */
-  --action-secondary: #64748b;  /* Neutral for secondary */
-  --action-success: #22c55e;    /* Green for success states */
-  --action-warning: #f59e0b;    /* Amber for warnings */
-  --action-danger: #ef4444;     /* Red for critical states */
-  
+  --action-primary: #f97316; /* Orange for primary actions */
+  --action-secondary: #64748b; /* Neutral for secondary */
+  --action-success: #22c55e; /* Green for success states */
+  --action-warning: #f59e0b; /* Amber for warnings */
+  --action-danger: #ef4444; /* Red for critical states */
+
   /* Legacy compatibility */
-  --primary: 249, 115, 22;      /* Orange */
-  --secondary: 51, 65, 85;      /* Slate */
-  --accent: 251, 146, 60;       /* Light orange */
-  --dark: 15, 23, 42;           /* Deep slate */
-  --darker: 2, 6, 23;           /* Darker slate */
-  --light: 242, 244, 246;       /* Light text */
-  --gray: 148, 163, 184;        /* Gray */
-  --steel: 203, 213, 225;       /* Steel */
-  --orange: 249, 115, 22;       /* Orange */
-  
+  --primary: 249, 115, 22; /* Orange */
+  --secondary: 51, 65, 85; /* Slate */
+  --accent: 251, 146, 60; /* Light orange */
+  --dark: 15, 23, 42; /* Deep slate */
+  --darker: 2, 6, 23; /* Darker slate */
+  --light: 242, 244, 246; /* Light text */
+  --gray: 148, 163, 184; /* Gray */
+  --steel: 203, 213, 225; /* Steel */
+  --orange: 249, 115, 22; /* Orange */
+
   /* 8-pt Spacing Scale */
-  --space-1: 0.25rem;   /* 4px */
-  --space-2: 0.5rem;    /* 8px */
-  --space-3: 0.75rem;   /* 12px */
-  --space-4: 1rem;      /* 16px */
-  --space-6: 1.5rem;    /* 24px */
-  --space-8: 2rem;      /* 32px */
-  --space-12: 3rem;     /* 48px */
-  --space-16: 4rem;     /* 64px */
-  
+  --space-1: 0.25rem; /* 4px */
+  --space-2: 0.5rem; /* 8px */
+  --space-3: 0.75rem; /* 12px */
+  --space-4: 1rem; /* 16px */
+  --space-6: 1.5rem; /* 24px */
+  --space-8: 2rem; /* 32px */
+  --space-12: 3rem; /* 48px */
+  --space-16: 4rem; /* 64px */
+
   /* Typography Scale - Fluid */
   --text-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
   --text-sm: clamp(0.875rem, 0.8rem + 0.375vw, 1rem);
@@ -60,16 +60,16 @@
   --text-2xl: clamp(1.5rem, 1.3rem + 1vw, 1.875rem);
   --text-3xl: clamp(1.875rem, 1.6rem + 1.375vw, 2.25rem);
   --text-4xl: clamp(2.25rem, 1.9rem + 1.75vw, 3rem);
-  
+
   /* Motion & Accessibility */
   --ease: cubic-bezier(0.4, 0, 0.2, 1);
   --duration-fast: 150ms;
   --duration-normal: 180ms;
   --duration-slow: 300ms;
-  
+
   /* Focus & Accessibility */
   --focus: 0 0 0 2px rgba(249, 115, 22, 0.5);
-  
+
   /* Reduced Motion Support */
   --motion-reduce: 0;
   --motion-safe: 1;
@@ -85,23 +85,46 @@
 body {
   background: var(--bg-primary);
   color: var(--text-secondary);
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-family:
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    sans-serif;
   line-height: 1.6;
 }
 
 /* Typography Hierarchy */
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   color: var(--text-primary);
   font-weight: 700;
   line-height: 1.2;
 }
 
-h1 { font-size: var(--text-4xl); }
-h2 { font-size: var(--text-3xl); }
-h3 { font-size: var(--text-2xl); }
-h4 { font-size: var(--text-xl); }
-h5 { font-size: var(--text-lg); }
-h6 { font-size: var(--text-base); }
+h1 {
+  font-size: var(--text-4xl);
+}
+h2 {
+  font-size: var(--text-3xl);
+}
+h3 {
+  font-size: var(--text-2xl);
+}
+h4 {
+  font-size: var(--text-xl);
+}
+h5 {
+  font-size: var(--text-lg);
+}
+h6 {
+  font-size: var(--text-base);
+}
 
 /* Button System - Three Tiers */
 .btn {
@@ -304,11 +327,11 @@ h6 { font-size: var(--text-base); }
     transition: opacity var(--duration-normal) var(--ease);
     transform: none;
   }
-  
+
   .btn:hover {
     transform: none;
   }
-  
+
   .card:hover {
     transform: none;
   }

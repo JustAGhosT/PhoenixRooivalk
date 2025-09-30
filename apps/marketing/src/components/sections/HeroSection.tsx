@@ -13,15 +13,9 @@ export const HeroSection: React.FC = () => {
         <div>
           {/* Development status indicators */}
           <div className="mb-6 flex flex-wrap gap-3">
-            <span className="pill pill--concept">
-              Concept Phase
-            </span>
-            <span className="pill pill--partners">
-              Seeking Design Partners
-            </span>
-            <span className="pill pill--sbir">
-              Open to SBIR Collaboration
-            </span>
+            <span className="pill pill--concept">Concept Phase</span>
+            <span className="pill pill--partners">Seeking Design Partners</span>
+            <span className="pill pill--sbir">Open to SBIR Collaboration</span>
           </div>
 
           {/* Vision-focused headline */}
@@ -86,41 +80,21 @@ export const HeroSection: React.FC = () => {
           {/* Enhanced CTAs with specific value propositions */}
           <div className="mt-8 space-y-4 animate-fadeInUp [animation-delay:400ms]">
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button
-                href="/interactive-demo"
-                size="lg"
-                variant="primary"
-              >
+              <Button href="/interactive-demo" size="lg" variant="primary">
                 Try the Simulation (Concept UI)
               </Button>
-              <Button
-                href="/contact"
-                variant="secondary"
-                size="lg"
-              >
+              <Button href="/contact" variant="secondary" size="lg">
                 Join Early Access
               </Button>
             </div>
             <div className="flex flex-wrap gap-4 text-sm">
-              <Button
-                href="/technical"
-                variant="ghost"
-                size="sm"
-              >
+              <Button href="/technical" variant="ghost" size="sm">
                 Technical Specifications →
               </Button>
-              <Button
-                href="/financial"
-                variant="ghost"
-                size="sm"
-              >
+              <Button href="/financial" variant="ghost" size="sm">
                 ROI Calculator →
               </Button>
-              <Button
-                href="/compliance"
-                variant="ghost"
-                size="sm"
-              >
+              <Button href="/compliance" variant="ghost" size="sm">
                 Compliance & Certifications →
               </Button>
             </div>
@@ -142,8 +116,9 @@ export const HeroSection: React.FC = () => {
             {/* Simulation Disclaimer - Always Visible */}
             <div className="mt-4 p-3 bg-[var(--action-warning)]/10 border border-[var(--action-warning)]/20 rounded-lg">
               <p className="text-xs text-[var(--action-warning)] text-center font-semibold">
-                ⚠️ This simulation visualizes potential behaviors for illustrative purposes. 
-                Performance, accuracy, and ranges are unvalidated.
+                ⚠️ This simulation visualizes potential behaviors for
+                illustrative purposes. Performance, accuracy, and ranges are
+                unvalidated.
               </p>
             </div>
           </div>

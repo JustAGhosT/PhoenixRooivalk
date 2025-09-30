@@ -10,7 +10,9 @@ export const InteractiveElementsSection: React.FC = () => {
     personnelCost: 150000, // USD per year
   });
 
-  const [sensitivity, setSensitivity] = useState<'conservative' | 'median' | 'aggressive'>('conservative');
+  const [sensitivity, setSensitivity] = useState<
+    "conservative" | "median" | "aggressive"
+  >("conservative");
 
   const calculateROI = () => {
     const {
@@ -33,8 +35,10 @@ export const InteractiveElementsSection: React.FC = () => {
     const multiplier = sensitivityMultipliers[sensitivity];
 
     // Calculate success rates based on response time and sensitivity
-    const phoenixSuccessRate = (averageResponseTime <= 120 ? 0.95 : 0.85) * multiplier.phoenix;
-    const traditionalSuccessRate = (averageResponseTime <= 3000 ? 0.65 : 0.45) * multiplier.traditional;
+    const phoenixSuccessRate =
+      (averageResponseTime <= 120 ? 0.95 : 0.85) * multiplier.phoenix;
+    const traditionalSuccessRate =
+      (averageResponseTime <= 3000 ? 0.65 : 0.45) * multiplier.traditional;
 
     // Calculate prevented incidents
     const phoenixPrevented = annualThreats * phoenixSuccessRate;
@@ -115,20 +119,25 @@ export const InteractiveElementsSection: React.FC = () => {
                     Analysis Sensitivity (Default: Conservative)
                   </label>
                   <div className="flex gap-2">
-                    {(['conservative', 'median', 'aggressive'] as const).map((option) => (
-                      <button
-                        key={option}
-                        onClick={() => setSensitivity(option)}
-                        className={`btn ${
-                          sensitivity === option ? 'btn--primary' : 'btn--secondary'
-                        } text-sm capitalize`}
-                      >
-                        {option}
-                      </button>
-                    ))}
+                    {(["conservative", "median", "aggressive"] as const).map(
+                      (option) => (
+                        <button
+                          key={option}
+                          onClick={() => setSensitivity(option)}
+                          className={`btn ${
+                            sensitivity === option
+                              ? "btn--primary"
+                              : "btn--secondary"
+                          } text-sm capitalize`}
+                        >
+                          {option}
+                        </button>
+                      ),
+                    )}
                   </div>
                   <p className="text-xs text-[var(--text-muted)] mt-2">
-                    Conservative uses lower success rates and incident costs for realistic projections.
+                    Conservative uses lower success rates and incident costs for
+                    realistic projections.
                   </p>
                 </div>
                 <div>
@@ -150,7 +159,7 @@ export const InteractiveElementsSection: React.FC = () => {
                         threatFrequency: parseInt(e.target.value),
                       }))
                     }
-                    className="w-full h-2 bg-[rgb(var(--tactical-gray))] rounded-lg appearance-none cursor-pointer slider"
+                    className="range w-full"
                   />
                   <div className="flex justify-between text-[rgb(var(--gray))] text-sm mt-1">
                     <span>1</span>
@@ -181,7 +190,7 @@ export const InteractiveElementsSection: React.FC = () => {
                         averageResponseTime: parseInt(e.target.value),
                       }))
                     }
-                    className="w-full h-2 bg-[rgb(var(--tactical-gray))] rounded-lg appearance-none cursor-pointer slider"
+                    className="range w-full"
                   />
                   <div className="flex justify-between text-[rgb(var(--gray))] text-sm mt-1">
                     <span>1s</span>
@@ -212,7 +221,7 @@ export const InteractiveElementsSection: React.FC = () => {
                         deploymentCost: parseInt(e.target.value),
                       }))
                     }
-                    className="w-full h-2 bg-[rgb(var(--tactical-gray))] rounded-lg appearance-none cursor-pointer slider"
+                    className="range w-full"
                   />
                   <div className="flex justify-between text-[rgb(var(--gray))] text-sm mt-1">
                     <span>$100K</span>
