@@ -41,8 +41,8 @@ Adopt Solana as the initial pilot chain for anchoring evidence digests.
 
 ## Links
 
-- Implementation: [solana_anchor.py](../../backend/services/solana_anchor.py),
-  [blockchain_handler.py](../../backend/services/blockchain_handler.py)
+- Implementation: [Solana Anchor](../blockchain/03-implementation/phase-1-authentication/implementation-code.md),
+  [Blockchain Handler](../blockchain/03-implementation/phase-4-system-integration/api-specifications.md#blockchain-integration)
 - Operations:
   [Solana on-chain anchoring pilot](../blockchain_integration.md#solana-on-chain-anchoring-pilot)
 

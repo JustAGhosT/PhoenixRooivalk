@@ -6,7 +6,7 @@
   `03-implementation/phase-4-system-integration/api-specifications.md`
 - **Related Documents**:
   - [Vendor Adapters](./vendor-adapters.md) - System integration framework
-  - [Correlation Engine](../phase-2-data-management/correlation-engine.md) -
+  - [Correlation Engine](../phase-2-data-logging/tamper-resistant-design.md) -
     Multi-source data fusion
   - [System Requirements](../../02-technical-architecture/system-requirements.md) -
     Performance specifications
@@ -1842,7 +1842,7 @@ const ws = new WebSocket("wss://api.phoenixrooivalk.mil/events", {
 **Related Documents:**
 
 - [Vendor Adapters](./vendor-adapters.md) - System integration framework
-- [Correlation Engine](../phase-2-data-management/correlation-engine.md) -
+- [Correlation Engine](../phase-2-data-logging/tamper-resistant-design.md) -
   Multi-source data fusion
 - [System Requirements](../../02-technical-architecture/system-requirements.md) -
   Performance specifications

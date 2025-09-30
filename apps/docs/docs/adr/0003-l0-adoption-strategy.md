@@ -39,4 +39,4 @@ than critical functionality.
 ## Implementation
 
 See
-[Level-0 Architecture Guide](../02-technical-architecture/level-0-architecture.md)
+[Level-0 Architecture Guide](../blockchain/02-technical-architecture/blockchain-protocols/level-0-architecture.md)

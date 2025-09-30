@@ -7,7 +7,7 @@
 - **Related Documents**:
   - [Vendor Adapters](../phase-4-system-integration/vendor-adapters.md) - System
     integration framework
-  - [API Specifications](../phase-1-core-blockchain/api-specifications.md) -
+  - [API Specifications](../phase-1-authentication/implementation-code.md) -
     Integration protocols
   - [System Requirements](../../02-technical-architecture/system-requirements.md) -
     Performance specifications
@@ -545,7 +545,7 @@ response.
 
 - [Vendor Adapters](../phase-4-system-integration/vendor-adapters.md) - System
   integration framework
-- [API Specifications](../phase-1-core-blockchain/api-specifications.md) -
+- [API Specifications](../phase-1-authentication/implementation-code.md) -
   Integration protocols
 - [System Requirements](../../02-technical-architecture/system-requirements.md) -
   Performance specifications

@@ -1,196 +1,302 @@
-# Deployment & Infrastructure
+# Deployment Guide
+
+This section provides comprehensive deployment guidance for the Phoenix Rooivalk blockchain integration system.
 
 ## Overview
 
-This section provides comprehensive deployment and infrastructure documentation
-for the Phoenix Rooivalk blockchain-based counter-drone system. The deployment
-framework supports automated provisioning, zero-downtime deployments, and
-multi-environment orchestration with military-grade security and compliance.
+The deployment guide covers all aspects of deploying the blockchain integration system from development to production environments.
 
-## Deployment Documents
+## Deployment Architecture
 
-### Core Deployment Framework
+### Infrastructure Components
+- **Container Platform**: Kubernetes for container orchestration
+- **Cloud Services**: AWS, Azure, or GCP for cloud infrastructure
+- **Database**: PostgreSQL for data storage
+- **Message Queue**: Redis for message queuing
+- **Monitoring**: Prometheus and Grafana for monitoring
 
-- **[Deployment Guide](./deployment-guide.md)** - Complete deployment procedures
-  and automation
-- **[Production Checklist](./production-checklist.md)** - Pre-deployment
-  validation and readiness
-- **[CI/CD Pipeline](./ci-cd-pipeline.md)** - Automated deployment and
-  integration processes
+### Network Architecture
+- **Load Balancers**: Application load balancers for traffic distribution
+- **API Gateway**: API gateway for request routing and management
+- **Service Mesh**: Service mesh for service-to-service communication
+- **Firewall**: Network firewalls for security
 
-### Infrastructure Documentation
+## Deployment Environments
 
-- **[AWS Architecture](./infrastructure/aws-architecture.md)** - Cloud
-  infrastructure design and configuration
-- **[Kubernetes Manifests](./infrastructure/kubernetes-manifests.md)** -
-  Container orchestration configuration
-- **[Terraform Configurations](./infrastructure/terraform-configs.md)** -
-  Infrastructure as Code definitions
+### Development Environment
+- **Purpose**: Development and testing
+- **Infrastructure**: Local or cloud-based development environment
+- **Configuration**: Development-specific configuration
+- **Access**: Development team access
 
-## Deployment Strategy
+### Staging Environment
+- **Purpose**: Pre-production testing and validation
+- **Infrastructure**: Production-like infrastructure
+- **Configuration**: Production-like configuration
+- **Access**: Testing team and stakeholders
 
-### Multi-Environment Pipeline
+### Production Environment
+- **Purpose**: Live production system
+- **Infrastructure**: High-availability production infrastructure
+- **Configuration**: Production configuration with security hardening
+- **Access**: Restricted access with monitoring
 
-- **Development**: Continuous integration and feature development
-- **Staging**: Pre-production validation and integration testing
-- **Production**: Live operational system with blue-green deployment
-- **Disaster Recovery**: Geographic redundancy and failover capabilities
+## Deployment Strategies
 
-### Deployment Approach
+### Blue-Green Deployment
+- **Strategy**: Deploy to parallel environment and switch traffic
+- **Benefits**: Zero-downtime deployment and quick rollback
+- **Use Case**: Critical production deployments
+- **Process**: Deploy to green, test, switch traffic, decommission blue
 
-- **Blue-Green Deployment**: Zero-downtime production deployments
-- **Canary Releases**: Gradual rollout with risk mitigation
-- **Feature Flags**: Controlled feature activation and testing
-- **Automated Rollback**: Failure detection and automatic recovery
+### Canary Deployment
+- **Strategy**: Deploy to subset of users and gradually expand
+- **Benefits**: Risk reduction and gradual rollout
+- **Use Case**: Feature releases and updates
+- **Process**: Deploy to small percentage, monitor, gradually expand
 
-## Infrastructure Architecture
+### Rolling Deployment
+- **Strategy**: Deploy to subset of instances and gradually update all
+- **Benefits**: Continuous availability during deployment
+- **Use Case**: Regular updates and maintenance
+- **Process**: Update subset of instances, verify, continue with remaining
 
-### Cloud Infrastructure (AWS)
+## Infrastructure Setup
 
-- **Compute**: EKS clusters with auto-scaling node groups
-- **Storage**: EBS volumes with encryption and backup
-- **Networking**: VPC with private subnets and security groups
-- **Security**: IAM roles, KMS encryption, and WAF protection
-
-### Container Orchestration (Kubernetes)
-
-- **Cluster Management**: Multi-zone EKS clusters with HA control plane
-- **Workload Management**: Deployments, StatefulSets, and DaemonSets
-- **Service Mesh**: Istio for traffic management and security
-- **Monitoring**: Prometheus, Grafana, and distributed tracing
-
-### Blockchain Infrastructure
-
-- **Hyperledger Fabric**: Multi-peer network with orderer consensus
-- **Certificate Authority**: PKI infrastructure with automated rotation
-- **State Database**: CouchDB with replication and backup
-- **Channel Management**: Multi-channel configuration and governance
-
-## Deployment Automation
-
-### GitOps Workflow
-
+### Container Orchestration
 ```yaml
-gitops_pipeline:
-  source_control: "Git repository with infrastructure as code"
-  ci_pipeline: "Automated build, test, and security scanning"
-  cd_pipeline: "Automated deployment with validation"
-  monitoring: "Continuous monitoring and alerting"
-
-  deployment_stages:
-    1_build: "Code compilation and artifact creation"
-    2_test: "Automated testing and quality gates"
-    3_security: "Security scanning and compliance validation"
-    4_deploy: "Infrastructure provisioning and application deployment"
-    5_validate: "Health checks and performance validation"
+# Kubernetes deployment example
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: phoenix-rooivalk
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: phoenix-rooivalk
+  template:
+    metadata:
+      labels:
+        app: phoenix-rooivalk
+    spec:
+      containers:
+      - name: phoenix-rooivalk
+        image: phoenix-rooivalk:latest
+        ports:
+        - containerPort: 3000
+        env:
+        - name: DATABASE_URL
+          valueFrom:
+            secretKeyRef:
+              name: phoenix-secrets
+              key: database-url
 ```
 
-### Infrastructure as Code
+### Database Setup
+```sql
+-- PostgreSQL database setup
+CREATE DATABASE phoenix_rooivalk;
+CREATE USER phoenix_user WITH PASSWORD 'secure_password';
+GRANT ALL PRIVILEGES ON DATABASE phoenix_rooivalk TO phoenix_user;
 
-- **Terraform**: Cloud infrastructure provisioning and management
-- **Helm Charts**: Kubernetes application packaging and deployment
-- **Ansible**: Configuration management and automation
-- **GitOps**: Declarative infrastructure and application management
+-- Create tables
+CREATE TABLE users (
+    id SERIAL PRIMARY KEY,
+    username VARCHAR(255) UNIQUE NOT NULL,
+    email VARCHAR(255) UNIQUE NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
 
-## Security & Compliance
+CREATE TABLE transactions (
+    id SERIAL PRIMARY KEY,
+    user_id INTEGER REFERENCES users(id),
+    amount DECIMAL(10,2),
+    status VARCHAR(50),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+```
 
-### Security Controls
+### Monitoring Setup
+```yaml
+# Prometheus configuration
+global:
+  scrape_interval: 15s
 
-- **Network Security**: VPC isolation, security groups, and NACLs
-- **Data Encryption**: Encryption at rest and in transit
-- **Access Control**: IAM roles, RBAC, and service accounts
-- **Secrets Management**: AWS Secrets Manager and Kubernetes secrets
+scrape_configs:
+  - job_name: 'phoenix-rooivalk'
+    static_configs:
+      - targets: ['phoenix-rooivalk:3000']
+    metrics_path: '/metrics'
+    scrape_interval: 5s
+```
 
-### Compliance Framework
+## CI/CD Pipeline
 
-- **NIST Cybersecurity Framework**: Complete implementation
-- **FedRAMP**: Federal cloud security requirements
-- **STIG**: Security Technical Implementation Guides
-- **SOC 2**: Service organization controls compliance
+### Build Pipeline
+1. **Source Control**: Git repository with main branch protection
+2. **Build**: Automated build on code changes
+3. **Test**: Automated testing including unit, integration, and security tests
+4. **Package**: Container image creation and registry push
+5. **Deploy**: Automated deployment to target environment
 
-## Monitoring & Observability
+### Deployment Pipeline
+```yaml
+# GitHub Actions deployment workflow
+name: Deploy to Production
+on:
+  push:
+    branches: [main]
 
-### Monitoring Stack
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build Docker image
+      run: docker build -t phoenix-rooivalk:${{ github.sha }} .
+    - name: Push to registry
+      run: docker push phoenix-rooivalk:${{ github.sha }}
+    - name: Deploy to Kubernetes
+      run: kubectl set image deployment/phoenix-rooivalk phoenix-rooivalk=phoenix-rooivalk:${{ github.sha }}
+```
 
-- **Metrics**: Prometheus for metrics collection and storage
-- **Visualization**: Grafana dashboards and alerting
-- **Logging**: ELK stack for centralized log management
-- **Tracing**: Jaeger for distributed request tracing
+## Configuration Management
 
-### Key Performance Indicators
+### Environment Variables
+```bash
+# Production environment variables
+DATABASE_URL=postgresql://user:password@db:5432/phoenix_rooivalk
+REDIS_URL=redis://redis:6379
+JWT_SECRET=your_jwt_secret_here
+BLOCKCHAIN_RPC_URL=https://api.mainnet-beta.solana.com
+LOG_LEVEL=info
+```
 
-- **System Availability**: 99.9% uptime target
-- **Response Time**: &lt;1 second API response time
-- **Throughput**: 3,500+ transactions per second
-- **Error Rate**: &lt;0.1% application error rate
+### Configuration Files
+```yaml
+# Application configuration
+app:
+  name: Phoenix Rooivalk
+  version: 1.0.0
+  environment: production
+  port: 3000
 
-## Disaster Recovery
+database:
+  host: db
+  port: 5432
+  name: phoenix_rooivalk
+  ssl: true
 
-### Business Continuity
+blockchain:
+  network: mainnet-beta
+  rpc_url: https://api.mainnet-beta.solana.com
+  timeout: 30000
+```
 
-- **Recovery Time Objective (RTO)**: &lt;5 minutes
-- **Recovery Point Objective (RPO)**: &lt;1 minute
-- **Geographic Redundancy**: Multi-region deployment
-- **Automated Failover**: Health-based traffic routing
+## Security Configuration
+
+### Network Security
+- **Firewall Rules**: Restrictive firewall rules
+- **SSL/TLS**: End-to-end encryption
+- **VPN**: VPN access for administrative functions
+- **Network Segmentation**: Isolated network segments
+
+### Access Control
+- **Authentication**: Multi-factor authentication
+- **Authorization**: Role-based access control
+- **API Keys**: Secure API key management
+- **Secrets**: Secure secrets management
+
+### Data Protection
+- **Encryption**: Data encryption at rest and in transit
+- **Backup**: Encrypted backups with off-site storage
+- **Audit**: Comprehensive audit logging
+- **Compliance**: Regulatory compliance measures
+
+## Monitoring and Alerting
+
+### Application Monitoring
+- **Health Checks**: Application health monitoring
+- **Performance Metrics**: Response time and throughput
+- **Error Tracking**: Error rate and exception monitoring
+- **User Analytics**: User behavior and usage patterns
+
+### Infrastructure Monitoring
+- **Resource Usage**: CPU, memory, and disk usage
+- **Network Monitoring**: Network traffic and latency
+- **Database Monitoring**: Database performance and queries
+- **Container Monitoring**: Container health and resource usage
+
+### Alerting
+```yaml
+# Alerting rules
+groups:
+- name: phoenix-rooivalk
+  rules:
+  - alert: HighErrorRate
+    expr: rate(http_requests_total{status=~"5.."}[5m]) > 0.1
+    for: 5m
+    labels:
+      severity: critical
+    annotations:
+      summary: High error rate detected
+      description: Error rate is {{ $value }} errors per second
+```
+
+## Backup and Recovery
 
 ### Backup Strategy
+- **Database Backups**: Daily automated database backups
+- **Configuration Backups**: Configuration file backups
+- **Application Backups**: Application state backups
+- **Disaster Recovery**: Off-site disaster recovery
 
-- **Database Backups**: Automated daily backups with point-in-time recovery
-- **Configuration Backups**: Infrastructure and application configuration
-- **Blockchain Backups**: Ledger data replication and archival
-- **Disaster Recovery Testing**: Regular DR drills and validation
+### Recovery Procedures
+1. **Assessment**: Assess the scope of the incident
+2. **Recovery**: Restore from backups
+3. **Validation**: Validate system functionality
+4. **Communication**: Communicate status to stakeholders
+5. **Review**: Post-incident review and improvement
 
 ## Performance Optimization
 
-### Scalability Design
+### Application Optimization
+- **Caching**: Redis caching for frequently accessed data
+- **Database Optimization**: Database query optimization
+- **Load Balancing**: Application load balancing
+- **CDN**: Content delivery network for static assets
 
-- **Horizontal Scaling**: Auto-scaling based on demand
-- **Vertical Scaling**: Resource optimization and right-sizing
-- **Load Balancing**: Traffic distribution and health checking
-- **Caching**: Redis for application and session caching
+### Infrastructure Optimization
+- **Auto-scaling**: Automatic scaling based on load
+- **Resource Optimization**: Right-sizing of resources
+- **Network Optimization**: Network performance tuning
+- **Storage Optimization**: Storage performance optimization
 
-### Cost Optimization
+## Troubleshooting
 
-- **Resource Right-Sizing**: Continuous resource optimization
-- **Reserved Instances**: Cost reduction through commitment pricing
-- **Spot Instances**: Cost-effective compute for non-critical workloads
-- **Storage Optimization**: Lifecycle policies and compression
+### Common Issues
+- **Database Connectivity**: Database connection failures
+- **Memory Issues**: Memory leaks and high usage
+- **Network Issues**: Network connectivity problems
+- **Performance Issues**: Slow response times
 
-## Operational Procedures
+### Debug Procedures
+1. **Log Analysis**: Analyze application and system logs
+2. **Metrics Review**: Review performance metrics
+3. **Health Checks**: Verify system health
+4. **Network Testing**: Test network connectivity
+5. **Resource Monitoring**: Monitor resource usage
 
-### Deployment Procedures
+### Support Procedures
+- **Incident Response**: Incident response procedures
+- **Escalation**: Escalation procedures for critical issues
+- **Documentation**: Maintain troubleshooting documentation
+- **Training**: Regular training on troubleshooting procedures
 
-- **Pre-Deployment**: Validation checklist and approval process
-- **Deployment Execution**: Automated deployment with monitoring
-- **Post-Deployment**: Validation testing and performance monitoring
-- **Rollback Procedures**: Automated rollback on failure detection
+## Related Documentation
 
-### Maintenance Procedures
-
-- **Scheduled Maintenance**: Regular updates and patches
-- **Emergency Maintenance**: Critical security and bug fixes
-- **Capacity Planning**: Resource forecasting and scaling
-- **Performance Tuning**: Continuous optimization and improvement
-
-## Next Steps
-
-### For Infrastructure Teams
-
-1. **Review Architecture**: Understand infrastructure design and components
-2. **Set Up Environments**: Provision development and staging environments
-3. **Configure Monitoring**: Deploy monitoring and alerting systems
-4. **Test Procedures**: Validate deployment and recovery procedures
-
-### For Development Teams
-
-1. **Containerization**: Package applications for Kubernetes deployment
-2. **Configuration Management**: Externalize configuration and secrets
-3. **Health Checks**: Implement application health and readiness checks
-4. **Performance Testing**: Validate application performance and scalability
-
----
-
-**Document Status**: Complete  
-**Last Updated**: 2025-09-25  
-**Version**: 2.0.0  
-**Classification**: Internal Use
+- [Implementation Guide](../03-implementation/README.md)
+- [Security Framework](../04-security/README.md)
+- [Operations Guide](../09-operations/README.md)
+- [Cost Analysis](../05-cost-analysis/README.md)

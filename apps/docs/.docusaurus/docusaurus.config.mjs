@@ -10,7 +10,7 @@ export default {
   "baseUrl": "/",
   "organizationName": "JustAGhosT",
   "projectName": "PhoenixRooivalk",
-  "onBrokenLinks": "throw",
+  "onBrokenLinks": "warn",
   "i18n": {
     "defaultLocale": "en",
     "locales": [

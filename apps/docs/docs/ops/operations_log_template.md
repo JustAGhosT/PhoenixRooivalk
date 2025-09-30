@@ -42,8 +42,8 @@
 ## Sample records
 
 - Example digest(s):
-  - sha256: <hex>, txSig: <signature>, status: success | failed
-  - sha256: <hex>, txSig: <signature>, status: success | failed
+  - sha256: &lt;hex&gt;, txSig: &lt;signature&gt;, status: success | failed
+  - sha256: &lt;hex&gt;, txSig: &lt;signature&gt;, status: success | failed
 
 ## Follow-ups and actions
 

@@ -14,15 +14,15 @@ export default [
   },
   {
     path: '/docs',
-    component: ComponentCreator('/docs', 'e7b'),
+    component: ComponentCreator('/docs', '2da'),
     routes: [
       {
         path: '/docs',
-        component: ComponentCreator('/docs', 'e62'),
+        component: ComponentCreator('/docs', '189'),
         routes: [
           {
             path: '/docs',
-            component: ComponentCreator('/docs', '385'),
+            component: ComponentCreator('/docs', '88c'),
             routes: [
               {
                 path: '/docs/adr/l0-adoption-strategy',
@@ -139,6 +139,11 @@ export default [
               {
                 path: '/docs/blockchain/cost-analysis/cost-optimization',
                 component: ComponentCreator('/docs/blockchain/cost-analysis/cost-optimization', '231'),
+                exact: true
+              },
+              {
+                path: '/docs/blockchain/cost-analysis/financial-projections',
+                component: ComponentCreator('/docs/blockchain/cost-analysis/financial-projections', '1f3'),
                 exact: true
               },
               {
@@ -337,6 +342,11 @@ export default [
                 exact: true
               },
               {
+                path: '/docs/blockchain/risk-management/business-risks',
+                component: ComponentCreator('/docs/blockchain/risk-management/business-risks', '8fa'),
+                exact: true
+              },
+              {
                 path: '/docs/blockchain/risk-management/contingency-plans',
                 component: ComponentCreator('/docs/blockchain/risk-management/contingency-plans', '14c'),
                 exact: true
@@ -349,6 +359,11 @@ export default [
               {
                 path: '/docs/blockchain/risk-management/operational-risks',
                 component: ComponentCreator('/docs/blockchain/risk-management/operational-risks', '3a2'),
+                exact: true
+              },
+              {
+                path: '/docs/blockchain/risk-management/security-risks',
+                component: ComponentCreator('/docs/blockchain/risk-management/security-risks', '315'),
                 exact: true
               },
               {
