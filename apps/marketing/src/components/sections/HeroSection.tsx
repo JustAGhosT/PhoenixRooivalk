@@ -47,9 +47,9 @@ export const HeroSection: React.FC = () => {
 
         {/* Right: ThreatSimulator as candy bait */}
         <div className="relative animate-float">
-          <div className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl p-6 border border-green-500/30 shadow-2xl">
+          <div className="bg-gradient-to-br from-gray-900 to-black rounded-2xl p-6 border border-orange-500/30 shadow-2xl shadow-orange-500/10">
             <div className="text-center mb-4">
-              <h3 className="text-lg font-bold text-green-400 mb-2">
+              <h3 className="text-lg font-bold text-orange-400 mb-2">
                 Edge Autonomy Demo
               </h3>
               <p className="text-sm text-gray-400">
