@@ -1,4 +1,6 @@
-export const downloadWhitepaper = (customUrlOrEvent?: string | MouseEvent): void => {
+export const downloadWhitepaper = (
+  customUrlOrEvent?: string | MouseEvent | undefined,
+): void => {
   if (typeof window === "undefined") return; // SSR guard
 
   // Swallow click events and derive URL

@@ -64,7 +64,11 @@ export const ExitIntentModal: React.FC<ExitIntentModalProps> = ({
   }, [isVisible]);
 
   const handleDownloadNow = () => {
-    downloadWhitepaper(docsUrl);
+    if (docsUrl) {
+      downloadWhitepaper(docsUrl);
+    } else {
+      downloadWhitepaper();
+    }
     setIsVisible(false);
   };
 

@@ -16,7 +16,7 @@ export function RevealSection({
   threshold = 0.1,
   triggerOnce = true,
 }: RevealSectionProps) {
-  const { ref, isIntersecting } = useIntersectionObserver({ 
+  const { ref, isIntersecting } = useIntersectionObserver({
     threshold,
     triggerOnce,
   });
