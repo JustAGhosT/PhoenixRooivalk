@@ -5,14 +5,18 @@
 - **Location**: `06-risk-management/security-risks.md`
 - **Related Documents**:
   - [Business Risks](./business-risks.md) - Business-related risks
-  - [Mitigation Strategies](./mitigation-strategies.md) - Risk reduction measures
+  - [Mitigation Strategies](./mitigation-strategies.md) - Risk reduction
+    measures
   - [Contingency Plans](./contingency-plans.md) - Emergency procedures
 
 ---
 
 ## Executive Summary
 
-This document provides a comprehensive assessment of security risks associated with the Phoenix Rooivalk blockchain-based counter-drone system. The analysis covers cybersecurity threats, data protection risks, system vulnerabilities, and operational security challenges.
+This document provides a comprehensive assessment of security risks associated
+with the Phoenix Rooivalk blockchain-based counter-drone system. The analysis
+covers cybersecurity threats, data protection risks, system vulnerabilities, and
+operational security challenges.
 
 ## Risk Assessment Framework
 
@@ -39,8 +43,9 @@ This document provides a comprehensive assessment of security risks associated w
 - **Risk Level**: High
 - **Likelihood**: Medium
 - **Impact**: Critical
-- **Description**: Sophisticated, long-term cyber attacks targeting critical infrastructure
-- **Attack Vectors**: 
+- **Description**: Sophisticated, long-term cyber attacks targeting critical
+  infrastructure
+- **Attack Vectors**:
   - Supply chain compromises
   - Zero-day exploits
   - Social engineering campaigns

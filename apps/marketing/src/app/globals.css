@@ -4,7 +4,7 @@
 
 :root {
   /* Phoenix Rooivalk Brand Color System */
-  
+
   /* Primary Fire Gradient Colors */
   --phoenix-white: 255, 255, 255;
   --phoenix-cream: 255, 250, 205;
@@ -15,7 +15,7 @@
   --phoenix-crimson: 204, 0, 0;
   --phoenix-maroon: 139, 0, 0;
   --phoenix-deep: 74, 0, 0;
-  
+
   /* Tactical Neutrals */
   --tactical-black: 0, 0, 0;
   --tactical-obsidian: 10, 10, 10;
@@ -25,12 +25,12 @@
   --tactical-gray: 102, 102, 102;
   --tactical-gray-light: 153, 153, 153;
   --tactical-silver: 204, 204, 204;
-  
+
   /* Sensor Accents */
   --sensor-green: 0, 255, 0;
   --sensor-amber: 255, 165, 0;
   --sensor-red: 255, 34, 0;
-  
+
   /* Legacy compatibility (mapped to brand colors) */
   --primary: var(--phoenix-orange);
   --secondary: var(--tactical-gray-dark);
@@ -41,7 +41,7 @@
   --gray: var(--tactical-gray);
   --steel: var(--tactical-silver);
   --orange: var(--phoenix-orange);
-  
+
   /* Semantic Shortcuts */
   --brand-primary: var(--phoenix-orange);
   --brand-accent: var(--phoenix-amber);
@@ -49,14 +49,14 @@
   --bg-secondary: var(--tactical-charcoal);
   --text-primary: var(--phoenix-white);
   --text-secondary: var(--tactical-gray-light);
-  
+
   /* Status Colors */
   --status-active: var(--sensor-green);
   --status-warning: var(--phoenix-amber);
   --status-alert: var(--phoenix-orange);
   --status-critical: var(--sensor-red);
   --status-offline: var(--tactical-gray);
-  
+
   /* Glow Effects */
   --red-glow: rgba(var(--phoenix-red), 0.2);
   --orange-glow: rgba(var(--phoenix-orange), 0.15);

@@ -82,7 +82,11 @@
 
 .healthFill {
   @apply h-full rounded transition-all shadow-sm;
-  background: linear-gradient(to right, rgb(var(--phoenix-orange)), rgb(var(--phoenix-red)));
+  background: linear-gradient(
+    to right,
+    rgb(var(--phoenix-orange)),
+    rgb(var(--phoenix-red))
+  );
 }
 
 .statsOverlay {
@@ -130,7 +134,8 @@
 }
 
 .controlButtonGray {
-  @apply text-gray-300;
+  @apply font-semibold;
+  color: rgb(var(--tactical-gray-light));
   background-color: rgb(var(--tactical-gray-dark));
   border-color: rgb(var(--tactical-gray));
 }
@@ -186,7 +191,8 @@
 }
 
 .weaponButtonInactive {
-  @apply text-gray-300;
+  @apply font-semibold;
+  color: rgb(var(--tactical-gray-light));
   background-color: rgb(var(--tactical-gray-dark));
   border-color: rgb(var(--tactical-gray));
 }
