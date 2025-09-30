@@ -145,6 +145,67 @@ export default function ContactPage(): React.ReactElement {
 
             <div className="rounded-xl border border-[rgba(0,255,136,0.2)] bg-[rgba(15,23,42,0.8)] backdrop-blur p-8">
               <h2 className="text-2xl font-bold mb-6 text-[var(--primary)]">
+                Market Exploration
+              </h2>
+              <div className="space-y-6">
+                <div>
+                  <h3 className="font-semibold mb-3 text-[var(--text-primary)]">
+                    Alternative Applications Under Exploration
+                  </h3>
+                  <div className="grid md:grid-cols-2 gap-4">
+                    <div className="space-y-3">
+                      <div className="text-sm">
+                        <div className="font-semibold text-[var(--action-primary)] mb-1">Civilian Applications</div>
+                        <ul className="text-[var(--text-muted)] space-y-1">
+                          <li>• Airport security & perimeter protection</li>
+                          <li>• Critical infrastructure monitoring</li>
+                          <li>• Event security & crowd safety</li>
+                          <li>• Border security applications</li>
+                        </ul>
+                      </div>
+                      <div className="text-sm">
+                        <div className="font-semibold text-[var(--action-primary)] mb-1">Commercial Security</div>
+                        <ul className="text-[var(--text-muted)] space-y-1">
+                          <li>• Corporate campus protection</li>
+                          <li>• Data center security</li>
+                          <li>• Port & shipping terminal security</li>
+                          <li>• VIP protection services</li>
+                        </ul>
+                      </div>
+                    </div>
+                    <div className="space-y-3">
+                      <div className="text-sm">
+                        <div className="font-semibold text-[var(--action-primary)] mb-1">Research Partnerships</div>
+                        <ul className="text-[var(--text-muted)] space-y-1">
+                          <li>• University research collaboration</li>
+                          <li>• Government laboratory partnerships</li>
+                          <li>• International cooperation (NATO)</li>
+                          <li>• Technology transfer programs</li>
+                        </ul>
+                      </div>
+                      <div className="text-sm">
+                        <div className="font-semibold text-[var(--action-primary)] mb-1">Technology Licensing</div>
+                        <ul className="text-[var(--text-muted)] space-y-1">
+                          <li>• Sensor fusion algorithms</li>
+                          <li>• Edge processing capabilities</li>
+                          <li>• Blockchain evidence systems</li>
+                          <li>• Countermeasure technologies</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="mt-4 p-3 bg-[var(--action-warning)]/10 border border-[var(--action-warning)]/20 rounded-lg">
+                    <p className="text-xs text-[var(--action-warning)] text-center font-semibold">
+                      💡 These are potential applications under exploration. Actual deployment would require 
+                      regulatory approval, market validation, and technology adaptation for specific use cases.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="rounded-xl border border-[rgba(0,255,136,0.2)] bg-[rgba(15,23,42,0.8)] backdrop-blur p-8">
+              <h2 className="text-2xl font-bold mb-6 text-[var(--primary)]">
                 Access Requirements
               </h2>
               <div className="space-y-6">

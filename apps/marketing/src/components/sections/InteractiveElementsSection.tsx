@@ -379,29 +379,143 @@ export const InteractiveElementsSection: React.FC = () => {
             </div>
           </div>
 
+          {/* Concept Adaptation Calculator */}
+          <div className="mt-16">
+            <h3 className="text-3xl font-bold text-[var(--text-primary)] mb-8 text-center">
+              Concept Adaptation Explorer
+            </h3>
+            <p className="text-[var(--text-muted)] mb-8 max-w-3xl mx-auto text-center">
+              Explore how Phoenix Rooivalk's core technology could adapt to different operational environments and threat scenarios.
+            </p>
+            
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {/* Civilian Applications */}
+              <div className="card">
+                <div className="text-center mb-4">
+                  <div className="text-3xl mb-2">🏢</div>
+                  <h4 className="text-lg font-bold text-[var(--action-primary)] mb-2">
+                    Civilian Applications
+                  </h4>
+                </div>
+                <div className="space-y-3">
+                  <div className="text-sm">
+                    <div className="font-semibold text-[var(--text-primary)] mb-1">Airport Security</div>
+                    <div className="text-[var(--text-muted)]">Perimeter protection, runway monitoring</div>
+                  </div>
+                  <div className="text-sm">
+                    <div className="font-semibold text-[var(--text-primary)] mb-1">Critical Infrastructure</div>
+                    <div className="text-[var(--text-muted)]">Power plants, water facilities, communication towers</div>
+                  </div>
+                  <div className="text-sm">
+                    <div className="font-semibold text-[var(--text-primary)] mb-1">Event Security</div>
+                    <div className="text-[var(--text-muted)]">Stadiums, concerts, public gatherings</div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Commercial Security */}
+              <div className="card">
+                <div className="text-center mb-4">
+                  <div className="text-3xl mb-2">🏭</div>
+                  <h4 className="text-lg font-bold text-[var(--action-primary)] mb-2">
+                    Commercial Security
+                  </h4>
+                </div>
+                <div className="space-y-3">
+                  <div className="text-sm">
+                    <div className="font-semibold text-[var(--text-primary)] mb-1">Corporate Campus</div>
+                    <div className="text-[var(--text-muted)]">Headquarters, R&D facilities</div>
+                  </div>
+                  <div className="text-sm">
+                    <div className="font-semibold text-[var(--text-primary)] mb-1">Data Center Security</div>
+                    <div className="text-[var(--text-muted)]">Server farms, cloud infrastructure</div>
+                  </div>
+                  <div className="text-sm">
+                    <div className="font-semibold text-[var(--text-primary)] mb-1">Port Security</div>
+                    <div className="text-[var(--text-muted)]">Shipping terminals, cargo facilities</div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Research & Development */}
+              <div className="card">
+                <div className="text-center mb-4">
+                  <div className="text-3xl mb-2">🔬</div>
+                  <h4 className="text-lg font-bold text-[var(--action-primary)] mb-2">
+                    Research & Development
+                  </h4>
+                </div>
+                <div className="space-y-3">
+                  <div className="text-sm">
+                    <div className="font-semibold text-[var(--text-primary)] mb-1">University Partnerships</div>
+                    <div className="text-[var(--text-muted)]">Academic research collaboration</div>
+                  </div>
+                  <div className="text-sm">
+                    <div className="font-semibold text-[var(--text-primary)] mb-1">Government Labs</div>
+                    <div className="text-[var(--text-muted)]">DARPA, NSF, national laboratories</div>
+                  </div>
+                  <div className="text-sm">
+                    <div className="font-semibold text-[var(--text-primary)] mb-1">International Cooperation</div>
+                    <div className="text-[var(--text-muted)]">NATO, allied defense research</div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Technology Licensing */}
+              <div className="card">
+                <div className="text-center mb-4">
+                  <div className="text-3xl mb-2">⚡</div>
+                  <h4 className="text-lg font-bold text-[var(--action-primary)] mb-2">
+                    Technology Licensing
+                  </h4>
+                </div>
+                <div className="space-y-3">
+                  <div className="text-sm">
+                    <div className="font-semibold text-[var(--text-primary)] mb-1">Sensor Fusion</div>
+                    <div className="text-[var(--text-muted)]">Core detection algorithms</div>
+                  </div>
+                  <div className="text-sm">
+                    <div className="font-semibold text-[var(--text-primary)] mb-1">Edge Processing</div>
+                    <div className="text-[var(--text-muted)]">Autonomous decision-making</div>
+                  </div>
+                  <div className="text-sm">
+                    <div className="font-semibold text-[var(--text-primary)] mb-1">Blockchain Integration</div>
+                    <div className="text-[var(--text-muted)]">Evidence management systems</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="mt-8 p-4 bg-[var(--action-warning)]/10 border border-[var(--action-warning)]/20 rounded-lg">
+              <p className="text-sm text-[var(--action-warning)] text-center font-semibold">
+                💡 These are potential applications under exploration. Actual deployment would require 
+                regulatory approval, market validation, and technology adaptation for specific use cases.
+              </p>
+            </div>
+          </div>
+
           {/* CTA */}
           <div className="text-center mt-16">
-            <h3 className="text-3xl font-bold text-[rgb(var(--phoenix-white))] mb-4">
+            <h3 className="text-3xl font-bold text-[var(--text-primary)] mb-4">
               Interested in the Technology?
             </h3>
-            <p className="text-[rgb(var(--gray))] mb-6 max-w-2xl mx-auto">
+            <p className="text-[var(--text-muted)] mb-6 max-w-2xl mx-auto">
               Learn more about Phoenix Rooivalk's innovative approach to
               autonomous counter-drone defense and explore partnership
               opportunities.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button
-                href="#contact"
+                href="/contact"
                 size="lg"
-                className="bg-gradient-to-r from-[rgb(var(--primary))] to-[rgb(var(--accent))] hover:from-[rgb(var(--accent))] hover:to-[rgb(var(--primary))] shadow-xl"
+                variant="primary"
               >
                 Join Development Program
               </Button>
               <Button
                 href="/technical"
-                variant="outline"
+                variant="secondary"
                 size="lg"
-                className="border-[rgb(var(--primary))] text-[rgb(var(--primary))] hover:bg-[rgba(var(--primary),0.1)]"
               >
                 View Technical Concept
               </Button>
