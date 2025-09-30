@@ -109,7 +109,8 @@ jobs:
           publish-dir: "apps/docs/build"
           production-deploy: false
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          deploy-message: "Deploy Preview from PR #${{ github.event.pull_request.number }}"
+          deploy-message:
+            "Deploy Preview from PR #${{ github.event.pull_request.number }}"
           enable-commit-comment: true
           enable-commit-status: true
           alias: ${{ github.head_ref }}

@@ -62,9 +62,10 @@ Key technologies include:
 - **Physical Countermeasures**: Non-destructive tools like net entanglement
   systems for safe drone neutralization.
 
-**Legal Compliance Notice**: RF jamming and GPS spoofing technologies are subject to strict 
-regulatory controls and may be prohibited in many jurisdictions. Deployment must comply with 
-applicable laws, export controls, and lawful use requirements.
+**Legal Compliance Notice**: RF jamming and GPS spoofing technologies are
+subject to strict regulatory controls and may be prohibited in many
+jurisdictions. Deployment must comply with applicable laws, export controls, and
+lawful use requirements.
 
 ---
 
@@ -78,11 +79,12 @@ applicable laws, export controls, and lawful use requirements.
 - **Ease of Deployment**: Lightweight, portable, and user-friendly, requiring
   minimal training.
 - **AI-Powered Intelligence**: Advanced machine learning delivers 99.7% threat
-  detection accuracy with < 200ms response time [1,2], providing decisive advantages
-  over conventional systems (validated under controlled lab conditions).
+  detection accuracy with < 200ms response time [1,2], providing decisive
+  advantages over conventional systems (validated under controlled lab
+  conditions).
 - **Blockchain Security**: Military-grade blockchain technology ensures 99.3%
-  data integrity protection [3] with tamper-evident immutable audit trails and cryptographic
-  identity management.
+  data integrity protection [3] with tamper-evident immutable audit trails and
+  cryptographic identity management.
 - **AI + Blockchain Integration**: Revolutionary combination of AI and
   blockchain delivers unprecedented performance with federated learning,
   explainable AI, and autonomous swarm coordination [4].
@@ -181,13 +183,18 @@ details, contact [smit.jurie@gmail.com](mailto:smit.jurie@gmail.com).
 
 ## **References**
 
-[1] Designing an Objective-Driven Test Method for the Comparative Performance Evaluation of Commercial DTI Solutions for Counter UAS systems. *arXiv preprint arXiv:2405.04477* (2024).
+[1] Designing an Objective-Driven Test Method for the Comparative Performance
+Evaluation of Commercial DTI Solutions for Counter UAS systems. _arXiv preprint
+arXiv:2405.04477_ (2024).
 
-[2] Standardized Evaluation of Counter-Drone Systems: Methods, Technologies, and Performance Metrics. *Drones* 9(5):354 (2025).
+[2] Standardized Evaluation of Counter-Drone Systems: Methods, Technologies, and
+Performance Metrics. _Drones_ 9(5):354 (2025).
 
-[3] ForensiBlock: A Provenance-Driven Blockchain Framework for Data Forensics and Auditability. *arXiv preprint arXiv:2308.03927* (2023).
+[3] ForensiBlock: A Provenance-Driven Blockchain Framework for Data Forensics
+and Auditability. _arXiv preprint arXiv:2308.03927_ (2023).
 
-[4] Harpocrates: Privacy-Preserving and Immutable Audit Log for Sensitive Data Operations. *arXiv preprint arXiv:2211.04741* (2022).
+[4] Harpocrates: Privacy-Preserving and Immutable Audit Log for Sensitive Data
+Operations. _arXiv preprint arXiv:2211.04741_ (2022).
 
 ---
 

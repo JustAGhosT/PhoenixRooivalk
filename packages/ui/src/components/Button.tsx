@@ -15,8 +15,8 @@ export interface ButtonProps {
 
 export const Button: React.FC<
   ButtonProps &
-  React.AnchorHTMLAttributes<HTMLAnchorElement> &
-  React.ButtonHTMLAttributes<HTMLButtonElement>
+    React.AnchorHTMLAttributes<HTMLAnchorElement> &
+    React.ButtonHTMLAttributes<HTMLButtonElement>
 > = ({
   children,
   variant = "primary",
@@ -60,9 +60,10 @@ export const Button: React.FC<
 
     // Compute safe rel attribute when opening in a new tab
     const anchorProps = rest as React.AnchorHTMLAttributes<HTMLAnchorElement>;
-    const computedRel = anchorProps?.target === "_blank"
-      ? ["noopener", "noreferrer", anchorProps.rel].filter(Boolean).join(" ")
-      : anchorProps?.rel;
+    const computedRel =
+      anchorProps?.target === "_blank"
+        ? ["noopener", "noreferrer", anchorProps.rel].filter(Boolean).join(" ")
+        : anchorProps?.rel;
 
     return (
       <a

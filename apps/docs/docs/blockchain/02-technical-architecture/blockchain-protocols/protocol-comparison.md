@@ -7,24 +7,25 @@
 - **Version**: 2.0.0
 - **Last Updated**: September 28, 2025
 - **Purpose**: Technical protocol selection for production deployment
-- **Decision Status**: Hyperledger Fabric selected, Polkadot approved, Etherlink approved, Solana POC only
+- **Decision Status**: Hyperledger Fabric selected, Polkadot approved, Etherlink
+  approved, Solana POC only
 
 ---
 
 ## 1. Executive Comparison Matrix
 
-| Protocol                    | Production Ready | Performance     | Security  | Military Fit | Cost  | Risk      | **Decision**    |
-| --------------------------- | ---------------- | --------------- | --------- | ------------ | ----- | --------- | --------------- |
-| **Hyperledger Fabric v3.0** | ✅ Yes           | 3,000 TPS       | Excellent | Proven       | $3-5M | Low       | **✅ SELECTED** |
-| **Polkadot**                | ✅ Yes           | 1,000 TPS/chain | Excellent | Good         | $4-6M | Medium    | **✅ APPROVED** |
-| **Hedera Hashgraph**        | ✅ Yes           | 10,000 TPS      | Excellent | Limited      | $3-4M | Medium    | ⚠️ Conditional  |
-| **Avalanche**               | ✅ Yes           | 4,500 TPS       | Very Good | None         | $3-5M | Medium    | ⚠️ Conditional  |
-| **Etherlink Integration (Tezos Smart Rollup for EVM)** | ✅ Yes | 1,000+ TPS | Excellent | Good | $2-3M | Low | ⚠️ Approved |
-| **Ethereum Private**        | ✅ Yes           | 400 TPS         | Good      | Good         | $2-4M | Low       | ⚠️ Backup       |
-| **Algorand**                | ✅ Yes           | 6,000 TPS       | Good\*    | None         | $2-3M | Medium    | ⚠️ Future       |
-| **Solana**                  | ⚠️ Unreliable    | 65,000 TPS      | Poor      | None         | $2M   | Very High | **🔬 POC ONLY** |
-| **Cosmos**                  | ❌ Complex       | 10,000 TPS      | Good      | None         | $5-8M | High      | ❌ Rejected     |
-| **IOTA**                    | ❌ Immature      | Unknown         | Unknown   | None         | $2-3M | Very High | ❌ Rejected     |
+| Protocol                                               | Production Ready | Performance     | Security  | Military Fit | Cost  | Risk      | **Decision**    |
+| ------------------------------------------------------ | ---------------- | --------------- | --------- | ------------ | ----- | --------- | --------------- |
+| **Hyperledger Fabric v3.0**                            | ✅ Yes           | 3,000 TPS       | Excellent | Proven       | $3-5M | Low       | **✅ SELECTED** |
+| **Polkadot**                                           | ✅ Yes           | 1,000 TPS/chain | Excellent | Good         | $4-6M | Medium    | **✅ APPROVED** |
+| **Hedera Hashgraph**                                   | ✅ Yes           | 10,000 TPS      | Excellent | Limited      | $3-4M | Medium    | ⚠️ Conditional  |
+| **Avalanche**                                          | ✅ Yes           | 4,500 TPS       | Very Good | None         | $3-5M | Medium    | ⚠️ Conditional  |
+| **Etherlink Integration (Tezos Smart Rollup for EVM)** | ✅ Yes           | 1,000+ TPS      | Excellent | Good         | $2-3M | Low       | ⚠️ Approved     |
+| **Ethereum Private**                                   | ✅ Yes           | 400 TPS         | Good      | Good         | $2-4M | Low       | ⚠️ Backup       |
+| **Algorand**                                           | ✅ Yes           | 6,000 TPS       | Good\*    | None         | $2-3M | Medium    | ⚠️ Future       |
+| **Solana**                                             | ⚠️ Unreliable    | 65,000 TPS      | Poor      | None         | $2M   | Very High | **🔬 POC ONLY** |
+| **Cosmos**                                             | ❌ Complex       | 10,000 TPS      | Good      | None         | $5-8M | High      | ❌ Rejected     |
+| **IOTA**                                               | ❌ Immature      | Unknown         | Unknown   | None         | $2-3M | Very High | ❌ Rejected     |
 
 \*Algorand has quantum resistance via FALCON signatures
 
@@ -406,23 +407,27 @@ testing_only:
 ### Etherlink Integration (Tezos Smart Rollup for EVM)
 
 **Network Details:**
+
 - **Mainnet RPC**: https://node.mainnet.etherlink.com
-- **Testnet (Ghostnet) RPC**: https://node.ghostnet.etherlink.com  
+- **Testnet (Ghostnet) RPC**: https://node.ghostnet.etherlink.com
 - **Relay**: https://relay.ghostnet.etherlink.com
 
 **Technical Specifications:**
+
 - **Chain ID**: Mainnet: 42793, Testnet: 128123
 - **Native Token**: XTZ (Tezos)
 - **EVM Compatibility**: Full Ethereum Virtual Machine support
 - **Interoperability**: Native Tezos Smart Rollup integration
 
 **Integration Benefits:**
+
 - EVM compatibility with Tezos security model
 - Lower transaction costs compared to Ethereum mainnet
 - Formal verification capabilities from Tezos ecosystem
 - Smart rollup architecture for scalability
 
-**Reference**: Official Etherlink documentation for complete chain specifications and interoperability guidelines.
+**Reference**: Official Etherlink documentation for complete chain
+specifications and interoperability guidelines.
 
 ---
 

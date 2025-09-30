@@ -1,14 +1,14 @@
-import React from 'react';
-import { Button } from '../ui/button';
-import { downloadWhitepaper } from '@/utils/downloadWhitepaper';
-import { RevealSection } from '@/components/RevealSection';
+import React from "react";
+import { Button } from "../ui/button";
+import { downloadWhitepaper } from "@/utils/downloadWhitepaper";
+import { RevealSection } from "@/components/RevealSection";
 
 export const WhitepaperSection: React.FC = () => {
   const features: Array<{
     icon: string;
     title: string;
     description: string;
-    color: 'green' | 'blue' | 'purple' | 'yellow';
+    color: "green" | "blue" | "purple" | "yellow";
   }> = [
     {
       icon: "🏗️",
@@ -47,7 +47,9 @@ export const WhitepaperSection: React.FC = () => {
             Get the Complete Technical Whitepaper
           </h2>
           <p className="text-[var(--gray)] max-w-3xl mx-auto text-lg mb-6">
-            Download our detailed technical documentation covering system architecture, security implementation, deployment configurations, and performance specifications.
+            Download our detailed technical documentation covering system
+            architecture, security implementation, deployment configurations,
+            and performance specifications.
           </p>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8 max-w-4xl mx-auto">
@@ -63,7 +65,11 @@ export const WhitepaperSection: React.FC = () => {
           </div>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button onClick={() => downloadWhitepaper()} size="lg" className="bg-green-600 hover:bg-green-700">
+            <Button
+              onClick={() => downloadWhitepaper()}
+              size="lg"
+              className="bg-green-600 hover:bg-green-700"
+            >
               📥 Download Technical Whitepaper
             </Button>
             <Button href="#contact" variant="outline" size="lg">
@@ -80,13 +86,13 @@ const FeatureCard: React.FC<{
   icon: string;
   title: string;
   description: string;
-  color: 'green' | 'blue' | 'purple' | 'yellow';
+  color: "green" | "blue" | "purple" | "yellow";
 }> = ({ icon, title, description, color }) => {
   const colorClasses = {
-    green: 'bg-gray-800/50 border-green-500/20 text-green-400',
-    blue: 'bg-gray-800/50 border-blue-500/20 text-blue-400',
-    purple: 'bg-gray-800/50 border-purple-500/20 text-purple-400',
-    yellow: 'bg-gray-800/50 border-yellow-500/20 text-yellow-400',
+    green: "bg-gray-800/50 border-green-500/20 text-green-400",
+    blue: "bg-gray-800/50 border-blue-500/20 text-blue-400",
+    purple: "bg-gray-800/50 border-purple-500/20 text-purple-400",
+    yellow: "bg-gray-800/50 border-yellow-500/20 text-yellow-400",
   };
 
   return (

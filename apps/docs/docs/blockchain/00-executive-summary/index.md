@@ -22,15 +22,17 @@ track, and neutralize autonomous threats at scale.
 Our blockchain-enhanced counter-drone system integrates distributed ledger
 technology with edge computing and AI to deliver:
 
-- **99.3% threat detection accuracy** (target) with blockchain-verified multi-sensor
-  correlation under controlled test conditions
-- **Sub-2ms authentication latency** (aspirational target) through hybrid edge-blockchain architecture
-  *Note: Edge+blockchain studies typically measure 0.16–2.5s without private/L2 optimizations;
-  requires specification of blockchain consensus mechanism, network topology, hardware specs*
+- **99.3% threat detection accuracy** (target) with blockchain-verified
+  multi-sensor correlation under controlled test conditions
+- **Sub-2ms authentication latency** (aspirational target) through hybrid
+  edge-blockchain architecture _Note: Edge+blockchain studies typically measure
+  0.16–2.5s without private/L2 optimizations; requires specification of
+  blockchain consensus mechanism, network topology, hardware specs_
 - **95% reduction in single points of failure** via decentralized consensus
 - **100% tamper-proof audit trails** for regulatory compliance and forensics
-- **Autonomous swarm coordination** supporting 100-200 drones (simulation/hierarchical control target;
-  field prototypes typically demonstrate ~20–30 UAVs)
+- **Autonomous swarm coordination** supporting 100-200 drones
+  (simulation/hierarchical control target; field prototypes typically
+  demonstrate ~20–30 UAVs)
 
 ### Market Dynamics
 

@@ -1,12 +1,12 @@
-import Link from 'next/link';
-import React from 'react';
+import Link from "next/link";
+import React from "react";
 
 export const Navigation: React.FC = () => {
   const navigationItems = [
-    { href: '/interactive-demo', label: 'Try Demo' },
-    { href: '/technical', label: 'Specs' },
-    { href: '/financial', label: 'Pricing' },
-    { href: '/#contact', label: 'Contact' },
+    { href: "/interactive-demo", label: "Try Demo" },
+    { href: "/technical", label: "Specs" },
+    { href: "/financial", label: "Pricing" },
+    { href: "/#contact", label: "Contact" },
   ];
 
   return (

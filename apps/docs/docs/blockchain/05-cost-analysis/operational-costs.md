@@ -560,7 +560,8 @@ delivery.
 
 ---
 
-**GitHub Repository:** [PhoenixRooivalk](https://github.com/JustAGhosT/PhoenixRooivalk)
+**GitHub Repository:**
+[PhoenixRooivalk](https://github.com/JustAGhosT/PhoenixRooivalk)
 
 ---
 

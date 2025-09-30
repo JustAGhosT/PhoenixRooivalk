@@ -162,12 +162,12 @@ spec:
           livenessProbe:
             exec:
               command:
-              - /bin/sh
-              - -c
-              - |
-                curl -s -X POST -H "Content-Type: application/json" \
-                  --data '{"jsonrpc":"2.0","id":1,"method":"web3_clientVersion","params":[]}' \
-                  http://127.0.0.1:8545 | grep -q '"result"'
+                - /bin/sh
+                - -c
+                - |
+                  curl -s -X POST -H "Content-Type: application/json" \
+                    --data '{"jsonrpc":"2.0","id":1,"method":"web3_clientVersion","params":[]}' \
+                    http://127.0.0.1:8545 | grep -q '"result"'
             initialDelaySeconds: 60
             periodSeconds: 30
             timeoutSeconds: 10
@@ -696,28 +696,30 @@ spec:
         app: alertmanager
     spec:
       containers:
-      - name: alertmanager
-        image: prom/alertmanager:v0.25.0
-        ports:
-        - containerPort: 9093
-        volumeMounts:
-        - name: config
-          mountPath: /etc/alertmanager
-        command:
-        - /bin/alertmanager
-        - --config.file=/etc/alertmanager/alertmanager.yml
-        - --storage.path=/alertmanager
-        - --web.external-url=http://localhost:9093
+        - name: alertmanager
+          image: prom/alertmanager:v0.25.0
+          ports:
+            - containerPort: 9093
+          volumeMounts:
+            - name: config
+              mountPath: /etc/alertmanager
+          command:
+            - /bin/alertmanager
+            - --config.file=/etc/alertmanager/alertmanager.yml
+            - --storage.path=/alertmanager
+            - --web.external-url=http://localhost:9093
       volumes:
-      - name: config
-        secret:
-          secretName: alertmanager-config
+        - name: config
+          secret:
+            secretName: alertmanager-config
 ```
 
 **Secret Management Best Practices:**
 
-1. **Avoid Environment Variable Placeholders**: Store complete configuration with real values in Secrets, not ConfigMaps with placeholders
-2. **Kubernetes Secrets**: Store sensitive values in Kubernetes Secret objects with proper base64 encoding
+1. **Avoid Environment Variable Placeholders**: Store complete configuration
+   with real values in Secrets, not ConfigMaps with placeholders
+2. **Kubernetes Secrets**: Store sensitive values in Kubernetes Secret objects
+   with proper base64 encoding
 3. **External Secret Management**: Use External Secrets Operator with:
    - AWS Secrets Manager
    - HashiCorp Vault
@@ -742,18 +744,18 @@ spec:
     name: alertmanager-secrets
     creationPolicy: Owner
   data:
-  - secretKey: smtp-password
-    remoteRef:
-      key: phoenix-rooivalk/alerting
-      property: smtp_password
-  - secretKey: slack-webhook-url
-    remoteRef:
-      key: phoenix-rooivalk/alerting
-      property: slack_webhook_url
-  - secretKey: pagerduty-service-key
-    remoteRef:
-      key: phoenix-rooivalk/alerting
-      property: pagerduty_service_key
+    - secretKey: smtp-password
+      remoteRef:
+        key: phoenix-rooivalk/alerting
+        property: smtp_password
+    - secretKey: slack-webhook-url
+      remoteRef:
+        key: phoenix-rooivalk/alerting
+        property: slack_webhook_url
+    - secretKey: pagerduty-service-key
+      remoteRef:
+        key: phoenix-rooivalk/alerting
+        property: pagerduty_service_key
 ```
 
 ### 5.3 Service Accounts and RBAC

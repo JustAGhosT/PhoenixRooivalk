@@ -5,7 +5,7 @@ const metrics = [
   ["Military-Grade", "Detection Accuracy", "Multi-sensor fusion approach"],
   ["Blockchain-Secured", "Evidence Integrity", "Tamper-proof audit trails"],
   ["< 200ms", "Response Time", "Edge computing architecture"],
-  
+
   ["Contested", "Environment Ready", "Designed for degraded networks"],
 ];
 
@@ -21,7 +21,8 @@ export const MetricsSection: React.FC = () => {
             Technical Architecture
           </h2>
           <p className="text-[var(--gray)] max-w-2xl mx-auto">
-            Designed for contested environments with multi-layer resilience and evidence integrity.
+            Designed for contested environments with multi-layer resilience and
+            evidence integrity.
           </p>
         </div>
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 reveal">

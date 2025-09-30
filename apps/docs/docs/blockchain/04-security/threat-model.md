@@ -37,12 +37,12 @@ comprehensive security posture against both current and emerging threats.
 
 ## What Phoenix Rooivalk Does (Plain English)
 
-Phoenix Rooivalk is a defensive system that detects, classifies, and responds to 
-hostile small drones on its own when radios and backhaul are jammed. It makes 
-policy-bounded, "soft-kill first" decisions at the edge in 120-195 ms (p50) / 
-≤250 ms (p95) and records tamper-evident receipts after the fact for 
-accountability. When communications are available, it can optionally share 
-sanitized, need-to-know alerts with partners; real-time action never waits on 
+Phoenix Rooivalk is a defensive system that detects, classifies, and responds to
+hostile small drones on its own when radios and backhaul are jammed. It makes
+policy-bounded, "soft-kill first" decisions at the edge in 120-195 ms (p50) /
+≤250 ms (p95) and records tamper-evident receipts after the fact for
+accountability. When communications are available, it can optionally share
+sanitized, need-to-know alerts with partners; real-time action never waits on
 external networks. Humans remain in control for anything risky or lethal.
 
 ### Plain-Language Glossary
@@ -60,13 +60,15 @@ external networks. Humans remain in control for anything risky or lethal.
 **ESM** = Electronic Support Measures (detecting enemy signals)  
 **GPS** = Global Positioning System (satellite navigation)  
 **DoD** = Department of Defense  
-**ITAR** = International Traffic in Arms Regulations (export controls)  
+**ITAR** = International Traffic in Arms Regulations (export controls)
 
-**Sensor**: The "ears and eyes" (radar, cameras, microphones) that notice drones  
-**Edge computer**: The "brain in the box" nearby that thinks fast without the internet  
+**Sensor**: The "ears and eyes" (radar, cameras, microphones) that notice
+drones  
+**Edge computer**: The "brain in the box" nearby that thinks fast without the
+internet  
 **Soft-kill**: Stopping or redirecting a drone without blowing it up  
 **Audit trail**: The unchangeable diary of what the system did and why  
-**Coalition/interop**: Sharing a safe, short message with trusted partners  
+**Coalition/interop**: Sharing a safe, short message with trusted partners
 
 ### Edge Autonomy Architecture
 
@@ -78,18 +80,18 @@ graph TB
         DECIDE --> ACT[⚡ Immediate Response<br/>Jamming/Tracking]
         ACT --> RECORD[📝 Local Record<br/>Encrypted Log]
     end
-    
+
     subgraph "LAYER 1: COMMAND CENTER (When Connected)"
         RECORD -.-> ALERT[📡 Alert Operator<br/>Via Fiber/Satellite]
         ALERT --> HUMAN[👤 Human Authorization<br/>Kinetic Response]
         HUMAN --> KINETIC[💥 Authorized Action]
     end
-    
+
     subgraph "LAYER 2: BLOCKCHAIN AUDIT (After Action)"
         RECORD -.-> BLOCKCHAIN[⛓️ Permanent Record<br/>Legal Evidence]
         BLOCKCHAIN --> PARTNERS[🤝 Coalition Sharing<br/>Sanitized Alerts]
     end
-    
+
     style DETECT fill:#90EE90
     style DECIDE fill:#FFB6C1
     style ACT fill:#87CEEB
@@ -100,15 +102,18 @@ graph TB
 
 - It doesn't need the cloud or a big server to make decisions
 - It doesn't fire dangerous weapons by itself; humans must authorize that
-- It doesn't share private raw video or audio by default—only small, safe alerts unless approved
+- It doesn't share private raw video or audio by default—only small, safe alerts
+  unless approved
 
 ### Key Security Questions Addressed
 
-**Q1: What happens with the "black box" if the drone is lost/shot-down/intercepted and no comms were available?**
+**Q1: What happens with the "black box" if the drone is
+lost/shot-down/intercepted and no comms were available?**
 
 **Solution - Automatic Data Wipe Protocols:**
+
 - No signal for 60 seconds → Data erases itself
-- Drone leaves authorized area → Data erases itself  
+- Drone leaves authorized area → Data erases itself
 - Someone tries to tamper → Data erases itself
 - Cost to add: Almost nothing. Time to add: 1 week
 
@@ -120,20 +125,20 @@ class SecureDataManager:
         self.last_signal_time = time.time()
         self.authorized_zone = GeofenceZone()
         self.tamper_sensors = TamperDetectionArray()
-        
+
     def check_wipe_conditions(self):
         # Condition 1: No signal timeout
         if time.time() - self.last_signal_time > 60:
             self.secure_wipe("Signal timeout")
-            
-        # Condition 2: Geofence violation  
+
+        # Condition 2: Geofence violation
         if not self.authorized_zone.contains(self.get_position()):
             self.secure_wipe("Geofence violation")
-            
+
         # Condition 3: Tamper detection
         if self.tamper_sensors.detect_intrusion():
             self.secure_wipe("Tamper detected")
-            
+
     def secure_wipe(self, reason: str):
         # Multi-pass cryptographic erasure
         self.overwrite_storage_multiple_passes()
@@ -146,27 +151,31 @@ class SecureDataManager:
 **"Nearby" = 500m to 1km between defense nodes**
 
 Think of a flock of birds - no radios, but they turn together instantly:
+
 - Each defense node watches its area
 - Shares via light signals (like fireflies), sound pulses (like dolphins)
 - All nodes react together in 12 milliseconds
 
 **Real Example:**
+
 - Node A: "I see a drone!" (flashes light pattern)
-- Node B: "I see it too!" (sends sound pulse)  
+- Node B: "I see it too!" (sends sound pulse)
 - Both: "Attack!" (synchronized response)
 - Time: 0.012 seconds - faster than a blink
 
-**Q3: How does the human "authorize" firing without radio signal or cloud comms?**
+**Q3: How does the human "authorize" firing without radio signal or cloud
+comms?**
 
 **Solution: Always Keep One "Phone Line" Open**
 
-- **Primary**: Fiber cable from operator → rover → weapons authorization (Can't be jammed, can't be hacked)
+- **Primary**: Fiber cable from operator → rover → weapons authorization (Can't
+  be jammed, can't be hacked)
 - **Backup**: Pre-set rules before mission starts
 
 **Timeline:**
 
 - Jamming starts → 9 nodes go autonomous (detect only)
-- → 1 node keeps fiber link through rover  
+- → 1 node keeps fiber link through rover
 - → Human authorizes through fiber
 - → All nodes get the "go" signal via light/sound
 - → Response in <1 second
@@ -184,16 +193,17 @@ Think of a flock of birds - no radios, but they turn together instantly:
 ### Competitive Advantage Visualization
 
 | Capability            | Traditional Systems | Phoenix Rooivalk |
-|-----------------------|---------------------|------------------|
+| --------------------- | ------------------- | ---------------- |
 | Network Required      | Yes                 | No               |
 | Jamming Vulnerable    | High                | Minimal          |
 | Single Point Failure  | Likely              | Resilient        |
 | Typical Response Time | 3–10 s              | 0.012 s          |
 
 **The Difference That Matters:**
+
 - **Traditional**: Dies without network (single point of failure)
 - **Phoenix**: Works 100% without network (true autonomy)
-- **Traditional**: 3-10 second response  
+- **Traditional**: 3-10 second response
 - **Phoenix**: 0.012 second response (250x faster)
 - **Traditional**: Humans must authorize everything
 - **Phoenix**: Pre-authorized rules execute instantly
@@ -816,7 +826,7 @@ class BlockchainSecurityManager:
         # Look for functions without proper access modifiers
         access_patterns = ['onlyOwner', 'require(msg.sender', 'modifier', 'private', 'internal']
         function_patterns = ['function ', 'public ']
-        
+
         lines = contract_code.split('\n')
         for line in lines:
             if any(pattern in line for pattern in function_patterns):
@@ -829,7 +839,7 @@ class BlockchainSecurityManager:
         # Look for external calls without proper error handling
         external_call_patterns = ['.call(', '.delegatecall(', '.staticcall(']
         error_handling_patterns = ['require(', 'assert(', 'if (', 'try ', 'catch']
-        
+
         lines = contract_code.split('\n')
         for i, line in enumerate(lines):
             if any(pattern in line for pattern in external_call_patterns):
@@ -837,8 +847,8 @@ class BlockchainSecurityManager:
                 context_start = max(0, i-2)
                 context_end = min(len(lines), i+3)
                 context_lines = lines[context_start:context_end]
-                
-                if not any(any(pattern in context_line for pattern in error_handling_patterns) 
+
+                if not any(any(pattern in context_line for pattern in error_handling_patterns)
                           for context_line in context_lines):
                     return True
         return False
@@ -846,7 +856,7 @@ class BlockchainSecurityManager:
     def generate_recommendations(self, vulnerabilities: List[str]) -> List[str]:
         """Generate security recommendations based on identified vulnerabilities"""
         recommendations = []
-        
+
         for vulnerability in vulnerabilities:
             if "reentrancy" in vulnerability.lower():
                 recommendations.append("Implement checks-effects-interactions pattern")
@@ -860,11 +870,11 @@ class BlockchainSecurityManager:
             elif "external calls" in vulnerability.lower():
                 recommendations.append("Always check return values of external calls")
                 recommendations.append("Use try-catch blocks for external contract interactions")
-        
+
         if not recommendations:
             recommendations.append("Continue following security best practices")
             recommendations.append("Regular security audits recommended")
-        
+
         return recommendations
 
     def calculate_risk_level(self, vulnerabilities: List[str]) -> str:

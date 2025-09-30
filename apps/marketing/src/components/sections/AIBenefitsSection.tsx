@@ -1,6 +1,6 @@
-import React from 'react';
-import { Button } from '../ui/button';
-import { RevealSection } from '@/components/RevealSection';
+import React from "react";
+import { Button } from "../ui/button";
+import { RevealSection } from "@/components/RevealSection";
 
 export const AIBenefitsSection: React.FC = () => {
   return (
@@ -17,13 +17,17 @@ export const AIBenefitsSection: React.FC = () => {
             Revolutionary AI + Blockchain Performance
           </h2>
           <p className="text-[var(--gray)] max-w-3xl mx-auto text-lg">
-            PhoenixRooivalk combines cutting-edge AI with military-grade blockchain technology to deliver unprecedented performance: 99.7% accuracy with 99.3% data integrity protection.
+            PhoenixRooivalk combines cutting-edge AI with military-grade
+            blockchain technology to deliver unprecedented performance: 99.7%
+            accuracy with 99.3% data integrity protection.
           </p>
         </RevealSection>
 
         <RevealSection className="grid md:grid-cols-2 gap-8">
           <div className="space-y-6">
-            <h3 className="text-2xl font-bold text-white mb-6">AI + Blockchain Performance</h3>
+            <h3 className="text-2xl font-bold text-white mb-6">
+              AI + Blockchain Performance
+            </h3>
             <div className="space-y-4">
               <MetricCard
                 title="AI Detection Accuracy"
@@ -49,7 +53,9 @@ export const AIBenefitsSection: React.FC = () => {
           </div>
 
           <div className="space-y-6">
-            <h3 className="text-2xl font-bold text-white mb-6">AI + Blockchain Capabilities</h3>
+            <h3 className="text-2xl font-bold text-white mb-6">
+              AI + Blockchain Capabilities
+            </h3>
             <div className="space-y-4">
               <FeatureCard
                 icon="🧠"
@@ -82,13 +88,24 @@ export const AIBenefitsSection: React.FC = () => {
 
         <RevealSection className="text-center mt-8">
           <div className="bg-[rgba(0,255,136,0.1)] border border-[var(--primary)]/30 rounded-xl p-6 max-w-4xl mx-auto">
-            <h3 className="text-2xl font-bold text-white mb-4">18-Month AI + Blockchain Advantage</h3>
+            <h3 className="text-2xl font-bold text-white mb-4">
+              18-Month AI + Blockchain Advantage
+            </h3>
             <p className="text-[var(--gray)] text-lg mb-6">
-              While competitors race to meet the 2027 autonomous warfare deadline, PhoenixRooivalk's integrated AI-blockchain system is ready for immediate deployment, providing a decisive technological advantage in the critical race for autonomous warfare dominance.
+              While competitors race to meet the 2027 autonomous warfare
+              deadline, PhoenixRooivalk's integrated AI-blockchain system is
+              ready for immediate deployment, providing a decisive technological
+              advantage in the critical race for autonomous warfare dominance.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button href="#contact" size="lg">Request AI + Blockchain Demo</Button>
-              <Button href="mailto:smit.jurie@gmail.com?subject=Phoenix%20Rooivalk%20-%20AI%20%2B%20Blockchain%20Capabilities%20Inquiry" variant="outline" size="lg">
+              <Button href="#contact" size="lg">
+                Request AI + Blockchain Demo
+              </Button>
+              <Button
+                href="mailto:smit.jurie@gmail.com?subject=Phoenix%20Rooivalk%20-%20AI%20%2B%20Blockchain%20Capabilities%20Inquiry"
+                variant="outline"
+                size="lg"
+              >
                 Technical Brief
               </Button>
             </div>
@@ -99,11 +116,11 @@ export const AIBenefitsSection: React.FC = () => {
   );
 };
 
-const MetricCard: React.FC<{ title: string; value: string; comparison: string }> = ({
-  title,
-  value,
-  comparison,
-}) => (
+const MetricCard: React.FC<{
+  title: string;
+  value: string;
+  comparison: string;
+}> = ({ title, value, comparison }) => (
   <div className="flex items-center justify-between p-4 bg-[rgba(0,255,136,0.1)] border border-[var(--primary)]/30 rounded-lg">
     <div>
       <div className="font-bold text-[var(--primary)]">{title}</div>
@@ -113,11 +130,11 @@ const MetricCard: React.FC<{ title: string; value: string; comparison: string }>
   </div>
 );
 
-const FeatureCard: React.FC<{ icon: string; title: string; description: string }> = ({
-  icon,
-  title,
-  description,
-}) => (
+const FeatureCard: React.FC<{
+  icon: string;
+  title: string;
+  description: string;
+}> = ({ icon, title, description }) => (
   <div className="flex items-start gap-4 p-4 bg-[rgba(0,136,255,0.1)] border border-blue-500/30 rounded-lg">
     <span className="text-blue-400 text-2xl">{icon}</span>
     <div>

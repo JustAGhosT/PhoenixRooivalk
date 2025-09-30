@@ -5,7 +5,8 @@
 
 > **Purpose.** This whitepaper introduces the Phoenix Rooivalk Level-0
 > Autonomous Counter-UAS system, addressing the $26B market opportunity with
-> 10-40x performance improvement over existing solutions (120-195ms vs 2-5s baseline).
+> 10-40x performance improvement over existing solutions (120-195ms vs 2-5s
+> baseline).
 >
 > Written for technical evaluators, program managers, and procurement
 > stakeholders.
@@ -126,7 +127,8 @@ external networks. Humans remain in control for anything risky or lethal.
 
 **Competitive Landscape:**
 
-- **Anduril**: Series G $2.5B at $30.5B valuation (2025), Army IVAS program award, 2-5 second latency, cloud dependency
+- **Anduril**: Series G $2.5B at $30.5B valuation (2025), Army IVAS program
+  award, 2-5 second latency, cloud dependency
 - **Fortem**: Kinetic counter-drone systems, no RF-silent detection
 - **DroneShield**: 4,000+ systems sold, RF-dependent, no kinetic capability
 
@@ -292,8 +294,10 @@ external networks. Humans remain in control for anything risky or lethal.
 
 **Performance Metrics:**
 
-- **Solana**: Steady mainnet non-vote TPS ≈2,000 [1]; legacy finality ~12.8s vs Alpenglow target ~100–150ms [2]
-- **Hyperledger Fabric (SmartBFT)**: LAN throughput >2,000 TPS, WAN ≈1,000 TPS with large batches [3]
+- **Solana**: Steady mainnet non-vote TPS ≈2,000 [1]; legacy finality ~12.8s vs
+  Alpenglow target ~100–150ms [2]
+- **Hyperledger Fabric (SmartBFT)**: LAN throughput >2,000 TPS, WAN ≈1,000 TPS
+  with large batches [3]
 - Block time: 400 milliseconds
 - Transaction cost: ~$0.000025
 - **Soft-kill cueing E2E**: 120-195 ms p50 (≤250 ms p95)
@@ -303,8 +307,8 @@ external networks. Humans remain in control for anything risky or lethal.
 
 **Technical Rationale:**
 
-- Blockchain protocols cannot achieve the 120-195ms p50 (≤250ms p95) end-to-end latency required for
-  real-time drone operations
+- Blockchain protocols cannot achieve the 120-195ms p50 (≤250ms p95) end-to-end
+  latency required for real-time drone operations
 - Solana offers exceptional performance but suffers from reliability issues
 - Level-0 autonomous base layer operates independently of blockchain
 
@@ -407,13 +411,14 @@ external networks. Humans remain in control for anything risky or lethal.
 
 Resolve latency contradiction (“<2ms” vs 120–195 ms).
 
-Table claims “Response Time <2ms,” but Sections 2 and 5 set E2E p50 = 120–195 ms (p95 ≤ 250 ms). Use one authoritative spec.
+Table claims “Response Time <2ms,” but Sections 2 and 5 set E2E p50 = 120–195 ms
+(p95 ≤ 250 ms). Use one authoritative spec.
 
 Apply:
 
--| **Response Time**        | <2ms             | 2-5 seconds | 2-5 seconds | 2-5 seconds |
-+| **Response Time**        | 120–195 ms p50 (≤250 ms p95) | 2–5 seconds | 2–5 seconds | 2–5 seconds |
-**Predictive Performance Modeling (PPM):**
+-| **Response Time** | <2ms | 2-5 seconds | 2-5 seconds | 2-5 seconds | +|
+**Response Time** | 120–195 ms p50 (≤250 ms p95) | 2–5 seconds | 2–5 seconds |
+2–5 seconds | **Predictive Performance Modeling (PPM):**
 
 - Forecasts system behavior under various load conditions
 - Automatically adjusts resource allocation during peak operational periods
@@ -578,13 +583,13 @@ Apply:
 
 ### 9.1 Performance Comparison
 
-| Capability               | Phoenix Rooivalk | Anduril     | Fortem      | DroneShield |
-| ------------------------ | ---------------- | ----------- | ----------- | ----------- |
+| Capability               | Phoenix Rooivalk             | Anduril     | Fortem      | DroneShield |
+| ------------------------ | ---------------------------- | ----------- | ----------- | ----------- |
 | **Response Time**        | 120–195 ms p50 (≤250 ms p95) | 2–5 seconds | 2–5 seconds | 2–5 seconds |
-| **RF-Silent Detection**  | Yes              | No          | No          | No          |
-| **Swarm Handling**       | 100+ threats     | Limited     | Sequential  | Limited     |
-| **Autonomous Operation** | Level-0          | Partial     | Partial     | No          |
-| **Field Proven**         | Prototype        | Yes         | Yes         | Yes         |
+| **RF-Silent Detection**  | Yes                          | No          | No          | No          |
+| **Swarm Handling**       | 100+ threats                 | Limited     | Sequential  | Limited     |
+| **Autonomous Operation** | Level-0                      | Partial     | Partial     | No          |
+| **Field Proven**         | Prototype                    | Yes         | Yes         | Yes         |
 
 ### 9.2 Detailed Competitive Analysis
 
@@ -1056,17 +1061,21 @@ box; no production connectivity or data ever.
 Request technical demonstration or SBIR collaboration:
 
 - **Technical Demo**: [jurie@nexamesh.com](mailto:jurie@nexamesh.com)
-- **Partnership Inquiries**: [partnership@nexamesh.com](mailto:partnership@nexamesh.com)
+- **Partnership Inquiries**:
+  [partnership@nexamesh.com](mailto:partnership@nexamesh.com)
 
 ---
 
 ## References
 
-[1] Solana Network Health Report (June 2025) - Steady mainnet non-vote TPS measurements
+[1] Solana Network Health Report (June 2025) - Steady mainnet non-vote TPS
+measurements
 
-[2] Alpenglow documentation - Finality improvements from ~12.8s to ~100–150ms target
+[2] Alpenglow documentation - Finality improvements from ~12.8s to ~100–150ms
+target
 
-[3] Hyperledger Fabric RFC 006 and SmartBFT evaluation paper - LAN/WAN throughput benchmarks
+[3] Hyperledger Fabric RFC 006 and SmartBFT evaluation paper - LAN/WAN
+throughput benchmarks
 
 ---
 

@@ -295,14 +295,14 @@ print(f"Verification Coverage: {verification_report['verification_summary']['ver
 
 ### 4.2 Compliance Assessment Results
 
-| **Standard**              | **Compliance Score** | **Status** | **Key Controls**                      |
-| ------------------------- | -------------------- | ---------- | ------------------------------------- |
-| **FIPS 140-3 (Level 3 target)** | 98.5%          | In progress | Cryptographic modules, key management |
-| **Common Criteria EAL 4** | 96.2%                | In progress | Security architecture, testing        |
-| **NIST SP 800-53**        | 99.1%                | Compliant  | Access control, audit, encryption     |
-| **DISA STIG**             | 97.8%                | Compliant  | Configuration, hardening              |
-| **ISO 27001**             | 98.9%                | Compliant  | Information security management       |
-| **SOC 2 Type II**         | 99.3%                | Compliant  | Security, availability, integrity     |
+| **Standard**                    | **Compliance Score** | **Status**  | **Key Controls**                      |
+| ------------------------------- | -------------------- | ----------- | ------------------------------------- |
+| **FIPS 140-3 (Level 3 target)** | 98.5%                | In progress | Cryptographic modules, key management |
+| **Common Criteria EAL 4**       | 96.2%                | In progress | Security architecture, testing        |
+| **NIST SP 800-53**              | 99.1%                | Compliant   | Access control, audit, encryption     |
+| **DISA STIG**                   | 97.8%                | Compliant   | Configuration, hardening              |
+| **ISO 27001**                   | 98.9%                | Compliant   | Information security management       |
+| **SOC 2 Type II**               | 99.3%                | Compliant   | Security, availability, integrity     |
 
 ---
 

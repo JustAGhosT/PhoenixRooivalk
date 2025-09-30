@@ -20,7 +20,6 @@
 
 ### **Target Audience**
 
-
 1. **Government Agencies**: Military, law enforcement, and border security
    organizations seeking advanced drone defense.
 2. **Event Organizers**: Large-scale event managers requiring protection from
@@ -38,11 +37,11 @@
    solutions, making advanced drone countermeasures indispensable.
 
    **⚠️ Legal/Compliance Notice**: Counter-UAS operations near residences are
-   highly regulated regarding airspace restrictions, communications interference,
-   and privacy laws. All residential deployments must comply with applicable
-   federal, state, and local regulations. Phoenix Rooivalk recommends routing
-   residential offerings through authorized entities only and obtaining proper
-   regulatory approvals before deployment.
+   highly regulated regarding airspace restrictions, communications
+   interference, and privacy laws. All residential deployments must comply with
+   applicable federal, state, and local regulations. Phoenix Rooivalk recommends
+   routing residential offerings through authorized entities only and obtaining
+   proper regulatory approvals before deployment.
 
 ---
 
@@ -170,6 +169,7 @@
 ### **Reputational Risks**
 
 1. **Negative Press**:
+
    - **Risk**: Poor reviews or social media backlash could damage the brand.
    - **Mitigation**: Ensure high-quality customer service and proactive
      communication.
@@ -179,8 +179,8 @@
 2. **Industry Best Practices**:
    - **Approach**: Proactive communication and transparency in addressing
      customer concerns builds long-term trust and loyalty.
-   - **Strategy**: Swift response to issues with clear resolution timelines
-     and follow-up support demonstrates commitment to customer success.
+   - **Strategy**: Swift response to issues with clear resolution timelines and
+     follow-up support demonstrates commitment to customer success.
    - **Lesson Learned**: Transparency and swift action can convert negative
      experiences into opportunities for showcasing accountability and customer
      care.
