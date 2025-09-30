@@ -256,12 +256,12 @@ external networks. Humans remain in control for anything risky or lethal.
 
 | Agent Type             | Specialization               | Response Time | Integration Status |
 | ---------------------- | ---------------------------- | ------------- | ------------------ |
-| **RF-Silent Hunter**   | Non-emitting drone detection | &lt;100ms        | Core capability    |
-| **Swarm Breaker**      | Formation disruption tactics | &lt;150ms        | Core capability    |
-| **Mesh Coordinator**   | Multi-node synchronization   | &lt;50ms         | Core capability    |
-| **Policy Sentinel**    | ROE enforcement              | &lt;30ms         | Core capability    |
-| **EW Specialist**      | Jamming/spoofing             | &lt;200ms        | Planned            |
-| **Kinetic Controller** | Interceptor coordination     | &lt;100ms        | Future             |
+| **RF-Silent Hunter**   | Non-emitting drone detection | &lt;100ms     | Core capability    |
+| **Swarm Breaker**      | Formation disruption tactics | &lt;150ms     | Core capability    |
+| **Mesh Coordinator**   | Multi-node synchronization   | &lt;50ms      | Core capability    |
+| **Policy Sentinel**    | ROE enforcement              | &lt;30ms      | Core capability    |
+| **EW Specialist**      | Jamming/spoofing             | &lt;200ms     | Planned            |
+| **Kinetic Controller** | Interceptor coordination     | &lt;100ms     | Future             |
 
 **Cognitive Processing Model:**
 
@@ -296,8 +296,8 @@ external networks. Humans remain in control for anything risky or lethal.
 
 - **Solana**: Steady mainnet non-vote TPS ≈2,000 [1]; legacy finality ~12.8s vs
   Alpenglow target ~100–150ms [2]
-- **Hyperledger Fabric (SmartBFT)**: LAN throughput &gt;2,000 TPS, WAN ≈1,000 TPS
-  with large batches [3]
+- **Hyperledger Fabric (SmartBFT)**: LAN throughput &gt;2,000 TPS, WAN ≈1,000
+  TPS with large batches [3]
 - Block time: 400 milliseconds
 - Transaction cost: ~$0.000025
 - **Soft-kill cueing E2E**: 120-195 ms p50 (≤250 ms p95)
@@ -411,8 +411,8 @@ external networks. Humans remain in control for anything risky or lethal.
 
 Resolve latency contradiction (“&lt;2ms” vs 120–195 ms).
 
-Table claims “Response Time &lt;2ms,” but Sections 2 and 5 set E2E p50 = 120–195 ms
-(p95 ≤ 250 ms). Use one authoritative spec.
+Table claims “Response Time &lt;2ms,” but Sections 2 and 5 set E2E p50 = 120–195
+ms (p95 ≤ 250 ms). Use one authoritative spec.
 
 Apply:
 
@@ -426,12 +426,12 @@ Apply:
 
 ### 5.6 Detection Capabilities (Projected)
 
-| Target Class        | Range  | Pd (Clear) | Pd (Degraded) | Method           |
-| ------------------- | ------ | ---------- | ------------- | ---------------- |
-| Group 1 (&lt;20 lbs)   | 2-3 km | &gt;92%       | &gt;75%          | Multi-modal      |
-| Group 2 (21-55 lbs) | 3-5 km | &gt;95%       | &gt;82%          | Multi-modal      |
-| Group 3 (&gt;55 lbs)   | 5-8 km | &gt;97%       | &gt;88%          | Multi-modal      |
-| RF-Silent           | 1-3 km | &gt;85%       | &gt;65%          | Radar/EO/IR only |
+| Target Class         | Range  | Pd (Clear) | Pd (Degraded) | Method           |
+| -------------------- | ------ | ---------- | ------------- | ---------------- |
+| Group 1 (&lt;20 lbs) | 2-3 km | &gt;92%    | &gt;75%       | Multi-modal      |
+| Group 2 (21-55 lbs)  | 3-5 km | &gt;95%    | &gt;82%       | Multi-modal      |
+| Group 3 (&gt;55 lbs) | 5-8 km | &gt;97%    | &gt;88%       | Multi-modal      |
+| RF-Silent            | 1-3 km | &gt;85%    | &gt;65%       | Radar/EO/IR only |
 
 ### 5.7 Degraded Mode Performance
 

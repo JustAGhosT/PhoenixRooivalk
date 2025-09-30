@@ -298,11 +298,11 @@ graph TB
 
 | **Incident Type**     | **Response Time** | **Containment** | **Recovery** |
 | --------------------- | ----------------- | --------------- | ------------ |
-| **Data Breach**       | &lt;15 min           | &lt;30 min         | &lt;2 hours     |
-| **Malware Attack**    | &lt;10 min           | &lt;20 min         | &lt;1 hour      |
-| **DDoS Attack**       | &lt;5 min            | &lt;10 min         | &lt;30 min      |
-| **Insider Threat**    | &lt;20 min           | &lt;45 min         | &lt;4 hours     |
-| **System Compromise** | &lt;12 min           | &lt;25 min         | &lt;90 min      |
+| **Data Breach**       | &lt;15 min        | &lt;30 min      | &lt;2 hours  |
+| **Malware Attack**    | &lt;10 min        | &lt;20 min      | &lt;1 hour   |
+| **DDoS Attack**       | &lt;5 min         | &lt;10 min      | &lt;30 min   |
+| **Insider Threat**    | &lt;20 min        | &lt;45 min      | &lt;4 hours  |
+| **System Compromise** | &lt;12 min        | &lt;25 min      | &lt;90 min   |
 
 **Incident Response Capabilities**:
 

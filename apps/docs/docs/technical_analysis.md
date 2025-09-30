@@ -43,8 +43,8 @@ conditions.
 
 ### Blockchain Security & Latency
 
-The system uses cryptographic message authentication on the data path (&lt;2ms on
-edge hardware) and records events to a permissioned ledger for post-mission
+The system uses cryptographic message authentication on the data path (&lt;2ms
+on edge hardware) and records events to a permissioned ledger for post-mission
 audit (consensus/finality off the real-time path; commit latencies typically
 0.1–0.5s in Fabric testbeds, up to ~2s in PBFT/Tendermint). Target: 99.3%
 integrity detection for tamper events.
@@ -214,7 +214,8 @@ Phoenix Rooivalk designed for multiple deployment configurations:
 - Companies like Fortem and DroneShield successful because they reduce operator
   burden
 - Phoenix's emphasis on AI and autonomy aligns with this trend
-- &lt;200ms response could provide tactical edge if system is completely hands-off
+- &lt;200ms response could provide tactical edge if system is completely
+  hands-off
 
 **Electronic Resilience:**
 
@@ -238,8 +239,8 @@ Phoenix Rooivalk designed for multiple deployment configurations:
 | ----------------------- | ------------------------------------------------------------- | ------------------------------------------------------- | ---------------------------------------------------- | ----------------------------------------- |
 | **Detection & Sensors** | Multi-sensor fusion; 99.7% accuracy (unverified); ~5 km range | Multi-sensor (radar, EO/IR); high accuracy; ~4 km range | Primarily radar with AI filtering; 3-5 km range      | Multi-sensor fusion; 1-2 km range with RF |
 | **Engagement Methods**  | Electronic + Kinetic + Directed Energy (all autonomous)       | Electronic (Epirus HPM) + Kinetic (Anvil)               | Kinetic focus (DroneHunter F700)                     | Electronic focus (RF jammers)             |
-| **Networking & Comms**  | Blockchain mesh network; &lt;2ms auth latency                    | Secure mesh network (Lattice Link)                      | Standard secure wireless links                       | Traditional secure IP networking          |
-| **Autonomy & AI**       | Full autonomy detect-to-defeat; &lt;0.2s; Federated learning     | High autonomy; automated engagement possible            | Detection/tracking autonomous; engagement supervised | AI-assisted detection; operator in loop   |
+| **Networking & Comms**  | Blockchain mesh network; &lt;2ms auth latency                 | Secure mesh network (Lattice Link)                      | Standard secure wireless links                       | Traditional secure IP networking          |
+| **Autonomy & AI**       | Full autonomy detect-to-defeat; &lt;0.2s; Federated learning  | High autonomy; automated engagement possible            | Detection/tracking autonomous; engagement supervised | AI-assisted detection; operator in loop   |
 | **Field Proven**        | Not yet                                                       | Yes - US military bases and border surveillance         | Yes - Active in Ukraine, 5,000+ kills                | Yes - Widely used by militaries           |
 
 ## Visual and Marketing Design Audit

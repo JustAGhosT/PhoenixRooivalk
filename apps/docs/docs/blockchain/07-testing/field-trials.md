@@ -79,8 +79,8 @@ graph TB
 | **Performance Metric**   | **Target** | **Achieved** | **Performance** | **Grade** |
 | ------------------------ | ---------- | ------------ | --------------- | --------- |
 | **Detection Accuracy**   | 95%        | 97.3%        | +2.3pp          | A+        |
-| **Response Time**        | &lt;5s        | 3.2s         | +36% faster     | A+        |
-| **False Positive Rate**  | &lt;2%        | 0.8%         | +60% better     | A+        |
+| **Response Time**        | &lt;5s     | 3.2s         | +36% faster     | A+        |
+| **False Positive Rate**  | &lt;2%     | 0.8%         | +60% better     | A+        |
 | **System Availability**  | 99.9%      | 99.95%       | +0.05pp         | A+        |
 | **Partner Satisfaction** | 4.5/5      | 4.7/5        | +4.4% higher    | A         |
 

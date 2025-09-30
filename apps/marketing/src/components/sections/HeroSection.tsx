@@ -25,10 +25,8 @@ export const HeroSection: React.FC = () => {
             decisions at the edge without waiting for the cloud or command
             center.
           </p>
-          <div className="mt-4 p-4 bg-gradient-to-r from-blue-900/20 to-slate-900/20 rounded-lg border border-blue-600/20">
-            <p className="text-blue-400 font-semibold mb-2">
-              Why This Matters:
-            </p>
+          <div className="mt-4 p-4 bg-gradient-to-r from-red-900/20 to-slate-900/20 rounded-lg border border-red-600/20">
+            <p className="text-red-400 font-semibold mb-2">Why This Matters:</p>
             <p className="text-sm text-gray-300">
               Traditional systems fail when enemies jam communications (3-10
               second response). Phoenix works 100% without network - 250x faster
@@ -47,9 +45,9 @@ export const HeroSection: React.FC = () => {
 
         {/* Right: ThreatSimulator as candy bait */}
         <div className="relative animate-float">
-          <div className="bg-gradient-to-br from-slate-900 to-slate-950 rounded-2xl p-6 border border-blue-600/20 shadow-2xl shadow-blue-500/10">
+          <div className="bg-gradient-to-br from-slate-900 to-slate-950 rounded-2xl p-6 border border-red-600/20 shadow-2xl shadow-red-500/10">
             <div className="text-center mb-4">
-              <h3 className="text-lg font-bold text-blue-400 mb-2">
+              <h3 className="text-lg font-bold text-red-400 mb-2">
                 Edge Autonomy Demo
               </h3>
               <p className="text-sm text-gray-400">

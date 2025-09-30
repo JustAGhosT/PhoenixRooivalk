@@ -133,7 +133,7 @@ export const ThreatSimulator: React.FC = (): JSX.Element => {
   };
 
   return (
-    <div className="relative w-full h-[600px] bg-gradient-to-br from-slate-900 via-slate-950 to-slate-900 rounded-xl border border-blue-600/20 overflow-hidden shadow-2xl">
+    <div className="relative w-full h-[600px] bg-gradient-to-br from-slate-900 via-slate-950 to-slate-900 rounded-xl border border-red-500/20 overflow-hidden shadow-2xl">
       {/* Technical grid background */}
       <div className={styles.technicalGrid}></div>
 
@@ -147,30 +147,60 @@ export const ThreatSimulator: React.FC = (): JSX.Element => {
               <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-3 h-3 bg-amber-400 rounded-full shadow-lg shadow-amber-400/30"></div>
 
               {/* Phoenix Wings */}
-              <div className="absolute top-2 left-1 w-6 h-8 bg-gradient-to-r from-blue-600 via-blue-500 to-blue-700 transform -rotate-12 rounded-tl-full shadow-lg"></div>
-              <div className="absolute top-2 right-1 w-6 h-8 bg-gradient-to-l from-blue-600 via-blue-500 to-blue-700 transform rotate-12 rounded-tr-full shadow-lg"></div>
+              <div className="absolute top-2 left-1 w-6 h-8 bg-gradient-to-r from-red-600 via-orange-500 to-red-600 transform -rotate-12 rounded-tl-full shadow-lg"></div>
+              <div className="absolute top-2 right-1 w-6 h-8 bg-gradient-to-l from-red-600 via-orange-500 to-red-600 transform rotate-12 rounded-tr-full shadow-lg"></div>
 
               {/* Phoenix Body */}
-              <div className="absolute top-4 left-1/2 transform -translate-x-1/2 w-4 h-8 bg-gradient-to-b from-blue-700 via-blue-600 to-blue-800 rounded-full"></div>
-              <div className="absolute top-8 left-1/2 transform -translate-x-1/2 w-3 h-6 bg-gradient-to-b from-blue-800 to-blue-900 rounded-full"></div>
+              <div className="absolute top-4 left-1/2 transform -translate-x-1/2 w-4 h-8 bg-gradient-to-b from-orange-600 via-red-500 to-red-700 rounded-full"></div>
+              <div className="absolute top-8 left-1/2 transform -translate-x-1/2 w-3 h-6 bg-gradient-to-b from-red-600 to-red-800 rounded-full"></div>
 
               {/* Phoenix Tail */}
-              <div className="absolute top-10 left-1/2 transform -translate-x-1/2 w-2 h-4 bg-gradient-to-b from-blue-800 to-blue-700 rounded-b-full"></div>
+              <div className="absolute top-10 left-1/2 transform -translate-x-1/2 w-2 h-4 bg-gradient-to-b from-red-700 to-orange-600 rounded-b-full"></div>
               <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-2 h-1 bg-amber-400 rounded-full"></div>
             </div>
 
             {/* Glow effect */}
-            <div className="absolute inset-0 bg-blue-500/10 rounded-full blur-lg animate-pulse"></div>
+            <div className="absolute inset-0 bg-orange-500/10 rounded-full blur-lg animate-pulse"></div>
           </div>
         </div>
 
-        {/* Radar Sweep Circle */}
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-80 h-80 border-2 border-blue-500/20 rounded-full opacity-15">
-          <div className="absolute top-1/2 left-1/2 w-full h-0.5 bg-gradient-to-r from-transparent via-blue-500 to-transparent animate-spin origin-left"></div>
+        {/* Detection Coverage Visualization */}
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-80 h-80">
+          {/* Outer detection ring */}
+          <div className="absolute inset-0 border-2 border-[var(--primary)]/20 rounded-full opacity-30 animate-pulse"></div>
+
+          {/* Radar sweep line */}
+          <div className="absolute top-1/2 left-1/2 w-full h-0.5 bg-gradient-to-r from-transparent via-[var(--primary)] to-transparent animate-spin origin-left opacity-60"></div>
+
+          {/* Coverage zones */}
+          <div className="absolute inset-4 border border-[var(--accent)]/15 rounded-full opacity-25"></div>
+          <div className="absolute inset-8 border border-[var(--primary)]/10 rounded-full opacity-20"></div>
+
+          {/* Detection pings */}
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+            <div className="w-2 h-2 bg-[var(--accent)] rounded-full animate-ping opacity-75"></div>
+          </div>
         </div>
 
         {/* Inner defense ring */}
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-40 h-40 border border-blue-400/15 rounded-full opacity-20"></div>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-40 h-40 border border-[var(--primary)]/15 rounded-full opacity-30">
+          <div className="absolute inset-2 border border-[var(--accent)]/10 rounded-full opacity-20"></div>
+        </div>
+
+        {/* Detection range indicators */}
+        <div className="absolute top-4 left-4 text-xs text-[var(--accent)] font-mono opacity-70">
+          <div className="flex items-center space-x-2">
+            <div className="w-2 h-2 bg-[var(--primary)] rounded-full animate-pulse"></div>
+            <span>5km Detection</span>
+          </div>
+        </div>
+
+        <div className="absolute top-4 right-4 text-xs text-[var(--accent)] font-mono opacity-70">
+          <div className="flex items-center space-x-2">
+            <div className="w-2 h-2 bg-[var(--accent)] rounded-full animate-pulse"></div>
+            <span>2km Engage</span>
+          </div>
+        </div>
 
         {gameState.threats.map((threat) => {
           const appearance = getThreatAppearance(threat.type);

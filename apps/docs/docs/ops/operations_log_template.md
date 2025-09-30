@@ -9,7 +9,8 @@
 - Environment: dev | test | prod
 - Anchor chain: solana | ethereum | avalanche-subnet | other
 - Commitment/finality target: processed | confirmed | finalized | other
-- Outbox batch settings: attempts=&lt;n&gt;, batch_limit=&lt;n&gt;, interval_sec=&lt;n&gt;
+- Outbox batch settings: attempts=&lt;n&gt;, batch_limit=&lt;n&gt;,
+  interval_sec=&lt;n&gt;
 
 ## Metrics summary
 

@@ -1,15 +1,16 @@
 /* ThreatSimulator.module.css - Professional Military Theme */
 .gameContainer {
-  @apply relative w-full h-[600px] bg-gradient-to-br from-slate-900 via-slate-950 to-slate-900 rounded-xl border border-blue-600/20 overflow-hidden shadow-2xl;
+  @apply relative w-full h-[600px] bg-gradient-to-br from-slate-900 via-slate-950 to-slate-900 rounded-xl border overflow-hidden shadow-2xl;
+  border-color: rgba(var(--primary), 0.2);
 }
 
 .technicalGrid {
   @apply absolute inset-0 opacity-10 w-full h-full;
   background-image: linear-gradient(
-      rgba(59, 130, 246, 0.08) 1px,
+      rgba(var(--primary), 0.08) 1px,
       transparent 1px
     ),
-    linear-gradient(90deg, rgba(59, 130, 246, 0.08) 1px, transparent 1px);
+    linear-gradient(90deg, rgba(var(--primary), 0.08) 1px, transparent 1px);
   background-size: 20px 20px;
 }
 
@@ -38,15 +39,23 @@
 }
 
 .radarSweep {
-  @apply absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-80 h-80 border-2 border-blue-500/20 rounded-full opacity-15;
+  @apply absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-80 h-80 border-2 rounded-full opacity-15;
+  border-color: rgba(249, 115, 22, 0.2);
 }
 
 .radarLine {
-  @apply absolute top-1/2 left-1/2 w-full h-0.5 bg-gradient-to-r from-transparent via-blue-500 to-transparent animate-spin origin-left;
+  @apply absolute top-1/2 left-1/2 w-full h-0.5 bg-gradient-to-r from-transparent to-transparent animate-spin origin-left;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(249, 115, 22, 1),
+    transparent
+  );
 }
 
 .threat {
-  @apply absolute w-8 h-8 rounded-full flex items-center justify-center cursor-pointer transition-all duration-300 shadow-lg hover:scale-110 border border-blue-400/15;
+  @apply absolute w-8 h-8 rounded-full flex items-center justify-center cursor-pointer transition-all duration-300 shadow-lg hover:scale-110 border;
+  border-color: rgba(251, 191, 36, 0.15);
 }
 
 .threatDrone {
@@ -54,7 +63,11 @@
 }
 
 .threatSwarm {
-  @apply bg-blue-600 shadow-lg shadow-blue-600/40;
+  @apply shadow-lg;
+  background-color: #f97316;
+  box-shadow:
+    0 10px 15px -3px rgba(249, 115, 22, 0.4),
+    0 4px 6px -2px rgba(249, 115, 22, 0.4);
 }
 
 .threatStealth {
@@ -62,15 +75,21 @@
 }
 
 .healthBar {
-  @apply absolute -bottom-1 left-0 right-0 h-1 bg-gray-700 rounded border border-orange-400/20;
+  @apply absolute -bottom-1 left-0 right-0 h-1 bg-gray-700 rounded border;
+  border-color: rgba(251, 191, 36, 0.2);
 }
 
 .healthFill {
-  @apply h-full bg-gradient-to-r from-orange-500 to-red-500 rounded transition-all shadow-sm;
+  @apply h-full rounded transition-all shadow-sm;
+  background: linear-gradient(to right, #f97316, #dc2626);
 }
 
 .statsOverlay {
-  @apply absolute top-4 right-4 bg-black/90 backdrop-blur-sm border border-orange-500/50 rounded-md shadow-lg shadow-orange-500/20;
+  @apply absolute top-4 right-4 bg-black/90 backdrop-blur-sm border rounded-md shadow-lg;
+  border-color: rgba(249, 115, 22, 0.5);
+  box-shadow:
+    0 10px 15px -3px rgba(249, 115, 22, 0.2),
+    0 4px 6px -2px rgba(249, 115, 22, 0.2);
 }
 
 .statsContent {
@@ -82,7 +101,8 @@
 }
 
 .statValue {
-  @apply text-lg font-mono font-bold text-orange-400;
+  @apply text-lg font-mono font-bold;
+  color: #fb923c;
 }
 
 .statLabel {
@@ -90,7 +110,11 @@
 }
 
 .controlsOverlay {
-  @apply absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-black/90 backdrop-blur-sm border border-orange-500/50 rounded-md shadow-lg shadow-orange-500/20;
+  @apply absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-black/90 backdrop-blur-sm border rounded-md shadow-lg;
+  border-color: rgba(249, 115, 22, 0.5);
+  box-shadow:
+    0 10px 15px -3px rgba(249, 115, 22, 0.2),
+    0 4px 6px -2px rgba(249, 115, 22, 0.2);
 }
 
 .controlsContent {
@@ -106,11 +130,29 @@
 }
 
 .controlButtonOrange {
-  @apply bg-orange-600 hover:bg-orange-500 text-white border-orange-500 hover:border-orange-400 shadow-sm hover:shadow-orange-500/30;
+  @apply text-white shadow-sm;
+  background-color: #ea580c;
+  border-color: #f97316;
+}
+.controlButtonOrange:hover {
+  background-color: #f97316;
+  border-color: #fb923c;
+  box-shadow:
+    0 10px 15px -3px rgba(249, 115, 22, 0.3),
+    0 4px 6px -2px rgba(249, 115, 22, 0.3);
 }
 
 .controlButtonGreen {
-  @apply bg-orange-600 hover:bg-orange-500 text-white border-orange-500 hover:border-orange-400 shadow-sm hover:shadow-orange-500/30;
+  @apply text-white shadow-sm;
+  background-color: #ea580c;
+  border-color: #f97316;
+}
+.controlButtonGreen:hover {
+  background-color: #f97316;
+  border-color: #fb923c;
+  box-shadow:
+    0 10px 15px -3px rgba(249, 115, 22, 0.3),
+    0 4px 6px -2px rgba(249, 115, 22, 0.3);
 }
 
 .weaponButton {
@@ -122,11 +164,15 @@
 }
 
 .weaponButtonElectronic {
-  @apply bg-orange-700 border-orange-600 text-orange-100;
+  background-color: #c2410c;
+  border-color: #ea580c;
+  color: #fed7aa;
 }
 
 .weaponButtonLaser {
-  @apply bg-yellow-700 border-yellow-600 text-yellow-100;
+  background-color: #a16207;
+  border-color: #ca8a04;
+  color: #fef3c7;
 }
 
 .weaponButtonInactive {

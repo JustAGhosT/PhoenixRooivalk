@@ -5,22 +5,23 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        primary: "#1e40af",
+        primary: "#dc2626",
         secondary: "#374151",
-        accent: "#f59e0b",
+        accent: "#fbbf24",
         dark: "#0f172a",
         darker: "#020617",
         graytext: "#6b7280",
         steel: "#94a3b8",
-        "navy-blue": "#1e40af",
-        "steel-gray": "#374151",
-        "muted-amber": "#f59e0b",
+        orange: "#f97316",
+        "phoenix-red": "#dc2626",
+        "phoenix-orange": "#f97316",
+        "phoenix-yellow": "#fbbf24",
       },
       boxShadow: {
-        glow: "0 0 30px rgba(30, 64, 175, 0.2)",
-        "navy-glow": "0 0 20px rgba(30, 64, 175, 0.25)",
-        "amber-glow": "0 0 20px rgba(245, 158, 11, 0.15)",
-        "steel-glow": "0 0 20px rgba(148, 163, 184, 0.2)",
+        glow: "0 0 30px rgba(220, 38, 38, 0.2)",
+        "red-glow": "0 0 20px rgba(220, 38, 38, 0.25)",
+        "orange-glow": "0 0 20px rgba(249, 115, 22, 0.15)",
+        "amber-glow": "0 0 20px rgba(251, 191, 36, 0.15)",
       },
       keyframes: {
         gridMove: {

@@ -75,10 +75,10 @@ graph TB
 | **Component**  | **Metric**   | **Target** | **Achieved** | **Grade** |
 | -------------- | ------------ | ---------- | ------------ | --------- |
 | **Blockchain** | Throughput   | 3,500 TPS  | 3,687 TPS    | A+        |
-| **Blockchain** | Finality     | &lt;1000ms    | 847ms        | A         |
-| **AI/ML**      | Inference    | &lt;100ms     | 87ms         | A+        |
-| **System**     | Detection    | &lt;5s        | 3.2s         | A+        |
-| **API**        | Response     | &lt;200ms     | 156ms        | A         |
+| **Blockchain** | Finality     | &lt;1000ms | 847ms        | A         |
+| **AI/ML**      | Inference    | &lt;100ms  | 87ms         | A+        |
+| **System**     | Detection    | &lt;5s     | 3.2s         | A+        |
+| **API**        | Response     | &lt;200ms  | 156ms        | A         |
 | **Overall**    | Availability | 99.95%     | 99.97%       | A+        |
 
 ---
@@ -154,11 +154,11 @@ graph TB
 
 | **Operation Phase**   | **Target** | **Achieved** | **Success Rate** |
 | --------------------- | ---------- | ------------ | ---------------- |
-| **Threat Detection**  | &lt;5s        | 3.2s         | 98.7%            |
-| **Classification**    | &lt;2s        | 1.4s         | 97.2%            |
-| **Response Planning** | &lt;1s        | 0.7s         | 99.1%            |
-| **Action Execution**  | &lt;3s        | 2.1s         | 96.8%            |
-| **Verification**      | &lt;2s        | 1.3s         | 98.4%            |
+| **Threat Detection**  | &lt;5s     | 3.2s         | 98.7%            |
+| **Classification**    | &lt;2s     | 1.4s         | 97.2%            |
+| **Response Planning** | &lt;1s     | 0.7s         | 99.1%            |
+| **Action Execution**  | &lt;3s     | 2.1s         | 96.8%            |
+| **Verification**      | &lt;2s     | 1.3s         | 98.4%            |
 
 **Integration Efficiency**:
 
