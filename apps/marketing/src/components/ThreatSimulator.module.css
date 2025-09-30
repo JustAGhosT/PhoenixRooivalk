@@ -14,15 +14,20 @@
   @apply absolute inset-0 w-full h-full;
 }
 
+/* Dynamic threat positioning - will be applied via CSS custom properties */
 .threatPosition {
   position: absolute;
+  left: var(--threat-x, 0px);
+  top: var(--threat-y, 0px);
 }
 
+/* Health bar width - will be applied via CSS custom properties */
 .healthBarWidth {
   height: 100%;
   border-radius: inherit;
   transition: all 0.3s ease;
   box-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
+  width: var(--health-width, 100%);
 }
 
 .centralShield {

@@ -137,28 +137,7 @@ export const ThreatSimulator: React.FC = (): JSX.Element => {
       {/* Technical grid background */}
       <div className={styles.technicalGrid}></div>
 
-      <div
-        ref={gameRef}
-        className={styles.gameArea}
-        onClick={(e) => {
-          const target = e.target as HTMLElement;
-          const el = target.closest<HTMLElement>("[data-threat-id]");
-          const threatId = el?.getAttribute("data-threat-id");
-          if (threatId) neutralizeThreat(threatId);
-        }}
-        onKeyDown={(e) => {
-          if (e.key === "Enter" || e.key === " ") {
-            e.preventDefault();
-            const target = e.target as HTMLElement;
-            const el = target.closest<HTMLElement>("[data-threat-id]");
-            const threatId = el?.getAttribute("data-threat-id");
-            if (threatId) neutralizeThreat(threatId);
-          }
-        }}
-        role="button"
-        tabIndex={0}
-        aria-label="Threat neutralization area"
-      >
+      <div ref={gameRef} className={styles.gameArea}>
         {/* Phoenix Rooivalk Logo - Central Defense System */}
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-20 h-20 flex items-center justify-center z-20">
           <div className="relative">
@@ -201,9 +180,9 @@ export const ThreatSimulator: React.FC = (): JSX.Element => {
               key={threat.id}
               className={`${styles.threat} ${styles.threatPosition}`}
               style={{
-                left: `${threat.x}px`,
-                top: `${threat.y}px`,
-              }}
+                "--threat-x": `${threat.x}px`,
+                "--threat-y": `${threat.y}px`,
+              } as React.CSSProperties}
               data-threat-id={threat.id}
               onClick={(e) => {
                 e.stopPropagation();
@@ -223,7 +202,7 @@ export const ThreatSimulator: React.FC = (): JSX.Element => {
                 <div
                   className={`${styles.healthFill} ${styles.healthBarWidth}`}
                   style={{
-                    width: `${
+                    "--health-width": `${
                       (threat.health /
                         (threat.type === "stealth"
                           ? 3
@@ -232,7 +211,7 @@ export const ThreatSimulator: React.FC = (): JSX.Element => {
                             : 1)) *
                       100
                     }%`,
-                  }}
+                  } as React.CSSProperties}
                 />
               </div>
             </button>
