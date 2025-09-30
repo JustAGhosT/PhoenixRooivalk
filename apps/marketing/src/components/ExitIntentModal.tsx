@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useEffect, useRef } from "react";
 import { Button } from "./ui/button";
-import { downloadWhitepaper } from "@phoenix-rooivalk/utils";
+import { downloadWhitepaper } from "@/utils/downloadWhitepaper";
 
 interface ExitIntentModalProps {
   docsUrl?: string;

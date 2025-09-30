@@ -61,7 +61,14 @@ export const ContactSection: React.FC = () => {
               and competitive positioning.
             </p>
             <div className="space-y-4">
-              <Button onClick={downloadWhitepaper} size="lg" className="w-full">
+              <Button 
+                onClick={(e) => {
+                  e.preventDefault();
+                  downloadWhitepaper();
+                }} 
+                size="lg" 
+                className="w-full"
+              >
                 Download Technical Whitepaper
               </Button>
               <Button
