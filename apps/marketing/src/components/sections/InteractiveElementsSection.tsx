@@ -23,16 +23,25 @@ export const InteractiveElementsSection: React.FC = () => {
     // Calculate annual threat events
     const annualThreats = threatFrequency * 12;
 
-    // Calculate success rates based on response time
-    const phoenixSuccessRate = averageResponseTime <= 120 ? 0.95 : 0.85;
-    const traditionalSuccessRate = averageResponseTime <= 3000 ? 0.65 : 0.45;
+    // Apply sensitivity multipliers
+    const sensitivityMultipliers = {
+      conservative: { phoenix: 0.7, traditional: 0.9, incidentCost: 300000 },
+      median: { phoenix: 0.85, traditional: 0.75, incidentCost: 500000 },
+      aggressive: { phoenix: 0.95, traditional: 0.6, incidentCost: 750000 },
+    };
+
+    const multiplier = sensitivityMultipliers[sensitivity];
+
+    // Calculate success rates based on response time and sensitivity
+    const phoenixSuccessRate = (averageResponseTime <= 120 ? 0.95 : 0.85) * multiplier.phoenix;
+    const traditionalSuccessRate = (averageResponseTime <= 3000 ? 0.65 : 0.45) * multiplier.traditional;
 
     // Calculate prevented incidents
     const phoenixPrevented = annualThreats * phoenixSuccessRate;
     const traditionalPrevented = annualThreats * traditionalSuccessRate;
 
-    // Estimate cost per incident (varies by severity)
-    const avgIncidentCost = 500000; // USD
+    // Estimate cost per incident (varies by sensitivity)
+    const avgIncidentCost = multiplier.incidentCost;
 
     // Calculate savings
     const phoenixSavings = phoenixPrevented * avgIncidentCost;
