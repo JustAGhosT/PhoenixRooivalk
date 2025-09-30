@@ -87,17 +87,16 @@ export const HeroSection: React.FC = () => {
           <div className="mt-8 space-y-4 animate-fadeInUp [animation-delay:400ms]">
             <div className="flex flex-col sm:flex-row gap-4">
               <Button
-                href="#contact"
+                href="/interactive-demo"
                 size="lg"
-                className="bg-gradient-to-r from-[rgb(var(--primary))] to-[rgb(var(--accent))] hover:from-[rgb(var(--accent))] hover:to-[rgb(var(--primary))] shadow-xl"
+                variant="primary"
               >
                 Try the Simulation (Concept UI)
               </Button>
               <Button
-                href="/interactive-demo"
-                variant="outline"
+                href="/contact"
+                variant="secondary"
                 size="lg"
-                className="border-[rgb(var(--primary))] text-[rgb(var(--primary))] hover:bg-[rgba(var(--primary),0.1)]"
               >
                 Join Early Access
               </Button>
@@ -105,25 +104,22 @@ export const HeroSection: React.FC = () => {
             <div className="flex flex-wrap gap-4 text-sm">
               <Button
                 href="/technical"
-                variant="outline"
+                variant="ghost"
                 size="sm"
-                className="border-[rgba(var(--primary),0.3)] text-[rgb(var(--gray))] hover:text-[rgb(var(--primary))] hover:border-[rgb(var(--primary))]"
               >
                 Technical Specifications →
               </Button>
               <Button
                 href="/financial"
-                variant="outline"
+                variant="ghost"
                 size="sm"
-                className="border-[rgba(var(--primary),0.3)] text-[rgb(var(--gray))] hover:text-[rgb(var(--primary))] hover:border-[rgb(var(--primary))]"
               >
                 ROI Calculator →
               </Button>
               <Button
                 href="/compliance"
-                variant="outline"
+                variant="ghost"
                 size="sm"
-                className="border-[rgba(var(--primary),0.3)] text-[rgb(var(--gray))] hover:text-[rgb(var(--primary))] hover:border-[rgb(var(--primary))]"
               >
                 Compliance & Certifications →
               </Button>
@@ -132,17 +128,24 @@ export const HeroSection: React.FC = () => {
         </div>
 
         {/* Right: ThreatSimulator as candy bait */}
-        <div className="relative animate-float">
-          <div className="bg-gradient-to-br from-[rgb(var(--dark))] to-[rgb(var(--darker))] rounded-2xl p-6 border border-[rgba(var(--primary),0.2)] shadow-2xl shadow-[rgba(var(--primary),0.1)]">
+        <div className="relative">
+          <div className="card card--elevated">
             <div className="text-center mb-4">
-              <h3 className="text-lg font-bold text-[rgb(var(--primary))] mb-2">
+              <h3 className="text-lg font-bold text-[var(--action-primary)] mb-2">
                 Edge Autonomy Demo
               </h3>
-              <p className="text-sm text-[rgb(var(--gray))]">
+              <p className="text-sm text-[var(--text-muted)]">
                 No network needed - decisions in milliseconds
               </p>
             </div>
             <ThreatSimulator />
+            {/* Simulation Disclaimer - Always Visible */}
+            <div className="mt-4 p-3 bg-[var(--action-warning)]/10 border border-[var(--action-warning)]/20 rounded-lg">
+              <p className="text-xs text-[var(--action-warning)] text-center font-semibold">
+                ⚠️ This simulation visualizes potential behaviors for illustrative purposes. 
+                Performance, accuracy, and ranges are unvalidated.
+              </p>
+            </div>
           </div>
         </div>
       </div>

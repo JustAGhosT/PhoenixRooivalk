@@ -10,6 +10,8 @@ export const InteractiveElementsSection: React.FC = () => {
     personnelCost: 150000, // USD per year
   });
 
+  const [sensitivity, setSensitivity] = useState<'conservative' | 'median' | 'aggressive'>('conservative');
+
   const calculateROI = () => {
     const {
       threatFrequency,
