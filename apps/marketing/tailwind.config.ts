@@ -5,14 +5,21 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        primary: "#00ff88",
-        secondary: "#0088ff",
+        primary: "#f97316",
+        secondary: "#dc2626",
+        accent: "#fbbf24",
         dark: "#0a0e1a",
-        darker: "#050811",
-        graytext: "#8892b0",
+        darker: "#000000",
+        graytext: "#9ca3af",
+        "phoenix-orange": "#f97316",
+        "phoenix-red": "#dc2626",
+        "phoenix-yellow": "#fbbf24",
       },
       boxShadow: {
-        glow: "0 0 30px rgba(0, 255, 136, 0.3)",
+        glow: "0 0 30px rgba(249, 115, 22, 0.3)",
+        "orange-glow": "0 0 20px rgba(249, 115, 22, 0.4)",
+        "red-glow": "0 0 20px rgba(220, 38, 38, 0.4)",
+        "yellow-glow": "0 0 20px rgba(251, 191, 36, 0.4)",
       },
       keyframes: {
         gridMove: {

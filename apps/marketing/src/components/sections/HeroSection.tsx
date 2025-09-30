@@ -25,8 +25,8 @@ export const HeroSection: React.FC = () => {
             decisions at the edge without waiting for the cloud or command
             center.
           </p>
-          <div className="mt-4 p-4 bg-gradient-to-r from-green-900/30 to-blue-900/30 rounded-lg border border-green-500/30">
-            <p className="text-green-400 font-semibold mb-2">
+          <div className="mt-4 p-4 bg-gradient-to-r from-orange-900/30 to-red-900/30 rounded-lg border border-orange-500/30">
+            <p className="text-orange-400 font-semibold mb-2">
               Why This Matters:
             </p>
             <p className="text-sm text-gray-300">

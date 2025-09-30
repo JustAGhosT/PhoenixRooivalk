@@ -230,6 +230,62 @@ export const ThreatSimulator: React.FC = (): JSX.Element => {
             </button>
           );
         })}
+
+        {/* Stats Overlay */}
+        <div className={styles.statsOverlay}>
+          <div className={styles.statsContent}>
+            <div className={styles.statItem}>
+              <div className={styles.statValue}>{gameState.score}</div>
+              <div className={styles.statLabel}>SCORE</div>
+            </div>
+            <div className={styles.statItem}>
+              <div className={styles.statValue}>{gameState.threats.length}</div>
+              <div className={styles.statLabel}>THREATS</div>
+            </div>
+            <div className={styles.statItem}>
+              <div className={styles.statValue}>{gameState.neutralized}</div>
+              <div className={styles.statLabel}>NEUTRALIZED</div>
+            </div>
+            <div className={styles.statItem}>
+              <div className={styles.statValue}>{gameState.level}</div>
+              <div className={styles.statLabel}>LEVEL</div>
+            </div>
+          </div>
+        </div>
+
+        {/* Interactive Controls */}
+        <div className={styles.controlsOverlay}>
+          <div className={styles.controlsContent}>
+            <button
+              onClick={toggleRunningState}
+              className={`${styles.controlButton} ${
+                gameState.isRunning
+                  ? styles.controlButtonOrange
+                  : styles.controlButtonGray
+              }`}
+            >
+              {gameState.isRunning ? "PAUSE" : "RESUME"}
+            </button>
+            <button
+              onClick={generateSwarm}
+              className={`${styles.controlButton} ${styles.controlButtonOrange}`}
+            >
+              SWARM
+            </button>
+            <button
+              onClick={() => spawnMultipleDrones(5)}
+              className={`${styles.controlButton} ${styles.controlButtonOrange}`}
+            >
+              +5 DRONES
+            </button>
+            <button
+              onClick={resetGame}
+              className={`${styles.controlButton} ${styles.controlButtonGray}`}
+            >
+              RESET
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   );
