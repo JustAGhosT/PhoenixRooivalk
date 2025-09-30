@@ -1,7 +1,7 @@
 "use client";
-import React, { useState, useEffect, useRef } from "react";
-import { Button } from "./ui/button";
 import { downloadWhitepaper } from "@phoenix-rooivalk/utils";
+import React, { useEffect, useRef, useState } from "react";
+import { Button } from "./ui/button";
 
 interface ExitIntentModalProps {
   docsUrl?: string;
@@ -141,14 +141,14 @@ export const ExitIntentModal: React.FC<ExitIntentModalProps> = ({
           <div className="grid grid-cols-2 gap-3">
             <Button
               onClick={handleMaybeLater}
-              variant="outline"
+              variant="ghost"
               className="text-sm"
             >
               Maybe Later
             </Button>
             <Button
               onClick={handleStayOnPage}
-              variant="outline"
+              variant="ghost"
               className="text-sm"
             >
               Stay Here

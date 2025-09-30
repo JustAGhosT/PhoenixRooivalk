@@ -422,7 +422,7 @@ export default function FinancialPage(): React.ReactElement {
               </Button>
               <Button
                 href="/interactive-demo"
-                variant="outline"
+                variant="ghost"
                 size="lg"
                 className="border-[rgb(var(--primary))] text-[rgb(var(--primary))] hover:bg-[rgba(var(--primary),0.1)]"
               >
