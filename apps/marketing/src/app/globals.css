@@ -3,23 +3,25 @@
 @tailwind utilities;
 
 :root {
-  --primary: #dc2626;
-  --secondary: #374151;
-  --accent: #fbbf24;
-  --dark: #0f172a;
-  --darker: #020617;
-  --light: #ffffff;
-  --gray: #6b7280;
-  --steel: #94a3b8;
-  --orange: #f97316;
+  --primary: 220, 38, 38;
+  --secondary: 55, 65, 81;
+  --accent: 251, 191, 36;
+  --dark: 15, 23, 42;
+  --darker: 2, 6, 23;
+  --light: 255, 255, 255;
+  --gray: 107, 114, 128;
+  --steel: 148, 163, 184;
+  --orange: 249, 115, 22;
   --red-glow: rgba(220, 38, 38, 0.2);
   --orange-glow: rgba(249, 115, 22, 0.15);
   --amber-glow: rgba(251, 191, 36, 0.15);
+  --header-bg: rgba(10, 14, 26, 0.95);
+  --logo-bg: rgba(15, 23, 42, 0.8);
 }
 
 body {
-  background: var(--darker);
-  color: var(--light);
+  background: rgb(var(--darker));
+  color: rgb(var(--light));
 }
 
 .reveal {

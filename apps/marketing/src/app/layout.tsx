@@ -6,6 +6,11 @@ export const metadata: Metadata = {
   title: "Phoenix Rooivalk - Counter-Drone Defense",
   description:
     "Blockchain-powered counter-drone defense. Phoenix Rooivalk marketing site.",
+  icons: {
+    icon: "/logo.svg",
+    shortcut: "/logo.svg",
+    apple: "/logo.svg",
+  },
 };
 
 export default function RootLayout({
