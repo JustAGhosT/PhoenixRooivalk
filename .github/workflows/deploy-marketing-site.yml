@@ -28,6 +28,10 @@ jobs:
   build-and-deploy:
     if: github.event_name != 'pull_request'
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      statuses: write
+      pull-requests: write
     defaults:
       run:
         working-directory: .
@@ -72,6 +76,10 @@ jobs:
   preview-deploy:
     if: github.event_name == 'pull_request'
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      statuses: write
+      pull-requests: write
     defaults:
       run:
         working-directory: .
