@@ -98,6 +98,10 @@
               "path": "/docs/blockchain/cost-analysis/cost-optimization"
             },
             {
+              "id": "blockchain/cost-analysis/financial-projections",
+              "path": "/docs/blockchain/cost-analysis/financial-projections"
+            },
+            {
               "id": "blockchain/cost-analysis/operational-costs",
               "path": "/docs/blockchain/cost-analysis/operational-costs"
             },
@@ -116,6 +120,10 @@
             {
               "id": "blockchain/deployment/deployment-guide",
               "path": "/docs/blockchain/deployment/deployment-guide"
+            },
+            {
+              "id": "blockchain/deployment/infrastructure",
+              "path": "/docs/blockchain/deployment/infrastructure"
             },
             {
               "id": "blockchain/deployment/infrastructure/aws-architecture",
@@ -258,6 +266,10 @@
               "path": "/docs/blockchain/"
             },
             {
+              "id": "blockchain/risk-management/business-risks",
+              "path": "/docs/blockchain/risk-management/business-risks"
+            },
+            {
               "id": "blockchain/risk-management/contingency-plans",
               "path": "/docs/blockchain/risk-management/contingency-plans"
             },
@@ -272,6 +284,10 @@
             {
               "id": "blockchain/risk-management/README",
               "path": "/docs/blockchain/risk-management/"
+            },
+            {
+              "id": "blockchain/risk-management/security-risks",
+              "path": "/docs/blockchain/risk-management/security-risks"
             },
             {
               "id": "blockchain/risk-management/technical-risks",

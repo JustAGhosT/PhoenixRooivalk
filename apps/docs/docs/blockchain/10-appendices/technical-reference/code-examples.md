@@ -6,7 +6,7 @@
 - **Related Documents**:
   - [Smart Contracts](./smart-contracts.md) - Contract interfaces
   - [API Documentation](./api-documentation.md) - REST API reference
-  - [System Integration](../../03-implementation/phase-4-system-integration/) -
+  - [System Integration](../../03-implementation/phase-4-system-integration/api-specifications.md) -
     Integration guides
 
 ---
@@ -545,7 +545,7 @@ contract interaction, error handling, and resilience patterns.
 
 - [Smart Contracts](./smart-contracts.md) - Contract interfaces
 - [API Documentation](./api-documentation.md) - REST API reference
-- [System Integration](../../03-implementation/phase-4-system-integration/) -
+- [System Integration](../../03-implementation/phase-4-system-integration/api-specifications.md) -
   Integration guides
 
 ---

@@ -31,7 +31,7 @@ Budget: $1.5M | Status: Ready to Launch
 | 1-2   | Team Formation     | Core team hired      | 100% staffing         |
 | 3-4   | Technology Stack   | Platform selected    | Architecture approved |
 | 5-6   | Infrastructure     | Dev environment live | CI/CD operational     |
-| 7-8   | Blockchain Network | 5-node testnet       | <100ms latency        |
+| 7-8   | Blockchain Network | 5-node testnet       | &lt;100ms latency     |
 | 9-10  | PUF Integration    | Hardware procured    | Authentication demo   |
 | 11-12 | POC Complete       | Working prototype    | Stakeholder approval  |
 
@@ -45,7 +45,7 @@ Budget: $1.5M | Status: Ready to Launch
 
 ## Phase 1: Authentication (Months 4-6)
 
-Budget: $1.42M | Target: 99% accuracy, <2ms latency
+Budget: $1.42M | Target: 99% accuracy, &lt;2ms latency
 
 ### Key Deliverables
 
@@ -57,10 +57,10 @@ Budget: $1.42M | Target: 99% accuracy, <2ms latency
 
 ```yaml
 performance:
-  authentication_accuracy: ">99%"
-  latency_p95: "<2ms"
-  false_positive_rate: "<3%"
-  concurrent_operations: ">100/sec"
+  authentication_accuracy: "&gt;99%"
+  latency_p95: "&lt;2ms"
+  false_positive_rate: "&lt;3%"
+  concurrent_operations: "&gt;100/sec"
 
 security:
   penetration_test: "passed"
@@ -95,7 +95,7 @@ Budget: $1.27M | Target: 100-drone swarms
 | Month | Capability           | Drones | Success Metric         |
 | ----- | -------------------- | ------ | ---------------------- |
 | 10    | Basic Formation      | 20     | V-shape maintained     |
-| 11    | Dynamic Coordination | 50     | <250ms consensus       |
+| 11    | Dynamic Coordination | 50     | &lt;250ms consensus    |
 | 12    | Contested Ops        | 100    | 95% jamming resistance |
 
 ### Algorithm Implementation
@@ -149,15 +149,16 @@ Budget: $1.2M | Target: Full Operational Capability
 ## Critical Decision Gates
 
 - **Gate 1: Technology Validation (Month 3)**
-  - Criteria: Latency <2ms, throughput >100 TPS, cost <$10M
+  - Criteria: Latency &lt;2ms, throughput &gt;100 TPS, cost &lt;$10M
   - Go Decision: Proceed to Phase 1
   - No-Go: Pivot technology stack
 - **Gate 2: Security Certification (Month 6)**
-  - Criteria: 99% authentication, passed penetration test, <3% false positives
+  - Criteria: 99% authentication, passed penetration test, &lt;3% false
+    positives
   - Go Decision: Scale to production
   - No-Go: Remediate vulnerabilities
 - **Gate 3: Operational Readiness (Month 12)**
-  - Criteria: 50+ drone swarms, >99% availability, 3+ integrations
+  - Criteria: 50+ drone swarms, &gt;99% availability, 3+ integrations
   - Go Decision: Full deployment
   - No-Go: Extended beta
 - **Gate 4: Market Launch (Month 18)**

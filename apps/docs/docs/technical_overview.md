@@ -25,7 +25,6 @@ cases.
 #### **Key Components**
 
 - **Detection Module**:
-
   - **RF Scanning**: Identifies drone communication signals.
   - **Radar Systems**: Tracks drone movement in a 3D space.
   - **Optical Cameras**: Provides visual confirmation using AI for object
@@ -38,7 +37,6 @@ cases.
     electromagnetic emissions when RF signals are encrypted or masked.
 
 - **Identification Module**:
-
   - **Database Integration**: Matches drone signatures with a continuously
     updated database of known UAV models.
   - **AI-Powered Classification**: Distinguishes between friendly, neutral, and
@@ -51,7 +49,6 @@ cases.
 - **Neutralization Module**:
 
   > [Back to Glossary](./glossary.md)
-
   - **RF Jamming**: Disrupts communication between the drone and its operator.
   - **GPS Spoofing**: Confuses the drone's navigation system by feeding false
     location data.
@@ -66,7 +63,6 @@ cases.
     include spectrum management tools for targeted drone neutralization.
 
 - **Command and Control (C2) Interface**:
-
   - **Centralized Dashboard**: Real-time monitoring and control of drone
     activity.
   - **Customizable Alerts**: User-defined notifications for critical events.
@@ -123,7 +119,6 @@ The PhoenixRooivalk system employs a modular, integrated approach with these key
 components working in concert:
 
 - **RKV-M (VTOL Mothership)**:
-
   - Serves as an aerial platform for surveillance, relay, and mini drone
     deployment
   - Features robust VTOL capabilities for versatile deployment in varied terrain
@@ -133,7 +128,6 @@ components working in concert:
   - Functions as a mobile area control node with land-and-wait capabilities
 
 - **RKV-I (Deployable Minis)**:
-
   - Includes specialized variants for interception, decoy operations, and ISR
     missions
   - Offers dual-control options via RF or fiber for enhanced resilience against
@@ -143,7 +137,6 @@ components working in concert:
   - Enables swarming capabilities for coordinated area denial or surveillance
 
 - **RKV-G (Ground Support Rover)**:
-
   - Functions as a mobile ground control station and logistics node
   - Provides elevated mast capabilities for enhanced communications and
     surveillance
@@ -252,7 +245,7 @@ The system is designed for flexibility and can be deployed in various scenarios:
 | **Detection Range**      | Up to 5 km (dependent on environmental conditions and drone size)                                                        |
 | **Neutralization Range** | Up to 2 km for RF jamming and GPS spoofing; 500 meters for physical countermeasures                                      |
 | **Response Time**        | Typically 3–6 seconds from detection to neutralization, depending on environmental conditions and countermeasure methods |
-| **Accuracy**             | Over 95% detection and classification accuracy<br>with minimal false positives                                           |
+| **Accuracy**             | Over 95% detection and classification accuracy<br />with minimal false positives                                         |
 
 ---
 
@@ -307,4 +300,4 @@ make it a valuable asset across multiple sectors.
 
 ### **Next Section**
 
-Continue reading in [Competitor Analysis](./competitor_analysis.html).
+Continue reading in [Competitor Analysis](./competitor_analysis.md).

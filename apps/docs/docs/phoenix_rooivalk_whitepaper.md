@@ -114,7 +114,7 @@ external networks. Humans remain in control for anything risky or lethal.
   decision
 - Breakdown: radar detection (200-500ms), RF protocol analysis (100-300ms),
   multi-sensor data fusion (200ms), human decision time (2-10s)
-- Phoenix's <2ms requirement represents paradigm shift in response capability
+- Phoenix's &lt;2ms requirement represents paradigm shift in response capability
 
 ### 1.2 Market Opportunity
 
@@ -256,12 +256,12 @@ external networks. Humans remain in control for anything risky or lethal.
 
 | Agent Type             | Specialization               | Response Time | Integration Status |
 | ---------------------- | ---------------------------- | ------------- | ------------------ |
-| **RF-Silent Hunter**   | Non-emitting drone detection | <100ms        | Core capability    |
-| **Swarm Breaker**      | Formation disruption tactics | <150ms        | Core capability    |
-| **Mesh Coordinator**   | Multi-node synchronization   | <50ms         | Core capability    |
-| **Policy Sentinel**    | ROE enforcement              | <30ms         | Core capability    |
-| **EW Specialist**      | Jamming/spoofing             | <200ms        | Planned            |
-| **Kinetic Controller** | Interceptor coordination     | <100ms        | Future             |
+| **RF-Silent Hunter**   | Non-emitting drone detection | &lt;100ms     | Core capability    |
+| **Swarm Breaker**      | Formation disruption tactics | &lt;150ms     | Core capability    |
+| **Mesh Coordinator**   | Multi-node synchronization   | &lt;50ms      | Core capability    |
+| **Policy Sentinel**    | ROE enforcement              | &lt;30ms      | Core capability    |
+| **EW Specialist**      | Jamming/spoofing             | &lt;200ms     | Planned            |
+| **Kinetic Controller** | Interceptor coordination     | &lt;100ms     | Future             |
 
 **Cognitive Processing Model:**
 
@@ -273,7 +273,7 @@ external networks. Humans remain in control for anything risky or lethal.
 
 **Agent Architecture:**
 
-- Specialized neural networks (<50MB models)
+- Specialized neural networks (&lt;50MB models)
 - Domain-specific decision trees
 - Confidence scoring mechanisms
 - Failure mode handlers
@@ -296,8 +296,8 @@ external networks. Humans remain in control for anything risky or lethal.
 
 - **Solana**: Steady mainnet non-vote TPS ≈2,000 [1]; legacy finality ~12.8s vs
   Alpenglow target ~100–150ms [2]
-- **Hyperledger Fabric (SmartBFT)**: LAN throughput >2,000 TPS, WAN ≈1,000 TPS
-  with large batches [3]
+- **Hyperledger Fabric (SmartBFT)**: LAN throughput &gt;2,000 TPS, WAN ≈1,000
+  TPS with large batches [3]
 - Block time: 400 milliseconds
 - Transaction cost: ~$0.000025
 - **Soft-kill cueing E2E**: 120-195 ms p50 (≤250 ms p95)
@@ -409,14 +409,14 @@ external networks. Humans remain in control for anything risky or lethal.
 
 ### 5.5 Comprehensive Performance Benchmarks
 
-Resolve latency contradiction (“<2ms” vs 120–195 ms).
+Resolve latency contradiction (“&lt;2ms” vs 120–195 ms).
 
-Table claims “Response Time <2ms,” but Sections 2 and 5 set E2E p50 = 120–195 ms
-(p95 ≤ 250 ms). Use one authoritative spec.
+Table claims “Response Time &lt;2ms,” but Sections 2 and 5 set E2E p50 = 120–195
+ms (p95 ≤ 250 ms). Use one authoritative spec.
 
 Apply:
 
--| **Response Time** | <2ms | 2-5 seconds | 2-5 seconds | 2-5 seconds | +|
+-| **Response Time** | &lt;2ms | 2-5 seconds | 2-5 seconds | 2-5 seconds | +|
 **Response Time** | 120–195 ms p50 (≤250 ms p95) | 2–5 seconds | 2–5 seconds |
 2–5 seconds | **Predictive Performance Modeling (PPM):**
 
@@ -426,12 +426,12 @@ Apply:
 
 ### 5.6 Detection Capabilities (Projected)
 
-| Target Class        | Range  | Pd (Clear) | Pd (Degraded) | Method           |
-| ------------------- | ------ | ---------- | ------------- | ---------------- |
-| Group 1 (<20 lbs)   | 2-3 km | >92%       | >75%          | Multi-modal      |
-| Group 2 (21-55 lbs) | 3-5 km | >95%       | >82%          | Multi-modal      |
-| Group 3 (>55 lbs)   | 5-8 km | >97%       | >88%          | Multi-modal      |
-| RF-Silent           | 1-3 km | >85%       | >65%          | Radar/EO/IR only |
+| Target Class         | Range  | Pd (Clear) | Pd (Degraded) | Method           |
+| -------------------- | ------ | ---------- | ------------- | ---------------- |
+| Group 1 (&lt;20 lbs) | 2-3 km | &gt;92%    | &gt;75%       | Multi-modal      |
+| Group 2 (21-55 lbs)  | 3-5 km | &gt;95%    | &gt;82%       | Multi-modal      |
+| Group 3 (&gt;55 lbs) | 5-8 km | &gt;97%    | &gt;88%       | Multi-modal      |
+| RF-Silent            | 1-3 km | &gt;85%    | &gt;65%       | Radar/EO/IR only |
 
 ### 5.7 Degraded Mode Performance
 
@@ -525,7 +525,7 @@ Apply:
 
 **Rapid Deployment Capability:**
 
-- Trailer-mounted kit with <30 min setup goal
+- Trailer-mounted kit with &lt;30 min setup goal
 - 2-person lift for key modules
 - Hot-plug sensors/effectors
 - Battery/generator power options
@@ -624,7 +624,7 @@ Apply:
 
 **Technical Validation:**
 
-- Develop simulation demonstrating <2ms latency achievement
+- Develop simulation demonstrating &lt;2ms latency achievement
 - Build proof-of-concept showing Byzantine fault tolerance
 - Create video demonstrations of swarm defeat capabilities
 
@@ -658,7 +658,7 @@ published pass/fail criteria.
 - **Setup**: Multi-modal sensors; synchronized clocks; representative effector
 - **Procedure**: 10,000 engagement cycles under varying load
 - **Metrics**: Per-stage latencies; E2E p50/p95; SLO breach events
-- **Pass/Fail**: p95 ≤ 250 ms; <1% missing traces
+- **Pass/Fail**: p95 ≤ 250 ms; &lt;1% missing traces
 - **Note**: XCM SLA = seconds-class; not applicable to E2E engagement latency
 
 #### Test Card 2: Swarm Handling
@@ -941,7 +941,7 @@ capability.
 
 **Key Differentiators:**
 
-- **Speed**: <2ms latency vs 2-5 seconds for competitors
+- **Speed**: &lt;2ms latency vs 2-5 seconds for competitors
 - **Autonomy**: Complete edge operation without communications
 - **Accountability**: Blockchain-verified engagement records
 - **Capability**: Defeats RF-silent autonomous drones others cannot detect

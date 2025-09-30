@@ -40,22 +40,20 @@ goals.
 
 - Current pilot anchors digests on Solana via Memo, with optional L2 batching.
 - Outbox worker handles retries and scheduling; see
-  [outbox_worker.py](../../backend/workers/outbox_worker.py).
-- Evidence hashing uses
-  [evidence_log.py](../../backend/services/evidence_log.py) with canonical
-  JSON + SHA-256.
+  [Outbox Implementation](../blockchain/03-implementation/phase-4-system-integration/api-specifications.md).
+- Evidence hashing uses canonical JSON + SHA-256 with blockchain anchoring.
 
 ## Links
 
 - Background: see
-  [Evaluation of L1/L2/L3 and their adapters](../blockchain_integration.md#evaluation-of-l1-l2-and-l3-and-their-adapters)
+  [Evaluation of L1/L2/L3 and their adapters](../blockchain_integration.md)
 - Related ADRs: 0001 (Solana vs others), 0002 (Memo vs Contract), 0003 (L0
   adoption)
 
 ## Appendix: L1/L2/L3 summary snapshot (canonical in blockchain_integration.md)
 
 Reference: see
-[Evaluation of L1/L2/L3 and their adapters](../blockchain_integration.md#evaluation-of-l1-l2-and-l3-and-their-adapters)
+[Evaluation of L1/L2/L3 and their adapters](../blockchain_integration.md)
 
 | Layer | Focus                 | Example entries                                                       |
 | ----- | --------------------- | --------------------------------------------------------------------- |

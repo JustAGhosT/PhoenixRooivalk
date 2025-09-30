@@ -13,17 +13,17 @@
     },
     "config": "5e9f5e1a"
   },
-  "/docs-e7b": {
+  "/docs-2db": {
     "__comp": "5e95c892",
     "__context": {
       "plugin": "aba21aa0"
     }
   },
-  "/docs-e62": {
+  "/docs-354": {
     "__comp": "a7bd4aaa",
     "__props": "0058b4c6"
   },
-  "/docs-385": {
+  "/docs-a23": {
     "__comp": "a94703ab"
   },
   "/docs/adr/l0-adoption-strategy-348": {
@@ -114,6 +114,10 @@
     "__comp": "17896441",
     "content": "ce74a862"
   },
+  "/docs/blockchain/cost-analysis/financial-projections-1f3": {
+    "__comp": "17896441",
+    "content": "904476f5"
+  },
   "/docs/blockchain/cost-analysis/operational-costs-ae7": {
     "__comp": "17896441",
     "content": "8eda1367"
@@ -133,6 +137,10 @@
   "/docs/blockchain/deployment/deployment-guide-a21": {
     "__comp": "17896441",
     "content": "ecec624a"
+  },
+  "/docs/blockchain/deployment/infrastructure-455": {
+    "__comp": "17896441",
+    "content": "5f04366d"
   },
   "/docs/blockchain/deployment/infrastructure/aws-architecture-0e4": {
     "__comp": "17896441",
@@ -270,6 +278,10 @@
     "__comp": "17896441",
     "content": "8a96b3de"
   },
+  "/docs/blockchain/risk-management/business-risks-8fa": {
+    "__comp": "17896441",
+    "content": "aa8b95f4"
+  },
   "/docs/blockchain/risk-management/contingency-plans-14c": {
     "__comp": "17896441",
     "content": "efe2c2d3"
@@ -281,6 +293,10 @@
   "/docs/blockchain/risk-management/operational-risks-3a2": {
     "__comp": "17896441",
     "content": "9f293799"
+  },
+  "/docs/blockchain/risk-management/security-risks-315": {
+    "__comp": "17896441",
+    "content": "0bbbd34b"
   },
   "/docs/blockchain/risk-management/technical-risks-dc4": {
     "__comp": "17896441",

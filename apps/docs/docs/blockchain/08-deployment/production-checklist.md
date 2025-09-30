@@ -176,16 +176,16 @@ echo "🎉 Security validation completed successfully!"
 
 **Performance Validation Targets**:
 
-| **Metric**            | **Target** | **Measurement**        | **Status** | **Validation Method**  |
-| --------------------- | ---------- | ---------------------- | ---------- | ---------------------- |
-| **API Response Time** | <200ms     | P95 latency            | ☐          | Load testing           |
-| **Blockchain TPS**    | >3,500 TPS | Transaction throughput | ☐          | Blockchain stress test |
-| **AI Inference**      | <100ms     | Model prediction time  | ☐          | AI performance test    |
-| **Database Query**    | <50ms      | Query response time    | ☐          | Database benchmark     |
-| **Memory Usage**      | <80%       | Container memory       | ☐          | Resource monitoring    |
-| **CPU Usage**         | <70%       | Container CPU          | ☐          | Resource monitoring    |
-| **Disk I/O**          | <80%       | Storage utilization    | ☐          | I/O monitoring         |
-| **Network Latency**   | <10ms      | Inter-service latency  | ☐          | Network testing        |
+| **Metric**            | **Target**    | **Measurement**        | **Status** | **Validation Method**  |
+| --------------------- | ------------- | ---------------------- | ---------- | ---------------------- |
+| **API Response Time** | &lt;200ms     | P95 latency            | ☐          | Load testing           |
+| **Blockchain TPS**    | &gt;3,500 TPS | Transaction throughput | ☐          | Blockchain stress test |
+| **AI Inference**      | &lt;100ms     | Model prediction time  | ☐          | AI performance test    |
+| **Database Query**    | &lt;50ms      | Query response time    | ☐          | Database benchmark     |
+| **Memory Usage**      | &lt;80%       | Container memory       | ☐          | Resource monitoring    |
+| **CPU Usage**         | &lt;70%       | Container CPU          | ☐          | Resource monitoring    |
+| **Disk I/O**          | &lt;80%       | Storage utilization    | ☐          | I/O monitoring         |
+| **Network Latency**   | &lt;10ms      | Inter-service latency  | ☐          | Network testing        |
 
 ### 3.2 Load Testing Validation
 
@@ -210,9 +210,9 @@ export let options = {
     { duration: "2m", target: 0 }, // Ramp down
   ],
   thresholds: {
-    http_req_duration: ["p(95)<200"], // 95% of requests under 200ms
-    http_req_failed: ["rate<0.01"], // Error rate under 1%
-    errors: ["rate<0.01"], // Custom error rate under 1%
+    http_req_duration: ["p(95)&lt;200"], // 95% of requests under 200ms
+    http_req_failed: ["rate&lt;0.01"], // Error rate under 1%
+    errors: ["rate&lt;0.01"], // Custom error rate under 1%
   },
 };
 
@@ -293,19 +293,19 @@ export default function () {
 
 | **Component**      | **Metric**            | **Status** | **Alert Threshold** | **Notification** |
 | ------------------ | --------------------- | ---------- | ------------------- | ---------------- |
-| **Application**    | Response time         | ☐          | >500ms              | Slack, PagerDuty |
-| **Application**    | Error rate            | ☐          | >1%                 | Slack, PagerDuty |
-| **Application**    | Throughput            | ☐          | <1000 RPS           | Slack            |
-| **Infrastructure** | CPU usage             | ☐          | >80%                | Slack            |
-| **Infrastructure** | Memory usage          | ☐          | >85%                | Slack            |
-| **Infrastructure** | Disk usage            | ☐          | >90%                | Slack, PagerDuty |
-| **Database**       | Connection count      | ☐          | >80% of max         | Slack            |
-| **Database**       | Query performance     | ☐          | >100ms avg          | Slack            |
-| **Database**       | Replication lag       | ☐          | >10 seconds         | PagerDuty        |
-| **Blockchain**     | Block time            | ☐          | >5 seconds          | Slack            |
+| **Application**    | Response time         | ☐          | &gt;500ms           | Slack, PagerDuty |
+| **Application**    | Error rate            | ☐          | &gt;1%              | Slack, PagerDuty |
+| **Application**    | Throughput            | ☐          | &lt;1000 RPS        | Slack            |
+| **Infrastructure** | CPU usage             | ☐          | &gt;80%             | Slack            |
+| **Infrastructure** | Memory usage          | ☐          | &gt;85%             | Slack            |
+| **Infrastructure** | Disk usage            | ☐          | &gt;90%             | Slack, PagerDuty |
+| **Database**       | Connection count      | ☐          | &gt;80% of max      | Slack            |
+| **Database**       | Query performance     | ☐          | &gt;100ms avg       | Slack            |
+| **Database**       | Replication lag       | ☐          | &gt;10 seconds      | PagerDuty        |
+| **Blockchain**     | Block time            | ☐          | &gt;5 seconds       | Slack            |
 | **Blockchain**     | Validator status      | ☐          | Node offline        | PagerDuty        |
-| **Blockchain**     | Network hash rate     | ☐          | <50% normal         | Slack            |
-| **Security**       | Failed login attempts | ☐          | >100/hour           | Security team    |
+| **Blockchain**     | Network hash rate     | ☐          | &lt;50% normal      | Slack            |
+| **Security**       | Failed login attempts | ☐          | &gt;100/hour        | Security team    |
 | **Security**       | Suspicious activity   | ☐          | Any detection       | Security team    |
 
 ### 4.2 Backup and Recovery
@@ -520,12 +520,12 @@ echo "🎉 All integration tests passed!"
 
 | **Condition**                       | **Severity** | **Action**              | **Approval Required** | **Rollback Time** |
 | ----------------------------------- | ------------ | ----------------------- | --------------------- | ----------------- |
-| **Critical security vulnerability** | P0           | Immediate rollback      | CTO                   | <5 minutes        |
-| **Service completely down**         | P0           | Immediate rollback      | Engineering Lead      | <5 minutes        |
-| **Data corruption detected**        | P0           | Immediate rollback      | CTO + Data Lead       | <10 minutes       |
-| **Performance degradation >50%**    | P1           | Rollback within 15 min  | Engineering Lead      | <15 minutes       |
-| **Error rate >5%**                  | P1           | Rollback within 30 min  | Engineering Lead      | <30 minutes       |
-| **Feature not working**             | P2           | Rollback within 2 hours | Product Owner         | <60 minutes       |
+| **Critical security vulnerability** | P0           | Immediate rollback      | CTO                   | &lt;5 minutes     |
+| **Service completely down**         | P0           | Immediate rollback      | Engineering Lead      | &lt;5 minutes     |
+| **Data corruption detected**        | P0           | Immediate rollback      | CTO + Data Lead       | &lt;10 minutes    |
+| **Performance degradation &gt;50%** | P1           | Rollback within 15 min  | Engineering Lead      | &lt;15 minutes    |
+| **Error rate &gt;5%**               | P1           | Rollback within 30 min  | Engineering Lead      | &lt;30 minutes    |
+| **Feature not working**             | P2           | Rollback within 2 hours | Product Owner         | &lt;60 minutes    |
 
 ### 8.2 Emergency Rollback Procedure
 

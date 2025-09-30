@@ -1,6 +1,7 @@
 "use client";
-import React from "react";
 import Link from "next/link";
+import React from "react";
+import { Navigation } from "../../components/Navigation";
 
 export default function CompliancePage(): React.ReactElement {
   return (
@@ -10,39 +11,8 @@ export default function CompliancePage(): React.ReactElement {
         <div className="absolute inset-0 bg-[linear-gradient(rgba(0,255,136,0.03)_1px,_transparent_1px),_linear-gradient(90deg,_rgba(0,255,136,0.03)_1px,_transparent_1px)] bg-[length:50px_50px] animate-gridMove" />
       </div>
 
-      {/* Nav */}
-      <nav className="sticky top-0 z-50 bg-[rgba(10,14,26,0.95)] backdrop-blur px-6 py-4">
-        <div className="mx-auto max-w-[1400px] flex items-center justify-between">
-          <Link
-            href="/"
-            className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-br from-[var(--primary)] to-[var(--secondary)]"
-          >
-            Phoenix Rooivalk
-          </Link>
-          <ul className="hidden md:flex gap-6 text-[var(--gray)]">
-            <li>
-              <Link href="/" className="hover:text-[var(--primary)]">
-                Home
-              </Link>
-            </li>
-            <li>
-              <Link href="/technical" className="hover:text-[var(--primary)]">
-                Technical
-              </Link>
-            </li>
-            <li>
-              <Link href="/financial" className="hover:text-[var(--primary)]">
-                Financial
-              </Link>
-            </li>
-            <li>
-              <Link href="/compliance" className="text-[var(--primary)]">
-                Compliance
-              </Link>
-            </li>
-          </ul>
-        </div>
-      </nav>
+      {/* Navigation */}
+      <Navigation />
 
       {/* Header */}
       <section className="px-[5%] py-16">
@@ -60,45 +30,81 @@ export default function CompliancePage(): React.ReactElement {
       </section>
 
       {/* Certifications */}
-      <section className="px-[5%] py-16 bg-[linear-gradient(180deg,rgba(0,136,255,0.05),transparent)]">
+      <section className="px-[5%] py-16 bg-[linear-gradient(180deg,rgba(var(--primary),0.05),transparent)]">
         <div className="max-w-[1400px] mx-auto">
           <h2 className="text-3xl font-bold mb-8 text-center text-[var(--primary)]">
-            International Certifications
+            Compliance Status & Certifications
           </h2>
           <div className="grid md:grid-cols-2 xl:grid-cols-4 gap-6">
             {[
               {
                 icon: "🇺🇸",
-                title: "ITAR Compliant",
+                title: "ITAR Compliance",
                 description:
-                  "International Traffic in Arms Regulations compliance for defense technology export and deployment worldwide.",
-                status: "Certified",
+                  "International Traffic in Arms Regulations compliance framework established. Export control procedures implemented.",
+                status: "In Progress",
+                progress: "75%",
               },
               {
                 icon: "🔒",
                 title: "ISO 27001",
                 description:
-                  "Information security management system certification ensuring comprehensive data protection and operational security.",
-                status: "Certified",
+                  "Information security management system framework established. Audit preparation in progress.",
+                status: "In Progress",
+                progress: "60%",
               },
               {
                 icon: "🌍",
                 title: "Export Control",
                 description:
-                  "Full compliance with international export control regulations including EAR and dual-use technology restrictions.",
-                status: "Compliant",
+                  "EAR and dual-use technology compliance framework established. Regional restrictions mapped.",
+                status: "In Progress",
+                progress: "85%",
               },
               {
                 icon: "✅",
                 title: "Regional Approvals",
                 description:
-                  "CE marking, FCC certification, and other regional approvals for global deployment capabilities.",
+                  "CE marking, FCC certification, and regional approval processes initiated. Documentation prepared.",
+                status: "Planned",
+                progress: "30%",
+              },
+              {
+                icon: "🛡️",
+                title: "Military Standards",
+                description:
+                  "MIL-STD-810G environmental testing and MIL-STD-461 electromagnetic compatibility standards compliance.",
+                status: "Planned",
+                progress: "20%",
+              },
+              {
+                icon: "🔐",
+                title: "FIPS 140-2",
+                description:
+                  "Federal Information Processing Standard for cryptographic modules. Hardware security module integration planned.",
+                status: "Planned",
+                progress: "15%",
+              },
+              {
+                icon: "🌐",
+                title: "GDPR Compliance",
+                description:
+                  "General Data Protection Regulation compliance framework for European operations and data handling.",
                 status: "In Progress",
+                progress: "70%",
+              },
+              {
+                icon: "⚖️",
+                title: "Legal Framework",
+                description:
+                  "Comprehensive legal compliance framework including liability, insurance, and operational restrictions.",
+                status: "In Progress",
+                progress: "65%",
               },
             ].map((cert) => (
               <div
                 key={cert.title}
-                className="rounded-xl border border-[rgba(0,255,136,0.2)] bg-[rgba(15,23,42,0.8)] backdrop-blur p-6 text-center"
+                className="rounded-xl border border-[var(--primary)]/20 bg-[rgba(15,23,42,0.8)] backdrop-blur p-6 text-center hover:border-[var(--primary)]/30 transition-all duration-300"
               >
                 <div className="text-4xl mb-4">{cert.icon}</div>
                 <h3 className="text-lg font-semibold mb-3 text-[var(--primary)]">
@@ -107,13 +113,28 @@ export default function CompliancePage(): React.ReactElement {
                 <p className="text-[var(--gray)] text-sm mb-4">
                   {cert.description}
                 </p>
+
+                {/* Progress Bar */}
+                <div className="mb-4">
+                  <div className="flex justify-between text-xs text-[var(--gray)] mb-2">
+                    <span>Progress</span>
+                    <span>{cert.progress}</span>
+                  </div>
+                  <div className="w-full bg-[rgba(15,23,42,0.8)] rounded-full h-2 border border-[var(--primary)]/20">
+                    <div
+                      className="h-2 rounded-full bg-gradient-to-r from-[var(--primary)] to-[var(--accent)] transition-all duration-1000 ease-out"
+                      style={{ width: cert.progress }}
+                    ></div>
+                  </div>
+                </div>
+
                 <div
                   className={`inline-block px-3 py-1 rounded-full text-xs font-semibold ${
                     cert.status === "Certified"
-                      ? "bg-green-500/20 text-green-400"
-                      : cert.status === "Compliant"
-                        ? "bg-blue-500/20 text-blue-400"
-                        : "bg-yellow-500/20 text-yellow-400"
+                      ? "bg-green-500/20 text-green-400 border border-green-500/30"
+                      : cert.status === "In Progress"
+                        ? "bg-[var(--accent)]/20 text-[var(--accent)] border border-[var(--accent)]/30"
+                        : "bg-[var(--primary)]/20 text-[var(--primary)] border border-[var(--primary)]/30"
                   }`}
                 >
                   {cert.status}

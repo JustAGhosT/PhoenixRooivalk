@@ -115,7 +115,7 @@ planned.
 ### Finding #11: Market Fragmentation Creates Opportunity
 
 **Discovery**: 249 companies offering 575 different C-UAS solutions with no
-dominant player (largest has <8% share).
+dominant player (largest has &lt;8% share).
 
 **Implication**: Market consolidation inevitable; platform players will
 dominate.

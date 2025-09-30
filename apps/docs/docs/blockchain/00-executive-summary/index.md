@@ -92,7 +92,7 @@ technology with edge computing and AI to deliver:
 
 ### Success Metrics
 
-- **Technical**: 99.4% threat detection, <3s response time, zero compromises
+- **Technical**: 99.4% threat detection, &lt;3s response time, zero compromises
 - **Operational**: 99.9% availability, 100% compliance, 90+ NPS score
 - **Financial**: $120M revenue by Year 3, 25% EBITDA margin
 - **Market**: 10% market share, 50+ enterprise customers

@@ -4,7 +4,7 @@ Date: 2025-09-24 Status: Accepted
 
 ## Context
 
-Blockchain protocols cannot achieve <2ms authentication latency required for
+Blockchain protocols cannot achieve &lt;2ms authentication latency required for
 real-time drone operations. Solana offers exceptional performance (65,000 TPS)
 but suffers from reliability issues.
 
@@ -18,7 +18,7 @@ than critical functionality.
 
 **Positive:**
 
-- Meets <2ms authentication requirement
+- Meets &lt;2ms authentication requirement
 - Enables use of high-performance but unreliable blockchains
 - Provides offline operation capability
 - Ensures mission continuity during blockchain failures
@@ -39,4 +39,4 @@ than critical functionality.
 ## Implementation
 
 See
-[Level-0 Architecture Guide](../02-technical-architecture/level-0-architecture.md)
+[Level-0 Architecture Guide](../blockchain/02-technical-architecture/blockchain-protocols/level-0-architecture.md)

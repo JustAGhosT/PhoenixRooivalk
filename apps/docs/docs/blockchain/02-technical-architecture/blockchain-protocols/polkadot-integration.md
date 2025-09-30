@@ -162,10 +162,10 @@ Async_Backing_Configuration:
   Performance_Improvements:
     Throughput_Increase: 6-10x
     Latency_Reduction: 2-3x
-    Block_Utilization: >90
+    Block_Utilization: &gt;90
 
   Military_Benefits:
-    Faster_Threat_Response: <12 seconds end-to-end
+    Faster_Threat_Response: &lt;12 seconds end-to-end
     Higher_Drone_Throughput: 2,000+ updates/second
     Improved_Coordination: Real-time cross-vendor
 ```
@@ -534,23 +534,23 @@ Performance_Monitoring:
   Relay_Chain_Metrics:
     Block_Production_Rate: 6 seconds ± 0.1s
     Finality_Time: 12-60 seconds
-    Validator_Uptime: >99.9%
+    Validator_Uptime: &gt;99.9%
 
   Parachain_Metrics:
     Per_Chain_TPS: 1000-3000
     Cross_Chain_Latency: 12-18 seconds
-    Message_Success_Rate: >99.95%
+    Message_Success_Rate: &gt;99.95%
 
   Military_KPIs:
-    Threat_Detection_Latency: <30 seconds
-    Response_Authorization_Time: <60 seconds
-    System_Availability: >99.99%
+    Threat_Detection_Latency: &lt;30 seconds
+    Response_Authorization_Time: &lt;60 seconds
+    System_Availability: &gt;99.99%
     Data_Integrity: 100%
 
   Alert_Thresholds:
-    High_Latency: >25 seconds XCM delivery
-    Low_Throughput: <500 TPS sustained
-    Validator_Issues: <900 active validators
+    High_Latency: &gt;25 seconds XCM delivery
+    Low_Throughput: &lt;500 TPS sustained
+    Validator_Issues: &lt;900 active validators
     Parachain_Offline: Any military parachain down
 ```
 
@@ -613,7 +613,7 @@ Geographic_Distribution:
       Failover: 2 backup collators
 
   Network_Requirements:
-    Inter_Region_Latency: <200ms
+    Inter_Region_Latency: &lt;200ms
     Bandwidth_Allocation: 1Gbps minimum
     Redundancy: N+2 for critical paths
 ```
@@ -631,7 +631,7 @@ Phase_1_Foundation: # Months 1-3
     - Security framework
   Success_Criteria:
     - 1000 TPS sustained throughput
-    - <15 second cross-chain latency
+    - &lt;15 second cross-chain latency
     - 99.9% validator uptime
 
 Phase_2_Vendor_Integration: # Months 4-6
@@ -642,7 +642,7 @@ Phase_2_Vendor_Integration: # Months 4-6
     - Access control system
   Success_Criteria:
     - 3 vendor systems integrated
-    - <20 second threat correlation
+    - &lt;20 second threat correlation
     - Zero cross-vendor data leaks
 
 Phase_3_Scale_Operations: # Months 7-9
@@ -653,7 +653,7 @@ Phase_3_Scale_Operations: # Months 7-9
     - Performance optimization
   Success_Criteria:
     - 5000+ TPS aggregate
-    - <12 second XCM delivery
+    - &lt;12 second XCM delivery
     - Full operational capability
 
 Phase_4_Production_Hardening: # Months 10-12
@@ -664,7 +664,7 @@ Phase_4_Production_Hardening: # Months 10-12
     - Documentation package
   Success_Criteria:
     - Zero critical vulnerabilities
-    - <4 hour recovery time
+    - &lt;4 hour recovery time
     - 95% operator certification
 ```
 

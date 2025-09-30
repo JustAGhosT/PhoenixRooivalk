@@ -67,13 +67,13 @@ growth, peaking at 34.9% in Year 5.
 
 This chart demonstrates overall financial performance, highlighting the growing
 gap between revenue and costs as profit increases.
-![Revenue, Costs, and Profit Over Time](assets/images/revenue_costs_profit_break_even.png)
+![Revenue, Costs, and Profit Over Time](pathname://assets/images/revenue_costs_profit_break_even.png)
 
 #### **Profit Margin Growth**
 
 This chart showcases operational improvements reflected in higher margins over
 time.
-![Break-Even Point and Profit Growth](assets/images/profit_margin_growth_over_time.png)
+![Break-Even Point and Profit Growth](pathname://assets/images/profit_margin_growth_over_time.png)
 The initial investment of ZAR 15,000,000 is allocated strategically across
 critical areas to ensure sustainable growth:
 

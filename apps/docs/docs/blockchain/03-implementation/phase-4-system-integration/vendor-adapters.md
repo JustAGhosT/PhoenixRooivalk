@@ -5,10 +5,8 @@
 - **Location**:
   `03-implementation/phase-4-system-integration/vendor-adapters.md`
 - **Related Documents**:
-  - [API Specifications](../phase-1-core-blockchain/api-specifications.md) -
-    Integration protocols
-  - [Correlation Engine](../phase-2-data-management/correlation-engine.md) -
-    Multi-source data fusion
+  - [API Specifications](./api-specifications.md) - Integration protocols
+  - [Correlation Engine](./correlation-engine.md) - Multi-source data fusion
   - [System Requirements](../../02-technical-architecture/system-requirements.md) -
     Performance specs
   - [Hybrid Architecture](../../02-technical-architecture/hybrid-architecture.md) -
@@ -973,9 +971,9 @@ ledger technology.
 
 **Related Documents:**
 
-- [API Specifications](../phase-1-core-blockchain/api-specifications.md) -
+- [API Specifications](../phase-1-authentication/implementation-code.md) -
   Integration protocols
-- [Correlation Engine](../phase-2-data-management/correlation-engine.md) -
+- [Correlation Engine](../phase-2-data-logging/tamper-resistant-design.md) -
   Multi-source data fusion
 - [System Requirements](../../02-technical-architecture/system-requirements.md) -
   Performance specs

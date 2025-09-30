@@ -3,17 +3,71 @@
 @tailwind utilities;
 
 :root {
-  --primary: #00ff88;
-  --secondary: #0088ff;
-  --dark: #0a0e1a;
-  --darker: #050811;
-  --light: #ffffff;
-  --gray: #8892b0;
+  /* Phoenix Rooivalk Brand Color System */
+
+  /* Primary Fire Gradient Colors */
+  --phoenix-white: 255, 255, 255;
+  --phoenix-cream: 255, 250, 205;
+  --phoenix-gold: 255, 215, 0;
+  --phoenix-amber: 255, 165, 0;
+  --phoenix-orange: 255, 107, 0;
+  --phoenix-red: 255, 34, 0;
+  --phoenix-crimson: 204, 0, 0;
+  --phoenix-maroon: 139, 0, 0;
+  --phoenix-deep: 74, 0, 0;
+
+  /* Tactical Neutrals */
+  --tactical-black: 0, 0, 0;
+  --tactical-obsidian: 10, 10, 10;
+  --tactical-charcoal: 26, 26, 26;
+  --tactical-gunmetal: 42, 42, 42;
+  --tactical-gray-dark: 51, 51, 51;
+  --tactical-gray: 102, 102, 102;
+  --tactical-gray-light: 153, 153, 153;
+  --tactical-silver: 204, 204, 204;
+
+  /* Sensor Accents */
+  --sensor-green: 0, 255, 0;
+  --sensor-amber: 255, 165, 0;
+  --sensor-red: 255, 34, 0;
+
+  /* Legacy compatibility (mapped to brand colors) */
+  --primary: var(--phoenix-orange);
+  --secondary: var(--tactical-gray-dark);
+  --accent: var(--phoenix-amber);
+  --dark: var(--tactical-obsidian);
+  --darker: var(--tactical-black);
+  --light: var(--phoenix-white);
+  --gray: var(--tactical-gray);
+  --steel: var(--tactical-silver);
+  --orange: var(--phoenix-orange);
+
+  /* Semantic Shortcuts */
+  --brand-primary: var(--phoenix-orange);
+  --brand-accent: var(--phoenix-amber);
+  --bg-primary: var(--tactical-black);
+  --bg-secondary: var(--tactical-charcoal);
+  --text-primary: var(--phoenix-white);
+  --text-secondary: var(--tactical-gray-light);
+
+  /* Status Colors */
+  --status-active: var(--sensor-green);
+  --status-warning: var(--phoenix-amber);
+  --status-alert: var(--phoenix-orange);
+  --status-critical: var(--sensor-red);
+  --status-offline: var(--tactical-gray);
+
+  /* Glow Effects */
+  --red-glow: rgba(var(--phoenix-red), 0.2);
+  --orange-glow: rgba(var(--phoenix-orange), 0.15);
+  --amber-glow: rgba(var(--phoenix-amber), 0.15);
+  --header-bg: rgba(var(--tactical-black), 0.95);
+  --logo-bg: rgba(var(--tactical-obsidian), 0.8);
 }
 
 body {
-  background: var(--darker);
-  color: var(--light);
+  background: rgb(var(--darker));
+  color: rgb(var(--light));
 }
 
 .reveal {

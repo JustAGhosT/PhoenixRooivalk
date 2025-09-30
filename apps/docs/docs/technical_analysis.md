@@ -19,7 +19,7 @@ conditions.
 
 - Achieving 99.7% reliably would require extensive multi-sensor cross-validation
   and training on diverse drone signatures to eliminate false alarms
-- The promise of <200ms reaction time suggests fully autonomous, edge-based
+- The promise of &lt;200ms reaction time suggests fully autonomous, edge-based
   processing
 - Most existing platforms still involve some human-in-loop or cloud processing
   that introduces seconds of latency
@@ -43,8 +43,8 @@ conditions.
 
 ### Blockchain Security & Latency
 
-The system uses cryptographic message authentication on the data path (<2ms on
-edge hardware) and records events to a permissioned ledger for post-mission
+The system uses cryptographic message authentication on the data path (&lt;2ms
+on edge hardware) and records events to a permissioned ledger for post-mission
 audit (consensus/finality off the real-time path; commit latencies typically
 0.1–0.5s in Fabric testbeds, up to ~2s in PBFT/Tendermint). Target: 99.3%
 integrity detection for tamper events.
@@ -214,7 +214,8 @@ Phoenix Rooivalk designed for multiple deployment configurations:
 - Companies like Fortem and DroneShield successful because they reduce operator
   burden
 - Phoenix's emphasis on AI and autonomy aligns with this trend
-- <200ms response could provide tactical edge if system is completely hands-off
+- &lt;200ms response could provide tactical edge if system is completely
+  hands-off
 
 **Electronic Resilience:**
 
@@ -238,8 +239,8 @@ Phoenix Rooivalk designed for multiple deployment configurations:
 | ----------------------- | ------------------------------------------------------------- | ------------------------------------------------------- | ---------------------------------------------------- | ----------------------------------------- |
 | **Detection & Sensors** | Multi-sensor fusion; 99.7% accuracy (unverified); ~5 km range | Multi-sensor (radar, EO/IR); high accuracy; ~4 km range | Primarily radar with AI filtering; 3-5 km range      | Multi-sensor fusion; 1-2 km range with RF |
 | **Engagement Methods**  | Electronic + Kinetic + Directed Energy (all autonomous)       | Electronic (Epirus HPM) + Kinetic (Anvil)               | Kinetic focus (DroneHunter F700)                     | Electronic focus (RF jammers)             |
-| **Networking & Comms**  | Blockchain mesh network; <2ms auth latency                    | Secure mesh network (Lattice Link)                      | Standard secure wireless links                       | Traditional secure IP networking          |
-| **Autonomy & AI**       | Full autonomy detect-to-defeat; <0.2s; Federated learning     | High autonomy; automated engagement possible            | Detection/tracking autonomous; engagement supervised | AI-assisted detection; operator in loop   |
+| **Networking & Comms**  | Blockchain mesh network; &lt;2ms auth latency                 | Secure mesh network (Lattice Link)                      | Standard secure wireless links                       | Traditional secure IP networking          |
+| **Autonomy & AI**       | Full autonomy detect-to-defeat; &lt;0.2s; Federated learning  | High autonomy; automated engagement possible            | Detection/tracking autonomous; engagement supervised | AI-assisted detection; operator in loop   |
 | **Field Proven**        | Not yet                                                       | Yes - US military bases and border surveillance         | Yes - Active in Ukraine, 5,000+ kills                | Yes - Widely used by militaries           |
 
 ## Visual and Marketing Design Audit
@@ -315,7 +316,7 @@ systems suffer from critical technical gaps:
 - **Inability to handle coordinated swarms** limits effectiveness against
   emerging threats
 
-**Phoenix Rooivalk's target <2ms latency** represents significant performance
+**Phoenix Rooivalk's target &lt;2ms latency** represents significant performance
 improvement that could enhance counter-drone capabilities.
 
 ### Technical State-of-the-Art Reality
@@ -340,7 +341,7 @@ from government test centers expose substantial gaps:
   decision
 - Breakdown: radar detection (200-500ms), RF protocol analysis (100-300ms),
   multi-sensor data fusion (200ms), human decision time (2-10s)
-- Phoenix's <2ms requirement represents paradigm shift in response capability
+- Phoenix's &lt;2ms requirement represents paradigm shift in response capability
 
 ### Proven Market Entry Strategies
 
@@ -382,19 +383,16 @@ post-mission audit trails.
 ### Technical Credibility Improvements
 
 1. **Provide Transparent Data**
-
    - Test results backing 99.7% detection rate
    - Methodology and test conditions
    - Acknowledge if results from simulation or limited trials
 
 2. **Demonstrate Partial Capabilities Incrementally**
-
    - Live demo of multi-sensor detection reducing false alarms
    - Video of autonomous interceptor drone taking down target
    - Demo of system functioning while comms are jammed
 
 3. **Tone Down Absolute Statements**
-
    - Use relative claims backed by references
    - Avoid dismissing competitors out of hand
    - Focus on specific differentiators
@@ -407,27 +405,24 @@ post-mission audit trails.
 ### Market Strategy Recommendations
 
 1. **SBIR Entry Strategy (0-6 months)**
-
    - Apply for Air Force Open SBIR Phase I ($350K)
    - Target Phase II SBIR with STRATFI enhancement ($3M+)
    - Demonstrate prototype at DoD-sponsored events
    - Engage with DIU for rapid prototyping opportunities
 
 2. **Dual-Use Development**
-
    - Airport security applications (TSA testing programs)
    - Critical infrastructure protection (power plants, refineries)
    - Stadium and event security (immediate revenue potential)
 
 3. **Strategic Partnerships**
-
    - Partner with Anduril for Lattice OS integration
    - Collaborate with established primes for market access
    - Develop relationships with system integrators
 
 4. **Technical Differentiation Messaging**
    - **Core positioning**: "First True Autonomous Counter-Drone Platform"
-   - **Three pillars**: Speed (<2ms vs 2-5s), Autonomy (edge operation),
+   - **Three pillars**: Speed (&lt;2ms vs 2-5s), Autonomy (edge operation),
      Accountability (blockchain audit)
    - **Specific advantages**: Defeats RF-silent drones, handles swarms, operates
      in denied environments
@@ -435,19 +430,16 @@ post-mission audit trails.
 ### Design and Marketing Improvements
 
 1. **Incorporate Real Demonstrations**
-
    - Add media of Phoenix hardware in action
    - Short clip of drone being disabled with 200ms response highlighted
    - Visually convey speed and effectiveness
 
 2. **Include User-Centric Stories**
-
    - Hypothetical scenario or UI walkthrough
    - Narrative approach supported by visuals
    - Help buyers imagine system in their operations
 
 3. **Balance Bold Claims with Validation**
-
    - Keep bold text but add subtle validation cues
    - Notes like "(verified in controlled tests)" or "(as per Whitepaper
      analysis)"
@@ -461,19 +453,16 @@ post-mission audit trails.
 ### Trust Building Priorities
 
 1. **Add Evidence and Realism**
-
    - Imagery or footage of actual system in action
    - Picture of Phoenix Rooivalk setup in field test
    - Video snippet of detecting and tracking drone target
 
 2. **Include Team and Credentials**
-
    - Highlight leadership or advisors with military background
    - "Founded by former DARPA engineers and Special Ops veterans"
    - Show understanding of end-user needs
 
 3. **Display Customer/Partner Endorsements**
-
    - Pilot programs or research grants
    - Test results from independent parties
    - "Tested at US Army Yuma Proving Ground, July 2025"
@@ -513,13 +502,11 @@ operation** through several key innovations:
 **Immediate Actions (0-6 months):**
 
 1. **Technical Validation**
-
-   - Develop simulation demonstrating <2ms latency achievement
+   - Develop simulation demonstrating &lt;2ms latency achievement
    - Build proof-of-concept showing Byzantine fault tolerance
    - Create video demonstrations of swarm defeat capabilities
 
 2. **Credibility Building**
-
    - Apply for Air Force Open SBIR Phase I ($350K)
    - Achieve CMMC 2.0 Level 2 certification
    - Assemble advisory board with Joint C-sUAS Office veterans
@@ -534,7 +521,7 @@ operation** through several key innovations:
 Phoenix Rooivalk's Level-0 autonomous architecture addresses the three critical
 failures in current counter-drone systems: inadequate response speed,
 vulnerability to RF-silent threats, and inability to handle coordinated attacks.
-By achieving <2ms operational latency while maintaining blockchain-verified
+By achieving &lt;2ms operational latency while maintaining blockchain-verified
 accountability, Phoenix offers a genuine paradigm shift in counter-drone
 capability.
 
@@ -554,7 +541,7 @@ capability.
 
 **Key Differentiators:**
 
-- **Speed**: <2ms latency vs 2-5 seconds for competitors
+- **Speed**: &lt;2ms latency vs 2-5 seconds for competitors
 - **Autonomy**: Complete edge operation without communications
 - **Accountability**: Blockchain-verified engagement records
 - **Capability**: Defeats RF-silent autonomous drones others cannot detect
@@ -593,5 +580,5 @@ ceiling $967.6M
 
 - Fortem: Company PR for "5,500+ DroneHunter captures in Utah" and deployments
   in Ukraine, Middle East, Asia (company-reported)
-- DroneShield: Company releases for ">4,000 systems sold", $61.6M European
+- DroneShield: Company releases for "&gt;4,000 systems sold", $61.6M European
   contracts (June 25, 2025), US DoD handheld orders

@@ -4,7 +4,8 @@
 
 - **Location**: `10-appendices/vendor-comparisons.md`
 - **Related Documents**:
-  - [Technical Reference](./technical-reference/) - Implementation details
+  - [Technical Reference](./technical-reference/api-documentation.md) -
+    Implementation details
   - [Research Papers](./research-papers.md) - Academic references
   - [Glossary](./glossary.md) - Terminology definitions
 
@@ -464,7 +465,8 @@ competitive pricing and innovation through vendor competition.
 
 **Related Documents:**
 
-- [Technical Reference](./technical-reference/) - Implementation details
+- [Technical Reference](./technical-reference/api-documentation.md) -
+  Implementation details
 - [Research Papers](./research-papers.md) - Academic references
 - [Glossary](./glossary.md) - Terminology definitions
 

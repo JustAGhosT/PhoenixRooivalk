@@ -9,6 +9,8 @@ import { ContactSection } from "../components/sections/ContactSection";
 import { CredibilitySection } from "../components/sections/CredibilitySection";
 import { HeroSection } from "../components/sections/HeroSection";
 import { MarketIntelligenceSection } from "../components/sections/MarketIntelligenceSection";
+import { SocialProofSection } from "../components/sections/SocialProofSection";
+import { InteractiveElementsSection } from "../components/sections/InteractiveElementsSection";
 import { usePerformanceOptimizations } from "../hooks/usePerformanceOptimizations";
 
 export default function HomePage(): React.ReactElement {
@@ -42,6 +44,8 @@ export default function HomePage(): React.ReactElement {
 
       {/* Main Content Sections */}
       <HeroSection />
+      <SocialProofSection />
+      <InteractiveElementsSection />
       <MarketIntelligenceSection />
       <CapabilitiesSection />
       <CredibilitySection />

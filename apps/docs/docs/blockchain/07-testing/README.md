@@ -59,7 +59,7 @@ systematic validation across all system components.
 | Metric           | Target     | Test Method           | Validation            |
 | ---------------- | ---------- | --------------------- | --------------------- |
 | **Throughput**   | 3,500+ TPS | Load testing          | Sustained performance |
-| **Latency**      | <1 second  | Response time testing | 95th percentile       |
+| **Latency**      | &lt;1 second  | Response time testing | 95th percentile       |
 | **Availability** | 99.9%      | Reliability testing   | Continuous monitoring |
 | **Scalability**  | 20+ nodes  | Horizontal scaling    | Linear performance    |
 
@@ -138,10 +138,10 @@ ci_testing_pipeline:
 
 ### Quality Metrics
 
-- **Defect Density**: <1 defect per 1000 lines of code
+- **Defect Density**: &lt;1 defect per 1000 lines of code
 - **Test Coverage**: 90%+ code coverage for critical components
 - **Test Automation**: 80%+ automated test execution
-- **Mean Time to Resolution**: <4 hours for critical defects
+- **Mean Time to Resolution**: &lt;4 hours for critical defects
 
 ### Quality Gates
 

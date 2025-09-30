@@ -254,7 +254,7 @@ print(f"Dilithium-5 key pair generated: {len(dilithium_keys.public_key + dilithi
 - **Digital Signatures**: +25% latency
 - **Key Exchange**: +20% latency
 - **TLS Handshake**: +35% latency
-- **Overall System**: <10% performance impact
+- **Overall System**: &lt;10% performance impact
 
 **Optimization Strategies**:
 
@@ -348,7 +348,7 @@ performance and compatibility requirements.
 
 - **Complete Quantum Resistance**: NIST-approved post-quantum algorithms
 - **Hybrid Architecture**: Smooth transition from classical to quantum-resistant
-- **Performance Optimization**: <10% overall system performance impact
+- **Performance Optimization**: &lt;10% overall system performance impact
 - **Future-Proof Design**: 100+ year security horizon
 - **Military-Grade Security**: NSA Suite B quantum-resistant equivalent
 

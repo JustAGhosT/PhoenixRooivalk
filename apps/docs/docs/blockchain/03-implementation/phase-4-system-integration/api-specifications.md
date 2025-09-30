@@ -6,7 +6,7 @@
   `03-implementation/phase-4-system-integration/api-specifications.md`
 - **Related Documents**:
   - [Vendor Adapters](./vendor-adapters.md) - System integration framework
-  - [Correlation Engine](../phase-2-data-management/correlation-engine.md) -
+  - [Correlation Engine](../phase-2-data-logging/tamper-resistant-design.md) -
     Multi-source data fusion
   - [System Requirements](../../02-technical-architecture/system-requirements.md) -
     Performance specifications
@@ -32,7 +32,7 @@ and automatic load balancing across distributed blockchain nodes
 - **Response time**: < 10ms for critical operations
 - **Throughput**: 50,000+ requests/second per node
 - **Availability**: 99.99% uptime with automatic failover
-- **Security**: Military grade encryption and authentication {{ ... }}
+- **Security**: Military grade encryption and authentication
 - **Scalability**: Horizontal scaling across blockchain network
 
 ---
@@ -1804,13 +1804,11 @@ All WebSocket connections use TLS encryption for secure real-time data
 transmission:
 
 - **Events Stream**: `wss://api.phoenixrooivalk.mil/events`
-
   - Real-time threat detection events
   - System status updates
   - Engagement notifications
 
 - **Status Monitoring**: `wss://api.phoenixrooivalk.mil/status`
-
   - Node health monitoring
   - Performance metrics
   - Network connectivity status
@@ -1842,7 +1840,7 @@ const ws = new WebSocket("wss://api.phoenixrooivalk.mil/events", {
 **Related Documents:**
 
 - [Vendor Adapters](./vendor-adapters.md) - System integration framework
-- [Correlation Engine](../phase-2-data-management/correlation-engine.md) -
+- [Correlation Engine](../phase-2-data-logging/tamper-resistant-design.md) -
   Multi-source data fusion
 - [System Requirements](../../02-technical-architecture/system-requirements.md) -
   Performance specifications

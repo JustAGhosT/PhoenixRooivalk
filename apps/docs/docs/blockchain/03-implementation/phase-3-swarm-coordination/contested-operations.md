@@ -10,8 +10,8 @@
   - [Formation Control](./formation-control.md) - Physical coordination patterns
   - [Level-0 Architecture](../../02-technical-architecture/blockchain-protocols/level-0-architecture.md) -
     Autonomous base layer
-  - [Vendor Adapters](../../01-analysis/vendor-adapters.md) - Integration with
-    defense systems
+  - [Vendor Adapters](../phase-4-system-integration/vendor-adapters.md) -
+    Integration with defense systems
 
 ---
 
@@ -939,7 +939,7 @@ attack_test_results = {
             "gps_spoofing": {
                 "type": "Sophisticated multi-constellation spoofing",
                 "result": "Detected in 47ms, rejected false position",
-                "navigation": "Continued with VIO, <8m error"
+                "navigation": "Continued with VIO, &lt;8m error"
             },
             "cyber_attack": {
                 "type": "Zero-day exploit attempt",
@@ -1082,7 +1082,7 @@ maintaining core mission capabilities.
 - [Formation Control](./formation-control.md) - Physical coordination patterns
 - [Level-0 Architecture](../../02-technical-architecture/blockchain-protocols/level-0-architecture.md) -
   Autonomous base layer
-- [Vendor Adapters](../../01-analysis/vendor-adapters.md) - Integration with
-  defense systems
+- [Vendor Adapters](../phase-4-system-integration/vendor-adapters.md) -
+  Integration with defense systems
 
 ---

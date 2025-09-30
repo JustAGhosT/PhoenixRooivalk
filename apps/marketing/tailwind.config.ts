@@ -1,18 +1,73 @@
 import type { Config } from "tailwindcss";
 
 const config: Config = {
-  content: ["./src/app/**/*.{ts,tsx}", "./src/components/**/*.{ts,tsx}"],
+  content: [
+    "./src/app/**/*.{ts,tsx,css}",
+    "./src/components/**/*.{ts,tsx,css}",
+  ],
   theme: {
     extend: {
       colors: {
-        primary: "#00ff88",
-        secondary: "#0088ff",
-        dark: "#0a0e1a",
-        darker: "#050811",
-        graytext: "#8892b0",
+        // Phoenix Rooivalk Brand Colors
+        "phoenix-white": "rgb(var(--phoenix-white))",
+        "phoenix-cream": "rgb(var(--phoenix-cream))",
+        "phoenix-gold": "rgb(var(--phoenix-gold))",
+        "phoenix-amber": "rgb(var(--phoenix-amber))",
+        "phoenix-orange": "rgb(var(--phoenix-orange))",
+        "phoenix-red": "rgb(var(--phoenix-red))",
+        "phoenix-crimson": "rgb(var(--phoenix-crimson))",
+        "phoenix-maroon": "rgb(var(--phoenix-maroon))",
+        "phoenix-deep": "rgb(var(--phoenix-deep))",
+
+        // Tactical Neutrals
+        "tactical-black": "rgb(var(--tactical-black))",
+        "tactical-obsidian": "rgb(var(--tactical-obsidian))",
+        "tactical-charcoal": "rgb(var(--tactical-charcoal))",
+        "tactical-gunmetal": "rgb(var(--tactical-gunmetal))",
+        "tactical-gray-dark": "rgb(var(--tactical-gray-dark))",
+        "tactical-gray": "rgb(var(--tactical-gray))",
+        "tactical-gray-light": "rgb(var(--tactical-gray-light))",
+        "tactical-silver": "rgb(var(--tactical-silver))",
+
+        // Sensor Accents
+        "sensor-green": "rgb(var(--sensor-green))",
+        "sensor-amber": "rgb(var(--sensor-amber))",
+        "sensor-red": "rgb(var(--sensor-red))",
+
+        // Legacy compatibility
+        primary: "rgb(var(--primary))",
+        secondary: "rgb(var(--secondary))",
+        accent: "rgb(var(--accent))",
+        orange: "rgb(var(--orange))",
+        dark: "rgb(var(--dark))",
+        darker: "rgb(var(--darker))",
+        light: "rgb(var(--light))",
+        gray: "rgb(var(--gray))",
+        steel: "rgb(var(--steel))",
+        graytext: "rgb(var(--gray))",
+
+        // Semantic shortcuts
+        "brand-primary": "rgb(var(--brand-primary))",
+        "brand-accent": "rgb(var(--brand-accent))",
+        "bg-primary": "rgb(var(--bg-primary))",
+        "bg-secondary": "rgb(var(--bg-secondary))",
+        "text-primary": "rgb(var(--text-primary))",
+        "text-secondary": "rgb(var(--text-secondary))",
+
+        // Status colors
+        "status-active": "rgb(var(--status-active))",
+        "status-warning": "rgb(var(--status-warning))",
+        "status-alert": "rgb(var(--status-alert))",
+        "status-critical": "rgb(var(--status-critical))",
+        "status-offline": "rgb(var(--status-offline))",
       },
       boxShadow: {
-        glow: "0 0 30px rgba(0, 255, 136, 0.3)",
+        glow: "0 0 30px rgba(var(--phoenix-orange), 0.2)",
+        "red-glow": "0 0 20px rgba(var(--phoenix-red), 0.25)",
+        "orange-glow": "0 0 20px rgba(var(--phoenix-orange), 0.15)",
+        "amber-glow": "0 0 20px rgba(var(--phoenix-amber), 0.15)",
+        "phoenix-glow": "0 0 30px rgba(var(--phoenix-orange), 0.2)",
+        "tactical-glow": "0 0 20px rgba(var(--tactical-silver), 0.1)",
       },
       keyframes: {
         gridMove: {

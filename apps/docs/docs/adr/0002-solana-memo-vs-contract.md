@@ -42,8 +42,7 @@ When to prefer a smart contract:
 ## Links
 
 - Implementation (Memo):
-  [solana_anchor.py](../../backend/services/solana_anchor.py)
+  [Solana Anchor Implementation](../blockchain/03-implementation/phase-1-authentication/implementation-code.md)
 - Integration:
-  [blockchain_handler.py](../../backend/services/blockchain_handler.py)
-- Ops:
-  [Solana on-chain anchoring pilot](../blockchain_integration.md#solana-on-chain-anchoring-pilot)
+  [Blockchain Handler](../blockchain/03-implementation/phase-4-system-integration/api-specifications.md)
+- Ops: [Solana on-chain anchoring pilot](../blockchain_integration.md)

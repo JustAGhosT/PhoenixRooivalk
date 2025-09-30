@@ -63,7 +63,7 @@ graph TB
         style B4 fill:#00ff00,stroke:#333,stroke-width:2px
     end
 
-    T[Incoming Threat<br/>Required Response: <100ms]
+    T[Incoming Threat<br/>Required Response: &lt;100ms]
     T --> A1
     T --> B1
 ```
@@ -580,7 +580,7 @@ impl DecisionCache {
 ```python
 """
 Edge-optimized neural networks for threat detection
-Designed for inference in <5ms on edge TPU
+Designed for inference in &lt;5ms on edge TPU
 """
 import tensorflow as tf
 import numpy as np
@@ -609,7 +609,7 @@ class EdgeThreatDetector:
     def detect_threat(self, sensor_data: np.ndarray) -> Tuple[float, str]:
         """
         Ultra-fast threat detection using edge TPU
-        Returns confidence and threat type in <5ms
+        Returns confidence and threat type in &lt;5ms
         """
         # Preprocessing (0.5ms)
         preprocessed = self.preprocess_fast(sensor_data)
@@ -1007,7 +1007,7 @@ deployment_topology:
 
     man_portable:
       count: 20
-      weight: "<25kg"
+      weight: "&lt;25kg"
       battery_life: "8 hours"
 
   aerial_layer:
@@ -1022,9 +1022,9 @@ deployment_topology:
 ```mermaid
 graph TB
     subgraph "Level-0 Autonomous Mesh"
-        N1[Node 1<br/>Edge TPU] ---|Optical<br/>224Gbps| N2[Node 2<br/>Edge TPU]
-        N2 ---|mmWave<br/>10Gbps| N3[Node 3<br/>Edge TPU]
-        N3 ---|Mesh<br/>1Gbps| N4[Node 4<br/>Edge TPU]
+        N1[Node 1<br/>Edge TPU] ---|Optical<br/&gt;224Gbps| N2[Node 2<br/>Edge TPU]
+        N2 ---|mmWave<br/&gt;10Gbps| N3[Node 3<br/>Edge TPU]
+        N3 ---|Mesh<br/&gt;1Gbps| N4[Node 4<br/>Edge TPU]
         N4 ---|Optical| N1
 
         N1 ---|Emergency<br/>LoRa| EM[Emergency<br/>Beacon]

@@ -89,7 +89,7 @@ graph TB
 | --------------------- | ------------ | ---------------------- | ----------------------------- | ------------------ |
 | **Source**            | 1-2 minutes  | GitHub, Git            | Code checkout successful      | Retry checkout     |
 | **Build**             | 3-5 minutes  | Docker, Maven, npm     | Build artifacts created       | Notify developers  |
-| **Test**              | 5-8 minutes  | Jest, JUnit, pytest    | >95% test coverage            | Block deployment   |
+| **Test**              | 5-8 minutes  | Jest, JUnit, pytest    | &gt;95% test coverage         | Block deployment   |
 | **Security Scan**     | 2-4 minutes  | SonarQube, Snyk, Trivy | No critical vulnerabilities   | Block deployment   |
 | **Deploy Dev**        | 2-3 minutes  | Kubernetes, Helm       | Health checks pass            | Auto-rollback      |
 | **Deploy Staging**    | 3-5 minutes  | Kubernetes, Helm       | Integration tests pass        | Auto-rollback      |
@@ -339,7 +339,7 @@ spec:
 
 | **Test Type**         | **Tools**    | **Coverage**    | **Duration**  | **Failure Action** |
 | --------------------- | ------------ | --------------- | ------------- | ------------------ |
-| **Unit Tests**        | Jest, pytest | >95%            | 3-5 minutes   | Block deployment   |
+| **Unit Tests**        | Jest, pytest | &gt;95%         | 3-5 minutes   | Block deployment   |
 | **Integration Tests** | Newman       | API endpoints   | 5-8 minutes   | Block deployment   |
 | **Security Tests**    | OWASP ZAP    | Vulnerabilities | 3-5 minutes   | Block deployment   |
 | **Performance Tests** | k6           | Load testing    | 10-15 minutes | Warning only       |
@@ -372,9 +372,9 @@ sonar.security_rating.maximum=1
 **Key Performance Indicators**:
 
 - **Deployment Success Rate**: 99.8% target
-- **Deployment Duration**: <15 minutes target
-- **Rollback Time**: <5 minutes target
-- **Mean Time to Recovery**: <10 minutes target
+- **Deployment Duration**: &lt;15 minutes target
+- **Rollback Time**: &lt;5 minutes target
+- **Mean Time to Recovery**: &lt;10 minutes target
 
 ### 5.2 Pipeline Alerts
 
