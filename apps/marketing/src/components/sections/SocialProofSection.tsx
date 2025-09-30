@@ -5,19 +5,18 @@ import { Button } from "../ui/button";
 export const SocialProofSection: React.FC = () => {
   const testimonials = [
     {
-      quote:
-        "The concept of autonomous counter-drone defense with edge processing addresses a critical gap in current systems.",
-      author: "Industry Expert",
-      title: "Defense Technology Consultant",
-      organization: "Independent Analysis",
+      quote: "Units need RF-silent detection paths in contested environments.",
+      author: "Defense Stakeholder",
+      title: "Operational Requirements",
+      organization: "Exploratory Interview",
       avatar: "👨‍💼",
     },
     {
       quote:
-        "The 120ms response time target and offline capability represent significant advancement in counter-UAS technology.",
+        "Systems must fail gracefully offline; central coordination is a bonus, not a dependency.",
       author: "Technical Advisor",
-      title: "Aerospace Engineering Consultant",
-      organization: "Technology Assessment",
+      title: "System Architecture",
+      organization: "Discovery Discussion",
       avatar: "👩‍🔬",
     },
   ];
@@ -108,11 +107,15 @@ export const SocialProofSection: React.FC = () => {
             </p>
           </div>
 
-          {/* Industry Analysis */}
+          {/* What We're Hearing */}
           <div className="mb-20">
             <h3 className="text-2xl font-bold text-[rgb(var(--primary))] mb-8 text-center">
-              Industry Analysis & Potential
+              What We're Hearing (Discovery Notes, Not Endorsements)
             </h3>
+            <p className="text-sm text-[rgb(var(--gray))] text-center mb-6 max-w-2xl mx-auto">
+              Paraphrased insights from exploratory interviews with defense
+              stakeholders.
+            </p>
             <div className="grid md:grid-cols-2 gap-8">
               {testimonials.map((testimonial, index) => (
                 <div
@@ -175,7 +178,7 @@ export const SocialProofSection: React.FC = () => {
             {/* Development Status */}
             <div className="mb-12">
               <h4 className="text-xl font-semibold text-[rgb(var(--accent))] mb-6 text-center">
-                Current Development Status
+                Development Roadmap (Targets, Post-Funding)
               </h4>
               <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
                 {developmentStatus.map((status, index) => (
@@ -203,10 +206,10 @@ export const SocialProofSection: React.FC = () => {
               </div>
             </div>
 
-            {/* Certifications */}
+            {/* Compliance Roadmap */}
             <div>
               <h4 className="text-xl font-semibold text-[rgb(var(--accent))] mb-6 text-center">
-                Certifications & Compliance
+                Assurance Roadmap (Targets, Post-Funding)
               </h4>
               <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
                 {certifications.map((cert, index) => (

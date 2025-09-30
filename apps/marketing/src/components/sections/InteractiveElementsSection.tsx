@@ -87,6 +87,14 @@ export const InteractiveElementsSection: React.FC = () => {
 
           {/* ROI Calculator */}
           <div className="bg-[rgba(var(--tactical-charcoal),0.8)] backdrop-blur-sm border border-[rgba(var(--primary),0.2)] rounded-2xl p-8">
+            {/* Hypothetical Disclaimer */}
+            <div className="mb-6 p-4 bg-[rgba(var(--status-warning),0.1)] border border-[rgba(var(--status-warning),0.3)] rounded-lg">
+              <p className="text-sm text-[rgb(var(--status-warning))] text-center font-semibold">
+                ⚠️ HYPOTHETICAL ANALYSIS: All inputs/outputs are assumptions for
+                illustrative purposes only. No real-world performance data
+                available.
+              </p>
+            </div>
             <div className="grid lg:grid-cols-2 gap-8">
               {/* Input Controls */}
               <div className="space-y-6">

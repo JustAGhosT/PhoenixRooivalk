@@ -29,19 +29,22 @@ export const HeroSection: React.FC = () => {
             </span>
           </h1>
           <p className="mt-6 text-xl text-[rgb(var(--gray))] animate-fadeInUp [animation-delay:200ms]">
-            We are exploring a Level-0 autonomy approach designed to make immediate, local decisions without network connectivity. 
-            This site presents concepts and a simulation—not a fielded system.
+            We are exploring a Level-0 autonomy approach designed to make
+            immediate, local decisions without network connectivity. This site
+            presents concepts and a simulation—not a fielded system.
           </p>
           <div className="mt-4 p-4 bg-gradient-to-r from-[rgba(var(--primary),0.1)] to-[rgba(var(--secondary),0.1)] rounded-lg border border-[rgba(var(--primary),0.2)]">
             <p className="text-[rgb(var(--primary))] font-semibold mb-2">
               Hypothesis (to be validated):
             </p>
             <p className="text-sm text-[rgb(var(--gray))]">
-              Local, on-device decisioning could reduce time-to-action from seconds to &lt;200ms in lab conditions.
+              Local, on-device decisioning could reduce time-to-action from
+              seconds to &lt;200ms in lab conditions.
               <br />
               <strong>Status:</strong> Planning (no field data).
               <br />
-              <strong>Ask:</strong> Looking for design partners to define evaluation criteria and datasets.
+              <strong>Ask:</strong> Looking for design partners to define
+              evaluation criteria and datasets.
             </p>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
               <div className="text-center">
@@ -72,7 +75,8 @@ export const HeroSection: React.FC = () => {
               </div>
             </div>
             <div className="text-xs text-[rgb(var(--gray))] text-center border-t border-[rgba(var(--primary),0.1)] pt-3 mt-4">
-              Concept designed to address 64% market vulnerability gap in RF-silent drone detection
+              Concept designed to address 64% market vulnerability gap in
+              RF-silent drone detection
             </div>
           </div>
 
