@@ -26,7 +26,9 @@ export const HeroSection: React.FC = () => {
             center.
           </p>
           <div className="mt-4 p-4 bg-gradient-to-r from-[rgba(var(--primary),0.1)] to-[rgba(var(--secondary),0.1)] rounded-lg border border-[rgba(var(--primary),0.2)]">
-            <p className="text-[rgb(var(--primary))] font-semibold mb-2">Why This Matters:</p>
+            <p className="text-[rgb(var(--primary))] font-semibold mb-2">
+              Why This Matters:
+            </p>
             <p className="text-sm text-[rgb(var(--gray))]">
               Traditional systems fail when enemies jam communications (3-10
               second response). Phoenix works 100% without network - 250x faster

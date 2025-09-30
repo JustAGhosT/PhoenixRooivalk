@@ -5,14 +5,18 @@
 - **Location**: `08-deployment/infrastructure.md`
 - **Related Documents**:
   - [Deployment Guide](./deployment-guide.md) - Complete deployment procedures
-  - [Production Checklist](./production-checklist.md) - Pre-deployment validation
+  - [Production Checklist](./production-checklist.md) - Pre-deployment
+    validation
   - [CI/CD Pipeline](./ci-cd-pipeline.md) - Automated deployment processes
 
 ---
 
 ## Executive Summary
 
-This document provides comprehensive infrastructure configuration for the Phoenix Rooivalk blockchain-based counter-drone system deployment. The infrastructure follows cloud-native principles with containerization, orchestration, and infrastructure as code practices.
+This document provides comprehensive infrastructure configuration for the
+Phoenix Rooivalk blockchain-based counter-drone system deployment. The
+infrastructure follows cloud-native principles with containerization,
+orchestration, and infrastructure as code practices.
 
 ## Infrastructure Components
 

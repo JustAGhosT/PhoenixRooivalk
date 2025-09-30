@@ -5,14 +5,18 @@
 - **Location**: `06-risk-management/business-risks.md`
 - **Related Documents**:
   - [Security Risks](./security-risks.md) - Security-related risks
-  - [Mitigation Strategies](./mitigation-strategies.md) - Risk reduction measures
+  - [Mitigation Strategies](./mitigation-strategies.md) - Risk reduction
+    measures
   - [Contingency Plans](./contingency-plans.md) - Emergency procedures
 
 ---
 
 ## Executive Summary
 
-This document provides a comprehensive assessment of business risks associated with the Phoenix Rooivalk blockchain-based counter-drone system. The analysis covers market risks, financial risks, operational risks, regulatory risks, and strategic risks that could impact business objectives and operations.
+This document provides a comprehensive assessment of business risks associated
+with the Phoenix Rooivalk blockchain-based counter-drone system. The analysis
+covers market risks, financial risks, operational risks, regulatory risks, and
+strategic risks that could impact business objectives and operations.
 
 ## Risk Assessment Framework
 

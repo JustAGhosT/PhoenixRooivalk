@@ -643,8 +643,8 @@ class IBCSAdapter:
 
 ### 5.1 Detection System Integration Status
 
-| Vendor          | System         | Protocol        | Status       | Latency | Accuracy |
-| --------------- | -------------- | --------------- | ------------ | ------- | -------- |
+| Vendor          | System         | Protocol        | Status        | Latency | Accuracy |
+| --------------- | -------------- | --------------- | ------------- | ------- | -------- |
 | **Raytheon**    | Coyote Block 3 | Proprietary/DDS | ✅ Integrated | 12ms    | 99.8%    |
 | **Rafael**      | Drone Dome     | REST/WebSocket  | ✅ Integrated | 18ms    | 99.5%    |
 | **Lockheed**    | MORFIUS        | STANAG 4586     | ✅ Integrated | 15ms    | 99.7%    |
@@ -663,8 +663,8 @@ class IBCSAdapter:
 
 ### 5.2 C2 Platform Integration
 
-| Platform      | Organization     | Protocol | Integration | Status        |
-| ------------- | ---------------- | -------- | ----------- | ------------- |
+| Platform      | Organization     | Protocol | Integration | Status         |
+| ------------- | ---------------- | -------- | ----------- | -------------- |
 | **IBCS**      | Northrop Grumman | DDS      | Full        | ✅ Operational |
 | **JADC2**     | US DoD           | STITCHES | Full        | ✅ Operational |
 | **Lattice**   | Anduril          | gRPC     | Full        | ✅ Operational |

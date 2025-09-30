@@ -6,10 +6,8 @@
 
 .technicalGrid {
   @apply absolute inset-0 opacity-10 w-full h-full;
-  background-image: linear-gradient(
-      rgba(var(--primary), 0.08) 1px,
-      transparent 1px
-    ),
+  background-image:
+    linear-gradient(rgba(var(--primary), 0.08) 1px, transparent 1px),
     linear-gradient(90deg, rgba(var(--primary), 0.08) 1px, transparent 1px);
   background-size: 20px 20px;
 }
@@ -82,7 +80,11 @@
 
 .healthFill {
   @apply h-full rounded transition-all shadow-sm;
-  background: linear-gradient(to right, rgb(var(--phoenix-orange)), rgb(var(--phoenix-red)));
+  background: linear-gradient(
+    to right,
+    rgb(var(--phoenix-orange)),
+    rgb(var(--phoenix-red))
+  );
 }
 
 .statsOverlay {

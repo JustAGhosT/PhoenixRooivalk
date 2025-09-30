@@ -169,7 +169,6 @@
 ### **Reputational Risks**
 
 1. **Negative Press**:
-
    - **Risk**: Poor reviews or social media backlash could damage the brand.
    - **Mitigation**: Ensure high-quality customer service and proactive
      communication.
