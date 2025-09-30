@@ -179,10 +179,12 @@ export const ThreatSimulator: React.FC = (): JSX.Element => {
             <button
               key={threat.id}
               className={`${styles.threat} ${styles.threatPosition}`}
-              style={{
-                "--threat-x": `${threat.x}px`,
-                "--threat-y": `${threat.y}px`,
-              } as React.CSSProperties}
+              style={
+                {
+                  "--threat-x": `${threat.x}px`,
+                  "--threat-y": `${threat.y}px`,
+                } as React.CSSProperties
+              }
               data-threat-id={threat.id}
               onClick={(e) => {
                 e.stopPropagation();
@@ -201,17 +203,19 @@ export const ThreatSimulator: React.FC = (): JSX.Element => {
               <div className={styles.healthBar}>
                 <div
                   className={`${styles.healthFill} ${styles.healthBarWidth}`}
-                  style={{
-                    "--health-width": `${
-                      (threat.health /
-                        (threat.type === "stealth"
-                          ? 3
-                          : threat.type === "swarm"
-                            ? 2
-                            : 1)) *
-                      100
-                    }%`,
-                  } as React.CSSProperties}
+                  style={
+                    {
+                      "--health-width": `${
+                        (threat.health /
+                          (threat.type === "stealth"
+                            ? 3
+                            : threat.type === "swarm"
+                              ? 2
+                              : 1)) *
+                        100
+                      }%`,
+                    } as React.CSSProperties
+                  }
                 />
               </div>
             </button>
