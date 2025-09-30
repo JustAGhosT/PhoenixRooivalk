@@ -1,5 +1,5 @@
-import { RevealSection } from "@/components/RevealSection";
 import React from "react";
+import { RevealSection } from "../RevealSection";
 
 export const MarketIntelligenceSection: React.FC = () => {
   const marketData = [

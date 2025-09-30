@@ -1,6 +1,5 @@
 "use client";
 
-import { RevealSection } from "@/components/RevealSection";
 import { downloadWhitepaper } from "@phoenix-rooivalk/utils";
 import React from "react";
 import { Button } from "../ui/button";
@@ -12,7 +11,7 @@ export const ContactSection: React.FC = () => {
       id="contact"
     >
       <div className="max-w-[1400px] mx-auto">
-        <RevealSection className="text-center mb-8">
+        <div className="text-center mb-8">
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
             Ready to Deploy Level-0 Autonomous Defense?
           </h2>
@@ -20,9 +19,9 @@ export const ContactSection: React.FC = () => {
             Join the next generation of counter-drone defense. Request
             capability demonstration or download technical whitepaper.
           </p>
-        </RevealSection>
+        </div>
 
-        <RevealSection className="grid md:grid-cols-2 gap-8">
+        <div className="grid md:grid-cols-2 gap-8">
           <div className="bg-gray-900/50 border border-gray-700/50 rounded-lg p-8">
             <h3 className="text-xl font-bold text-white mb-4">
               Request Capability Demonstration
@@ -82,9 +81,9 @@ export const ContactSection: React.FC = () => {
               </Button>
             </div>
           </div>
-        </RevealSection>
+        </div>
 
-        <RevealSection className="text-center mt-12">
+        <div className="text-center mt-12">
           <div className="bg-gradient-to-r from-[var(--primary)]/10 to-[var(--secondary)]/10 border border-[var(--primary)]/30 rounded-lg p-8">
             <h3 className="text-2xl font-bold text-white mb-4">
               SBIR & Government Opportunities
@@ -99,7 +98,7 @@ export const ContactSection: React.FC = () => {
               Government Contracting Inquiries
             </Button>
           </div>
-        </RevealSection>
+        </div>
       </div>
     </section>
   );
