@@ -3,7 +3,8 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@phoenix-rooivalk/utils": ["../../packages/utils/src/index.ts"]
+      "@phoenix-rooivalk/utils": ["../../packages/utils/src/index.ts"],
+      "@/*": ["./src/*"]
     },
     "lib": ["dom", "dom.iterable", "esnext"],
     "strict": true,
