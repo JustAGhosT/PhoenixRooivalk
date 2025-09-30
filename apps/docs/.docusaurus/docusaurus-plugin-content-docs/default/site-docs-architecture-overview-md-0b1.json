@@ -13,8 +13,8 @@
   "frontMatter": {},
   "sidebar": "docs",
   "previous": {
-    "title": "PhoenixRooivalk Overview",
-    "permalink": "/docs/overview"
+    "title": "Phoenix Rooivalk — Level-0 Autonomous Counter-UAS System",
+    "permalink": "/docs/phoenix_rooivalk_whitepaper"
   },
   "next": {
     "title": "C2 and Data Plane (Public-safe)",

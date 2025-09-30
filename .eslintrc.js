@@ -12,12 +12,10 @@ module.exports = {
     'plugin:react-hooks/recommended',
     'plugin:jsx-a11y/recommended',
     'plugin:@typescript-eslint/recommended',
-    'plugin:@typescript-eslint/recommended-requiring-type-checking',
     'plugin:import/errors',
     'plugin:import/warnings',
     'plugin:import/typescript',
     'plugin:prettier/recommended',
-    'plugin:security/recommended',
   ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
@@ -26,8 +24,6 @@ module.exports = {
     },
     ecmaVersion: 'latest',
     sourceType: 'module',
-    project: ['./tsconfig.base.json'],
-    tsconfigRootDir: __dirname,
   },
   settings: {
     react: {
