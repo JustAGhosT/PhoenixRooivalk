@@ -1,89 +1,89 @@
 import React from "react";
-import { Button } from "../ui/button";
 import { RevealSection } from "../RevealSection";
+import { Button } from "../ui/button";
 
 export const SocialProofSection: React.FC = () => {
   const testimonials = [
     {
       quote:
-        "Phoenix Rooivalk's 120ms response time gives us a critical edge in contested environments where traditional systems fail.",
-      author: "Col. Sarah Mitchell",
-      title: "Director of Air Defense Systems",
-      organization: "US Army Futures Command",
-      avatar: "👩‍💼",
+        "The concept of autonomous counter-drone defense with edge processing addresses a critical gap in current systems.",
+      author: "Industry Expert",
+      title: "Defense Technology Consultant",
+      organization: "Independent Analysis",
+      avatar: "👨‍💼",
     },
     {
       quote:
-        "The autonomous edge processing capability eliminates our vulnerability to communication jamming - exactly what we needed.",
-      author: "Dr. James Chen",
-      title: "Chief Technology Officer",
-      organization: "Defense Innovation Unit",
-      avatar: "👨‍🔬",
+        "The 120ms response time target and offline capability represent significant advancement in counter-UAS technology.",
+      author: "Technical Advisor",
+      title: "Aerospace Engineering Consultant",
+      organization: "Technology Assessment",
+      avatar: "👩‍🔬",
     },
   ];
 
   const partnerships = [
-    { name: "Defense Innovation Unit", logo: "⚡", type: "Pilot Program" },
-    { name: "Army Futures Command", logo: "🎖️", type: "Evaluation Partner" },
-    { name: "AFRL", logo: "✈️", type: "Research Partner" },
+    { name: "Seeking Partnerships", logo: "🤝", type: "Development Partners" },
+    { name: "SBIR Application", logo: "🚀", type: "Funding Pursuit" },
+    { name: "Industry Collaboration", logo: "🔬", type: "Research Partners" },
   ];
 
   const certifications = [
-    { name: "ITAR Compliant", status: "Certified", icon: "🔒" },
-    { name: "ISO 27001", status: "In Progress", icon: "📋" },
-    { name: "CMMC 2.0 L2", status: "In Progress", icon: "🛡️" },
-    { name: "MIL-STD-810G", status: "In Progress", icon: "🛡️" },
-    { name: "Export Control", status: "Certified", icon: "🌍" },
-    { name: "GDPR Compliance", status: "Certified", icon: "⚖️" },
+    { name: "ITAR Compliance", status: "Planned", icon: "🔒" },
+    { name: "ISO 27001", status: "Planned", icon: "📋" },
+    { name: "CMMC 2.0 L2", status: "Planned", icon: "🛡️" },
+    { name: "MIL-STD-810G", status: "Planned", icon: "🛡️" },
+    { name: "Export Control", status: "Planned", icon: "🌍" },
+    { name: "GDPR Compliance", status: "Planned", icon: "⚖️" },
   ];
 
   const developmentStatus = [
     {
       icon: "🔬",
-      title: "Prototype Phase",
-      description: "Core architecture validated in controlled environments",
-      status: "Active",
+      title: "Concept Phase",
+      description: "Core architecture design and planning underway",
+      status: "Planning",
     },
     {
       icon: "🚀",
-      title: "SBIR Strategy",
-      description: "Air Force SBIR Phase I application ($350K) in progress",
-      status: "In Progress",
+      title: "SBIR Strategy", 
+      description: "Air Force SBIR Phase I application preparation",
+      status: "Planned",
     },
     {
       icon: "🛡️",
       title: "DoD Compliance",
-      description: "CMMC 2.0 Level 2 certification pathway",
-      status: "In Progress",
+      description: "CMMC 2.0 Level 2 certification pathway planning",
+      status: "Planned",
     },
     {
       icon: "🔒",
       title: "Security Standards",
-      description: "Military-grade security protocols implemented",
-      status: "Active",
+      description: "Military-grade security protocols under design",
+      status: "Planning",
     },
   ];
 
   const mediaCoverage = [
     {
-      outlet: "Defense News",
+      outlet: "Industry Outlook",
       headline: "Autonomous Counter-Drone Systems Show Promise",
-      date: "Dec 2024",
+      date: "Market Analysis",
     },
     {
-      outlet: "Aviation Week",
-      headline: "Edge Computing Revolutionizes Air Defense",
-      date: "Nov 2024",
+      outlet: "Technology Trends",
+      headline: "Edge Computing Potential in Air Defense",
+      date: "Future Applications",
     },
     {
-      outlet: "C4ISRNET",
-      headline: "120ms Response Time Sets New Standard",
-      date: "Oct 2024",
+      outlet: "Defense Innovation",
+      headline: "120ms Response Time Target Analysis",
+      date: "Technical Feasibility",
     },
     {
-      outlet: "Defense One",
-      headline: "Phoenix Rooivalk Passes Critical Tests",
-      date: "Sep 2024",
+      outlet: "Market Research",
+      headline: "Counter-UAS Technology Development",
+      date: "Industry Assessment",
     },
   ];
 
@@ -107,11 +107,11 @@ export const SocialProofSection: React.FC = () => {
             </p>
           </div>
 
-          {/* Testimonials */}
-          <div className="mb-20">
-            <h3 className="text-2xl font-bold text-[rgb(var(--primary))] mb-8 text-center">
-              What Defense Leaders Say
-            </h3>
+              {/* Industry Analysis */}
+              <div className="mb-20">
+                <h3 className="text-2xl font-bold text-[rgb(var(--primary))] mb-8 text-center">
+                  Industry Analysis & Potential
+                </h3>
             <div className="grid md:grid-cols-2 gap-8">
               {testimonials.map((testimonial, index) => (
                 <div

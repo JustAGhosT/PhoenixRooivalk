@@ -11,28 +11,27 @@ export const HeroSection: React.FC = () => {
       <div className="mx-auto max-w-[1400px] grid lg:grid-cols-2 gap-16 items-center">
         {/* Left: Enhanced messaging with credibility */}
         <div>
-          {/* Credibility indicators */}
+          {/* Development status indicators */}
           <div className="mb-6 flex flex-wrap gap-3">
             <span className="inline-block bg-gradient-to-r from-[rgb(var(--primary))] to-[rgb(var(--secondary))] text-white px-4 py-2 rounded-full text-sm font-bold shadow-lg shadow-[rgba(var(--primary),0.3)]">
-              ITAR Compliant • Prototype Phase
+              Concept Phase • Seeking Funding
             </span>
-            <span className="inline-block bg-[rgba(var(--status-active),0.2)] text-[rgb(var(--status-active))] px-4 py-2 rounded-full text-sm font-semibold border border-[rgba(var(--status-active),0.3)]">
-              Active Pilot Programs
+            <span className="inline-block bg-[rgba(var(--status-warning),0.2)] text-[rgb(var(--status-warning))] px-4 py-2 rounded-full text-sm font-semibold border border-[rgba(var(--status-warning),0.3)]">
+              SBIR Application Planned
             </span>
           </div>
 
-          {/* Outcome-focused headline */}
+          {/* Vision-focused headline */}
           <h1 className="text-4xl md:text-6xl font-extrabold leading-tight bg-clip-text text-transparent bg-gradient-to-br from-white to-[rgb(var(--primary))] animate-fadeInUp">
-            Neutralizes Drone Threats in 120ms
+            Autonomous Counter-Drone Defense
             <span className="block text-2xl md:text-4xl mt-2 text-[rgb(var(--accent))]">
-              Even When Communications Are Jammed
+              Target: 120ms Response Time
             </span>
           </h1>
           <p className="mt-6 text-xl text-[rgb(var(--gray))] animate-fadeInUp [animation-delay:200ms]">
-            Phoenix Rooivalk detects and stops hostile drones in 120-195ms even
-            when all communications are jammed. Makes "soft-kill first"
-            decisions at the edge without waiting for the cloud or command
-            center.
+            Phoenix Rooivalk is designed to detect and neutralize hostile drones in 120-195ms even
+            when communications are jammed. The system will make "soft-kill first"
+            decisions at the edge without requiring network connectivity.
           </p>
           <div className="mt-4 p-4 bg-gradient-to-r from-[rgba(var(--primary),0.1)] to-[rgba(var(--secondary),0.1)] rounded-lg border border-[rgba(var(--primary),0.2)]">
             <p className="text-[rgb(var(--primary))] font-semibold mb-2">
@@ -40,7 +39,7 @@ export const HeroSection: React.FC = () => {
             </p>
             <p className="text-sm text-[rgb(var(--gray))]">
               Traditional systems fail when enemies jam communications (3-10
-              second response). Phoenix works 100% without network - 250x faster
+              second response). Phoenix Rooivalk is designed to work 100% without network - targeting 250x faster
               response when it counts most.
             </p>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
@@ -48,20 +47,20 @@ export const HeroSection: React.FC = () => {
                 <div className="text-[rgb(var(--accent))] font-bold text-lg">
                   120ms
                 </div>
-                <div className="text-[rgb(var(--gray))]">Response Time</div>
+                <div className="text-[rgb(var(--gray))]">Target Response</div>
               </div>
               <div className="text-center">
                 <div className="text-[rgb(var(--accent))] font-bold text-lg">
                   100%
                 </div>
-                <div className="text-[rgb(var(--gray))]">Offline Capable</div>
+                <div className="text-[rgb(var(--gray))]">Offline Design</div>
               </div>
               <div className="text-center">
                 <div className="text-[rgb(var(--accent))] font-bold text-lg">
                   250x
                 </div>
                 <div className="text-[rgb(var(--gray))]">
-                  Faster Than Traditional
+                  Performance Target
                 </div>
               </div>
               <div className="text-center">
@@ -72,8 +71,7 @@ export const HeroSection: React.FC = () => {
               </div>
             </div>
             <div className="text-xs text-[rgb(var(--gray))] text-center border-t border-[rgba(var(--primary),0.1)] pt-3 mt-4">
-              Addresses 64% market vulnerability gap in RF-silent drone
-              detection
+              Designed to address 64% market vulnerability gap in RF-silent drone detection
             </div>
           </div>
 
@@ -85,7 +83,7 @@ export const HeroSection: React.FC = () => {
                 size="lg"
                 className="bg-gradient-to-r from-[rgb(var(--primary))] to-[rgb(var(--accent))] hover:from-[rgb(var(--accent))] hover:to-[rgb(var(--primary))] shadow-xl"
               >
-                See 120ms Response Demo
+                Join Development Program
               </Button>
               <Button
                 href="/interactive-demo"
@@ -93,7 +91,7 @@ export const HeroSection: React.FC = () => {
                 size="lg"
                 className="border-[rgb(var(--primary))] text-[rgb(var(--primary))] hover:bg-[rgba(var(--primary),0.1)]"
               >
-                Interactive Threat Simulator
+                View Technical Concept
               </Button>
             </div>
             <div className="flex flex-wrap gap-4 text-sm">
