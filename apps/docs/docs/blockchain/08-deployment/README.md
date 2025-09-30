@@ -9,6 +9,7 @@ The deployment guide covers all aspects of deploying the blockchain integration 
 ## Deployment Architecture
 
 ### Infrastructure Components
+
 - **Container Platform**: Kubernetes for container orchestration
 - **Cloud Services**: AWS, Azure, or GCP for cloud infrastructure
 - **Database**: PostgreSQL for data storage
@@ -16,6 +17,7 @@ The deployment guide covers all aspects of deploying the blockchain integration 
 - **Monitoring**: Prometheus and Grafana for monitoring
 
 ### Network Architecture
+
 - **Load Balancers**: Application load balancers for traffic distribution
 - **API Gateway**: API gateway for request routing and management
 - **Service Mesh**: Service mesh for service-to-service communication
@@ -24,18 +26,21 @@ The deployment guide covers all aspects of deploying the blockchain integration 
 ## Deployment Environments
 
 ### Development Environment
+
 - **Purpose**: Development and testing
 - **Infrastructure**: Local or cloud-based development environment
 - **Configuration**: Development-specific configuration
 - **Access**: Development team access
 
 ### Staging Environment
+
 - **Purpose**: Pre-production testing and validation
 - **Infrastructure**: Production-like infrastructure
 - **Configuration**: Production-like configuration
 - **Access**: Testing team and stakeholders
 
 ### Production Environment
+
 - **Purpose**: Live production system
 - **Infrastructure**: High-availability production infrastructure
 - **Configuration**: Production configuration with security hardening
@@ -44,18 +49,21 @@ The deployment guide covers all aspects of deploying the blockchain integration 
 ## Deployment Strategies
 
 ### Blue-Green Deployment
+
 - **Strategy**: Deploy to parallel environment and switch traffic
 - **Benefits**: Zero-downtime deployment and quick rollback
 - **Use Case**: Critical production deployments
 - **Process**: Deploy to green, test, switch traffic, decommission blue
 
 ### Canary Deployment
+
 - **Strategy**: Deploy to subset of users and gradually expand
 - **Benefits**: Risk reduction and gradual rollout
 - **Use Case**: Feature releases and updates
 - **Process**: Deploy to small percentage, monitor, gradually expand
 
 ### Rolling Deployment
+
 - **Strategy**: Deploy to subset of instances and gradually update all
 - **Benefits**: Continuous availability during deployment
 - **Use Case**: Regular updates and maintenance
@@ -64,6 +72,7 @@ The deployment guide covers all aspects of deploying the blockchain integration 
 ## Infrastructure Setup
 
 ### Container Orchestration
+
 ```yaml
 # Kubernetes deployment example
 apiVersion: apps/v1
@@ -94,6 +103,7 @@ spec:
 ```
 
 ### Database Setup
+
 ```sql
 -- PostgreSQL database setup
 CREATE DATABASE phoenix_rooivalk;
@@ -118,6 +128,7 @@ CREATE TABLE transactions (
 ```
 
 ### Monitoring Setup
+
 ```yaml
 # Prometheus configuration
 global:
@@ -134,6 +145,7 @@ scrape_configs:
 ## CI/CD Pipeline
 
 ### Build Pipeline
+
 1. **Source Control**: Git repository with main branch protection
 2. **Build**: Automated build on code changes
 3. **Test**: Automated testing including unit, integration, and security tests
@@ -141,6 +153,7 @@ scrape_configs:
 5. **Deploy**: Automated deployment to target environment
 
 ### Deployment Pipeline
+
 ```yaml
 # GitHub Actions deployment workflow
 name: Deploy to Production
@@ -164,6 +177,7 @@ jobs:
 ## Configuration Management
 
 ### Environment Variables
+
 ```bash
 # Production environment variables
 DATABASE_URL=postgresql://user:password@db:5432/phoenix_rooivalk
@@ -174,6 +188,7 @@ LOG_LEVEL=info
 ```
 
 ### Configuration Files
+
 ```yaml
 # Application configuration
 app:
@@ -197,18 +212,21 @@ blockchain:
 ## Security Configuration
 
 ### Network Security
+
 - **Firewall Rules**: Restrictive firewall rules
 - **SSL/TLS**: End-to-end encryption
 - **VPN**: VPN access for administrative functions
 - **Network Segmentation**: Isolated network segments
 
 ### Access Control
+
 - **Authentication**: Multi-factor authentication
 - **Authorization**: Role-based access control
 - **API Keys**: Secure API key management
 - **Secrets**: Secure secrets management
 
 ### Data Protection
+
 - **Encryption**: Data encryption at rest and in transit
 - **Backup**: Encrypted backups with off-site storage
 - **Audit**: Comprehensive audit logging
@@ -217,18 +235,21 @@ blockchain:
 ## Monitoring and Alerting
 
 ### Application Monitoring
+
 - **Health Checks**: Application health monitoring
 - **Performance Metrics**: Response time and throughput
 - **Error Tracking**: Error rate and exception monitoring
 - **User Analytics**: User behavior and usage patterns
 
 ### Infrastructure Monitoring
+
 - **Resource Usage**: CPU, memory, and disk usage
 - **Network Monitoring**: Network traffic and latency
 - **Database Monitoring**: Database performance and queries
 - **Container Monitoring**: Container health and resource usage
 
 ### Alerting
+
 ```yaml
 # Alerting rules
 groups:
@@ -247,12 +268,14 @@ groups:
 ## Backup and Recovery
 
 ### Backup Strategy
+
 - **Database Backups**: Daily automated database backups
 - **Configuration Backups**: Configuration file backups
 - **Application Backups**: Application state backups
 - **Disaster Recovery**: Off-site disaster recovery
 
 ### Recovery Procedures
+
 1. **Assessment**: Assess the scope of the incident
 2. **Recovery**: Restore from backups
 3. **Validation**: Validate system functionality
@@ -262,12 +285,14 @@ groups:
 ## Performance Optimization
 
 ### Application Optimization
+
 - **Caching**: Redis caching for frequently accessed data
 - **Database Optimization**: Database query optimization
 - **Load Balancing**: Application load balancing
 - **CDN**: Content delivery network for static assets
 
 ### Infrastructure Optimization
+
 - **Auto-scaling**: Automatic scaling based on load
 - **Resource Optimization**: Right-sizing of resources
 - **Network Optimization**: Network performance tuning
@@ -276,12 +301,14 @@ groups:
 ## Troubleshooting
 
 ### Common Issues
+
 - **Database Connectivity**: Database connection failures
 - **Memory Issues**: Memory leaks and high usage
 - **Network Issues**: Network connectivity problems
 - **Performance Issues**: Slow response times
 
 ### Debug Procedures
+
 1. **Log Analysis**: Analyze application and system logs
 2. **Metrics Review**: Review performance metrics
 3. **Health Checks**: Verify system health
@@ -289,6 +316,7 @@ groups:
 5. **Resource Monitoring**: Monitor resource usage
 
 ### Support Procedures
+
 - **Incident Response**: Incident response procedures
 - **Escalation**: Escalation procedures for critical issues
 - **Documentation**: Maintain troubleshooting documentation
