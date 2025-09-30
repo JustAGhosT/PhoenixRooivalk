@@ -41,6 +41,13 @@ export const useGameState = () => {
     }));
   }, []);
 
+  const updateThreats = useCallback((updatedThreats: Threat[]) => {
+    setGameState((prev) => ({
+      ...prev,
+      threats: updatedThreats,
+    }));
+  }, []);
+
   const toggleRunningState = useCallback(() => {
     setGameState((prev) => ({ ...prev, isRunning: !prev.isRunning }));
   }, []);
@@ -61,6 +68,7 @@ export const useGameState = () => {
     updateScore,
     addThreat,
     removeThreat,
+    updateThreats,
     toggleRunningState,
     resetGameState,
   };

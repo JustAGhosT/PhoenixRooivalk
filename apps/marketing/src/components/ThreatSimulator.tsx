@@ -24,6 +24,7 @@ export const ThreatSimulator: React.FC = (): JSX.Element => {
     updateScore,
     addThreat,
     removeThreat,
+    updateThreats,
     toggleRunningState,
     resetGameState,
   } = useGameState();
