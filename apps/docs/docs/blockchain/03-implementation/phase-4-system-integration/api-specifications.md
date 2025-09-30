@@ -32,7 +32,7 @@ and automatic load balancing across distributed blockchain nodes
 - **Response time**: < 10ms for critical operations
 - **Throughput**: 50,000+ requests/second per node
 - **Availability**: 99.99% uptime with automatic failover
-- **Security**: Military grade encryption and authentication {{ ... }}
+- **Security**: Military grade encryption and authentication
 - **Scalability**: Horizontal scaling across blockchain network
 
 ---

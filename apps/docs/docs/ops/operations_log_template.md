@@ -9,12 +9,12 @@
 - Environment: dev | test | prod
 - Anchor chain: solana | ethereum | avalanche-subnet | other
 - Commitment/finality target: processed | confirmed | finalized | other
-- Outbox batch settings: attempts=<n>, batch_limit=<n>, interval_sec=<n>
+- Outbox batch settings: attempts=&lt;n&gt;, batch_limit=&lt;n&gt;, interval_sec=&lt;n&gt;
 
 ## Metrics summary
 
-- Total outbox items processed: <n>
-- Anchor attempts: <n>
+- Total outbox items processed: &lt;n&gt;
+- Anchor attempts: &lt;n&gt;
 - Anchor successes: <n>
 - Anchor failures (permanent): <n>
 - Transient retries triggered: <n>
@@ -28,9 +28,9 @@
 - Primary RPC endpoint:
 - Failover RPC used: yes | no
 - Observed RPC errors (top 3):
-  - <message / code>
-  - <message / code>
-  - <message / code>
+  - &lt;message / code&gt;
+  - &lt;message / code&gt;
+  - &lt;message / code&gt;
 
 ## Operational notes
 

@@ -252,7 +252,7 @@ The system is designed for flexibility and can be deployed in various scenarios:
 | **Detection Range**      | Up to 5 km (dependent on environmental conditions and drone size)                                                        |
 | **Neutralization Range** | Up to 2 km for RF jamming and GPS spoofing; 500 meters for physical countermeasures                                      |
 | **Response Time**        | Typically 3–6 seconds from detection to neutralization, depending on environmental conditions and countermeasure methods |
-| **Accuracy**             | Over 95% detection and classification accuracy<br>with minimal false positives                                           |
+| **Accuracy**             | Over 95% detection and classification accuracy<br />with minimal false positives                                         |
 
 ---
 

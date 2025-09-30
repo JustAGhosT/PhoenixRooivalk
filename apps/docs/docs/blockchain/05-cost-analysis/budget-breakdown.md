@@ -444,10 +444,10 @@ print(f"Overall Confidence: {risk_analysis['overall_confidence']:.1%}")
 
 **Approval Authorities**:
 
-- **<$50K**: Department Manager approval
+- **&lt;$50K**: Department Manager approval
 - **$50K-$250K**: VP-level approval
 - **$250K-$1M**: Executive team approval
-- **>$1M**: Board approval required
+- **&gt;$1M**: Board approval required
 
 ### 7.2 Cost Tracking and Reporting
 

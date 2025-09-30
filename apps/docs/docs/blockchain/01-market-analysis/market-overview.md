@@ -273,7 +273,7 @@ pie title Counter-Drone Market by End User (2025)
 - **Strengths**: Focused solutions, agile development, modern technology
 - **Weaknesses**: Limited scale, single-point solutions, integration challenges
 
-**Tier 3 - Emerging Innovators** (<$10M revenue):
+**Tier 3 - Emerging Innovators** (&lt;$10M revenue):
 
 - 234 companies including startups and niche players
 - **Strengths**: Innovation, specialized capabilities, cost efficiency
