@@ -380,7 +380,7 @@ export class GameEngine {
           y: threat.position.y + threat.velocity.y * deltaTime,
         };
 
-      case "evasive":
+      case "evasive": {
         const dx = centerX - threat.position.x;
         const dy = centerY - threat.position.y;
         const distance = Math.sqrt(dx * dx + dy * dy);
@@ -406,6 +406,7 @@ export class GameEngine {
               (dy / distance) * threat.velocity.y * deltaTime,
           };
         }
+      }
 
       default:
         return threat.position;

@@ -1,5 +1,6 @@
 "use client";
 import Link from "next/link";
+// eslint-disable-next-line import/default
 import React from "react";
 
 export default function TechnicalPage(): React.ReactElement {
@@ -257,9 +258,9 @@ export default function TechnicalPage(): React.ReactElement {
               <div className="absolute inset-0 opacity-30">
                 <div className="w-full h-full bg-gradient-to-br from-green-900 to-green-800"></div>
                 {/* Simulated terrain features */}
-                <div className="absolute top-12 left-16 w-20 h-8 bg-gray-700 rounded opacity-50"></div>
+                <div className="absolute top-12 left-16 w-20 h-8 bg-tactical-gray rounded opacity-50"></div>
                 <div className="absolute bottom-20 right-12 w-16 h-16 bg-blue-600 rounded-full opacity-40"></div>
-                <div className="absolute top-32 right-24 w-12 h-24 bg-gray-700 rounded opacity-45"></div>
+                <div className="absolute top-32 right-24 w-12 h-24 bg-tactical-gray rounded opacity-45"></div>
               </div>
 
               {/* Detection zones */}

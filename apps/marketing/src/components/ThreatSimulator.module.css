@@ -1,6 +1,6 @@
 /* ThreatSimulator.module.css - Professional Military Theme */
 .gameContainer {
-  @apply relative w-full h-[600px] bg-gradient-to-br from-slate-900 via-slate-950 to-slate-900 rounded-xl border overflow-hidden shadow-2xl;
+  @apply relative w-full h-[600px] bg-gradient-to-br from-tactical-obsidian via-tactical-black to-tactical-obsidian rounded-xl border overflow-hidden shadow-2xl;
   border-color: rgba(var(--primary), 0.2);
 }
 
@@ -108,7 +108,7 @@
 }
 
 .threatDrone {
-  @apply bg-red-700 shadow-lg shadow-red-700/40;
+  @apply bg-phoenix-red shadow-lg shadow-phoenix-red/40;
 }
 
 .threatSwarm {
@@ -120,7 +120,7 @@
 }
 
 .threatStealth {
-  @apply bg-slate-600 shadow-lg shadow-slate-600/40;
+  @apply bg-tactical-gray shadow-lg shadow-tactical-gray/40;
 }
 
 .healthBar {
@@ -223,7 +223,7 @@
 }
 
 .weaponButtonKinetic {
-  @apply bg-red-700 border-red-600 text-red-100;
+  @apply bg-phoenix-red border-phoenix-red text-phoenix-white;
 }
 
 .weaponButtonElectronic {
@@ -328,20 +328,20 @@
 }
 
 .frameRateSlider {
-  @apply w-20 h-1 bg-gray-700 rounded-lg appearance-none cursor-pointer;
+  @apply w-20 h-1 bg-tactical-gray rounded-lg appearance-none cursor-pointer;
 }
 
 .frameRateSlider::-webkit-slider-thumb {
-  @apply appearance-none w-4 h-4 bg-orange-500 rounded-full cursor-pointer;
+  @apply appearance-none w-4 h-4 bg-phoenix-orange rounded-full cursor-pointer;
 }
 
 .frameRateSlider::-moz-range-thumb {
-  @apply w-4 h-4 bg-orange-500 rounded-full cursor-pointer border-0;
+  @apply w-4 h-4 bg-phoenix-orange rounded-full cursor-pointer border-0;
 }
 
 /* Advanced Threat Types */
 .threatKamikaze {
-  @apply bg-red-800 shadow-lg shadow-red-800/60;
+  @apply bg-phoenix-crimson shadow-lg shadow-phoenix-crimson/60;
   animation: kamikazePulse 1s infinite;
 }
 
@@ -356,12 +356,12 @@
 }
 
 .threatDecoy {
-  @apply bg-gray-500 shadow-lg shadow-gray-500/40;
+  @apply bg-tactical-gray shadow-lg shadow-tactical-gray/40;
   opacity: 0.7;
 }
 
 .threatShielded {
-  @apply bg-blue-700 shadow-lg shadow-blue-700/60;
+  @apply bg-tactical-silver shadow-lg shadow-tactical-silver/60;
   position: relative;
 }
 
@@ -437,7 +437,7 @@
 }
 
 .ammoBar {
-  @apply w-32 h-2 bg-gray-700 rounded-full overflow-hidden;
+  @apply w-32 h-2 bg-tactical-gray rounded-full overflow-hidden;
 }
 
 .ammoFill {
@@ -558,7 +558,7 @@
 }
 
 .resourceBar {
-  @apply w-24 h-2 bg-gray-700 rounded-full overflow-hidden mb-2;
+  @apply w-24 h-2 bg-tactical-gray rounded-full overflow-hidden mb-2;
 }
 
 .resourceBarEnergy {
@@ -580,12 +580,12 @@
 }
 
 .resourceLabel {
-  @apply text-xs text-gray-300 font-mono;
+  @apply text-xs text-tactical-gray-light font-mono;
 }
 
 /* Selection Box */
 .selectionBox {
-  @apply absolute pointer-events-none border border-blue-400 bg-blue-400/10;
+  @apply absolute pointer-events-none border border-tactical-silver bg-tactical-silver/10;
   border-style: dashed;
 }
 
@@ -611,20 +611,20 @@
 }
 
 .priorityHigh {
-  @apply bg-red-500 animate-pulse;
+  @apply bg-phoenix-red animate-pulse;
 }
 
 .priorityMedium {
-  @apply bg-yellow-500;
+  @apply bg-phoenix-amber;
 }
 
 .priorityLow {
-  @apply bg-green-500;
+  @apply bg-sensor-green;
 }
 
 /* Enhanced Weapon Cooldown Indicators */
 .weaponCooldownIndicator {
-  @apply absolute inset-0 rounded-full border-2 border-red-500;
+  @apply absolute inset-0 rounded-full border-2 border-phoenix-red;
   background: conic-gradient(
     from 0deg,
     transparent 0deg,
@@ -756,7 +756,7 @@
 }
 
 .mothershipCore {
-  @apply w-8 h-8 bg-gradient-to-br from-yellow-400 via-orange-500 to-red-600 rounded-full;
+  @apply w-8 h-8 bg-gradient-to-br from-phoenix-amber via-phoenix-orange to-phoenix-red rounded-full;
   box-shadow:
     0 0 15px rgba(251, 191, 36, 0.8),
     inset 0 0 10px rgba(255, 255, 255, 0.3);
@@ -909,7 +909,7 @@
 }
 
 .mothershipResourceBar {
-  @apply w-32 h-2 bg-gray-700 rounded-full overflow-hidden mb-2;
+  @apply w-32 h-2 bg-tactical-gray rounded-full overflow-hidden mb-2;
 }
 
 .mothershipResourceFill {

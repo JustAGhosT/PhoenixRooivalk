@@ -234,7 +234,7 @@ export interface GameEventTypes {
   // System Events
   "game:started": { level: number; missionType: string };
   "game:paused": { reason: string };
-  "game:resumed": {};
+  "game:resumed": Record<string, never>;
   "game:level-completed": { level: number; score: number; time: number };
   "game:game-over": { finalScore: number; reason: string };
 

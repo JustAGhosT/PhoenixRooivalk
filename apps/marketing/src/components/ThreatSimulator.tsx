@@ -1,4 +1,5 @@
 "use client";
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions, jsx-a11y/no-noninteractive-tabindex */
 import * as React from "react";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { ParticleRenderer } from "./ParticleRenderer";
@@ -32,7 +33,7 @@ export const ThreatSimulator: React.FC = (): JSX.Element => {
     activatePowerUp,
     updatePowerUps,
     checkAchievements,
-    addToLeaderboard,
+    // addToLeaderboard, // TODO: Implement leaderboard UI
     updateResources,
     consumeEnergy,
     consumeCooling,
@@ -40,9 +41,9 @@ export const ThreatSimulator: React.FC = (): JSX.Element => {
     clearSelection,
     setSelectionBox,
     setThreatPriority,
-    removeThreatPriority,
+    // removeThreatPriority, // TODO: Implement priority removal UI
     deployDrone,
-    updateDrones,
+    // updateDrones, // TODO: Implement drone update UI
     selectDroneType,
     updateMothershipResources,
     returnDroneToBase,
@@ -192,6 +193,8 @@ export const ThreatSimulator: React.FC = (): JSX.Element => {
       particleSystem,
       fireWeapon,
       checkAchievements,
+      consumeCooling,
+      consumeEnergy,
     ],
   );
 
@@ -287,6 +290,11 @@ export const ThreatSimulator: React.FC = (): JSX.Element => {
     spawnNewThreat,
     particleSystem,
     updateGameTime,
+    updateDronePositions,
+    updateMothershipResources,
+    updatePowerUps,
+    updateResources,
+    updateWeaponCooldowns,
   ]);
 
   // Initialize strategic systems
@@ -405,6 +413,8 @@ export const ThreatSimulator: React.FC = (): JSX.Element => {
   }, [
     switchWeapon,
     gameState.selectedDroneType,
+    gameState.mothership.x,
+    gameState.mothership.y,
     deployDrone,
     clearSelection,
     selectDroneType,
@@ -438,7 +448,7 @@ export const ThreatSimulator: React.FC = (): JSX.Element => {
         }
       }
     },
-    [gameState.selectedWeapon],
+    [gameState.selectedWeapon, setSelectionBox],
   );
 
   const handleMouseMove = useCallback(
@@ -456,7 +466,7 @@ export const ThreatSimulator: React.FC = (): JSX.Element => {
         });
       }
     },
-    [isDragging, dragStart],
+    [isDragging, dragStart, setSelectionBox],
   );
 
   const handleMouseUp = useCallback(
@@ -521,6 +531,7 @@ export const ThreatSimulator: React.FC = (): JSX.Element => {
       neutralizeThreat,
       particleSystem,
       consumeEnergy,
+      setSelectionBox,
     ],
   );
 
@@ -586,17 +597,19 @@ export const ThreatSimulator: React.FC = (): JSX.Element => {
     (e: React.WheelEvent) => {
       e.preventDefault();
       const weapons = ["kinetic", "electronic", "laser"] as const;
-      const currentIndex = weapons.indexOf(gameState.selectedWeapon);
+      const currentIndex = weapons.indexOf(
+        gameState.selectedWeapon as (typeof weapons)[number],
+      );
 
       if (e.deltaY > 0) {
         // Scroll down - next weapon
         const nextIndex = (currentIndex + 1) % weapons.length;
-        switchWeapon(weapons[nextIndex]);
+        switchWeapon(weapons[nextIndex] as (typeof weapons)[number]);
       } else {
         // Scroll up - previous weapon
         const prevIndex =
           currentIndex === 0 ? weapons.length - 1 : currentIndex - 1;
-        switchWeapon(weapons[prevIndex]);
+        switchWeapon(weapons[prevIndex] as (typeof weapons)[number]);
       }
     },
     [gameState.selectedWeapon, switchWeapon],
@@ -619,7 +632,7 @@ export const ThreatSimulator: React.FC = (): JSX.Element => {
       case "stealth":
         return {
           emoji: "👻",
-          color: "bg-gray-700 shadow-lg shadow-gray-600/50",
+          color: "bg-tactical-gray shadow-lg shadow-gray-600/50",
           cssClass: "",
         };
       case "kamikaze":
@@ -784,6 +797,15 @@ export const ThreatSimulator: React.FC = (): JSX.Element => {
         onMouseUp={handleMouseUp}
         onWheel={handleWheel}
         onContextMenu={(e) => e.preventDefault()}
+        onKeyDown={(e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            toggleRunningState();
+          }
+        }}
+        role="application"
+        aria-label="Threat Simulator Game Area"
+        tabIndex={0}
       >
         {/* Phoenix Rooivalk Mothership - Central Command */}
         <div
@@ -793,6 +815,15 @@ export const ThreatSimulator: React.FC = (): JSX.Element => {
             top: `${gameState.mothership.y - 48}px`,
           }}
           onClick={handleGameAreaClick}
+          onKeyDown={(e) => {
+            if (e.key === "Enter" || e.key === " ") {
+              e.preventDefault();
+              handleGameAreaClick(e as any);
+            }
+          }}
+          role="button"
+          aria-label="Mothership command center"
+          tabIndex={0}
         >
           {/* Mothership Core */}
           <div className={styles.mothershipCore}></div>
@@ -814,6 +845,16 @@ export const ThreatSimulator: React.FC = (): JSX.Element => {
                 e.stopPropagation();
                 selectDroneType(bay.currentDrones > 0 ? bay.droneType : null);
               }}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  selectDroneType(bay.currentDrones > 0 ? bay.droneType : null);
+                }
+              }}
+              role="button"
+              aria-label={`Deployment bay for ${bay.droneType} drones`}
+              tabIndex={0}
               title={`${bay.droneType} Bay: ${bay.currentDrones}/${bay.capacity} drones`}
             >
               <div className={styles.deploymentBayIndicator}></div>
@@ -1261,7 +1302,7 @@ export const ThreatSimulator: React.FC = (): JSX.Element => {
                     isSelected
                       ? "bg-orange-500 text-white"
                       : isAvailable
-                        ? "bg-gray-700 text-gray-300 hover:bg-gray-500"
+                        ? "bg-tactical-gray text-gray-300 hover:bg-gray-500"
                         : "bg-gray-800 text-gray-500 cursor-not-allowed"
                   }`}
                   disabled={!isAvailable}
@@ -1285,7 +1326,7 @@ export const ThreatSimulator: React.FC = (): JSX.Element => {
                 className={`px-2 py-1 text-xs rounded ${
                   weatherMode === mode
                     ? "bg-orange-500 text-white"
-                    : "bg-gray-700 text-gray-300 hover:bg-gray-500"
+                    : "bg-tactical-gray text-gray-300 hover:bg-gray-500"
                 }`}
               >
                 {mode.toUpperCase()}
@@ -1312,7 +1353,7 @@ export const ThreatSimulator: React.FC = (): JSX.Element => {
                 className={`px-2 py-1 text-xs rounded ${
                   missionType === mission
                     ? "bg-orange-500 text-white"
-                    : "bg-gray-700 text-gray-300 hover:bg-gray-500"
+                    : "bg-tactical-gray text-gray-300 hover:bg-gray-500"
                 }`}
               >
                 {mission.replace("-", " ").toUpperCase()}
@@ -1332,7 +1373,7 @@ export const ThreatSimulator: React.FC = (): JSX.Element => {
                 className={`px-2 py-1 text-xs rounded ${
                   automationMode === mode
                     ? "bg-orange-500 text-white"
-                    : "bg-gray-700 text-gray-300 hover:bg-gray-500"
+                    : "bg-tactical-gray text-gray-300 hover:bg-gray-500"
                 }`}
               >
                 {mode.toUpperCase()}
@@ -1344,7 +1385,7 @@ export const ThreatSimulator: React.FC = (): JSX.Element => {
             className={`mt-1 px-2 py-1 text-xs rounded w-full ${
               showDeploymentZones
                 ? "bg-green-500 text-white"
-                : "bg-gray-700 text-gray-300 hover:bg-gray-500"
+                : "bg-tactical-gray text-gray-300 hover:bg-gray-500"
             }`}
           >
             {showDeploymentZones ? "HIDE ZONES" : "SHOW ZONES"}

@@ -334,15 +334,16 @@ export class ResponseProtocolEngine {
           condition.operator,
         );
 
-      case "threat-type":
+      case "threat-type": {
         const threatTypes = systemState.activeThreats.map((t) => t.type);
         return this.compareThreatTypes(
           threatTypes,
           condition.value as string[],
           condition.operator,
         );
+      }
 
-      case "zone-threat-level":
+      case "zone-threat-level": {
         const maxZoneThreatLevel = Math.max(
           ...systemState.zoneStates.map((z) => z.threatLevel),
         );
@@ -351,8 +352,9 @@ export class ResponseProtocolEngine {
           condition.value as number,
           condition.operator,
         );
+      }
 
-      case "resource-level":
+      case "resource-level": {
         const avgResourceLevel =
           (systemState.availableResources.drones +
             systemState.availableResources.energy +
@@ -363,6 +365,7 @@ export class ResponseProtocolEngine {
           condition.value as number,
           condition.operator,
         );
+      }
 
       case "time-based":
         return this.compareValues(
