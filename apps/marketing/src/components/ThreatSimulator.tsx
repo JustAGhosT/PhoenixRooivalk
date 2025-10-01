@@ -1,13 +1,17 @@
 "use client";
 import * as React from "react";
-import { useCallback, useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import styles from "./ThreatSimulator.module.css";
 import { useGameState } from "./hooks/useGameState";
 import { useTimeoutManager } from "./hooks/useTimeoutManager";
 import { moveThreats, spawnThreat } from "./utils/threatUtils";
+import { ParticleSystem } from "./utils/particleSystem";
+import { ParticleRenderer } from "./ParticleRenderer";
 
 export const ThreatSimulator: React.FC = (): JSX.Element => {
   const gameRef = useRef<HTMLDivElement>(null);
+  const lastFrameTime = useRef<number>(0);
+  const animationFrameRef = useRef<number>();
 
   // Custom hooks for state and timeouts
   const {
@@ -17,21 +21,27 @@ export const ThreatSimulator: React.FC = (): JSX.Element => {
     removeThreat,
     updateThreats,
     toggleRunningState,
+    updateGameTime,
+    setFrameRate,
     resetGameState,
   } = useGameState();
 
   const { addTimeout, clearTimeouts } = useTimeoutManager();
+  
+  // Particle system
+  const [particleSystem] = useState(() => new ParticleSystem());
+  const [gameDimensions, setGameDimensions] = useState({ width: 800, height: 600 });
 
   const spawnNewThreat = useCallback(
     (threatType?: "drone" | "swarm" | "stealth") => {
       if (!gameRef.current) return;
 
       const rect = gameRef.current.getBoundingClientRect();
-      const newThreat = spawnThreat(threatType, rect);
+      const newThreat = spawnThreat(threatType, rect, gameState.level);
 
       addThreat(newThreat);
     },
-    [addThreat],
+    [addThreat, gameState.level],
   );
 
   const moveAllThreats = useCallback(() => {
@@ -40,16 +50,28 @@ export const ThreatSimulator: React.FC = (): JSX.Element => {
     const rect = gameRef.current.getBoundingClientRect();
     const centerPoint = { x: rect.width / 2, y: rect.height / 2 };
 
-    const movedThreats = moveThreats(gameState.threats, centerPoint);
+    const movedThreats = moveThreats(gameState.threats, centerPoint, gameState.level);
     updateThreats(movedThreats);
-  }, [gameState.threats, updateThreats]);
+  }, [gameState.threats, updateThreats, gameState.level]);
 
   const neutralizeThreat = useCallback(
     (threatId: string) => {
+      const threat = gameState.threats.find(t => t.id === threatId);
+      if (threat) {
+        // Create explosion effect
+        particleSystem.createExplosion(threat.x, threat.y, 1);
+        
+        // Create trail effect
+        if (threat.trail.length > 1) {
+          const lastTrail = threat.trail[threat.trail.length - 1];
+          particleSystem.createTrail(lastTrail.x, lastTrail.y, threat.x, threat.y);
+        }
+      }
+      
       removeThreat(threatId);
       updateScore(100);
     },
-    [removeThreat, updateScore],
+    [removeThreat, updateScore, gameState.threats, particleSystem],
   );
 
   const generateSwarm = useCallback(() => {
@@ -80,25 +102,57 @@ export const ThreatSimulator: React.FC = (): JSX.Element => {
     resetGameState();
   }, [clearTimeouts, resetGameState]);
 
+  // Enhanced game loop with frame rate control
   useEffect(() => {
     if (!gameState.isRunning) return;
 
-    const interval = setInterval(() => {
+    const gameLoop = (currentTime: number) => {
+      const deltaTime = (currentTime - lastFrameTime.current) / 1000;
+      lastFrameTime.current = currentTime;
+
+      // Update particle system
+      particleSystem.update(deltaTime);
+      
+      // Update game time
+      updateGameTime(deltaTime);
+
+      // Move threats
       moveAllThreats();
 
-      if (gameState.threats.length < 5 && Math.random() < 0.5) {
+      // Spawn new threats based on level and spawn rate
+      const timeSinceLastSpawn = currentTime - gameState.lastSpawnTime;
+      const shouldSpawn = timeSinceLastSpawn > gameState.spawnRate && 
+                         gameState.threats.length < (5 + gameState.level);
+
+      if (shouldSpawn && Math.random() < 0.3) {
         spawnNewThreat(); // Random threat type
       }
-    }, 50);
 
-    return () => clearInterval(interval);
+      // Continue animation loop
+      animationFrameRef.current = requestAnimationFrame(gameLoop);
+    };
+
+    lastFrameTime.current = performance.now();
+    animationFrameRef.current = requestAnimationFrame(gameLoop);
+
+    return () => {
+      if (animationFrameRef.current) {
+        cancelAnimationFrame(animationFrameRef.current);
+      }
+    };
   }, [
     gameState.isRunning,
     gameState.threats.length,
+    gameState.level,
+    gameState.spawnRate,
+    gameState.lastSpawnTime,
     moveAllThreats,
     spawnNewThreat,
+    particleSystem,
+    updateGameTime,
   ]);
 
+  // Initial threat spawn
   useEffect(() => {
     const timer = setTimeout(() => {
       spawnNewThreat(); // Random threat type
@@ -108,6 +162,20 @@ export const ThreatSimulator: React.FC = (): JSX.Element => {
 
     return () => clearTimeout(timer);
   }, [spawnNewThreat]);
+
+  // Update game dimensions
+  useEffect(() => {
+    const updateDimensions = () => {
+      if (gameRef.current) {
+        const rect = gameRef.current.getBoundingClientRect();
+        setGameDimensions({ width: rect.width, height: rect.height });
+      }
+    };
+
+    updateDimensions();
+    window.addEventListener('resize', updateDimensions);
+    return () => window.removeEventListener('resize', updateDimensions);
+  }, []);
 
   useEffect(() => {
     return () => clearTimeouts();
@@ -145,6 +213,13 @@ export const ThreatSimulator: React.FC = (): JSX.Element => {
 
       {/* Technical grid background */}
       <div className={styles.technicalGrid}></div>
+
+      {/* Particle Renderer */}
+      <ParticleRenderer 
+        particleSystem={particleSystem}
+        width={gameDimensions.width}
+        height={gameDimensions.height}
+      />
 
       <div ref={gameRef} className={styles.gameArea}>
         {/* Phoenix Rooivalk Logo - Central Defense System */}
@@ -263,11 +338,11 @@ export const ThreatSimulator: React.FC = (): JSX.Element => {
           );
         })}
 
-        {/* Stats Overlay */}
+        {/* Enhanced Stats Overlay */}
         <div className={styles.statsOverlay}>
           <div className={styles.statsContent}>
             <div className={styles.statItem}>
-              <div className={styles.statValue}>{gameState.score}</div>
+              <div className={styles.statValue}>{gameState.score.toLocaleString()}</div>
               <div className={styles.statLabel}>SCORE</div>
             </div>
             <div className={styles.statItem}>
@@ -284,6 +359,13 @@ export const ThreatSimulator: React.FC = (): JSX.Element => {
             </div>
           </div>
         </div>
+
+        {/* Combo Indicator */}
+        {gameState.comboMultiplier > 1 && (
+          <div className={styles.comboIndicator}>
+            COMBO x{gameState.comboMultiplier.toFixed(1)}
+          </div>
+        )}
 
         {/* Interactive Controls */}
         <div className={styles.controlsOverlay}>
@@ -317,6 +399,21 @@ export const ThreatSimulator: React.FC = (): JSX.Element => {
               RESET
             </button>
           </div>
+        </div>
+
+        {/* Frame Rate Control */}
+        <div className={styles.frameRateControl}>
+          <div className="text-xs text-gray-300 mb-1">FPS</div>
+          <input
+            type="range"
+            min="30"
+            max="120"
+            step="10"
+            value={gameState.targetFrameRate}
+            onChange={(e) => setFrameRate(parseInt(e.target.value))}
+            className={styles.frameRateSlider}
+          />
+          <div className="text-xs text-gray-400 mt-1">{gameState.targetFrameRate}</div>
         </div>
       </div>
     </div>

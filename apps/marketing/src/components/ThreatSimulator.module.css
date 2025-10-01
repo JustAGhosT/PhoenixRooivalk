@@ -56,6 +56,46 @@
 .threat {
   @apply absolute w-8 h-8 rounded-full flex items-center justify-center cursor-pointer transition-all duration-300 shadow-lg hover:scale-110 border;
   border-color: rgba(251, 191, 36, 0.15);
+  transform: translate(var(--threat-x, 0px), var(--threat-y, 0px));
+  will-change: transform;
+}
+
+.threat::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(251, 191, 36, 0.3) 0%, transparent 70%);
+  transform: translate(-50%, -50%);
+  animation: pulse 2s infinite;
+}
+
+.threat::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 200%;
+  height: 200%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(249, 115, 22, 0.1) 0%, transparent 70%);
+  transform: translate(-50%, -50%);
+  animation: pulse 3s infinite;
+  animation-delay: 1s;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 0.3;
+    transform: translate(-50%, -50%) scale(0.8);
+  }
+  50% {
+    opacity: 0.8;
+    transform: translate(-50%, -50%) scale(1.2);
+  }
 }
 
 .threatDrone {
@@ -196,4 +236,92 @@
 }
 .weaponButtonInactive:hover {
   background-color: rgb(var(--tactical-gray));
+}
+
+/* Trail Effects */
+.threatTrail {
+  position: absolute;
+  pointer-events: none;
+  opacity: 0.6;
+  z-index: 1;
+}
+
+.threatTrail::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(249, 115, 22, 0.4) 0%, transparent 70%);
+  transform: translate(-50%, -50%);
+  animation: trailFade 2s ease-out forwards;
+}
+
+@keyframes trailFade {
+  0% {
+    opacity: 0.6;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.3);
+  }
+}
+
+/* Enhanced Stats Display */
+.statsOverlay {
+  @apply absolute top-4 right-4 backdrop-blur-sm border rounded-md shadow-lg;
+  background-color: rgba(var(--tactical-black), 0.9);
+  border-color: rgba(var(--phoenix-orange), 0.5);
+  box-shadow:
+    0 10px 15px -3px rgba(var(--phoenix-orange), 0.2),
+    0 4px 6px -2px rgba(var(--phoenix-orange), 0.2);
+}
+
+.comboIndicator {
+  @apply absolute top-16 right-4 backdrop-blur-sm border rounded-md shadow-lg;
+  background-color: rgba(34, 197, 94, 0.9);
+  border-color: rgba(34, 197, 94, 0.5);
+  color: white;
+  padding: 8px 12px;
+  font-size: 14px;
+  font-weight: bold;
+  animation: comboPulse 0.5s ease-out;
+}
+
+@keyframes comboPulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+}
+
+/* Frame Rate Control */
+.frameRateControl {
+  @apply absolute bottom-4 right-4 backdrop-blur-sm border rounded-md shadow-lg;
+  background-color: rgba(var(--tactical-black), 0.9);
+  border-color: rgba(var(--phoenix-orange), 0.5);
+  padding: 8px 12px;
+}
+
+.frameRateSlider {
+  @apply w-20 h-1 bg-gray-600 rounded-lg appearance-none cursor-pointer;
+}
+
+.frameRateSlider::-webkit-slider-thumb {
+  @apply appearance-none w-4 h-4 bg-orange-500 rounded-full cursor-pointer;
+}
+
+.frameRateSlider::-moz-range-thumb {
+  @apply w-4 h-4 bg-orange-500 rounded-full cursor-pointer border-0;
 }
