@@ -89,9 +89,18 @@ export const useGameState = () => {
     frameRate: 60,
     targetFrameRate: 60,
     achievements: [],
-    leaderboard: JSON.parse(
-      localStorage.getItem("threatSimulatorLeaderboard") || "[]",
-    ),
+    leaderboard: (() => {
+      if (typeof window !== "undefined") {
+        try {
+          return JSON.parse(
+            localStorage.getItem("threatSimulatorLeaderboard") || "[]",
+          );
+        } catch {
+          return [];
+        }
+      }
+      return [];
+    })(),
     // Resource Management
     energy: 100,
     maxEnergy: 100,
@@ -414,10 +423,16 @@ export const useGameState = () => {
         .sort((a, b) => b.score - a.score)
         .slice(0, 10); // Keep top 10
 
-      localStorage.setItem(
-        "threatSimulatorLeaderboard",
-        JSON.stringify(updatedLeaderboard),
-      );
+      if (typeof window !== "undefined") {
+        try {
+          localStorage.setItem(
+            "threatSimulatorLeaderboard",
+            JSON.stringify(updatedLeaderboard),
+          );
+        } catch {
+          // Silently fail if localStorage is not available
+        }
+      }
 
       return {
         ...prev,
