@@ -12,7 +12,13 @@ import { ResponseProtocolEngine } from "./utils/responseProtocols";
 import { StrategicDeploymentEngine } from "./utils/strategicDeployment";
 import { moveThreats, spawnThreat } from "./utils/threatUtils";
 
-export const ThreatSimulator: React.FC = (): JSX.Element => {
+interface ThreatSimulatorProps {
+  isTeaser?: boolean;
+}
+
+export const ThreatSimulator: React.FC<ThreatSimulatorProps> = ({
+  isTeaser = false,
+}): JSX.Element => {
   const gameRef = useRef<HTMLDivElement>(null);
   const lastFrameTime = useRef<number>(0);
   const animationFrameRef = useRef<number>();
@@ -72,6 +78,41 @@ export const ThreatSimulator: React.FC = (): JSX.Element => {
 
   // UI state
   const [showSimulationWarning, setShowSimulationWarning] = useState(true);
+  const [isFullscreen, setIsFullscreen] = useState(false);
+
+  // Fullscreen functionality
+  const enterFullscreen = useCallback(async () => {
+    if (gameRef.current && !document.fullscreenElement) {
+      try {
+        await gameRef.current.requestFullscreen();
+        setIsFullscreen(true);
+      } catch (error) {
+        // Fullscreen not supported or denied
+      }
+    }
+  }, []);
+
+  const exitFullscreen = useCallback(async () => {
+    if (document.fullscreenElement) {
+      try {
+        await document.exitFullscreen();
+        setIsFullscreen(false);
+      } catch (error) {
+        // Exit fullscreen failed
+      }
+    }
+  }, []);
+
+  // Listen for fullscreen changes
+  useEffect(() => {
+    const handleFullscreenChange = () => {
+      setIsFullscreen(!!document.fullscreenElement);
+    };
+
+    document.addEventListener("fullscreenchange", handleFullscreenChange);
+    return () =>
+      document.removeEventListener("fullscreenchange", handleFullscreenChange);
+  }, []);
 
   // Strategic systems
   const [strategicEngine] = useState(() => new StrategicDeploymentEngine());
@@ -544,7 +585,9 @@ export const ThreatSimulator: React.FC = (): JSX.Element => {
         selectThreat(threatId);
       } else if (e.button === 1) {
         // Middle click - set priority
-        const currentPriority = gameState.priorityThreats[threatId];
+        const currentPriority = gameState.priorityThreats[threatId] as
+          | string
+          | undefined;
         if (currentPriority === "high") {
           setThreatPriority(threatId, "medium");
         } else if (currentPriority === "medium") {
@@ -604,12 +647,18 @@ export const ThreatSimulator: React.FC = (): JSX.Element => {
       if (e.deltaY > 0) {
         // Scroll down - next weapon
         const nextIndex = (currentIndex + 1) % weapons.length;
-        switchWeapon(weapons[nextIndex] as (typeof weapons)[number]);
+        const nextWeapon = weapons[nextIndex];
+        if (nextWeapon) {
+          switchWeapon(nextWeapon);
+        }
       } else {
         // Scroll up - previous weapon
         const prevIndex =
           currentIndex === 0 ? weapons.length - 1 : currentIndex - 1;
-        switchWeapon(weapons[prevIndex] as (typeof weapons)[number]);
+        const prevWeapon = weapons[prevIndex];
+        if (prevWeapon) {
+          switchWeapon(prevWeapon);
+        }
       }
     },
     [gameState.selectedWeapon, switchWeapon],
@@ -818,7 +867,7 @@ export const ThreatSimulator: React.FC = (): JSX.Element => {
           onKeyDown={(e) => {
             if (e.key === "Enter" || e.key === " ") {
               e.preventDefault();
-              handleGameAreaClick(e as any);
+              handleGameAreaClick(e as React.MouseEvent);
             }
           }}
           role="button"
@@ -1455,6 +1504,47 @@ export const ThreatSimulator: React.FC = (): JSX.Element => {
           </div>
         </div>
       </div>
+
+      {/* Teaser Overlay */}
+      {isTeaser && !isFullscreen && (
+        <div className="absolute inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center z-50">
+          <div className="text-center p-8 max-w-md">
+            <div className="mb-6">
+              <div className="text-6xl mb-4">🎮</div>
+              <h3 className="text-2xl font-bold text-white mb-2">
+                Experience Full Defense
+              </h3>
+              <p className="text-gray-300 text-sm mb-6">
+                This is a preview of the Phoenix Rooivalk defense system
+                simulator. Enter full-screen mode to access all features and
+                controls.
+              </p>
+            </div>
+
+            <button
+              onClick={enterFullscreen}
+              className="bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white font-bold py-3 px-8 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg"
+            >
+              🚀 Enter Full-Screen Mode
+            </button>
+
+            <p className="text-xs text-gray-400 mt-4">
+              Press ESC to exit full-screen at any time
+            </p>
+          </div>
+        </div>
+      )}
+
+      {/* Fullscreen Exit Button */}
+      {isFullscreen && (
+        <button
+          onClick={exitFullscreen}
+          className="absolute top-4 right-4 z-50 bg-black/80 text-white p-2 rounded-lg hover:bg-black/90 transition-colors"
+          title="Exit Fullscreen (ESC)"
+        >
+          ✕
+        </button>
+      )}
     </div>
   );
 };
