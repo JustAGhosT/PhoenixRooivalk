@@ -197,7 +197,11 @@
     "eoir",
     "Turborepo",
     "hostnames",
-    "runbook"
+    "runbook",
+    "noninteractive",
+    "cooldowns",
+    "Cooldowns",
+    "WASD"
   ],
   "ignorePaths": [
     "node_modules/**",

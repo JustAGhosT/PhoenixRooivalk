@@ -636,6 +636,27 @@ export const ThreatSimulator: React.FC<ThreatSimulatorProps> = ({
     [gameState.selectedDroneType, deployDrone, switchWeapon, isDragging],
   );
 
+  // Keyboard handler for game area
+  const handleGameAreaKeyDown = useCallback(
+    (e: React.KeyboardEvent) => {
+      if (!gameRef.current) return;
+
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        // Deploy selected drone type at center of game area
+        if (gameState.selectedDroneType) {
+          const rect = gameRef.current.getBoundingClientRect();
+          const x = rect.width / 2;
+          const y = rect.height / 2;
+          deployDrone(gameState.selectedDroneType, x, y);
+        } else {
+          switchWeapon("kinetic");
+        }
+      }
+    },
+    [gameState.selectedDroneType, deployDrone, switchWeapon],
+  );
+
   // Wheel event for weapon cycling
   const handleWheel = useCallback(
     (e: React.WheelEvent) => {
@@ -867,12 +888,7 @@ export const ThreatSimulator: React.FC<ThreatSimulatorProps> = ({
             top: `${gameState.mothership.y - 48}px`,
           }}
           onClick={handleGameAreaClick}
-          onKeyDown={(e) => {
-            if (e.key === "Enter" || e.key === " ") {
-              e.preventDefault();
-              handleGameAreaClick(e as React.MouseEvent);
-            }
-          }}
+          onKeyDown={handleGameAreaKeyDown}
           role="button"
           aria-label="Mothership command center"
           tabIndex={0}
