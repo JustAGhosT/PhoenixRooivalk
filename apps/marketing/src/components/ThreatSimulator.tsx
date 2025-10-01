@@ -619,7 +619,7 @@ export const ThreatSimulator: React.FC = (): JSX.Element => {
       case "stealth":
         return {
           emoji: "👻",
-          color: "bg-gray-600 shadow-lg shadow-gray-600/50",
+          color: "bg-gray-700 shadow-lg shadow-gray-600/50",
           cssClass: "",
         };
       case "kamikaze":
@@ -1261,7 +1261,7 @@ export const ThreatSimulator: React.FC = (): JSX.Element => {
                     isSelected
                       ? "bg-orange-500 text-white"
                       : isAvailable
-                        ? "bg-gray-600 text-gray-300 hover:bg-gray-500"
+                        ? "bg-gray-700 text-gray-300 hover:bg-gray-500"
                         : "bg-gray-800 text-gray-500 cursor-not-allowed"
                   }`}
                   disabled={!isAvailable}
@@ -1285,7 +1285,7 @@ export const ThreatSimulator: React.FC = (): JSX.Element => {
                 className={`px-2 py-1 text-xs rounded ${
                   weatherMode === mode
                     ? "bg-orange-500 text-white"
-                    : "bg-gray-600 text-gray-300 hover:bg-gray-500"
+                    : "bg-gray-700 text-gray-300 hover:bg-gray-500"
                 }`}
               >
                 {mode.toUpperCase()}
@@ -1312,7 +1312,7 @@ export const ThreatSimulator: React.FC = (): JSX.Element => {
                 className={`px-2 py-1 text-xs rounded ${
                   missionType === mission
                     ? "bg-orange-500 text-white"
-                    : "bg-gray-600 text-gray-300 hover:bg-gray-500"
+                    : "bg-gray-700 text-gray-300 hover:bg-gray-500"
                 }`}
               >
                 {mission.replace("-", " ").toUpperCase()}
@@ -1332,7 +1332,7 @@ export const ThreatSimulator: React.FC = (): JSX.Element => {
                 className={`px-2 py-1 text-xs rounded ${
                   automationMode === mode
                     ? "bg-orange-500 text-white"
-                    : "bg-gray-600 text-gray-300 hover:bg-gray-500"
+                    : "bg-gray-700 text-gray-300 hover:bg-gray-500"
                 }`}
               >
                 {mode.toUpperCase()}
@@ -1344,7 +1344,7 @@ export const ThreatSimulator: React.FC = (): JSX.Element => {
             className={`mt-1 px-2 py-1 text-xs rounded w-full ${
               showDeploymentZones
                 ? "bg-green-500 text-white"
-                : "bg-gray-600 text-gray-300 hover:bg-gray-500"
+                : "bg-gray-700 text-gray-300 hover:bg-gray-500"
             }`}
           >
             {showDeploymentZones ? "HIDE ZONES" : "SHOW ZONES"}

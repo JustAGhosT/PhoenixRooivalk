@@ -328,7 +328,7 @@
 }
 
 .frameRateSlider {
-  @apply w-20 h-1 bg-gray-600 rounded-lg appearance-none cursor-pointer;
+  @apply w-20 h-1 bg-gray-700 rounded-lg appearance-none cursor-pointer;
 }
 
 .frameRateSlider::-webkit-slider-thumb {
@@ -437,7 +437,7 @@
 }
 
 .ammoBar {
-  @apply w-32 h-2 bg-gray-600 rounded-full overflow-hidden;
+  @apply w-32 h-2 bg-gray-700 rounded-full overflow-hidden;
 }
 
 .ammoFill {
@@ -558,7 +558,7 @@
 }
 
 .resourceBar {
-  @apply w-24 h-2 bg-gray-600 rounded-full overflow-hidden mb-2;
+  @apply w-24 h-2 bg-gray-700 rounded-full overflow-hidden mb-2;
 }
 
 .resourceBarEnergy {
@@ -909,7 +909,7 @@
 }
 
 .mothershipResourceBar {
-  @apply w-32 h-2 bg-gray-600 rounded-full overflow-hidden mb-2;
+  @apply w-32 h-2 bg-gray-700 rounded-full overflow-hidden mb-2;
 }
 
 .mothershipResourceFill {
