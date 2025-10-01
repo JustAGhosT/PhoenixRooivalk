@@ -61,34 +61,43 @@
 }
 
 .threat::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 50%;
   left: 50%;
   width: 100%;
   height: 100%;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(251, 191, 36, 0.3) 0%, transparent 70%);
+  background: radial-gradient(
+    circle,
+    rgba(251, 191, 36, 0.3) 0%,
+    transparent 70%
+  );
   transform: translate(-50%, -50%);
   animation: pulse 2s infinite;
 }
 
 .threat::after {
-  content: '';
+  content: "";
   position: absolute;
   top: 50%;
   left: 50%;
   width: 200%;
   height: 200%;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(249, 115, 22, 0.1) 0%, transparent 70%);
+  background: radial-gradient(
+    circle,
+    rgba(249, 115, 22, 0.1) 0%,
+    transparent 70%
+  );
   transform: translate(-50%, -50%);
   animation: pulse 3s infinite;
   animation-delay: 1s;
 }
 
 @keyframes pulse {
-  0%, 100% {
+  0%,
+  100% {
     opacity: 0.3;
     transform: translate(-50%, -50%) scale(0.8);
   }
@@ -247,14 +256,18 @@
 }
 
 .threatTrail::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 50%;
   left: 50%;
   width: 100%;
   height: 100%;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(249, 115, 22, 0.4) 0%, transparent 70%);
+  background: radial-gradient(
+    circle,
+    rgba(249, 115, 22, 0.4) 0%,
+    transparent 70%
+  );
   transform: translate(-50%, -50%);
   animation: trailFade 2s ease-out forwards;
 }
@@ -324,4 +337,214 @@
 
 .frameRateSlider::-moz-range-thumb {
   @apply w-4 h-4 bg-orange-500 rounded-full cursor-pointer border-0;
+}
+
+/* Advanced Threat Types */
+.threatKamikaze {
+  @apply bg-red-800 shadow-lg shadow-red-800/60;
+  animation: kamikazePulse 1s infinite;
+}
+
+@keyframes kamikazePulse {
+  0%,
+  100% {
+    box-shadow: 0 0 10px rgba(239, 68, 68, 0.6);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(239, 68, 68, 1);
+  }
+}
+
+.threatDecoy {
+  @apply bg-gray-500 shadow-lg shadow-gray-500/40;
+  opacity: 0.7;
+}
+
+.threatShielded {
+  @apply bg-blue-700 shadow-lg shadow-blue-700/60;
+  position: relative;
+}
+
+.threatShielded::before {
+  content: "";
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  background: linear-gradient(
+    45deg,
+    transparent,
+    rgba(59, 130, 246, 0.3),
+    transparent
+  );
+  animation: shieldRotate 2s linear infinite;
+  z-index: -1;
+}
+
+@keyframes shieldRotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Weapon Selection UI */
+.weaponSelection {
+  @apply absolute top-4 left-4 backdrop-blur-sm border rounded-md shadow-lg;
+  background-color: rgba(var(--tactical-black), 0.9);
+  border-color: rgba(var(--phoenix-orange), 0.5);
+  padding: 8px;
+}
+
+.weaponButton {
+  @apply px-3 py-2 rounded text-xs font-mono transition-all duration-200 border font-semibold mr-2 mb-2;
+  min-width: 80px;
+}
+
+.weaponButtonActive {
+  @apply text-white shadow-sm;
+  background-color: rgb(var(--phoenix-orange));
+  border-color: rgb(var(--phoenix-amber));
+}
+
+.weaponButtonActive:hover {
+  background-color: rgb(var(--phoenix-amber));
+  border-color: rgb(var(--phoenix-gold));
+}
+
+.weaponButtonInactive {
+  color: rgb(var(--tactical-gray-light));
+  background-color: rgb(var(--tactical-gray-dark));
+  border-color: rgb(var(--tactical-gray));
+}
+
+.weaponButtonInactive:hover {
+  background-color: rgb(var(--tactical-gray));
+  border-color: rgb(var(--tactical-gray-light));
+}
+
+.weaponButtonDisabled {
+  @apply opacity-50 cursor-not-allowed;
+}
+
+/* Ammo Display */
+.ammoDisplay {
+  @apply absolute top-4 left-1/2 transform -translate-x-1/2 backdrop-blur-sm border rounded-md shadow-lg;
+  background-color: rgba(var(--tactical-black), 0.9);
+  border-color: rgba(var(--phoenix-orange), 0.5);
+  padding: 8px 12px;
+}
+
+.ammoBar {
+  @apply w-32 h-2 bg-gray-600 rounded-full overflow-hidden;
+}
+
+.ammoFill {
+  @apply h-full transition-all duration-300;
+  background: linear-gradient(
+    to right,
+    rgb(var(--phoenix-red)),
+    rgb(var(--phoenix-orange))
+  );
+}
+
+/* Power-Up Indicators */
+.powerUpIndicator {
+  @apply absolute top-16 left-4 backdrop-blur-sm border rounded-md shadow-lg;
+  background-color: rgba(34, 197, 94, 0.9);
+  border-color: rgba(34, 197, 94, 0.5);
+  color: white;
+  padding: 6px 10px;
+  font-size: 12px;
+  font-weight: bold;
+  animation: powerUpGlow 1s ease-in-out infinite alternate;
+}
+
+@keyframes powerUpGlow {
+  0% {
+    box-shadow: 0 0 5px rgba(34, 197, 94, 0.5);
+  }
+  100% {
+    box-shadow: 0 0 15px rgba(34, 197, 94, 1);
+  }
+}
+
+/* Achievement Notifications */
+.achievementNotification {
+  @apply absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 backdrop-blur-sm border rounded-lg shadow-2xl;
+  background-color: rgba(251, 191, 36, 0.95);
+  border-color: rgba(251, 191, 36, 0.8);
+  color: var(--tactical-black);
+  padding: 16px 24px;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  animation: achievementPop 2s ease-out forwards;
+  z-index: 100;
+}
+
+@keyframes achievementPop {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.5);
+  }
+  20% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.1);
+  }
+  80% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.9);
+  }
+}
+
+/* Mini-map */
+.miniMap {
+  @apply absolute bottom-4 left-4 backdrop-blur-sm border rounded-lg shadow-lg;
+  background-color: rgba(var(--tactical-black), 0.9);
+  border-color: rgba(var(--phoenix-orange), 0.5);
+  width: 120px;
+  height: 120px;
+  overflow: hidden;
+}
+
+.miniMapThreat {
+  @apply absolute w-1 h-1 rounded-full;
+  background-color: rgb(var(--phoenix-red));
+}
+
+.miniMapCenter {
+  @apply absolute w-2 h-2 rounded-full;
+  background-color: rgb(var(--phoenix-amber));
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* Trajectory Prediction */
+.trajectoryLine {
+  @apply absolute pointer-events-none;
+  border: 1px dashed rgba(var(--phoenix-orange), 0.6);
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(var(--phoenix-orange), 0.3) 50%,
+    transparent 100%
+  );
+  animation: trajectoryPulse 2s ease-in-out infinite;
+}
+
+@keyframes trajectoryPulse {
+  0%,
+  100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.8;
+  }
 }

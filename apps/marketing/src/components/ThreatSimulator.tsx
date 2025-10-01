@@ -23,14 +23,24 @@ export const ThreatSimulator: React.FC = (): JSX.Element => {
     toggleRunningState,
     updateGameTime,
     setFrameRate,
+    switchWeapon,
+    fireWeapon,
+    updateWeaponCooldowns,
+    activatePowerUp,
+    updatePowerUps,
+    checkAchievements,
+    addToLeaderboard,
     resetGameState,
   } = useGameState();
 
   const { addTimeout, clearTimeouts } = useTimeoutManager();
-  
+
   // Particle system
   const [particleSystem] = useState(() => new ParticleSystem());
-  const [gameDimensions, setGameDimensions] = useState({ width: 800, height: 600 });
+  const [gameDimensions, setGameDimensions] = useState({
+    width: 800,
+    height: 600,
+  });
 
   const spawnNewThreat = useCallback(
     (threatType?: "drone" | "swarm" | "stealth") => {
@@ -50,28 +60,93 @@ export const ThreatSimulator: React.FC = (): JSX.Element => {
     const rect = gameRef.current.getBoundingClientRect();
     const centerPoint = { x: rect.width / 2, y: rect.height / 2 };
 
-    const movedThreats = moveThreats(gameState.threats, centerPoint, gameState.level);
+    const movedThreats = moveThreats(
+      gameState.threats,
+      centerPoint,
+      gameState.level,
+    );
     updateThreats(movedThreats);
   }, [gameState.threats, updateThreats, gameState.level]);
 
   const neutralizeThreat = useCallback(
     (threatId: string) => {
-      const threat = gameState.threats.find(t => t.id === threatId);
-      if (threat) {
-        // Create explosion effect
-        particleSystem.createExplosion(threat.x, threat.y, 1);
-        
-        // Create trail effect
-        if (threat.trail.length > 1) {
-          const lastTrail = threat.trail[threat.trail.length - 1];
-          particleSystem.createTrail(lastTrail.x, lastTrail.y, threat.x, threat.y);
+      const threat = gameState.threats.find((t) => t.id === threatId);
+      if (!threat) return;
+
+      const weapon = gameState.weapons[gameState.selectedWeapon];
+      const effectiveness = weapon.effectiveness[threat.type];
+
+      // Check if weapon is effective against this threat type
+      if (
+        effectiveness < 0.5 &&
+        !gameState.activePowerUps.some((p) => p.effect.penetration)
+      ) {
+        // Weapon not effective - reduce damage or miss
+        if (Math.random() > effectiveness) {
+          return; // Miss
         }
       }
-      
+
+      // Fire weapon
+      fireWeapon(threat.x, threat.y);
+
+      // Create explosion effect
+      const explosionIntensity = threat.specialProperties?.explosionRadius
+        ? 1.5
+        : 1;
+      particleSystem.createExplosion(threat.x, threat.y, explosionIntensity);
+
+      // Create trail effect
+      if (threat.trail.length > 1) {
+        const lastTrail = threat.trail[threat.trail.length - 1];
+        particleSystem.createTrail(
+          lastTrail.x,
+          lastTrail.y,
+          threat.x,
+          threat.y,
+        );
+      }
+
+      // Handle special threat effects
+      if (
+        threat.type === "kamikaze" &&
+        threat.specialProperties?.explosionRadius
+      ) {
+        // Area damage to nearby threats
+        const nearbyThreats = gameState.threats.filter((t) => {
+          const distance = Math.sqrt(
+            (t.x - threat.x) ** 2 + (t.y - threat.y) ** 2,
+          );
+          return (
+            distance <= (threat.specialProperties?.explosionRadius || 50) &&
+            t.id !== threatId
+          );
+        });
+
+        nearbyThreats.forEach((nearbyThreat) => {
+          particleSystem.createExplosion(nearbyThreat.x, nearbyThreat.y, 0.8);
+          removeThreat(nearbyThreat.id);
+          updateScore(50); // Bonus for collateral damage
+        });
+      }
+
       removeThreat(threatId);
-      updateScore(100);
+      updateScore(Math.floor(100 * effectiveness));
+
+      // Check for achievements
+      checkAchievements();
     },
-    [removeThreat, updateScore, gameState.threats, particleSystem],
+    [
+      removeThreat,
+      updateScore,
+      gameState.threats,
+      gameState.weapons,
+      gameState.selectedWeapon,
+      gameState.activePowerUps,
+      particleSystem,
+      fireWeapon,
+      checkAchievements,
+    ],
   );
 
   const generateSwarm = useCallback(() => {
@@ -112,17 +187,24 @@ export const ThreatSimulator: React.FC = (): JSX.Element => {
 
       // Update particle system
       particleSystem.update(deltaTime);
-      
+
       // Update game time
       updateGameTime(deltaTime);
+
+      // Update weapon cooldowns
+      updateWeaponCooldowns();
+
+      // Update power-ups
+      updatePowerUps();
 
       // Move threats
       moveAllThreats();
 
       // Spawn new threats based on level and spawn rate
       const timeSinceLastSpawn = currentTime - gameState.lastSpawnTime;
-      const shouldSpawn = timeSinceLastSpawn > gameState.spawnRate && 
-                         gameState.threats.length < (5 + gameState.level);
+      const shouldSpawn =
+        timeSinceLastSpawn > gameState.spawnRate &&
+        gameState.threats.length < 5 + gameState.level;
 
       if (shouldSpawn && Math.random() < 0.3) {
         spawnNewThreat(); // Random threat type
@@ -173,8 +255,8 @@ export const ThreatSimulator: React.FC = (): JSX.Element => {
     };
 
     updateDimensions();
-    window.addEventListener('resize', updateDimensions);
-    return () => window.removeEventListener('resize', updateDimensions);
+    window.addEventListener("resize", updateDimensions);
+    return () => window.removeEventListener("resize", updateDimensions);
   }, []);
 
   useEffect(() => {
@@ -184,19 +266,47 @@ export const ThreatSimulator: React.FC = (): JSX.Element => {
   const getThreatAppearance = (type: string) => {
     switch (type) {
       case "drone":
-        return { emoji: "🚁", color: "bg-red-600 shadow-lg shadow-red-600/50" };
+        return {
+          emoji: "🚁",
+          color: "bg-red-600 shadow-lg shadow-red-600/50",
+          cssClass: "",
+        };
       case "swarm":
         return {
           emoji: "🐝",
           color: "bg-orange-500 shadow-lg shadow-orange-500/50",
+          cssClass: "",
         };
       case "stealth":
         return {
           emoji: "👻",
           color: "bg-gray-600 shadow-lg shadow-gray-600/50",
+          cssClass: "",
+        };
+      case "kamikaze":
+        return {
+          emoji: "💥",
+          color: "bg-red-800 shadow-lg shadow-red-800/60",
+          cssClass: styles.threatKamikaze,
+        };
+      case "decoy":
+        return {
+          emoji: "🎭",
+          color: "bg-gray-500 shadow-lg shadow-gray-500/40",
+          cssClass: styles.threatDecoy,
+        };
+      case "shielded":
+        return {
+          emoji: "🛡️",
+          color: "bg-blue-700 shadow-lg shadow-blue-700/60",
+          cssClass: styles.threatShielded,
         };
       default:
-        return { emoji: "🚁", color: "bg-red-600 shadow-lg shadow-red-600/50" };
+        return {
+          emoji: "🚁",
+          color: "bg-red-600 shadow-lg shadow-red-600/50",
+          cssClass: "",
+        };
     }
   };
 
@@ -215,7 +325,7 @@ export const ThreatSimulator: React.FC = (): JSX.Element => {
       <div className={styles.technicalGrid}></div>
 
       {/* Particle Renderer */}
-      <ParticleRenderer 
+      <ParticleRenderer
         particleSystem={particleSystem}
         width={gameDimensions.width}
         height={gameDimensions.height}
@@ -288,11 +398,18 @@ export const ThreatSimulator: React.FC = (): JSX.Element => {
 
         {gameState.threats.map((threat) => {
           const appearance = getThreatAppearance(threat.type);
+          const weapon = gameState.weapons[gameState.selectedWeapon];
+          const effectiveness = weapon.effectiveness[threat.type];
+          const isEffective =
+            effectiveness >= 0.5 ||
+            gameState.activePowerUps.some((p) => p.effect.penetration);
 
           return (
             <button
               key={threat.id}
-              className={`${styles.threat} ${styles.threatPosition}`}
+              className={`${styles.threat} ${styles.threatPosition} ${appearance.cssClass} ${
+                !isEffective ? "opacity-50" : ""
+              }`}
               /* eslint-disable react/forbid-dom-props */
               style={
                 {
@@ -312,7 +429,8 @@ export const ThreatSimulator: React.FC = (): JSX.Element => {
                   neutralizeThreat(threat.id);
                 }
               }}
-              aria-label={`${threat.type} threat with ${threat.health} health`}
+              aria-label={`${threat.type} threat with ${threat.health} health. Weapon effectiveness: ${Math.round(effectiveness * 100)}%`}
+              title={`${threat.type} - ${Math.round(effectiveness * 100)}% effective`}
             >
               <div>{appearance.emoji}</div>
               <div className={styles.healthBar}>
@@ -327,13 +445,23 @@ export const ThreatSimulator: React.FC = (): JSX.Element => {
                             ? 3
                             : threat.type === "swarm"
                               ? 2
-                              : 1)) *
+                              : threat.type === "shielded"
+                                ? 4
+                                : threat.type === "kamikaze"
+                                  ? 1
+                                  : threat.type === "decoy"
+                                    ? 0.5
+                                    : 1)) *
                         100
                       }%`,
                     } as React.CSSProperties
                   }
                 />
               </div>
+              {/* Priority indicator */}
+              {threat.specialProperties?.targetPriority === "high" && (
+                <div className="absolute -top-1 -right-1 w-2 h-2 bg-red-500 rounded-full animate-pulse"></div>
+              )}
             </button>
           );
         })}
@@ -342,7 +470,9 @@ export const ThreatSimulator: React.FC = (): JSX.Element => {
         <div className={styles.statsOverlay}>
           <div className={styles.statsContent}>
             <div className={styles.statItem}>
-              <div className={styles.statValue}>{gameState.score.toLocaleString()}</div>
+              <div className={styles.statValue}>
+                {gameState.score.toLocaleString()}
+              </div>
               <div className={styles.statLabel}>SCORE</div>
             </div>
             <div className={styles.statItem}>
@@ -364,6 +494,68 @@ export const ThreatSimulator: React.FC = (): JSX.Element => {
         {gameState.comboMultiplier > 1 && (
           <div className={styles.comboIndicator}>
             COMBO x{gameState.comboMultiplier.toFixed(1)}
+          </div>
+        )}
+
+        {/* Weapon Selection */}
+        <div className={styles.weaponSelection}>
+          <div className="text-xs text-gray-300 mb-2">WEAPONS</div>
+          {Object.entries(gameState.weapons).map(([weaponId, weapon]) => (
+            <button
+              key={weaponId}
+              className={`${styles.weaponButton} ${
+                gameState.selectedWeapon === weaponId
+                  ? styles.weaponButtonActive
+                  : styles.weaponButtonInactive
+              } ${!weapon.isReady || weapon.ammo <= 0 ? styles.weaponButtonDisabled : ""}`}
+              onClick={() => switchWeapon(weaponId)}
+              disabled={!weapon.isReady || weapon.ammo <= 0}
+            >
+              <div className="font-bold">{weapon.name.split(" ")[0]}</div>
+              <div className="text-xs">
+                {weapon.ammo}/{weapon.maxAmmo}
+              </div>
+            </button>
+          ))}
+        </div>
+
+        {/* Ammo Display */}
+        <div className={styles.ammoDisplay}>
+          <div className="text-xs text-gray-300 mb-1">AMMO</div>
+          <div className={styles.ammoBar}>
+            <div
+              className={styles.ammoFill}
+              style={{
+                width: `${
+                  (gameState.weapons[gameState.selectedWeapon].ammo /
+                    gameState.weapons[gameState.selectedWeapon].maxAmmo) *
+                  100
+                }%`,
+              }}
+            />
+          </div>
+          <div className="text-xs text-gray-400 mt-1">
+            {gameState.weapons[gameState.selectedWeapon].ammo}/
+            {gameState.weapons[gameState.selectedWeapon].maxAmmo}
+          </div>
+        </div>
+
+        {/* Active Power-ups */}
+        {gameState.activePowerUps.map((powerUp) => (
+          <div key={powerUp.id} className={styles.powerUpIndicator}>
+            {powerUp.name.toUpperCase()}
+          </div>
+        ))}
+
+        {/* Achievement Notifications */}
+        {gameState.achievements.length > 0 && (
+          <div className={styles.achievementNotification}>
+            🏆 ACHIEVEMENT UNLOCKED! 🏆
+            <br />
+            {gameState.achievements[gameState.achievements.length - 1]
+              .split("-")
+              .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+              .join(" ")}
           </div>
         )}
 
@@ -393,6 +585,12 @@ export const ThreatSimulator: React.FC = (): JSX.Element => {
               +5 DRONES
             </button>
             <button
+              onClick={() => activatePowerUp("multi-shot")}
+              className={`${styles.controlButton} ${styles.controlButtonOrange}`}
+            >
+              POWER-UP
+            </button>
+            <button
               onClick={resetGame}
               className={`${styles.controlButton} ${styles.controlButtonGray}`}
             >
@@ -413,7 +611,9 @@ export const ThreatSimulator: React.FC = (): JSX.Element => {
             onChange={(e) => setFrameRate(parseInt(e.target.value))}
             className={styles.frameRateSlider}
           />
-          <div className="text-xs text-gray-400 mt-1">{gameState.targetFrameRate}</div>
+          <div className="text-xs text-gray-400 mt-1">
+            {gameState.targetFrameRate}
+          </div>
         </div>
       </div>
     </div>

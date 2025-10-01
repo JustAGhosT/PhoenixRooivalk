@@ -18,7 +18,7 @@ export interface ParticleEffect {
   y: number;
   particles: Particle[];
   active: boolean;
-  type: 'explosion' | 'trail' | 'sparkle';
+  type: "explosion" | "trail" | "sparkle";
 }
 
 export class ParticleSystem {
@@ -33,7 +33,7 @@ export class ParticleSystem {
     for (let i = 0; i < particleCount; i++) {
       const angle = (Math.PI * 2 * i) / particleCount + Math.random() * 0.5;
       const speed = 2 + Math.random() * 4;
-      
+
       particles.push({
         id: `particle-${this.nextId++}`,
         x,
@@ -54,14 +54,19 @@ export class ParticleSystem {
       y,
       particles,
       active: true,
-      type: 'explosion',
+      type: "explosion",
     };
 
     this.effects.push(effect);
     return effect;
   }
 
-  createTrail(startX: number, startY: number, endX: number, endY: number): ParticleEffect {
+  createTrail(
+    startX: number,
+    startY: number,
+    endX: number,
+    endY: number,
+  ): ParticleEffect {
     const particles: Particle[] = [];
     const distance = Math.sqrt((endX - startX) ** 2 + (endY - startY) ** 2);
     const particleCount = Math.floor(distance / 10);
@@ -80,7 +85,7 @@ export class ParticleSystem {
         life: 1.0,
         maxLife: 2.0,
         size: 1 + Math.random() * 2,
-        color: '#f97316',
+        color: "#f97316",
         opacity: 1.0,
       });
     }
@@ -91,7 +96,7 @@ export class ParticleSystem {
       y: startY,
       particles,
       active: true,
-      type: 'trail',
+      type: "trail",
     };
 
     this.effects.push(effect);
@@ -111,8 +116,8 @@ export class ParticleSystem {
       });
 
       // Remove dead particles
-      effect.particles = effect.particles.filter(p => p.life > 0);
-      
+      effect.particles = effect.particles.filter((p) => p.life > 0);
+
       // Remove effects with no particles
       if (effect.particles.length === 0) {
         effect.active = false;
@@ -120,11 +125,11 @@ export class ParticleSystem {
     });
 
     // Remove inactive effects
-    this.effects = this.effects.filter(effect => effect.active);
+    this.effects = this.effects.filter((effect) => effect.active);
   }
 
   getActiveEffects(): ParticleEffect[] {
-    return this.effects.filter(effect => effect.active);
+    return this.effects.filter((effect) => effect.active);
   }
 
   clear(): void {
@@ -133,7 +138,7 @@ export class ParticleSystem {
   }
 
   private getExplosionColor(): string {
-    const colors = ['#ef4444', '#f97316', '#eab308', '#84cc16'];
+    const colors = ["#ef4444", "#f97316", "#eab308", "#84cc16"];
     return colors[Math.floor(Math.random() * colors.length)];
   }
 }

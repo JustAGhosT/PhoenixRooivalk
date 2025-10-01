@@ -1,6 +1,6 @@
 "use client";
-import React, { useEffect, useRef } from 'react';
-import { ParticleSystem } from './utils/particleSystem';
+import React, { useEffect, useRef } from "react";
+import { ParticleSystem } from "./utils/particleSystem";
 
 interface ParticleRendererProps {
   particleSystem: ParticleSystem;
@@ -20,7 +20,7 @@ export const ParticleRenderer: React.FC<ParticleRendererProps> = ({
     const canvas = canvasRef.current;
     if (!canvas) return;
 
-    const ctx = canvas.getContext('2d');
+    const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
     const render = () => {
@@ -29,7 +29,7 @@ export const ParticleRenderer: React.FC<ParticleRendererProps> = ({
 
       // Render all active effects
       const activeEffects = particleSystem.getActiveEffects();
-      
+
       activeEffects.forEach((effect) => {
         effect.particles.forEach((particle) => {
           ctx.save();
@@ -37,7 +37,7 @@ export const ParticleRenderer: React.FC<ParticleRendererProps> = ({
           ctx.fillStyle = particle.color;
           ctx.shadowBlur = 10;
           ctx.shadowColor = particle.color;
-          
+
           ctx.beginPath();
           ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
           ctx.fill();
