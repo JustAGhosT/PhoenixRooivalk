@@ -83,7 +83,7 @@ export const Button: React.FC<ButtonProps> = ({
             return;
           }
           if (onClick) {
-            (onClick as React.MouseEventHandler<HTMLAnchorElement>)(event);
+            onClick(event as any);
           }
         }}
         className={classes}

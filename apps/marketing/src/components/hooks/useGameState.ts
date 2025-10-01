@@ -1,8 +1,16 @@
 // Custom hook to manage the game state for the ThreatSimulator component
 
 import { useCallback, useState } from "react";
+import {
+  DRONE_CONFIGS,
+  DeploymentBay,
+  Drone,
+  Formation,
+  MOTHERSHIP_CONFIG,
+  Mothership,
+} from "../utils/mothershipTypes";
 import { Threat } from "../utils/threatTypes";
-import { Weapon, PowerUp, WEAPON_CONFIGS } from "../utils/weaponTypes";
+import { PowerUp, WEAPON_CONFIGS, Weapon } from "../utils/weaponTypes";
 
 interface GameState {
   score: number;
@@ -27,6 +35,30 @@ interface GameState {
     date: string;
     threatsNeutralized: number;
   }>;
+  // Resource Management
+  energy: number;
+  maxEnergy: number;
+  energyRegenRate: number;
+  cooling: number;
+  maxCooling: number;
+  coolingRate: number;
+  // Multi-target selection
+  selectedThreats: string[];
+  selectionBox: {
+    startX: number;
+    startY: number;
+    endX: number;
+    endY: number;
+    isActive: boolean;
+  } | null;
+  // Priority targeting
+  priorityThreats: Record<string, "high" | "medium" | "low">;
+  // Phoenix Rooivalk Mothership System
+  mothership: Mothership;
+  drones: Drone[];
+  deploymentBays: DeploymentBay[];
+  formations: Formation[];
+  selectedDroneType: Drone["type"] | null;
 }
 
 export const useGameState = () => {
@@ -60,6 +92,95 @@ export const useGameState = () => {
     leaderboard: JSON.parse(
       localStorage.getItem("threatSimulatorLeaderboard") || "[]",
     ),
+    // Resource Management
+    energy: 100,
+    maxEnergy: 100,
+    energyRegenRate: 2, // per second
+    cooling: 100,
+    maxCooling: 100,
+    coolingRate: 5, // per second
+    // Multi-target selection
+    selectedThreats: [],
+    selectionBox: null,
+    // Priority targeting
+    priorityThreats: {},
+    // Phoenix Rooivalk Mothership System
+    mothership: {
+      id: "mothership-1",
+      x: 400, // Center of game area
+      y: 300,
+      energy: MOTHERSHIP_CONFIG.initialEnergy,
+      maxEnergy: MOTHERSHIP_CONFIG.maxEnergy,
+      energyRegenRate: MOTHERSHIP_CONFIG.energyRegenRate,
+      fuel: MOTHERSHIP_CONFIG.initialFuel,
+      maxFuel: MOTHERSHIP_CONFIG.maxFuel,
+      fuelConsumptionRate: MOTHERSHIP_CONFIG.fuelConsumptionRate,
+      isDeploying: false,
+      deploymentCooldown: MOTHERSHIP_CONFIG.deploymentCooldown,
+      lastDeployment: 0,
+      droneCapacity: MOTHERSHIP_CONFIG.droneCapacity,
+      deployedDrones: [],
+    },
+    drones: [],
+    deploymentBays: [
+      {
+        id: "bay-interceptor",
+        droneType: "interceptor",
+        x: 350,
+        y: 280,
+        isReady: true,
+        cooldown: 5000,
+        lastDeployment: 0,
+        capacity: 4,
+        currentDrones: 4,
+      },
+      {
+        id: "bay-jammer",
+        droneType: "jammer",
+        x: 380,
+        y: 280,
+        isReady: true,
+        cooldown: 8000,
+        lastDeployment: 0,
+        capacity: 3,
+        currentDrones: 3,
+      },
+      {
+        id: "bay-surveillance",
+        droneType: "surveillance",
+        x: 410,
+        y: 280,
+        isReady: true,
+        cooldown: 6000,
+        lastDeployment: 0,
+        capacity: 2,
+        currentDrones: 2,
+      },
+      {
+        id: "bay-shield",
+        droneType: "shield",
+        x: 440,
+        y: 280,
+        isReady: true,
+        cooldown: 10000,
+        lastDeployment: 0,
+        capacity: 2,
+        currentDrones: 2,
+      },
+      {
+        id: "bay-swarm-coordinator",
+        droneType: "swarm-coordinator",
+        x: 470,
+        y: 280,
+        isReady: true,
+        cooldown: 12000,
+        lastDeployment: 0,
+        capacity: 1,
+        currentDrones: 1,
+      },
+    ],
+    formations: [],
+    selectedDroneType: null,
   });
 
   const updateScore = useCallback((amount: number) => {
@@ -134,7 +255,7 @@ export const useGameState = () => {
     }));
   }, []);
 
-  const fireWeapon = useCallback((targetX: number, targetY: number) => {
+  const fireWeapon = useCallback((_targetX: number, _targetY: number) => {
     setGameState((prev) => {
       const weapon = prev.weapons[prev.selectedWeapon];
       const currentTime = Date.now();
@@ -305,6 +426,252 @@ export const useGameState = () => {
     });
   }, []);
 
+  const updateResources = useCallback((deltaTime: number) => {
+    setGameState((prev) => ({
+      ...prev,
+      energy: Math.min(
+        prev.maxEnergy,
+        prev.energy + prev.energyRegenRate * deltaTime,
+      ),
+      cooling: Math.min(
+        prev.maxCooling,
+        prev.cooling + prev.coolingRate * deltaTime,
+      ),
+    }));
+  }, []);
+
+  const consumeEnergy = useCallback((amount: number) => {
+    setGameState((prev) => ({
+      ...prev,
+      energy: Math.max(0, prev.energy - amount),
+    }));
+  }, []);
+
+  const consumeCooling = useCallback((amount: number) => {
+    setGameState((prev) => ({
+      ...prev,
+      cooling: Math.max(0, prev.cooling - amount),
+    }));
+  }, []);
+
+  const selectThreat = useCallback((threatId: string) => {
+    setGameState((prev) => ({
+      ...prev,
+      selectedThreats: prev.selectedThreats.includes(threatId)
+        ? prev.selectedThreats.filter((id) => id !== threatId)
+        : [...prev.selectedThreats, threatId],
+    }));
+  }, []);
+
+  const clearSelection = useCallback(() => {
+    setGameState((prev) => ({
+      ...prev,
+      selectedThreats: [],
+      selectionBox: null,
+    }));
+  }, []);
+
+  const setSelectionBox = useCallback((box: GameState["selectionBox"]) => {
+    setGameState((prev) => ({
+      ...prev,
+      selectionBox: box,
+    }));
+  }, []);
+
+  const setThreatPriority = useCallback(
+    (threatId: string, priority: "high" | "medium" | "low") => {
+      setGameState((prev) => ({
+        ...prev,
+        priorityThreats: {
+          ...prev.priorityThreats,
+          [threatId]: priority,
+        },
+      }));
+    },
+    [],
+  );
+
+  const removeThreatPriority = useCallback((threatId: string) => {
+    setGameState((prev) => {
+      const newPriorities = { ...prev.priorityThreats };
+      delete newPriorities[threatId];
+      return {
+        ...prev,
+        priorityThreats: newPriorities,
+      };
+    });
+  }, []);
+
+  // Mothership and Drone Management
+  const deployDrone = useCallback(
+    (droneType: Drone["type"], targetX: number, targetY: number) => {
+      setGameState((prev) => {
+        const bay = prev.deploymentBays.find((b) => b.droneType === droneType);
+        if (
+          !bay ||
+          !bay.isReady ||
+          bay.currentDrones <= 0 ||
+          prev.mothership.energy < MOTHERSHIP_CONFIG.deploymentCost
+        ) {
+          return prev;
+        }
+
+        const currentTime = Date.now();
+        const droneConfig = DRONE_CONFIGS[droneType];
+        const newDrone: Drone = {
+          id: `drone-${currentTime}-${Math.random()}`,
+          x: prev.mothership.x,
+          y: prev.mothership.y,
+          targetX,
+          targetY,
+          lastAction: currentTime,
+          mothershipId: prev.mothership.id,
+          deploymentTime: currentTime,
+          ...droneConfig,
+          type: droneType,
+        };
+
+        return {
+          ...prev,
+          drones: [...prev.drones, newDrone],
+          mothership: {
+            ...prev.mothership,
+            energy: prev.mothership.energy - MOTHERSHIP_CONFIG.deploymentCost,
+            deployedDrones: [...prev.mothership.deployedDrones, newDrone.id],
+            lastDeployment: currentTime,
+          },
+          deploymentBays: prev.deploymentBays.map((b) =>
+            b.id === bay.id
+              ? {
+                  ...b,
+                  currentDrones: b.currentDrones - 1,
+                  lastDeployment: currentTime,
+                }
+              : b,
+          ),
+        };
+      });
+    },
+    [],
+  );
+
+  const updateDrones = useCallback((updatedDrones: Drone[]) => {
+    setGameState((prev) => ({
+      ...prev,
+      drones: updatedDrones,
+    }));
+  }, []);
+
+  const selectDroneType = useCallback((droneType: Drone["type"] | null) => {
+    setGameState((prev) => ({
+      ...prev,
+      selectedDroneType: droneType,
+    }));
+  }, []);
+
+  const updateMothershipResources = useCallback((deltaTime: number) => {
+    setGameState((prev) => ({
+      ...prev,
+      mothership: {
+        ...prev.mothership,
+        energy: Math.min(
+          prev.mothership.maxEnergy,
+          prev.mothership.energy + prev.mothership.energyRegenRate * deltaTime,
+        ),
+      },
+    }));
+  }, []);
+
+  const returnDroneToBase = useCallback((droneId: string) => {
+    setGameState((prev) => {
+      const drone = prev.drones.find((d) => d.id === droneId);
+      if (!drone) return prev;
+
+      return {
+        ...prev,
+        drones: prev.drones.map((d) =>
+          d.id === droneId
+            ? {
+                ...d,
+                isReturning: true,
+                targetX: prev.mothership.x,
+                targetY: prev.mothership.y,
+              }
+            : d,
+        ),
+      };
+    });
+  }, []);
+
+  // Update drone positions and handle return-to-base logic
+  const updateDronePositions = useCallback((deltaTime: number) => {
+    setGameState((prev) => {
+      const updatedDrones = prev.drones
+        .map((drone) => {
+          // Calculate distance to target
+          const dx = drone.targetX - drone.x;
+          const dy = drone.targetY - drone.y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+
+          // If drone is close to target, handle arrival
+          if (distance < 10) {
+            if (drone.isReturning) {
+              // Drone has returned to base - mark for removal
+              return { ...drone, shouldRemove: true };
+            }
+            return drone; // Stay in position
+          }
+
+          // Move drone towards target
+          const moveDistance = drone.speed * deltaTime * 60; // Convert to pixels per second
+          const moveX = (dx / distance) * moveDistance;
+          const moveY = (dy / distance) * moveDistance;
+
+          return {
+            ...drone,
+            x: drone.x + moveX,
+            y: drone.y + moveY,
+          };
+        })
+        .filter((drone): drone is Drone => !drone.shouldRemove); // Remove drones marked for removal
+
+      // Update deployment bays with returned drones
+      const updatedBays = prev.deploymentBays.map((bay) => {
+        const returnedDrones = prev.drones.filter(
+          (d) =>
+            d.type === bay.droneType &&
+            d.isReturning &&
+            Math.sqrt(
+              (d.x - prev.mothership.x) ** 2 + (d.y - prev.mothership.y) ** 2,
+            ) < 10,
+        );
+
+        return {
+          ...bay,
+          currentDrones: Math.min(
+            bay.capacity,
+            bay.currentDrones + returnedDrones.length,
+          ),
+        };
+      });
+
+      // Update mothership deployed drones list
+      const updatedDeployedDrones = prev.mothership.deployedDrones.filter(
+        (droneId) => updatedDrones.some((d) => d.id === droneId),
+      );
+
+      return {
+        ...prev,
+        drones: updatedDrones,
+        deploymentBays: updatedBays,
+        mothership: {
+          ...prev.mothership,
+          deployedDrones: updatedDeployedDrones,
+        },
+      };
+    });
+  }, []);
+
   const resetGameState = useCallback(() => {
     setGameState((prev) => ({
       ...prev,
@@ -332,6 +699,39 @@ export const useGameState = () => {
       comboMultiplier: 1,
       lastNeutralizationTime: 0,
       achievements: [],
+      // Reset resources
+      energy: 100,
+      cooling: 100,
+      // Reset selection
+      selectedThreats: [],
+      selectionBox: null,
+      priorityThreats: {},
+      // Reset mothership and drones
+      mothership: {
+        id: "mothership-1",
+        x: 400,
+        y: 300,
+        energy: MOTHERSHIP_CONFIG.initialEnergy,
+        maxEnergy: MOTHERSHIP_CONFIG.maxEnergy,
+        energyRegenRate: MOTHERSHIP_CONFIG.energyRegenRate,
+        fuel: MOTHERSHIP_CONFIG.initialFuel,
+        maxFuel: MOTHERSHIP_CONFIG.maxFuel,
+        fuelConsumptionRate: MOTHERSHIP_CONFIG.fuelConsumptionRate,
+        isDeploying: false,
+        deploymentCooldown: MOTHERSHIP_CONFIG.deploymentCooldown,
+        lastDeployment: 0,
+        droneCapacity: MOTHERSHIP_CONFIG.droneCapacity,
+        deployedDrones: [],
+      },
+      drones: [],
+      deploymentBays: prev.deploymentBays.map((bay) => ({
+        ...bay,
+        currentDrones: bay.capacity,
+        isReady: true,
+        lastDeployment: 0,
+      })),
+      formations: [],
+      selectedDroneType: null,
     }));
   }, []);
 
@@ -351,6 +751,20 @@ export const useGameState = () => {
     updatePowerUps,
     checkAchievements,
     addToLeaderboard,
+    updateResources,
+    consumeEnergy,
+    consumeCooling,
+    selectThreat,
+    clearSelection,
+    setSelectionBox,
+    setThreatPriority,
+    removeThreatPriority,
+    deployDrone,
+    updateDrones,
+    selectDroneType,
+    updateMothershipResources,
+    returnDroneToBase,
+    updateDronePositions,
     resetGameState,
   };
 };

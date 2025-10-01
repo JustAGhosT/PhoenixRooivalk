@@ -1,12 +1,12 @@
 "use client";
 import * as React from "react";
 import { useCallback, useEffect, useRef, useState } from "react";
+import { ParticleRenderer } from "./ParticleRenderer";
 import styles from "./ThreatSimulator.module.css";
 import { useGameState } from "./hooks/useGameState";
 import { useTimeoutManager } from "./hooks/useTimeoutManager";
-import { moveThreats, spawnThreat } from "./utils/threatUtils";
 import { ParticleSystem } from "./utils/particleSystem";
-import { ParticleRenderer } from "./ParticleRenderer";
+import { moveThreats, spawnThreat } from "./utils/threatUtils";
 
 export const ThreatSimulator: React.FC = (): JSX.Element => {
   const gameRef = useRef<HTMLDivElement>(null);
@@ -30,6 +30,20 @@ export const ThreatSimulator: React.FC = (): JSX.Element => {
     updatePowerUps,
     checkAchievements,
     addToLeaderboard,
+    updateResources,
+    consumeEnergy,
+    consumeCooling,
+    selectThreat,
+    clearSelection,
+    setSelectionBox,
+    setThreatPriority,
+    removeThreatPriority,
+    deployDrone,
+    updateDrones,
+    selectDroneType,
+    updateMothershipResources,
+    returnDroneToBase,
+    updateDronePositions,
     resetGameState,
   } = useGameState();
 
@@ -41,6 +55,19 @@ export const ThreatSimulator: React.FC = (): JSX.Element => {
     width: 800,
     height: 600,
   });
+
+  // Weather effects
+  const [weatherMode, setWeatherMode] = useState<
+    "none" | "rain" | "fog" | "night"
+  >("none");
+
+  // Mouse interaction state
+  const [isDragging, setIsDragging] = useState(false);
+  const [dragStart, setDragStart] = useState({ x: 0, y: 0 });
+  const [dragMode, setDragMode] = useState<"select" | "area-weapon">("select");
+
+  // UI state
+  const [showSimulationWarning, setShowSimulationWarning] = useState(true);
 
   const spawnNewThreat = useCallback(
     (threatType?: "drone" | "swarm" | "stealth") => {
@@ -87,8 +114,10 @@ export const ThreatSimulator: React.FC = (): JSX.Element => {
         }
       }
 
-      // Fire weapon
+      // Fire weapon (consume resources)
       fireWeapon(threat.x, threat.y);
+      consumeEnergy(weapon.damage * 5); // Energy cost based on weapon damage
+      consumeCooling(weapon.damage * 2); // Cooling cost based on weapon damage
 
       // Create explosion effect
       const explosionIntensity = threat.specialProperties?.explosionRadius
@@ -197,6 +226,15 @@ export const ThreatSimulator: React.FC = (): JSX.Element => {
       // Update power-ups
       updatePowerUps();
 
+      // Update resources
+      updateResources(deltaTime);
+
+      // Update mothership resources
+      updateMothershipResources(deltaTime);
+
+      // Update drone positions
+      updateDronePositions(deltaTime);
+
       // Move threats
       moveAllThreats();
 
@@ -263,6 +301,279 @@ export const ThreatSimulator: React.FC = (): JSX.Element => {
     return () => clearTimeouts();
   }, [clearTimeouts]);
 
+  // Keyboard shortcuts
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      // Prevent default for game shortcuts
+      if (e.ctrlKey || e.metaKey) return;
+
+      switch (e.key) {
+        case "1":
+          e.preventDefault();
+          switchWeapon("kinetic");
+          break;
+        case "2":
+          e.preventDefault();
+          switchWeapon("electronic");
+          break;
+        case "3":
+          e.preventDefault();
+          switchWeapon("laser");
+          break;
+        case "w":
+          e.preventDefault();
+          if (gameState.selectedDroneType) {
+            deployDrone(
+              gameState.selectedDroneType,
+              gameState.mothership.x,
+              gameState.mothership.y - 100,
+            );
+          }
+          break;
+        case "s":
+          e.preventDefault();
+          if (gameState.selectedDroneType) {
+            deployDrone(
+              gameState.selectedDroneType,
+              gameState.mothership.x,
+              gameState.mothership.y + 100,
+            );
+          }
+          break;
+        case "a":
+          e.preventDefault();
+          if (gameState.selectedDroneType) {
+            deployDrone(
+              gameState.selectedDroneType,
+              gameState.mothership.x - 100,
+              gameState.mothership.y,
+            );
+          }
+          break;
+        case "d":
+          e.preventDefault();
+          if (gameState.selectedDroneType) {
+            deployDrone(
+              gameState.selectedDroneType,
+              gameState.mothership.x + 100,
+              gameState.mothership.y,
+            );
+          }
+          break;
+        case "Escape":
+          e.preventDefault();
+          clearSelection();
+          selectDroneType(null);
+          break;
+        case " ":
+          e.preventDefault();
+          toggleRunningState();
+          break;
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [
+    switchWeapon,
+    gameState.selectedDroneType,
+    deployDrone,
+    clearSelection,
+    selectDroneType,
+    toggleRunningState,
+  ]);
+
+  // Mouse event handlers for selection and priority targeting
+  const handleMouseDown = useCallback(
+    (e: React.MouseEvent) => {
+      if (e.button === 0) {
+        // Left click
+        const rect = gameRef.current?.getBoundingClientRect();
+        if (rect) {
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+          setDragStart({ x, y });
+          setIsDragging(true);
+
+          // Check if we're in area weapon mode (hold Shift for area effect)
+          const isAreaWeapon =
+            e.shiftKey && gameState.selectedWeapon === "electronic";
+          setDragMode(isAreaWeapon ? "area-weapon" : "select");
+
+          setSelectionBox({
+            startX: x,
+            startY: y,
+            endX: x,
+            endY: y,
+            isActive: true,
+          });
+        }
+      }
+    },
+    [gameState.selectedWeapon],
+  );
+
+  const handleMouseMove = useCallback(
+    (e: React.MouseEvent) => {
+      if (isDragging && gameRef.current) {
+        const rect = gameRef.current.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        setSelectionBox({
+          startX: dragStart.x,
+          startY: dragStart.y,
+          endX: x,
+          endY: y,
+          isActive: true,
+        });
+      }
+    },
+    [isDragging, dragStart],
+  );
+
+  const handleMouseUp = useCallback(
+    (_e: React.MouseEvent) => {
+      if (isDragging) {
+        setIsDragging(false);
+        setSelectionBox(null);
+
+        // Handle selection box actions
+        if (gameState.selectionBox) {
+          const minX = Math.min(
+            gameState.selectionBox.startX,
+            gameState.selectionBox.endX,
+          );
+          const maxX = Math.max(
+            gameState.selectionBox.startX,
+            gameState.selectionBox.endX,
+          );
+          const minY = Math.min(
+            gameState.selectionBox.startY,
+            gameState.selectionBox.endY,
+          );
+          const maxY = Math.max(
+            gameState.selectionBox.startY,
+            gameState.selectionBox.endY,
+          );
+
+          const selectedThreats = gameState.threats.filter((threat) => {
+            return (
+              threat.x >= minX &&
+              threat.x <= maxX &&
+              threat.y >= minY &&
+              threat.y <= maxY
+            );
+          });
+
+          if (dragMode === "area-weapon") {
+            // Area effect weapon - neutralize all threats in selection
+            selectedThreats.forEach((threat) => {
+              neutralizeThreat(threat.id);
+              // Create area effect explosion
+              particleSystem.createExplosion(threat.x, threat.y, 1.2);
+            });
+
+            // Consume additional energy for area effect
+            consumeEnergy(selectedThreats.length * 10);
+          } else {
+            // Normal selection mode
+            selectedThreats.forEach((threat) => {
+              selectThreat(threat.id);
+            });
+          }
+        }
+      }
+    },
+    [
+      isDragging,
+      gameState.selectionBox,
+      gameState.threats,
+      selectThreat,
+      dragMode,
+      neutralizeThreat,
+      particleSystem,
+      consumeEnergy,
+    ],
+  );
+
+  const handleThreatClick = useCallback(
+    (e: React.MouseEvent, threatId: string) => {
+      e.stopPropagation();
+
+      if (e.button === 0) {
+        // Left click - select threat
+        selectThreat(threatId);
+      } else if (e.button === 1) {
+        // Middle click - set priority
+        const currentPriority = gameState.priorityThreats[threatId];
+        if (currentPriority === "high") {
+          setThreatPriority(threatId, "medium");
+        } else if (currentPriority === "medium") {
+          setThreatPriority(threatId, "low");
+        } else {
+          setThreatPriority(threatId, "high");
+        }
+      } else if (e.button === 2) {
+        // Right click - neutralize
+        neutralizeThreat(threatId);
+      }
+    },
+    [
+      selectThreat,
+      gameState.priorityThreats,
+      setThreatPriority,
+      neutralizeThreat,
+    ],
+  );
+
+  // Enhanced mouse controls with drone deployment
+  const handleGameAreaClick = useCallback(
+    (e: React.MouseEvent) => {
+      if (!gameRef.current) return;
+
+      const rect = gameRef.current.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+
+      if (e.button === 0 && !isDragging) {
+        // Left click - deploy selected drone type or select weapon
+        if (gameState.selectedDroneType) {
+          deployDrone(gameState.selectedDroneType, x, y);
+        } else {
+          switchWeapon("kinetic");
+        }
+      } else if (e.button === 1) {
+        // Middle click - deploy jammer drone
+        deployDrone("jammer", x, y);
+      } else if (e.button === 2) {
+        // Right click - deploy surveillance drone
+        deployDrone("surveillance", x, y);
+      }
+    },
+    [gameState.selectedDroneType, deployDrone, switchWeapon, isDragging],
+  );
+
+  // Wheel event for weapon cycling
+  const handleWheel = useCallback(
+    (e: React.WheelEvent) => {
+      e.preventDefault();
+      const weapons = ["kinetic", "electronic", "laser"] as const;
+      const currentIndex = weapons.indexOf(gameState.selectedWeapon);
+
+      if (e.deltaY > 0) {
+        // Scroll down - next weapon
+        const nextIndex = (currentIndex + 1) % weapons.length;
+        switchWeapon(weapons[nextIndex]);
+      } else {
+        // Scroll up - previous weapon
+        const prevIndex =
+          currentIndex === 0 ? weapons.length - 1 : currentIndex - 1;
+        switchWeapon(weapons[prevIndex]);
+      }
+    },
+    [gameState.selectedWeapon, switchWeapon],
+  );
+
   const getThreatAppearance = (type: string) => {
     switch (type) {
       case "drone":
@@ -313,16 +624,122 @@ export const ThreatSimulator: React.FC = (): JSX.Element => {
   return (
     <div className="relative w-full h-[600px] bg-gradient-to-br from-slate-900 via-slate-950 to-slate-900 rounded-xl border border-red-500/20 overflow-hidden shadow-2xl">
       {/* Critical Simulation Disclaimer */}
-      <div className="absolute top-2 left-2 right-2 z-50 bg-black/80 backdrop-blur-sm border border-red-500/30 rounded-lg p-2">
-        <p className="text-xs text-red-400 text-center font-semibold">
-          ⚠️ SIMULATION: This interactive module is designed to visualize
-          concepts. It does not represent real-world sensor performance,
-          detection ranges, or decision latency.
-        </p>
+      {showSimulationWarning && (
+        <div className="absolute top-2 left-2 right-2 z-50 bg-black/80 backdrop-blur-sm border border-red-500/30 rounded-lg p-2">
+          <div className="flex items-center justify-between">
+            <p className="text-xs text-red-400 font-semibold flex-1">
+              ⚠️ SIMULATION: This interactive module is designed to visualize
+              concepts. It does not represent real-world sensor performance,
+              detection ranges, or decision latency.
+            </p>
+            <button
+              onClick={() => setShowSimulationWarning(false)}
+              className="ml-3 text-red-400 hover:text-red-300 transition-colors"
+              title="Close warning"
+            >
+              <svg
+                className="w-4 h-4"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              </svg>
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* Control Instructions */}
+      <div className="absolute top-16 left-2 z-40 bg-black/80 backdrop-blur-sm border border-orange-500/30 rounded-lg p-2">
+        <div className="text-xs text-orange-400 font-semibold mb-1">
+          CONTROLS:
+        </div>
+        <div className="text-xs text-gray-300 space-y-1">
+          <div>
+            • <span className="text-orange-400">Left Click:</span> Deploy
+            selected drone
+          </div>
+          <div>
+            • <span className="text-orange-400">Middle Click:</span> Deploy
+            jammer drone
+          </div>
+          <div>
+            • <span className="text-orange-400">Right Click:</span> Deploy
+            surveillance drone
+          </div>
+          <div>
+            • <span className="text-orange-400">Scroll Wheel:</span> Cycle
+            weapons
+          </div>
+          <div>
+            • <span className="text-orange-400">Drag:</span> Multi-select
+            threats
+          </div>
+          <div>
+            • <span className="text-orange-400">Shift+Drag:</span> Area effect
+            weapon
+          </div>
+          <div>
+            • <span className="text-orange-400">Click Drone:</span> Return to
+            base
+          </div>
+          <div>
+            • <span className="text-orange-400">Click Bay:</span> Select drone
+            type
+          </div>
+          <div className="mt-2 pt-1 border-t border-gray-600">
+            <div className="text-orange-400 font-semibold mb-1">KEYBOARD:</div>
+            <div>
+              • <span className="text-orange-400">1-3:</span> Select weapons
+            </div>
+            <div>
+              • <span className="text-orange-400">WASD:</span> Deploy drones
+            </div>
+            <div>
+              • <span className="text-orange-400">ESC:</span> Clear selection
+            </div>
+            <div>
+              • <span className="text-orange-400">SPACE:</span> Pause/Resume
+            </div>
+          </div>
+        </div>
       </div>
 
       {/* Technical grid background */}
       <div className={styles.technicalGrid}></div>
+
+      {/* Weather Effects */}
+      {weatherMode === "rain" && <div className={styles.weatherRain}></div>}
+      {weatherMode === "fog" && <div className={styles.weatherFog}></div>}
+
+      {/* Selection Box */}
+      {gameState.selectionBox && (
+        <div
+          className={styles.selectionBox}
+          style={{
+            left: Math.min(
+              gameState.selectionBox.startX,
+              gameState.selectionBox.endX,
+            ),
+            top: Math.min(
+              gameState.selectionBox.startY,
+              gameState.selectionBox.endY,
+            ),
+            width: Math.abs(
+              gameState.selectionBox.endX - gameState.selectionBox.startX,
+            ),
+            height: Math.abs(
+              gameState.selectionBox.endY - gameState.selectionBox.startY,
+            ),
+          }}
+        />
+      )}
 
       {/* Particle Renderer */}
       <ParticleRenderer
@@ -331,31 +748,49 @@ export const ThreatSimulator: React.FC = (): JSX.Element => {
         height={gameDimensions.height}
       />
 
-      <div ref={gameRef} className={styles.gameArea}>
-        {/* Phoenix Rooivalk Logo - Central Defense System */}
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-20 h-20 flex items-center justify-center z-20">
-          <div className="relative">
-            {/* Phoenix Logo - Stylized */}
-            <div className="relative w-16 h-16">
-              {/* Phoenix Head */}
-              <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-3 h-3 bg-amber-400 rounded-full shadow-lg shadow-amber-400/30"></div>
+      <div
+        ref={gameRef}
+        className={`${styles.gameArea} ${weatherMode === "night" ? styles.nightVision : ""}`}
+        onMouseDown={handleMouseDown}
+        onMouseMove={handleMouseMove}
+        onMouseUp={handleMouseUp}
+        onWheel={handleWheel}
+        onContextMenu={(e) => e.preventDefault()}
+      >
+        {/* Phoenix Rooivalk Mothership - Central Command */}
+        <div
+          className={`${styles.mothership}`}
+          style={{
+            left: `${gameState.mothership.x - 48}px`,
+            top: `${gameState.mothership.y - 48}px`,
+          }}
+          onClick={handleGameAreaClick}
+        >
+          {/* Mothership Core */}
+          <div className={styles.mothershipCore}></div>
 
-              {/* Phoenix Wings */}
-              <div className="absolute top-2 left-1 w-6 h-8 bg-gradient-to-r from-red-600 via-orange-500 to-red-600 transform -rotate-12 rounded-tl-full shadow-lg"></div>
-              <div className="absolute top-2 right-1 w-6 h-8 bg-gradient-to-l from-red-600 via-orange-500 to-red-600 transform rotate-12 rounded-tr-full shadow-lg"></div>
-
-              {/* Phoenix Body */}
-              <div className="absolute top-4 left-1/2 transform -translate-x-1/2 w-4 h-8 bg-gradient-to-b from-orange-600 via-red-500 to-red-700 rounded-full"></div>
-              <div className="absolute top-8 left-1/2 transform -translate-x-1/2 w-3 h-6 bg-gradient-to-b from-red-600 to-red-800 rounded-full"></div>
-
-              {/* Phoenix Tail */}
-              <div className="absolute top-10 left-1/2 transform -translate-x-1/2 w-2 h-4 bg-gradient-to-b from-red-700 to-orange-600 rounded-b-full"></div>
-              <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-2 h-1 bg-amber-400 rounded-full"></div>
+          {/* Deployment Bays */}
+          {gameState.deploymentBays.map((bay) => (
+            <div
+              key={bay.id}
+              className={`${styles.deploymentBay} ${
+                bay.currentDrones > 0
+                  ? styles.deploymentBayReady
+                  : styles.deploymentBayEmpty
+              }`}
+              style={{
+                left: `${bay.x - 12}px`,
+                top: `${bay.y - 12}px`,
+              }}
+              onClick={(e) => {
+                e.stopPropagation();
+                selectDroneType(bay.currentDrones > 0 ? bay.droneType : null);
+              }}
+              title={`${bay.droneType} Bay: ${bay.currentDrones}/${bay.capacity} drones`}
+            >
+              <div className={styles.deploymentBayIndicator}></div>
             </div>
-
-            {/* Glow effect */}
-            <div className="absolute inset-0 bg-orange-500/10 rounded-full blur-lg animate-pulse"></div>
-          </div>
+          ))}
         </div>
 
         {/* Detection Coverage Visualization */}
@@ -403,13 +838,18 @@ export const ThreatSimulator: React.FC = (): JSX.Element => {
           const isEffective =
             effectiveness >= 0.5 ||
             gameState.activePowerUps.some((p) => p.effect.penetration);
+          const isSelected = gameState.selectedThreats.includes(threat.id);
+          const priority =
+            gameState.priorityThreats[threat.id] ||
+            threat.specialProperties?.targetPriority ||
+            "medium";
 
           return (
             <button
               key={threat.id}
               className={`${styles.threat} ${styles.threatPosition} ${appearance.cssClass} ${
                 !isEffective ? "opacity-50" : ""
-              }`}
+              } ${isSelected ? styles.threatSelected : ""}`}
               /* eslint-disable react/forbid-dom-props */
               style={
                 {
@@ -418,10 +858,7 @@ export const ThreatSimulator: React.FC = (): JSX.Element => {
                 } as React.CSSProperties
               }
               data-threat-id={threat.id}
-              onClick={(e) => {
-                e.stopPropagation();
-                neutralizeThreat(threat.id);
-              }}
+              onMouseDown={(e) => handleThreatClick(e, threat.id)}
               onKeyDown={(e) => {
                 if (e.key === "Enter" || e.key === " ") {
                   e.preventDefault();
@@ -429,13 +866,13 @@ export const ThreatSimulator: React.FC = (): JSX.Element => {
                   neutralizeThreat(threat.id);
                 }
               }}
-              aria-label={`${threat.type} threat with ${threat.health} health. Weapon effectiveness: ${Math.round(effectiveness * 100)}%`}
-              title={`${threat.type} - ${Math.round(effectiveness * 100)}% effective`}
+              aria-label={`${threat.type} threat with ${threat.health} health. Weapon effectiveness: ${Math.round(effectiveness * 100)}%. Priority: ${priority}`}
+              title={`${threat.type} - ${Math.round(effectiveness * 100)}% effective. Priority: ${priority}`}
             >
               <div>{appearance.emoji}</div>
-              <div className={styles.healthBar}>
+              <div className={styles.threatHealthBar}>
                 <div
-                  className={`${styles.healthFill} ${styles.healthBarWidth}`}
+                  className={`${styles.threatHealthFill} ${styles.healthBarWidth}`}
                   /* eslint-disable react/forbid-dom-props */
                   style={
                     {
@@ -458,13 +895,52 @@ export const ThreatSimulator: React.FC = (): JSX.Element => {
                   }
                 />
               </div>
+
               {/* Priority indicator */}
-              {threat.specialProperties?.targetPriority === "high" && (
-                <div className="absolute -top-1 -right-1 w-2 h-2 bg-red-500 rounded-full animate-pulse"></div>
+              <div
+                className={`${styles.priorityIndicator} ${styles[`priority${priority.charAt(0).toUpperCase() + priority.slice(1)}`]}`}
+              ></div>
+
+              {/* Trajectory prediction */}
+              {priority === "high" && (
+                <div
+                  className={styles.trajectoryPrediction}
+                  style={{
+                    left: threat.x,
+                    top: threat.y,
+                    width: "100px",
+                    height: "2px",
+                    transform: `rotate(${(Math.atan2(300 - threat.y, 400 - threat.x) * 180) / Math.PI}deg)`,
+                  }}
+                />
               )}
             </button>
           );
         })}
+
+        {/* Deployed Drones */}
+        {gameState.drones.map((drone) => (
+          <button
+            key={drone.id}
+            className={`${styles.deployedDrone} ${styles[`drone${drone.type.charAt(0).toUpperCase() + drone.type.slice(1)}`]} ${
+              drone.isReturning ? styles.droneReturning : ""
+            }`}
+            style={{
+              left: `${drone.x - 8}px`,
+              top: `${drone.y - 8}px`,
+            }}
+            onClick={(e) => {
+              e.stopPropagation();
+              returnDroneToBase(drone.id);
+            }}
+            title={`${drone.type} Drone - Mission: ${drone.mission} - Energy: ${Math.round(drone.energy)}/${drone.maxEnergy}`}
+          >
+            {/* Mission Indicator */}
+            <div
+              className={`${styles.droneMissionIndicator} ${styles[`mission${drone.mission.charAt(0).toUpperCase() + drone.mission.slice(1)}`]}`}
+            ></div>
+          </button>
+        ))}
 
         {/* Enhanced Stats Overlay */}
         <div className={styles.statsOverlay}>
@@ -559,6 +1035,173 @@ export const ThreatSimulator: React.FC = (): JSX.Element => {
           </div>
         )}
 
+        {/* Mothership Resource Display */}
+        <div className={styles.mothershipResources}>
+          <div className="text-xs text-gray-300 mb-2">MOTHERSHIP</div>
+          <div className="mb-2">
+            <div className={styles.resourceLabel}>ENERGY</div>
+            <div className={styles.mothershipResourceBar}>
+              <div
+                className={styles.mothershipResourceFill}
+                style={{
+                  width: `${(gameState.mothership.energy / gameState.mothership.maxEnergy) * 100}%`,
+                }}
+              />
+            </div>
+            <div className="text-xs text-gray-400">
+              {Math.round(gameState.mothership.energy)}/
+              {gameState.mothership.maxEnergy}
+            </div>
+          </div>
+          <div className="mb-2">
+            <div className={styles.resourceLabel}>FUEL</div>
+            <div className={styles.mothershipResourceBar}>
+              <div
+                className={styles.mothershipResourceFill}
+                style={{
+                  width: `${(gameState.mothership.fuel / gameState.mothership.maxFuel) * 100}%`,
+                }}
+              />
+            </div>
+            <div className="text-xs text-gray-400">
+              {Math.round(gameState.mothership.fuel)}/
+              {gameState.mothership.maxFuel}
+            </div>
+          </div>
+          <div className="text-xs text-gray-400">
+            Drones: {gameState.drones.length}/
+            {gameState.mothership.droneCapacity}
+          </div>
+        </div>
+
+        {/* Resource Management Display */}
+        <div className={styles.resourceDisplay}>
+          <div className="text-xs text-gray-300 mb-2">RESOURCES</div>
+          <div className="mb-2">
+            <div className={styles.resourceLabel}>ENERGY</div>
+            <div className={styles.resourceBar}>
+              <div
+                className={styles.resourceBarEnergy}
+                style={{
+                  width: `${(gameState.energy / gameState.maxEnergy) * 100}%`,
+                }}
+              />
+            </div>
+            <div className="text-xs text-gray-400">
+              {Math.round(gameState.energy)}/{gameState.maxEnergy}
+            </div>
+          </div>
+          <div>
+            <div className={styles.resourceLabel}>COOLING</div>
+            <div className={styles.resourceBar}>
+              <div
+                className={styles.resourceBarCooling}
+                style={{
+                  width: `${(gameState.cooling / gameState.maxCooling) * 100}%`,
+                }}
+              />
+            </div>
+            <div className="text-xs text-gray-400">
+              {Math.round(gameState.cooling)}/{gameState.maxCooling}
+            </div>
+          </div>
+        </div>
+
+        {/* Mini-map */}
+        <div className={styles.miniMap}>
+          <div className="text-xs text-gray-300 mb-1 text-center">RADAR</div>
+          <div className={styles.miniMapCenter}></div>
+          {gameState.threats.map((threat) => {
+            const scale = 120; // Mini-map scale factor
+            const centerX = 60; // Mini-map center X
+            const centerY = 60; // Mini-map center Y
+            const mapX =
+              centerX + (threat.x - gameDimensions.width / 2) / scale;
+            const mapY =
+              centerY + (threat.y - gameDimensions.height / 2) / scale;
+
+            if (mapX >= 0 && mapX <= 120 && mapY >= 0 && mapY <= 120) {
+              return (
+                <div
+                  key={threat.id}
+                  className={styles.miniMapThreat}
+                  style={{
+                    left: `${mapX}px`,
+                    top: `${mapY}px`,
+                    backgroundColor:
+                      threat.specialProperties?.targetPriority === "high"
+                        ? "#ef4444"
+                        : "#f97316",
+                  }}
+                />
+              );
+            }
+            return null;
+          })}
+        </div>
+
+        {/* Drone Selection Controls */}
+        <div className="absolute bottom-4 left-4 backdrop-blur-sm border rounded-md shadow-lg bg-black/80 border-orange-500/30 p-2">
+          <div className="text-xs text-gray-300 mb-2">DRONE DEPLOYMENT</div>
+          <div className="flex gap-1 flex-wrap">
+            {(
+              [
+                "interceptor",
+                "jammer",
+                "surveillance",
+                "shield",
+                "swarm-coordinator",
+              ] as const
+            ).map((droneType) => {
+              const bay = gameState.deploymentBays.find(
+                (b) => b.droneType === droneType,
+              );
+              const isSelected = gameState.selectedDroneType === droneType;
+              const isAvailable = bay && bay.currentDrones > 0;
+
+              return (
+                <button
+                  key={droneType}
+                  onClick={() =>
+                    selectDroneType(isAvailable ? droneType : null)
+                  }
+                  className={`px-2 py-1 text-xs rounded ${
+                    isSelected
+                      ? "bg-orange-500 text-white"
+                      : isAvailable
+                        ? "bg-gray-600 text-gray-300 hover:bg-gray-500"
+                        : "bg-gray-800 text-gray-500 cursor-not-allowed"
+                  }`}
+                  disabled={!isAvailable}
+                  title={`${droneType}: ${bay?.currentDrones || 0}/${bay?.capacity || 0} available`}
+                >
+                  {droneType.toUpperCase().split("-")[0]}
+                </button>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Weather Controls */}
+        <div className="absolute bottom-4 left-48 backdrop-blur-sm border rounded-md shadow-lg bg-black/80 border-orange-500/30 p-2">
+          <div className="text-xs text-gray-300 mb-2">WEATHER</div>
+          <div className="flex gap-1">
+            {(["none", "rain", "fog", "night"] as const).map((mode) => (
+              <button
+                key={mode}
+                onClick={() => setWeatherMode(mode)}
+                className={`px-2 py-1 text-xs rounded ${
+                  weatherMode === mode
+                    ? "bg-orange-500 text-white"
+                    : "bg-gray-600 text-gray-300 hover:bg-gray-500"
+                }`}
+              >
+                {mode.toUpperCase()}
+              </button>
+            ))}
+          </div>
+        </div>
+
         {/* Interactive Controls */}
         <div className={styles.controlsOverlay}>
           <div className={styles.controlsContent}>
@@ -589,6 +1232,12 @@ export const ThreatSimulator: React.FC = (): JSX.Element => {
               className={`${styles.controlButton} ${styles.controlButtonOrange}`}
             >
               POWER-UP
+            </button>
+            <button
+              onClick={clearSelection}
+              className={`${styles.controlButton} ${styles.controlButtonGray}`}
+            >
+              CLEAR SEL
             </button>
             <button
               onClick={resetGame}
