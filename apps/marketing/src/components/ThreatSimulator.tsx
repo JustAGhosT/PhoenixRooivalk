@@ -585,6 +585,7 @@ export const ThreatSimulator: React.FC<ThreatSimulatorProps> = ({
         selectThreat(threatId);
       } else if (e.button === 1) {
         // Middle click - set priority
+        // eslint-disable-next-line security/detect-object-injection
         const currentPriority = gameState.priorityThreats[threatId] as
           | string
           | undefined;
@@ -647,6 +648,7 @@ export const ThreatSimulator: React.FC<ThreatSimulatorProps> = ({
       if (e.deltaY > 0) {
         // Scroll down - next weapon
         const nextIndex = (currentIndex + 1) % weapons.length;
+        // eslint-disable-next-line security/detect-object-injection
         const nextWeapon = weapons[nextIndex];
         if (nextWeapon) {
           switchWeapon(nextWeapon);
@@ -655,6 +657,7 @@ export const ThreatSimulator: React.FC<ThreatSimulatorProps> = ({
         // Scroll up - previous weapon
         const prevIndex =
           currentIndex === 0 ? weapons.length - 1 : currentIndex - 1;
+        // eslint-disable-next-line security/detect-object-injection
         const prevWeapon = weapons[prevIndex];
         if (prevWeapon) {
           switchWeapon(prevWeapon);
