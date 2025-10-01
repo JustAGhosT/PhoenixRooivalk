@@ -6,10 +6,10 @@ This document outlines the comprehensive enhancement plan for the Phoenix Rooiva
 ---
 
 ## 📊 Progress Tracking
-- **Total Tasks**: 47
+- **Total Tasks**: 63 (Phase 2.5 added)
 - **Completed**: 15
 - **In Progress**: 0
-- **Pending**: 32
+- **Pending**: 48
 
 ---
 
@@ -129,6 +129,55 @@ This document outlines the comprehensive enhancement plan for the Phoenix Rooiva
 
 ---
 
+## 🚁 Phase 2.5: Phoenix Rooivalk Authenticity (High Priority)
+*Realistic system representation based on actual Phoenix Rooivalk capabilities*
+
+### Drone Mothership System
+- [ ] **Interactive Mothership**: Replace static logo with deployable mothership interface
+- [ ] **Deployment Bays**: Visual representation of different drone types ready for deployment
+- [ ] **Resource Management**: Mothership energy/fuel system that powers drone deployments
+- [ ] **Return-to-Base**: Drones return to mothership for rearming/resupply cycles
+
+### Specialized Drone Deployment
+- [ ] **Interceptor Drones**: Fast, agile drones for direct threat engagement
+- [ ] **Jammer Drones**: Electronic warfare drones that disrupt enemy communications
+- [ ] **Surveillance Drones**: Long-range detection and tracking drones
+- [ ] **Swarm Coordinator**: Mothership's ability to coordinate multiple drone swarms
+- [ ] **Defensive Shield Drones**: Drones that create protective barriers
+
+### Enhanced Controls & Interaction
+- [ ] **Mouse-Based Weapon Selection**: Left/Middle/Right click for different weapon types
+- [ ] **Scroll Wheel Cycling**: Cycle through available weapons
+- [ ] **Drag Selection**: Multi-threat targeting with area effect weapons
+- [ ] **Keyboard Shortcuts**: 1-3 for weapon selection, WASD for drone deployment positioning
+
+### Tactical Deployment System
+- [ ] **Pre-positioned Drones**: Deploy drones in strategic locations before threats arrive
+- [ ] **Dynamic Deployment**: Launch drones in response to incoming threats
+- [ ] **Formation Flying**: Coordinate multiple drones in defensive formations
+- [ ] **Threat Response Protocols**: Automated vs manual deployment strategies
+
+---
+
+## 🚁 Phoenix Rooivalk System Enhancement Suggestions
+
+### Realistic System Representation
+- **Drone Mothership Architecture**: Replace static logo with interactive mothership capable of deploying specialized drones
+- **Deployment Strategy System**: Pre-position drones, dynamic deployment, formation flying, return-to-base mechanics
+- **Specialized Drone Types**: Interceptor, Jammer, Surveillance, Swarm Coordinator, Defensive Shield drones
+- **Enhanced Threat Types**: Single UAS, Swarm Attacks, Loitering Munitions, Electronic Warfare Platforms, Stealth Penetrators
+- **Resource Management**: Mothership energy/fuel system, drone rearming/resupply cycles
+- **Tactical Deployment**: Strategic positioning, threat response protocols, coordinated defense patterns
+
+### Enhanced Controls & Interaction
+- **Mouse-Based Weapon Selection**: 
+  - **Left Click**: Kinetic Interceptor (default)
+  - **Middle Click**: EMP Disruptor 
+  - **Right Click**: Directed Energy Laser
+  - **Scroll Wheel**: Cycle through available weapons
+  - **Drag Selection**: Multi-threat targeting with area effect weapons
+- **Keyboard Shortcuts**: 1-3 for weapon selection, WASD for drone deployment positioning
+
 ## 🛠️ Implementation Notes
 
 ### Technical Considerations
@@ -141,12 +190,14 @@ This document outlines the comprehensive enhancement plan for the Phoenix Rooiva
 1. **Phase 1** items provide immediate visual impact and smooth performance
 2. **Phase 2** adds depth and replayability to core gameplay
 3. **Phase 3-6** enhance educational value and accessibility
+4. **Phoenix Rooivalk Authenticity**: Implement realistic mothership and drone deployment systems
 
 ### Success Metrics
 - **Engagement**: Increased session duration and return visits
 - **Education**: User understanding of defense concepts
 - **Performance**: Smooth 60fps gameplay across devices
 - **Accessibility**: Full functionality for users with disabilities
+- **Authenticity**: Realistic representation of Phoenix Rooivalk system capabilities
 
 ---
 
@@ -174,16 +225,23 @@ This document outlines the comprehensive enhancement plan for the Phoenix Rooiva
   - ✅ Local storage leaderboard
   - ✅ Resource management (ammo system)
   - ✅ Weapon cooldowns and visual feedback
+- **2024-01-XX**: **PHASE 2.5 AUTHENTICITY FEATURES PLANNED!** 📋
+  - 📋 Drone mothership architecture design
+  - 📋 Specialized drone deployment system
+  - 📋 Mouse-based weapon selection (Left/Middle/Right click)
+  - 📋 Tactical deployment strategies
+  - 📋 Enhanced Phoenix Rooivalk system representation
 
 ### Next Milestones
 - [x] Complete Phase 1 visual effects implementation
 - [x] Deploy performance optimizations
 - [x] Complete Phase 2 core gameplay features
-- [ ] Implement remaining Phase 2 UI enhancements (6 items)
+- [ ] Implement Phase 2.5 Phoenix Rooivalk authenticity features (16 items)
+- [ ] Complete remaining Phase 2 UI enhancements (6 items)
 - [ ] Begin Phase 3 educational elements
 
 ---
 
 *Last Updated: 2024-01-XX*
-*Total Tasks: 47*
-*Completion Status: 15/47 (32%)*
+*Total Tasks: 63 (Phase 2.5 added)*
+*Completion Status: 15/63 (24%)*
