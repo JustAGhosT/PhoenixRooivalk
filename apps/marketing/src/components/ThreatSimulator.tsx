@@ -5,7 +5,10 @@ import { ParticleRenderer } from "./ParticleRenderer";
 import styles from "./ThreatSimulator.module.css";
 import { useGameState } from "./hooks/useGameState";
 import { useTimeoutManager } from "./hooks/useTimeoutManager";
+import { FormationManager } from "./utils/formationManager";
 import { ParticleSystem } from "./utils/particleSystem";
+import { ResponseProtocolEngine } from "./utils/responseProtocols";
+import { StrategicDeploymentEngine } from "./utils/strategicDeployment";
 import { moveThreats, spawnThreat } from "./utils/threatUtils";
 
 export const ThreatSimulator: React.FC = (): JSX.Element => {
@@ -68,6 +71,20 @@ export const ThreatSimulator: React.FC = (): JSX.Element => {
 
   // UI state
   const [showSimulationWarning, setShowSimulationWarning] = useState(true);
+
+  // Strategic systems
+  const [strategicEngine] = useState(() => new StrategicDeploymentEngine());
+  const [responseEngine] = useState(() => new ResponseProtocolEngine());
+  const [formationManager] = useState(() => new FormationManager());
+
+  // Mission and automation state
+  const [missionType, setMissionType] = useState<
+    "airport" | "military-base" | "vip-protection" | "border-patrol"
+  >("military-base");
+  const [automationMode, setAutomationMode] = useState<
+    "manual" | "automated" | "hybrid"
+  >("hybrid");
+  const [showDeploymentZones, setShowDeploymentZones] = useState(false);
 
   const spawnNewThreat = useCallback(
     (threatType?: "drone" | "swarm" | "stealth") => {
@@ -271,6 +288,17 @@ export const ThreatSimulator: React.FC = (): JSX.Element => {
     particleSystem,
     updateGameTime,
   ]);
+
+  // Initialize strategic systems
+  useEffect(() => {
+    // Initialize strategic deployment zones
+    strategicEngine.initializeDeploymentZones(missionType, 800, 600);
+
+    // Initialize response protocols
+    responseEngine.initializeDefaultProtocols();
+
+    // Formation manager is already initialized in constructor
+  }, [strategicEngine, responseEngine, formationManager, missionType]);
 
   // Initial threat spawn
   useEffect(() => {
@@ -811,6 +839,70 @@ export const ThreatSimulator: React.FC = (): JSX.Element => {
           </div>
         </div>
 
+        {/* Strategic Deployment Zones */}
+        {showDeploymentZones &&
+          strategicEngine.getDeploymentZones().map((zone) => (
+            <div
+              key={zone.id}
+              className="absolute border-2 border-dashed rounded-full pointer-events-none"
+              style={{
+                left: `${zone.centerX - zone.radius}px`,
+                top: `${zone.centerY - zone.radius}px`,
+                width: `${zone.radius * 2}px`,
+                height: `${zone.radius * 2}px`,
+                borderColor:
+                  zone.priority === "critical"
+                    ? "#ef4444"
+                    : zone.priority === "high"
+                      ? "#f97316"
+                      : zone.priority === "medium"
+                        ? "#eab308"
+                        : "#84cc16",
+                opacity: 0.6,
+              }}
+            >
+              {/* Zone label */}
+              <div
+                className="absolute text-xs font-mono text-white bg-black/50 px-1 rounded"
+                style={{
+                  left: "50%",
+                  top: "-20px",
+                  transform: "translateX(-50%)",
+                }}
+              >
+                {zone.name}
+              </div>
+
+              {/* Coverage indicator */}
+              <div
+                className="absolute text-xs font-mono text-white bg-black/50 px-1 rounded"
+                style={{
+                  left: "50%",
+                  bottom: "-20px",
+                  transform: "translateX(-50%)",
+                }}
+              >
+                {Math.round(zone.coverage * 100)}%
+              </div>
+
+              {/* Threat level indicator */}
+              <div
+                className="absolute w-2 h-2 rounded-full"
+                style={{
+                  left: "50%",
+                  top: "50%",
+                  transform: "translate(-50%, -50%)",
+                  backgroundColor:
+                    zone.threatLevel > 0.7
+                      ? "#ef4444"
+                      : zone.threatLevel > 0.4
+                        ? "#f97316"
+                        : "#84cc16",
+                }}
+              ></div>
+            </div>
+          ))}
+
         {/* Inner defense ring */}
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-40 h-40 border border-[var(--primary)]/15 rounded-full opacity-30">
           <div className="absolute inset-2 border border-[var(--accent)]/10 rounded-full opacity-20"></div>
@@ -1200,6 +1292,63 @@ export const ThreatSimulator: React.FC = (): JSX.Element => {
               </button>
             ))}
           </div>
+        </div>
+
+        {/* Mission Controls */}
+        <div className="absolute bottom-4 left-80 backdrop-blur-sm border rounded-md shadow-lg bg-black/80 border-orange-500/30 p-2">
+          <div className="text-xs text-gray-300 mb-2">MISSION</div>
+          <div className="flex gap-1 flex-wrap">
+            {(
+              [
+                "military-base",
+                "airport",
+                "vip-protection",
+                "border-patrol",
+              ] as const
+            ).map((mission) => (
+              <button
+                key={mission}
+                onClick={() => setMissionType(mission)}
+                className={`px-2 py-1 text-xs rounded ${
+                  missionType === mission
+                    ? "bg-orange-500 text-white"
+                    : "bg-gray-600 text-gray-300 hover:bg-gray-500"
+                }`}
+              >
+                {mission.replace("-", " ").toUpperCase()}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Automation Controls */}
+        <div className="absolute bottom-4 left-[28rem] backdrop-blur-sm border rounded-md shadow-lg bg-black/80 border-orange-500/30 p-2">
+          <div className="text-xs text-gray-300 mb-2">AUTOMATION</div>
+          <div className="flex gap-1">
+            {(["manual", "automated", "hybrid"] as const).map((mode) => (
+              <button
+                key={mode}
+                onClick={() => setAutomationMode(mode)}
+                className={`px-2 py-1 text-xs rounded ${
+                  automationMode === mode
+                    ? "bg-orange-500 text-white"
+                    : "bg-gray-600 text-gray-300 hover:bg-gray-500"
+                }`}
+              >
+                {mode.toUpperCase()}
+              </button>
+            ))}
+          </div>
+          <button
+            onClick={() => setShowDeploymentZones(!showDeploymentZones)}
+            className={`mt-1 px-2 py-1 text-xs rounded w-full ${
+              showDeploymentZones
+                ? "bg-green-500 text-white"
+                : "bg-gray-600 text-gray-300 hover:bg-gray-500"
+            }`}
+          >
+            {showDeploymentZones ? "HIDE ZONES" : "SHOW ZONES"}
+          </button>
         </div>
 
         {/* Interactive Controls */}
