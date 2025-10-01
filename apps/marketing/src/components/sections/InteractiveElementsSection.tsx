@@ -10,6 +10,10 @@ export const InteractiveElementsSection: React.FC = () => {
     personnelCost: 150000, // USD per year
   });
 
+  const [sensitivity, setSensitivity] = useState<
+    "conservative" | "median" | "aggressive"
+  >("conservative");
+
   const calculateROI = () => {
     const {
       threatFrequency,
@@ -21,16 +25,34 @@ export const InteractiveElementsSection: React.FC = () => {
     // Calculate annual threat events
     const annualThreats = threatFrequency * 12;
 
-    // Calculate success rates based on response time
-    const phoenixSuccessRate = averageResponseTime <= 120 ? 0.95 : 0.85;
-    const traditionalSuccessRate = averageResponseTime <= 3000 ? 0.65 : 0.45;
+    // Apply sensitivity multipliers
+    const getSensitivityMultipliers = (sensitivity: string) => {
+      switch (sensitivity) {
+        case "conservative":
+          return { phoenix: 0.7, traditional: 0.9, incidentCost: 300000 };
+        case "median":
+          return { phoenix: 0.85, traditional: 0.75, incidentCost: 500000 };
+        case "aggressive":
+          return { phoenix: 0.95, traditional: 0.6, incidentCost: 750000 };
+        default:
+          return { phoenix: 0.7, traditional: 0.9, incidentCost: 300000 };
+      }
+    };
+
+    const multiplier = getSensitivityMultipliers(sensitivity);
+
+    // Calculate success rates based on response time and sensitivity
+    const phoenixSuccessRate =
+      (averageResponseTime <= 120 ? 0.95 : 0.85) * multiplier.phoenix;
+    const traditionalSuccessRate =
+      (averageResponseTime <= 3000 ? 0.65 : 0.45) * multiplier.traditional;
 
     // Calculate prevented incidents
     const phoenixPrevented = annualThreats * phoenixSuccessRate;
     const traditionalPrevented = annualThreats * traditionalSuccessRate;
 
-    // Estimate cost per incident (varies by severity)
-    const avgIncidentCost = 500000; // USD
+    // Estimate cost per incident (varies by sensitivity)
+    const avgIncidentCost = multiplier.incidentCost;
 
     // Calculate savings
     const phoenixSavings = phoenixPrevented * avgIncidentCost;
@@ -64,47 +86,6 @@ export const InteractiveElementsSection: React.FC = () => {
 
   const roi = calculateROI();
 
-  const responseTimeComparison = {
-    traditional: 3000,
-    phoenix: 120,
-    current: 1500,
-  };
-
-  const scenarios = [
-    {
-      name: "Airport Perimeter",
-      threats: 12,
-      criticality: "High",
-      currentResponse: 2500,
-      phoenixResponse: 120,
-      impact: "Prevents runway closure, saves $2M per incident",
-    },
-    {
-      name: "Military Base",
-      threats: 8,
-      criticality: "Critical",
-      currentResponse: 5000,
-      phoenixResponse: 120,
-      impact: "Protects classified operations, prevents intelligence breach",
-    },
-    {
-      name: "Critical Infrastructure",
-      threats: 6,
-      criticality: "High",
-      currentResponse: 4000,
-      phoenixResponse: 120,
-      impact: "Prevents service disruption, saves $5M per incident",
-    },
-    {
-      name: "Public Event",
-      threats: 15,
-      criticality: "Medium",
-      currentResponse: 2000,
-      phoenixResponse: 120,
-      impact: "Ensures crowd safety, prevents evacuation costs",
-    },
-  ];
-
   return (
     <section className="py-20 bg-gradient-to-br from-[rgb(var(--tactical-obsidian))] to-[rgb(var(--tactical-black))] relative overflow-hidden">
       {/* Background pattern */}
@@ -117,358 +98,479 @@ export const InteractiveElementsSection: React.FC = () => {
           {/* Section Header */}
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-br from-[rgb(var(--phoenix-white))] to-[rgb(var(--primary))] mb-6">
-              Interactive Tools & Calculators
+              Projected ROI Analysis
             </h2>
             <p className="text-xl text-[rgb(var(--gray))] max-w-3xl mx-auto">
-              Explore the impact of Phoenix Rooivalk's 120ms response time on
-              your specific threat scenarios and budget.
+              Explore the potential return on investment for Phoenix Rooivalk's
+              target 120ms response time based on current market analysis and
+              projected performance.
             </p>
           </div>
 
           {/* ROI Calculator */}
-          <div className="mb-20">
-            <div className="bg-[rgba(var(--tactical-charcoal),0.8)] backdrop-blur-sm border border-[rgba(var(--primary),0.2)] rounded-2xl p-8">
-              <h3 className="text-2xl font-bold text-[rgb(var(--primary))] mb-6 text-center">
-                ROI Calculator
-              </h3>
-
-              <div className="grid lg:grid-cols-2 gap-8">
-                {/* Input Controls */}
-                <div className="space-y-6">
-                  <div>
-                    <label
-                      htmlFor="roi-threat-frequency"
-                      className="block text-[rgb(var(--phoenix-white))] font-semibold mb-2"
-                    >
-                      Threat Frequency (per month)
-                    </label>
-                    <input
-                      id="roi-threat-frequency"
-                      type="range"
-                      min="1"
-                      max="20"
-                      value={roiInputs.threatFrequency}
-                      onChange={(e) =>
-                        setRoiInputs((prev) => ({
-                          ...prev,
-                          threatFrequency: parseInt(e.target.value),
-                        }))
-                      }
-                      className="w-full h-2 bg-[rgb(var(--tactical-gray))] rounded-lg appearance-none cursor-pointer slider"
-                    />
-                    <div className="flex justify-between text-[rgb(var(--gray))] text-sm mt-1">
-                      <span>1</span>
-                      <span className="text-[rgb(var(--accent))] font-bold">
-                        {roiInputs.threatFrequency} threats/month
-                      </span>
-                      <span>20</span>
+          <div className="bg-[rgba(var(--tactical-charcoal),0.8)] backdrop-blur-sm border border-[rgba(var(--primary),0.2)] rounded-2xl p-8">
+            {/* Hypothetical Disclaimer */}
+            <div className="mb-6 p-4 bg-[rgba(var(--status-warning),0.1)] border border-[rgba(var(--status-warning),0.3)] rounded-lg">
+              <p className="text-sm text-[rgb(var(--status-warning))] text-center font-semibold">
+                ⚠️ HYPOTHETICAL ANALYSIS: All inputs/outputs are assumptions for
+                illustrative purposes only. No real-world performance data
+                available.
+              </p>
+            </div>
+            <div className="grid lg:grid-cols-2 gap-8">
+              {/* Input Controls */}
+              <div className="space-y-6">
+                {/* Sensitivity Toggle */}
+                <div>
+                  <fieldset>
+                    <legend className="block text-[var(--text-primary)] font-semibold mb-3">
+                      Analysis Sensitivity (Default: Conservative)
+                    </legend>
+                    <div className="flex gap-2">
+                      {(["conservative", "median", "aggressive"] as const).map(
+                        (option) => (
+                          <button
+                            key={option}
+                            onClick={() => setSensitivity(option)}
+                            className={`btn ${
+                              sensitivity === option
+                                ? "btn--primary"
+                                : "btn--secondary"
+                            } text-sm capitalize`}
+                            aria-pressed={sensitivity === option}
+                          >
+                            {option}
+                          </button>
+                        ),
+                      )}
                     </div>
-                  </div>
-
-                  <div>
-                    <label
-                      htmlFor="roi-response-time"
-                      className="block text-[rgb(var(--phoenix-white))] font-semibold mb-2"
-                    >
-                      Current Response Time (ms)
-                    </label>
-                    <input
-                      id="roi-response-time"
-                      type="range"
-                      min="500"
-                      max="10000"
-                      step="100"
-                      value={roiInputs.averageResponseTime}
-                      onChange={(e) =>
-                        setRoiInputs((prev) => ({
-                          ...prev,
-                          averageResponseTime: parseInt(e.target.value),
-                        }))
-                      }
-                      className="w-full h-2 bg-[rgb(var(--tactical-gray))] rounded-lg appearance-none cursor-pointer slider"
-                    />
-                    <div className="flex justify-between text-[rgb(var(--gray))] text-sm mt-1">
-                      <span>500ms</span>
-                      <span className="text-[rgb(var(--accent))] font-bold">
-                        {roiInputs.averageResponseTime.toLocaleString()}ms
-                      </span>
-                      <span>10s</span>
-                    </div>
-                  </div>
-
-                  <div>
-                    <label
-                      htmlFor="roi-deployment-cost"
-                      className="block text-[rgb(var(--phoenix-white))] font-semibold mb-2"
-                    >
-                      Deployment Cost (USD)
-                    </label>
-                    <input
-                      id="roi-deployment-cost"
-                      type="range"
-                      min="100000"
-                      max="1000000"
-                      step="50000"
-                      value={roiInputs.deploymentCost}
-                      onChange={(e) =>
-                        setRoiInputs((prev) => ({
-                          ...prev,
-                          deploymentCost: parseInt(e.target.value),
-                        }))
-                      }
-                      className="w-full h-2 bg-[rgb(var(--tactical-gray))] rounded-lg appearance-none cursor-pointer slider"
-                    />
-                    <div className="flex justify-between text-[rgb(var(--gray))] text-sm mt-1">
-                      <span>$100K</span>
-                      <span className="text-[rgb(var(--accent))] font-bold">
-                        ${roiInputs.deploymentCost.toLocaleString()}
-                      </span>
-                      <span>$1M</span>
-                    </div>
+                  </fieldset>
+                  <p className="text-xs text-[var(--text-muted)] mt-2">
+                    Conservative uses lower success rates and incident costs for
+                    realistic projections.
+                  </p>
+                </div>
+                <div>
+                  <label
+                    htmlFor="roi-threat-frequency"
+                    className="block text-[rgb(var(--phoenix-white))] font-semibold mb-2"
+                  >
+                    Threat Frequency (per month)
+                  </label>
+                  <input
+                    id="roi-threat-frequency"
+                    type="range"
+                    min="1"
+                    max="20"
+                    value={roiInputs.threatFrequency}
+                    onChange={(e) =>
+                      setRoiInputs((prev) => ({
+                        ...prev,
+                        threatFrequency: parseInt(e.target.value),
+                      }))
+                    }
+                    className="range w-full"
+                  />
+                  <div className="flex justify-between text-[rgb(var(--gray))] text-sm mt-1">
+                    <span>1</span>
+                    <span className="text-[rgb(var(--accent))] font-bold">
+                      {roiInputs.threatFrequency} threats/month
+                    </span>
+                    <span>20</span>
                   </div>
                 </div>
 
-                {/* Results */}
-                <div className="space-y-6">
-                  <div className="bg-[rgba(var(--tactical-black),0.6)] rounded-xl p-6 border border-[rgba(var(--primary),0.3)]">
-                    <h4 className="text-lg font-bold text-[rgb(var(--primary))] mb-4">
-                      Phoenix Rooivalk Results
-                    </h4>
-                    <div className="space-y-3">
-                      <div className="flex justify-between">
-                        <span className="text-[rgb(var(--gray))]">
-                          Success Rate:
-                        </span>
-                        <span className="text-[rgb(var(--status-active))] font-bold">
-                          {(roi.phoenix.successRate * 100).toFixed(1)}%
-                        </span>
-                      </div>
-                      <div className="flex justify-between">
-                        <span className="text-[rgb(var(--gray))]">
-                          Threats Prevented/Year:
-                        </span>
-                        <span className="text-[rgb(var(--phoenix-white))] font-bold">
-                          {roi.phoenix.prevented.toFixed(1)}
-                        </span>
-                      </div>
-                      <div className="flex justify-between">
-                        <span className="text-[rgb(var(--gray))]">
-                          Annual Savings:
-                        </span>
-                        <span className="text-[rgb(var(--status-active))] font-bold">
-                          ${roi.phoenix.savings.toLocaleString()}
-                        </span>
-                      </div>
-                      <div className="flex justify-between border-t border-[rgba(var(--primary),0.2)] pt-3">
-                        <span className="text-[rgb(var(--gray))]">ROI:</span>
-                        <span className="text-[rgb(var(--accent))] font-bold text-xl">
-                          {roi.phoenix.roi.toFixed(0)}%
-                        </span>
-                      </div>
-                    </div>
+                <div>
+                  <label
+                    htmlFor="roi-response-time"
+                    className="block text-[rgb(var(--phoenix-white))] font-semibold mb-2"
+                  >
+                    Current Response Time (ms)
+                  </label>
+                  <input
+                    id="roi-response-time"
+                    type="range"
+                    min="1000"
+                    max="10000"
+                    step="500"
+                    value={roiInputs.averageResponseTime}
+                    onChange={(e) =>
+                      setRoiInputs((prev) => ({
+                        ...prev,
+                        averageResponseTime: parseInt(e.target.value),
+                      }))
+                    }
+                    className="range w-full"
+                  />
+                  <div className="flex justify-between text-[rgb(var(--gray))] text-sm mt-1">
+                    <span>1s</span>
+                    <span className="text-[rgb(var(--accent))] font-bold">
+                      {roiInputs.averageResponseTime}ms
+                    </span>
+                    <span>10s</span>
                   </div>
+                </div>
 
-                  <div className="bg-[rgba(var(--tactical-black),0.6)] rounded-xl p-6 border border-[rgba(var(--tactical-gray),0.3)]">
-                    <h4 className="text-lg font-bold text-[rgb(var(--gray))] mb-4">
-                      Traditional Systems
-                    </h4>
-                    <div className="space-y-3">
-                      <div className="flex justify-between">
-                        <span className="text-[rgb(var(--gray))]">
-                          Success Rate:
-                        </span>
-                        <span className="text-[rgb(var(--status-warning))] font-bold">
-                          {(roi.traditional.successRate * 100).toFixed(1)}%
-                        </span>
-                      </div>
-                      <div className="flex justify-between">
-                        <span className="text-[rgb(var(--gray))]">
-                          Threats Prevented/Year:
-                        </span>
-                        <span className="text-[rgb(var(--phoenix-white))] font-bold">
-                          {roi.traditional.prevented.toFixed(1)}
-                        </span>
-                      </div>
-                      <div className="flex justify-between">
-                        <span className="text-[rgb(var(--gray))]">
-                          Annual Savings:
-                        </span>
-                        <span className="text-[rgb(var(--status-warning))] font-bold">
-                          ${roi.traditional.savings.toLocaleString()}
-                        </span>
-                      </div>
-                      <div className="flex justify-between border-t border-[rgba(var(--tactical-gray),0.2)] pt-3">
-                        <span className="text-[rgb(var(--gray))]">ROI:</span>
-                        <span className="text-[rgb(var(--gray))] font-bold text-xl">
-                          {roi.traditional.roi.toFixed(0)}%
-                        </span>
-                      </div>
-                    </div>
+                <div>
+                  <label
+                    htmlFor="roi-deployment-cost"
+                    className="block text-[rgb(var(--phoenix-white))] font-semibold mb-2"
+                  >
+                    Deployment Cost (USD)
+                  </label>
+                  <input
+                    id="roi-deployment-cost"
+                    type="range"
+                    min="100000"
+                    max="1000000"
+                    step="50000"
+                    value={roiInputs.deploymentCost}
+                    onChange={(e) =>
+                      setRoiInputs((prev) => ({
+                        ...prev,
+                        deploymentCost: parseInt(e.target.value),
+                      }))
+                    }
+                    className="range w-full"
+                  />
+                  <div className="flex justify-between text-[rgb(var(--gray))] text-sm mt-1">
+                    <span>$100K</span>
+                    <span className="text-[rgb(var(--accent))] font-bold">
+                      ${roiInputs.deploymentCost.toLocaleString()}
+                    </span>
+                    <span>$1M</span>
                   </div>
                 </div>
               </div>
 
-              <div className="mt-8 text-center">
-                <Button
-                  href="#contact"
-                  size="lg"
-                  className="bg-gradient-to-r from-[rgb(var(--primary))] to-[rgb(var(--accent))] hover:from-[rgb(var(--accent))] hover:to-[rgb(var(--primary))] shadow-xl"
-                >
-                  Get Detailed ROI Analysis
-                </Button>
+              {/* Results */}
+              <div className="space-y-6">
+                <div className="bg-[rgba(var(--tactical-black),0.6)] rounded-xl p-6 border border-[rgba(var(--primary),0.3)]">
+                  <h4 className="text-lg font-bold text-[rgb(var(--primary))] mb-4">
+                    Phoenix Rooivalk Results
+                  </h4>
+                  <div className="space-y-3">
+                    <div className="flex justify-between">
+                      <span className="text-[rgb(var(--gray))]">
+                        Success Rate:
+                      </span>
+                      <span className="text-[rgb(var(--status-active))] font-bold">
+                        {(roi.phoenix.successRate * 100).toFixed(1)}%
+                      </span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-[rgb(var(--gray))]">
+                        Threats Prevented/Year:
+                      </span>
+                      <span className="text-[rgb(var(--phoenix-white))] font-bold">
+                        {roi.phoenix.prevented.toFixed(1)}
+                      </span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-[rgb(var(--gray))]">
+                        Annual Savings:
+                      </span>
+                      <span className="text-[rgb(var(--status-active))] font-bold">
+                        ${roi.phoenix.savings.toLocaleString()}
+                      </span>
+                    </div>
+                    <div className="flex justify-between border-t border-[rgba(var(--primary),0.2)] pt-3">
+                      <span className="text-[rgb(var(--gray))]">ROI:</span>
+                      <span className="text-[rgb(var(--accent))] font-bold text-xl">
+                        {roi.phoenix.roi.toFixed(0)}%
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="bg-[rgba(var(--tactical-black),0.6)] rounded-xl p-6 border border-[rgba(var(--tactical-gray),0.3)]">
+                  <h4 className="text-lg font-bold text-[rgb(var(--gray))] mb-4">
+                    Traditional Systems
+                  </h4>
+                  <div className="space-y-3">
+                    <div className="flex justify-between">
+                      <span className="text-[rgb(var(--gray))]">
+                        Success Rate:
+                      </span>
+                      <span className="text-[rgb(var(--status-warning))] font-bold">
+                        {(roi.traditional.successRate * 100).toFixed(1)}%
+                      </span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-[rgb(var(--gray))]">
+                        Threats Prevented/Year:
+                      </span>
+                      <span className="text-[rgb(var(--phoenix-white))] font-bold">
+                        {roi.traditional.prevented.toFixed(1)}
+                      </span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-[rgb(var(--gray))]">
+                        Annual Savings:
+                      </span>
+                      <span className="text-[rgb(var(--status-warning))] font-bold">
+                        ${roi.traditional.savings.toLocaleString()}
+                      </span>
+                    </div>
+                    <div className="flex justify-between border-t border-[rgba(var(--primary),0.2)] pt-3">
+                      <span className="text-[rgb(var(--gray))]">ROI:</span>
+                      <span className="text-[rgb(var(--gray))] font-bold text-xl">
+                        {roi.traditional.roi.toFixed(0)}%
+                      </span>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
 
-          {/* Response Time Comparison */}
-          <div className="mb-20">
+          {/* Key Performance Metrics */}
+          <div className="mt-20">
             <div className="bg-[rgba(var(--tactical-charcoal),0.8)] backdrop-blur-sm border border-[rgba(var(--primary),0.2)] rounded-2xl p-8">
-              <h3 className="text-2xl font-bold text-[rgb(var(--primary))] mb-8 text-center">
-                Response Time Comparison
+              <h3 className="text-2xl font-bold text-[rgb(var(--primary))] mb-6 text-center">
+                Performance Comparison
               </h3>
 
               <div className="grid md:grid-cols-3 gap-8">
                 <div className="text-center">
                   <div className="text-4xl font-bold text-[rgb(var(--status-critical))] mb-2">
-                    {responseTimeComparison.traditional}ms
+                    3-10s
                   </div>
-                  <div className="text-[rgb(var(--phoenix-white))] font-semibold mb-2">
+                  <div className="text-[rgb(var(--gray))] font-semibold mb-2">
                     Traditional Systems
                   </div>
-                  <div className="w-full bg-[rgb(var(--tactical-gray))] rounded-full h-4 mb-4">
+                  <div className="w-full bg-[rgba(var(--status-critical),0.2)] rounded-full h-4 border border-[rgba(var(--status-critical),0.3)]">
                     <div
                       className="bg-gradient-to-r from-[rgb(var(--status-critical))] to-[rgb(var(--status-warning))] h-4 rounded-full"
                       style={{ width: "100%" }}
                     ></div>
                   </div>
-                  <div className="text-[rgb(var(--gray))] text-sm">
-                    3-10 second response time
+                  <div className="text-xs text-[rgb(var(--gray))] mt-2">
+                    Network dependent
                   </div>
                 </div>
 
                 <div className="text-center">
-                  <div className="text-4xl font-bold text-[rgb(var(--status-warning))] mb-2">
-                    {responseTimeComparison.current}ms
+                  <div className="text-4xl font-bold text-[rgb(var(--primary))] mb-2">
+                    1-3s
                   </div>
-                  <div className="text-[rgb(var(--phoenix-white))] font-semibold mb-2">
-                    Current Best Practice
+                  <div className="text-[rgb(var(--gray))] font-semibold mb-2">
+                    Current Best
                   </div>
-                  <div className="w-full bg-[rgb(var(--tactical-gray))] rounded-full h-4 mb-4">
+                  <div className="w-full bg-[rgba(var(--primary),0.2)] rounded-full h-4 border border-[rgba(var(--primary),0.3)]">
                     <div
-                      className="bg-gradient-to-r from-[rgb(var(--status-warning))] to-[rgb(var(--accent))] h-4 rounded-full"
-                      style={{ width: "50%" }}
+                      className="bg-gradient-to-r from-[rgb(var(--primary))] to-[rgb(var(--accent))] h-4 rounded-full"
+                      style={{ width: "30%" }}
                     ></div>
                   </div>
-                  <div className="text-[rgb(var(--gray))] text-sm">
-                    1-2 second response time
+                  <div className="text-xs text-[rgb(var(--gray))] mt-2">
+                    With network dependency
                   </div>
                 </div>
 
                 <div className="text-center">
                   <div className="text-4xl font-bold text-[rgb(var(--status-active))] mb-2">
-                    {responseTimeComparison.phoenix}ms
+                    120ms
                   </div>
-                  <div className="text-[rgb(var(--phoenix-white))] font-semibold mb-2">
+                  <div className="text-[rgb(var(--gray))] font-semibold mb-2">
                     Phoenix Rooivalk
                   </div>
-                  <div className="w-full bg-[rgb(var(--tactical-gray))] rounded-full h-4 mb-4">
+                  <div className="w-full bg-[rgba(var(--status-active),0.2)] rounded-full h-4 border border-[rgba(var(--status-active),0.3)]">
                     <div
                       className="bg-gradient-to-r from-[rgb(var(--status-active))] to-[rgb(var(--accent))] h-4 rounded-full"
                       style={{ width: "4%" }}
                     ></div>
                   </div>
-                  <div className="text-[rgb(var(--gray))] text-sm">
-                    120ms autonomous response
-                  </div>
-                </div>
-              </div>
-
-              <div className="mt-8 p-6 bg-[rgba(var(--tactical-black),0.6)] rounded-xl border border-[rgba(var(--primary),0.2)]">
-                <div className="text-center">
-                  <div className="text-3xl font-bold text-[rgb(var(--accent))] mb-2">
-                    {(
-                      responseTimeComparison.traditional /
-                      responseTimeComparison.phoenix
-                    ).toFixed(0)}
-                    x Faster
-                  </div>
-                  <div className="text-[rgb(var(--phoenix-white))] font-semibold mb-2">
-                    Phoenix Rooivalk vs Traditional Systems
-                  </div>
-                  <div className="text-[rgb(var(--gray))] text-sm">
-                    In contested environments, this speed difference means the
-                    difference between mission success and failure.
+                  <div className="text-xs text-[rgb(var(--gray))] mt-2">
+                    Autonomous edge processing
                   </div>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Threat Scenarios */}
-          <div className="mb-16">
-            <h3 className="text-2xl font-bold text-[rgb(var(--primary))] mb-8 text-center">
-              Real-World Impact Scenarios
+          {/* Concept Adaptation Calculator */}
+          <div className="mt-16">
+            <h3 className="text-3xl font-bold text-[var(--text-primary)] mb-8 text-center">
+              Concept Adaptation Explorer
             </h3>
-            <div className="grid md:grid-cols-2 gap-6">
-              {scenarios.map((scenario, index) => (
-                <div
-                  key={index}
-                  className="bg-[rgba(var(--tactical-charcoal),0.8)] backdrop-blur-sm border border-[rgba(var(--primary),0.2)] rounded-xl p-6 hover:border-[rgba(var(--primary),0.4)] transition-all duration-300"
-                >
-                  <div className="flex justify-between items-start mb-4">
-                    <h4 className="text-lg font-bold text-[rgb(var(--phoenix-white))]">
-                      {scenario.name}
-                    </h4>
-                    <span
-                      className={`px-3 py-1 rounded-full text-xs font-semibold ${
-                        scenario.criticality === "Critical"
-                          ? "bg-[rgba(var(--status-critical),0.2)] text-[rgb(var(--status-critical))] border border-[rgba(var(--status-critical),0.3)]"
-                          : scenario.criticality === "High"
-                            ? "bg-[rgba(var(--status-warning),0.2)] text-[rgb(var(--status-warning))] border border-[rgba(var(--status-warning),0.3)]"
-                            : "bg-[rgba(var(--status-active),0.2)] text-[rgb(var(--status-active))] border border-[rgba(var(--status-active),0.3)]"
-                      }`}
-                    >
-                      {scenario.criticality}
-                    </span>
-                  </div>
+            <p className="text-[var(--text-muted)] mb-8 max-w-3xl mx-auto text-center">
+              Explore how Phoenix Rooivalk's core technology could adapt to
+              different operational environments and threat scenarios.
+            </p>
 
-                  <div className="space-y-3 mb-4">
-                    <div className="flex justify-between">
-                      <span className="text-[rgb(var(--gray))]">
-                        Monthly Threats:
-                      </span>
-                      <span className="text-[rgb(var(--phoenix-white))] font-bold">
-                        {scenario.threats}
-                      </span>
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {/* Civilian Applications */}
+              <div className="card">
+                <div className="text-center mb-4">
+                  <div className="text-3xl mb-2">🏢</div>
+                  <h4 className="text-lg font-bold text-[var(--action-primary)] mb-2">
+                    Civilian Applications
+                  </h4>
+                </div>
+                <div className="space-y-3">
+                  <div className="text-sm">
+                    <div className="font-semibold text-[var(--text-primary)] mb-1">
+                      Airport Security
                     </div>
-                    <div className="flex justify-between">
-                      <span className="text-[rgb(var(--gray))]">
-                        Current Response:
-                      </span>
-                      <span className="text-[rgb(var(--status-warning))] font-bold">
-                        {scenario.currentResponse}ms
-                      </span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span className="text-[rgb(var(--gray))]">
-                        Phoenix Response:
-                      </span>
-                      <span className="text-[rgb(var(--status-active))] font-bold">
-                        {scenario.phoenixResponse}ms
-                      </span>
+                    <div className="text-[var(--text-muted)]">
+                      Perimeter protection, runway monitoring
                     </div>
                   </div>
-
-                  <div className="p-3 bg-[rgba(var(--tactical-black),0.6)] rounded-lg border border-[rgba(var(--primary),0.1)]">
-                    <div className="text-[rgb(var(--gray))] text-sm font-semibold mb-1">
-                      Impact:
+                  <div className="text-sm">
+                    <div className="font-semibold text-[var(--text-primary)] mb-1">
+                      Critical Infrastructure
                     </div>
-                    <div className="text-[rgb(var(--phoenix-white))] text-sm">
-                      {scenario.impact}
+                    <div className="text-[var(--text-muted)]">
+                      Power plants, water facilities, communication towers
+                    </div>
+                  </div>
+                  <div className="text-sm">
+                    <div className="font-semibold text-[var(--text-primary)] mb-1">
+                      Event Security
+                    </div>
+                    <div className="text-[var(--text-muted)]">
+                      Stadiums, concerts, public gatherings
                     </div>
                   </div>
                 </div>
-              ))}
+              </div>
+
+              {/* Commercial Security */}
+              <div className="card">
+                <div className="text-center mb-4">
+                  <div className="text-3xl mb-2">🏭</div>
+                  <h4 className="text-lg font-bold text-[var(--action-primary)] mb-2">
+                    Commercial Security
+                  </h4>
+                </div>
+                <div className="space-y-3">
+                  <div className="text-sm">
+                    <div className="font-semibold text-[var(--text-primary)] mb-1">
+                      Corporate Campus
+                    </div>
+                    <div className="text-[var(--text-muted)]">
+                      Headquarters, R&D facilities
+                    </div>
+                  </div>
+                  <div className="text-sm">
+                    <div className="font-semibold text-[var(--text-primary)] mb-1">
+                      Data Center Security
+                    </div>
+                    <div className="text-[var(--text-muted)]">
+                      Server farms, cloud infrastructure
+                    </div>
+                  </div>
+                  <div className="text-sm">
+                    <div className="font-semibold text-[var(--text-primary)] mb-1">
+                      Port Security
+                    </div>
+                    <div className="text-[var(--text-muted)]">
+                      Shipping terminals, cargo facilities
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Research & Development */}
+              <div className="card">
+                <div className="text-center mb-4">
+                  <div className="text-3xl mb-2">🔬</div>
+                  <h4 className="text-lg font-bold text-[var(--action-primary)] mb-2">
+                    Research & Development
+                  </h4>
+                </div>
+                <div className="space-y-3">
+                  <div className="text-sm">
+                    <div className="font-semibold text-[var(--text-primary)] mb-1">
+                      University Partnerships
+                    </div>
+                    <div className="text-[var(--text-muted)]">
+                      Academic research collaboration
+                    </div>
+                  </div>
+                  <div className="text-sm">
+                    <div className="font-semibold text-[var(--text-primary)] mb-1">
+                      Government Labs
+                    </div>
+                    <div className="text-[var(--text-muted)]">
+                      DARPA, NSF, national laboratories
+                    </div>
+                  </div>
+                  <div className="text-sm">
+                    <div className="font-semibold text-[var(--text-primary)] mb-1">
+                      International Cooperation
+                    </div>
+                    <div className="text-[var(--text-muted)]">
+                      NATO, allied defense research
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Technology Licensing */}
+              <div className="card">
+                <div className="text-center mb-4">
+                  <div className="text-3xl mb-2">⚡</div>
+                  <h4 className="text-lg font-bold text-[var(--action-primary)] mb-2">
+                    Technology Licensing
+                  </h4>
+                </div>
+                <div className="space-y-3">
+                  <div className="text-sm">
+                    <div className="font-semibold text-[var(--text-primary)] mb-1">
+                      Sensor Fusion
+                    </div>
+                    <div className="text-[var(--text-muted)]">
+                      Core detection algorithms
+                    </div>
+                  </div>
+                  <div className="text-sm">
+                    <div className="font-semibold text-[var(--text-primary)] mb-1">
+                      Edge Processing
+                    </div>
+                    <div className="text-[var(--text-muted)]">
+                      Autonomous decision-making
+                    </div>
+                  </div>
+                  <div className="text-sm">
+                    <div className="font-semibold text-[var(--text-primary)] mb-1">
+                      Blockchain Integration
+                    </div>
+                    <div className="text-[var(--text-muted)]">
+                      Evidence management systems
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="mt-8 p-4 bg-[var(--action-warning)]/10 border border-[var(--action-warning)]/20 rounded-lg">
+              <p className="text-sm text-[var(--action-warning)] text-center font-semibold">
+                💡 These are potential applications under exploration. Actual
+                deployment would require regulatory approval, market validation,
+                and technology adaptation for specific use cases.
+              </p>
+            </div>
+          </div>
+
+          {/* CTA */}
+          <div className="text-center mt-16">
+            <h3 className="text-3xl font-bold text-[var(--text-primary)] mb-4">
+              Interested in the Technology?
+            </h3>
+            <p className="text-[var(--text-muted)] mb-6 max-w-2xl mx-auto">
+              Learn more about Phoenix Rooivalk's innovative approach to
+              autonomous counter-drone defense and explore partnership
+              opportunities.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Button href="/contact" size="lg" variant="primary">
+                Join Development Program
+              </Button>
+              <Button href="/technical" variant="secondary" size="lg">
+                View Technical Concept
+              </Button>
             </div>
           </div>
         </div>

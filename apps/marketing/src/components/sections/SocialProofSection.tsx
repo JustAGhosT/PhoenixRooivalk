@@ -1,64 +1,88 @@
 import React from "react";
+import { RevealSection } from "../RevealSection";
 import { Button } from "../ui/button";
 
 export const SocialProofSection: React.FC = () => {
   const testimonials = [
     {
-      quote:
-        "Phoenix Rooivalk's 120ms response time gives us a critical edge in contested environments where traditional systems fail.",
-      author: "Col. Sarah Mitchell",
-      title: "Director of Air Defense Systems",
-      organization: "US Army Futures Command",
-      avatar: "👩‍💼",
+      quote: "Units need RF-silent detection paths in contested environments.",
+      author: "Defense Stakeholder",
+      title: "Operational Requirements",
+      organization: "Exploratory Interview",
+      avatar: "👨‍💼",
     },
     {
       quote:
-        "The autonomous edge processing capability eliminates our vulnerability to communication jamming - exactly what we needed.",
-      author: "Dr. James Chen",
-      title: "Chief Technology Officer",
-      organization: "Defense Innovation Unit",
-      avatar: "👨‍🔬",
+        "Systems must fail gracefully offline; central coordination is a bonus, not a dependency.",
+      author: "Technical Advisor",
+      title: "System Architecture",
+      organization: "Discovery Discussion",
+      avatar: "👩‍🔬",
     },
   ];
 
   const partnerships = [
-    { name: "Lockheed Martin", logo: "🛡️", type: "Strategic Partner" },
-    { name: "Raytheon", logo: "🎯", type: "Technology Partner" },
-    { name: "Northrop Grumman", logo: "🚁", type: "Integration Partner" },
-    { name: "Defense Innovation Unit", logo: "⚡", type: "Pilot Program" },
-    { name: "Army Futures Command", logo: "🎖️", type: "Evaluation Partner" },
-    { name: "AFRL", logo: "✈️", type: "Research Partner" },
+    { name: "Seeking Partnerships", logo: "🤝", type: "Development Partners" },
+    { name: "SBIR Application", logo: "🚀", type: "Funding Pursuit" },
+    { name: "Industry Collaboration", logo: "🔬", type: "Research Partners" },
   ];
 
   const certifications = [
-    { name: "ITAR Compliant", status: "Certified", icon: "🔒" },
-    { name: "ISO 27001", status: "In Progress", icon: "📋" },
-    { name: "FIPS 140-2", status: "Planned", icon: "🔐" },
-    { name: "MIL-STD-810G", status: "In Progress", icon: "🛡️" },
-    { name: "Export Control", status: "Certified", icon: "🌍" },
-    { name: "GDPR Compliance", status: "Certified", icon: "⚖️" },
+    { name: "ITAR Compliance", status: "Planned", icon: "🔒" },
+    { name: "ISO 27001", status: "Planned", icon: "📋" },
+    { name: "CMMC 2.0 L2", status: "Planned", icon: "🛡️" },
+    { name: "MIL-STD-810G", status: "Planned", icon: "🛡️" },
+    { name: "Export Control", status: "Planned", icon: "🌍" },
+    { name: "GDPR Compliance", status: "Planned", icon: "⚖️" },
+  ];
+
+  const developmentStatus = [
+    {
+      icon: "🔬",
+      title: "Concept Phase",
+      description: "Core architecture design and planning underway",
+      status: "Planning",
+    },
+    {
+      icon: "🚀",
+      title: "SBIR Strategy",
+      description: "Air Force SBIR Phase I application preparation",
+      status: "Planned",
+    },
+    {
+      icon: "🛡️",
+      title: "DoD Compliance",
+      description: "CMMC 2.0 Level 2 certification pathway planning",
+      status: "Planned",
+    },
+    {
+      icon: "🔒",
+      title: "Security Standards",
+      description: "Military-grade security protocols under design",
+      status: "Planning",
+    },
   ];
 
   const mediaCoverage = [
     {
-      outlet: "Defense News",
+      outlet: "Industry Outlook",
       headline: "Autonomous Counter-Drone Systems Show Promise",
-      date: "Dec 2024",
+      date: "Market Analysis",
     },
     {
-      outlet: "Aviation Week",
-      headline: "Edge Computing Revolutionizes Air Defense",
-      date: "Nov 2024",
+      outlet: "Technology Trends",
+      headline: "Edge Computing Potential in Air Defense",
+      date: "Future Applications",
     },
     {
-      outlet: "C4ISRNET",
-      headline: "120ms Response Time Sets New Standard",
-      date: "Oct 2024",
+      outlet: "Defense Innovation",
+      headline: "120ms Response Time Target Analysis",
+      date: "Technical Feasibility",
     },
     {
-      outlet: "Defense One",
-      headline: "Phoenix Rooivalk Passes Critical Tests",
-      date: "Sep 2024",
+      outlet: "Market Research",
+      headline: "Counter-UAS Technology Development",
+      date: "Industry Assessment",
     },
   ];
 
@@ -74,19 +98,24 @@ export const SocialProofSection: React.FC = () => {
           {/* Section Header */}
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-br from-[rgb(var(--phoenix-white))] to-[rgb(var(--primary))] mb-6">
-              Trusted by Defense Leaders
+              Innovation in Counter-Drone Defense
             </h2>
             <p className="text-xl text-[rgb(var(--gray))] max-w-3xl mx-auto">
-              Phoenix Rooivalk is actively deployed in pilot programs and
-              trusted by leading defense organizations worldwide.
+              Phoenix Rooivalk represents the next generation of autonomous
+              counter-drone defense technology, designed to address critical
+              gaps in current market solutions.
             </p>
           </div>
 
-          {/* Testimonials */}
+          {/* What We're Hearing */}
           <div className="mb-20">
             <h3 className="text-2xl font-bold text-[rgb(var(--primary))] mb-8 text-center">
-              What Defense Leaders Say
+              What We're Hearing (Discovery Notes, Not Endorsements)
             </h3>
+            <p className="text-sm text-[rgb(var(--gray))] text-center mb-6 max-w-2xl mx-auto">
+              Paraphrased insights from exploratory interviews with defense
+              stakeholders.
+            </p>
             <div className="grid md:grid-cols-2 gap-8">
               {testimonials.map((testimonial, index) => (
                 <div
@@ -140,34 +169,72 @@ export const SocialProofSection: React.FC = () => {
             </div>
           </div>
 
-          {/* Certifications */}
+          {/* Development Status & Certifications */}
           <div className="mb-20">
             <h3 className="text-2xl font-bold text-[rgb(var(--primary))] mb-8 text-center">
-              Compliance & Certifications
+              Development Status & Compliance
             </h3>
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-              {certifications.map((cert, index) => (
-                <div
-                  key={index}
-                  className="bg-[rgba(var(--tactical-charcoal),0.6)] backdrop-blur-sm border border-[rgba(var(--primary),0.1)] rounded-lg p-4 text-center hover:border-[rgba(var(--primary),0.3)] transition-all duration-300"
-                >
-                  <div className="text-2xl mb-2">{cert.icon}</div>
-                  <div className="font-semibold text-[rgb(var(--phoenix-white))] text-sm mb-1">
-                    {cert.name}
-                  </div>
+
+            {/* Development Status */}
+            <div className="mb-12">
+              <h4 className="text-xl font-semibold text-[rgb(var(--accent))] mb-6 text-center">
+                Development Roadmap (Targets, Post-Funding)
+              </h4>
+              <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                {developmentStatus.map((status, index) => (
+                  <RevealSection key={index}>
+                    <div className="bg-[rgba(var(--tactical-charcoal),0.8)] backdrop-blur-sm border border-[rgba(var(--primary),0.2)] rounded-xl p-6 text-center hover:border-[rgba(var(--primary),0.4)] transition-all duration-300">
+                      <div className="text-3xl mb-3">{status.icon}</div>
+                      <h5 className="text-lg font-bold text-[rgb(var(--primary))] mb-2">
+                        {status.title}
+                      </h5>
+                      <p className="text-[rgb(var(--gray))] text-sm mb-3">
+                        {status.description}
+                      </p>
+                      <div
+                        className={`inline-block px-3 py-1 rounded-full text-xs font-semibold ${
+                          status.status === "Active"
+                            ? "bg-[rgba(var(--status-active),0.2)] text-[rgb(var(--status-active))] border border-[rgba(var(--status-active),0.3)]"
+                            : "bg-[rgba(var(--status-warning),0.2)] text-[rgb(var(--status-warning))] border border-[rgba(var(--status-warning),0.3)]"
+                        }`}
+                      >
+                        {status.status}
+                      </div>
+                    </div>
+                  </RevealSection>
+                ))}
+              </div>
+            </div>
+
+            {/* Compliance Roadmap */}
+            <div>
+              <h4 className="text-xl font-semibold text-[rgb(var(--accent))] mb-6 text-center">
+                Assurance Roadmap (Targets, Post-Funding)
+              </h4>
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+                {certifications.map((cert, index) => (
                   <div
-                    className={`text-xs px-2 py-1 rounded-full inline-block ${
-                      cert.status === "Certified"
-                        ? "bg-[rgba(var(--status-active),0.2)] text-[rgb(var(--status-active))] border border-[rgba(var(--status-active),0.3)]"
-                        : cert.status === "In Progress"
-                          ? "bg-[rgba(var(--status-warning),0.2)] text-[rgb(var(--status-warning))] border border-[rgba(var(--status-warning),0.3)]"
-                          : "bg-[rgba(var(--status-offline),0.2)] text-[rgb(var(--status-offline))] border border-[rgba(var(--status-offline),0.3)]"
-                    }`}
+                    key={index}
+                    className="bg-[rgba(var(--tactical-charcoal),0.6)] backdrop-blur-sm border border-[rgba(var(--primary),0.1)] rounded-lg p-4 text-center hover:border-[rgba(var(--primary),0.3)] transition-all duration-300"
                   >
-                    {cert.status}
+                    <div className="text-2xl mb-2">{cert.icon}</div>
+                    <div className="font-semibold text-[rgb(var(--phoenix-white))] text-sm mb-1">
+                      {cert.name}
+                    </div>
+                    <div
+                      className={`text-xs px-2 py-1 rounded-full inline-block ${
+                        cert.status === "Certified"
+                          ? "bg-[rgba(var(--status-active),0.2)] text-[rgb(var(--status-active))] border border-[rgba(var(--status-active),0.3)]"
+                          : cert.status === "In Progress"
+                            ? "bg-[rgba(var(--status-warning),0.2)] text-[rgb(var(--status-warning))] border border-[rgba(var(--status-warning),0.3)]"
+                            : "bg-[rgba(var(--status-offline),0.2)] text-[rgb(var(--status-offline))] border border-[rgba(var(--status-offline),0.3)]"
+                      }`}
+                    >
+                      {cert.status}
+                    </div>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
           </div>
 
@@ -215,7 +282,7 @@ export const SocialProofSection: React.FC = () => {
               </Button>
               <Button
                 href="/compliance"
-                variant="outline"
+                variant="ghost"
                 size="lg"
                 className="border-[rgb(var(--primary))] text-[rgb(var(--primary))] hover:bg-[rgba(var(--primary),0.1)]"
               >

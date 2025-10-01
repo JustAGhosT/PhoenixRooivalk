@@ -134,6 +134,15 @@ export const ThreatSimulator: React.FC = (): JSX.Element => {
 
   return (
     <div className="relative w-full h-[600px] bg-gradient-to-br from-slate-900 via-slate-950 to-slate-900 rounded-xl border border-red-500/20 overflow-hidden shadow-2xl">
+      {/* Critical Simulation Disclaimer */}
+      <div className="absolute top-2 left-2 right-2 z-50 bg-black/80 backdrop-blur-sm border border-red-500/30 rounded-lg p-2">
+        <p className="text-xs text-red-400 text-center font-semibold">
+          ⚠️ SIMULATION: This interactive module is designed to visualize
+          concepts. It does not represent real-world sensor performance,
+          detection ranges, or decision latency.
+        </p>
+      </div>
+
       {/* Technical grid background */}
       <div className={styles.technicalGrid}></div>
 

@@ -1,6 +1,6 @@
 import React from "react";
-import { Button } from "../ui/button";
 import { RevealSection } from "../RevealSection";
+import { Button } from "../ui/button";
 
 export const AIBenefitsSection: React.FC = () => {
   return (
@@ -103,7 +103,7 @@ export const AIBenefitsSection: React.FC = () => {
               </Button>
               <Button
                 href="mailto:smit.jurie@gmail.com?subject=Phoenix%20Rooivalk%20-%20AI%20%2B%20Blockchain%20Capabilities%20Inquiry"
-                variant="outline"
+                variant="ghost"
                 size="lg"
               >
                 Technical Brief

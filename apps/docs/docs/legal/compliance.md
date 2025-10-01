@@ -13,10 +13,12 @@ See repository policies:
 ## RF jamming — compliance and licensing (summary)
 
 - **Prohibitions**
+
   - Civilian manufacture, operation, or sale of RF jammers is illegal or tightly
     regulated in many jurisdictions.
 
 - **U.S. (FCC)**
+
   - Generally prohibited under the Communications Act; enforcement by FCC.
   - Testing may be possible only under specific authorizations (e.g., FCC
     experimental authorizations) and in shielded facilities or approved ranges.
@@ -25,10 +27,12 @@ See repository policies:
     experiments; Part 97 is Amateur Radio and does not authorize jamming).
 
 - **Other jurisdictions**
+
   - Similar prohibitions or licensing regimes (e.g., Ofcom in the UK, ETSI/EU
     frameworks). Local counsel is required.
 
 - **Licensing process (high level)**
+
   - Determine competent regulator and applicable authorization type.
   - Prepare a test plan and mitigation (shielding, range, safety), device
     description, and compliance measures.
@@ -46,15 +50,18 @@ See repository policies:
   approved facilities.
 
 - **Critical warning**
+
   - GNSS/GPS spoofing can interfere with critical navigation systems and
     aviation safety and may violate federal law.
 
 - **Safety zones**
+
   - Mandatory exclusion zones around airports, heliports, and other critical
     infrastructure (e.g., ports, power plants). Coordinate NOTAMs where
     applicable.
 
 - **Authorization**
+
   - Conduct only under written authorization from competent authorities and in
     shielded facilities or certified ranges. Coordinate with aviation and public
     safety authorities as required.

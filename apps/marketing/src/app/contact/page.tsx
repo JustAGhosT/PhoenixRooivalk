@@ -1,6 +1,6 @@
 "use client";
-import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import React, { useEffect, useState } from "react";
 
 export default function ContactPage(): React.ReactElement {
   const [email, setEmail] = useState("");
@@ -70,8 +70,9 @@ export default function ContactPage(): React.ReactElement {
               Contact Phoenix Rooivalk
             </h1>
             <p className="text-[var(--gray)] mt-4 max-w-3xl mx-auto">
-              Ready to deploy advanced counter-UAS defense? Get in touch for
-              technical demonstrations and partnership opportunities.
+              Interested in the Phoenix Rooivalk concept? Get in touch for
+              partnership opportunities, investment discussions, and design
+              collaboration.
             </p>
           </div>
         </div>
@@ -103,43 +104,112 @@ export default function ContactPage(): React.ReactElement {
                   </p>
                 </div>
                 <div>
-                  <h3 className="font-semibold mb-2">
-                    Technical Demonstrations
-                  </h3>
+                  <h3 className="font-semibold mb-2">Concept Discussion</h3>
                   <p className="text-[var(--gray)]">
-                    Schedule a comprehensive technical demonstration showcasing
-                    multi-sensor detection, neutralization capabilities, and
-                    blockchain evidence logging.
+                    Discuss the Phoenix Rooivalk concept, technical
+                    architecture, and potential applications in your operational
+                    environment.
                   </p>
                   <button
                     onClick={() =>
                       handleEmailClick(
-                        "Phoenix Rooivalk Technical Demo",
-                        "I would like to schedule a technical demonstration of the Phoenix Rooivalk Counter-UAS System.",
+                        "Phoenix Rooivalk Concept Discussion",
+                        "I would like to discuss the Phoenix Rooivalk concept and explore potential collaboration opportunities.",
                       )
                     }
                     className="inline-block mt-3 rounded bg-gradient-to-br from-[var(--primary)] to-[var(--secondary)] px-4 py-2 font-bold text-[var(--dark)] shadow-glow hover:-translate-y-0.5 transition disabled:opacity-50"
                     disabled={!email}
                   >
-                    Schedule Demo
+                    Request Intro Call
                   </button>
                 </div>
                 <div>
-                  <h3 className="font-semibold mb-2">Partnership Inquiries</h3>
+                  <h3 className="font-semibold mb-2">Investment & Funding</h3>
                   <p className="text-[var(--gray)]">
-                    Interested in distribution partnerships, system integration,
-                    or custom deployment configurations? Contact us for
-                    partnership opportunities.
+                    Interested in funding opportunities, SBIR collaboration, or
+                    early-stage investment? Contact us to discuss partnership
+                    and funding opportunities.
                   </p>
                   <button
                     onClick={() =>
-                      handleEmailClick("Phoenix Rooivalk Partnership Inquiry")
+                      handleEmailClick("Phoenix Rooivalk Investment Inquiry")
                     }
                     className="inline-block mt-3 rounded border-2 border-[var(--primary)] px-4 py-2 font-bold text-[var(--primary)] hover:bg-[var(--primary)] hover:text-[var(--dark)] transition disabled:opacity-50"
                     disabled={!email}
                   >
-                    Partnership Inquiry
+                    Investment Inquiry
                   </button>
+                </div>
+              </div>
+            </div>
+
+            <div className="rounded-xl border border-[rgba(0,255,136,0.2)] bg-[rgba(15,23,42,0.8)] backdrop-blur p-8">
+              <h2 className="text-2xl font-bold mb-6 text-[var(--primary)]">
+                Market Exploration
+              </h2>
+              <div className="space-y-6">
+                <div>
+                  <h3 className="font-semibold mb-3 text-[var(--text-primary)]">
+                    Alternative Applications Under Exploration
+                  </h3>
+                  <div className="grid md:grid-cols-2 gap-4">
+                    <div className="space-y-3">
+                      <div className="text-sm">
+                        <div className="font-semibold text-[var(--action-primary)] mb-1">
+                          Civilian Applications
+                        </div>
+                        <ul className="text-[var(--text-muted)] space-y-1">
+                          <li>• Airport security & perimeter protection</li>
+                          <li>• Critical infrastructure monitoring</li>
+                          <li>• Event security & crowd safety</li>
+                          <li>• Border security applications</li>
+                        </ul>
+                      </div>
+                      <div className="text-sm">
+                        <div className="font-semibold text-[var(--action-primary)] mb-1">
+                          Commercial Security
+                        </div>
+                        <ul className="text-[var(--text-muted)] space-y-1">
+                          <li>• Corporate campus protection</li>
+                          <li>• Data center security</li>
+                          <li>• Port & shipping terminal security</li>
+                          <li>• VIP protection services</li>
+                        </ul>
+                      </div>
+                    </div>
+                    <div className="space-y-3">
+                      <div className="text-sm">
+                        <div className="font-semibold text-[var(--action-primary)] mb-1">
+                          Research Partnerships
+                        </div>
+                        <ul className="text-[var(--text-muted)] space-y-1">
+                          <li>• University research collaboration</li>
+                          <li>• Government laboratory partnerships</li>
+                          <li>• International cooperation (NATO)</li>
+                          <li>• Technology transfer programs</li>
+                        </ul>
+                      </div>
+                      <div className="text-sm">
+                        <div className="font-semibold text-[var(--action-primary)] mb-1">
+                          Technology Licensing
+                        </div>
+                        <ul className="text-[var(--text-muted)] space-y-1">
+                          <li>• Sensor fusion algorithms</li>
+                          <li>• Edge processing capabilities</li>
+                          <li>• Blockchain evidence systems</li>
+                          <li>• Countermeasure technologies</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="mt-4 p-3 bg-[var(--action-warning)]/10 border border-[var(--action-warning)]/20 rounded-lg">
+                    <p className="text-xs text-[var(--action-warning)] text-center font-semibold">
+                      💡 These are potential applications under exploration.
+                      Actual deployment would require regulatory approval,
+                      market validation, and technology adaptation for specific
+                      use cases.
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>

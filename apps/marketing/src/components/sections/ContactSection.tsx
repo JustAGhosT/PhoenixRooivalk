@@ -41,7 +41,7 @@ export const ContactSection: React.FC = () => {
               </Button>
               <Button
                 href="mailto:partnerships@phoenixrooivalk.com"
-                variant="outline"
+                variant="ghost"
                 size="lg"
                 className="w-full"
               >
@@ -73,7 +73,7 @@ export const ContactSection: React.FC = () => {
               </Button>
               <Button
                 href="/technical"
-                variant="outline"
+                variant="ghost"
                 size="lg"
                 className="w-full"
               >

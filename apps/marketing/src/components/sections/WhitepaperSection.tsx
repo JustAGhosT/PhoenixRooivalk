@@ -1,7 +1,7 @@
-import React from "react";
-import { Button } from "../ui/button";
 import { downloadWhitepaper } from "@phoenix-rooivalk/utils";
+import React from "react";
 import { RevealSection } from "../RevealSection";
+import { Button } from "../ui/button";
 
 export const WhitepaperSection: React.FC = () => {
   const features: Array<{
@@ -72,7 +72,7 @@ export const WhitepaperSection: React.FC = () => {
             >
               📥 Download Technical Whitepaper
             </Button>
-            <Button href="#contact" variant="outline" size="lg">
+            <Button href="#contact" variant="ghost" size="lg">
               Request Full Documentation
             </Button>
           </div>
@@ -88,15 +88,23 @@ const FeatureCard: React.FC<{
   description: string;
   color: "green" | "blue" | "purple" | "yellow";
 }> = ({ icon, title, description, color }) => {
-  const colorClasses = {
-    green: "bg-gray-800/50 border-green-500/20 text-green-400",
-    blue: "bg-gray-800/50 border-blue-500/20 text-blue-400",
-    purple: "bg-gray-800/50 border-purple-500/20 text-purple-400",
-    yellow: "bg-gray-800/50 border-yellow-500/20 text-yellow-400",
+  const getColorClass = (color: string) => {
+    switch (color) {
+      case "green":
+        return "bg-gray-800/50 border-green-500/20 text-green-400";
+      case "blue":
+        return "bg-gray-800/50 border-blue-500/20 text-blue-400";
+      case "purple":
+        return "bg-gray-800/50 border-purple-500/20 text-purple-400";
+      case "yellow":
+        return "bg-gray-800/50 border-yellow-500/20 text-yellow-400";
+      default:
+        return "bg-gray-800/50 border-blue-500/20 text-blue-400";
+    }
   };
 
   return (
-    <div className={`p-4 rounded-lg border ${colorClasses[color]}`}>
+    <div className={`p-4 rounded-lg border ${getColorClass(color)}`}>
       <div className="text-2xl mb-2">{icon}</div>
       <h3 className={`font-semibold text-sm mb-1`}>{title}</h3>
       <p className="text-xs text-gray-300">{description}</p>
