@@ -14,14 +14,16 @@ import { moveThreats, spawnThreat } from "./utils/threatUtils";
 
 interface ThreatSimulatorProps {
   isTeaser?: boolean;
+  autoFullscreen?: boolean;
 }
 
 export const ThreatSimulator: React.FC<ThreatSimulatorProps> = ({
   isTeaser = false,
+  autoFullscreen = false,
 }): JSX.Element => {
   const gameRef = useRef<HTMLDivElement>(null);
   const lastFrameTime = useRef<number>(0);
-  const animationFrameRef = useRef<number>();
+  const animationFrameRef = useRef<number | undefined>(undefined);
 
   // Custom hooks for state and timeouts
   const {
@@ -160,7 +162,14 @@ export const ThreatSimulator: React.FC<ThreatSimulatorProps> = ({
       if (!threat) return;
 
       const weapon = gameState.weapons[gameState.selectedWeapon];
-      const effectiveness = weapon.effectiveness[threat.type];
+      if (!weapon) {
+        return;
+      }
+
+      const effectiveness = weapon.effectiveness?.[threat.type] ?? 0;
+      if (!Number.isFinite(effectiveness) || effectiveness <= 0) {
+        return;
+      }
 
       // Check if weapon is effective against this threat type
       if (
@@ -1032,7 +1041,7 @@ export const ThreatSimulator: React.FC<ThreatSimulatorProps> = ({
         {gameState.threats.map((threat) => {
           const appearance = getThreatAppearance(threat.type);
           const weapon = gameState.weapons[gameState.selectedWeapon];
-          const effectiveness = weapon.effectiveness[threat.type];
+          const effectiveness = weapon?.effectiveness?.[threat.type] ?? 0;
           const isEffective =
             effectiveness >= 0.5 ||
             gameState.activePowerUps.some((p) => p.effect.penetration);

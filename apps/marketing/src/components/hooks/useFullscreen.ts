@@ -1,7 +1,7 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState, type RefObject } from "react";
 
 interface UseFullscreenProps {
-  gameRef: React.RefObject<HTMLDivElement>;
+  gameRef: RefObject<HTMLDivElement>;
   autoFullscreen?: boolean;
   isTeaser?: boolean;
 }

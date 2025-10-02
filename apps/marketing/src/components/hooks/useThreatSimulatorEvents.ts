@@ -201,6 +201,7 @@ export const useThreatSimulatorEvents = ({
 
   const handleThreatClick = useCallback(
     (e: React.MouseEvent, threatId: string) => {
+      e.preventDefault();
       e.stopPropagation();
 
       if (e.button === 0) {
@@ -236,6 +237,9 @@ export const useThreatSimulatorEvents = ({
   const handleGameAreaClick = useCallback(
     (e: React.MouseEvent) => {
       if (!gameRef.current) return;
+
+      e.preventDefault();
+      e.stopPropagation();
 
       const rect = gameRef.current.getBoundingClientRect();
       const x = e.clientX - rect.left;
@@ -307,6 +311,11 @@ export const useThreatSimulatorEvents = ({
     },
     [gameState.selectedWeapon, switchWeapon, gameRef],
   );
+
+  // Context menu handler to prevent right-click menu
+  const handleContextMenu = useCallback((e: React.MouseEvent) => {
+    e.preventDefault();
+  }, []);
 
   // Keyboard shortcuts
   const handleKeyDown = useCallback(
@@ -400,6 +409,7 @@ export const useThreatSimulatorEvents = ({
     handleGameAreaClick,
     handleGameAreaActivate,
     handleWheel,
+    handleContextMenu,
     handleKeyDown,
   };
 };

@@ -107,7 +107,14 @@ export const useThreatSimulatorGame = ({
       if (!threat) return;
 
       const weapon = gameState.weapons[gameState.selectedWeapon];
-      const effectiveness = weapon.effectiveness[threat.type];
+      if (!weapon) {
+        return;
+      }
+
+      const effectiveness = weapon.effectiveness?.[threat.type] ?? 0;
+      if (!Number.isFinite(effectiveness) || effectiveness <= 0) {
+        return;
+      }
 
       // Check if weapon is effective against this threat type
       if (

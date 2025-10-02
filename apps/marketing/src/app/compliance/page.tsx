@@ -318,8 +318,8 @@ export default function CompliancePage(): React.ReactElement {
       <footer className="px-[5%] py-8 text-center text-[var(--gray)] border-t border-[rgba(0,255,136,0.2)]">
         <div className="max-w-[1400px] mx-auto">
           <p>
-            © 2025 Phoenix Rooivalk. All rights reserved. | ITAR Compliant |
-            ISO 27001 Certified
+            © 2025 Phoenix Rooivalk. All rights reserved. | ITAR Compliance
+            Planned | ISO 27001 Certification Planned
           </p>
           <div className="mt-4">
             <Link

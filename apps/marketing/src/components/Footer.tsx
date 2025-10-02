@@ -30,7 +30,7 @@ export const Footer: React.FC = () => {
   ];
 
   return (
-    <footer className="bg-gradient-to-br from-[rgb(var(--tactical-obsidian))] to-[rgb(var(--tactical-black))] border-t border-[rgba(var(--primary),0.2)]">
+    <footer className="relative bg-gradient-to-br from-[rgb(var(--tactical-obsidian))] to-[rgb(var(--tactical-black))] border-t border-[rgba(var(--primary),0.2)]">
       {/* Background pattern */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute inset-0 bg-[linear-gradient(rgba(var(--primary),0.1)_1px,_transparent_1px),_linear-gradient(90deg,_rgba(var(--primary),0.1)_1px,_transparent_1px)] bg-[length:50px_50px]"></div>
