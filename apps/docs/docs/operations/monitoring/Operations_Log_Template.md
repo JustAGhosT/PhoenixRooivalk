@@ -30,14 +30,14 @@ analysis, and continuous improvement.
 - [ ] Solana
 - [ ] Ethereum
 - [ ] Avalanche Subnet
-- [ ] Other: ******\_\_\_******
+- [ ] Other: **\*\***\_\_\_**\*\***
 
 **Commitment/Finality Target**:
 
 - [ ] Processed
 - [ ] Confirmed
 - [ ] Finalized
-- [ ] Other: ******\_\_\_******
+- [ ] Other: **\*\***\_\_\_**\*\***
 
 **Outbox Batch Settings**:
 
@@ -138,7 +138,7 @@ analysis, and continuous improvement.
 - [ ] Retry count adjustment
 - [ ] Backoff strategy modification
 - [ ] Interval timing optimization
-- [ ] Other: ******\_\_\_******
+- [ ] Other: **\*\***\_\_\_**\*\***
 
 ### Infrastructure Changes
 
@@ -147,7 +147,7 @@ analysis, and continuous improvement.
 - [ ] Primary RPC provider change
 - [ ] Failover RPC provider change
 - [ ] Load balancing adjustment
-- [ ] Other: ******\_\_\_******
+- [ ] Other: **\*\***\_\_\_**\*\***
 
 ### Security Review Items
 
@@ -157,7 +157,7 @@ analysis, and continuous improvement.
 - [ ] Environment variable handling
 - [ ] Logging security audit
 - [ ] Access control review
-- [ ] Other: ******\_\_\_******
+- [ ] Other: **\*\***\_\_\_**\*\***
 
 ### Decision Impacts
 
@@ -167,7 +167,7 @@ analysis, and continuous improvement.
 - [ ] ADR-002: Performance Optimization
 - [ ] ADR-003: Security Framework
 - [ ] ADR-004: Operational Procedures
-- [ ] Other: ******\_\_\_******
+- [ ] Other: **\*\***\_\_\_**\*\***
 
 ---
 

@@ -2,18 +2,22 @@
 
 ## Executive Summary
 
-This document provides comprehensive API documentation for the Phoenix Rooivalk Counter-Drone Defense System. The API enables integration with third-party systems, cloud platforms, and external services.
+This document provides comprehensive API documentation for the Phoenix Rooivalk
+Counter-Drone Defense System. The API enables integration with third-party
+systems, cloud platforms, and external services.
 
 ---
 
 ## API Overview
 
 ### Base URL
+
 ```
 https://api.phoenixrooivalk.com/v1
 ```
 
 ### Authentication
+
 - **API Key**: Required for all requests
 - **OAuth 2.0**: Supported for enterprise integrations
 - **Rate Limiting**: 1000 requests per hour per API key
@@ -24,10 +28,11 @@ https://api.phoenixrooivalk.com/v1
 
 ### Threat Detection API
 
-**Endpoint**: `POST /threats/detect`
-**Description**: Submit sensor data for threat detection
+**Endpoint**: `POST /threats/detect` **Description**: Submit sensor data for
+threat detection
 
 **Request**:
+
 ```json
 {
   "sensor_data": {
@@ -38,7 +43,7 @@ https://api.phoenixrooivalk.com/v1
   },
   "location": {
     "latitude": 40.7128,
-    "longitude": -74.0060,
+    "longitude": -74.006,
     "altitude": 100
   },
   "timestamp": "2025-01-01T12:00:00Z"
@@ -46,6 +51,7 @@ https://api.phoenixrooivalk.com/v1
 ```
 
 **Response**:
+
 ```json
 {
   "threat_id": "threat_12345",
@@ -59,10 +65,11 @@ https://api.phoenixrooivalk.com/v1
 
 ### Evidence Anchoring API
 
-**Endpoint**: `POST /evidence/anchor`
-**Description**: Anchor evidence to blockchain
+**Endpoint**: `POST /evidence/anchor` **Description**: Anchor evidence to
+blockchain
 
 **Request**:
+
 ```json
 {
   "evidence_id": "evidence_12345",
@@ -77,6 +84,7 @@ https://api.phoenixrooivalk.com/v1
 ```
 
 **Response**:
+
 ```json
 {
   "transaction_id": "tx_abc123",
@@ -88,10 +96,11 @@ https://api.phoenixrooivalk.com/v1
 
 ### System Status API
 
-**Endpoint**: `GET /system/status`
-**Description**: Get system health and performance metrics
+**Endpoint**: `GET /system/status` **Description**: Get system health and
+performance metrics
 
 **Response**:
+
 ```json
 {
   "status": "operational",
@@ -116,10 +125,11 @@ https://api.phoenixrooivalk.com/v1
 
 ### Morpheus Integration API
 
-**Endpoint**: `POST /ai/morpheus/analyze`
-**Description**: Submit data for enhanced AI analysis
+**Endpoint**: `POST /ai/morpheus/analyze` **Description**: Submit data for
+enhanced AI analysis
 
 **Request**:
+
 ```json
 {
   "data": "threat_analysis_data",
@@ -129,6 +139,7 @@ https://api.phoenixrooivalk.com/v1
 ```
 
 **Response**:
+
 ```json
 {
   "job_id": "job_12345",
@@ -140,10 +151,11 @@ https://api.phoenixrooivalk.com/v1
 
 ### Azure Cloud Integration API
 
-**Endpoint**: `POST /cloud/azure/sync`
-**Description**: Synchronize data with Azure Government Cloud
+**Endpoint**: `POST /cloud/azure/sync` **Description**: Synchronize data with
+Azure Government Cloud
 
 **Request**:
+
 ```json
 {
   "data_type": "evidence",
@@ -153,6 +165,7 @@ https://api.phoenixrooivalk.com/v1
 ```
 
 **Response**:
+
 ```json
 {
   "sync_id": "sync_12345",
@@ -168,10 +181,11 @@ https://api.phoenixrooivalk.com/v1
 
 ### Threat Detection Webhooks
 
-**Endpoint**: `POST /webhooks/threat-detected`
-**Description**: Receive real-time threat detection notifications
+**Endpoint**: `POST /webhooks/threat-detected` **Description**: Receive
+real-time threat detection notifications
 
 **Payload**:
+
 ```json
 {
   "event": "threat_detected",
@@ -179,7 +193,7 @@ https://api.phoenixrooivalk.com/v1
   "confidence": 0.95,
   "location": {
     "latitude": 40.7128,
-    "longitude": -74.0060
+    "longitude": -74.006
   },
   "timestamp": "2025-01-01T12:00:00Z"
 }
@@ -187,10 +201,11 @@ https://api.phoenixrooivalk.com/v1
 
 ### System Status Webhooks
 
-**Endpoint**: `POST /webhooks/system-status`
-**Description**: Receive system status change notifications
+**Endpoint**: `POST /webhooks/system-status` **Description**: Receive system
+status change notifications
 
 **Payload**:
+
 ```json
 {
   "event": "status_change",
@@ -206,6 +221,7 @@ https://api.phoenixrooivalk.com/v1
 ## Error Handling
 
 ### Error Response Format
+
 ```json
 {
   "error": {
@@ -221,6 +237,7 @@ https://api.phoenixrooivalk.com/v1
 ```
 
 ### Common Error Codes
+
 - **400**: Bad Request - Invalid request format
 - **401**: Unauthorized - Invalid API key
 - **403**: Forbidden - Insufficient permissions
@@ -233,6 +250,7 @@ https://api.phoenixrooivalk.com/v1
 ## SDKs and Libraries
 
 ### Python SDK
+
 ```python
 from phoenixrooivalk import PhoenixRooivalkClient
 
@@ -246,11 +264,12 @@ evidence = client.anchor_evidence(threat_id, sensor_data)
 ```
 
 ### JavaScript SDK
+
 ```javascript
-const PhoenixRooivalk = require('phoenixrooivalk-sdk');
+const PhoenixRooivalk = require("phoenixrooivalk-sdk");
 
 const client = new PhoenixRooivalk.Client({
-  apiKey: 'your_api_key'
+  apiKey: "your_api_key",
 });
 
 // Detect threat
@@ -261,6 +280,7 @@ const evidence = await client.anchorEvidence(threatId, sensorData);
 ```
 
 ### Rust SDK
+
 ```rust
 use phoenixrooivalk_sdk::PhoenixRooivalkClient;
 
@@ -278,11 +298,13 @@ let evidence = client.anchor_evidence(threat_id, sensor_data).await?;
 ## Rate Limits and Quotas
 
 ### Rate Limits
+
 - **Standard**: 1000 requests per hour
 - **Enterprise**: 10000 requests per hour
 - **Burst**: 100 requests per minute
 
 ### Quotas
+
 - **Threat Detection**: 1000 detections per day
 - **Evidence Anchoring**: 10000 anchors per day
 - **Data Storage**: 100GB per month
@@ -292,16 +314,19 @@ let evidence = client.anchor_evidence(threat_id, sensor_data).await?;
 ## Security
 
 ### Authentication
+
 - **API Keys**: Required for all requests
 - **OAuth 2.0**: Supported for enterprise
 - **JWT Tokens**: For session-based authentication
 
 ### Encryption
+
 - **TLS 1.3**: All API communications
 - **AES-256**: Data at rest encryption
 - **End-to-End**: Sensitive data encryption
 
 ### Compliance
+
 - **ITAR**: Export control compliance
 - **DoD**: Defense contractor compliance
 - **GDPR**: Data privacy compliance
@@ -311,16 +336,18 @@ let evidence = client.anchor_evidence(threat_id, sensor_data).await?;
 ## Support
 
 ### Documentation
+
 - **API Reference**: Complete API documentation
 - **Code Examples**: Sample code and tutorials
 - **SDK Documentation**: SDK-specific documentation
 
 ### Support Channels
+
 - **Email**: api-support@phoenixrooivalk.com
 - **Slack**: #api-support channel
 - **Phone**: +1-555-PHOENIX (24/7 support)
 
 ---
 
-*This document contains confidential API information. Distribution is restricted to authorized personnel only. © 2025 Phoenix Rooivalk. All rights reserved.*
- 
+_This document contains confidential API information. Distribution is restricted
+to authorized personnel only. © 2025 Phoenix Rooivalk. All rights reserved._

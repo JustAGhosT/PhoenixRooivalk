@@ -24,11 +24,11 @@ export const HeroSection: React.FC = () => {
               Level-0 Local Decisioning
             </span>
           </h1>
-          <p className="mb-8 text-xl text-[rgb(var(--gray))] animate-fadeInUp [animation-delay:200ms] leading-relaxed max-w-2xl">
+          <p className="mb-8 text-xl text-[rgb(var(--gray))] animate-fadeInUp [animation-delay:200ms] leading-relaxed max-w-3xl mx-auto">
             Autonomous counter-drone defense that operates without network
             connectivity. Sub-200ms response times in complete RF denial.
           </p>
-          <div className="mt-6 p-6 bg-gradient-to-r from-[rgba(var(--primary),0.1)] to-[rgba(var(--secondary),0.1)] rounded-xl border border-[rgba(var(--primary),0.2)]">
+          <div className="mt-6 p-6 bg-gradient-to-r from-[rgba(var(--primary),0.1)] to-[rgba(var(--secondary),0.1)] rounded-xl border border-[rgba(var(--primary),0.2)] max-w-4xl mx-auto">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
               <div className="text-center">
                 <div className="text-2xl font-bold text-[rgb(var(--primary))]">
@@ -89,8 +89,8 @@ export const HeroSection: React.FC = () => {
           </div>
         </div>
 
-        {/* Right: Visual representation */}
-        <div className="relative">
+        {/* Visual concept representation - integrated */}
+        <div className="mt-12 max-w-2xl mx-auto">
           <div className="card card--elevated">
             <div className="text-center mb-6">
               <h3 className="text-2xl font-bold text-[var(--action-primary)] mb-4">

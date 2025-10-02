@@ -2,7 +2,10 @@
 
 ## Executive Summary
 
-This document contains the Architecture Decision Records (ADRs) for the Phoenix Rooivalk Counter-Drone Defense System. These records document key architectural decisions, rationale, and consequences to ensure consistent decision-making and knowledge preservation.
+This document contains the Architecture Decision Records (ADRs) for the Phoenix
+Rooivalk Counter-Drone Defense System. These records document key architectural
+decisions, rationale, and consequences to ensure consistent decision-making and
+knowledge preservation.
 
 ---
 
@@ -13,14 +16,17 @@ This document contains the Architecture Decision Records (ADRs) for the Phoenix 
 
 ### Context
 
-We need a Layer 1 anchoring target for tamper-evident hashes of mission evidence. Criteria include security, latency, cost, resilience, interoperability, and operational fit for contested environments.
+We need a Layer 1 anchoring target for tamper-evident hashes of mission
+evidence. Criteria include security, latency, cost, resilience,
+interoperability, and operational fit for contested environments.
 
 ### Options Considered
 
 - **Ethereum (L1)**: High security but high fees and slow finality
 - **Solana (L1)**: High throughput with low latency and low fees
 - **Avalanche (L1/Subnets)**: Good performance with subnet capabilities
-- **Polkadot (Relay + Parachains)**: Interoperability focus with complex architecture
+- **Polkadot (Relay + Parachains)**: Interoperability focus with complex
+  architecture
 - **Bitcoin (L1)**: Highest security but slow and expensive
 
 ### Decision
@@ -29,10 +35,12 @@ Adopt Solana as the initial pilot chain for anchoring evidence digests.
 
 ### Rationale
 
-- **Low-Latency Finality**: High throughput supports near-real-time anchoring for dynamic operations
+- **Low-Latency Finality**: High throughput supports near-real-time anchoring
+  for dynamic operations
 - **Low Fees**: Enable frequent anchoring without prohibitive cost
 - **Mature Memo Program**: Simple, contract-free anchoring path
-- **Ecosystem Tooling**: Sufficient tooling for pilot implementation (solana-py/solders)
+- **Ecosystem Tooling**: Sufficient tooling for pilot implementation
+  (solana-py/solders)
 - **Performance**: 3,000-4,500 TPS with sub-2-second finality
 - **Cost Efficiency**: $0.00025 per transaction
 
@@ -40,8 +48,10 @@ Adopt Solana as the initial pilot chain for anchoring evidence digests.
 
 - **Resilience Monitoring**: Must monitor resilience during high network load
 - **Retry/Backoff**: Add retry/backoff and outbox batching for reliability
-- **Compliance Anchoring**: May implement periodic Ethereum anchoring for compliance/archival
-- **Classified Deployments**: Subnet/private chain options (e.g., Avalanche) for classified deployments
+- **Compliance Anchoring**: May implement periodic Ethereum anchoring for
+  compliance/archival
+- **Classified Deployments**: Subnet/private chain options (e.g., Avalanche) for
+  classified deployments
 
 ### Implementation
 
@@ -58,7 +68,8 @@ Adopt Solana as the initial pilot chain for anchoring evidence digests.
 
 ### Context
 
-Need to decide between using Solana's Memo program for simple data anchoring versus deploying custom smart contracts for evidence anchoring.
+Need to decide between using Solana's Memo program for simple data anchoring
+versus deploying custom smart contracts for evidence anchoring.
 
 ### Options Considered
 
@@ -68,7 +79,8 @@ Need to decide between using Solana's Memo program for simple data anchoring ver
 
 ### Decision
 
-Use Solana Memo program for initial implementation with option to upgrade to smart contracts.
+Use Solana Memo program for initial implementation with option to upgrade to
+smart contracts.
 
 ### Rationale
 
@@ -94,7 +106,8 @@ Use Solana Memo program for initial implementation with option to upgrade to sma
 
 ### Context
 
-Need to determine the level of autonomy for the counter-drone system, balancing operational effectiveness with safety and compliance requirements.
+Need to determine the level of autonomy for the counter-drone system, balancing
+operational effectiveness with safety and compliance requirements.
 
 ### Options Considered
 
@@ -109,9 +122,11 @@ Implement Level-0 autonomy with comprehensive safety and compliance frameworks.
 
 ### Rationale
 
-- **Operational Effectiveness**: Level-0 autonomy provides maximum operational effectiveness
+- **Operational Effectiveness**: Level-0 autonomy provides maximum operational
+  effectiveness
 - **Response Time**: Sub-200ms response time requires autonomous operation
-- **GPS-Denied Environments**: Autonomous operation essential for GPS-denied environments
+- **GPS-Denied Environments**: Autonomous operation essential for GPS-denied
+  environments
 - **Safety Framework**: Comprehensive safety framework ensures safe operation
 - **Compliance**: Full compliance with DoD Directive 3000.09
 
@@ -131,7 +146,8 @@ Implement Level-0 autonomy with comprehensive safety and compliance frameworks.
 
 ### Context
 
-Need to determine the blockchain architecture strategy, considering Layer 1, Layer 2, and Layer 3 solutions for different use cases and requirements.
+Need to determine the blockchain architecture strategy, considering Layer 1,
+Layer 2, and Layer 3 solutions for different use cases and requirements.
 
 ### Options Considered
 
@@ -168,7 +184,8 @@ Implement layered strategy with L1 anchoring, L2 scaling, and L3 applications.
 
 ### Context
 
-Need to determine the sensor integration architecture for multi-modal threat detection and classification.
+Need to determine the sensor integration architecture for multi-modal threat
+detection and classification.
 
 ### Options Considered
 
@@ -204,7 +221,8 @@ Implement multi-sensor fusion architecture with advanced sensor integration.
 
 ### Context
 
-Need to determine the AI/ML architecture for threat detection, classification, and response.
+Need to determine the AI/ML architecture for threat detection, classification,
+and response.
 
 ### Options Considered
 
@@ -240,7 +258,8 @@ Implement edge AI with cloud backup and distributed learning capabilities.
 
 ### Context
 
-Need to determine the security architecture for the counter-drone system, considering threats, vulnerabilities, and compliance requirements.
+Need to determine the security architecture for the counter-drone system,
+considering threats, vulnerabilities, and compliance requirements.
 
 ### Options Considered
 
@@ -276,7 +295,8 @@ Implement zero-trust security architecture with defense in depth.
 
 ### Context
 
-Need to determine the compliance architecture for regulatory requirements, including ITAR, DoD, and international standards.
+Need to determine the compliance architecture for regulatory requirements,
+including ITAR, DoD, and international standards.
 
 ### Options Considered
 
@@ -312,7 +332,8 @@ Implement comprehensive compliance architecture with automated monitoring.
 
 ### Context
 
-Need to determine the integration architecture for third-party systems, cloud platforms, and external services.
+Need to determine the integration architecture for third-party systems, cloud
+platforms, and external services.
 
 ### Options Considered
 
@@ -348,7 +369,8 @@ Implement API-first integration architecture with comprehensive API support.
 
 ### Context
 
-Need to determine the performance architecture for the counter-drone system, considering latency, throughput, and scalability requirements.
+Need to determine the performance architecture for the counter-drone system,
+considering latency, throughput, and scalability requirements.
 
 ### Options Considered
 
@@ -379,9 +401,13 @@ Implement high-performance architecture with scalable performance capabilities.
 
 ## Conclusion
 
-The Architecture Decision Records provide a comprehensive record of key architectural decisions for the Phoenix Rooivalk system. These decisions ensure consistent architecture, knowledge preservation, and informed decision-making throughout the system development and deployment.
+The Architecture Decision Records provide a comprehensive record of key
+architectural decisions for the Phoenix Rooivalk system. These decisions ensure
+consistent architecture, knowledge preservation, and informed decision-making
+throughout the system development and deployment.
 
 Key architectural decisions include:
+
 - **Blockchain**: Solana for evidence anchoring with layered architecture
 - **Autonomy**: Level-0 autonomy with comprehensive safety frameworks
 - **Sensors**: Multi-sensor fusion for improved detection accuracy
@@ -391,8 +417,12 @@ Key architectural decisions include:
 - **Integration**: API-first integration with comprehensive support
 - **Performance**: High-performance architecture with scalability
 
-These decisions provide the foundation for a robust, scalable, and effective counter-drone defense system that meets all operational, regulatory, and performance requirements.
+These decisions provide the foundation for a robust, scalable, and effective
+counter-drone defense system that meets all operational, regulatory, and
+performance requirements.
 
 ---
 
-*This document contains confidential architectural information. Distribution is restricted to authorized personnel only. © 2025 Phoenix Rooivalk. All rights reserved.*
+_This document contains confidential architectural information. Distribution is
+restricted to authorized personnel only. © 2025 Phoenix Rooivalk. All rights
+reserved._

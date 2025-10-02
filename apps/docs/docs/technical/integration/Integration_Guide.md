@@ -121,7 +121,8 @@ AgentStatus, Error
 
 **Hash-Chained Evidence** {\d+}. **Evidence Hashing**: SHA-{\d+} hash of drone
 intercept evidence {\d+}. **Metadata Storage**: `Location, timestamp`, operator
-``` ID, sensor
+
+`````ID, sensor
 
 ````data
 {\d+}. **On-Chain Storage**: {\d+}-byte hash with metadata on Solana
@@ -153,7 +154,7 @@ self, tx_id
 Evidence, Error
 ```&gt;;
 }
-````
+`````
 
 ### Legal Admissibility Framework
 

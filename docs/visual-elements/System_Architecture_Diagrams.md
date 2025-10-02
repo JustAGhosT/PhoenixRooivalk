@@ -2,7 +2,10 @@
 
 ## Overview
 
-This document contains visual representations of the PhoenixRooivalk system architecture, including system components, data flow, deployment scenarios, and performance metrics. These diagrams are designed for use in presentations, documentation, and technical discussions.
+This document contains visual representations of the PhoenixRooivalk system
+architecture, including system components, data flow, deployment scenarios, and
+performance metrics. These diagrams are designed for use in presentations,
+documentation, and technical discussions.
 
 ---
 
@@ -478,18 +481,21 @@ Revenue ($M)
 ## Usage Guidelines
 
 ### For Presentations
+
 - Use high-level architecture diagrams for executive audiences
 - Include performance comparison charts for technical discussions
 - Show deployment scenarios for operational planning
 - Display security architecture for compliance reviews
 
 ### For Documentation
+
 - Include detailed component diagrams in technical specifications
 - Use data flow diagrams for integration guides
 - Show deployment scenarios in installation manuals
 - Display performance metrics in benchmarking reports
 
 ### For Marketing
+
 - Use simplified architecture diagrams for customer presentations
 - Include performance comparison charts for competitive positioning
 - Show deployment scenarios for use case demonstrations
@@ -497,5 +503,5 @@ Revenue ($M)
 
 ---
 
-*This document contains confidential visual elements. Distribution is restricted to authorized personnel only. © 2025 Phoenix Rooivalk. All rights reserved.*
- 
+_This document contains confidential visual elements. Distribution is restricted
+to authorized personnel only. © 2025 Phoenix Rooivalk. All rights reserved._

@@ -1,13 +1,13 @@
 import { useCallback, useEffect, useRef, useState } from "react";
+import type { GameState, Threat } from "../../types/game";
 import { FormationManager } from "../utils/formationManager";
 import { ParticleSystem } from "../utils/particleSystem";
 import { ResponseProtocolEngine } from "../utils/responseProtocols";
 import { StrategicDeploymentEngine } from "../utils/strategicDeployment";
 import { moveThreats, spawnThreat } from "../utils/threatUtils";
-import type { GameState, Threat } from "../../types/game";
 
 interface UseThreatSimulatorGameProps {
-  gameRef: React.RefObject<HTMLDivElement>;
+  gameRef: React.RefObject<HTMLButtonElement>;
   gameState: GameState;
   updateThreats: (threats: Threat[]) => void;
   addThreat: (threat: Threat) => void;
