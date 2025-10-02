@@ -160,7 +160,7 @@ export const InteractiveElementsSection: React.FC = () => {
                 <div>
                   <label
                     htmlFor="roi-threat-frequency"
-                    className="block text-[rgb(var(--phoenix-white))] font-semibold mb-2"
+                    className="block text-[rgb(var(--text-primary))] font-semibold mb-2"
                   >
                     Threat Frequency (per month)
                   </label>
@@ -190,7 +190,7 @@ export const InteractiveElementsSection: React.FC = () => {
                 <div>
                   <label
                     htmlFor="roi-response-time"
-                    className="block text-[rgb(var(--phoenix-white))] font-semibold mb-2"
+                    className="block text-[rgb(var(--text-primary))] font-semibold mb-2"
                   >
                     Current Response Time (ms)
                   </label>
@@ -221,7 +221,7 @@ export const InteractiveElementsSection: React.FC = () => {
                 <div>
                   <label
                     htmlFor="roi-deployment-cost"
-                    className="block text-[rgb(var(--phoenix-white))] font-semibold mb-2"
+                    className="block text-[rgb(var(--text-primary))] font-semibold mb-2"
                   >
                     Deployment Cost (USD)
                   </label>
@@ -255,7 +255,7 @@ export const InteractiveElementsSection: React.FC = () => {
 
               {/* Results */}
               <div className="space-y-6">
-                <div className="bg-[rgba(var(--tactical-black),0.6)] rounded-xl p-6 border border-[rgba(var(--primary),0.3)]">
+                <div className="bg-[rgba(var(--bg-secondary),0.6)] rounded-xl p-6 border border-[rgba(var(--primary),0.3)]">
                   <h4 className="text-lg font-bold text-[rgb(var(--primary))] mb-4">
                     Phoenix Rooivalk Results
                   </h4>
