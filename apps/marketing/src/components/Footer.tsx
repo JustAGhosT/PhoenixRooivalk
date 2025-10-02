@@ -14,17 +14,17 @@ export const Footer: React.FC = () => {
     {
       title: "Compliance",
       links: [
-        { href: "/compliance", label: "ITAR Compliance" },
-        { href: "/compliance", label: "ISO 27001" },
-        { href: "/compliance", label: "Security Clearance" },
+        { href: "/compliance/itar", label: "ITAR Compliance" },
+        { href: "/compliance/iso-27001", label: "ISO 27001" },
+        { href: "/compliance/security-clearance", label: "Security Clearance" },
       ],
     },
     {
       title: "Company",
       links: [
         { href: "/contact", label: "Contact Us" },
-        { href: "/contact", label: "Partnerships" },
-        { href: "/contact", label: "Careers" },
+        { href: "/contact#partnerships", label: "Partnerships" },
+        { href: "/contact#careers", label: "Careers" },
       ],
     },
   ];

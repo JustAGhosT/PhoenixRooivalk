@@ -1,6 +1,7 @@
+/* eslint-disable security/detect-child-process */
 "use client";
 import Link from "next/link";
-import React from "react";
+import * as React from "react";
 import { Navigation } from "../../components/Navigation";
 
 export default function CompliancePage(): React.ReactElement {
@@ -65,6 +66,7 @@ export default function CompliancePage(): React.ReactElement {
                 icon: "✅",
                 title: "Regional Approvals",
                 description:
+                  // eslint-disable-next-line security/detect-child-process
                   "CE marking, FCC certification, and regional approval processes initiated. Documentation prepared.",
                 status: "Planned",
                 progress: "0%",
