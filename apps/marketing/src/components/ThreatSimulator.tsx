@@ -19,7 +19,7 @@ interface ThreatSimulatorProps {
 
 export const ThreatSimulator: React.FC<ThreatSimulatorProps> = ({
   isTeaser = false,
-  autoFullscreen = false,
+  autoFullscreen: _autoFullscreen = false,
 }): JSX.Element => {
   const gameRef = useRef<HTMLDivElement>(null);
   const lastFrameTime = useRef<number>(0);
