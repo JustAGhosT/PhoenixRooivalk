@@ -1,6 +1,7 @@
 "use client";
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
+import * as React from "react";
+import { useEffect, useState } from "react";
 
 export default function ContactPage(): React.ReactElement {
   const [email, setEmail] = useState("");
@@ -312,8 +313,8 @@ export default function ContactPage(): React.ReactElement {
       <footer className="px-[5%] py-8 text-center text-[var(--gray)] border-t border-[rgba(0,255,136,0.2)]">
         <div className="max-w-[1400px] mx-auto">
           <p>
-            © 2025 Phoenix Rooivalk. All rights reserved. | ITAR Compliant |
-            ISO 27001 Certified
+            © 2025 Phoenix Rooivalk. All rights reserved. | ITAR Compliance
+            Planned | ISO 27001 Certification Planned
           </p>
           <div className="mt-4">
             <Link

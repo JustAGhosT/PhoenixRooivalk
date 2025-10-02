@@ -92,8 +92,8 @@ export const Footer: React.FC = () => {
                   © 2025 Phoenix Rooivalk. All rights reserved.
                 </p>
                 <p className="text-xs text-[var(--gray)]/70">
-                  ITAR Compliant • ISO 27001 Certified • Classified Operations
-                  Ready
+                  ITAR Compliance Planned • ISO 27001 Certification Planned •
+                  Classified Operations Planned Ready
                 </p>
               </div>
 
