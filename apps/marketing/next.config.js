@@ -10,6 +10,7 @@ const nextConfig = {
     // This ensures that the @ alias works in both development and production
     config.resolve.alias = {
       ...config.resolve.alias,
+      // eslint-disable-next-line @typescript-eslint/no-require-imports
       "@": require("path").resolve(__dirname, "src"),
     };
     return config;
