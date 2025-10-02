@@ -14,6 +14,7 @@ export default {
   "markdown": {
     "format": "md",
     "mermaid": false,
+    "emoji": true,
     "mdx1Compat": {
       "comments": true,
       "admonitions": true,
@@ -21,6 +22,10 @@ export default {
     },
     "anchors": {
       "maintainCase": false
+    },
+    "hooks": {
+      "onBrokenMarkdownLinks": "warn",
+      "onBrokenMarkdownImages": "throw"
     }
   },
   "i18n": {
@@ -122,14 +127,19 @@ export default {
           ]
         },
         {
-          "href": "https://github.com/JustAGhosT/PhoenixRooivalk",
-          "label": "PhoenixRooivalk",
-          "position": "right"
-        },
-        {
-          "href": "https://github.com/cognetive-mesh",
-          "label": "Cognitive Mesh",
-          "position": "right"
+          "type": "dropdown",
+          "label": "GitHub",
+          "position": "right",
+          "items": [
+            {
+              "href": "https://github.com/JustAGhosT/PhoenixRooivalk",
+              "label": "PhoenixRooivalk"
+            },
+            {
+              "href": "https://github.com/justaghost/cognitive-mesh",
+              "label": "Cognitive Mesh"
+            }
+          ]
         },
         {
           "href": "https://github.com/JustAGhosT/PhoenixRooivalk/blob/main/ACCESS.md",
@@ -141,11 +151,6 @@ export default {
           "label": "local",
           "position": "right",
           "className": "navbar-env-badge navbar-env-badge--preview"
-        },
-        {
-          "href": "https://github.com/JustAGhosT/PhoenixRooivalk",
-          "label": "GitHub",
-          "position": "right"
         }
       ],
       "hideOnScroll": false
@@ -469,7 +474,6 @@ export default {
     "experimental_router": "browser"
   },
   "onBrokenAnchors": "warn",
-  "onBrokenMarkdownLinks": "warn",
   "onDuplicateRoutes": "warn",
   "staticDirectories": [
     "static"

@@ -139,14 +139,19 @@ const config: Config = {
           : []),
         // GitHub repository links
         {
-          href: "https://github.com/JustAGhosT/PhoenixRooivalk",
-          label: "PhoenixRooivalk",
+          type: "dropdown",
+          label: "GitHub",
           position: "right",
-        },
-        {
-          href: "https://github.com/cognetive-mesh",
-          label: "Cognitive Mesh",
-          position: "right",
+          items: [
+            {
+              href: "https://github.com/JustAGhosT/PhoenixRooivalk",
+              label: "PhoenixRooivalk",
+            },
+            {
+              href: "https://github.com/justaghost/cognitive-mesh",
+              label: "Cognitive Mesh",
+            },
+          ],
         },
         // Environment badge (build-time)
         {
@@ -164,11 +169,6 @@ const config: Config = {
               } as const,
             ]
           : []),
-        {
-          href: "https://github.com/JustAGhosT/PhoenixRooivalk",
-          label: "GitHub",
-          position: "right",
-        },
       ],
     },
     // Enhanced footer

@@ -1,4 +1,5 @@
 "use client";
+import Image from "next/image";
 import Link from "next/link";
 import * as React from "react";
 import { useTheme } from "../contexts/ThemeContext";
@@ -12,12 +13,12 @@ export const Navigation: React.FC = () => {
       label: "Demo",
     },
     {
-      href: "/technical",
-      label: "Technical",
+      href: "/about",
+      label: "About",
     },
     {
-      href: "/#why-now",
-      label: "Why Now",
+      href: "/technical",
+      label: "Technical",
     },
     {
       href: "/contact",
@@ -32,9 +33,11 @@ export const Navigation: React.FC = () => {
         <Link href="/" className="flex items-center space-x-4 group">
           <div className="relative">
             <div className="w-14 h-14 rounded-xl overflow-hidden shadow-xl shadow-[rgba(var(--primary),0.3)] group-hover:shadow-[rgba(var(--primary),0.5)] transition-all duration-300 bg-[rgba(var(--logo-bg))] border border-[rgba(var(--primary),0.2)] group-hover:border-[rgba(var(--primary),0.4)]">
-              <img
+              <Image
                 src="/logo.svg"
                 alt="Phoenix Rooivalk Logo"
+                width={56}
+                height={56}
                 className="w-full h-full object-cover scale-110 group-hover:scale-125 transition-transform duration-300"
               />
             </div>
@@ -97,7 +100,7 @@ export const Navigation: React.FC = () => {
               </svg>
             </a>
             <a
-              href="https://github.com/cognetive-mesh"
+              href="https://github.com/justaghost/cognitive-mesh"
               target="_blank"
               rel="noopener noreferrer"
               className="btn btn--ghost p-2"

@@ -1,14 +1,13 @@
 import * as React from "react";
-import { ThreatSimulator } from "../ThreatSimulator";
 import { Button } from "../ui/button";
 
 export const HeroSection: React.FC = () => {
   return (
     <section
-      className="flex items-center px-6 md:px-[5%] lg:px-8 py-16 relative min-h-screen bg-gradient-to-br from-gray-900 to-black"
+      className="flex items-center px-6 md:px-[5%] lg:px-8 py-20 relative min-h-screen bg-gradient-to-br from-gray-900 to-black"
       id="hero"
     >
-      <div className="mx-auto max-w-[1400px] grid lg:grid-cols-2 gap-16 items-center">
+      <div className="mx-auto max-w-[1400px] grid lg:grid-cols-2 gap-20 items-center">
         {/* Left: Enhanced messaging with credibility */}
         <div>
           {/* Development status indicators */}
@@ -19,13 +18,13 @@ export const HeroSection: React.FC = () => {
           </div>
 
           {/* Vision-focused headline */}
-          <h1 className="text-4xl md:text-6xl font-extrabold leading-tight bg-clip-text text-transparent bg-gradient-to-br from-white to-[rgb(var(--primary))] animate-fadeInUp">
+          <h1 className="text-4xl md:text-6xl font-extrabold leading-tight bg-clip-text text-transparent bg-gradient-to-br from-white to-[rgb(var(--primary))] animate-fadeInUp mb-8">
             Concept: Edge Autonomy in RF-Denied Environments
-            <span className="block text-2xl md:text-4xl mt-2 text-[rgb(var(--accent))]">
+            <span className="block text-2xl md:text-4xl mt-4 text-[rgb(var(--accent))]">
               Level-0 Local Decisioning
             </span>
           </h1>
-          <p className="mt-6 text-xl text-[rgb(var(--gray))] animate-fadeInUp [animation-delay:200ms]">
+          <p className="mb-8 text-xl text-[rgb(var(--gray))] animate-fadeInUp [animation-delay:200ms] leading-relaxed">
             We are exploring a Level-0 autonomy approach designed to make
             immediate, local decisions without network connectivity. This site
             presents concepts and a simulation—not a fielded system.
@@ -101,24 +100,50 @@ export const HeroSection: React.FC = () => {
           </div>
         </div>
 
-        {/* Right: ThreatSimulator as candy bait */}
+        {/* Right: Visual representation */}
         <div className="relative">
           <div className="card card--elevated">
-            <div className="text-center mb-4">
-              <h3 className="text-lg font-bold text-[var(--action-primary)] mb-2">
-                Edge Autonomy Demo
+            <div className="text-center mb-6">
+              <h3 className="text-2xl font-bold text-[var(--action-primary)] mb-4">
+                Level-0 Autonomy Concept
               </h3>
-              <p className="text-sm text-[var(--text-muted)]">
-                No network needed - decisions in milliseconds
+              <p className="text-[var(--text-muted)] mb-6">
+                Edge-first decision making without network dependency
               </p>
             </div>
-            <ThreatSimulator />
-            {/* Simulation Disclaimer - Always Visible */}
-            <div className="mt-4 p-3 bg-[var(--action-warning)]/10 border border-[var(--action-warning)]/20 rounded-lg">
+
+            {/* Visual concept representation */}
+            <div className="space-y-4">
+              <div className="flex items-center justify-between p-4 bg-[rgba(var(--primary),0.1)] rounded-lg border border-[rgba(var(--primary),0.2)]">
+                <span className="text-sm font-medium text-[var(--text-primary)]">
+                  Detection Latency
+                </span>
+                <span className="text-lg font-bold text-[var(--action-success)]">
+                  &lt;200ms
+                </span>
+              </div>
+              <div className="flex items-center justify-between p-4 bg-[rgba(var(--primary),0.1)] rounded-lg border border-[rgba(var(--primary),0.2)]">
+                <span className="text-sm font-medium text-[var(--text-primary)]">
+                  Network Independence
+                </span>
+                <span className="text-lg font-bold text-[var(--action-success)]">
+                  100%
+                </span>
+              </div>
+              <div className="flex items-center justify-between p-4 bg-[rgba(var(--primary),0.1)] rounded-lg border border-[rgba(var(--primary),0.2)]">
+                <span className="text-sm font-medium text-[var(--text-primary)]">
+                  Market Gap Addressed
+                </span>
+                <span className="text-lg font-bold text-[var(--action-success)]">
+                  64%
+                </span>
+              </div>
+            </div>
+
+            <div className="mt-6 p-4 bg-[var(--action-warning)]/10 border border-[var(--action-warning)]/20 rounded-lg">
               <p className="text-xs text-[var(--action-warning)] text-center font-semibold">
-                ⚠️ This simulation visualizes potential behaviors for
-                illustrative purposes. Performance, accuracy, and ranges are
-                unvalidated.
+                💡 This represents a conceptual approach under development.
+                Performance metrics are targets for validation.
               </p>
             </div>
           </div>
