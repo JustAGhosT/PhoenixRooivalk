@@ -202,8 +202,12 @@ export const useThreatSimulatorEvents = ({
 
   const handleThreatClick = useCallback(
     (e: React.MouseEvent, threatId: string) => {
-      e.preventDefault();
       e.stopPropagation();
+
+      // Only prevent default for non-primary buttons to avoid interfering with normal selection
+      if (e.button !== 0) {
+        e.preventDefault();
+      }
 
       if (e.button === 0) {
         // Left click - select threat

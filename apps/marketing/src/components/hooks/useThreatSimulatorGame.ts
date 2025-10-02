@@ -25,6 +25,8 @@ interface UseThreatSimulatorGameProps {
   updateMothershipResources: (deltaTime: number) => void;
   updateDronePositions: (deltaTime: number) => void;
   setFrameRate: (rate: number) => void;
+  addTimeout: (callback: () => void, delay: number) => void;
+  clearTimeouts: () => void;
 }
 
 export const useThreatSimulatorGame = ({
@@ -46,6 +48,8 @@ export const useThreatSimulatorGame = ({
   updateMothershipResources,
   updateDronePositions,
   setFrameRate: _setFrameRate,
+  addTimeout,
+  clearTimeouts,
 }: UseThreatSimulatorGameProps) => {
   const lastFrameTime = useRef<number>(0);
   const animationFrameRef = useRef<number | undefined>(undefined);
@@ -195,10 +199,11 @@ export const useThreatSimulatorGame = ({
   );
 
   const generateSwarm = useCallback(() => {
+    clearTimeouts(); // Clear any existing timeouts first
     for (let i = 0; i < 8; i++) {
-      setTimeout(() => spawnNewThreat("swarm"), i * 150);
+      addTimeout(() => spawnNewThreat("swarm"), i * 150);
     }
-  }, [spawnNewThreat]);
+  }, [spawnNewThreat, addTimeout, clearTimeouts]);
 
   const spawnMultipleDrones = useCallback(
     (count: number) => {
