@@ -1,6 +1,7 @@
 "use client";
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
+import * as React from "react";
+import { useEffect, useState } from "react";
 
 export default function ContactPage(): React.ReactElement {
   const [email, setEmail] = useState("");
@@ -178,7 +179,7 @@ export default function ContactPage(): React.ReactElement {
                       </div>
                     </div>
                     <div className="space-y-3">
-                      <div className="text-sm">
+                      <div className="text-sm" id="partnerships">
                         <div className="font-semibold text-[var(--action-primary)] mb-1">
                           Research Partnerships
                         </div>
@@ -308,12 +309,109 @@ export default function ContactPage(): React.ReactElement {
         </div>
       </section>
 
+      {/* Careers Section */}
+      <section id="careers" className="px-[5%] py-16">
+        <div className="max-w-[1400px] mx-auto">
+          <h2 className="text-2xl font-bold mb-8 text-center text-[var(--primary)]">
+            Career Opportunities
+          </h2>
+          <div className="grid md:grid-cols-2 gap-8">
+            <div className="rounded-xl border border-[rgba(0,255,136,0.2)] bg-[rgba(15,23,42,0.8)] backdrop-blur p-8">
+              <h3 className="text-xl font-bold mb-4 text-[var(--primary)]">
+                Current Openings
+              </h3>
+              <div className="space-y-4">
+                <div>
+                  <h4 className="font-semibold mb-2 text-[var(--text-primary)]">
+                    Senior Software Engineer
+                  </h4>
+                  <p className="text-[var(--gray)] text-sm mb-2">
+                    Lead development of counter-drone defense algorithms and
+                    blockchain evidence systems.
+                  </p>
+                  <div className="flex flex-wrap gap-2">
+                    <span className="px-2 py-1 bg-[var(--primary)]/20 text-[var(--primary)] text-xs rounded">
+                      TypeScript
+                    </span>
+                    <span className="px-2 py-1 bg-[var(--primary)]/20 text-[var(--primary)] text-xs rounded">
+                      Rust
+                    </span>
+                    <span className="px-2 py-1 bg-[var(--primary)]/20 text-[var(--primary)] text-xs rounded">
+                      Blockchain
+                    </span>
+                  </div>
+                </div>
+                <div>
+                  <h4 className="font-semibold mb-2 text-[var(--text-primary)]">
+                    Defense Systems Engineer
+                  </h4>
+                  <p className="text-[var(--gray)] text-sm mb-2">
+                    Design and implement RF jamming and GPS spoofing
+                    countermeasures.
+                  </p>
+                  <div className="flex flex-wrap gap-2">
+                    <span className="px-2 py-1 bg-[var(--primary)]/20 text-[var(--primary)] text-xs rounded">
+                      RF Engineering
+                    </span>
+                    <span className="px-2 py-1 bg-[var(--primary)]/20 text-[var(--primary)] text-xs rounded">
+                      Signal Processing
+                    </span>
+                    <span className="px-2 py-1 bg-[var(--primary)]/20 text-[var(--primary)] text-xs rounded">
+                      Military Systems
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="rounded-xl border border-[rgba(0,255,136,0.2)] bg-[rgba(15,23,42,0.8)] backdrop-blur p-8">
+              <h3 className="text-xl font-bold mb-4 text-[var(--primary)]">
+                Application Process
+              </h3>
+              <div className="space-y-4">
+                <div>
+                  <h4 className="font-semibold mb-2 text-[var(--text-primary)]">
+                    Requirements
+                  </h4>
+                  <ul className="text-[var(--gray)] text-sm space-y-1">
+                    <li>• Security clearance eligibility</li>
+                    <li>• Relevant technical background</li>
+                    <li>• Defense industry experience preferred</li>
+                    <li>• Strong problem-solving skills</li>
+                  </ul>
+                </div>
+                <div>
+                  <h4 className="font-semibold mb-2 text-[var(--text-primary)]">
+                    Next Steps
+                  </h4>
+                  <p className="text-[var(--gray)] text-sm mb-3">
+                    Submit your application with CV and cover letter detailing
+                    your relevant experience.
+                  </p>
+                  <button
+                    onClick={() =>
+                      handleEmailClick(
+                        "Career Application",
+                        "I am interested in career opportunities at Phoenix Rooivalk. Please find my application attached.",
+                      )
+                    }
+                    className="w-full bg-[var(--primary)] text-black font-semibold py-3 px-6 rounded-lg hover:bg-[var(--primary)]/90 transition-colors"
+                  >
+                    Apply Now
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Footer */}
       <footer className="px-[5%] py-8 text-center text-[var(--gray)] border-t border-[rgba(0,255,136,0.2)]">
         <div className="max-w-[1400px] mx-auto">
           <p>
-            © 2025 Phoenix Rooivalk. All rights reserved. | ITAR Compliant |
-            ISO 27001 Certified
+            © 2025 Phoenix Rooivalk. All rights reserved. | ITAR Compliance
+            Planned | ISO 27001 Certification Planned
           </p>
           <div className="mt-4">
             <Link

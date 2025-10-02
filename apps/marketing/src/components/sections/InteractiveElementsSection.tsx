@@ -1,5 +1,7 @@
 "use client";
-import React, { useState } from "react";
+import * as React from "react";
+import { useState } from "react";
+import { ThreatSimulator } from "../ThreatSimulator";
 import { Button } from "../ui/button";
 
 export const InteractiveElementsSection: React.FC = () => {
@@ -320,6 +322,32 @@ export const InteractiveElementsSection: React.FC = () => {
                     </div>
                   </div>
                 </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Interactive Demo Teaser */}
+          <div className="mt-16">
+            <div className="text-center mb-8">
+              <h3 className="text-3xl font-bold text-[var(--text-primary)] mb-4">
+                Experience the System
+              </h3>
+              <p className="text-[var(--text-muted)] mb-6 max-w-2xl mx-auto">
+                Try our interactive defense simulator to see Phoenix Rooivalk
+                technology in action. Experience real-time threat detection,
+                autonomous response, and tactical coordination.
+              </p>
+            </div>
+
+            <div className="relative">
+              <div className="bg-gradient-to-br from-[rgba(var(--tactical-obsidian),0.8)] to-[rgba(var(--tactical-black),0.8)] rounded-xl border border-[rgba(var(--primary),0.3)] p-4">
+                <ThreatSimulator isTeaser={true} />
+              </div>
+
+              <div className="text-center mt-4">
+                <Button href="/interactive-demo" variant="primary" size="lg">
+                  🚀 Try Full Interactive Demo
+                </Button>
               </div>
             </div>
           </div>

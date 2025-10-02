@@ -6,16 +6,24 @@ import { ParticleRenderer } from "./ParticleRenderer";
 import styles from "./ThreatSimulator.module.css";
 import { useGameState } from "./hooks/useGameState";
 import { useTimeoutManager } from "./hooks/useTimeoutManager";
-import { FormationManager } from "./utils/formationManager";
-import { ParticleSystem } from "./utils/particleSystem";
-import { ResponseProtocolEngine } from "./utils/responseProtocols";
-import { StrategicDeploymentEngine } from "./utils/strategicDeployment";
-import { moveThreats, spawnThreat } from "./utils/threatUtils";
+import { useThreatSimulatorGame } from "./hooks/useThreatSimulatorGame";
+import { useThreatSimulatorEvents } from "./hooks/useThreatSimulatorEvents";
+import { useFullscreen } from "./hooks/useFullscreen";
+import { ThreatSimulatorOverlays } from "./ThreatSimulatorOverlays";
+import { ThreatSimulatorControls } from "./ThreatSimulatorControls";
 
-export const ThreatSimulator: React.FC = (): JSX.Element => {
+interface ThreatSimulatorProps {
+  isTeaser?: boolean;
+  autoFullscreen?: boolean;
+}
+
+export const ThreatSimulator: React.FC<ThreatSimulatorProps> = ({
+  isTeaser = false,
+  autoFullscreen: _autoFullscreen = false,
+}): JSX.Element => {
   const gameRef = useRef<HTMLDivElement>(null);
   const lastFrameTime = useRef<number>(0);
-  const animationFrameRef = useRef<number>();
+  const animationFrameRef = useRef<number | undefined>(undefined);
 
   // Custom hooks for state and timeouts
   const {
@@ -53,567 +61,111 @@ export const ThreatSimulator: React.FC = (): JSX.Element => {
 
   const { addTimeout, clearTimeouts } = useTimeoutManager();
 
-  // Particle system
-  const [particleSystem] = useState(() => new ParticleSystem());
-  const [gameDimensions, setGameDimensions] = useState({
-    width: 800,
-    height: 600,
+  // Use the game hook for all game logic
+  const {
+    particleSystem,
+    gameDimensions,
+    weatherMode,
+    setWeatherMode,
+    missionType,
+    setMissionType,
+    automationMode,
+    setAutomationMode,
+    showDeploymentZones,
+    setShowDeploymentZones,
+    strategicEngine,
+    responseEngine,
+    formationManager,
+    spawnNewThreat,
+    moveAllThreats,
+    neutralizeThreatWithEffects,
+    generateSwarm,
+    spawnMultipleDrones,
+  } = useThreatSimulatorGame({
+    gameRef,
+    gameState,
+    updateThreats,
+    addThreat,
+    removeThreat,
+    updateScore,
+    neutralizeThreat: removeThreat, // Use removeThreat as neutralize
+    fireWeapon,
+    consumeEnergy,
+    consumeCooling,
+    checkAchievements,
+    updateGameTime,
+    updateWeaponCooldowns,
+    updatePowerUps,
+    updateResources,
+    updateMothershipResources,
+    updateDronePositions,
+    setFrameRate,
+    addTimeout,
+    clearTimeouts,
   });
 
-  // Weather effects
-  const [weatherMode, setWeatherMode] = useState<
-    "none" | "rain" | "fog" | "night"
-  >("none");
+  // Use the events hook for all event handling
+  const {
+    handleMouseDown,
+    handleMouseMove,
+    handleMouseUp,
+    handleThreatClick,
+    handleGameAreaClick,
+    handleGameAreaActivate,
+    handleWheel,
+    handleKeyDown,
+    handleContextMenu,
+  } = useThreatSimulatorEvents({
+    gameRef,
+    gameState,
+    updateThreats,
+    addThreat,
+    removeThreat,
+    updateScore,
+    selectThreat,
+    setThreatPriority,
+    neutralizeThreat: removeThreat,
+    switchWeapon,
+    deployDrone,
+    selectDroneType,
+    returnDroneToBase,
+    clearSelection,
+    spawnNewThreat,
+    moveAllThreats,
+    generateSwarm,
+    spawnMultipleDrones,
+    activatePowerUp,
+    clearTimeouts,
+    resetGameState,
+    toggleRunningState,
+    setFrameRate,
+    consumeEnergy,
+    consumeCooling,
+    setSelectionBox,
+    particleSystem,
+  });
 
-  // Mouse interaction state
-  const [isDragging, setIsDragging] = useState(false);
-  const [dragStart, setDragStart] = useState({ x: 0, y: 0 });
-  const [dragMode, setDragMode] = useState<"select" | "area-weapon">("select");
+  // Use the fullscreen hook
+  const {
+    isFullscreen,
+    enterFullscreen,
+    exitFullscreen,
+    showFullscreenPrompt,
+  } = useFullscreen({
+    gameRef,
+    autoFullscreen: _autoFullscreen,
+    isTeaser,
+  });
 
   // UI state
   const [showSimulationWarning, setShowSimulationWarning] = useState(true);
 
-  // Strategic systems
-  const [strategicEngine] = useState(() => new StrategicDeploymentEngine());
-  const [responseEngine] = useState(() => new ResponseProtocolEngine());
-  const [formationManager] = useState(() => new FormationManager());
-
-  // Mission and automation state
-  const [missionType, setMissionType] = useState<
-    "airport" | "military-base" | "vip-protection" | "border-patrol"
-  >("military-base");
-  const [automationMode, setAutomationMode] = useState<
-    "manual" | "automated" | "hybrid"
-  >("hybrid");
-  const [showDeploymentZones, setShowDeploymentZones] = useState(false);
-
-  const spawnNewThreat = useCallback(
-    (threatType?: "drone" | "swarm" | "stealth") => {
-      if (!gameRef.current) return;
-
-      const rect = gameRef.current.getBoundingClientRect();
-      const newThreat = spawnThreat(threatType, rect, gameState.level);
-
-      addThreat(newThreat);
-    },
-    [addThreat, gameState.level],
-  );
-
-  const moveAllThreats = useCallback(() => {
-    if (!gameRef.current) return;
-
-    const rect = gameRef.current.getBoundingClientRect();
-    const centerPoint = { x: rect.width / 2, y: rect.height / 2 };
-
-    const movedThreats = moveThreats(
-      gameState.threats,
-      centerPoint,
-      gameState.level,
-    );
-    updateThreats(movedThreats);
-  }, [gameState.threats, updateThreats, gameState.level]);
-
-  const neutralizeThreat = useCallback(
-    (threatId: string) => {
-      const threat = gameState.threats.find((t) => t.id === threatId);
-      if (!threat) return;
-
-      const weapon = gameState.weapons[gameState.selectedWeapon];
-      const effectiveness = weapon.effectiveness[threat.type];
-
-      // Check if weapon is effective against this threat type
-      if (
-        effectiveness < 0.5 &&
-        !gameState.activePowerUps.some((p) => p.effect.penetration)
-      ) {
-        // Weapon not effective - reduce damage or miss
-        if (Math.random() > effectiveness) {
-          return; // Miss
-        }
-      }
-
-      // Fire weapon (consume resources)
-      fireWeapon(threat.x, threat.y);
-      consumeEnergy(weapon.damage * 5); // Energy cost based on weapon damage
-      consumeCooling(weapon.damage * 2); // Cooling cost based on weapon damage
-
-      // Create explosion effect
-      const explosionIntensity = threat.specialProperties?.explosionRadius
-        ? 1.5
-        : 1;
-      particleSystem.createExplosion(threat.x, threat.y, explosionIntensity);
-
-      // Create trail effect
-      if (threat.trail.length > 1) {
-        const lastTrail = threat.trail[threat.trail.length - 1];
-        particleSystem.createTrail(
-          lastTrail.x,
-          lastTrail.y,
-          threat.x,
-          threat.y,
-        );
-      }
-
-      // Handle special threat effects
-      if (
-        threat.type === "kamikaze" &&
-        threat.specialProperties?.explosionRadius
-      ) {
-        // Area damage to nearby threats
-        const nearbyThreats = gameState.threats.filter((t) => {
-          const distance = Math.sqrt(
-            (t.x - threat.x) ** 2 + (t.y - threat.y) ** 2,
-          );
-          return (
-            distance <= (threat.specialProperties?.explosionRadius || 50) &&
-            t.id !== threatId
-          );
-        });
-
-        nearbyThreats.forEach((nearbyThreat) => {
-          particleSystem.createExplosion(nearbyThreat.x, nearbyThreat.y, 0.8);
-          removeThreat(nearbyThreat.id);
-          updateScore(50); // Bonus for collateral damage
-        });
-      }
-
-      removeThreat(threatId);
-      updateScore(Math.floor(100 * effectiveness));
-
-      // Check for achievements
-      checkAchievements();
-    },
-    [
-      removeThreat,
-      updateScore,
-      gameState.threats,
-      gameState.weapons,
-      gameState.selectedWeapon,
-      gameState.activePowerUps,
-      particleSystem,
-      fireWeapon,
-      checkAchievements,
-      consumeCooling,
-      consumeEnergy,
-    ],
-  );
-
-  const generateSwarm = useCallback(() => {
-    clearTimeouts();
-    for (let i = 0; i < 8; i++) {
-      addTimeout(() => spawnNewThreat("swarm"), i * 150);
-    }
-  }, [clearTimeouts, addTimeout, spawnNewThreat]);
-
-  const spawnMultipleDrones = useCallback(
-    (count: number) => {
-      if (!gameRef.current) return;
-
-      const boundingRect = gameRef.current?.getBoundingClientRect();
-      if (!boundingRect) return;
-
-      const drones = Array.from({ length: count }, () =>
-        spawnThreat("drone", boundingRect),
-      );
-
-      drones.forEach((drone) => addThreat(drone));
-    },
-    [addThreat],
-  );
-
-  const resetGame = useCallback(() => {
-    clearTimeouts();
-    resetGameState();
-  }, [clearTimeouts, resetGameState]);
-
-  // Enhanced game loop with frame rate control
-  useEffect(() => {
-    if (!gameState.isRunning) return;
-
-    const gameLoop = (currentTime: number) => {
-      const deltaTime = (currentTime - lastFrameTime.current) / 1000;
-      lastFrameTime.current = currentTime;
-
-      // Update particle system
-      particleSystem.update(deltaTime);
-
-      // Update game time
-      updateGameTime(deltaTime);
-
-      // Update weapon cooldowns
-      updateWeaponCooldowns();
-
-      // Update power-ups
-      updatePowerUps();
-
-      // Update resources
-      updateResources(deltaTime);
-
-      // Update mothership resources
-      updateMothershipResources(deltaTime);
-
-      // Update drone positions
-      updateDronePositions(deltaTime);
-
-      // Move threats
-      moveAllThreats();
-
-      // Spawn new threats based on level and spawn rate
-      const timeSinceLastSpawn = currentTime - gameState.lastSpawnTime;
-      const shouldSpawn =
-        timeSinceLastSpawn > gameState.spawnRate &&
-        gameState.threats.length < 5 + gameState.level;
-
-      if (shouldSpawn && Math.random() < 0.3) {
-        spawnNewThreat(); // Random threat type
-      }
-
-      // Continue animation loop
-      animationFrameRef.current = requestAnimationFrame(gameLoop);
-    };
-
-    lastFrameTime.current = performance.now();
-    animationFrameRef.current = requestAnimationFrame(gameLoop);
-
-    return () => {
-      if (animationFrameRef.current) {
-        cancelAnimationFrame(animationFrameRef.current);
-      }
-    };
-  }, [
-    gameState.isRunning,
-    gameState.threats.length,
-    gameState.level,
-    gameState.spawnRate,
-    gameState.lastSpawnTime,
-    moveAllThreats,
-    spawnNewThreat,
-    particleSystem,
-    updateGameTime,
-    updateDronePositions,
-    updateMothershipResources,
-    updatePowerUps,
-    updateResources,
-    updateWeaponCooldowns,
-  ]);
-
-  // Initialize strategic systems
-  useEffect(() => {
-    // Initialize strategic deployment zones
-    strategicEngine.initializeDeploymentZones(missionType, 800, 600);
-
-    // Initialize response protocols
-    responseEngine.initializeDefaultProtocols();
-
-    // Formation manager is already initialized in constructor
-  }, [strategicEngine, responseEngine, formationManager, missionType]);
-
-  // Initial threat spawn
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      spawnNewThreat(); // Random threat type
-      spawnNewThreat(); // Random threat type
-      spawnNewThreat(); // Random threat type
-    }, 100);
-
-    return () => clearTimeout(timer);
-  }, [spawnNewThreat]);
-
-  // Update game dimensions
-  useEffect(() => {
-    const updateDimensions = () => {
-      if (gameRef.current) {
-        const rect = gameRef.current.getBoundingClientRect();
-        setGameDimensions({ width: rect.width, height: rect.height });
-      }
-    };
-
-    updateDimensions();
-    window.addEventListener("resize", updateDimensions);
-    return () => window.removeEventListener("resize", updateDimensions);
-  }, []);
-
-  useEffect(() => {
-    return () => clearTimeouts();
-  }, [clearTimeouts]);
-
-  // Keyboard shortcuts
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      // Prevent default for game shortcuts
-      if (e.ctrlKey || e.metaKey) return;
-
-      switch (e.key) {
-        case "1":
-          e.preventDefault();
-          switchWeapon("kinetic");
-          break;
-        case "2":
-          e.preventDefault();
-          switchWeapon("electronic");
-          break;
-        case "3":
-          e.preventDefault();
-          switchWeapon("laser");
-          break;
-        case "w":
-          e.preventDefault();
-          if (gameState.selectedDroneType) {
-            deployDrone(
-              gameState.selectedDroneType,
-              gameState.mothership.x,
-              gameState.mothership.y - 100,
-            );
-          }
-          break;
-        case "s":
-          e.preventDefault();
-          if (gameState.selectedDroneType) {
-            deployDrone(
-              gameState.selectedDroneType,
-              gameState.mothership.x,
-              gameState.mothership.y + 100,
-            );
-          }
-          break;
-        case "a":
-          e.preventDefault();
-          if (gameState.selectedDroneType) {
-            deployDrone(
-              gameState.selectedDroneType,
-              gameState.mothership.x - 100,
-              gameState.mothership.y,
-            );
-          }
-          break;
-        case "d":
-          e.preventDefault();
-          if (gameState.selectedDroneType) {
-            deployDrone(
-              gameState.selectedDroneType,
-              gameState.mothership.x + 100,
-              gameState.mothership.y,
-            );
-          }
-          break;
-        case "Escape":
-          e.preventDefault();
-          clearSelection();
-          selectDroneType(null);
-          break;
-        case " ":
-          e.preventDefault();
-          toggleRunningState();
-          break;
-      }
-    };
-
-    window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [
-    switchWeapon,
-    gameState.selectedDroneType,
-    gameState.mothership.x,
-    gameState.mothership.y,
-    deployDrone,
-    clearSelection,
-    selectDroneType,
-    toggleRunningState,
-  ]);
-
-  // Mouse event handlers for selection and priority targeting
-  const handleMouseDown = useCallback(
-    (e: React.MouseEvent) => {
-      if (e.button === 0) {
-        // Left click
-        const rect = gameRef.current?.getBoundingClientRect();
-        if (rect) {
-          const x = e.clientX - rect.left;
-          const y = e.clientY - rect.top;
-          setDragStart({ x, y });
-          setIsDragging(true);
-
-          // Check if we're in area weapon mode (hold Shift for area effect)
-          const isAreaWeapon =
-            e.shiftKey && gameState.selectedWeapon === "electronic";
-          setDragMode(isAreaWeapon ? "area-weapon" : "select");
-
-          setSelectionBox({
-            startX: x,
-            startY: y,
-            endX: x,
-            endY: y,
-            isActive: true,
-          });
-        }
-      }
-    },
-    [gameState.selectedWeapon, setSelectionBox],
-  );
-
-  const handleMouseMove = useCallback(
-    (e: React.MouseEvent) => {
-      if (isDragging && gameRef.current) {
-        const rect = gameRef.current.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        setSelectionBox({
-          startX: dragStart.x,
-          startY: dragStart.y,
-          endX: x,
-          endY: y,
-          isActive: true,
-        });
-      }
-    },
-    [isDragging, dragStart, setSelectionBox],
-  );
-
-  const handleMouseUp = useCallback(
-    (_e: React.MouseEvent) => {
-      if (isDragging) {
-        setIsDragging(false);
-        setSelectionBox(null);
-
-        // Handle selection box actions
-        if (gameState.selectionBox) {
-          const minX = Math.min(
-            gameState.selectionBox.startX,
-            gameState.selectionBox.endX,
-          );
-          const maxX = Math.max(
-            gameState.selectionBox.startX,
-            gameState.selectionBox.endX,
-          );
-          const minY = Math.min(
-            gameState.selectionBox.startY,
-            gameState.selectionBox.endY,
-          );
-          const maxY = Math.max(
-            gameState.selectionBox.startY,
-            gameState.selectionBox.endY,
-          );
-
-          const selectedThreats = gameState.threats.filter((threat) => {
-            return (
-              threat.x >= minX &&
-              threat.x <= maxX &&
-              threat.y >= minY &&
-              threat.y <= maxY
-            );
-          });
-
-          if (dragMode === "area-weapon") {
-            // Area effect weapon - neutralize all threats in selection
-            selectedThreats.forEach((threat) => {
-              neutralizeThreat(threat.id);
-              // Create area effect explosion
-              particleSystem.createExplosion(threat.x, threat.y, 1.2);
-            });
-
-            // Consume additional energy for area effect
-            consumeEnergy(selectedThreats.length * 10);
-          } else {
-            // Normal selection mode
-            selectedThreats.forEach((threat) => {
-              selectThreat(threat.id);
-            });
-          }
-        }
-      }
-    },
-    [
-      isDragging,
-      gameState.selectionBox,
-      gameState.threats,
-      selectThreat,
-      dragMode,
-      neutralizeThreat,
-      particleSystem,
-      consumeEnergy,
-      setSelectionBox,
-    ],
-  );
-
-  const handleThreatClick = useCallback(
-    (e: React.MouseEvent, threatId: string) => {
-      e.stopPropagation();
-
-      if (e.button === 0) {
-        // Left click - select threat
-        selectThreat(threatId);
-      } else if (e.button === 1) {
-        // Middle click - set priority
-        const currentPriority = gameState.priorityThreats[threatId];
-        if (currentPriority === "high") {
-          setThreatPriority(threatId, "medium");
-        } else if (currentPriority === "medium") {
-          setThreatPriority(threatId, "low");
-        } else {
-          setThreatPriority(threatId, "high");
-        }
-      } else if (e.button === 2) {
-        // Right click - neutralize
-        neutralizeThreat(threatId);
-      }
-    },
-    [
-      selectThreat,
-      gameState.priorityThreats,
-      setThreatPriority,
-      neutralizeThreat,
-    ],
-  );
-
-  // Enhanced mouse controls with drone deployment
-  const handleGameAreaClick = useCallback(
-    (e: React.MouseEvent) => {
-      if (!gameRef.current) return;
-
-      const rect = gameRef.current.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-
-      if (e.button === 0 && !isDragging) {
-        // Left click - deploy selected drone type or select weapon
-        if (gameState.selectedDroneType) {
-          deployDrone(gameState.selectedDroneType, x, y);
-        } else {
-          switchWeapon("kinetic");
-        }
-      } else if (e.button === 1) {
-        // Middle click - deploy jammer drone
-        deployDrone("jammer", x, y);
-      } else if (e.button === 2) {
-        // Right click - deploy surveillance drone
-        deployDrone("surveillance", x, y);
-      }
-    },
-    [gameState.selectedDroneType, deployDrone, switchWeapon, isDragging],
-  );
-
-  // Wheel event for weapon cycling
-  const handleWheel = useCallback(
-    (e: React.WheelEvent) => {
-      e.preventDefault();
-      const weapons = ["kinetic", "electronic", "laser"] as const;
-      const currentIndex = weapons.indexOf(
-        gameState.selectedWeapon as (typeof weapons)[number],
-      );
-
-      if (e.deltaY > 0) {
-        // Scroll down - next weapon
-        const nextIndex = (currentIndex + 1) % weapons.length;
-        switchWeapon(weapons[nextIndex] as (typeof weapons)[number]);
-      } else {
-        // Scroll up - previous weapon
-        const prevIndex =
-          currentIndex === 0 ? weapons.length - 1 : currentIndex - 1;
-        switchWeapon(weapons[prevIndex] as (typeof weapons)[number]);
-      }
-    },
-    [gameState.selectedWeapon, switchWeapon],
-  );
+  // Missing functions that are used in JSX
+  const handleGameAreaKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    handleKeyDown(e as any);
+  };
+  const neutralizeThreat = removeThreat;
+  const resetGame = resetGameState;
 
   const getThreatAppearance = (type: string) => {
     switch (type) {
@@ -661,6 +213,10 @@ export const ThreatSimulator: React.FC = (): JSX.Element => {
         };
     }
   };
+
+  useEffect(() => {
+    return () => clearTimeouts();
+  }, [clearTimeouts]);
 
   return (
     <div className="relative w-full h-[600px] bg-gradient-to-br from-slate-900 via-slate-950 to-slate-900 rounded-xl border border-red-500/20 overflow-hidden shadow-2xl">
@@ -815,12 +371,7 @@ export const ThreatSimulator: React.FC = (): JSX.Element => {
             top: `${gameState.mothership.y - 48}px`,
           }}
           onClick={handleGameAreaClick}
-          onKeyDown={(e) => {
-            if (e.key === "Enter" || e.key === " ") {
-              e.preventDefault();
-              handleGameAreaClick(e as any);
-            }
-          }}
+          onKeyDown={handleGameAreaKeyDown}
           role="button"
           aria-label="Mothership command center"
           tabIndex={0}
@@ -967,7 +518,7 @@ export const ThreatSimulator: React.FC = (): JSX.Element => {
         {gameState.threats.map((threat) => {
           const appearance = getThreatAppearance(threat.type);
           const weapon = gameState.weapons[gameState.selectedWeapon];
-          const effectiveness = weapon.effectiveness[threat.type];
+          const effectiveness = weapon?.effectiveness?.[threat.type] ?? 0;
           const isEffective =
             effectiveness >= 0.5 ||
             gameState.activePowerUps.some((p) => p.effect.penetration);
@@ -1455,6 +1006,47 @@ export const ThreatSimulator: React.FC = (): JSX.Element => {
           </div>
         </div>
       </div>
+
+      {/* Teaser Overlay */}
+      {isTeaser && !isFullscreen && (
+        <div className="absolute inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center z-50">
+          <div className="text-center p-8 max-w-md">
+            <div className="mb-6">
+              <div className="text-6xl mb-4">🎮</div>
+              <h3 className="text-2xl font-bold text-white mb-2">
+                Experience Full Defense
+              </h3>
+              <p className="text-gray-300 text-sm mb-6">
+                This is a preview of the Phoenix Rooivalk defense system
+                simulator. Enter full-screen mode to access all features and
+                controls.
+              </p>
+            </div>
+
+            <button
+              onClick={enterFullscreen}
+              className="bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white font-bold py-3 px-8 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg"
+            >
+              🚀 Enter Full-Screen Mode
+            </button>
+
+            <p className="text-xs text-gray-400 mt-4">
+              Press ESC to exit full-screen at any time
+            </p>
+          </div>
+        </div>
+      )}
+
+      {/* Fullscreen Exit Button */}
+      {isFullscreen && (
+        <button
+          onClick={exitFullscreen}
+          className="absolute top-4 right-4 z-50 bg-black/80 text-white p-2 rounded-lg hover:bg-black/90 transition-colors"
+          title="Exit Fullscreen (ESC)"
+        >
+          ✕
+        </button>
+      )}
     </div>
   );
 };

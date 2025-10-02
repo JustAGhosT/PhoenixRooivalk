@@ -1,5 +1,6 @@
 "use client";
-import React, { useEffect, useRef } from "react";
+import * as React from "react";
+import { useEffect, useRef } from "react";
 import { ParticleSystem } from "./utils/particleSystem";
 
 interface ParticleRendererProps {
@@ -14,7 +15,7 @@ export const ParticleRenderer: React.FC<ParticleRendererProps> = ({
   height,
 }) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const animationFrameRef = useRef<number>();
+  const animationFrameRef = useRef<number | undefined>(undefined);
 
   useEffect(() => {
     const canvas = canvasRef.current;
