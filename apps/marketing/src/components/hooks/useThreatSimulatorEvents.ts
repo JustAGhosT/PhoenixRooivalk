@@ -288,7 +288,6 @@ export const useThreatSimulatorEvents = ({
         // Scroll down - next weapon
         const nextIndex = (currentIndex + 1) % weapons.length;
         if (nextIndex >= 0 && nextIndex < weapons.length) {
-          // eslint-disable-next-line security/detect-object-injection
           const nextWeapon = weapons[nextIndex];
           if (nextWeapon) {
             switchWeapon(nextWeapon);
@@ -299,7 +298,6 @@ export const useThreatSimulatorEvents = ({
         const prevIndex =
           currentIndex === 0 ? weapons.length - 1 : currentIndex - 1;
         if (prevIndex >= 0 && prevIndex < weapons.length) {
-          // eslint-disable-next-line security/detect-object-injection
           const prevWeapon = weapons[prevIndex];
           if (prevWeapon) {
             switchWeapon(prevWeapon);
