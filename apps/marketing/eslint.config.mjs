@@ -35,6 +35,13 @@ const eslintConfig = [
       "react-hooks/exhaustive-deps": "warn",
     },
   },
+  {
+    files: ["src/app/compliance/page.tsx"],
+    rules: {
+      // Disable security rules for compliance page content
+      "security/detect-child-process": "off",
+    },
+  },
 ];
 
 export default eslintConfig;
