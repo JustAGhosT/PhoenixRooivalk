@@ -59,6 +59,11 @@ export interface GameState {
   deploymentBays: DeploymentBay[];
   formations: Formation[];
   selectedDroneType: Drone["type"] | null;
+  // Environmental and Mission State
+  weatherMode: "none" | "rain" | "fog" | "night";
+  missionType: "airport" | "military-base" | "vip-protection" | "border-patrol";
+  automationMode: "manual" | "automated" | "hybrid";
+  showDeploymentZones: boolean;
 }
 
 export const useGameState = () => {
@@ -190,6 +195,11 @@ export const useGameState = () => {
     ],
     formations: [],
     selectedDroneType: null,
+    // Environmental and Mission State
+    weatherMode: "none",
+    missionType: "military-base",
+    automationMode: "hybrid",
+    showDeploymentZones: false,
   });
 
   const updateScore = useCallback((amount: number) => {

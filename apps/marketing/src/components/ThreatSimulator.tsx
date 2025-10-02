@@ -1,16 +1,17 @@
 "use client";
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions, jsx-a11y/no-noninteractive-tabindex */
 import * as React from "react";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ParticleRenderer } from "./ParticleRenderer";
 import styles from "./ThreatSimulator.module.css";
-import { useGameState } from "./hooks/useGameState";
-import { useTimeoutManager } from "./hooks/useTimeoutManager";
-import { useThreatSimulatorGame } from "./hooks/useThreatSimulatorGame";
-import { useThreatSimulatorEvents } from "./hooks/useThreatSimulatorEvents";
-import { useFullscreen } from "./hooks/useFullscreen";
-import { ThreatSimulatorOverlays } from "./ThreatSimulatorOverlays";
+import { ThreatSimulatorComponents } from "./ThreatSimulatorComponents";
 import { ThreatSimulatorControls } from "./ThreatSimulatorControls";
+import { ThreatSimulatorStatus } from "./ThreatSimulatorStatus";
+import { useFullscreen } from "./hooks/useFullscreen";
+import { useGameState } from "./hooks/useGameState";
+import { useThreatSimulatorEvents } from "./hooks/useThreatSimulatorEvents";
+import { useThreatSimulatorGame } from "./hooks/useThreatSimulatorGame";
+import { useTimeoutManager } from "./hooks/useTimeoutManager";
 
 interface ThreatSimulatorProps {
   isTeaser?: boolean;
@@ -220,6 +221,47 @@ export const ThreatSimulator: React.FC<ThreatSimulatorProps> = ({
 
   return (
     <div className="relative w-full h-[600px] bg-gradient-to-br from-slate-900 via-slate-950 to-slate-900 rounded-xl border border-red-500/20 overflow-hidden shadow-2xl">
+      {/* Enhanced Status System */}
+      <ThreatSimulatorStatus
+        gameState={gameState}
+        isFullscreen={isFullscreen}
+        showFullscreenPrompt={showFullscreenPrompt}
+        onEnterFullscreen={enterFullscreen}
+        onExitFullscreen={exitFullscreen}
+      />
+
+      {/* Enhanced Game Components */}
+      <ThreatSimulatorComponents
+        gameState={gameState}
+        onThreatClick={handleThreatClick}
+        onThreatHover={(threatId) => {
+          // Handle threat hover for enhanced tooltips
+        }}
+        getThreatAppearance={getThreatAppearance}
+      />
+
+      {/* Enhanced Controls */}
+      <ThreatSimulatorControls
+        gameState={gameState}
+        switchWeapon={switchWeapon}
+        selectDroneType={selectDroneType}
+        toggleRunningState={toggleRunningState}
+        generateSwarm={generateSwarm}
+        spawnMultipleDrones={spawnMultipleDrones}
+        activatePowerUp={activatePowerUp}
+        clearSelection={clearSelection}
+        resetGameState={resetGameState}
+        setFrameRate={setFrameRate}
+        weatherMode={weatherMode}
+        setWeatherMode={setWeatherMode}
+        missionType={missionType}
+        setMissionType={setMissionType}
+        automationMode={automationMode}
+        setAutomationMode={setAutomationMode}
+        showDeploymentZones={showDeploymentZones}
+        setShowDeploymentZones={setShowDeploymentZones}
+      />
+
       {/* Critical Simulation Disclaimer */}
       {showSimulationWarning && (
         <div className="absolute top-2 left-2 right-2 z-50 bg-black/80 backdrop-blur-sm border border-red-500/30 rounded-lg p-2">
