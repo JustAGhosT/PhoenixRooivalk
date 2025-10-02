@@ -296,7 +296,7 @@ export const InteractiveElementsSection: React.FC = () => {
                   </div>
                 </div>
 
-                <div className="bg-[rgba(var(--tactical-black),0.6)] rounded-xl p-6 border border-[rgba(var(--tactical-gray),0.3)]">
+                <div className="bg-[rgba(var(--bg-secondary),0.6)] rounded-xl p-6 border border-[rgba(var(--border),0.3)]">
                   <h4 className="text-lg font-bold text-[rgb(var(--gray))] mb-4">
                     Traditional Systems
                   </h4>
@@ -305,7 +305,7 @@ export const InteractiveElementsSection: React.FC = () => {
                       <span className="text-[rgb(var(--gray))]">
                         Success Rate:
                       </span>
-                      <span className="text-[rgb(var(--status-warning))] font-bold">
+                      <span className="text-[rgb(var(--action-warning))] font-bold">
                         {(roi.traditional.successRate * 100).toFixed(1)}%
                       </span>
                     </div>
@@ -321,7 +321,7 @@ export const InteractiveElementsSection: React.FC = () => {
                       <span className="text-[rgb(var(--gray))]">
                         Annual Savings:
                       </span>
-                      <span className="text-[rgb(var(--status-warning))] font-bold">
+                      <span className="text-[rgb(var(--action-warning))] font-bold">
                         $
                         {isClient
                           ? roi.traditional.savings.toLocaleString()
@@ -354,7 +354,7 @@ export const InteractiveElementsSection: React.FC = () => {
             </div>
 
             <div className="relative">
-              <div className="bg-gradient-to-br from-[rgba(var(--tactical-obsidian),0.8)] to-[rgba(var(--tactical-black),0.8)] rounded-xl border border-[rgba(var(--primary),0.3)] p-4">
+              <div className="bg-gradient-to-br from-[rgba(var(--bg-primary),0.8)] to-[rgba(var(--bg-secondary),0.8)] rounded-xl border border-[rgba(var(--primary),0.3)] p-4">
                 <ThreatSimulator isTeaser={true} />
               </div>
 
@@ -375,15 +375,15 @@ export const InteractiveElementsSection: React.FC = () => {
 
               <div className="grid md:grid-cols-3 gap-8">
                 <div className="text-center">
-                  <div className="text-4xl font-bold text-[rgb(var(--status-critical))] mb-2">
+                  <div className="text-4xl font-bold text-[rgb(var(--action-danger))] mb-2">
                     3-10s
                   </div>
                   <div className="text-[rgb(var(--gray))] font-semibold mb-2">
                     Traditional Systems
                   </div>
-                  <div className="w-full bg-[rgba(var(--status-critical),0.2)] rounded-full h-4 border border-[rgba(var(--status-critical),0.3)]">
+                  <div className="w-full bg-[rgba(var(--action-danger),0.2)] rounded-full h-4 border border-[rgba(var(--action-danger),0.3)]">
                     <div
-                      className="bg-gradient-to-r from-[rgb(var(--status-critical))] to-[rgb(var(--status-warning))] h-4 rounded-full"
+                      className="bg-gradient-to-r from-[rgb(var(--action-danger))] to-[rgb(var(--action-warning))] h-4 rounded-full"
                       style={{ width: "100%" }}
                     ></div>
                   </div>
@@ -411,15 +411,15 @@ export const InteractiveElementsSection: React.FC = () => {
                 </div>
 
                 <div className="text-center">
-                  <div className="text-4xl font-bold text-[rgb(var(--status-active))] mb-2">
+                  <div className="text-4xl font-bold text-[rgb(var(--action-success))] mb-2">
                     120ms
                   </div>
                   <div className="text-[rgb(var(--gray))] font-semibold mb-2">
                     Phoenix Rooivalk
                   </div>
-                  <div className="w-full bg-[rgba(var(--status-active),0.2)] rounded-full h-4 border border-[rgba(var(--status-active),0.3)]">
+                  <div className="w-full bg-[rgba(var(--action-success),0.2)] rounded-full h-4 border border-[rgba(var(--action-success),0.3)]">
                     <div
-                      className="bg-gradient-to-r from-[rgb(var(--status-active))] to-[rgb(var(--accent))] h-4 rounded-full"
+                      className="bg-gradient-to-r from-[rgb(var(--action-success))] to-[rgb(var(--accent))] h-4 rounded-full"
                       style={{ width: "4%" }}
                     ></div>
                   </div>
