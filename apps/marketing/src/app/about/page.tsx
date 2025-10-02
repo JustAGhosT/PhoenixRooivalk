@@ -1,7 +1,7 @@
 "use client";
 import * as React from "react";
-import { Navigation } from "../../components/Navigation";
 import { Footer } from "../../components/Footer";
+import { Navigation } from "../../components/Navigation";
 import { SocialProofSection } from "../../components/sections/SocialProofSection";
 import { TechnicalIntegrationsSection } from "../../components/sections/TechnicalIntegrationsSection";
 import { usePerformanceOptimizations } from "../../hooks/usePerformanceOptimizations";
