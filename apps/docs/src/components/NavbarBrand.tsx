@@ -18,4 +18,3 @@ export default function NavbarBrand(): React.ReactElement {
     </Link>
   );
 }
-

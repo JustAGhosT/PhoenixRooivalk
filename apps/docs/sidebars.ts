@@ -7,11 +7,11 @@ const sidebars: SidebarsConfig = {
       label: "📊 Executive Documentation",
       collapsed: false,
       items: [
-        "executive/Executive_Summary",
+        "executive/executive-summary",
         "executive/Global_Strategy",
         "executive/Team_Status",
         "executive/Strategic_Recommendations",
-        "executive/Key_Questions_Cheatsheet",
+        "executive/key-questions-cheatsheet",
         "executive/Presentation_Materials",
       ],
     },
@@ -74,7 +74,7 @@ const sidebars: SidebarsConfig = {
       collapsed: false,
       items: [
         "business/Market_Analysis",
-        "business/Business_Model",
+        "business/business-model",
         "business/Competitive_Analysis",
         "business/Emerging_Trends",
         "business/ROI_Analysis",
