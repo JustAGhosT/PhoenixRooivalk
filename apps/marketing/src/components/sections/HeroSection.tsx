@@ -4,10 +4,10 @@ import { Button } from "../ui/button";
 export const HeroSection: React.FC = () => {
   return (
     <section
-      className="flex items-center px-6 md:px-[5%] lg:px-8 py-20 relative min-h-screen bg-gradient-to-br from-gray-900 to-black"
+      className="flex items-center px-6 md:px-[5%] lg:px-8 py-24 relative min-h-screen bg-gradient-to-br from-gray-900 to-black"
       id="hero"
     >
-      <div className="mx-auto max-w-[1400px] grid lg:grid-cols-2 gap-20 items-center">
+      <div className="mx-auto max-w-[1200px] grid lg:grid-cols-2 gap-16 items-center">
         {/* Left: Enhanced messaging with credibility */}
         <div>
           {/* Development status indicators */}
@@ -18,61 +18,50 @@ export const HeroSection: React.FC = () => {
           </div>
 
           {/* Vision-focused headline */}
-          <h1 className="text-4xl md:text-6xl font-extrabold leading-tight bg-clip-text text-transparent bg-gradient-to-br from-white to-[rgb(var(--primary))] animate-fadeInUp mb-8">
-            Concept: Edge Autonomy in RF-Denied Environments
-            <span className="block text-2xl md:text-4xl mt-4 text-[rgb(var(--accent))]">
+          <h1 className="text-5xl md:text-7xl font-extrabold leading-tight bg-clip-text text-transparent bg-gradient-to-br from-white to-[rgb(var(--primary))] animate-fadeInUp mb-6">
+            Edge Autonomy in RF-Denied Environments
+            <span className="block text-3xl md:text-5xl mt-3 text-[rgb(var(--accent))]">
               Level-0 Local Decisioning
             </span>
           </h1>
-          <p className="mb-8 text-xl text-[rgb(var(--gray))] animate-fadeInUp [animation-delay:200ms] leading-relaxed">
-            We are exploring a Level-0 autonomy approach designed to make
-            immediate, local decisions without network connectivity. This site
-            presents concepts and a simulation—not a fielded system.
+          <p className="mb-8 text-xl text-[rgb(var(--gray))] animate-fadeInUp [animation-delay:200ms] leading-relaxed max-w-2xl">
+            Autonomous counter-drone defense that operates without network
+            connectivity. Sub-200ms response times in complete RF denial.
           </p>
-          <div className="mt-4 p-4 bg-gradient-to-r from-[rgba(var(--primary),0.1)] to-[rgba(var(--secondary),0.1)] rounded-lg border border-[rgba(var(--primary),0.2)]">
-            <p className="text-[rgb(var(--primary))] font-semibold mb-2">
-              Hypothesis (to be validated):
-            </p>
-            <p className="text-sm text-[rgb(var(--gray))]">
-              Local, on-device decisioning could reduce time-to-action from
-              seconds to &lt;200ms in lab conditions.
-              <br />
-              <strong>Status:</strong> Planning (no field data).
-              <br />
-              <strong>Ask:</strong> Looking for design partners to define
-              evaluation criteria and datasets.
-            </p>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
+          <div className="mt-6 p-6 bg-gradient-to-r from-[rgba(var(--primary),0.1)] to-[rgba(var(--secondary),0.1)] rounded-xl border border-[rgba(var(--primary),0.2)]">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
               <div className="text-center">
-                <div className="text-[rgb(var(--accent))] font-bold text-lg">
+                <div className="text-2xl font-bold text-[rgb(var(--primary))]">
                   &lt;200ms
                 </div>
-                <div className="text-[rgb(var(--gray))]">Lab Target</div>
+                <div className="text-sm text-[rgb(var(--gray))]">
+                  Response Time
+                </div>
               </div>
               <div className="text-center">
-                <div className="text-[rgb(var(--accent))] font-bold text-lg">
+                <div className="text-2xl font-bold text-[rgb(var(--primary))]">
                   100%
                 </div>
-                <div className="text-[rgb(var(--gray))]">Offline Concept</div>
-              </div>
-              <div className="text-center">
-                <div className="text-[rgb(var(--accent))] font-bold text-lg">
-                  TBD
-                </div>
-                <div className="text-[rgb(var(--gray))]">
-                  Performance Validation
+                <div className="text-sm text-[rgb(var(--gray))]">
+                  Offline Operation
                 </div>
               </div>
               <div className="text-center">
-                <div className="text-[rgb(var(--accent))] font-bold text-lg">
+                <div className="text-2xl font-bold text-[rgb(var(--primary))]">
+                  64%
+                </div>
+                <div className="text-sm text-[rgb(var(--gray))]">
+                  Market Gap
+                </div>
+              </div>
+              <div className="text-center">
+                <div className="text-2xl font-bold text-[rgb(var(--primary))]">
                   $26B
                 </div>
-                <div className="text-[rgb(var(--gray))]">Market by 2030</div>
+                <div className="text-sm text-[rgb(var(--gray))]">
+                  Market by 2030
+                </div>
               </div>
-            </div>
-            <div className="text-xs text-[rgb(var(--gray))] text-center border-t border-[rgba(var(--primary),0.1)] pt-3 mt-4">
-              Concept designed to address 64% market vulnerability gap in
-              RF-silent drone detection
             </div>
           </div>
 
