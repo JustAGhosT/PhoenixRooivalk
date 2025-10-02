@@ -1,8 +1,9 @@
 import * as React from "react";
 import styles from "./ThreatSimulator.module.css";
+import type { GameState } from "../types/game";
 
 interface ThreatSimulatorControlsProps {
-  gameState: any;
+  gameState: GameState;
   switchWeapon: (weaponId: string) => void;
   selectDroneType: (
     droneType:

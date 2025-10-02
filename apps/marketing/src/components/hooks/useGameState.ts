@@ -12,7 +12,7 @@ import {
 import { Threat } from "../utils/threatTypes";
 import { PowerUp, WEAPON_CONFIGS, Weapon } from "../utils/weaponTypes";
 
-interface GameState {
+export interface GameState {
   score: number;
   threats: Threat[];
   neutralized: number;

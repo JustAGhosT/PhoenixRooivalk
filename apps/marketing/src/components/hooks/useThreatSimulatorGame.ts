@@ -4,12 +4,13 @@ import { ParticleSystem } from "../utils/particleSystem";
 import { ResponseProtocolEngine } from "../utils/responseProtocols";
 import { StrategicDeploymentEngine } from "../utils/strategicDeployment";
 import { moveThreats, spawnThreat } from "../utils/threatUtils";
+import type { GameState, Threat } from "../../types/game";
 
 interface UseThreatSimulatorGameProps {
   gameRef: React.RefObject<HTMLDivElement>;
-  gameState: any;
-  updateThreats: (threats: any[]) => void;
-  addThreat: (threat: any) => void;
+  gameState: GameState;
+  updateThreats: (threats: Threat[]) => void;
+  addThreat: (threat: Threat) => void;
   removeThreat: (threatId: string) => void;
   updateScore: (score: number) => void;
   neutralizeThreat: (threatId: string) => void;

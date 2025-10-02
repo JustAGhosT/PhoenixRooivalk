@@ -1,10 +1,11 @@
 import { useCallback, useState } from "react";
+import type { GameState, Threat, SelectionBox } from "../../types/game";
 
 interface UseThreatSimulatorEventsProps {
   gameRef: React.RefObject<HTMLDivElement>;
-  gameState: any;
-  updateThreats: (threats: any[]) => void;
-  addThreat: (threat: any) => void;
+  gameState: GameState;
+  updateThreats: (threats: Threat[]) => void;
+  addThreat: (threat: Threat) => void;
   removeThreat: (threatId: string) => void;
   updateScore: (score: number) => void;
   selectThreat: (threatId: string) => void;
@@ -35,7 +36,7 @@ interface UseThreatSimulatorEventsProps {
   ) => void;
   returnDroneToBase: (droneId: string) => void;
   clearSelection: () => void;
-  setSelectionBox: (box: any) => void;
+  setSelectionBox: (box: SelectionBox | null) => void;
   spawnNewThreat: (threatType?: "drone" | "swarm" | "stealth") => void;
   moveAllThreats: () => void;
   generateSwarm: () => void;

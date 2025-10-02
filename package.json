@@ -27,7 +27,7 @@
     "lint-staged": "^16.2.3",
     "prettier": "^3.3.3",
     "turbo": "^2.1.1",
-    "typescript": "^5.5.4"
+    "typescript": "^5.4.5"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
