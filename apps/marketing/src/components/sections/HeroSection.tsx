@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 import { ThreatSimulator } from "../ThreatSimulator";
 import { Button } from "../ui/button";
 

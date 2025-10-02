@@ -1,6 +1,6 @@
 "use client";
 import * as React from "react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ThreatSimulator } from "../ThreatSimulator";
 import { Button } from "../ui/button";
 
@@ -15,6 +15,11 @@ export const InteractiveElementsSection: React.FC = () => {
   const [sensitivity, setSensitivity] = useState<
     "conservative" | "median" | "aggressive"
   >("conservative");
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
 
   const calculateROI = () => {
     const {
@@ -238,7 +243,7 @@ export const InteractiveElementsSection: React.FC = () => {
                   <div className="flex justify-between text-[rgb(var(--gray))] text-sm mt-1">
                     <span>$100K</span>
                     <span className="text-[rgb(var(--accent))] font-bold">
-                      ${roiInputs.deploymentCost.toLocaleString()}
+                      ${isClient ? roiInputs.deploymentCost.toLocaleString() : roiInputs.deploymentCost.toString()}
                     </span>
                     <span>$1M</span>
                   </div>
@@ -273,7 +278,7 @@ export const InteractiveElementsSection: React.FC = () => {
                         Annual Savings:
                       </span>
                       <span className="text-[rgb(var(--status-active))] font-bold">
-                        ${roi.phoenix.savings.toLocaleString()}
+                        ${isClient ? roi.phoenix.savings.toLocaleString() : roi.phoenix.savings.toString()}
                       </span>
                     </div>
                     <div className="flex justify-between border-t border-[rgba(var(--primary),0.2)] pt-3">
@@ -311,7 +316,7 @@ export const InteractiveElementsSection: React.FC = () => {
                         Annual Savings:
                       </span>
                       <span className="text-[rgb(var(--status-warning))] font-bold">
-                        ${roi.traditional.savings.toLocaleString()}
+                        ${isClient ? roi.traditional.savings.toLocaleString() : roi.traditional.savings.toString()}
                       </span>
                     </div>
                     <div className="flex justify-between border-t border-[rgba(var(--primary),0.2)] pt-3">
@@ -344,7 +349,7 @@ export const InteractiveElementsSection: React.FC = () => {
                 <ThreatSimulator isTeaser={true} />
               </div>
 
-              <div className="text-center mt-4">
+              <div className="text-center mt-6">
                 <Button href="/interactive-demo" variant="primary" size="lg">
                   🚀 Try Full Interactive Demo
                 </Button>

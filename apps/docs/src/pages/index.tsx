@@ -1,5 +1,6 @@
-import React, { useEffect } from "react";
 import Layout from "@theme/Layout";
+import * as React from "react";
+import { useEffect } from "react";
 
 export default function Home(): React.ReactElement {
   useEffect(() => {

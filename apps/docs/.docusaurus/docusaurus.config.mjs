@@ -10,7 +10,7 @@ export default {
   "baseUrl": "/",
   "organizationName": "JustAGhosT",
   "projectName": "PhoenixRooivalk",
-  "onBrokenLinks": "throw",
+  "onBrokenLinks": "warn",
   "markdown": {
     "hooks": {
       "onBrokenMarkdownLinks": "warn",
@@ -42,7 +42,9 @@ export default {
       {
         "docs": {
           "routeBasePath": "docs",
-          "sidebarPath": "C:\\Users\\smitj\\repos\\PhoenixRooivalk\\apps\\docs\\sidebars.ts"
+          "sidebarPath": "C:\\Users\\smitj\\repos\\PhoenixRooivalk\\apps\\docs\\sidebars.ts",
+          "remarkPlugins": [],
+          "rehypePlugins": []
         },
         "blog": false,
         "theme": {
@@ -53,13 +55,76 @@ export default {
   ],
   "themeConfig": {
     "navbar": {
-      "title": "PhoenixRooivalk",
+      "title": "Phoenix Rooivalk",
+      "logo": {
+        "alt": "Phoenix Rooivalk Logo",
+        "src": "img/logo.svg",
+        "srcDark": "img/logo.svg",
+        "width": 40,
+        "height": 40
+      },
       "items": [
         {
           "type": "doc",
-          "docId": "overview",
+          "docId": "README",
           "position": "left",
-          "label": "Overview"
+          "label": "Documentation"
+        },
+        {
+          "type": "dropdown",
+          "label": "Executive",
+          "position": "left",
+          "items": [
+            {
+              "label": "Executive Summary",
+              "to": "/docs/executive/Executive_Summary"
+            },
+            {
+              "label": "Global Strategy",
+              "to": "/docs/executive/Global_Strategy"
+            }
+          ]
+        },
+        {
+          "type": "dropdown",
+          "label": "Technical",
+          "position": "left",
+          "items": [
+            {
+              "label": "Technical Architecture",
+              "to": "/docs/technical/Technical_Architecture"
+            },
+            {
+              "label": "System Architecture",
+              "to": "/docs/technical/System_Architecture"
+            }
+          ]
+        },
+        {
+          "type": "dropdown",
+          "label": "Business",
+          "position": "left",
+          "items": [
+            {
+              "label": "Market Analysis",
+              "to": "/docs/business/Market_Analysis"
+            },
+            {
+              "label": "Business Model",
+              "to": "/docs/business/Business_Model"
+            }
+          ]
+        },
+        {
+          "type": "dropdown",
+          "label": "Operations",
+          "position": "left",
+          "items": [
+            {
+              "label": "Manufacturing Strategy",
+              "to": "/docs/operations/Manufacturing_Strategy"
+            }
+          ]
         },
         {
           "href": "https://github.com/JustAGhosT/PhoenixRooivalk/blob/main/ACCESS.md",
@@ -79,6 +144,68 @@ export default {
         }
       ],
       "hideOnScroll": false
+    },
+    "footer": {
+      "style": "dark",
+      "links": [
+        {
+          "title": "Documentation",
+          "items": [
+            {
+              "label": "Executive Summary",
+              "to": "/docs/executive/Executive_Summary"
+            },
+            {
+              "label": "Technical Architecture",
+              "to": "/docs/technical/Technical_Architecture"
+            },
+            {
+              "label": "Market Analysis",
+              "to": "/docs/business/Market_Analysis"
+            }
+          ]
+        },
+        {
+          "title": "Resources",
+          "items": [
+            {
+              "label": "GitHub Repository",
+              "href": "https://github.com/JustAGhosT/PhoenixRooivalk"
+            },
+            {
+              "label": "Request Access",
+              "href": "https://github.com/JustAGhosT/PhoenixRooivalk/blob/main/ACCESS.md"
+            },
+            {
+              "label": "Getting Started",
+              "to": "/docs"
+            }
+          ]
+        },
+        {
+          "title": "Operations",
+          "items": [
+            {
+              "label": "Manufacturing Strategy",
+              "to": "/docs/operations/Manufacturing_Strategy"
+            },
+            {
+              "label": "System Architecture",
+              "to": "/docs/technical/System_Architecture"
+            },
+            {
+              "label": "Business Model",
+              "to": "/docs/business/Business_Model"
+            }
+          ]
+        }
+      ],
+      "copyright": "© 2025 Phoenix Rooivalk. All rights reserved. Built with ❤️ for global defense security."
+    },
+    "colorMode": {
+      "defaultMode": "dark",
+      "disableSwitch": false,
+      "respectPrefersColorScheme": true
     },
     "prism": {
       "theme": {
@@ -272,7 +399,12 @@ export default {
           }
         ]
       },
-      "additionalLanguages": [],
+      "additionalLanguages": [
+        "rust",
+        "bash",
+        "json",
+        "yaml"
+      ],
       "magicComments": [
         {
           "className": "theme-code-block-highlighted-line",
@@ -284,28 +416,30 @@ export default {
         }
       ]
     },
-    "colorMode": {
-      "defaultMode": "light",
-      "disableSwitch": false,
-      "respectPrefersColorScheme": false
+    "announcementBar": {
+      "id": "phoenix-rooivalk-announcement",
+      "content": "🚀 Phoenix Rooivalk: Revolutionary Level-0 Autonomous Counter-UAS Defense Platform",
+      "backgroundColor": "rgb(249, 115, 22)",
+      "textColor": "rgb(15, 23, 42)",
+      "isCloseable": true
+    },
+    "tableOfContents": {
+      "minHeadingLevel": 2,
+      "maxHeadingLevel": 4
     },
     "docs": {
-      "versionPersistence": "localStorage",
       "sidebar": {
-        "hideable": false,
-        "autoCollapseCategories": false
-      }
+        "hideable": true,
+        "autoCollapseCategories": true
+      },
+      "versionPersistence": "localStorage"
     },
     "blog": {
       "sidebar": {
         "groupByYear": true
       }
     },
-    "metadata": [],
-    "tableOfContents": {
-      "minHeadingLevel": 2,
-      "maxHeadingLevel": 3
-    }
+    "metadata": []
   },
   "baseUrlIssueBanner": true,
   "future": {

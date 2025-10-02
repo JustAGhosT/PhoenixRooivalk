@@ -11,10 +11,7 @@
       "direction": "ltr",
       "htmlLang": "en",
       "calendar": "gregory",
-      "path": "en",
-      "translate": false,
-      "url": "https://phoenixrooivalk.netlify.app",
-      "baseUrl": "/"
+      "path": "en"
     }
   }
 }

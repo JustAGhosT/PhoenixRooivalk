@@ -1,77 +1,558 @@
-/* Custom styles for PhoenixRooivalk docs site */
+/* Phoenix Rooivalk Documentation Theme */
 
+/* Import Phoenix Rooivalk Brand Colors */
+:root {
+  /* Phoenix Rooivalk Brand Colors */
+  --phoenix-white: 255, 255, 255;
+  --phoenix-cream: 254, 252, 232;
+  --phoenix-gold: 255, 215, 0;
+  --phoenix-amber: 251, 191, 36;
+  --phoenix-orange: 249, 115, 22;
+  --phoenix-red: 239, 68, 68;
+  --phoenix-crimson: 220, 38, 127;
+  --phoenix-maroon: 185, 28, 28;
+  --phoenix-deep: 127, 29, 29;
+
+  /* Tactical Neutrals */
+  --tactical-black: 0, 0, 0;
+  --tactical-obsidian: 15, 23, 42;
+  --tactical-charcoal: 30, 41, 59;
+  --tactical-gunmetal: 51, 65, 85;
+  --tactical-gray-dark: 71, 85, 105;
+  --tactical-gray: 100, 116, 139;
+  --tactical-gray-light: 148, 163, 184;
+  --tactical-silver: 203, 213, 225;
+
+  /* Sensor Accents */
+  --sensor-green: 34, 197, 94;
+  --sensor-amber: 245, 158, 11;
+  --sensor-red: 239, 68, 68;
+
+  /* Semantic Colors */
+  --ifm-color-primary: rgb(249, 115, 22); /* Phoenix Orange */
+  --ifm-color-primary-dark: rgb(234, 88, 12);
+  --ifm-color-primary-darker: rgb(194, 65, 12);
+  --ifm-color-primary-darkest: rgb(154, 52, 18);
+  --ifm-color-primary-light: rgb(251, 146, 60);
+  --ifm-color-primary-lighter: rgb(253, 186, 116);
+  --ifm-color-primary-lightest: rgb(254, 215, 170);
+
+  /* Background Colors */
+  --ifm-background-color: rgb(15, 23, 42); /* Tactical Obsidian */
+  --ifm-background-surface-color: rgb(30, 41, 59); /* Tactical Charcoal */
+  --ifm-color-content: rgb(242, 244, 246); /* High contrast white */
+  --ifm-color-content-secondary: rgb(226, 230, 234); /* Body text */
+  --ifm-color-content-tertiary: rgb(148, 163, 184); /* Muted text */
+
+  /* Code Colors */
+  --ifm-code-background: rgb(30, 41, 59);
+  --ifm-code-color: rgb(251, 191, 36); /* Phoenix Amber for code */
+
+  /* Navbar */
+  --ifm-navbar-background-color: rgb(15, 23, 42);
+  --ifm-navbar-link-color: rgb(242, 244, 246);
+  --ifm-navbar-link-hover-color: rgb(249, 115, 22);
+
+  /* Footer */
+  --ifm-footer-background-color: rgb(15, 23, 42);
+  --ifm-footer-color: rgb(148, 163, 184);
+  --ifm-footer-link-color: rgb(203, 213, 225);
+
+  /* Cards */
+  --ifm-card-background-color: rgb(30, 41, 59);
+  --ifm-card-border-radius: 8px;
+
+  /* Tables */
+  --ifm-table-border-color: rgb(51, 65, 85);
+  --ifm-table-stripe-background: rgb(30, 41, 59);
+
+  /* Sidebar */
+  --ifm-sidebar-background-color: rgb(15, 23, 42);
+  --ifm-menu-color: rgb(226, 230, 234);
+  --ifm-menu-color-active: rgb(249, 115, 22);
+  --ifm-menu-color-background-active: rgb(30, 41, 59);
+  --ifm-menu-color-background-hover: rgb(30, 41, 59);
+
+  /* TOC */
+  --ifm-toc-border-color: rgb(51, 65, 85);
+  --ifm-toc-link-color: rgb(148, 163, 184);
+  --ifm-toc-link-color-active: rgb(249, 115, 22);
+
+  /* Search */
+  --ifm-search-background-color: rgb(30, 41, 59);
+  --ifm-search-border-color: rgb(51, 65, 85);
+  --ifm-search-color: rgb(242, 244, 246);
+
+  /* Admonitions */
+  --ifm-alert-background-color: rgb(30, 41, 59);
+  --ifm-alert-border-color: rgb(51, 65, 85);
+  --ifm-alert-color: rgb(242, 244, 246);
+
+  /* Buttons */
+  --ifm-button-background-color: rgb(249, 115, 22);
+  --ifm-button-color: rgb(15, 23, 42);
+  --ifm-button-border-color: rgb(249, 115, 22);
+  --ifm-button-hover-background-color: rgb(234, 88, 12);
+  --ifm-button-hover-border-color: rgb(234, 88, 12);
+
+  /* Links */
+  --ifm-link-color: rgb(249, 115, 22);
+  --ifm-link-hover-color: rgb(251, 146, 60);
+  --ifm-link-decoration: none;
+  --ifm-link-hover-decoration: underline;
+
+  /* Headings */
+  --ifm-heading-color: rgb(242, 244, 246);
+  --ifm-h1-color: rgb(242, 244, 246);
+  --ifm-h2-color: rgb(242, 244, 246);
+  --ifm-h3-color: rgb(242, 244, 246);
+  --ifm-h4-color: rgb(242, 244, 246);
+  --ifm-h5-color: rgb(242, 244, 246);
+  --ifm-h6-color: rgb(242, 244, 246);
+
+  /* Spacing */
+  --ifm-spacing-horizontal: 1.5rem;
+  --ifm-spacing-vertical: 1.5rem;
+
+  /* Border Radius */
+  --ifm-global-radius: 8px;
+  --ifm-button-border-radius: 6px;
+  --ifm-card-border-radius: 8px;
+
+  /* Shadows */
+  --ifm-global-shadow-lw: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
+  --ifm-global-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  --ifm-global-shadow-tl: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+
+  /* Typography */
+  --ifm-font-family-base: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, sans-serif;
+  --ifm-font-family-monospace: "JetBrains Mono", "Fira Code", Consolas,
+    "Courier New", monospace;
+  --ifm-font-size-base: 16px;
+  --ifm-line-height-base: 1.6;
+
+  /* Z-index */
+  --ifm-z-index-dropdown: 200;
+  --ifm-z-index-fixed: 200;
+  --ifm-z-index-overlay: 400;
+}
+
+/* Dark theme overrides */
+[data-theme="dark"] {
+  --ifm-background-color: rgb(15, 23, 42);
+  --ifm-background-surface-color: rgb(30, 41, 59);
+  --ifm-color-content: rgb(242, 244, 246);
+  --ifm-color-content-secondary: rgb(226, 230, 234);
+  --ifm-color-content-tertiary: rgb(148, 163, 184);
+}
+
+/* Custom Components */
+
+/* Phoenix Rooivalk Brand Header */
+.phoenix-header {
+  background: linear-gradient(135deg, rgb(15, 23, 42) 0%, rgb(30, 41, 59) 100%);
+  border-bottom: 2px solid rgb(249, 115, 22);
+  padding: 1rem 0;
+}
+
+.phoenix-logo {
+  height: 40px;
+  width: auto;
+  filter: brightness(1.1);
+}
+
+/* Navigation Enhancements */
+.navbar {
+  background: rgb(15, 23, 42) !important;
+  border-bottom: 1px solid rgb(51, 65, 85);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.navbar__brand {
+  font-weight: 700;
+  font-size: 1.25rem;
+  color: rgb(249, 115, 22) !important;
+}
+
+.navbar__link {
+  color: rgb(226, 230, 234) !important;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.navbar__link:hover {
+  color: rgb(249, 115, 22) !important;
+}
+
+.navbar__link--active {
+  color: rgb(249, 115, 22) !important;
+  font-weight: 600;
+}
+
+/* Sidebar Enhancements */
+.menu__link {
+  color: rgb(226, 230, 234) !important;
+  border-radius: 6px;
+  margin: 2px 0;
+  transition: all 0.2s ease;
+}
+
+.menu__link:hover {
+  background: rgb(30, 41, 59) !important;
+  color: rgb(249, 115, 22) !important;
+}
+
+.menu__link--active {
+  background: rgb(30, 41, 59) !important;
+  color: rgb(249, 115, 22) !important;
+  font-weight: 600;
+}
+
+.menu__list-item-collapsible > .menu__link {
+  font-weight: 600;
+  color: rgb(242, 244, 246) !important;
+}
+
+/* Cards and Content */
+.card {
+  background: rgb(30, 41, 59) !important;
+  border: 1px solid rgb(51, 65, 85);
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.card__header {
+  border-bottom: 1px solid rgb(51, 65, 85);
+}
+
+.card__title {
+  color: rgb(242, 244, 246) !important;
+}
+
+.card__body {
+  color: rgb(226, 230, 234) !important;
+}
+
+/* Tables */
+.table {
+  background: rgb(30, 41, 59) !important;
+  border: 1px solid rgb(51, 65, 85);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.table thead {
+  background: rgb(15, 23, 42);
+}
+
+.table th {
+  background: rgb(15, 23, 42) !important;
+  color: rgb(242, 244, 246) !important;
+  border-bottom: 2px solid rgb(249, 115, 22);
+  font-weight: 600;
+}
+
+.table td {
+  color: rgb(226, 230, 234) !important;
+  border-bottom: 1px solid rgb(51, 65, 85);
+}
+
+.table tbody tr:hover {
+  background: rgb(30, 41, 59) !important;
+}
+
+/* Code Blocks */
+.prism-code {
+  background: rgb(15, 23, 42) !important;
+  border: 1px solid rgb(51, 65, 85);
+  border-radius: 8px;
+}
+
+.token.comment {
+  color: rgb(148, 163, 184) !important;
+}
+
+.token.keyword {
+  color: rgb(249, 115, 22) !important;
+}
+
+.token.string {
+  color: rgb(34, 197, 94) !important;
+}
+
+.token.number {
+  color: rgb(251, 191, 36) !important;
+}
+
+/* Admonitions */
+.admonition {
+  background: rgb(30, 41, 59) !important;
+  border: 1px solid rgb(51, 65, 85);
+  border-radius: 8px;
+  border-left: 4px solid rgb(249, 115, 22);
+}
+
+.admonition-heading {
+  color: rgb(242, 244, 246) !important;
+  font-weight: 600;
+}
+
+.admonition-content {
+  color: rgb(226, 230, 234) !important;
+}
+
+/* Buttons */
+.button {
+  border-radius: 6px !important;
+  font-weight: 600 !important;
+  transition: all 0.2s ease !important;
+}
+
+.button--primary {
+  background: rgb(249, 115, 22) !important;
+  border-color: rgb(249, 115, 22) !important;
+  color: rgb(15, 23, 42) !important;
+}
+
+.button--primary:hover {
+  background: rgb(234, 88, 12) !important;
+  border-color: rgb(234, 88, 12) !important;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(249, 115, 22, 0.3);
+}
+
+.button--secondary {
+  background: rgb(30, 41, 59) !important;
+  border-color: rgb(51, 65, 85) !important;
+  color: rgb(226, 230, 234) !important;
+}
+
+.button--secondary:hover {
+  background: rgb(51, 65, 85) !important;
+  border-color: rgb(71, 85, 105) !important;
+}
+
+/* Links */
+a {
+  color: rgb(249, 115, 22) !important;
+  text-decoration: none !important;
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: rgb(251, 146, 60) !important;
+  text-decoration: underline !important;
+}
+
+/* Headings */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: rgb(242, 244, 246) !important;
+  font-weight: 700 !important;
+}
+
+h1 {
+  font-size: 2.5rem !important;
+  line-height: 1.2 !important;
+  margin-bottom: 1.5rem !important;
+}
+
+h2 {
+  font-size: 2rem !important;
+  line-height: 1.3 !important;
+  margin-bottom: 1.25rem !important;
+  border-bottom: 2px solid rgb(249, 115, 22);
+  padding-bottom: 0.5rem;
+}
+
+h3 {
+  font-size: 1.5rem !important;
+  line-height: 1.4 !important;
+  margin-bottom: 1rem !important;
+}
+
+/* Content */
+.main-wrapper {
+  background: rgb(15, 23, 42) !important;
+}
+
+.main {
+  background: rgb(15, 23, 42) !important;
+}
+
+/* Footer */
+.footer {
+  background: rgb(15, 23, 42) !important;
+  border-top: 1px solid rgb(51, 65, 85);
+}
+
+.footer__title {
+  color: rgb(242, 244, 246) !important;
+  font-weight: 600;
+}
+
+.footer__link-item {
+  color: rgb(148, 163, 184) !important;
+}
+
+.footer__link-item:hover {
+  color: rgb(249, 115, 22) !important;
+}
+
+/* Search */
+.DocSearch {
+  --docsearch-primary-color: rgb(249, 115, 22);
+  --docsearch-text-color: rgb(242, 244, 246);
+  --docsearch-spacing: 12px;
+  --docsearch-icon-stroke-width: 1.4;
+  --docsearch-highlight-color: rgb(249, 115, 22);
+  --docsearch-muted-color: rgb(148, 163, 184);
+  --docsearch-container-background: rgba(15, 23, 42, 0.9);
+  --docsearch-modal-background: rgb(15, 23, 42);
+  --docsearch-searchbox-background: rgb(30, 41, 59);
+  --docsearch-searchbox-focus-background: rgb(30, 41, 59);
+  --docsearch-hit-color: rgb(226, 230, 234);
+  --docsearch-hit-shadow: none;
+  --docsearch-hit-background: rgb(30, 41, 59);
+  --docsearch-key-gradient: rgb(51, 65, 85);
+  --docsearch-key-shadow: none;
+}
+
+/* Environment Badge */
 .navbar-env-badge {
-  background: #444;
+  background: rgb(51, 65, 85);
   border-radius: 6px;
   padding: 0 8px;
   font-size: 0.85rem;
   line-height: 1.8;
-  color: #fff;
+  color: rgb(242, 244, 246);
+  font-weight: 500;
 }
+
 .navbar-env-badge--preview {
-  background: #d97706; /* amber-600 */
+  background: rgb(245, 158, 11); /* Sensor Amber */
+  color: rgb(15, 23, 42);
 }
 
-/* Homepage layout helpers */
-.homeMain {
-  padding: 4rem 1rem;
-}
-.homeSection {
-  max-width: 920px;
-  margin: 0 auto;
-}
-.homeCta {
-  margin: 2rem 0;
+/* Responsive Design */
+@media (max-width: 996px) {
+  .navbar__brand {
+    font-size: 1.125rem;
+  }
+
+  h1 {
+    font-size: 2rem !important;
+  }
+
+  h2 {
+    font-size: 1.75rem !important;
+  }
 }
 
-/* Optional: improve button contrast on homepage */
-.button.button--primary.button--lg {
-  background-color: #0f766e;
-  border-color: #0f766e;
-}
-.button.button--primary.button--lg:hover {
-  background-color: #115e59;
-  border-color: #115e59;
+@media (max-width: 768px) {
+  .phoenix-header {
+    padding: 0.75rem 0;
+  }
+
+  .phoenix-logo {
+    height: 32px;
+  }
+
+  h1 {
+    font-size: 1.75rem !important;
+  }
+
+  h2 {
+    font-size: 1.5rem !important;
+  }
 }
 
-/* Contact page styles */
-.contactMain {
-  padding: 4rem 1rem;
-}
-.contactSection {
-  max-width: 720px;
-  margin: 0 auto;
-}
-.contactForm {
-  margin-top: 1.5rem;
-}
-.contactGrid {
-  display: grid;
-  gap: 1rem;
-}
-.contactInput,
-.contactTextarea {
-  width: 100%;
+/* Print Styles */
+@media print {
+  .navbar,
+  .footer,
+  .sidebar,
+  .toc {
+    display: none !important;
+  }
+
+  .main {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: rgb(0, 0, 0) !important;
+  }
+
+  a {
+    color: rgb(0, 0, 0) !important;
+    text-decoration: underline !important;
+  }
 }
 
-/* Whitepaper page styles */
-.whitepaperMain {
-  padding: 4rem 1rem;
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
-.whitepaperSection {
-  max-width: 860px;
-  margin: 0 auto;
+
+/* High Contrast Mode */
+@media (prefers-contrast: high) {
+  :root {
+    --ifm-color-primary: rgb(255, 255, 255);
+    --ifm-color-content: rgb(255, 255, 255);
+    --ifm-background-color: rgb(0, 0, 0);
+  }
 }
-.whitepaperHeader {
-  margin-bottom: 1rem;
+
+/* Focus Styles */
+.button:focus,
+.navbar__link:focus,
+.menu__link:focus,
+a:focus {
+  outline: 2px solid rgb(249, 115, 22) !important;
+  outline-offset: 2px !important;
 }
-.whitepaperMeta {
-  color: #64748b; /* slate-500 */
-  margin-bottom: 2rem;
+
+/* Custom Utility Classes */
+.text-phoenix-orange {
+  color: rgb(249, 115, 22) !important;
 }
-.whitepaperCta {
-  margin-top: 1.5rem;
-  display: flex;
-  gap: 0.75rem;
-  flex-wrap: wrap;
+
+.text-phoenix-amber {
+  color: rgb(251, 191, 36) !important;
+}
+
+.text-sensor-green {
+  color: rgb(34, 197, 94) !important;
+}
+
+.bg-phoenix-dark {
+  background: rgb(15, 23, 42) !important;
+}
+
+.bg-phoenix-charcoal {
+  background: rgb(30, 41, 59) !important;
+}
+
+.border-phoenix-orange {
+  border-color: rgb(249, 115, 22) !important;
+}
+
+.shadow-phoenix {
+  box-shadow: 0 4px 8px rgba(249, 115, 22, 0.2) !important;
 }

@@ -1,12 +1,6 @@
 "use client";
-/* eslint-disable jsx-a11y/no-noninteractive-element-interactions, jsx-a11y/no-noninteractive-tabindex */
 import * as React from "react";
 import { useEffect, useRef, useState } from "react";
-import { ParticleRenderer } from "./ParticleRenderer";
-import styles from "./ThreatSimulator.module.css";
-import { ThreatSimulatorComponents } from "./ThreatSimulatorComponents";
-import { ThreatSimulatorControls } from "./ThreatSimulatorControls";
-import { ThreatSimulatorStatus } from "./ThreatSimulatorStatus";
 import { useFullscreen } from "./hooks/useFullscreen";
 import { useGameState } from "./hooks/useGameState";
 import { useThreatSimulatorEvents } from "./hooks/useThreatSimulatorEvents";
@@ -20,13 +14,12 @@ interface ThreatSimulatorProps {
 
 export const ThreatSimulator: React.FC<ThreatSimulatorProps> = ({
   isTeaser = false,
-  autoFullscreen: _autoFullscreen = false,
+  autoFullscreen = false,
 }): JSX.Element => {
   const gameRef = useRef<HTMLDivElement>(null);
-  const lastFrameTime = useRef<number>(0);
-  const animationFrameRef = useRef<number | undefined>(undefined);
+  const [showSimulationWarning, setShowSimulationWarning] = useState(true);
 
-  // Custom hooks for state and timeouts
+  // Core game state
   const {
     gameState,
     updateScore,
@@ -42,7 +35,6 @@ export const ThreatSimulator: React.FC<ThreatSimulatorProps> = ({
     activatePowerUp,
     updatePowerUps,
     checkAchievements,
-    // addToLeaderboard, // TODO: Implement leaderboard UI
     updateResources,
     consumeEnergy,
     consumeCooling,
@@ -50,9 +42,7 @@ export const ThreatSimulator: React.FC<ThreatSimulatorProps> = ({
     clearSelection,
     setSelectionBox,
     setThreatPriority,
-    // removeThreatPriority, // TODO: Implement priority removal UI
     deployDrone,
-    // updateDrones, // TODO: Implement drone update UI
     selectDroneType,
     updateMothershipResources,
     returnDroneToBase,
@@ -62,24 +52,16 @@ export const ThreatSimulator: React.FC<ThreatSimulatorProps> = ({
 
   const { addTimeout, clearTimeouts } = useTimeoutManager();
 
-  // Use the game hook for all game logic
+  // Game logic hook
   const {
     particleSystem,
-    gameDimensions,
-    weatherMode,
     setWeatherMode,
-    missionType,
     setMissionType,
-    automationMode,
     setAutomationMode,
     showDeploymentZones,
     setShowDeploymentZones,
-    strategicEngine,
-    responseEngine,
-    formationManager,
     spawnNewThreat,
     moveAllThreats,
-    neutralizeThreatWithEffects,
     generateSwarm,
     spawnMultipleDrones,
   } = useThreatSimulatorGame({
@@ -87,11 +69,11 @@ export const ThreatSimulator: React.FC<ThreatSimulatorProps> = ({
     gameState,
     updateThreats,
     addThreat,
-    removeThreat,
-    updateScore,
-    neutralizeThreat: removeThreat, // Use removeThreat as neutralize
-    fireWeapon,
-    consumeEnergy,
+      removeThreat,
+      updateScore,
+    neutralizeThreat: removeThreat,
+      fireWeapon,
+      consumeEnergy,
     consumeCooling,
     checkAchievements,
     updateGameTime,
@@ -105,14 +87,13 @@ export const ThreatSimulator: React.FC<ThreatSimulatorProps> = ({
     clearTimeouts,
   });
 
-  // Use the events hook for all event handling
+  // Events hook
   const {
     handleMouseDown,
     handleMouseMove,
     handleMouseUp,
     handleThreatClick,
     handleGameAreaClick,
-    handleGameAreaActivate,
     handleWheel,
     handleKeyDown,
     handleContextMenu,
@@ -146,7 +127,7 @@ export const ThreatSimulator: React.FC<ThreatSimulatorProps> = ({
     particleSystem,
   });
 
-  // Use the fullscreen hook
+  // Fullscreen hook
   const {
     isFullscreen,
     enterFullscreen,
@@ -154,940 +135,523 @@ export const ThreatSimulator: React.FC<ThreatSimulatorProps> = ({
     showFullscreenPrompt,
   } = useFullscreen({
     gameRef,
-    autoFullscreen: _autoFullscreen,
+    autoFullscreen,
     isTeaser,
   });
 
-  // UI state
-  const [showSimulationWarning, setShowSimulationWarning] = useState(true);
-
-  // Missing functions that are used in JSX
-  const handleGameAreaKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
-    handleKeyDown(e as any);
-  };
-  const neutralizeThreat = removeThreat;
-  const resetGame = resetGameState;
-
-  const getThreatAppearance = (type: string) => {
-    switch (type) {
-      case "drone":
-        return {
-          emoji: "🚁",
-          color: "bg-red-600 shadow-lg shadow-red-600/50",
-          cssClass: "",
-        };
-      case "swarm":
-        return {
-          emoji: "🐝",
-          color: "bg-orange-500 shadow-lg shadow-orange-500/50",
-          cssClass: "",
-        };
-      case "stealth":
-        return {
-          emoji: "👻",
-          color: "bg-tactical-gray shadow-lg shadow-gray-600/50",
-          cssClass: "",
-        };
-      case "kamikaze":
-        return {
-          emoji: "💥",
-          color: "bg-red-800 shadow-lg shadow-red-800/60",
-          cssClass: styles.threatKamikaze,
-        };
-      case "decoy":
-        return {
-          emoji: "🎭",
-          color: "bg-gray-500 shadow-lg shadow-gray-500/40",
-          cssClass: styles.threatDecoy,
-        };
-      case "shielded":
-        return {
-          emoji: "🛡️",
-          color: "bg-blue-700 shadow-lg shadow-blue-700/60",
-          cssClass: styles.threatShielded,
-        };
-      default:
-        return {
-          emoji: "🚁",
-          color: "bg-red-600 shadow-lg shadow-red-600/50",
-          cssClass: "",
-        };
-    }
-  };
-
+  // Cleanup on unmount
   useEffect(() => {
     return () => clearTimeouts();
   }, [clearTimeouts]);
 
+  // Threat appearance helper
+  const getThreatAppearance = (type: string) => {
+    const appearances = {
+      drone: { emoji: "🚁", color: "bg-red-600", cssClass: "" },
+      swarm: { emoji: "🐝", color: "bg-orange-500", cssClass: "" },
+      stealth: { emoji: "👻", color: "bg-gray-600", cssClass: "" },
+      kamikaze: { emoji: "💥", color: "bg-red-800", cssClass: "" },
+      decoy: { emoji: "🎭", color: "bg-gray-500", cssClass: "" },
+      shielded: { emoji: "🛡️", color: "bg-blue-700", cssClass: "" },
+    };
+    return appearances[type as keyof typeof appearances] || appearances.drone;
+  };
+
   return (
     <div className="relative w-full h-[600px] bg-gradient-to-br from-slate-900 via-slate-950 to-slate-900 rounded-xl border border-red-500/20 overflow-hidden shadow-2xl">
-      {/* Enhanced Status System */}
-      <ThreatSimulatorStatus
-        gameState={gameState}
-        isFullscreen={isFullscreen}
-        showFullscreenPrompt={showFullscreenPrompt}
-        onEnterFullscreen={enterFullscreen}
-        onExitFullscreen={exitFullscreen}
-      />
-
-      {/* Enhanced Game Components */}
-      <ThreatSimulatorComponents
-        gameState={gameState}
-        onThreatClick={handleThreatClick}
-        onThreatHover={(threatId) => {
-          // Handle threat hover for enhanced tooltips
-        }}
-        getThreatAppearance={getThreatAppearance}
-      />
-
-      {/* Enhanced Controls */}
-      <ThreatSimulatorControls
-        gameState={gameState}
-        switchWeapon={switchWeapon}
-        selectDroneType={selectDroneType}
-        toggleRunningState={toggleRunningState}
-        generateSwarm={generateSwarm}
-        spawnMultipleDrones={spawnMultipleDrones}
-        activatePowerUp={activatePowerUp}
-        clearSelection={clearSelection}
-        resetGameState={resetGameState}
-        setFrameRate={setFrameRate}
-        weatherMode={weatherMode}
-        setWeatherMode={setWeatherMode}
-        missionType={missionType}
-        setMissionType={setMissionType}
-        automationMode={automationMode}
-        setAutomationMode={setAutomationMode}
-        showDeploymentZones={showDeploymentZones}
-        setShowDeploymentZones={setShowDeploymentZones}
-      />
-
-      {/* Critical Simulation Disclaimer */}
-      {showSimulationWarning && (
-        <div className="absolute top-2 left-2 right-2 z-50 bg-black/80 backdrop-blur-sm border border-red-500/30 rounded-lg p-2">
-          <div className="flex items-center justify-between">
-            <p className="text-xs text-red-400 font-semibold flex-1">
-              ⚠️ SIMULATION: This interactive module is designed to visualize
-              concepts. It does not represent real-world sensor performance,
-              detection ranges, or decision latency.
-            </p>
-            <button
-              onClick={() => setShowSimulationWarning(false)}
-              className="ml-3 text-red-400 hover:text-red-300 transition-colors"
-              title="Close warning"
-            >
-              <svg
-                className="w-4 h-4"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M6 18L18 6M6 6l12 12"
-                />
-              </svg>
-            </button>
-          </div>
-        </div>
-      )}
-
-      {/* Control Instructions */}
-      <div className="absolute top-16 left-2 z-40 bg-black/80 backdrop-blur-sm border border-orange-500/30 rounded-lg p-2">
-        <div className="text-xs text-orange-400 font-semibold mb-1">
-          CONTROLS:
-        </div>
-        <div className="text-xs text-gray-300 space-y-1">
-          <div>
-            • <span className="text-orange-400">Left Click:</span> Deploy
-            selected drone
-          </div>
-          <div>
-            • <span className="text-orange-400">Middle Click:</span> Deploy
-            jammer drone
-          </div>
-          <div>
-            • <span className="text-orange-400">Right Click:</span> Deploy
-            surveillance drone
-          </div>
-          <div>
-            • <span className="text-orange-400">Scroll Wheel:</span> Cycle
-            weapons
-          </div>
-          <div>
-            • <span className="text-orange-400">Drag:</span> Multi-select
-            threats
-          </div>
-          <div>
-            • <span className="text-orange-400">Shift+Drag:</span> Area effect
-            weapon
-          </div>
-          <div>
-            • <span className="text-orange-400">Click Drone:</span> Return to
-            base
-          </div>
-          <div>
-            • <span className="text-orange-400">Click Bay:</span> Select drone
-            type
-          </div>
-          <div className="mt-2 pt-1 border-t border-gray-600">
-            <div className="text-orange-400 font-semibold mb-1">KEYBOARD:</div>
-            <div>
-              • <span className="text-orange-400">1-3:</span> Select weapons
-            </div>
-            <div>
-              • <span className="text-orange-400">WASD:</span> Deploy drones
-            </div>
-            <div>
-              • <span className="text-orange-400">ESC:</span> Clear selection
-            </div>
-            <div>
-              • <span className="text-orange-400">SPACE:</span> Pause/Resume
-            </div>
-          </div>
-        </div>
+      {/* Background Grid Pattern */}
+      <div className="absolute inset-0 opacity-10">
+        <div className="w-full h-full" style={{
+          backgroundImage: `
+            linear-gradient(rgba(59, 130, 246, 0.1) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(59, 130, 246, 0.1) 1px, transparent 1px)
+          `,
+          backgroundSize: '20px 20px'
+        }} />
       </div>
 
-      {/* Technical grid background */}
-      <div className={styles.technicalGrid}></div>
-
-      {/* Weather Effects */}
-      {weatherMode === "rain" && <div className={styles.weatherRain}></div>}
-      {weatherMode === "fog" && <div className={styles.weatherFog}></div>}
-
-      {/* Selection Box */}
-      {gameState.selectionBox && (
-        <div
-          className={styles.selectionBox}
-          style={{
-            left: Math.min(
-              gameState.selectionBox.startX,
-              gameState.selectionBox.endX,
-            ),
-            top: Math.min(
-              gameState.selectionBox.startY,
-              gameState.selectionBox.endY,
-            ),
-            width: Math.abs(
-              gameState.selectionBox.endX - gameState.selectionBox.startX,
-            ),
-            height: Math.abs(
-              gameState.selectionBox.endY - gameState.selectionBox.startY,
-            ),
-          }}
-        />
+      {/* Simulation Warning */}
+      {showSimulationWarning && (
+        <div className="absolute top-4 left-4 right-4 z-50 bg-red-900/95 backdrop-blur-md border border-red-500/60 rounded-lg p-4 shadow-2xl">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center space-x-3">
+              <div className="w-8 h-8 bg-red-500/20 rounded-full flex items-center justify-center">
+                <span className="text-red-400 text-lg">⚠️</span>
+          </div>
+          <div>
+                <div className="text-sm text-white font-semibold mb-1">
+                  SIMULATION MODULE
+          </div>
+                <div className="text-xs text-red-200">
+                  This interactive module is designed to visualize concepts. 
+                  It does not represent real-world sensor performance, detection ranges, or decision latency.
+          </div>
+          </div>
+          </div>
+            <button
+              onClick={() => setShowSimulationWarning(false)}
+              className="text-red-400 hover:text-red-300 transition-colors p-2 hover:bg-red-500/20 rounded"
+            >
+              ✕
+            </button>
+          </div>
+          </div>
       )}
 
-      {/* Particle Renderer */}
-      <ParticleRenderer
-        particleSystem={particleSystem}
-        width={gameDimensions.width}
-        height={gameDimensions.height}
-      />
-
+      {/* Main Game Area */}
       <div
         ref={gameRef}
-        className={`${styles.gameArea} ${weatherMode === "night" ? styles.nightVision : ""}`}
+        className="absolute inset-0 cursor-crosshair"
         onMouseDown={handleMouseDown}
         onMouseMove={handleMouseMove}
         onMouseUp={handleMouseUp}
+        onClick={handleGameAreaClick}
         onWheel={handleWheel}
-        onContextMenu={(e) => e.preventDefault()}
-        onKeyDown={(e) => {
-          if (e.key === "Enter" || e.key === " ") {
-            e.preventDefault();
-            toggleRunningState();
-          }
-        }}
-        role="application"
-        aria-label="Threat Simulator Game Area"
+        onKeyDown={(e) => handleKeyDown(e as any)}
+        onContextMenu={handleContextMenu}
         tabIndex={0}
       >
-        {/* Phoenix Rooivalk Mothership - Central Command */}
-        <div
-          className={`${styles.mothership}`}
-          style={{
-            left: `${gameState.mothership.x - 48}px`,
-            top: `${gameState.mothership.y - 48}px`,
-          }}
-          onClick={handleGameAreaClick}
-          onKeyDown={handleGameAreaKeyDown}
-          role="button"
-          aria-label="Mothership command center"
-          tabIndex={0}
-        >
-          {/* Mothership Core */}
-          <div className={styles.mothershipCore}></div>
-
-          {/* Deployment Bays */}
-          {gameState.deploymentBays.map((bay) => (
-            <div
-              key={bay.id}
-              className={`${styles.deploymentBay} ${
-                bay.currentDrones > 0
-                  ? styles.deploymentBayReady
-                  : styles.deploymentBayEmpty
-              }`}
-              style={{
-                left: `${bay.x - 12}px`,
-                top: `${bay.y - 12}px`,
-              }}
-              onClick={(e) => {
-                e.stopPropagation();
-                selectDroneType(bay.currentDrones > 0 ? bay.droneType : null);
-              }}
-              onKeyDown={(e) => {
-                if (e.key === "Enter" || e.key === " ") {
-                  e.preventDefault();
-                  e.stopPropagation();
-                  selectDroneType(bay.currentDrones > 0 ? bay.droneType : null);
-                }
-              }}
-              role="button"
-              aria-label={`Deployment bay for ${bay.droneType} drones`}
-              tabIndex={0}
-              title={`${bay.droneType} Bay: ${bay.currentDrones}/${bay.capacity} drones`}
-            >
-              <div className={styles.deploymentBayIndicator}></div>
-            </div>
-          ))}
-        </div>
-
-        {/* Detection Coverage Visualization */}
+        {/* Enhanced Central Radar */}
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-80 h-80">
           {/* Outer detection ring */}
-          <div className="absolute inset-0 border-2 border-[var(--primary)]/20 rounded-full opacity-30 animate-pulse"></div>
-
-          {/* Radar sweep line */}
-          <div className="absolute top-1/2 left-1/2 w-full h-0.5 bg-gradient-to-r from-transparent via-[var(--primary)] to-transparent animate-spin origin-left opacity-60"></div>
-
-          {/* Coverage zones */}
-          <div className="absolute inset-4 border border-[var(--accent)]/15 rounded-full opacity-25"></div>
-          <div className="absolute inset-8 border border-[var(--primary)]/10 rounded-full opacity-20"></div>
-
-          {/* Detection pings */}
-          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-            <div className="w-2 h-2 bg-[var(--accent)] rounded-full animate-ping opacity-75"></div>
-          </div>
-        </div>
-
-        {/* Strategic Deployment Zones */}
-        {showDeploymentZones &&
-          strategicEngine.getDeploymentZones().map((zone) => (
-            <div
-              key={zone.id}
-              className="absolute border-2 border-dashed rounded-full pointer-events-none"
-              style={{
-                left: `${zone.centerX - zone.radius}px`,
-                top: `${zone.centerY - zone.radius}px`,
-                width: `${zone.radius * 2}px`,
-                height: `${zone.radius * 2}px`,
-                borderColor:
-                  zone.priority === "critical"
-                    ? "#ef4444"
-                    : zone.priority === "high"
-                      ? "#f97316"
-                      : zone.priority === "medium"
-                        ? "#eab308"
-                        : "#84cc16",
-                opacity: 0.6,
-              }}
-            >
-              {/* Zone label */}
+          <div className="absolute inset-0 border-2 border-blue-400/15 rounded-full animate-pulse" />
+          {/* Middle detection ring */}
+          <div className="absolute inset-8 border border-blue-300/25 rounded-full" />
+          {/* Inner detection ring */}
+          <div className="absolute inset-16 border border-blue-400/35 rounded-full" />
+          {/* Range markers */}
+          <div className="absolute inset-0">
+            {[0, 45, 90, 135, 180, 225, 270, 315].map((angle) => (
               <div
-                className="absolute text-xs font-mono text-white bg-black/50 px-1 rounded"
-                style={{
-                  left: "50%",
-                  top: "-20px",
-                  transform: "translateX(-50%)",
-                }}
-              >
-                {zone.name}
-              </div>
-
-              {/* Coverage indicator */}
-              <div
-                className="absolute text-xs font-mono text-white bg-black/50 px-1 rounded"
-                style={{
-                  left: "50%",
-                  bottom: "-20px",
-                  transform: "translateX(-50%)",
-                }}
-              >
-                {Math.round(zone.coverage * 100)}%
-              </div>
-
-              {/* Threat level indicator */}
-              <div
-                className="absolute w-2 h-2 rounded-full"
-                style={{
-                  left: "50%",
-                  top: "50%",
-                  transform: "translate(-50%, -50%)",
-                  backgroundColor:
-                    zone.threatLevel > 0.7
-                      ? "#ef4444"
-                      : zone.threatLevel > 0.4
-                        ? "#f97316"
-                        : "#84cc16",
-                }}
-              ></div>
-            </div>
+                key={angle}
+                className="absolute top-1/2 left-1/2 w-0.5 h-8 bg-blue-400/20 transform -translate-x-1/2 -translate-y-1/2"
+                style={{ transform: `translate(-50%, -50%) rotate(${angle}deg) translateY(-40px)` }}
+              />
           ))}
-
-        {/* Inner defense ring */}
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-40 h-40 border border-[var(--primary)]/15 rounded-full opacity-30">
-          <div className="absolute inset-2 border border-[var(--accent)]/10 rounded-full opacity-20"></div>
         </div>
+          {/* Sweep line */}
+          <div className="absolute top-1/2 left-1/2 w-full h-0.5 bg-gradient-to-r from-transparent via-blue-400 to-transparent animate-spin origin-left opacity-70" />
+          {/* Center dot */}
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-3 h-3 bg-blue-400 rounded-full animate-ping shadow-lg" />
+          {/* Range labels */}
+          <div className="absolute top-2 left-1/2 transform -translate-x-1/2 text-xs text-blue-400 font-mono">
+            RANGE
+          </div>
+          <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 text-xs text-blue-400 font-mono">
+            {Math.round(gameState.mothership.x)}m
+        </div>
+              </div>
 
-        {/* Detection range indicators */}
-        <div className="absolute top-4 left-4 text-xs text-[var(--accent)] font-mono opacity-70">
-          <div className="flex items-center space-x-2">
-            <div className="w-2 h-2 bg-[var(--primary)] rounded-full animate-pulse"></div>
-            <span>5km Detection</span>
+        {/* Enhanced Mothership */}
+              <div
+          className="absolute transform -translate-x-1/2 -translate-y-1/2 transition-all duration-300"
+                style={{
+            left: `${gameState.mothership.x}px`,
+            top: `${gameState.mothership.y}px`,
+          }}
+        >
+          {/* Mothership body */}
+          <div className="w-16 h-16 bg-gradient-to-br from-slate-600 to-slate-800 rounded-lg flex items-center justify-center text-2xl shadow-2xl border-2 border-slate-400 relative">
+            🚁
+            {/* Energy shield indicator */}
+            {gameState.energy > gameState.maxEnergy * 0.7 && (
+              <div className="absolute inset-0 rounded-lg border-2 border-blue-400/50 animate-pulse" />
+            )}
+            {/* Low energy warning */}
+            {gameState.energy < gameState.maxEnergy * 0.2 && (
+              <div className="absolute -top-6 left-1/2 transform -translate-x-1/2 text-red-400 text-xs animate-bounce font-mono">
+                LOW ENERGY
+              </div>
+            )}
+            </div>
+          {/* Mothership label */}
+          <div className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 text-xs text-white bg-black/50 px-2 py-1 rounded font-mono">
+            MOTHERSHIP
           </div>
         </div>
 
-        <div className="absolute top-4 right-4 text-xs text-[var(--accent)] font-mono opacity-70">
-          <div className="flex items-center space-x-2">
-            <div className="w-2 h-2 bg-[var(--accent)] rounded-full animate-pulse"></div>
-            <span>2km Engage</span>
-          </div>
-        </div>
-
+        {/* Enhanced Threats */}
         {gameState.threats.map((threat) => {
           const appearance = getThreatAppearance(threat.type);
-          const weapon = gameState.weapons[gameState.selectedWeapon];
-          const effectiveness = weapon?.effectiveness?.[threat.type] ?? 0;
-          const isEffective =
-            effectiveness >= 0.5 ||
-            gameState.activePowerUps.some((p) => p.effect.penetration);
           const isSelected = gameState.selectedThreats.includes(threat.id);
-          const priority =
-            gameState.priorityThreats[threat.id] ||
-            threat.specialProperties?.targetPriority ||
-            "medium";
+          const priority = gameState.priorityThreats?.[threat.id] || "low";
 
           return (
-            <button
+            <div
               key={threat.id}
-              className={`${styles.threat} ${styles.threatPosition} ${appearance.cssClass} ${
-                !isEffective ? "opacity-50" : ""
-              } ${isSelected ? styles.threatSelected : ""}`}
-              /* eslint-disable react/forbid-dom-props */
-              style={
-                {
-                  "--threat-x": `${threat.x}px`,
-                  "--threat-y": `${threat.y}px`,
-                } as React.CSSProperties
-              }
-              data-threat-id={threat.id}
-              onMouseDown={(e) => handleThreatClick(e, threat.id)}
-              onKeyDown={(e) => {
-                if (e.key === "Enter" || e.key === " ") {
-                  e.preventDefault();
-                  e.stopPropagation();
-                  neutralizeThreat(threat.id);
-                }
+              className={`absolute transform -translate-x-1/2 -translate-y-1/2 transition-all duration-300 ${
+                isSelected ? "scale-125 z-30" : "z-20"
+              }`}
+              style={{
+                left: `${threat.x}px`,
+                top: `${threat.y}px`,
               }}
-              aria-label={`${threat.type} threat with ${threat.health} health. Weapon effectiveness: ${Math.round(effectiveness * 100)}%. Priority: ${priority}`}
-              title={`${threat.type} - ${Math.round(effectiveness * 100)}% effective. Priority: ${priority}`}
+              onClick={(e) => handleThreatClick(e, threat.id)}
             >
-              <div>{appearance.emoji}</div>
-              <div className={styles.threatHealthBar}>
-                <div
-                  className={`${styles.threatHealthFill} ${styles.healthBarWidth}`}
-                  /* eslint-disable react/forbid-dom-props */
-                  style={
-                    {
-                      "--health-width": `${
-                        (threat.health /
-                          (threat.type === "stealth"
-                            ? 3
-                            : threat.type === "swarm"
-                              ? 2
-                              : threat.type === "shielded"
-                                ? 4
-                                : threat.type === "kamikaze"
-                                  ? 1
-                                  : threat.type === "decoy"
-                                    ? 0.5
-                                    : 1)) *
-                        100
-                      }%`,
-                    } as React.CSSProperties
-                  }
-                />
+              {/* Threat icon with enhanced styling */}
+              <div
+                className={`w-10 h-10 rounded-full flex items-center justify-center text-xl shadow-2xl border-2 ${
+                  appearance.color
+                } ${
+                  isSelected
+                    ? "ring-4 ring-blue-400 ring-opacity-75 border-blue-300"
+                    : "border-white/20"
+                } relative`}
+              >
+                {appearance.emoji}
+                
+                {/* Threat trail */}
+                {threat.trail && threat.trail.length > 1 && (
+                  <div className="absolute inset-0 rounded-full border border-white/30 animate-pulse" />
+                )}
               </div>
 
               {/* Priority indicator */}
-              <div
-                className={`${styles.priorityIndicator} ${styles[`priority${priority.charAt(0).toUpperCase() + priority.slice(1)}`]}`}
-              ></div>
-
-              {/* Trajectory prediction */}
-              {priority === "high" && (
+              {priority !== "low" && (
                 <div
-                  className={styles.trajectoryPrediction}
-                  style={{
-                    left: threat.x,
-                    top: threat.y,
-                    width: "100px",
-                    height: "2px",
-                    transform: `rotate(${(Math.atan2(300 - threat.y, 400 - threat.x) * 180) / Math.PI}deg)`,
-                  }}
+                  className={`absolute -top-2 -right-2 w-4 h-4 rounded-full border-2 border-white ${
+                    priority === "high"
+                      ? "bg-red-500"
+                      : priority === "medium"
+                        ? "bg-yellow-500"
+                        : "bg-green-500"
+                  }`}
                 />
               )}
-            </button>
+
+              {/* Threat label */}
+              {(isSelected || priority !== "low") && (
+                <div className="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-black/80 text-white text-xs px-2 py-1 rounded font-mono whitespace-nowrap">
+                  {threat.type.toUpperCase()}
+                  {priority !== "low" && (
+                    <span className="ml-1 text-xs">
+                      {priority === "high" ? "🔴" : priority === "medium" ? "🟡" : "🟢"}
+                    </span>
+                  )}
+                </div>
+              )}
+
+              {/* Health bar */}
+              {threat.health && (
+                <div className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 w-12 h-1 bg-gray-600 rounded-full overflow-hidden">
+                  <div
+                    className="h-full bg-red-500 transition-all duration-300"
+                  style={{
+                      width: `${Math.min((threat.health / 100) * 100, 100)}%`,
+                    }}
+                  />
+                </div>
+              )}
+            </div>
           );
         })}
 
-        {/* Deployed Drones */}
+        {/* Enhanced Drones */}
         {gameState.drones.map((drone) => (
-          <button
+          <div
             key={drone.id}
-            className={`${styles.deployedDrone} ${styles[`drone${drone.type.charAt(0).toUpperCase() + drone.type.slice(1)}`]} ${
-              drone.isReturning ? styles.droneReturning : ""
-            }`}
+            className="absolute transform -translate-x-1/2 -translate-y-1/2 transition-all duration-300"
             style={{
-              left: `${drone.x - 8}px`,
-              top: `${drone.y - 8}px`,
+              left: `${drone.x}px`,
+              top: `${drone.y}px`,
             }}
-            onClick={(e) => {
-              e.stopPropagation();
-              returnDroneToBase(drone.id);
-            }}
-            title={`${drone.type} Drone - Mission: ${drone.mission} - Energy: ${Math.round(drone.energy)}/${drone.maxEnergy}`}
           >
-            {/* Mission Indicator */}
-            <div
-              className={`${styles.droneMissionIndicator} ${styles[`mission${drone.mission.charAt(0).toUpperCase() + drone.mission.slice(1)}`]}`}
-            ></div>
-          </button>
+            <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-blue-700 rounded-full flex items-center justify-center text-sm shadow-xl border-2 border-blue-300 relative">
+              🚁
+              {/* Drone status indicator */}
+              <div className="absolute -top-1 -right-1 w-3 h-3 bg-green-500 rounded-full border border-white animate-pulse" />
+              </div>
+            {/* Drone trail */}
+            <div className="absolute inset-0 rounded-full border border-blue-400/30 animate-ping" />
+            </div>
         ))}
 
-        {/* Enhanced Stats Overlay */}
-        <div className={styles.statsOverlay}>
-          <div className={styles.statsContent}>
-            <div className={styles.statItem}>
-              <div className={styles.statValue}>
-                {gameState.score.toLocaleString()}
-              </div>
-              <div className={styles.statLabel}>SCORE</div>
-            </div>
-            <div className={styles.statItem}>
-              <div className={styles.statValue}>{gameState.threats.length}</div>
-              <div className={styles.statLabel}>THREATS</div>
-            </div>
-            <div className={styles.statItem}>
-              <div className={styles.statValue}>{gameState.neutralized}</div>
-              <div className={styles.statLabel}>NEUTRALIZED</div>
-            </div>
-            <div className={styles.statItem}>
-              <div className={styles.statValue}>{gameState.level}</div>
-              <div className={styles.statLabel}>LEVEL</div>
-            </div>
-          </div>
-        </div>
-
-        {/* Combo Indicator */}
-        {gameState.comboMultiplier > 1 && (
-          <div className={styles.comboIndicator}>
-            COMBO x{gameState.comboMultiplier.toFixed(1)}
-          </div>
-        )}
-
-        {/* Weapon Selection */}
-        <div className={styles.weaponSelection}>
-          <div className="text-xs text-gray-300 mb-2">WEAPONS</div>
-          {Object.entries(gameState.weapons).map(([weaponId, weapon]) => (
-            <button
-              key={weaponId}
-              className={`${styles.weaponButton} ${
-                gameState.selectedWeapon === weaponId
-                  ? styles.weaponButtonActive
-                  : styles.weaponButtonInactive
-              } ${!weapon.isReady || weapon.ammo <= 0 ? styles.weaponButtonDisabled : ""}`}
-              onClick={() => switchWeapon(weaponId)}
-              disabled={!weapon.isReady || weapon.ammo <= 0}
-            >
-              <div className="font-bold">{weapon.name.split(" ")[0]}</div>
-              <div className="text-xs">
-                {weapon.ammo}/{weapon.maxAmmo}
-              </div>
-            </button>
-          ))}
-        </div>
-
-        {/* Ammo Display */}
-        <div className={styles.ammoDisplay}>
-          <div className="text-xs text-gray-300 mb-1">AMMO</div>
-          <div className={styles.ammoBar}>
-            <div
-              className={styles.ammoFill}
+        {/* Selection Box */}
+        {gameState.selectionBox && gameState.selectionBox.isActive && (
+          <div
+            className="absolute border-2 border-blue-400 bg-blue-400/10 pointer-events-none"
               style={{
-                width: `${
-                  (gameState.weapons[gameState.selectedWeapon].ammo /
-                    gameState.weapons[gameState.selectedWeapon].maxAmmo) *
-                  100
-                }%`,
-              }}
-            />
-          </div>
-          <div className="text-xs text-gray-400 mt-1">
-            {gameState.weapons[gameState.selectedWeapon].ammo}/
-            {gameState.weapons[gameState.selectedWeapon].maxAmmo}
-          </div>
-        </div>
-
-        {/* Active Power-ups */}
-        {gameState.activePowerUps.map((powerUp) => (
-          <div key={powerUp.id} className={styles.powerUpIndicator}>
-            {powerUp.name.toUpperCase()}
-          </div>
-        ))}
-
-        {/* Achievement Notifications */}
-        {gameState.achievements.length > 0 && (
-          <div className={styles.achievementNotification}>
-            🏆 ACHIEVEMENT UNLOCKED! 🏆
-            <br />
-            {gameState.achievements[gameState.achievements.length - 1]
-              .split("-")
-              .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-              .join(" ")}
-          </div>
+              left: `${Math.min(gameState.selectionBox.startX, gameState.selectionBox.endX)}px`,
+              top: `${Math.min(gameState.selectionBox.startY, gameState.selectionBox.endY)}px`,
+              width: `${Math.abs(gameState.selectionBox.endX - gameState.selectionBox.startX)}px`,
+              height: `${Math.abs(gameState.selectionBox.endY - gameState.selectionBox.startY)}px`,
+            }}
+          />
         )}
+        </div>
 
-        {/* Mothership Resource Display */}
-        <div className={styles.mothershipResources}>
-          <div className="text-xs text-gray-300 mb-2">MOTHERSHIP</div>
-          <div className="mb-2">
-            <div className={styles.resourceLabel}>ENERGY</div>
-            <div className={styles.mothershipResourceBar}>
+      {/* Enhanced Top Status Bar */}
+      <div className="absolute top-4 left-4 right-4 bg-black/60 backdrop-blur-md border border-gray-600/50 rounded-lg p-3">
+        <div className="flex justify-between items-center">
+          {/* Left: Game Status */}
+          <div className="flex items-center space-x-6">
+            <div className="flex items-center space-x-2">
               <div
-                className={styles.mothershipResourceFill}
-                style={{
-                  width: `${(gameState.mothership.energy / gameState.mothership.maxEnergy) * 100}%`,
-                }}
+                className={`w-3 h-3 rounded-full ${
+                  gameState.isRunning ? "bg-green-500 animate-pulse" : "bg-red-500"
+                }`}
               />
+              <span className="text-sm font-mono text-white">
+                {gameState.isRunning ? "SYSTEM ACTIVE" : "SYSTEM PAUSED"}
+              </span>
+            </div>
+            <div className="text-sm text-gray-300">
+              Level {gameState.level} | Score: {gameState.score.toLocaleString()}
             </div>
             <div className="text-xs text-gray-400">
-              {Math.round(gameState.mothership.energy)}/
-              {gameState.mothership.maxEnergy}
+              Threats: {gameState.threats.length} | Neutralized: {gameState.neutralized}
             </div>
           </div>
-          <div className="mb-2">
-            <div className={styles.resourceLabel}>FUEL</div>
-            <div className={styles.mothershipResourceBar}>
-              <div
-                className={styles.mothershipResourceFill}
-                style={{
-                  width: `${(gameState.mothership.fuel / gameState.mothership.maxFuel) * 100}%`,
-                }}
-              />
+
+          {/* Center: Mission Info */}
+          <div className="text-center">
+            <div className="text-sm font-mono text-white mb-1">
+              {gameState.missionType.replace("-", " ").toUpperCase()}
             </div>
             <div className="text-xs text-gray-400">
-              {Math.round(gameState.mothership.fuel)}/
-              {gameState.mothership.maxFuel}
+              {gameState.automationMode.toUpperCase()} MODE • {gameState.weatherMode.toUpperCase()}
             </div>
           </div>
+
+          {/* Right: Controls */}
+          <div className="flex items-center space-x-3">
           <div className="text-xs text-gray-400">
-            Drones: {gameState.drones.length}/
-            {gameState.mothership.droneCapacity}
-          </div>
-        </div>
-
-        {/* Resource Management Display */}
-        <div className={styles.resourceDisplay}>
-          <div className="text-xs text-gray-300 mb-2">RESOURCES</div>
-          <div className="mb-2">
-            <div className={styles.resourceLabel}>ENERGY</div>
-            <div className={styles.resourceBar}>
-              <div
-                className={styles.resourceBarEnergy}
-                style={{
-                  width: `${(gameState.energy / gameState.maxEnergy) * 100}%`,
-                }}
-              />
+              FPS: {gameState.frameRate}
             </div>
-            <div className="text-xs text-gray-400">
-              {Math.round(gameState.energy)}/{gameState.maxEnergy}
-            </div>
-          </div>
-          <div>
-            <div className={styles.resourceLabel}>COOLING</div>
-            <div className={styles.resourceBar}>
-              <div
-                className={styles.resourceBarCooling}
-                style={{
-                  width: `${(gameState.cooling / gameState.maxCooling) * 100}%`,
-                }}
-              />
-            </div>
-            <div className="text-xs text-gray-400">
-              {Math.round(gameState.cooling)}/{gameState.maxCooling}
-            </div>
-          </div>
-        </div>
-
-        {/* Mini-map */}
-        <div className={styles.miniMap}>
-          <div className="text-xs text-gray-300 mb-1 text-center">RADAR</div>
-          <div className={styles.miniMapCenter}></div>
-          {gameState.threats.map((threat) => {
-            const scale = 120; // Mini-map scale factor
-            const centerX = 60; // Mini-map center X
-            const centerY = 60; // Mini-map center Y
-            const mapX =
-              centerX + (threat.x - gameDimensions.width / 2) / scale;
-            const mapY =
-              centerY + (threat.y - gameDimensions.height / 2) / scale;
-
-            if (mapX >= 0 && mapX <= 120 && mapY >= 0 && mapY <= 120) {
-              return (
-                <div
-                  key={threat.id}
-                  className={styles.miniMapThreat}
-                  style={{
-                    left: `${mapX}px`,
-                    top: `${mapY}px`,
-                    backgroundColor:
-                      threat.specialProperties?.targetPriority === "high"
-                        ? "#ef4444"
-                        : "#f97316",
-                  }}
-                />
-              );
-            }
-            return null;
-          })}
-        </div>
-
-        {/* Drone Selection Controls */}
-        <div className="absolute bottom-4 left-4 backdrop-blur-sm border rounded-md shadow-lg bg-black/80 border-orange-500/30 p-2">
-          <div className="text-xs text-gray-300 mb-2">DRONE DEPLOYMENT</div>
-          <div className="flex gap-1 flex-wrap">
-            {(
-              [
-                "interceptor",
-                "jammer",
-                "surveillance",
-                "shield",
-                "swarm-coordinator",
-              ] as const
-            ).map((droneType) => {
-              const bay = gameState.deploymentBays.find(
-                (b) => b.droneType === droneType,
-              );
-              const isSelected = gameState.selectedDroneType === droneType;
-              const isAvailable = bay && bay.currentDrones > 0;
-
-              return (
                 <button
-                  key={droneType}
-                  onClick={() =>
-                    selectDroneType(isAvailable ? droneType : null)
-                  }
-                  className={`px-2 py-1 text-xs rounded ${
-                    isSelected
-                      ? "bg-orange-500 text-white"
-                      : isAvailable
-                        ? "bg-tactical-gray text-gray-300 hover:bg-gray-500"
-                        : "bg-gray-800 text-gray-500 cursor-not-allowed"
-                  }`}
-                  disabled={!isAvailable}
-                  title={`${droneType}: ${bay?.currentDrones || 0}/${bay?.capacity || 0} available`}
-                >
-                  {droneType.toUpperCase().split("-")[0]}
+              className="px-3 py-1 text-xs bg-gray-700 hover:bg-gray-600 text-white rounded transition-colors"
+              onClick={isFullscreen ? exitFullscreen : enterFullscreen}
+            >
+              {isFullscreen ? "EXIT FULLSCREEN" : "ENTER FULLSCREEN"}
                 </button>
-              );
-            })}
+          </div>
           </div>
         </div>
 
-        {/* Weather Controls */}
-        <div className="absolute bottom-4 left-48 backdrop-blur-sm border rounded-md shadow-lg bg-black/80 border-orange-500/30 p-2">
-          <div className="text-xs text-gray-300 mb-2">WEATHER</div>
-          <div className="flex gap-1">
-            {(["none", "rain", "fog", "night"] as const).map((mode) => (
+      {/* Enhanced Bottom Control Panel */}
+      <div className="absolute bottom-4 left-4 right-4">
+        <div className="bg-black/90 backdrop-blur-md border border-gray-600/50 rounded-lg p-4 shadow-2xl">
+          <div className="grid grid-cols-5 gap-6">
+            {/* Weapons */}
+            <div>
+              <div className="text-xs font-mono text-gray-300 mb-3 flex items-center">
+                <span className="w-2 h-2 bg-blue-400 rounded-full mr-2"></span>
+                WEAPONS
+            </div>
+              <div className="space-y-2">
+                {[
+                  { id: "kinetic", name: "Kinetic", icon: "⚡", color: "bg-blue-600" },
+                  { id: "electronic", name: "EMP", icon: "🌀", color: "bg-purple-600" },
+                  { id: "laser", name: "Laser", icon: "🔴", color: "bg-red-600" }
+                ].map((weapon) => (
+                  <button
+                    key={weapon.id}
+                    className={`w-full px-3 py-2 text-xs rounded-lg transition-all flex items-center space-x-2 ${
+                      gameState.selectedWeapon === weapon.id
+                        ? `${weapon.color} text-white shadow-lg`
+                        : "bg-gray-700 text-gray-300 hover:bg-gray-600"
+                    }`}
+                    onClick={() => switchWeapon(weapon.id as any)}
+                  >
+                    <span>{weapon.icon}</span>
+                    <span>{weapon.name}</span>
+                  </button>
+                ))}
+            </div>
+          </div>
+
+            {/* Resources */}
+          <div>
+              <div className="text-xs font-mono text-gray-300 mb-3 flex items-center">
+                <span className="w-2 h-2 bg-green-400 rounded-full mr-2"></span>
+                RESOURCES
+              </div>
+              <div className="space-y-3">
+                <div>
+                  <div className="flex justify-between text-xs mb-1">
+                    <span className="text-gray-400">Energy</span>
+                    <span className="text-green-400">
+                      {Math.round(gameState.energy)}/{gameState.maxEnergy}
+                    </span>
+                  </div>
+                  <div className="w-full h-2 bg-gray-700 rounded-full overflow-hidden">
+                    <div
+                      className="h-full bg-green-500 transition-all duration-300"
+                      style={{ width: `${(gameState.energy / gameState.maxEnergy) * 100}%` }}
+              />
+            </div>
+                </div>
+                <div>
+                  <div className="flex justify-between text-xs mb-1">
+                    <span className="text-gray-400">Cooling</span>
+                    <span className="text-blue-400">
+              {Math.round(gameState.cooling)}/{gameState.maxCooling}
+                    </span>
+            </div>
+                  <div className="w-full h-2 bg-gray-700 rounded-full overflow-hidden">
+                    <div
+                      className="h-full bg-blue-500 transition-all duration-300"
+                      style={{ width: `${(gameState.cooling / gameState.maxCooling) * 100}%` }}
+                    />
+        </div>
+          </div>
+                <div className="flex justify-between text-xs">
+                  <span className="text-gray-400">Drones</span>
+                  <span className="text-yellow-400">
+                    {gameState.drones.length}/12
+                  </span>
+        </div>
+          </div>
+        </div>
+
+            {/* Environment */}
+            <div>
+              <div className="text-xs font-mono text-gray-300 mb-3 flex items-center">
+                <span className="w-2 h-2 bg-cyan-400 rounded-full mr-2"></span>
+                ENVIRONMENT
+              </div>
+              <div className="space-y-3">
+                <div>
+                  <div className="text-xs text-gray-400 mb-2">Weather</div>
+                  <select
+                    className="w-full px-3 py-2 text-xs bg-gray-700 text-white rounded-lg border border-gray-600 focus:border-blue-500 focus:outline-none"
+                    value={gameState.weatherMode}
+                    onChange={(e) => setWeatherMode(e.target.value as any)}
+                  >
+                    <option value="none">☀️ Clear</option>
+                    <option value="rain">🌧️ Rain</option>
+                    <option value="fog">🌫️ Fog</option>
+                    <option value="night">🌙 Night</option>
+                  </select>
+                </div>
+                <div>
+                  <div className="text-xs text-gray-400 mb-2">Mission</div>
+                  <select
+                    className="w-full px-3 py-2 text-xs bg-gray-700 text-white rounded-lg border border-gray-600 focus:border-blue-500 focus:outline-none"
+                    value={gameState.missionType}
+                    onChange={(e) => setMissionType(e.target.value as any)}
+                  >
+                    <option value="airport">✈️ Airport</option>
+                    <option value="military-base">🏭 Military Base</option>
+                    <option value="vip-protection">👤 VIP Protection</option>
+                    <option value="border-patrol">🛡️ Border Patrol</option>
+                  </select>
+                </div>
+          </div>
+        </div>
+
+            {/* Automation */}
+            <div>
+              <div className="text-xs font-mono text-gray-300 mb-3 flex items-center">
+                <span className="w-2 h-2 bg-purple-400 rounded-full mr-2"></span>
+                AUTOMATION
+              </div>
+              <div className="space-y-2">
+                {["manual", "automated", "hybrid"].map((mode) => (
               <button
                 key={mode}
-                onClick={() => setWeatherMode(mode)}
-                className={`px-2 py-1 text-xs rounded ${
-                  weatherMode === mode
-                    ? "bg-orange-500 text-white"
-                    : "bg-tactical-gray text-gray-300 hover:bg-gray-500"
-                }`}
-              >
-                {mode.toUpperCase()}
+                    className={`w-full px-3 py-2 text-xs rounded-lg transition-all ${
+                      gameState.automationMode === mode
+                        ? "bg-purple-600 text-white"
+                        : "bg-gray-700 text-gray-300 hover:bg-gray-600"
+                    }`}
+                    onClick={() => setAutomationMode(mode as any)}
+                  >
+                    {mode.charAt(0).toUpperCase() + mode.slice(1)}
               </button>
             ))}
-          </div>
-        </div>
-
-        {/* Mission Controls */}
-        <div className="absolute bottom-4 left-80 backdrop-blur-sm border rounded-md shadow-lg bg-black/80 border-orange-500/30 p-2">
-          <div className="text-xs text-gray-300 mb-2">MISSION</div>
-          <div className="flex gap-1 flex-wrap">
-            {(
-              [
-                "military-base",
-                "airport",
-                "vip-protection",
-                "border-patrol",
-              ] as const
-            ).map((mission) => (
-              <button
-                key={mission}
-                onClick={() => setMissionType(mission)}
-                className={`px-2 py-1 text-xs rounded ${
-                  missionType === mission
-                    ? "bg-orange-500 text-white"
-                    : "bg-tactical-gray text-gray-300 hover:bg-gray-500"
-                }`}
-              >
-                {mission.replace("-", " ").toUpperCase()}
-              </button>
-            ))}
-          </div>
-        </div>
-
-        {/* Automation Controls */}
-        <div className="absolute bottom-4 left-[28rem] backdrop-blur-sm border rounded-md shadow-lg bg-black/80 border-orange-500/30 p-2">
-          <div className="text-xs text-gray-300 mb-2">AUTOMATION</div>
-          <div className="flex gap-1">
-            {(["manual", "automated", "hybrid"] as const).map((mode) => (
-              <button
-                key={mode}
-                onClick={() => setAutomationMode(mode)}
-                className={`px-2 py-1 text-xs rounded ${
-                  automationMode === mode
-                    ? "bg-orange-500 text-white"
-                    : "bg-tactical-gray text-gray-300 hover:bg-gray-500"
-                }`}
-              >
-                {mode.toUpperCase()}
-              </button>
-            ))}
-          </div>
           <button
-            onClick={() => setShowDeploymentZones(!showDeploymentZones)}
-            className={`mt-1 px-2 py-1 text-xs rounded w-full ${
+                  className={`w-full px-3 py-2 text-xs rounded-lg transition-all ${
               showDeploymentZones
-                ? "bg-green-500 text-white"
-                : "bg-tactical-gray text-gray-300 hover:bg-gray-500"
+                      ? "bg-yellow-600 text-white"
+                      : "bg-gray-700 text-gray-300 hover:bg-gray-600"
             }`}
+                  onClick={() => setShowDeploymentZones(!showDeploymentZones)}
           >
             {showDeploymentZones ? "HIDE ZONES" : "SHOW ZONES"}
           </button>
+              </div>
         </div>
 
-        {/* Interactive Controls */}
-        <div className={styles.controlsOverlay}>
-          <div className={styles.controlsContent}>
+            {/* Controls */}
+            <div>
+              <div className="text-xs font-mono text-gray-300 mb-3 flex items-center">
+                <span className="w-2 h-2 bg-orange-400 rounded-full mr-2"></span>
+                CONTROLS
+              </div>
+              <div className="grid grid-cols-2 gap-2">
             <button
+                  className="bg-red-600 hover:bg-red-700 text-white px-3 py-2 rounded-lg text-xs transition-all shadow-lg"
               onClick={toggleRunningState}
-              className={`${styles.controlButton} ${
-                gameState.isRunning
-                  ? styles.controlButtonOrange
-                  : styles.controlButtonGray
-              }`}
             >
-              {gameState.isRunning ? "PAUSE" : "RESUME"}
+                  {gameState.isRunning ? "⏸️ PAUSE" : "▶️ RESUME"}
             </button>
             <button
+                  className="bg-orange-600 hover:bg-orange-700 text-white px-3 py-2 rounded-lg text-xs transition-all shadow-lg"
               onClick={generateSwarm}
-              className={`${styles.controlButton} ${styles.controlButtonOrange}`}
             >
-              SWARM
+                  🐝 SWARM
             </button>
             <button
+                  className="bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 rounded-lg text-xs transition-all shadow-lg"
               onClick={() => spawnMultipleDrones(5)}
-              className={`${styles.controlButton} ${styles.controlButtonOrange}`}
             >
-              +5 DRONES
+                  🚁 +5 DRONES
             </button>
             <button
-              onClick={() => activatePowerUp("multi-shot")}
-              className={`${styles.controlButton} ${styles.controlButtonOrange}`}
+                  className="bg-purple-600 hover:bg-purple-700 text-white px-3 py-2 rounded-lg text-xs transition-all shadow-lg"
+                  onClick={() => activatePowerUp("energy-boost")}
             >
-              POWER-UP
+                  ⚡ POWER-UP
             </button>
             <button
+                  className="bg-gray-600 hover:bg-gray-700 text-white px-3 py-2 rounded-lg text-xs transition-all shadow-lg"
               onClick={clearSelection}
-              className={`${styles.controlButton} ${styles.controlButtonGray}`}
             >
-              CLEAR SEL
+                  🗑️ CLEAR
             </button>
             <button
-              onClick={resetGame}
-              className={`${styles.controlButton} ${styles.controlButtonGray}`}
+                  className="bg-red-800 hover:bg-red-900 text-white px-3 py-2 rounded-lg text-xs transition-all shadow-lg"
+                  onClick={resetGameState}
             >
-              RESET
+                  🔄 RESET
             </button>
           </div>
         </div>
-
-        {/* Frame Rate Control */}
-        <div className={styles.frameRateControl}>
-          <div className="text-xs text-gray-300 mb-1">FPS</div>
-          <input
-            type="range"
-            min="30"
-            max="120"
-            step="10"
-            value={gameState.targetFrameRate}
-            onChange={(e) => setFrameRate(parseInt(e.target.value))}
-            className={styles.frameRateSlider}
-          />
-          <div className="text-xs text-gray-400 mt-1">
-            {gameState.targetFrameRate}
           </div>
         </div>
       </div>
 
-      {/* Teaser Overlay */}
-      {isTeaser && !isFullscreen && (
-        <div className="absolute inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center z-50">
-          <div className="text-center p-8 max-w-md">
-            <div className="mb-6">
-              <div className="text-6xl mb-4">🎮</div>
-              <h3 className="text-2xl font-bold text-white mb-2">
-                Experience Full Defense
-              </h3>
-              <p className="text-gray-300 text-sm mb-6">
-                This is a preview of the Phoenix Rooivalk defense system
-                simulator. Enter full-screen mode to access all features and
-                controls.
-              </p>
+      {/* Enhanced Fullscreen Prompt */}
+      {showFullscreenPrompt && !isFullscreen && (
+        <div className="absolute inset-0 bg-black/90 backdrop-blur-md flex items-center justify-center">
+          <div className="bg-gradient-to-br from-gray-900 to-gray-800 border border-gray-600/50 rounded-xl p-8 max-w-lg text-center shadow-2xl">
+            <div className="w-16 h-16 bg-blue-600/20 rounded-full flex items-center justify-center mx-auto mb-6">
+              <span className="text-3xl">🎮</span>
             </div>
-
-            <button
-              onClick={enterFullscreen}
-              className="bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white font-bold py-3 px-8 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg"
-            >
-              🚀 Enter Full-Screen Mode
-            </button>
-
-            <p className="text-xs text-gray-400 mt-4">
-              Press ESC to exit full-screen at any time
+            <h3 className="text-2xl font-bold text-white mb-3">
+              Enter Fullscreen Mode
+            </h3>
+            <p className="text-gray-300 mb-6 leading-relaxed">
+              The threat simulation requires fullscreen mode for the optimal tactical experience. 
+              This ensures maximum immersion and precise control.
             </p>
+            <div className="flex space-x-4">
+              <button
+                className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg transition-all shadow-lg flex-1"
+                onClick={enterFullscreen}
+              >
+                Enter Fullscreen
+              </button>
+              <button
+                className="bg-gray-600 hover:bg-gray-700 text-white px-8 py-3 rounded-lg transition-all shadow-lg"
+                onClick={() => setShowSimulationWarning(false)}
+              >
+                Continue in Window
+              </button>
+            </div>
           </div>
         </div>
-      )}
-
-      {/* Fullscreen Exit Button */}
-      {isFullscreen && (
-        <button
-          onClick={exitFullscreen}
-          className="absolute top-4 right-4 z-50 bg-black/80 text-white p-2 rounded-lg hover:bg-black/90 transition-colors"
-          title="Exit Fullscreen (ESC)"
-        >
-          ✕
-        </button>
       )}
     </div>
   );

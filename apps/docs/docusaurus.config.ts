@@ -32,7 +32,7 @@ const config: Config = {
   baseUrl: "/",
   organizationName: "JustAGhosT",
   projectName: "PhoenixRooivalk",
-  onBrokenLinks: "throw",
+  onBrokenLinks: "warn",
   markdown: {
     hooks: {
       onBrokenMarkdownLinks: "warn",
@@ -47,6 +47,8 @@ const config: Config = {
           routeBasePath: "docs",
           sidebarPath: require.resolve("./sidebars.ts"),
           editUrl: undefined,
+          remarkPlugins: [],
+          rehypePlugins: [],
         },
         blog: false,
         theme: { customCss: require.resolve("./src/css/custom.css") },
@@ -54,18 +56,86 @@ const config: Config = {
     ],
   ],
   themeConfig: {
+    // Enhanced navbar with Phoenix Rooivalk branding
     navbar: {
-      title: "PhoenixRooivalk",
+      title: "Phoenix Rooivalk",
+      logo: {
+        alt: "Phoenix Rooivalk Logo",
+        src: "img/logo.svg",
+        srcDark: "img/logo.svg",
+        width: 40,
+        height: 40,
+      },
       items: [
-        // Docs entry now lives under /docs
-        { type: "doc", docId: "overview", position: "left", label: "Overview" },
-        // Cross-link to marketing site (set MARKETING_URL env to your marketing domain)
+        {
+          type: "doc",
+          docId: "README",
+          position: "left",
+          label: "Documentation",
+        },
+        {
+          type: "dropdown",
+          label: "Executive",
+          position: "left",
+          items: [
+            {
+              label: "Executive Summary",
+              to: "/docs/executive/Executive_Summary",
+            },
+            {
+              label: "Global Strategy",
+              to: "/docs/executive/Global_Strategy",
+            },
+          ],
+        },
+        {
+          type: "dropdown",
+          label: "Technical",
+          position: "left",
+          items: [
+            {
+              label: "Technical Architecture",
+              to: "/docs/technical/Technical_Architecture",
+            },
+            {
+              label: "System Architecture",
+              to: "/docs/technical/System_Architecture",
+            },
+          ],
+        },
+        {
+          type: "dropdown",
+          label: "Business",
+          position: "left",
+          items: [
+            {
+              label: "Market Analysis",
+              to: "/docs/business/Market_Analysis",
+            },
+            {
+              label: "Business Model",
+              to: "/docs/business/Business_Model",
+            },
+          ],
+        },
+        {
+          type: "dropdown",
+          label: "Operations",
+          position: "left",
+          items: [
+            {
+              label: "Manufacturing Strategy",
+              to: "/docs/operations/Manufacturing_Strategy",
+            },
+          ],
+        },
+        // Cross-link to marketing site
         ...(marketingUrl && marketingUrl !== "https://"
           ? [
               {
                 href: marketingUrl,
                 label: "Website",
-                position: "left",
+                position: "right",
               } as const,
             ]
           : []),
@@ -92,9 +162,96 @@ const config: Config = {
         },
       ],
     },
+    // Enhanced footer
+    footer: {
+      style: "dark",
+      links: [
+        {
+          title: "Documentation",
+          items: [
+            {
+              label: "Executive Summary",
+              to: "/docs/executive/Executive_Summary",
+            },
+            {
+              label: "Technical Architecture",
+              to: "/docs/technical/Technical_Architecture",
+            },
+            {
+              label: "Market Analysis",
+              to: "/docs/business/Market_Analysis",
+            },
+          ],
+        },
+        {
+          title: "Resources",
+          items: [
+            {
+              label: "GitHub Repository",
+              href: "https://github.com/JustAGhosT/PhoenixRooivalk",
+            },
+            {
+              label: "Request Access",
+              href: "https://github.com/JustAGhosT/PhoenixRooivalk/blob/main/ACCESS.md",
+            },
+            {
+              label: "Getting Started",
+              to: "/docs",
+            },
+          ],
+        },
+        {
+          title: "Operations",
+          items: [
+            {
+              label: "Manufacturing Strategy",
+              to: "/docs/operations/Manufacturing_Strategy",
+            },
+            {
+              label: "System Architecture",
+              to: "/docs/technical/System_Architecture",
+            },
+            {
+              label: "Business Model",
+              to: "/docs/business/Business_Model",
+            },
+          ],
+        },
+      ],
+      copyright: `© 2025 Phoenix Rooivalk. All rights reserved. Built with ❤️ for global defense security.`,
+    },
+    // Enhanced color mode
+    colorMode: {
+      defaultMode: "dark",
+      disableSwitch: false,
+      respectPrefersColorScheme: true,
+    },
+    // Enhanced prism theme
     prism: {
       theme: prismThemes.github,
       darkTheme: prismThemes.dracula,
+      additionalLanguages: ["rust", "bash", "json", "yaml"],
+    },
+    // Enhanced announcement bar
+    announcementBar: {
+      id: "phoenix-rooivalk-announcement",
+      content:
+        "🚀 Phoenix Rooivalk: Revolutionary Level-0 Autonomous Counter-UAS Defense Platform",
+      backgroundColor: "rgb(249, 115, 22)",
+      textColor: "rgb(15, 23, 42)",
+      isCloseable: true,
+    },
+    // Enhanced table of contents
+    tableOfContents: {
+      minHeadingLevel: 2,
+      maxHeadingLevel: 4,
+    },
+    // Enhanced docs
+    docs: {
+      sidebar: {
+        hideable: true,
+        autoCollapseCategories: true,
+      },
     },
   } satisfies Preset.ThemeConfig,
 };

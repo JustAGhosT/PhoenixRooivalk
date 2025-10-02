@@ -1,5 +1,6 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import * as React from "react";
+import { useEffect, useState } from "react";
 
 import { StickyHeader } from "@/components/StickyHeader";
 import { Footer } from "../components/Footer";
@@ -9,6 +10,7 @@ import { ContactSection } from "../components/sections/ContactSection";
 import { HeroSection } from "../components/sections/HeroSection";
 import { InteractiveElementsSection } from "../components/sections/InteractiveElementsSection";
 import { SocialProofSection } from "../components/sections/SocialProofSection";
+import { TechnicalIntegrationsSection } from "../components/sections/TechnicalIntegrationsSection";
 import { usePerformanceOptimizations } from "../hooks/usePerformanceOptimizations";
 
 export default function HomePage(): React.ReactElement {
@@ -44,6 +46,7 @@ export default function HomePage(): React.ReactElement {
       <HeroSection />
       <SocialProofSection />
       <InteractiveElementsSection />
+      <TechnicalIntegrationsSection />
       <CapabilitiesSection />
       <ContactSection />
 
