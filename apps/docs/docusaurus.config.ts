@@ -34,10 +34,7 @@ const config: Config = {
   projectName: "PhoenixRooivalk",
   onBrokenLinks: "warn",
   markdown: {
-    mdx1Compat: {
-      comments: false,
-      admonitions: false,
-    },
+    format: "md",
   },
   i18n: { defaultLocale: "en", locales: ["en"] },
   presets: [
@@ -140,6 +137,17 @@ const config: Config = {
               } as const,
             ]
           : []),
+        // GitHub repository links
+        {
+          href: "https://github.com/JustAGhosT/PhoenixRooivalk",
+          label: "PhoenixRooivalk",
+          position: "right",
+        },
+        {
+          href: "https://github.com/cognetive-mesh",
+          label: "Cognitive Mesh",
+          position: "right",
+        },
         // Environment badge (build-time)
         {
           href: "https://github.com/JustAGhosT/PhoenixRooivalk/blob/main/ACCESS.md",

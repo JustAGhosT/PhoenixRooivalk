@@ -11,8 +11,8 @@
           "mainDocId": "README",
           "docs": [
             {
-              "id": "business/Business_Model",
-              "path": "/docs/business/Business_Model",
+              "id": "business/business-model",
+              "path": "/docs/business/business-model",
               "sidebar": "docs"
             },
             {
@@ -41,8 +41,8 @@
               "sidebar": "docs"
             },
             {
-              "id": "executive/Executive_Summary",
-              "path": "/docs/executive/Executive_Summary",
+              "id": "executive/executive-summary",
+              "path": "/docs/executive/executive-summary",
               "sidebar": "docs"
             },
             {
@@ -51,19 +51,17 @@
               "sidebar": "docs"
             },
             {
-              "id": "executive/Key_Questions_Cheatsheet",
-              "path": "/docs/executive/Key_Questions_Cheatsheet",
+              "id": "executive/key-questions-cheatsheet",
+              "path": "/docs/executive/key-questions-cheatsheet",
               "sidebar": "docs"
             },
             {
-              "id": "executive/Phoenix_Rooivalk_Pitch_Deck",
-              "path": "/docs/executive/Phoenix_Rooivalk_Pitch_Deck",
-              "sidebar": "docs"
+              "id": "executive/phoenix-rooivalk-pitch-deck",
+              "path": "/docs/executive/phoenix-rooivalk-pitch-deck"
             },
             {
-              "id": "executive/Phoenix_Rooivalk_Technical_Whitepaper",
-              "path": "/docs/executive/Phoenix_Rooivalk_Technical_Whitepaper",
-              "sidebar": "docs"
+              "id": "executive/phoenix-rooivalk-technical-whitepaper",
+              "path": "/docs/executive/phoenix-rooivalk-technical-whitepaper"
             },
             {
               "id": "executive/Presentation_Materials",
@@ -76,14 +74,12 @@
               "sidebar": "docs"
             },
             {
-              "id": "executive/System_Overview",
-              "path": "/docs/executive/System_Overview",
-              "sidebar": "docs"
+              "id": "executive/system-overview",
+              "path": "/docs/executive/system-overview"
             },
             {
-              "id": "executive/System_Overview_Detailed",
-              "path": "/docs/executive/System_Overview_Detailed",
-              "sidebar": "docs"
+              "id": "executive/system-overview-detailed",
+              "path": "/docs/executive/system-overview-detailed"
             },
             {
               "id": "executive/Team_Status",
@@ -106,8 +102,8 @@
               "sidebar": "docs"
             },
             {
-              "id": "operations/Implementation_Plan",
-              "path": "/docs/operations/Implementation_Plan",
+              "id": "operations/implementation-plan",
+              "path": "/docs/operations/implementation-plan",
               "sidebar": "docs"
             },
             {
@@ -136,13 +132,13 @@
               "sidebar": "docs"
             },
             {
-              "id": "operations/Operations_Manual",
-              "path": "/docs/operations/Operations_Manual",
+              "id": "operations/Operations_Modes",
+              "path": "/docs/operations/Operations_Modes",
               "sidebar": "docs"
             },
             {
-              "id": "operations/Operations_Modes",
-              "path": "/docs/operations/Operations_Modes",
+              "id": "operations/operations-manual",
+              "path": "/docs/operations/operations-manual",
               "sidebar": "docs"
             },
             {
@@ -155,19 +151,16 @@
               "path": "/docs/"
             },
             {
-              "id": "technical/AI_Benefits",
-              "path": "/docs/technical/AI_Benefits",
-              "sidebar": "docs"
+              "id": "technical/ai-benefits",
+              "path": "/docs/technical/ai-benefits"
             },
             {
               "id": "technical/architecture/Architecture_Decision_Records",
-              "path": "/docs/technical/architecture/Architecture_Decision_Records",
-              "sidebar": "docs"
+              "path": "/docs/technical/architecture/Architecture_Decision_Records"
             },
             {
-              "id": "technical/architecture/Technical_Architecture",
-              "path": "/docs/technical/architecture/Technical_Architecture",
-              "sidebar": "docs"
+              "id": "technical/architecture/technical-architecture",
+              "path": "/docs/technical/architecture/technical-architecture"
             },
             {
               "id": "technical/Blockchain_Integration",
@@ -185,33 +178,33 @@
               "sidebar": "docs"
             },
             {
-              "id": "technical/blockchain/Blockchain_Benefits",
-              "path": "/docs/technical/blockchain/Blockchain_Benefits",
-              "sidebar": "docs"
-            },
-            {
-              "id": "technical/blockchain/Blockchain_Implementation_Guide",
-              "path": "/docs/technical/blockchain/Blockchain_Implementation_Guide",
-              "sidebar": "docs"
-            },
-            {
-              "id": "technical/blockchain/Blockchain_Implementation_Phases",
-              "path": "/docs/technical/blockchain/Blockchain_Implementation_Phases",
-              "sidebar": "docs"
-            },
-            {
-              "id": "technical/blockchain/Blockchain_Protocols_Analysis",
-              "path": "/docs/technical/blockchain/Blockchain_Protocols_Analysis",
-              "sidebar": "docs"
-            },
-            {
               "id": "technical/blockchain/Blockchain_Security_Compliance",
               "path": "/docs/technical/blockchain/Blockchain_Security_Compliance",
               "sidebar": "docs"
             },
             {
-              "id": "technical/blockchain/Implementation_Roadmap",
-              "path": "/docs/technical/blockchain/Implementation_Roadmap",
+              "id": "technical/blockchain/blockchain-benefits",
+              "path": "/docs/technical/blockchain/blockchain-benefits",
+              "sidebar": "docs"
+            },
+            {
+              "id": "technical/blockchain/blockchain-implementation-guide",
+              "path": "/docs/technical/blockchain/blockchain-implementation-guide",
+              "sidebar": "docs"
+            },
+            {
+              "id": "technical/blockchain/blockchain-implementation-phases",
+              "path": "/docs/technical/blockchain/blockchain-implementation-phases",
+              "sidebar": "docs"
+            },
+            {
+              "id": "technical/blockchain/blockchain-protocols-analysis",
+              "path": "/docs/technical/blockchain/blockchain-protocols-analysis",
+              "sidebar": "docs"
+            },
+            {
+              "id": "technical/blockchain/implementation-roadmap",
+              "path": "/docs/technical/blockchain/implementation-roadmap",
               "sidebar": "docs"
             },
             {
@@ -230,9 +223,8 @@
               "sidebar": "docs"
             },
             {
-              "id": "technical/Glossary",
-              "path": "/docs/technical/Glossary",
-              "sidebar": "docs"
+              "id": "technical/glossary",
+              "path": "/docs/technical/glossary"
             },
             {
               "id": "technical/Hardware_Foundation",
@@ -245,8 +237,8 @@
               "sidebar": "docs"
             },
             {
-              "id": "technical/integration/Integration_Guide",
-              "path": "/docs/technical/integration/Integration_Guide",
+              "id": "technical/integration/integration-guide",
+              "path": "/docs/technical/integration/integration-guide",
               "sidebar": "docs"
             },
             {
@@ -260,23 +252,17 @@
               "sidebar": "docs"
             },
             {
-              "id": "technical/performance/Performance_Specifications",
-              "path": "/docs/technical/performance/Performance_Specifications",
+              "id": "technical/performance/performance-specifications",
+              "path": "/docs/technical/performance/performance-specifications",
               "sidebar": "docs"
             },
             {
-              "id": "technical/REUSABLE_SYSTEMS_ARCHITECTURE",
-              "path": "/docs/technical/REUSABLE_SYSTEMS_ARCHITECTURE",
-              "sidebar": "docs"
+              "id": "technical/reusable-systems-architecture",
+              "path": "/docs/technical/reusable-systems-architecture"
             },
             {
               "id": "technical/System_Architecture",
               "path": "/docs/technical/System_Architecture",
-              "sidebar": "docs"
-            },
-            {
-              "id": "technical/Technical_Analysis",
-              "path": "/docs/technical/Technical_Analysis",
               "sidebar": "docs"
             },
             {
@@ -286,13 +272,15 @@
             },
             {
               "id": "technical/Technical_Architecture_Synthesis",
-              "path": "/docs/technical/Technical_Architecture_Synthesis",
-              "sidebar": "docs"
+              "path": "/docs/technical/Technical_Architecture_Synthesis"
+            },
+            {
+              "id": "technical/technical-analysis",
+              "path": "/docs/technical/technical-analysis"
             },
             {
               "id": "technical/ThreatSimulator_Enhancements",
-              "path": "/docs/technical/ThreatSimulator_Enhancements",
-              "sidebar": "docs"
+              "path": "/docs/technical/ThreatSimulator_Enhancements"
             },
             {
               "id": "visual-elements/System_Architecture_Diagrams",
@@ -304,8 +292,8 @@
           "sidebars": {
             "docs": {
               "link": {
-                "path": "/docs/executive/Executive_Summary",
-                "label": "executive/Executive_Summary"
+                "path": "/docs/executive/executive-summary",
+                "label": "executive/executive-summary"
               }
             }
           }

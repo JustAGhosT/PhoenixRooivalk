@@ -13,24 +13,24 @@
     },
     "config": "5e9f5e1a"
   },
-  "/docs-adb": {
+  "/docs-c8f": {
     "__comp": "5e95c892",
     "__context": {
       "plugin": "aba21aa0"
     }
   },
-  "/docs-e2e": {
+  "/docs-b51": {
     "__comp": "a7bd4aaa",
     "__props": "0058b4c6"
   },
-  "/docs-900": {
+  "/docs-d9f": {
     "__comp": "a94703ab"
   },
   "/docs/-e35": {
     "__comp": "17896441",
     "content": "23374ca6"
   },
-  "/docs/business/Business_Model-e8d": {
+  "/docs/business/business-model-fc2": {
     "__comp": "17896441",
     "content": "649e8ab2"
   },
@@ -54,7 +54,7 @@
     "__comp": "17896441",
     "content": "06fb56e8"
   },
-  "/docs/executive/Executive_Summary-8b4": {
+  "/docs/executive/executive-summary-41b": {
     "__comp": "17896441",
     "content": "5347ec1a"
   },
@@ -62,15 +62,15 @@
     "__comp": "17896441",
     "content": "1cad8231"
   },
-  "/docs/executive/Key_Questions_Cheatsheet-3e2": {
+  "/docs/executive/key-questions-cheatsheet-888": {
     "__comp": "17896441",
     "content": "1d69d61e"
   },
-  "/docs/executive/Phoenix_Rooivalk_Pitch_Deck-f4f": {
+  "/docs/executive/phoenix-rooivalk-pitch-deck-33d": {
     "__comp": "17896441",
     "content": "98d15428"
   },
-  "/docs/executive/Phoenix_Rooivalk_Technical_Whitepaper-6e5": {
+  "/docs/executive/phoenix-rooivalk-technical-whitepaper-1e6": {
     "__comp": "17896441",
     "content": "010e8a4b"
   },
@@ -82,11 +82,11 @@
     "__comp": "17896441",
     "content": "dd2ff445"
   },
-  "/docs/executive/System_Overview-9a1": {
+  "/docs/executive/system-overview-b1b": {
     "__comp": "17896441",
     "content": "a0bd3604"
   },
-  "/docs/executive/System_Overview_Detailed-0db": {
+  "/docs/executive/system-overview-detailed-a78": {
     "__comp": "17896441",
     "content": "ab45e36a"
   },
@@ -106,7 +106,7 @@
     "__comp": "17896441",
     "content": "a36964ad"
   },
-  "/docs/operations/Implementation_Plan-c25": {
+  "/docs/operations/implementation-plan-3da": {
     "__comp": "17896441",
     "content": "9b8aea46"
   },
@@ -130,27 +130,27 @@
     "__comp": "17896441",
     "content": "e44355c8"
   },
-  "/docs/operations/Operations_Manual-379": {
-    "__comp": "17896441",
-    "content": "9bd1fffd"
-  },
   "/docs/operations/Operations_Modes-387": {
     "__comp": "17896441",
     "content": "6ec8efe0"
+  },
+  "/docs/operations/operations-manual-0d5": {
+    "__comp": "17896441",
+    "content": "9bd1fffd"
   },
   "/docs/operations/training/Training_Materials-835": {
     "__comp": "17896441",
     "content": "be9be82a"
   },
-  "/docs/technical/AI_Benefits-2ef": {
+  "/docs/technical/ai-benefits-fd9": {
     "__comp": "17896441",
     "content": "fdc7b9db"
   },
-  "/docs/technical/architecture/Architecture_Decision_Records-4bb": {
+  "/docs/technical/architecture/Architecture_Decision_Records-be1": {
     "__comp": "17896441",
     "content": "ad358c63"
   },
-  "/docs/technical/architecture/Technical_Architecture-894": {
+  "/docs/technical/architecture/technical-architecture-519": {
     "__comp": "17896441",
     "content": "861b020e"
   },
@@ -166,27 +166,27 @@
     "__comp": "17896441",
     "content": "f5abdf08"
   },
-  "/docs/technical/blockchain/Blockchain_Benefits-1bc": {
-    "__comp": "17896441",
-    "content": "afd89f7d"
-  },
-  "/docs/technical/blockchain/Blockchain_Implementation_Guide-25d": {
-    "__comp": "17896441",
-    "content": "916c15a9"
-  },
-  "/docs/technical/blockchain/Blockchain_Implementation_Phases-901": {
-    "__comp": "17896441",
-    "content": "01b28ab9"
-  },
-  "/docs/technical/blockchain/Blockchain_Protocols_Analysis-9b6": {
-    "__comp": "17896441",
-    "content": "169acc8f"
-  },
   "/docs/technical/blockchain/Blockchain_Security_Compliance-98a": {
     "__comp": "17896441",
     "content": "2c18f280"
   },
-  "/docs/technical/blockchain/Implementation_Roadmap-b44": {
+  "/docs/technical/blockchain/blockchain-benefits-9b4": {
+    "__comp": "17896441",
+    "content": "afd89f7d"
+  },
+  "/docs/technical/blockchain/blockchain-implementation-guide-3da": {
+    "__comp": "17896441",
+    "content": "916c15a9"
+  },
+  "/docs/technical/blockchain/blockchain-implementation-phases-9a5": {
+    "__comp": "17896441",
+    "content": "01b28ab9"
+  },
+  "/docs/technical/blockchain/blockchain-protocols-analysis-fa6": {
+    "__comp": "17896441",
+    "content": "169acc8f"
+  },
+  "/docs/technical/blockchain/implementation-roadmap-609": {
     "__comp": "17896441",
     "content": "9853f98e"
   },
@@ -202,7 +202,7 @@
     "__comp": "17896441",
     "content": "ef556d66"
   },
-  "/docs/technical/Glossary-234": {
+  "/docs/technical/glossary-f91": {
     "__comp": "17896441",
     "content": "d53d0575"
   },
@@ -214,7 +214,7 @@
     "__comp": "17896441",
     "content": "d0d439af"
   },
-  "/docs/technical/integration/Integration_Guide-4a0": {
+  "/docs/technical/integration/integration-guide-1bf": {
     "__comp": "17896441",
     "content": "ab91cdaf"
   },
@@ -226,11 +226,11 @@
     "__comp": "17896441",
     "content": "e879dfac"
   },
-  "/docs/technical/performance/Performance_Specifications-cda": {
+  "/docs/technical/performance/performance-specifications-506": {
     "__comp": "17896441",
     "content": "a0b5aea5"
   },
-  "/docs/technical/REUSABLE_SYSTEMS_ARCHITECTURE-234": {
+  "/docs/technical/reusable-systems-architecture-def": {
     "__comp": "17896441",
     "content": "29bf46e2"
   },
@@ -238,19 +238,19 @@
     "__comp": "17896441",
     "content": "e1f280c3"
   },
-  "/docs/technical/Technical_Analysis-a30": {
-    "__comp": "17896441",
-    "content": "a8bdbfae"
-  },
   "/docs/technical/Technical_Architecture-13e": {
     "__comp": "17896441",
     "content": "8bf6e605"
   },
-  "/docs/technical/Technical_Architecture_Synthesis-4b0": {
+  "/docs/technical/Technical_Architecture_Synthesis-399": {
     "__comp": "17896441",
     "content": "6acada6f"
   },
-  "/docs/technical/ThreatSimulator_Enhancements-5d4": {
+  "/docs/technical/technical-analysis-385": {
+    "__comp": "17896441",
+    "content": "a8bdbfae"
+  },
+  "/docs/technical/ThreatSimulator_Enhancements-fc1": {
     "__comp": "17896441",
     "content": "46e657d0"
   },

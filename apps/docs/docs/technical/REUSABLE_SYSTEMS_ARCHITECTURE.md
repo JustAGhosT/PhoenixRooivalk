@@ -1,9 +1,17 @@
+---
+id: reusable-systems-architecture
+title: REUSABLE SYSTEMS ARCHITECTURE
+sidebar_label: REUSABLE SYSTEMS ARCHITECTURE
+---
+
 # 🔧 Reusable Systems Architecture - Phoenix Rooivalk
 
 ## Overview
 
 This document outlines the enhanced reusable system architecture implemented for
-the Phoenix Rooivalk ThreatSimulator, designed for seamless porting to Rust in
+the Phoenix Rooivalk ``` ThreatSimulator, designed
+
+````for seamless porting to Rust in
 the main counter-drone defense application.
 
 ## 🎯 Architecture Goals
@@ -18,7 +26,9 @@ the main counter-drone defense application.
 
 ### **Rust Porting Readiness**
 
-- **Pure Functions**: No side effects, easy to port
+- **Pure Functions**: No side ```
+effects, easy
+``` to port
 - **Clear Interfaces**: Well-defined data contracts
 - **Algorithm Focus**: Mathematical and logical operations
 - **State Machines**: Deterministic behavior patterns
@@ -26,7 +36,7 @@ the main counter-drone defense application.
 
 ## 🏗️ System Components
 
-### 1. **Game Engine Core** (`gameEngine.ts`)
+### {\d+}. **Game Engine Core** (`gameEngine.ts`)
 
 **Purpose**: Central game logic engine with pure functional approach
 
@@ -59,11 +69,13 @@ interface GameState {
 
 interface GameSystem {
   name: string;
-  update(state: GameState, deltaTime: number): void;
+  update(state: ```
+GameState, deltaTime
+```: number): void;
 }
-```
+````
 
-### 2. **Object Pool System** (`objectPool.ts`)
+### {\d+}. **Object Pool System** (`objectPool.ts`)
 
 **Purpose**: Memory-efficient resource management
 
@@ -91,14 +103,14 @@ interface Poolable {
   lastUsed: number;
 }
 
-class ObjectPool<T extends Poolable> {
+class ObjectPool&lt;T extends Poolable&gt; {
   acquire(): T | null;
   release(obj: T): void;
   getStats(): PoolStatistics;
 }
 ```
 
-### 3. **State Machine System** (`simpleStateMachine.ts`)
+### {\d+}. **State Machine System** (`simpleStateMachine.ts`)
 
 **Purpose**: Deterministic behavior patterns for game entities
 
@@ -119,11 +131,13 @@ class ObjectPool<T extends Poolable> {
 
 **Core Interfaces**:
 
-```typescript
+````typescript
 interface SimpleState {
   name: string;
   onEnter?: (context: any) => void;
-  onUpdate?: (context: any, deltaTime: number) => void;
+  onUpdate?: (context: ```
+any, deltaTime
+```: number) => void;
   onExit?: (context: any) => void;
 }
 
@@ -132,9 +146,9 @@ interface SimpleTransition {
   to: string;
   condition: (context: any) => boolean;
 }
-```
+````
 
-### 4. **Event System** (`eventSystem.ts`)
+### {\d+}. **Event System** (`eventSystem.ts`)
 
 **Purpose**: Protocol-based communication between systems
 
@@ -155,7 +169,7 @@ interface SimpleTransition {
 
 **Core Interfaces**:
 
-```typescript
+````typescript
 interface Event {
   id: string;
   type: string;
@@ -166,13 +180,15 @@ interface Event {
 }
 
 class EventSystem {
-  subscribe(eventType: string, handler: EventHandler): string;
+  subscribe(eventType: ```
+string, handler
+```: EventHandler): string;
   emit(event: Event): void;
   processEvents(): void;
 }
-```
+````
 
-### 5. **Performance Monitor** (`performanceMonitor.ts`)
+### {\d+}. **Performance Monitor** (`performanceMonitor.ts`)
 
 **Purpose**: Real-time performance metrics and optimization
 
@@ -193,13 +209,15 @@ class EventSystem {
 
 **Core Interfaces**:
 
-```typescript
+````typescript
 interface PerformanceMetrics {
   fps: number;
   frameTime: number;
   memoryUsage: number;
   activeEntities: number;
-  systemUpdateTime: Record<string, number>;
+  systemUpdateTime: Record&lt;```
+string, number
+```&gt;;
 }
 
 class PerformanceMonitor {
@@ -207,26 +225,28 @@ class PerformanceMonitor {
   checkThresholds(): PerformanceIssue[];
   generateReport(): PerformanceReport;
 }
-```
+````
 
 ## 🔄 System Integration
 
 ### **Event-Driven Communication**
 
-```typescript
+````typescript
 // Systems communicate via events
 eventSystem.emit({
   type: "threat:spawned",
   source: "threat-system",
-  data: { threatId, threatType, position },
-  priority: 3,
+  data: { ```
+threatId, threatType
+```, position },
+  priority: {\d+},
 });
 
 // Other systems listen and respond
 eventSystem.subscribe("threat:spawned", (event) => {
   // Handle threat spawning
 });
-```
+````
 
 ### **Pure Function Updates**
 
@@ -264,32 +284,34 @@ if (threat) {
 
 ## 🚀 Rust Porting Strategy
 
-### **1. Data Structures**
+### **{\d+}. Data Structures**
 
 - TypeScript interfaces → Rust structs
-- Optional properties → Rust Option<T>
-- Arrays → Rust Vec<T>
-- Maps → Rust HashMap<K, V>
+- Optional properties → Rust Option&lt;T&gt;
+- Arrays → Rust Vec&lt;T&gt;
+- Maps → Rust HashMap&lt;``` K, V
 
-### **2. State Machines**
+````>
+
+### **{\d+}. State Machines**
 
 - String-based states → Rust enums
 - Function callbacks → Rust closures
 - Context objects → Rust structs with methods
 
-### **3. Event System**
+### **{\d+}. Event System**
 
 - TypeScript events → Rust enums with data
 - Event handlers → Rust closures/traits
 - Event queues → Rust channels
 
-### **4. Object Pooling**
+### **{\d+}. Object Pooling**
 
-- TypeScript pools → Rust Vec<T> with indices
+- TypeScript pools → Rust Vec&lt;T&gt; with indices
 - Active/inactive tracking → Rust bit flags
 - Memory management → Rust ownership system
 
-### **5. Performance Monitoring**
+### **{\d+}. Performance Monitoring**
 
 - Browser APIs → Rust system APIs
 - JavaScript timers → Rust std::time
@@ -299,7 +321,7 @@ if (threat) {
 
 ### **Memory Efficiency**
 
-- Object pooling reduces allocations by 80%
+- Object pooling reduces allocations by {\d+}%
 - Event system eliminates memory leaks
 - State machines use minimal memory footprint
 
@@ -364,36 +386,41 @@ if (threat) {
 
 ### **Advanced Features**
 
-1. **Multi-threading Support**: Parallel system updates
-2. **Network Synchronization**: Multi-player support
-3. **AI Integration**: Machine learning decision making
-4. **Physics Engine**: Realistic movement simulation
-5. **Audio System**: 3D spatial audio
+{\d+}. **Multi-threading Support**: Parallel system updates
+{\d+}. **Network Synchronization**: Multi-player support
+{\d+}. **AI Integration**: Machine learning decision making
+{\d+}. **Physics Engine**: Realistic movement simulation
+{\d+}. **Audio System**: 3D spatial audio
 
 ### **Rust-Specific Optimizations**
 
-1. **SIMD Instructions**: Vectorized operations
-2. **Memory Mapping**: Zero-copy data access
-3. **Lock-free Data Structures**: High-performance concurrency
-4. **Custom Allocators**: Specialized memory management
-5. **FFI Integration**: Native system APIs
+{\d+}. **SIMD Instructions**: Vectorized operations
+{\d+}. **Memory Mapping**: Zero-copy data access
+{\d+}. **Lock-free Data Structures**: High-performance concurrency
+{\d+}. **Custom Allocators**: Specialized memory management
+{\d+}. **FFI Integration**: Native system APIs
 
 ## 🎯 Conclusion
 
 The implemented reusable systems architecture provides:
 
-✅ **Language-Agnostic Design**: Easy porting to Rust  
-✅ **Performance Optimization**: Efficient resource management  
-✅ **Modular Architecture**: Independent, testable components  
-✅ **Event-Driven Communication**: Loose coupling between systems  
-✅ **Memory Efficiency**: Object pooling and resource management  
-✅ **Deterministic Behavior**: State machine-based logic  
+✅ **Language-Agnostic Design**: Easy porting to Rust
+✅ **Performance Optimization**: Efficient resource management
+✅ **Modular Architecture**: ```
+Independent, testable
+``` components
+✅ **Event-Driven Communication**: Loose coupling between systems
+✅ **Memory Efficiency**: Object pooling and resource management
+✅ **Deterministic Behavior**: State machine-based logic
 ✅ **Real-time Monitoring**: Performance tracking and optimization
 
 This architecture serves as a solid foundation for the main Phoenix Rooivalk
-counter-drone defense system, ensuring seamless transition from TypeScript to
+counter-drone defense ```
+system, ensuring
+``` seamless transition from TypeScript to
 Rust while maintaining high performance and reliability.
 
 ---
 
 **Context improved by Giga AI**
+````

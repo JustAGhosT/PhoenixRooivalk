@@ -12,13 +12,13 @@ export default {
   "projectName": "PhoenixRooivalk",
   "onBrokenLinks": "warn",
   "markdown": {
+    "format": "md",
+    "mermaid": false,
     "mdx1Compat": {
-      "comments": false,
-      "admonitions": false,
+      "comments": true,
+      "admonitions": true,
       "headingIds": true
     },
-    "format": "mdx",
-    "mermaid": false,
     "anchors": {
       "maintainCase": false
     }
@@ -120,6 +120,16 @@ export default {
               "to": "/docs/operations/Manufacturing_Strategy"
             }
           ]
+        },
+        {
+          "href": "https://github.com/JustAGhosT/PhoenixRooivalk",
+          "label": "PhoenixRooivalk",
+          "position": "right"
+        },
+        {
+          "href": "https://github.com/cognetive-mesh",
+          "label": "Cognitive Mesh",
+          "position": "right"
         },
         {
           "href": "https://github.com/JustAGhosT/PhoenixRooivalk/blob/main/ACCESS.md",

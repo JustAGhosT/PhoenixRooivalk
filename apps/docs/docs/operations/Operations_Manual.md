@@ -1,11 +1,23 @@
+---
+id: operations-manual
+title: Operations Manual
+sidebar_label: Operations Manual
+---
+
 # Phoenix Rooivalk Operations Manual
 
 ## Executive Summary
 
 This operations manual provides comprehensive procedures for day-to-day
-operations, maintenance, and optimization of the Phoenix Rooivalk Counter-Drone
-Defense System. The manual covers system monitoring, performance optimization,
-troubleshooting, and maintenance procedures.
+
+````
+operations, maintenance
+```, and optimization of the Phoenix Rooivalk Counter-Drone
+Defense System. The manual covers system ```
+monitoring, performance
+``` ```
+optimization, troubleshooting
+```, and maintenance procedures.
 
 ---
 
@@ -15,11 +27,11 @@ troubleshooting, and maintenance procedures.
 
 **System Startup**
 
-1. **Power-On Sequence**: Verify all hardware components are powered
-2. **Network Connectivity**: Confirm network connections and mesh networking
-3. **Sensor Calibration**: Perform automatic sensor calibration
-4. **System Health Check**: Verify all systems are operational
-5. **Performance Validation**: Confirm system performance metrics
+{\d+}. **Power-On Sequence**: Verify all hardware components are powered
+{\d+}. **Network Connectivity**: Confirm network connections and mesh networking
+{\d+}. **Sensor Calibration**: Perform automatic sensor calibration
+{\d+}. **System Health Check**: Verify all systems are operational
+{\d+}. **Performance Validation**: Confirm system performance metrics
 
 **Operational Monitoring**
 
@@ -30,20 +42,20 @@ troubleshooting, and maintenance procedures.
 
 **System Shutdown**
 
-1. **Graceful Shutdown**: Initiate graceful shutdown sequence
-2. **Data Preservation**: Ensure all data is properly saved
-3. **Evidence Anchoring**: Complete any pending evidence anchoring
-4. **System Status**: Record final system status
-5. **Power Down**: Safe power-down of all components
+{\d+}. **Graceful Shutdown**: Initiate graceful shutdown sequence
+{\d+}. **Data Preservation**: Ensure all data is properly saved
+{\d+}. **Evidence Anchoring**: Complete any pending evidence anchoring
+{\d+}. **System Status**: Record final system status
+{\d+}. **Power Down**: Safe power-down of all components
 
 ### Performance Monitoring
 
 **Key Performance Indicators (KPIs)**
 
-- **Detection Accuracy**: Target 99.7% accuracy
-- **Response Time**: Target 120-195ms response time
-- **System Uptime**: Target 99.95% uptime
-- **False Positive Rate**: Target <1-2% false positive rate
+- **Detection Accuracy**: Target {\d+}.{\d+}% accuracy
+- **Response Time**: Target {\d+}-195ms response time
+- **System Uptime**: Target {\d+}.{\d+}% uptime
+- **False Positive Rate**: Target <{\d+}-{\d+}% false positive rate
 - **Sensor Health**: All sensors operational and calibrated
 
 **Performance Metrics**
@@ -65,11 +77,11 @@ troubleshooting, and maintenance procedures.
 
 **Alert Response Procedures**
 
-1. **Immediate Response**: Acknowledge critical alerts within 5 minutes
-2. **Investigation**: Investigate root cause of the issue
-3. **Resolution**: Implement appropriate resolution
-4. **Documentation**: Document incident and resolution
-5. **Follow-up**: Verify resolution and prevent recurrence
+{\d+}. **Immediate Response**: Acknowledge critical alerts within {\d+} minutes
+{\d+}. **Investigation**: Investigate root cause of the issue
+{\d+}. **Resolution**: Implement appropriate resolution
+{\d+}. **Documentation**: Document incident and resolution
+{\d+}. **Follow-up**: Verify resolution and prevent recurrence
 
 ---
 
@@ -102,27 +114,27 @@ troubleshooting, and maintenance procedures.
 
 **Hardware Failures**
 
-1. **Failure Detection**: Identify and isolate failed components
-2. **Impact Assessment**: Assess impact on system operations
-3. **Replacement**: Replace failed components with spares
-4. **Testing**: Test replacement components
-5. **Documentation**: Document failure and resolution
+{\d+}. **Failure Detection**: Identify and isolate failed components
+{\d+}. **Impact Assessment**: Assess impact on system operations
+{\d+}. **Replacement**: Replace failed components with spares
+{\d+}. **Testing**: Test replacement components
+{\d+}. **Documentation**: Document failure and resolution
 
 **Software Issues**
 
-1. **Issue Identification**: Identify software problems
-2. **Root Cause Analysis**: Analyze root cause of issues
-3. **Fix Implementation**: Implement appropriate fixes
-4. **Testing**: Test fixes in staging environment
-5. **Deployment**: Deploy fixes to production
+{\d+}. **Issue Identification**: Identify software problems
+{\d+}. **Root Cause Analysis**: Analyze root cause of issues
+{\d+}. **Fix Implementation**: Implement appropriate fixes
+{\d+}. **Testing**: Test fixes in staging environment
+{\d+}. **Deployment**: Deploy fixes to production
 
 **Network Problems**
 
-1. **Connectivity Check**: Verify network connectivity
-2. **Performance Analysis**: Analyze network performance
-3. **Configuration Review**: Review network configuration
-4. **Troubleshooting**: Perform network troubleshooting
-5. **Resolution**: Implement network fixes
+{\d+}. **Connectivity Check**: Verify network connectivity
+{\d+}. **Performance Analysis**: Analyze network performance
+{\d+}. **Configuration Review**: Review network configuration
+{\d+}. **Troubleshooting**: Perform network troubleshooting
+{\d+}. **Resolution**: Implement network fixes
 
 ---
 
@@ -214,53 +226,53 @@ troubleshooting, and maintenance procedures.
 
 **System Diagnostics**
 
-1. **Health Check**: Perform comprehensive system health check
-2. **Log Analysis**: Analyze system and application logs
-3. **Performance Analysis**: Analyze system performance metrics
-4. **Resource Monitoring**: Monitor system resources
-5. **Network Diagnostics**: Perform network diagnostics
+{\d+}. **Health Check**: Perform comprehensive system health check
+{\d+}. **Log Analysis**: Analyze system and application logs
+{\d+}. **Performance Analysis**: Analyze system performance metrics
+{\d+}. **Resource Monitoring**: Monitor system resources
+{\d+}. **Network Diagnostics**: Perform network diagnostics
 
 **Sensor Diagnostics**
 
-1. **Calibration Check**: Verify sensor calibration
-2. **Hardware Test**: Test sensor hardware functionality
-3. **Performance Test**: Test sensor performance
-4. **Integration Test**: Test sensor integration
-5. **Data Quality**: Verify sensor data quality
+{\d+}. **Calibration Check**: Verify sensor calibration
+{\d+}. **Hardware Test**: Test sensor hardware functionality
+{\d+}. **Performance Test**: Test sensor performance
+{\d+}. **Integration Test**: Test sensor integration
+{\d+}. **Data Quality**: Verify sensor data quality
 
 **Network Diagnostics**
 
-1. **Connectivity Test**: Test network connectivity
-2. **Performance Test**: Test network performance
-3. **Configuration Review**: Review network configuration
-4. **Security Check**: Check network security
-5. **Troubleshooting**: Perform network troubleshooting
+{\d+}. **Connectivity Test**: Test network connectivity
+{\d+}. **Performance Test**: Test network performance
+{\d+}. **Configuration Review**: Review network configuration
+{\d+}. **Security Check**: Check network security
+{\d+}. **Troubleshooting**: Perform network troubleshooting
 
 ### Resolution Procedures
 
 **Performance Issues**
 
-1. **Resource Analysis**: Analyze resource usage
-2. **Optimization**: Implement performance optimizations
-3. **Load Balancing**: Implement load balancing
-4. **Scaling**: Scale system resources if needed
-5. **Monitoring**: Monitor performance improvements
+{\d+}. **Resource Analysis**: Analyze resource usage
+{\d+}. **Optimization**: Implement performance optimizations
+{\d+}. **Load Balancing**: Implement load balancing
+{\d+}. **Scaling**: Scale system resources if needed
+{\d+}. **Monitoring**: Monitor performance improvements
 
 **Detection Issues**
 
-1. **Calibration**: Recalibrate sensors
-2. **Algorithm Tuning**: Tune detection algorithms
-3. **Threshold Adjustment**: Adjust detection thresholds
-4. **Training**: Retrain AI models if needed
-5. **Validation**: Validate detection improvements
+{\d+}. **Calibration**: Recalibrate sensors
+{\d+}. **Algorithm Tuning**: Tune detection algorithms
+{\d+}. **Threshold Adjustment**: Adjust detection thresholds
+{\d+}. **Training**: Retrain AI models if needed
+{\d+}. **Validation**: Validate detection improvements
 
 **System Issues**
 
-1. **Restart**: Restart affected services
-2. **Configuration**: Review and update configuration
-3. **Updates**: Apply software updates
-4. **Hardware**: Check and replace hardware if needed
-5. **Support**: Contact technical support if needed
+{\d+}. **Restart**: Restart affected services
+{\d+}. **Configuration**: Review and update configuration
+{\d+}. **Updates**: Apply software updates
+{\d+}. **Hardware**: Check and replace hardware if needed
+{\d+}. **Support**: Contact technical support if needed
 
 ---
 
@@ -293,12 +305,12 @@ troubleshooting, and maintenance procedures.
 
 **Response Procedures**
 
-1. **Detection**: Detect and identify security incidents
-2. **Containment**: Contain the security incident
-3. **Investigation**: Investigate the incident
-4. **Resolution**: Resolve the security incident
-5. **Recovery**: Recover from the incident
-6. **Documentation**: Document the incident and response
+{\d+}. **Detection**: Detect and identify security incidents
+{\d+}. **Containment**: Contain the security incident
+{\d+}. **Investigation**: Investigate the incident
+{\d+}. **Resolution**: Resolve the security incident
+{\d+}. **Recovery**: Recover from the incident
+{\d+}. **Documentation**: Document the incident and response
 
 ### Compliance Monitoring
 
@@ -347,27 +359,27 @@ troubleshooting, and maintenance procedures.
 
 **System Recovery**
 
-1. **Assessment**: Assess system damage
-2. **Recovery Plan**: Develop recovery plan
-3. **Backup Restoration**: Restore from backups
-4. **System Validation**: Validate system functionality
-5. **Performance Testing**: Test system performance
+{\d+}. **Assessment**: Assess system damage
+{\d+}. **Recovery Plan**: Develop recovery plan
+{\d+}. **Backup Restoration**: Restore from backups
+{\d+}. **System Validation**: Validate system functionality
+{\d+}. **Performance Testing**: Test system performance
 
 **Data Recovery**
 
-1. **Data Assessment**: Assess data loss
-2. **Recovery Method**: Select recovery method
-3. **Data Restoration**: Restore lost data
-4. **Data Validation**: Validate restored data
-5. **System Integration**: Integrate restored data
+{\d+}. **Data Assessment**: Assess data loss
+{\d+}. **Recovery Method**: Select recovery method
+{\d+}. **Data Restoration**: Restore lost data
+{\d+}. **Data Validation**: Validate restored data
+{\d+}. **System Integration**: Integrate restored data
 
 **Disaster Recovery**
 
-1. **Disaster Assessment**: Assess disaster impact
-2. **Recovery Site**: Activate recovery site
-3. **System Restoration**: Restore systems
-4. **Data Synchronization**: Synchronize data
-5. **Service Restoration**: Restore services
+{\d+}. **Disaster Assessment**: Assess disaster impact
+{\d+}. **Recovery Site**: Activate recovery site
+{\d+}. **System Restoration**: Restore systems
+{\d+}. **Data Synchronization**: Synchronize data
+{\d+}. **Service Restoration**: Restore services
 
 ---
 
@@ -457,9 +469,16 @@ troubleshooting, and maintenance procedures.
 ## Conclusion
 
 The Phoenix Rooivalk Operations Manual provides comprehensive procedures for
-day-to-day operations, maintenance, and optimization of the counter-drone
-defense system. The manual emphasizes proactive maintenance, performance
-optimization, and incident response while maintaining the highest standards of
+day-to-day ```
+operations, maintenance
+```, and optimization of the counter-drone
+defense system. The manual emphasizes proactive ```
+maintenance, performance
+````
+
+````
+optimization, and
+``` incident response while maintaining the highest standards of
 security and compliance.
 
 Key operational features include:
@@ -472,11 +491,14 @@ Key operational features include:
 - **Training**: Comprehensive training and certification programs
 
 The operations manual ensures optimal system performance and reliability while
-maintaining the highest standards of security, compliance, and operational
+maintaining the highest standards of ```
+security, compliance
+```, and operational
 effectiveness.
 
 ---
 
 _This document contains confidential operational information. Distribution is
-restricted to authorized personnel only. © 2025 Phoenix Rooivalk. All rights
+restricted to authorized personnel only. © {\d+} Phoenix Rooivalk. All rights
 reserved._
+````

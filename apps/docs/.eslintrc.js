@@ -1,10 +1,5 @@
 module.exports = {
-  extends: [
-    'eslint:recommended',
-    '@typescript-eslint/recommended',
-  ],
-  parser: '@typescript-eslint/parser',
-  plugins: ['@typescript-eslint'],
+  extends: ["eslint:recommended"],
   env: {
     browser: true,
     node: true,
@@ -12,13 +7,16 @@ module.exports = {
   },
   rules: {
     // Allow Docusaurus imports
-    'import/no-unresolved': 'off',
+    "import/no-unresolved": "off",
     // Allow React imports
-    'import/default': 'off',
+    "import/default": "off",
     // Allow unused variables that start with underscore
-    '@typescript-eslint/no-unused-vars': ['error', { 
-      argsIgnorePattern: '^_',
-      varsIgnorePattern: '^_' 
-    }],
+    "no-unused-vars": [
+      "error",
+      {
+        argsIgnorePattern: "^_",
+        varsIgnorePattern: "^_",
+      },
+    ],
   },
 };

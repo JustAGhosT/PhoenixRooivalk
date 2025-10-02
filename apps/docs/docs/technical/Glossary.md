@@ -1,8 +1,19 @@
+---
+id: glossary
+title: Glossary
+sidebar_label: Glossary
+---
+
 # Phoenix Rooivalk Technical Glossary
 
 ## Executive Summary
 
-This glossary provides comprehensive definitions of technical terms, acronyms, and concepts used throughout the Phoenix Rooivalk Counter-Drone Defense System documentation. The glossary serves as a reference for technical evaluators, engineers, and system integrators.
+This glossary provides comprehensive definitions of technical `terms, acronyms`,
+and concepts used throughout the Phoenix Rooivalk Counter-Drone Defense System
+documentation. The glossary serves as a reference for technical ``` evaluators,
+engineers
+
+````, and system integrators.
 
 ---
 
@@ -14,18 +25,28 @@ This glossary provides comprehensive definitions of technical terms, acronyms, a
 - Critical for extended range operations and swarm coordination
 
 **C2 (Command and Control)**
-- Interfaces and services used to task, monitor, and coordinate system components and effectors
-- Includes STANAG 4586 compliance for standardized UAS control
+- Interfaces and services used to ```
+task, monitor
+```, and coordinate system components and effectors
+- Includes STANAG {\d+} compliance for standardized UAS control
 - Supports both manned and unmanned command structures
 
 **Counter-UAS / C-UAS**
-- Systems designed to detect, identify, track, and neutralize unauthorized or hostile drones
+- Systems designed to ```
+detect, identify
+```, ```
+track, and
+``` neutralize unauthorized or hostile drones
 - Includes both kinetic and non-kinetic countermeasures
 - Supports multiple threat classifications and response protocols
 
 **DEW (Directed Energy Weapon)**
 - Non-kinetic effectors that use focused energy (e.g., lasers) to disrupt or disable targets
-- Includes laser dazzlers, high-energy lasers, and microwave weapons
+- Includes laser ```
+dazzlers, high
+```-energy ```
+lasers, and
+``` microwave weapons
 - Provides precision engagement with minimal collateral damage
 
 **Edge Computing**
@@ -34,27 +55,41 @@ This glossary provides comprehensive definitions of technical terms, acronyms, a
 - Enables autonomous operation in GPS-denied and EW-contested environments
 
 **EW (Electronic Warfare)**
-- Military use of the electromagnetic spectrum to sense, protect, and attack
-- Includes jamming, deception, and electronic attack capabilities
+- Military use of the electromagnetic spectrum to ```
+sense, protect
+```, and attack
+- Includes ```
+jamming, deception
+```, and electronic attack capabilities
 - Essential for operations in contested electromagnetic environments
 
 **Fiber Control (Tethered/Spool)**
-- Jam-resistant command link over optical fiber, avoiding RF denial environments
+- Jam-resistant command link over optical ```
+fiber, avoiding
+``` RF denial environments
 - Provides secure communication in high-threat environments
 - Enables extended range operations with reduced vulnerability
 
-**ISR (Intelligence, Surveillance, Reconnaissance)**
+**ISR (```
+Intelligence, Surveillance
+```, Reconnaissance)**
 - Sensing and data fusion activities to build situational awareness
 - Includes multi-sensor data collection and analysis
 - Supports threat assessment and mission planning
 
 **Swarm**
 - Coordinated operation of multiple drones to achieve emergent effects
-- Includes distributed sensing, coordinated attack, and formation flying
+- Includes distributed ```
+sensing, coordinated
+``` ```
+attack, and
+``` formation flying
 - Enables scalable operations with graceful degradation
 
 **VTOL (Vertical Take-Off and Landing)**
-- Aircraft capable of vertical take-off, hover, and landing without a runway
+- Aircraft capable of vertical take-```
+off, hover
+```, and landing without a runway
 - Essential for operations in confined spaces and urban environments
 - Supports rapid deployment and recovery operations
 
@@ -78,17 +113,23 @@ This glossary provides comprehensive definitions of technical terms, acronyms, a
 ## Messaging and Observability
 
 **gRPC**
-- High-performance, HTTP/2-based RPC framework used for control plane communications
+- High-```
+performance, HTTP
+```/{\d+}-based RPC framework used for control plane communications
 - Provides efficient serialization and streaming capabilities
 - Supports both synchronous and asynchronous communication patterns
 
 **Protobuf (Protocol Buffers)**
-- Language-neutral, platform-neutral serialization format
+- Language-```
+neutral, platform
+```-neutral serialization format
 - Used for efficient data exchange between system components
 - Supports schema evolution and backward compatibility
 
 **WebSocket**
-- Real-time, bidirectional communication protocol
+- Real-```
+time, bidirectional
+``` communication protocol
 - Used for live telemetry and command streaming
 - Supports low-latency communication for time-critical operations
 
@@ -123,7 +164,11 @@ This glossary provides comprehensive definitions of technical terms, acronyms, a
 
 **LPI/LPD (Low Probability of Intercept/Detection)**
 - Communication techniques that minimize detection by adversaries
-- Includes frequency hopping, spread spectrum, and directional antennas
+- Includes frequency ```
+hopping, spread
+``` ```
+spectrum, and
+``` directional antennas
 - Critical for operations in contested environments
 
 **Frequency Hopping**
@@ -150,13 +195,25 @@ This glossary provides comprehensive definitions of technical terms, acronyms, a
 
 ## Navigation and PNT
 
-**PNT (Positioning, Navigation, and Timing)**
-- Integrated system providing position, navigation, and timing information
-- Includes GPS, inertial navigation, and other positioning systems
+**PNT (```
+Positioning, Navigation
+```, and Timing)**
+- Integrated system providing ```
+position, navigation
+```, and timing information
+- Includes ```
+GPS, inertial
+``` ```
+navigation, and
+``` other positioning systems
 - Critical for autonomous operations and precision engagement
 
 **GNSS (Global Navigation Satellite System)**
-- Global positioning system including GPS, GLONASS, Galileo, and BeiDou
+- Global positioning system including ```
+GPS, GLONASS
+```, ```
+Galileo, and
+``` BeiDou
 - Provides worldwide positioning and timing services
 - Supports multi-constellation positioning for improved accuracy
 
@@ -191,12 +248,16 @@ This glossary provides comprehensive definitions of technical terms, acronyms, a
 
 **NVIDIA Jetson**
 - Edge AI computing platform for autonomous systems
-- Includes Jetson AGX Orin, Orin NX, and Nano variants
+- Includes Jetson AGX ```
+Orin, Orin
+``` ```
+NX, and
+``` Nano variants
 - Provides high-performance AI processing at the edge
 
 **TensorRT**
 - NVIDIA's inference optimization library
-- Provides 8-10x speedup over standard inference
+- Provides {\d+}-10x speedup over standard inference
 - Optimizes models for edge deployment and real-time processing
 
 **DeepStream**
@@ -204,7 +265,7 @@ This glossary provides comprehensive definitions of technical terms, acronyms, a
 - Supports multi-sensor data fusion and real-time processing
 - Enables comprehensive sensor integration and analysis
 
-**ROS 2 (Robot Operating System)**
+**ROS {\d+} (Robot Operating System)**
 - Middleware for distributed robotic systems
 - Supports modular architecture and component integration
 - Enables scalable system development and deployment
@@ -216,7 +277,7 @@ This glossary provides comprehensive definitions of technical terms, acronyms, a
 
 **YOLOv9**
 - Object detection algorithm optimized for real-time performance
-- Provides 95.7% mAP with 30+ FPS on Jetson platforms
+- Provides {\d+}.{\d+}% mAP with {\d+}+ FPS on Jetson platforms
 - Supports multi-class object detection and tracking
 
 ---
@@ -226,12 +287,18 @@ This glossary provides comprehensive definitions of technical terms, acronyms, a
 **Soft Kill**
 - Non-destructive countermeasures including jamming and spoofing
 - Provides reversible neutralization with minimal collateral damage
-- Includes RF jamming, GPS spoofing, and communication disruption
+- Includes RF ```
+jamming, GPS
+``` ```
+spoofing, and
+``` communication disruption
 
 **Hard Kill**
 - Destructive countermeasures including kinetic interceptors
 - Provides permanent neutralization of threats
-- Includes missiles, projectiles, and directed energy weapons
+- Includes ```
+missiles, projectiles
+```, and directed energy weapons
 
 **RF Jamming**
 - Disruption of radio frequency communications
@@ -269,8 +336,8 @@ This glossary provides comprehensive definitions of technical terms, acronyms, a
 
 **Solana**
 - High-performance blockchain platform for evidence anchoring
-- Provides 3,000-4,500 TPS with sub-2-second finality
-- Supports cost-effective evidence anchoring at $0.00025 per transaction
+- Provides {\d+}, {\d+}-{\d+}, {\d+} TPS with sub-{\d+}-second finality
+- Supports cost-effective evidence anchoring at ${\d+}.{\d+} per transaction
 
 **Evidence Anchoring**
 - Process of storing evidence on blockchain for legal admissibility
@@ -303,7 +370,9 @@ This glossary provides comprehensive definitions of technical terms, acronyms, a
 
 **AI/ML (Artificial Intelligence/Machine Learning)**
 - Technologies enabling autonomous decision-making and pattern recognition
-- Supports threat detection, classification, and response
+- Supports threat ```
+detection, classification
+```, and response
 - Enables adaptive behavior and continuous learning
 
 **Neural Networks**
@@ -318,7 +387,9 @@ This glossary provides comprehensive definitions of technical terms, acronyms, a
 
 **Computer Vision**
 - AI technology for analyzing and understanding visual information
-- Supports object detection, tracking, and classification
+- Supports object ```
+detection, tracking
+```, and classification
 - Enables autonomous navigation and threat identification
 
 **Natural Language Processing**
@@ -338,12 +409,16 @@ This glossary provides comprehensive definitions of technical terms, acronyms, a
 **ITAR (International Traffic in Arms Regulations)**
 - US regulations controlling export of defense-related technology
 - Requires registration and compliance for defense contractors
-- Affects system design, documentation, and export controls
+- Affects system ```
+design, documentation
+```, and export controls
 
 **DoD (Department of Defense)**
 - US Department of Defense and its regulations and requirements
 - Includes security clearance requirements and compliance standards
-- Affects system design, deployment, and operational procedures
+- Affects system ```
+design, deployment
+```, and operational procedures
 
 **FedRAMP (Federal Risk and Authorization Management Program)**
 - US government program for cloud security assessment
@@ -371,45 +446,51 @@ This glossary provides comprehensive definitions of technical terms, acronyms, a
 
 **TOPS (Tera Operations Per Second)**
 - Measure of AI processing performance
-- Jetson AGX Orin provides 275 TOPS
+- Jetson AGX Orin provides {\d+} TOPS
 - Critical for real-time AI processing requirements
 
 **FPS (Frames Per Second)**
 - Measure of video processing performance
-- YOLOv9 provides 30+ FPS on Jetson Nano, 60+ FPS on Orin platforms
+- YOLOv9 provides {\d+}+ FPS on Jetson Nano, {\d+}+ FPS on Orin platforms
 - Critical for real-time video analysis and processing
 
 **mAP (mean Average Precision)**
 - Measure of object detection accuracy
-- YOLOv9 provides 95.7% mAP
+- YOLOv9 provides {\d+}.{\d+}% mAP
 - Critical for threat detection accuracy and reliability
 
 **Latency**
 - Time delay between input and output
-- Target <200ms for counter-drone operations
+- Target &lt;200ms for counter-drone operations
 - Critical for real-time response and threat neutralization
 
 **Throughput**
 - Rate of data processing or transmission
-- Solana provides 3,000-4,500 TPS
+- Solana provides {\d+}, {\d+}-{\d+}, {\d+} TPS
 - Critical for high-volume data processing and evidence anchoring
 
 **Uptime**
 - Percentage of time system is operational
-- Target 99.95% uptime for critical operations
+- Target {\d+}.{\d+}% uptime for critical operations
 - Critical for mission success and operational effectiveness
 
 ---
 
 ## Conclusion
 
-This glossary provides comprehensive definitions of technical terms and concepts used throughout the Phoenix Rooivalk system. The glossary serves as a reference for technical evaluators, engineers, and system integrators, ensuring consistent understanding of system capabilities and requirements.
+This glossary provides comprehensive definitions of technical terms and concepts used throughout the Phoenix Rooivalk system. The glossary serves as a reference for technical ```
+evaluators, engineers
+```, and system ```
+integrators, ensuring
+``` consistent understanding of system capabilities and requirements.
 
 Key areas covered include:
 - **Operations and Concepts**: Core operational terminology and concepts
 - **Messaging and Observability**: Communication and monitoring technologies
 - **Communications and EW**: Electronic warfare and communication systems
-- **Navigation and PNT**: Positioning, navigation, and timing systems
+- **Navigation and PNT**: ```
+Positioning, navigation
+```, and timing systems
 - **System Components**: Hardware and software components
 - **Neutralization and Countermeasures**: Threat neutralization technologies
 - **Blockchain and Evidence**: Evidence anchoring and legal compliance
@@ -417,9 +498,12 @@ Key areas covered include:
 - **Security and Compliance**: Security frameworks and compliance requirements
 - **Performance and Metrics**: Performance measures and system capabilities
 
-The glossary ensures consistent understanding of technical concepts and supports effective communication between technical teams, stakeholders, and system integrators.
+The glossary ensures consistent understanding of technical concepts and supports effective communication between technical ```
+teams, stakeholders
+```, and system integrators.
 
 ---
 
-*This document contains confidential technical information. Distribution is restricted to authorized personnel only. © 2025 Phoenix Rooivalk. All rights reserved.*
- 
+*This document contains confidential technical information. Distribution is restricted to authorized personnel only. © {\d+} Phoenix Rooivalk. All rights reserved.*
+
+````

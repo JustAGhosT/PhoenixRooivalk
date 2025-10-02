@@ -1,15 +1,25 @@
+---
+id: system-overview
+title: System Overview
+sidebar_label: System Overview
+---
+
 # Phoenix Rooivalk System Overview
 
 ## Executive Summary
 
-Phoenix Rooivalk is a modular, layered defense system designed to provide
+Phoenix Rooivalk is a ``` modular, layered
+
+````defense system designed to provide
 comprehensive protection against low-cost UAS (Unmanned Aerial System) threats.
 The system employs a multi-component architecture that cues the most
 cost-effective effector first while maintaining command and control (C2)
 capabilities in heavy electronic warfare (EW) environments through resilient
 free-space optical (FSO) and radio frequency (RF) links.
 
-**Mission**: Provide a modular, layered defense against low-cost UAS threats by
+**Mission**: Provide a ```
+modular, layered
+``` defense against low-cost UAS threats by
 cueing the cheapest effective effector first and maintaining C2 in heavy EW via
 resilient FSO and RF links.
 
@@ -21,18 +31,28 @@ resilient FSO and RF links.
 
 #### RKV-M: Aerial VTOL Mothership
 
-- **Primary Function**: Picket, relay, and mini launch platform
+- **Primary Function**: ```
+Picket, relay
+```, and mini launch platform
 - **Capabilities**:
   - Long-endurance aerial operations
   - Multi-sensor threat detection
   - Mini-drone deployment and recovery
   - Command and control relay
 - **Design**: Tilt-quad configuration with ducted rotors
-- **Performance**: High-altitude operations, extended range, payload capacity
+- **Performance**: High-altitude ```
+operations, extended
+``` ```
+range, payload
+``` capacity
 
 #### RKV-I: Interceptor Minis
 
-- **Primary Function**: Interceptor, decoy, and ISR (Intelligence, Surveillance,
+- **Primary Function**: ```
+Interceptor, decoy
+```, and ISR (```
+Intelligence, Surveillance
+```,
   Reconnaissance) operations
 - **Capabilities**:
   - High-speed interception
@@ -40,11 +60,17 @@ resilient FSO and RF links.
   - Intelligence gathering
   - Tactical reconnaissance
 - **Control**: RF control or optional fiber-optic control
-- **Design**: Compact, high-performance interceptors
+- **Design**: ```
+Compact, high
+```-performance interceptors
 
 #### RKV-G: Ground Control Station (GCS)
 
-- **Primary Function**: Mobile ground control, mast operations, and logistics
+- **Primary Function**: Mobile ground ```
+control, mast
+``` ```
+operations, and
+``` logistics
   support
 - **Capabilities**:
   - Mobile command and control
@@ -52,7 +78,9 @@ resilient FSO and RF links.
   - Logistics support
   - Fiber spool management
 - **Design**: Rover-based mobile platform
-- **Performance**: All-terrain mobility, extended operational range
+- **Performance**: All-terrain ```
+mobility, extended
+``` operational range
 
 #### RKV-C2: Command and Control System
 
@@ -63,13 +91,15 @@ resilient FSO and RF links.
   - Event monitoring and alerting
   - System observability
 - **Design**: Distributed C2 architecture
-- **Performance**: Low-latency operations, high reliability
+- **Performance**: Low-latency ```
+operations, high
+``` reliability
 
 ---
 
 ## Operating Modes
 
-### 1. Mobile Picket
+### {\d+}. Mobile Picket
 
 **Description**: Mobile patrol and surveillance operations **Key Features**:
 
@@ -85,14 +115,14 @@ resilient FSO and RF links.
 - Mobile convoy security
 - Dynamic threat response
 
-### 2. Site-Fixed Overwatch
+### {\d+}. Site-Fixed Overwatch
 
 **Description**: Fixed-site protection with elevated surveillance **Key
 Features**:
 
 - Short micro-tether or elevated mast operations
 - Continuous site monitoring
-- 360-degree threat coverage
+- {\d+}-degree threat coverage
 - Persistent surveillance capability
 
 **Use Cases**:
@@ -102,7 +132,7 @@ Features**:
 - VIP protection
 - High-value asset security
 
-### 3. Fiber-Engage Operations
+### {\d+}. Fiber-Engage Operations
 
 **Description**: High-security operations with fiber-optic control **Key
 Features**:
@@ -119,7 +149,7 @@ Features**:
 - Long-range missions
 - Secure communications
 
-### 4. Logistics Support
+### {\d+}. Logistics Support
 
 **Description**: Support operations for extended missions **Key Features**:
 
@@ -141,23 +171,39 @@ Features**:
 
 ### Threat Detection and Assessment
 
-- **Multi-Sensor Fusion**: RF, radar, EO/IR, acoustic, LiDAR
+- **Multi-Sensor Fusion**: ```
+RF, radar
+```, EO/```
+IR, acoustic
+```, LiDAR
 - **AI-Powered Analysis**: Machine learning threat classification
 - **Real-Time Processing**: Sub-200ms threat detection and classification
 - **Pattern Recognition**: Advanced threat pattern analysis
 
 ### Countermeasures and Neutralization
 
-- **Soft-Kill Options**: RF jamming, GPS spoofing, communication disruption
-- **Hard-Kill Options**: Physical interception, net deployment, kinetic
-  neutralization
+- **Soft-Kill Options**: RF ```
+jamming, GPS
+``` ```
+spoofing, communication
+``` disruption
+- **Hard-Kill Options**: Physical ```
+interception, net
+``` ```
+deployment, kinetic
+````
+
+neutralization
+
 - **Escalation Protocols**: Graduated response based on threat level
 - **Human-in-the-Loop**: Human oversight for kinetic actions
 
 ### Command and Control
 
 - **Distributed Architecture**: Resilient C2 in contested environments
-- **Multi-Modal Communications**: RF, optical, mesh networking
+- **Multi-Modal Communications**: ``` RF, optical
+
+````, mesh networking
 - **Autonomous Operations**: Offline-capable operations
 - **Swarm Coordination**: Multi-agent coordination and control
 
@@ -174,26 +220,28 @@ Features**:
 
 ### Performance Metrics
 
-- **Detection Range**: 5-10 km (standard configuration)
-- **Response Time**: <200ms end-to-end decision latency
-- **Accuracy**: 99.7% threat detection accuracy
-- **Availability**: 99.99% system availability
-- **Power Consumption**: 100-250W average power draw
+- **Detection Range**: {\d+}-{\d+} km (standard configuration)
+- **Response Time**: &lt;200ms end-to-end decision latency
+- **Accuracy**: {\d+}.{\d+}% threat detection accuracy
+- **Availability**: {\d+}.{\d+}% system availability
+- **Power Consumption**: {\d+}-250W average power draw
 
 ### Environmental Specifications
 
-- **Operating Temperature**: -40°C to +85°C
-- **Humidity**: 0-100% relative humidity
-- **Altitude**: Sea level to 5,000m
+- **Operating Temperature**: -{\d+}°C to +{\d+}°C
+- **Humidity**: {\d+}-{\d+}% relative humidity
+- **Altitude**: Sea level to {\d+}, 000m
 - **Weather**: All-weather operations capability
-- **EMC**: MIL-STD-461 compliant
+- **EMC**: MIL-STD-{\d+} compliant
 
 ### Security Specifications
 
-- **Encryption**: AES-256 encryption for all communications
+- **Encryption**: AES-{\d+} encryption for all communications
 - **Authentication**: Multi-factor authentication
 - **Access Control**: Role-based access control
-- **Compliance**: ITAR, CMMC Level 2, FedRAMP High
+- **Compliance**: ```
+ITAR, CMMC
+``` Level {\d+}, FedRAMP High
 
 ---
 
@@ -209,7 +257,9 @@ Features**:
 ### Operational Resilience
 
 - **GPS-Denied Operations**: Multi-modal navigation
-- **EW Resistance**: Frequency hopping, adaptive filtering
+- **EW Resistance**: Frequency ```
+hopping, adaptive
+``` filtering
 - **Network Independence**: Offline-capable operations
 - **Graceful Degradation**: Continued operations under partial failures
 
@@ -299,21 +349,37 @@ Features**:
 
 ## Conclusion
 
-Phoenix Rooivalk represents a comprehensive, modular approach to counter-drone
+Phoenix Rooivalk represents a ```
+comprehensive, modular
+``` approach to counter-drone
 defense that addresses the evolving threat landscape while maintaining
 operational flexibility and cost effectiveness. The system's multi-component
-architecture, advanced capabilities, and responsible use framework position it
-as a leading solution for counter-drone defense across military, critical
-infrastructure, and commercial applications.
+````
 
-The system's emphasis on modularity, scalability, and responsible use ensures
+architecture, advanced ` ` capabilities, and
+
+````responsible use framework position it
+as a leading solution for counter-drone defense across ```
+military, critical
+````
+
+````
+infrastructure, and
+``` commercial applications.
+
+The system's emphasis on ```
+modularity, scalability
+```, and responsible use ensures
 that it can adapt to changing requirements while maintaining the highest
-standards of safety, security, and operational effectiveness.
+standards of ```
+safety, security
+```, and operational effectiveness.
 
 ---
 
 _This document contains confidential system information. Distribution is
-restricted to authorized personnel only. © 2025 Phoenix Rooivalk. All rights
+restricted to authorized personnel only. © {\d+} Phoenix Rooivalk. All rights
 reserved._
 
 _Context improved by Giga AI_
+````

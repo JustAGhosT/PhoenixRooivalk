@@ -14,15 +14,15 @@ export default [
   },
   {
     path: '/docs',
-    component: ComponentCreator('/docs', 'adb'),
+    component: ComponentCreator('/docs', 'c8f'),
     routes: [
       {
         path: '/docs',
-        component: ComponentCreator('/docs', 'e2e'),
+        component: ComponentCreator('/docs', 'b51'),
         routes: [
           {
             path: '/docs',
-            component: ComponentCreator('/docs', '900'),
+            component: ComponentCreator('/docs', 'd9f'),
             routes: [
               {
                 path: '/docs/',
@@ -30,8 +30,8 @@ export default [
                 exact: true
               },
               {
-                path: '/docs/business/Business_Model',
-                component: ComponentCreator('/docs/business/Business_Model', 'e8d'),
+                path: '/docs/business/business-model',
+                component: ComponentCreator('/docs/business/business-model', 'fc2'),
                 exact: true,
                 sidebar: "docs"
               },
@@ -66,8 +66,8 @@ export default [
                 sidebar: "docs"
               },
               {
-                path: '/docs/executive/Executive_Summary',
-                component: ComponentCreator('/docs/executive/Executive_Summary', '8b4'),
+                path: '/docs/executive/executive-summary',
+                component: ComponentCreator('/docs/executive/executive-summary', '41b'),
                 exact: true,
                 sidebar: "docs"
               },
@@ -78,22 +78,20 @@ export default [
                 sidebar: "docs"
               },
               {
-                path: '/docs/executive/Key_Questions_Cheatsheet',
-                component: ComponentCreator('/docs/executive/Key_Questions_Cheatsheet', '3e2'),
+                path: '/docs/executive/key-questions-cheatsheet',
+                component: ComponentCreator('/docs/executive/key-questions-cheatsheet', '888'),
                 exact: true,
                 sidebar: "docs"
               },
               {
-                path: '/docs/executive/Phoenix_Rooivalk_Pitch_Deck',
-                component: ComponentCreator('/docs/executive/Phoenix_Rooivalk_Pitch_Deck', 'f4f'),
-                exact: true,
-                sidebar: "docs"
+                path: '/docs/executive/phoenix-rooivalk-pitch-deck',
+                component: ComponentCreator('/docs/executive/phoenix-rooivalk-pitch-deck', '33d'),
+                exact: true
               },
               {
-                path: '/docs/executive/Phoenix_Rooivalk_Technical_Whitepaper',
-                component: ComponentCreator('/docs/executive/Phoenix_Rooivalk_Technical_Whitepaper', '6e5'),
-                exact: true,
-                sidebar: "docs"
+                path: '/docs/executive/phoenix-rooivalk-technical-whitepaper',
+                component: ComponentCreator('/docs/executive/phoenix-rooivalk-technical-whitepaper', '1e6'),
+                exact: true
               },
               {
                 path: '/docs/executive/Presentation_Materials',
@@ -108,16 +106,14 @@ export default [
                 sidebar: "docs"
               },
               {
-                path: '/docs/executive/System_Overview',
-                component: ComponentCreator('/docs/executive/System_Overview', '9a1'),
-                exact: true,
-                sidebar: "docs"
+                path: '/docs/executive/system-overview',
+                component: ComponentCreator('/docs/executive/system-overview', 'b1b'),
+                exact: true
               },
               {
-                path: '/docs/executive/System_Overview_Detailed',
-                component: ComponentCreator('/docs/executive/System_Overview_Detailed', '0db'),
-                exact: true,
-                sidebar: "docs"
+                path: '/docs/executive/system-overview-detailed',
+                component: ComponentCreator('/docs/executive/system-overview-detailed', 'a78'),
+                exact: true
               },
               {
                 path: '/docs/executive/Team_Status',
@@ -144,8 +140,8 @@ export default [
                 sidebar: "docs"
               },
               {
-                path: '/docs/operations/Implementation_Plan',
-                component: ComponentCreator('/docs/operations/Implementation_Plan', 'c25'),
+                path: '/docs/operations/implementation-plan',
+                component: ComponentCreator('/docs/operations/implementation-plan', '3da'),
                 exact: true,
                 sidebar: "docs"
               },
@@ -180,14 +176,14 @@ export default [
                 sidebar: "docs"
               },
               {
-                path: '/docs/operations/Operations_Manual',
-                component: ComponentCreator('/docs/operations/Operations_Manual', '379'),
+                path: '/docs/operations/Operations_Modes',
+                component: ComponentCreator('/docs/operations/Operations_Modes', '387'),
                 exact: true,
                 sidebar: "docs"
               },
               {
-                path: '/docs/operations/Operations_Modes',
-                component: ComponentCreator('/docs/operations/Operations_Modes', '387'),
+                path: '/docs/operations/operations-manual',
+                component: ComponentCreator('/docs/operations/operations-manual', '0d5'),
                 exact: true,
                 sidebar: "docs"
               },
@@ -198,22 +194,19 @@ export default [
                 sidebar: "docs"
               },
               {
-                path: '/docs/technical/AI_Benefits',
-                component: ComponentCreator('/docs/technical/AI_Benefits', '2ef'),
-                exact: true,
-                sidebar: "docs"
+                path: '/docs/technical/ai-benefits',
+                component: ComponentCreator('/docs/technical/ai-benefits', 'fd9'),
+                exact: true
               },
               {
                 path: '/docs/technical/architecture/Architecture_Decision_Records',
-                component: ComponentCreator('/docs/technical/architecture/Architecture_Decision_Records', '4bb'),
-                exact: true,
-                sidebar: "docs"
+                component: ComponentCreator('/docs/technical/architecture/Architecture_Decision_Records', 'be1'),
+                exact: true
               },
               {
-                path: '/docs/technical/architecture/Technical_Architecture',
-                component: ComponentCreator('/docs/technical/architecture/Technical_Architecture', '894'),
-                exact: true,
-                sidebar: "docs"
+                path: '/docs/technical/architecture/technical-architecture',
+                component: ComponentCreator('/docs/technical/architecture/technical-architecture', '519'),
+                exact: true
               },
               {
                 path: '/docs/technical/Blockchain_Integration',
@@ -234,38 +227,38 @@ export default [
                 sidebar: "docs"
               },
               {
-                path: '/docs/technical/blockchain/Blockchain_Benefits',
-                component: ComponentCreator('/docs/technical/blockchain/Blockchain_Benefits', '1bc'),
-                exact: true,
-                sidebar: "docs"
-              },
-              {
-                path: '/docs/technical/blockchain/Blockchain_Implementation_Guide',
-                component: ComponentCreator('/docs/technical/blockchain/Blockchain_Implementation_Guide', '25d'),
-                exact: true,
-                sidebar: "docs"
-              },
-              {
-                path: '/docs/technical/blockchain/Blockchain_Implementation_Phases',
-                component: ComponentCreator('/docs/technical/blockchain/Blockchain_Implementation_Phases', '901'),
-                exact: true,
-                sidebar: "docs"
-              },
-              {
-                path: '/docs/technical/blockchain/Blockchain_Protocols_Analysis',
-                component: ComponentCreator('/docs/technical/blockchain/Blockchain_Protocols_Analysis', '9b6'),
-                exact: true,
-                sidebar: "docs"
-              },
-              {
                 path: '/docs/technical/blockchain/Blockchain_Security_Compliance',
                 component: ComponentCreator('/docs/technical/blockchain/Blockchain_Security_Compliance', '98a'),
                 exact: true,
                 sidebar: "docs"
               },
               {
-                path: '/docs/technical/blockchain/Implementation_Roadmap',
-                component: ComponentCreator('/docs/technical/blockchain/Implementation_Roadmap', 'b44'),
+                path: '/docs/technical/blockchain/blockchain-benefits',
+                component: ComponentCreator('/docs/technical/blockchain/blockchain-benefits', '9b4'),
+                exact: true,
+                sidebar: "docs"
+              },
+              {
+                path: '/docs/technical/blockchain/blockchain-implementation-guide',
+                component: ComponentCreator('/docs/technical/blockchain/blockchain-implementation-guide', '3da'),
+                exact: true,
+                sidebar: "docs"
+              },
+              {
+                path: '/docs/technical/blockchain/blockchain-implementation-phases',
+                component: ComponentCreator('/docs/technical/blockchain/blockchain-implementation-phases', '9a5'),
+                exact: true,
+                sidebar: "docs"
+              },
+              {
+                path: '/docs/technical/blockchain/blockchain-protocols-analysis',
+                component: ComponentCreator('/docs/technical/blockchain/blockchain-protocols-analysis', 'fa6'),
+                exact: true,
+                sidebar: "docs"
+              },
+              {
+                path: '/docs/technical/blockchain/implementation-roadmap',
+                component: ComponentCreator('/docs/technical/blockchain/implementation-roadmap', '609'),
                 exact: true,
                 sidebar: "docs"
               },
@@ -288,10 +281,9 @@ export default [
                 sidebar: "docs"
               },
               {
-                path: '/docs/technical/Glossary',
-                component: ComponentCreator('/docs/technical/Glossary', '234'),
-                exact: true,
-                sidebar: "docs"
+                path: '/docs/technical/glossary',
+                component: ComponentCreator('/docs/technical/glossary', 'f91'),
+                exact: true
               },
               {
                 path: '/docs/technical/Hardware_Foundation',
@@ -306,8 +298,8 @@ export default [
                 sidebar: "docs"
               },
               {
-                path: '/docs/technical/integration/Integration_Guide',
-                component: ComponentCreator('/docs/technical/integration/Integration_Guide', '4a0'),
+                path: '/docs/technical/integration/integration-guide',
+                component: ComponentCreator('/docs/technical/integration/integration-guide', '1bf'),
                 exact: true,
                 sidebar: "docs"
               },
@@ -324,26 +316,19 @@ export default [
                 sidebar: "docs"
               },
               {
-                path: '/docs/technical/performance/Performance_Specifications',
-                component: ComponentCreator('/docs/technical/performance/Performance_Specifications', 'cda'),
+                path: '/docs/technical/performance/performance-specifications',
+                component: ComponentCreator('/docs/technical/performance/performance-specifications', '506'),
                 exact: true,
                 sidebar: "docs"
               },
               {
-                path: '/docs/technical/REUSABLE_SYSTEMS_ARCHITECTURE',
-                component: ComponentCreator('/docs/technical/REUSABLE_SYSTEMS_ARCHITECTURE', '234'),
-                exact: true,
-                sidebar: "docs"
+                path: '/docs/technical/reusable-systems-architecture',
+                component: ComponentCreator('/docs/technical/reusable-systems-architecture', 'def'),
+                exact: true
               },
               {
                 path: '/docs/technical/System_Architecture',
                 component: ComponentCreator('/docs/technical/System_Architecture', 'e5d'),
-                exact: true,
-                sidebar: "docs"
-              },
-              {
-                path: '/docs/technical/Technical_Analysis',
-                component: ComponentCreator('/docs/technical/Technical_Analysis', 'a30'),
                 exact: true,
                 sidebar: "docs"
               },
@@ -355,15 +340,18 @@ export default [
               },
               {
                 path: '/docs/technical/Technical_Architecture_Synthesis',
-                component: ComponentCreator('/docs/technical/Technical_Architecture_Synthesis', '4b0'),
-                exact: true,
-                sidebar: "docs"
+                component: ComponentCreator('/docs/technical/Technical_Architecture_Synthesis', '399'),
+                exact: true
+              },
+              {
+                path: '/docs/technical/technical-analysis',
+                component: ComponentCreator('/docs/technical/technical-analysis', '385'),
+                exact: true
               },
               {
                 path: '/docs/technical/ThreatSimulator_Enhancements',
-                component: ComponentCreator('/docs/technical/ThreatSimulator_Enhancements', '5d4'),
-                exact: true,
-                sidebar: "docs"
+                component: ComponentCreator('/docs/technical/ThreatSimulator_Enhancements', 'fc1'),
+                exact: true
               },
               {
                 path: '/docs/visual-elements/System_Architecture_Diagrams',

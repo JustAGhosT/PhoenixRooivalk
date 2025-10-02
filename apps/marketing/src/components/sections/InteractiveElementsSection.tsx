@@ -94,7 +94,7 @@ export const InteractiveElementsSection: React.FC = () => {
   const roi = calculateROI();
 
   return (
-    <section className="py-20 bg-gradient-to-br from-[rgb(var(--tactical-obsidian))] to-[rgb(var(--tactical-black))] relative overflow-hidden">
+    <section className="py-20 bg-gradient-to-br from-[rgb(var(--bg-primary))] to-[rgb(var(--darker))] relative overflow-hidden">
       {/* Background pattern */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute inset-0 bg-[linear-gradient(rgba(var(--primary),0.1)_1px,_transparent_1px),_linear-gradient(90deg,_rgba(var(--primary),0.1)_1px,_transparent_1px)] bg-[length:50px_50px]"></div>
@@ -104,7 +104,7 @@ export const InteractiveElementsSection: React.FC = () => {
         <div className="max-w-[1400px] mx-auto">
           {/* Section Header */}
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-br from-[rgb(var(--phoenix-white))] to-[rgb(var(--primary))] mb-6">
+            <h2 className="text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-br from-[rgb(var(--text-primary))] to-[rgb(var(--primary))] mb-6">
               Projected ROI Analysis
             </h2>
             <p className="text-xl text-[rgb(var(--gray))] max-w-3xl mx-auto">
@@ -243,7 +243,10 @@ export const InteractiveElementsSection: React.FC = () => {
                   <div className="flex justify-between text-[rgb(var(--gray))] text-sm mt-1">
                     <span>$100K</span>
                     <span className="text-[rgb(var(--accent))] font-bold">
-                      ${isClient ? roiInputs.deploymentCost.toLocaleString() : roiInputs.deploymentCost.toString()}
+                      $
+                      {isClient
+                        ? roiInputs.deploymentCost.toLocaleString()
+                        : roiInputs.deploymentCost.toString()}
                     </span>
                     <span>$1M</span>
                   </div>
@@ -278,7 +281,10 @@ export const InteractiveElementsSection: React.FC = () => {
                         Annual Savings:
                       </span>
                       <span className="text-[rgb(var(--status-active))] font-bold">
-                        ${isClient ? roi.phoenix.savings.toLocaleString() : roi.phoenix.savings.toString()}
+                        $
+                        {isClient
+                          ? roi.phoenix.savings.toLocaleString()
+                          : roi.phoenix.savings.toString()}
                       </span>
                     </div>
                     <div className="flex justify-between border-t border-[rgba(var(--primary),0.2)] pt-3">
@@ -316,7 +322,10 @@ export const InteractiveElementsSection: React.FC = () => {
                         Annual Savings:
                       </span>
                       <span className="text-[rgb(var(--status-warning))] font-bold">
-                        ${isClient ? roi.traditional.savings.toLocaleString() : roi.traditional.savings.toString()}
+                        $
+                        {isClient
+                          ? roi.traditional.savings.toLocaleString()
+                          : roi.traditional.savings.toString()}
                       </span>
                     </div>
                     <div className="flex justify-between border-t border-[rgba(var(--primary),0.2)] pt-3">
@@ -359,7 +368,7 @@ export const InteractiveElementsSection: React.FC = () => {
 
           {/* Key Performance Metrics */}
           <div className="mt-20">
-            <div className="bg-[rgba(var(--tactical-charcoal),0.8)] backdrop-blur-sm border border-[rgba(var(--primary),0.2)] rounded-2xl p-8">
+            <div className="bg-[rgba(var(--bg-surface),0.8)] backdrop-blur-sm border border-[rgba(var(--primary),0.2)] rounded-2xl p-8">
               <h3 className="text-2xl font-bold text-[rgb(var(--primary))] mb-6 text-center">
                 Performance Comparison
               </h3>

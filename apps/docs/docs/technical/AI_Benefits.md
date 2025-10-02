@@ -1,8 +1,18 @@
+---
+id: ai-benefits
+title: AI Benefits
+sidebar_label: AI Benefits
+---
+
 # Phoenix Rooivalk AI Benefits
 
 ## Executive Summary
 
-The Phoenix Rooivalk system leverages cutting-edge artificial intelligence to deliver unprecedented performance in counter-drone defense. Our AI integration provides **99.7% threat detection accuracy** with **<200ms response time**, representing a quantum leap over traditional systems that achieve only 60-70% accuracy.
+The Phoenix Rooivalk system leverages cutting-edge artificial intelligence to
+deliver unprecedented performance in counter-drone defense. Our AI integration
+provides **{\d+}.{\d+}% threat detection accuracy** with **<200ms response
+time**, representing a quantum leap over traditional systems that achieve only
+{\d+}-{\d+}% accuracy.
 
 ---
 
@@ -11,28 +21,39 @@ The Phoenix Rooivalk system leverages cutting-edge artificial intelligence to de
 ### Superior Threat Detection Performance
 
 **Revolutionary Accuracy**
-- **99.7% Detection Accuracy**: Validated against DroneRF dataset benchmarks
-- **40%+ Improvement**: Over conventional systems (60-70% accuracy)
-- **Multi-Modal Validation**: Performance validated across multiple sensor modalities
+
+- **{\d+}.{\d+}% Detection Accuracy**: Validated against DroneRF dataset
+  benchmarks
+- **{\d+}%+ Improvement**: Over conventional systems ({\d+}-{\d+}% accuracy)
+- **Multi-Modal Validation**: Performance validated across multiple sensor
+  modalities
 - **Real-World Performance**: Consistent performance in operational environments
 
 **Real-Time Response**
-- **Sub-200ms Inference**: Targeting TRIDENT's 6.09ms and FPGA's 2.14ms performance levels
-- **3-5x Faster**: Than human-operated systems
+
+- **Sub-200ms Inference**: Targeting TRIDENT's {\d+}.09ms and FPGA's {\d+}.14ms
+  performance levels
+- **{\d+}-5x Faster**: Than human-operated systems
 - **Edge Processing**: Real-time AI processing at the edge
 - **Autonomous Operation**: Fully autonomous threat response
 
 **Dataset Validation**
-- **RF Detection**: 99.7% accuracy on DroneRF dataset (2.4GHz ISM band)
-- **Vision-based**: 99.96% accuracy using XGBoost on RF signatures
+
+- **RF Detection**: {\d+}.{\d+}% accuracy on DroneRF dataset ({\d+}.4GHz ISM
+  band)
+- **Vision-based**: {\d+}.{\d+}% accuracy using XGBoost on RF signatures
 - **Multi-modal Fusion**: Enhanced accuracy through sensor combination
-- **Environmental Adaptation**: Performance across diverse environmental conditions
+- **Environmental Adaptation**: Performance across diverse environmental
+  conditions
 
 ### Multi-Modal Intelligence
 
 **Comprehensive Sensor Integration**
+
 - **RF Signal Analysis**: Identifies drone communication patterns
-- **Visual Recognition**: Distinguishes between drones, birds, and other objects
+- **Visual Recognition**: Distinguishes between ``` drones, birds
+
+````, and other objects
 - **Acoustic Analysis**: Detects drone-specific sound signatures
 - **Radar Tracking**: Provides 3D spatial awareness
 
@@ -45,7 +66,9 @@ The Phoenix Rooivalk system leverages cutting-edge artificial intelligence to de
 ### Advanced Behavioral Analysis
 
 **Predictive Threat Assessment**
-- **Flight Pattern Analysis**: Analyzes flight patterns, speed, and trajectory
+- **Flight Pattern Analysis**: Analyzes flight ```
+patterns, speed
+```, and trajectory
 - **Malicious Intent Prediction**: Predicts malicious intent before engagement
 - **Threat Prioritization**: Prioritizes threats based on risk assessment
 - **Response Planning**: Optimizes response strategies
@@ -69,24 +92,24 @@ The Phoenix Rooivalk system leverages cutting-edge artificial intelligence to de
 ### Edge AI Processing
 
 **NVIDIA Jetson Platform**
-- **Jetson AGX Orin**: 275 TOPS AI performance
-- **Jetson Orin NX**: 157 TOPS for distributed processing
-- **Jetson Nano**: 0.5 TOPS for lightweight deployments
-- **TensorRT Optimization**: 8-10x speedup over standard inference
+- **Jetson AGX Orin**: {\d+} TOPS AI performance
+- **Jetson Orin NX**: {\d+} TOPS for distributed processing
+- **Jetson Nano**: {\d+}.{\d+} TOPS for lightweight deployments
+- **TensorRT Optimization**: {\d+}-10x speedup over standard inference
 
 **AI Frameworks**
 - **TensorRT**: NVIDIA's inference optimization library
 - **DeepStream**: Video analytics framework
-- **ROS 2**: Robot Operating System for distributed AI
+- **ROS {\d+}**: Robot Operating System for distributed AI
 - **Custom Models**: Optimized models for edge deployment
 
 ### Machine Learning Models
 
 **YOLOv9 Object Detection**
-- **mAP**: 95.7% mean Average Precision
-- **Precision**: 0.946 precision
-- **Recall**: 0.864 recall
-- **Frame Rate**: 30+ FPS on Jetson Nano, 60+ FPS on Orin platforms
+- **mAP**: {\d+}.{\d+}% mean Average Precision
+- **Precision**: {\d+}.{\d+} precision
+- **Recall**: {\d+}.{\d+} recall
+- **Frame Rate**: {\d+}+ FPS on Jetson Nano, {\d+}+ FPS on Orin platforms
 
 **Multi-Modal Fusion**
 - **Sensor Integration**: Heterogeneous sensor data integration
@@ -106,16 +129,16 @@ The Phoenix Rooivalk system leverages cutting-edge artificial intelligence to de
 - **Agent Registry**: Catalog of all drone and sensor agents
 - **Role Assignment**: Dynamic role assignment based on tactical situation
 - **Graceful Degradation**: Handling when drones are damaged
-- **Performance**: Real-time coordination of 100-200 drone swarms
+- **Performance**: Real-time coordination of {\d+}-{\d+} drone swarms
 
 **Hierarchical Decision Confidence Pack (HDCP)**
-- **Accuracy Improvement**: Target 99.6-99.8% detection accuracy
+- **Accuracy Improvement**: Target {\d+}.{\d+}-{\d+}.{\d+}% detection accuracy
 - **Ensemble Voting**: Multi-level analysis and voting
 - **Confidence Scoring**: Hierarchical confidence assessment
 - **Performance**: Real-time confidence scoring
 
 **Temporal Decision Core (TDC)**
-- **Context Enrichment**: 50-100ms after authentication
+- **Context Enrichment**: {\d+}-100ms after authentication
 - **Pattern Matching**: Historical scenario pattern matching
 - **Learning**: Eligibility traces for learning from past incidents
 - **Performance**: Real-time pattern recognition
@@ -127,27 +150,27 @@ The Phoenix Rooivalk system leverages cutting-edge artificial intelligence to de
 ### Detection Performance
 
 **Accuracy Metrics**
-- **99.7% Detection Accuracy**: Superior to industry average (60-80%)
-- **<2% False Positive Rate**: Significantly lower than industry average (15-25%)
+- **{\d+}.{\d+}% Detection Accuracy**: Superior to industry average ({\d+}-{\d+}%)
+- **<{\d+}% False Positive Rate**: Significantly lower than industry average ({\d+}-{\d+}%)
 - **Multi-Modal Validation**: Enhanced accuracy through sensor fusion
 - **Environmental Adaptation**: Consistent performance across environments
 
 **Response Time Metrics**
-- **<200ms Response Time**: 10-40x faster than current systems
-- **Sub-2ms Authentication**: Cryptographic authentication in <2ms
+- **<200ms Response Time**: {\d+}-40x faster than current systems
+- **Sub-2ms Authentication**: Cryptographic authentication in &lt;2ms
 - **Real-Time Processing**: Real-time AI processing and decision making
-- **Edge Autonomy**: Level-0 autonomy without network dependency
+- **Edge Autonomy**: Level-{\d+} autonomy without network dependency
 
 **Scalability Metrics**
-- **Concurrent Targets**: 10+ concurrent drone targets
-- **Swarm Defense**: 100+ drone swarm defense capabilities
-- **System Uptime**: 99.95% target system uptime
+- **Concurrent Targets**: {\d+}+ concurrent drone targets
+- **Swarm Defense**: {\d+}+ drone swarm defense capabilities
+- **System Uptime**: {\d+}.{\d+}% target system uptime
 - **Performance Consistency**: Consistent performance across deployments
 
 ### Operational Benefits
 
 **Autonomous Operation**
-- **Level-0 Autonomy**: Fully autonomous operation without human intervention
+- **Level-{\d+} Autonomy**: Fully autonomous operation without human intervention
 - **GPS-Denied Environments**: Operation in GPS-denied and EW-contested environments
 - **Network Independence**: Operation without network connectivity
 - **Real-Time Decision Making**: Real-time AI decision making and response
@@ -160,7 +183,7 @@ The Phoenix Rooivalk system leverages cutting-edge artificial intelligence to de
 
 **Safety and Compliance**
 - **Safety Framework**: Comprehensive safety framework
-- **Compliance**: Full compliance with DoD Directive 3000.09
+- **Compliance**: Full compliance with DoD Directive {\d+}.{\d+}
 - **Audit Trail**: Complete audit trail for all operations
 - **Legal Admissibility**: Court-admissible evidence for all engagements
 
@@ -177,10 +200,10 @@ The Phoenix Rooivalk system leverages cutting-edge artificial intelligence to de
 - **Predictive Analytics**: Predictive threat assessment and response
 
 **Performance Advantages**
-- **Response Time**: 10-40x faster than current systems
+- **Response Time**: {\d+}-40x faster than current systems
 - **Accuracy**: Higher accuracy than industry average
 - **False Positives**: Significantly reduced false positive rate
-- **Autonomy**: Level-0 autonomy without network dependency
+- **Autonomy**: Level-{\d+} autonomy without network dependency
 
 **Integration Capabilities**
 - **System Integration**: Seamless integration with existing systems
@@ -288,20 +311,29 @@ The Phoenix Rooivalk system leverages cutting-edge artificial intelligence to de
 
 ## Conclusion
 
-The Phoenix Rooivalk AI integration provides unprecedented performance in counter-drone defense through advanced artificial intelligence capabilities. The system's AI benefits include superior threat detection performance, multi-modal intelligence, advanced behavioral analysis, and comprehensive operational advantages.
+The Phoenix Rooivalk AI integration provides unprecedented performance in counter-drone defense through advanced artificial intelligence capabilities. The system's AI benefits include superior threat detection ```
+performance, multi
+```-modal ```
+intelligence, advanced
+``` behavioral ```
+analysis, and
+``` comprehensive operational advantages.
 
 Key AI benefits include:
-- **Superior Performance**: 99.7% accuracy with <200ms response time
+- **Superior Performance**: {\d+}.{\d+}% accuracy with &lt;200ms response time
 - **Multi-Modal Intelligence**: Comprehensive sensor fusion and analysis
 - **Advanced AI**: Edge AI processing with cognitive mesh integration
 - **Operational Excellence**: Autonomous operation with comprehensive capabilities
 - **Competitive Advantages**: Significant performance advantages over existing systems
 - **Future-Ready**: Next-generation AI capabilities and continuous improvement
 
-The AI integration ensures optimal performance while maintaining the highest standards of safety, security, and operational effectiveness.
+The AI integration ensures optimal performance while maintaining the highest standards of ```
+safety, security
+```, and operational effectiveness.
 
 ---
 
-*This document contains confidential AI technology information. Distribution is restricted to authorized personnel only. © 2025 Phoenix Rooivalk. All rights reserved.*
+*This document contains confidential AI technology information. Distribution is restricted to authorized personnel only. © {\d+} Phoenix Rooivalk. All rights reserved.*
 
 *Context improved by Giga AI*
+````
