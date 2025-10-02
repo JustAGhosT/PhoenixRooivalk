@@ -1,52 +1,57 @@
 # Phoenix Rooivalk Operational Resilience
 
-## GPS-Denied and EW-Contested Environments
+## Executive Summary
 
-Phoenix Rooivalk operates effectively in GPS-denied and electronic warfare
-(EW)-contested environments through multi-modal navigation architecture,
-electronic warfare resilience techniques, and graceful degradation strategies.
+Phoenix Rooivalk is designed for operational resilience in GPS-denied and
+electronic warfare (EW) contested environments. The system implements
+multi-modal navigation, electronic warfare resilience techniques, and graceful
+degradation strategies to maintain operational effectiveness under adverse
+conditions.
 
 ---
 
 ## Multi-Modal Navigation Architecture
 
-### Primary Navigation Systems
+### Primary GNSS Systems
 
 **Multi-Constellation GNSS**
 
-- **GPS+GLONASS+Galileo+BeiDou**: Primary multi-constellation GNSS navigation
-- **Galileo Accuracy**: 1m accuracy with free centimeter High Accuracy Service
-- **BeiDou Capabilities**: Two-way messaging and PPP-B2b corrections across 45+
-  satellites
-- **Redundancy**: Multiple satellite constellations for redundancy and
-  reliability
+- **GPS**: Primary navigation system with 24 satellites
+- **GLONASS**: Russian constellation with 24 satellites
+- **Galileo**: European constellation with 1m accuracy and free centimeter High
+  Accuracy Service
+- **BeiDou**: Chinese constellation with two-way messaging and PPP-B2b
+  corrections across 45+ satellites
 
-**Terrain-Aided Navigation**
+**Performance Specifications**
 
-- **High-Altitude Operations**: Terrain-aided navigation for high-altitude
-  operations
-- **Digital Elevation Models**: Digital Elevation Model fusion for localization
-- **Featureless Landscapes**: Reduced localization errors in featureless
+- **Galileo**: 1m accuracy with free centimeter High Accuracy Service
+- **BeiDou**: Two-way messaging and PPP-B2b corrections across 45+ satellites
+- **Multi-Constellation**: Improved accuracy and availability in challenging
+  environments
+
+### Visual-Inertial Odometry (VIO)
+
+**VINS-Mono Performance**
+
+- **Drift**: Nearly zero drift over 5.62km outdoor paths
+- **Update Rates**: 20Hz visual/200Hz IMU update rates
+- **Accuracy**: Sub-meter positioning in GPS-denied environments
+- **Range**: Effective for low-altitude operations
+
+**VINS-Fusion GPU Acceleration**
+
+- **Processing**: 250Hz on NVIDIA Jetson edge devices
+- **Integration**: Real-time sensor fusion with IMU and camera data
+- **Performance**: Optimized for edge computing platforms
+
+**Terrain-Aided SLAM**
+
+- **Digital Elevation Model Fusion**: Reduces localization errors in featureless
   landscapes
-- **Long-Range Systems**: 27.2m final position error over 218km (0.012% of
+- **Long-Range Performance**: 27.2m final position error over 218km (0.012% of
   distance)
-
-**SLAM/VIO (Simultaneous Localization and Mapping/Visual-Inertial Odometry)**
-
-- **Low-Altitude Environments**: SLAM/VIO for low-altitude environments
-- **VINS-Mono Performance**: Nearly zero drift over 5.62km outdoor paths at 20Hz
-  visual/200Hz IMU
-- **VINS-Fusion GPU**: VINS-Fusion GPU acceleration on NVIDIA Jetson processes
-  250Hz on edge devices
-- **Visual Odometry**: Visual odometry and simultaneous localization and mapping
-
-**Advanced Inertial Navigation**
-
-- **Error-State Filtering**: Advanced inertial navigation with error-state
-  filtering
-- **IMU Integration**: High-performance IMU integration and processing
-- **Sensor Fusion**: Multi-sensor fusion for enhanced navigation accuracy
-- **Fault Tolerance**: Fault tolerance and error handling
+- **Environmental Adaptation**: Works in challenging terrain conditions
 
 ---
 
@@ -56,140 +61,86 @@ electronic warfare resilience techniques, and graceful degradation strategies.
 
 **Doodle Labs "Sense" Technology**
 
-- **Automatic Jamming Detection**: Automatically detects jamming across 2.4GHz,
-  5.2GHz, 5.8GHz, and 900MHz bands
-- **Channel Shifting**: Shifting channels within microseconds
-- **Tri-Band Implementation**: Autel Skuylink achieves 15km image transmission
-  under active jamming
-- **Adaptive Response**: Automatic response to jamming and interference
+- **Frequency Bands**: Automatic detection across 2.4GHz, 5.2GHz, 5.8GHz, and
+  900MHz
+- **Response Time**: Channel shifting within microseconds
+- **Adaptive Filtering**: Configurable notch filters rejecting chirp jammers
+- **Interference Rejection**: DME/TACAN interference mitigation
 
-**Adaptive Filtering**
+**Tri-Band Implementation**
 
-- **Notch Filters**: Configurable notch filters reject chirp jammers
-- **Frequency-Hopping Signals**: Rejection of frequency-hopping signals
-- **DME/TACAN Interference**: Rejection of DME/TACAN interference
-- **Real-Time Processing**: Real-time signal processing for interference
-  rejection
+- **Autel Skuylink**: 15km image transmission under active jamming
+- **Multi-Band Operation**: Simultaneous operation across multiple frequency
+  bands
+- **Jamming Resistance**: Maintains communication under active electronic attack
 
 ### Pentagon Demonstration 6 Requirements (March 2025)
 
-**Frequency Range Operation**
-
-- **30MHz-20GHz**: Operation from 30MHz-20GHz under active jamming
-- **LPI/LPD Waveforms**: Low probability of intercept/detect waveforms
-- **Autonomous EMS Maneuvering**: Autonomous electromagnetic spectrum
-  maneuvering
-- **Cueing Accuracy**: Accurate cueing within 2km slant range for Group 3 drones
-
-**Autonomous Response**
-
-- **EMS Impact Detection**: Systems must detect EMS impact and respond
-  autonomously
-- **Operator Intervention**: Response without operator intervention
-- **Adaptive Countermeasures**: Adaptive countermeasures and response
-- **Performance Maintenance**: Maintained performance under jamming conditions
+**Frequency Range**: Operation from 30MHz-20GHz under active jamming **Waveform
+Requirements**: Low probability of intercept/detect waveforms **Autonomous
+Response**: Electromagnetic spectrum maneuvering without operator intervention
+**Cueing Accuracy**: Accurate cueing within 2km slant range for Group 3 drones
+**System Response**: Must detect EMS impact and respond autonomously
 
 ---
 
-## Multi-Sensor Fusion
+## Multi-Sensor Fusion Resilience
 
-### Sensor Types and Capabilities
+### Sensor Redundancy
 
 **Micro-Doppler Radar**
 
-- **360-Degree Coverage**: 360-degree coverage with rotor signature
-  discrimination
-- **All-Weather Operation**: All-weather operation capabilities
-- **Rotor Signature**: Rotor signature discrimination and analysis
-- **Weather Resistance**: Operation in various weather conditions
+- **Coverage**: 360-degree coverage with rotor signature discrimination
+- **Weather Performance**: All-weather operation capability
+- **Range**: Effective detection in challenging environmental conditions
 
 **RF Sensors**
 
-- **Passive Detection**: Passive detection from 300MHz-6GHz
-- **Protocol Analysis**: Real-time protocol analysis and identification
-- **MAC Address Capture**: MAC address capture and device identification
-- **Frequency Coverage**: Comprehensive frequency coverage and analysis
+- **Frequency Range**: Passive detection from 300MHz-6GHz
+- **Protocol Analysis**: MAC address capture and signal analysis
+- **Passive Operation**: No emissions that could be detected
 
 **EO/IR Cameras**
 
-- **Visual Confirmation**: Visual confirmation and payload identification
-- **Thermal Imaging**: Infrared detection and identification
-- **Payload Identification**: Payload type and capability assessment
-- **Weather Conditions**: Operation in various weather conditions
+- **Visual Confirmation**: Day/night identification capabilities
+- **Payload Identification**: Visual confirmation of threat characteristics
+- **Track Confirmation**: Multi-sensor validation
 
 **Acoustic Sensors**
 
-- **Audio Detection**: 300-500m range for autonomous drone detection
-- **GPS-Denied Operation**: Audio-based detection in GPS-denied areas
-- **Signature Analysis**: Drone signature identification and classification
-- **Multi-Directional**: 360-degree audio coverage and analysis
+- **Range**: 300-500m range detecting autonomous drones in GPS-denied areas
+- **Signature Analysis**: Blade-harmonic signatures with urban/forest clutter
+  tolerance
+- **Environmental Adaptation**: Works in challenging acoustic environments
 
 **LiDAR Systems**
 
-- **3D Mapping**: 42,000 measurements per second with sub-meter accuracy
-- **Obstacle Detection**: Real-time obstacle detection and avoidance
-- **Weather Dependent**: Performance varies with weather conditions
-- **High Resolution**: Sub-meter accuracy for precise positioning
+- **Performance**: 42,000 measurements per second with sub-meter accuracy
+- **Weather Dependency**: Optimal performance when weather permits
+- **3D Mapping**: Obstacle detection and 3D environment mapping
 
-### Data Fusion Architecture
+### Mesh Networking Resilience
 
-**Real-Time Fusion**
+**MANETs (Mobile Ad-Hoc Networks)**
 
-- **Multi-Sensor Integration**: Integration of multiple sensor types
-- **Temporal Synchronization**: Multi-sensor temporal synchronization
-- **Data Calibration**: Multi-sensor calibration and alignment
-- **Quality Assurance**: Data quality assurance and validation
-
-**Fault Tolerance**
-
-- **Sensor Redundancy**: Multiple sensor types for redundancy
-- **Automatic Re-weighting**: Automatic re-weighting of remaining sensors when
-  individual units fail
-- **Continuous Operation**: Continuous operation despite sensor failures
-- **Performance Maintenance**: Maintained performance under degraded conditions
-
----
-
-## Mesh Networking Resilience
-
-### MANETs (Mobile Ad-Hoc Networks)
-
-**Doodle Labs Mesh Rider**
-
-- **Multi-Band Operation**: Multi-band operation across M1-M6 (1625-2500MHz)
-- **High Throughput**: Over 80 Mbps throughput with automatic failover routing
-- **MIL-STD Compliance**: MIL-STD compliance for tactical operations
-- **Automatic Failover**: Automatic failover routing and network recovery
+- **Doodle Labs Mesh Rider**: Multi-band operation across M1-M6 (1625-2500MHz)
+- **Throughput**: Over 80 Mbps with automatic failover routing
+- **MIL-STD Compliance**: Tactical band operation with LPI/LPD waveforms
+- **Range**: Over 50km with automatic network reconfiguration
 
 **Mobilicom MCU Mesh**
 
-- **Licensed Tactical Bands**: Licensed tactical bands with LPI/LPD waveforms
-- **Covert Operations**: Covert operations and stealth capabilities
-- **Security**: Enhanced security and encryption
-- **Performance**: High-performance mesh networking
+- **Licensed Tactical Bands**: Secure communication in contested environments
+- **LPI/LPD Waveforms**: Low probability of intercept/detect for covert
+  operations
+- **Network Resilience**: Automatic reconfiguration and failover
 
 **Meshmerize Aerial Edge**
 
-- **Mobile Access Points**: Drones as mobile access points
-- **Extended Range**: Over 50km range and automatic network reconfiguration
-- **Dynamic Topology**: Dynamic network topology and reconfiguration
-- **Scalability**: Scalable mesh networking capabilities
-
-### Network Resilience
-
-**Self-Healing Networks**
-
-- **Automatic Recovery**: Automatic network recovery and reconfiguration
-- **Fault Tolerance**: Fault tolerance and error handling
-- **Load Balancing**: Automatic load balancing and optimization
-- **Performance Monitoring**: Continuous performance monitoring and optimization
-
-**Security Features**
-
-- **Encryption**: AES-256 encryption for all network communications
-- **Authentication**: Strong authentication and access control
-- **Intrusion Detection**: Intrusion detection and prevention
-- **Audit Logging**: Comprehensive audit logging and monitoring
+- **Mobile Access Points**: Drones as mobile network nodes
+- **Range**: Over 50km with automatic network reconfiguration
+- **Dynamic Topology**: Adaptive network structure based on operational
+  requirements
 
 ---
 
@@ -197,187 +148,196 @@ electronic warfare resilience techniques, and graceful degradation strategies.
 
 ### Load Shedding
 
-**Capacity Management**
+**Priority-Based Resource Allocation**
 
-- **Lower-Priority Requests**: Drops lower-priority requests under capacity
-  constraints
-- **Core Mission Capabilities**: Maintains core mission capabilities
-- **Priority Management**: Intelligent priority management and resource
-  allocation
-- **Performance Optimization**: Optimized performance under degraded conditions
+- **Core Mission Capabilities**: Maintained under capacity constraints
+- **Lower-Priority Requests**: Dropped when system resources are limited
+- **Dynamic Adjustment**: Real-time resource allocation based on threat level
 
-**Resource Allocation**
+**Performance Optimization**
 
-- **Dynamic Allocation**: Dynamic resource allocation based on available
-  capacity
-- **Performance Monitoring**: Continuous performance monitoring and optimization
-- **Adaptive Thresholds**: Adaptive thresholds and performance parameters
-- **Efficiency Optimization**: Optimized efficiency under constrained resources
+- **Adaptive Processing**: Adjust processing load based on available resources
+- **Quality Scaling**: Reduce processing quality to maintain response time
+- **Resource Monitoring**: Continuous monitoring of system performance
 
-### Multi-Sensor Fusion
+### Multi-Sensor Fusion Adaptation
 
-**Automatic Re-weighting**
+**Automatic Re-Weighting**
 
-- **Sensor Failure Handling**: Automatic re-weighting of remaining sensors when
-  individual units fail
-- **Performance Maintenance**: Maintained performance despite sensor failures
-- **Fault Tolerance**: Fault tolerance and error handling
-- **Continuous Operation**: Continuous operation despite component failures
+- **Sensor Health Monitoring**: Continuous assessment of sensor performance
+- **Dynamic Weighting**: Adjust sensor contributions based on reliability
+- **Failure Compensation**: Compensate for individual sensor failures
 
-**Sensor Redundancy**
+**Cross-Sensor Validation**
 
-- **Multiple Sensor Types**: Multiple sensor types for redundancy
-- **Cross-Validation**: Cross-validation between sensor types
-- **Quality Assurance**: Data quality assurance and validation
-- **Performance Optimization**: Optimized performance with available sensors
+- **Consensus Building**: Multiple sensors validate individual detections
+- **False Positive Reduction**: Cross-sensor correlation reduces false alarms
+- **Confidence Scoring**: Hierarchical confidence assessment across sensor
+  modalities
 
 ### Tiered Effector Response
 
-**Soft-Kill First**
+**Soft-Kill First Approach**
 
-- **RF Jamming**: Falls back from RF jamming to kinetic defeat when soft-kill
-  ineffective
-- **Non-Lethal Options**: Non-lethal options prioritized over lethal options
-- **Escalation Procedures**: Clear escalation procedures and protocols
-- **Safety Protocols**: Safety protocols and procedures
+- **RF Jamming**: Primary response to detected threats
+- **Non-Lethal Engagement**: Minimize collateral damage
+- **Escalation Protocol**: Graduated response based on threat assessment
 
-**Adaptive Thresholds**
+**Hard-Kill Fallback**
 
-- **Dynamic Adjustment**: Dynamically adjusts detection parameters based on
-  environment and ML optimization
-- **Performance Optimization**: Optimized performance based on available
-  capabilities
-- **Mission Continuity**: Mission continuity despite effector limitations
-- **Response Optimization**: Optimized response based on available capabilities
+- **Kinetic Defeat**: When soft-kill methods are ineffective
+- **Precision Engagement**: Targeted response to specific threats
+- **Collateral Damage Assessment**: Continuous evaluation of engagement
+  consequences
+
+### Adaptive Thresholds
+
+**Dynamic Parameter Adjustment**
+
+- **Environmental Adaptation**: Adjust detection parameters based on conditions
+- **ML Optimization**: Machine learning-driven parameter optimization
+- **Performance Monitoring**: Continuous assessment of system effectiveness
+
+**Threat-Level Response**
+
+- **High-Threat Mode**: Increased sensitivity and response speed
+- **Normal Operations**: Standard detection and response parameters
+- **Low-Threat Mode**: Reduced sensitivity to minimize false positives
 
 ---
 
-## Performance Specifications
+## Autonomous Swarm Coordination
 
-### Detection and Response
+### Consensus Algorithms
 
-**Detection Performance**
+**Raft Consensus**
 
-- **Detection Range**: 5-10 km (configurable)
-- **Response Time**: 3-6 seconds end-to-end
-- **Accuracy**: 95%+ threat identification
-- **False Positive Rate**: &lt;5%
+- **Leader Election**: Automatic selection of swarm coordination leader
+- **Log Replication**: Consistent state across all swarm members
+- **Fault Tolerance**: Resilience to individual node failures
 
-**System Availability**
+**Byzantine Fault Tolerance**
 
-- **Uptime**: 99.9% uptime
-- **Fault Tolerance**: Resilience to individual component failures
-- **Graceful Degradation**: Reduced functionality rather than failure
-- **Recovery Time**: Automatic recovery from failures
+- **Malicious Node Detection**: Identify and isolate compromised nodes
+- **Consensus Maintenance**: Maintain agreement despite malicious actors
+- **Network Resilience**: Continue operation with up to 1/3 compromised nodes
 
-### Environmental Resilience
+### Swarm Performance
 
-**Operating Conditions**
+**Demonstrated Capabilities**
 
-- **Temperature Range**: -40°C to +85°C operation
-- **Weather Resistance**: All-weather operation capabilities
-- **EMI/EMC**: MIL-STD-461 compliant for electromagnetic compatibility
-- **Shock/Vibration**: MIL-STD-810G compliant for shock and vibration
+- **Swarm Size**: 3-300 drones with coordinated operation
+- **Network Latency**: Under 50ms for coordination updates
+- **Update Rates**: 10-20 Hz coordination update rates
+- **Geographic Distribution**: Multi-site coordination capabilities
 
-**Power Management**
+**ROS 2 Integration**
 
-- **Power Consumption**: 100-250W average
-- **Power Modes**: Configurable power modes for different operational
+- **Isaac ROS**: CUDA-accelerated perception packages
+- **NITROS Transport**: Zero-copy data transport for high performance
+- **Micro-ROS**: Distributed processing with MCUs handling real-time motor
+  control
+
+---
+
+## Defense-Grade Ruggedization
+
+### Environmental Specifications
+
+**Operating Temperature**
+
+- **Range**: -40°C to +85°C (Industrial variants)
+- **Thermal Management**: Active cooling and thermal protection
+- **Performance**: Maintained performance across temperature range
+
+**Shock and Vibration**
+
+- **MIL-STD-810G Compliance**: Military-grade shock and vibration resistance
+- **Tactical Vehicle Integration**: Suitable for mobile deployment
+- **Ruggedized Enclosures**: Protection against environmental hazards
+
+### Power Management
+
+**Power Consumption**
+
+- **Orin Nano**: 7W typical consumption
+- **AGX Orin MAXN**: 60W peak consumption
+- **Configurable Modes**: Balance performance and thermal constraints
+- **Battery Backup**: Uninterrupted operation during power outages
+
+**Power Input**
+
+- **Voltage Range**: 18-32 VDC input suitable for tactical vehicles
+- **Power Conditioning**: Stable power delivery under varying conditions
+- **Efficiency**: Optimized power consumption for extended operation
+
+### RedHawk Linux RTOS Support
+
+**Real-Time Performance**
+
+- **Event Response**: Sub-5 microsecond event response latency
+- **Processor Shielding**: Isolating real-time cores from Linux
+- **Mission-Critical Operations**: Deterministic performance for weapon station
+  control
+- **Hardware Integration**: Direct hardware access for real-time control
+
+---
+
+## Performance Monitoring and Optimization
+
+### Real-Time Monitoring
+
+**System Health**
+
+- **Sensor Status**: Continuous monitoring of all sensor systems
+- **Performance Metrics**: Real-time assessment of system performance
+- **Alert Systems**: Immediate notification of system issues
+
+**Threat Assessment**
+
+- **Detection Accuracy**: Continuous monitoring of detection performance
+- **False Positive Rates**: Real-time assessment of false alarm rates
+- **Response Times**: Monitoring of system response performance
+
+### Adaptive Optimization
+
+**Machine Learning Integration**
+
+- **Performance Learning**: Continuous improvement based on operational data
+- **Pattern Recognition**: Identification of operational patterns and
+  optimization opportunities
+- **Predictive Maintenance**: Anticipate and prevent system failures
+
+**Dynamic Configuration**
+
+- **Parameter Adjustment**: Real-time optimization of system parameters
+- **Load Balancing**: Dynamic resource allocation based on operational
   requirements
-- **Battery Life**: Extended battery life for autonomous operations
-- **Power Efficiency**: Optimized power consumption and management
-
----
-
-## Operational Benefits
-
-### Mission Continuity
-
-**Continuous Operations**
-
-- **GPS-Denied**: Continuous operation in GPS-denied environments
-- **EW-Contested**: Operation in electronic warfare contested environments
-- **Weather Conditions**: Operation in various weather conditions
-- **Terrain Types**: Operation in various terrain types and conditions
-
-**Fault Tolerance**
-
-- **Component Failures**: Resilience to individual component failures
-- **Network Failures**: Resilience to network failures and disruptions
-- **Sensor Failures**: Resilience to sensor failures and degradation
-- **System Failures**: Resilience to system failures and errors
-
-### Performance Optimization
-
-**Adaptive Performance**
-
-- **Environmental Adaptation**: Adaptation to environmental conditions
-- **Threat Adaptation**: Adaptation to threat types and capabilities
-- **Resource Optimization**: Optimized resource utilization and management
-- **Performance Monitoring**: Continuous performance monitoring and optimization
-
-**Operational Efficiency**
-
-- **Automated Operations**: Automated operation and management
-- **Reduced Manpower**: Reduced manpower requirements
-- **Maintenance Optimization**: Optimized maintenance and support
-- **Cost Efficiency**: Cost-efficient operations and management
-
----
-
-## Future Enhancements
-
-### Technology Evolution
-
-**Advanced Navigation**
-
-- **Enhanced GNSS**: Enhanced GNSS capabilities and performance
-- **Advanced SLAM**: Advanced SLAM and VIO capabilities
-- **Quantum Navigation**: Quantum navigation and positioning
-- **Autonomous Navigation**: Fully autonomous navigation capabilities
-
-**Enhanced Resilience**
-
-- **Advanced EW**: Advanced electronic warfare capabilities
-- **Quantum Resistance**: Quantum-resistant cryptography and security
-- **Enhanced Sensors**: Advanced sensor technology and capabilities
-- **AI Integration**: Enhanced AI integration and capabilities
-
-### Strategic Opportunities
-
-**Market Expansion**
-
-- **New Markets**: Expansion into new markets and applications
-- **Partnership Opportunities**: Strategic partnership opportunities
-- **Technology Transfer**: Technology transfer and licensing
-- **International Expansion**: International market expansion
-
-**Innovation Opportunities**
-
-- **Research and Development**: Advanced research and development
-- **Technology Innovation**: Technology innovation and advancement
-- **Market Leadership**: Market leadership and competitive advantage
-- **Strategic Positioning**: Strategic positioning and market leadership
+- **Quality Scaling**: Adjust processing quality based on available resources
 
 ---
 
 ## Conclusion
 
-Phoenix Rooivalk's operational resilience capabilities ensure effective
-operation in GPS-denied and EW-contested environments through multi-modal
-navigation, electronic warfare resilience, and graceful degradation strategies.
-The combination of advanced sensors, mesh networking, and adaptive performance
-provides superior operational capabilities in challenging environments.
+Phoenix Rooivalk's operational resilience framework ensures continued
+effectiveness under the most challenging conditions. The system's multi-modal
+navigation, electronic warfare resilience, and graceful degradation capabilities
+provide robust operation in GPS-denied and EW-contested environments.
 
-The system's fault tolerance, performance optimization, and mission continuity
-capabilities ensure reliable operation under the most demanding conditions while
-maintaining the highest standards of safety, security, and operational
-effectiveness.
+Key resilience features include:
+
+- **Multi-Modal Navigation**: GPS, VIO, and terrain-aided navigation
+- **EW Resilience**: Frequency hopping and adaptive filtering
+- **Sensor Redundancy**: Multiple sensor types with automatic failover
+- **Graceful Degradation**: Maintained functionality under adverse conditions
+- **Swarm Coordination**: Distributed operation with consensus algorithms
+
+The system's design ensures operational effectiveness across the full spectrum
+of defense scenarios while maintaining the highest standards of performance and
+reliability.
 
 ---
 
 _This document contains confidential operational information. Distribution is
 restricted to authorized personnel only. © 2025 Phoenix Rooivalk. All rights
 reserved._
-
-_Context improved by Giga AI_

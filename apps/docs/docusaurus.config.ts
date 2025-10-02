@@ -34,8 +34,9 @@ const config: Config = {
   projectName: "PhoenixRooivalk",
   onBrokenLinks: "warn",
   markdown: {
-    hooks: {
-      onBrokenMarkdownLinks: "warn",
+    mdx1Compat: {
+      comments: false,
+      admonitions: false,
     },
   },
   i18n: { defaultLocale: "en", locales: ["en"] },

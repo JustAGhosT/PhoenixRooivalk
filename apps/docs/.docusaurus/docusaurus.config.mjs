@@ -12,18 +12,13 @@ export default {
   "projectName": "PhoenixRooivalk",
   "onBrokenLinks": "warn",
   "markdown": {
-    "hooks": {
-      "onBrokenMarkdownLinks": "warn",
-      "onBrokenMarkdownImages": "throw"
+    "mdx1Compat": {
+      "comments": false,
+      "admonitions": false,
+      "headingIds": true
     },
     "format": "mdx",
     "mermaid": false,
-    "emoji": true,
-    "mdx1Compat": {
-      "comments": true,
-      "admonitions": true,
-      "headingIds": true
-    },
     "anchors": {
       "maintainCase": false
     }
@@ -464,6 +459,7 @@ export default {
     "experimental_router": "browser"
   },
   "onBrokenAnchors": "warn",
+  "onBrokenMarkdownLinks": "warn",
   "onDuplicateRoutes": "warn",
   "staticDirectories": [
     "static"
