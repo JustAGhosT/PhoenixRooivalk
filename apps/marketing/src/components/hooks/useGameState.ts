@@ -305,6 +305,10 @@ export const useGameState = () => {
     }));
   }, []);
 
+  const setLevel = useCallback((level: number) => {
+    setGameState(prev => ({ ...prev, level }));
+  }, []);
+
   const switchWeapon = useCallback((weaponId: string) => {
     setGameState((prev) => ({
       ...prev,
@@ -830,5 +834,6 @@ export const useGameState = () => {
     updateDronePositions,
     resetGameState,
     processFadeOut,
+    setLevel,
   };
 };

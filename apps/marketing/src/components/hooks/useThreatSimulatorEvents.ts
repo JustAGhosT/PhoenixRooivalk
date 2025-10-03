@@ -325,82 +325,50 @@ export const useThreatSimulatorEvents = ({
   // Keyboard shortcuts
   const handleKeyDown = useCallback(
     (e: KeyboardEvent) => {
-      // Prevent default for game shortcuts
-      if (e.ctrlKey || e.metaKey) return;
+      // Prevent default for game shortcuts to avoid conflicts with browser shortcuts
+      if (e.ctrlKey || e.metaKey || e.altKey) return;
 
-      switch (e.key) {
-        case "1":
-          e.preventDefault();
-          switchWeapon("kinetic");
-          break;
-        case "2":
-          e.preventDefault();
-          switchWeapon("electronic");
-          break;
-        case "3":
-          e.preventDefault();
-          switchWeapon("laser");
-          break;
-        case "w":
-          e.preventDefault();
-          if (gameState.selectedDroneType) {
-            deployDrone(
-              gameState.selectedDroneType,
-              gameState.mothership.x,
-              gameState.mothership.y - 100,
-            );
-          }
-          break;
-        case "s":
-          e.preventDefault();
-          if (gameState.selectedDroneType) {
-            deployDrone(
-              gameState.selectedDroneType,
-              gameState.mothership.x,
-              gameState.mothership.y + 100,
-            );
-          }
-          break;
-        case "a":
-          e.preventDefault();
-          if (gameState.selectedDroneType) {
-            deployDrone(
-              gameState.selectedDroneType,
-              gameState.mothership.x - 100,
-              gameState.mothership.y,
-            );
-          }
-          break;
-        case "d":
-          e.preventDefault();
-          if (gameState.selectedDroneType) {
-            deployDrone(
-              gameState.selectedDroneType,
-              gameState.mothership.x + 100,
-              gameState.mothership.y,
-            );
-          }
-          break;
-        case "Escape":
-          e.preventDefault();
-          clearSelection();
-          selectDroneType(null);
-          break;
+      const key = e.key.toLowerCase();
+
+      switch (key) {
         case " ":
           e.preventDefault();
           toggleRunningState();
           break;
+        case "s":
+          e.preventDefault();
+          _generateSwarm();
+          break;
+        case "+":
+        case "=": // Handle both + and = for convenience
+          e.preventDefault();
+          _spawnMultipleDrones(5);
+          break;
+        case "r":
+          e.preventDefault();
+          _resetGameState();
+          break;
+        case "1":
+        case "2":
+        case "3":
+          e.preventDefault();
+          // The setLevel function is not available here, so we need to handle this in ThreatSimulator.tsx
+          // For now, we just prevent default. The actual level change will be handled there.
+          break;
+        case "escape":
+          e.preventDefault();
+          clearSelection();
+          selectDroneType(null);
+          break;
       }
     },
     [
-      switchWeapon,
-      gameState.selectedDroneType,
-      gameState.mothership.x,
-      gameState.mothership.y,
-      deployDrone,
+      toggleRunningState,
+      _generateSwarm,
+      _spawnMultipleDrones,
+      _resetGameState,
       clearSelection,
       selectDroneType,
-      toggleRunningState,
     ],
   );
 
