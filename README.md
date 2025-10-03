@@ -8,6 +8,7 @@
 [![pnpm](https://img.shields.io/badge/pnpm-F69220?logo=pnpm&logoColor=white)](https://pnpm.io/)
 [![Turbo](https://img.shields.io/badge/Turbo-5C4EE5?logo=turbo&logoColor=white)](https://turbo.build/)
 [![Netlify](https://img.shields.io/badge/Netlify-00C7B7?logo=netlify&logoColor=white)](https://netlify.com/)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/d93acd89-28c3-4edd-9af3-cd5497ceadb9/deploy-status)](https://app.netlify.com/projects/docs-phoenixrooivalk/deploys)
 [![GitHub Actions](https://img.shields.io/badge/GitHub_Actions-2088FF?logo=github-actions&logoColor=white)](https://github.com/features/actions)
 [![CodeQL](https://img.shields.io/badge/CodeQL-2088FF?logo=github&logoColor=white)](https://codeql.github.com/)
 [![ESLint](https://img.shields.io/badge/ESLint-4B32C3?logo=eslint&logoColor=white)](https://eslint.org/)
@@ -18,7 +19,7 @@ Modular Counter‑UAS System (restricted partner access)
 ## 🌐 Live Sites
 
 - **Marketing Website**: [phoenixrooivalk.netlify.app](https://phoenixrooivalk.netlify.app) - Interactive demo, capabilities overview, and contact information
-- **Documentation Site**: [phoenixrooivalk-docs.netlify.app](https://phoenixrooivalk-docs.netlify.app) - Technical specifications, architecture, and implementation guides
+- **Documentation Site**: [docs-phoenixrooivalk.netlify.app](https://docs-phoenixrooivalk.netlify.app) - Technical specifications, architecture, and implementation guides
 
 ## Monorepo overview
 

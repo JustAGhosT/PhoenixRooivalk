@@ -240,7 +240,7 @@ export const Navigation: React.FC = () => {
                   </a>
                   <div className="border-t border-[var(--border)] my-1"></div>
                   <a
-                    href="https://phoenixrooivalk.netlify.app"
+                    href="https://docs-phoenixrooivalk.netlify.app"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center px-4 py-2 text-sm text-[var(--text-primary)] hover:bg-[var(--bg-secondary)] transition-colors"

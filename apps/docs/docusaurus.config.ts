@@ -23,12 +23,13 @@ const envClass =
     ? "navbar-env-badge"
     : "navbar-env-badge navbar-env-badge--preview";
 
-const marketingUrl = process.env.MARKETING_URL || "https://";
+const marketingUrl =
+  process.env.MARKETING_URL || "https://phoenixrooivalk.netlify.app";
 
 const config: Config = {
   title: "PhoenixRooivalk Docs",
   favicon: "img/favicon.ico",
-  url: "https://phoenixrooivalk.netlify.app",
+  url: "https://docs-phoenixrooivalk.netlify.app",
   baseUrl: "/",
   organizationName: "JustAGhosT",
   projectName: "PhoenixRooivalk",
@@ -78,7 +79,7 @@ const config: Config = {
           items: [
             {
               label: "Executive Summary",
-              to: "/docs/executive/Executive_Summary",
+              to: "/docs/executive/executive-summary",
             },
             {
               label: "Global Strategy",
@@ -112,7 +113,7 @@ const config: Config = {
             },
             {
               label: "Business Model",
-              to: "/docs/business/Business_Model",
+              to: "/docs/business/business-model",
             },
           ],
         },
@@ -180,7 +181,7 @@ const config: Config = {
           items: [
             {
               label: "Executive Summary",
-              to: "/docs/executive/Executive_Summary",
+              to: "/docs/executive/executive-summary",
             },
             {
               label: "Technical Architecture",
@@ -222,7 +223,7 @@ const config: Config = {
             },
             {
               label: "Business Model",
-              to: "/docs/business/Business_Model",
+              to: "/docs/business/business-model",
             },
           ],
         },
