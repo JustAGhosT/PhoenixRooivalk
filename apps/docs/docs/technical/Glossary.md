@@ -26,13 +26,15 @@ engineers, and system integrators.
 
 **C2 (Command and Control)**
 
-- Interfaces and services used to task, monitor, and coordinate system components and effectors
+- Interfaces and services used to task, monitor, and coordinate system
+  components and effectors
 - Includes STANAG 4586 compliance for standardized UAS control
 - Supports both manned and unmanned command structures
 
 **Counter-UAS / C-UAS**
 
-- Systems designed to detect, identify, track, and neutralize unauthorized or hostile drones
+- Systems designed to detect, identify, track, and neutralize unauthorized or
+  hostile drones
 - Includes both kinetic and non-kinetic countermeasures
 - Supports multiple threat classifications and response protocols
 
@@ -498,7 +500,10 @@ engineers, and system integrators.
 
 ## Conclusion
 
-This glossary provides comprehensive definitions of technical terms and concepts used throughout the Phoenix Rooivalk system. The glossary serves as a reference for technical evaluators, engineers, and system integrators, ensuring consistent understanding of system capabilities and requirements.
+This glossary provides comprehensive definitions of technical terms and concepts
+used throughout the Phoenix Rooivalk system. The glossary serves as a reference
+for technical evaluators, engineers, and system integrators, ensuring consistent
+understanding of system capabilities and requirements.
 
 Key areas covered include:
 
@@ -509,12 +514,17 @@ Key areas covered include:
 - **System Components**: Hardware and software components
 - **Neutralization and Countermeasures**: Threat neutralization technologies
 - **Blockchain and Evidence**: Evidence anchoring and legal compliance
-- **AI and Machine Learning**: Artificial intelligence and machine learning technologies
+- **AI and Machine Learning**: Artificial intelligence and machine learning
+  technologies
 - **Security and Compliance**: Security frameworks and compliance requirements
 - **Performance and Metrics**: Performance measures and system capabilities
 
-The glossary ensures consistent understanding of technical concepts and supports effective communication between technical teams, stakeholders, and system integrators.
+The glossary ensures consistent understanding of technical concepts and supports
+effective communication between technical teams, stakeholders, and system
+integrators.
 
 ---
 
-*This document contains confidential technical information. Distribution is restricted to authorized personnel only. © 2025 Phoenix Rooivalk. All rights reserved.*
+_This document contains confidential technical information. Distribution is
+restricted to authorized personnel only. © 2025 Phoenix Rooivalk. All rights
+reserved._

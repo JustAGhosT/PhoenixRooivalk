@@ -8,7 +8,10 @@ sidebar_label: Operations Manual
 
 ## Executive Summary
 
-This operations manual provides comprehensive procedures for day-to-day operations, maintenance, and optimization of the Phoenix Rooivalk Counter-Drone Defense System. The manual covers system monitoring, performance optimization, troubleshooting, and maintenance procedures.
+This operations manual provides comprehensive procedures for day-to-day
+operations, maintenance, and optimization of the Phoenix Rooivalk Counter-Drone
+Defense System. The manual covers system monitoring, performance optimization,
+troubleshooting, and maintenance procedures.
 
 ---
 
@@ -460,8 +463,10 @@ This operations manual provides comprehensive procedures for day-to-day operatio
 ## Conclusion
 
 The Phoenix Rooivalk Operations Manual provides comprehensive procedures for
-day-to-day operations, maintenance, and optimization of the counter-drone defense system. The manual emphasizes proactive maintenance, performance optimization, and
-incident response while maintaining the highest standards of security and compliance.
+day-to-day operations, maintenance, and optimization of the counter-drone
+defense system. The manual emphasizes proactive maintenance, performance
+optimization, and incident response while maintaining the highest standards of
+security and compliance.
 
 Key operational features include:
 
@@ -473,8 +478,11 @@ Key operational features include:
 - **Training**: Comprehensive training and certification programs
 
 The operations manual ensures optimal system performance and reliability while
-maintaining the highest standards of security, compliance, and operational effectiveness.
+maintaining the highest standards of security, compliance, and operational
+effectiveness.
 
 ---
 
-_This document contains confidential operational information. Distribution is restricted to authorized personnel only. © 2025 Phoenix Rooivalk. All rights reserved._
+_This document contains confidential operational information. Distribution is
+restricted to authorized personnel only. © 2025 Phoenix Rooivalk. All rights
+reserved._

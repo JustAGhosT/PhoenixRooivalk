@@ -44,8 +44,8 @@ maintaining cryptographic evidence trail, and multi-site scalability.
 
 **Q: How does Cognitive Mesh enhance Phoenix Rooivalk beyond basic autonomy?**
 A: Provides multi-agent orchestration allowing role specialization
-(scout/interceptor/relay), hierarchical decision confidence, temporal
-pattern recognition, and continuous learning capabilities while maintaining sub-200ms
+(scout/interceptor/relay), hierarchical decision confidence, temporal pattern
+recognition, and continuous learning capabilities while maintaining sub-200ms
 latency targets.
 
 **Q: Where does the Cognitive Mesh sit in the system architecture?** A: Operates
@@ -59,17 +59,19 @@ Registry dynamically assigns specialized roles, handles graceful degradation
 when drones are damaged, and rebalances tasks in real-time.
 
 **Q: How does the Hierarchical Decision Confidence Pack (HDCP) improve
-accuracy?** A: HDCP is designed to weight sensor inputs by reliability, decompose complex threats into sub-problems, and use ensemble voting. Target is
+accuracy?** A: HDCP is designed to weight sensor inputs by reliability,
+decompose complex threats into sub-problems, and use ensemble voting. Target is
 improving detection accuracy from 85.2% to 95.2-98.5% through multi-level
 analysis.
 
-**Q: How does the Temporal Decision Core interface with SAE Level 4 architecture?**
-A: TDC runs on edge nodes providing context enrichment within 50-100ms after
-sub-2ms authentication. Uses bypass mechanism for critical path while
-maintaining eligibility traces for pattern matching.
+**Q: How does the Temporal Decision Core interface with SAE Level 4
+architecture?** A: TDC runs on edge nodes providing context enrichment within
+50-100ms after sub-2ms authentication. Uses bypass mechanism for critical path
+while maintaining eligibility traces for pattern matching.
 
 **Q: How does Cognitive Mesh's Zero-Trust framework enhance security?** A: Every
-drone command requires fresh authentication, implements least privilege, uses encrypted channels with rotating keys, logs all attempts, and instantly revokes
+drone command requires fresh authentication, implements least privilege, uses
+encrypted channels with rotating keys, logs all attempts, and instantly revokes
 compromised drone permissions.
 
 **Q: What role does the Constraint & Load Engine play?** A: Dynamically balances
@@ -78,8 +80,8 @@ simultaneously. Can relax accuracy requirements to maintain <2ms in critical
 situations while ensuring no slowdown even under swarm attacks.
 
 **Q: How does the Memory Flexibility Suite maintain situational awareness?** A:
-Maintains 30-second working memory buffer (2GB/drone target), stores key
-events, learns threat patterns, and automatically promotes important patterns from
+Maintains 30-second working memory buffer (2GB/drone target), stores key events,
+learns threat patterns, and automatically promotes important patterns from
 working to long-term storage.
 
 **Q: How does Cognitive Mesh enable swarm coordination under jamming?** A: Uses
@@ -87,14 +89,12 @@ delay-tolerant networking, short-range robust links, signed topics, CBBA-style
 auction algorithms for task assignment, and maintains coordination even with
 50%+ communication loss.
 
-**Q: What is the Cognitive Sandwich Backend's role in weapon authorization?
-**A:
+**Q: What is the Cognitive Sandwich Backend's role in weapon authorization? **A:
 Implements phase-based workflow
 (Detection→Assessment→Authorization→Engagement→Verification) with mandatory
 human checkpoints for weapon release and full blockchain audit trail.
 
-**Q: Do we need a blockchain data infrastructure service?
-** A: No. We chose to
+**Q: Do we need a blockchain data infrastructure service? ** A: No. We chose to
 implement direct Solana integration using our custom Rust crates rather than
 using third-party services like Pinax, which would have added $1-2k/month in
 unnecessary overhead. Our direct approach costs only $50-100/month for RPC
@@ -104,19 +104,21 @@ access.
 
 ## Evidence & Security
 
-**Q: How is evidence tamper-proof?** 
-A: Every decision is hash-chained, Merkle-batched, and
-anchored on Solana with timestamps. Keys stored in TPM/HSM, models/policies signed and verified at boot.
+**Q: How is evidence tamper-proof?** A: Every decision is hash-chained,
+Merkle-batched, and anchored on Solana with timestamps. Keys stored in TPM/HSM,
+models/policies signed and verified at boot.
 
 **Q: Why use Solana specifically?** A: High-throughput (65,000-100,000 TPS),
 low-latency (~400ms finality), low-cost anchoring (~$0.00025/anchor), Proof of
 History for cryptographic timestamping, and proven reliability.
 
 **Q: What if Solana is congested or offline?** A: Evidence queues locally with
-exponential backoff, local proofs remain
-verifiable, alerts raised for anchor lag, optional dual-chain anchoring with Etherlink for redundancy.
+exponential backoff, local proofs remain verifiable, alerts raised for anchor
+lag, optional dual-chain anchoring with Etherlink for redundancy.
 
-**Q: Can logs be forged?** A: No - keys in TPM/HSM, signed models/policies, on-chain root verification, and correlation IDs linking all evidence layers make forgery cryptographically impossible.
+**Q: Can logs be forged?** A: No - keys in TPM/HSM, signed models/policies,
+on-chain root verification, and correlation IDs linking all evidence layers make
+forgery cryptographically impossible.
 
 **Q: What about data privacy?** A: Evidence encrypted off-chain in Azure
 Blob/S3; only merkle roots on-chain; GDPR-compliant retention; zero-knowledge
@@ -126,13 +128,18 @@ proof options under exploration.
 
 ## Market & Business
 
-**Q: Who are initial buyers?** A: Defense primes, critical infrastructure operators (airports, power plants), NATO-aligned militaries, and civilian security firms. Focus on customers needing autonomous operation in contested environments.
+**Q: Who are initial buyers?** A: Defense primes, critical infrastructure
+operators (airports, power plants), NATO-aligned militaries, and civilian
+security firms. Focus on customers needing autonomous operation in contested
+environments.
 
 **Q: Why now?** A: Ukraine conflict revealed vulnerabilities in
 network-dependent systems; EW-heavy theaters demand offline autonomy; drone
 threats evolving faster than traditional defenses can adapt.
 
-**Q: Is this only military?** A: No - civilian applications include airports, data centers, stadiums, power plants. Insurance and compliance requirements driving civilian adoption.
+**Q: Is this only military?** A: No - civilian applications include airports,
+data centers, stadiums, power plants. Insurance and compliance requirements
+driving civilian adoption.
 
 **Q: What's the Lockheed Martin angle?** A: Initial discussions occurred but are
 currently frozen pending MVP/POC development. They would serve as systems
@@ -156,50 +163,53 @@ drone industry is ~$73B, providing additional expansion opportunities.
 
 ## Deployment & Operations
 
-**Q: Where does the system run?**
-A: Edge nodes on-premises (NVIDIA Jetson
+**Q: Where does the system run?** A: Edge nodes on-premises (NVIDIA Jetson
 clusters) with optional Azure cloud for monitoring/ops. Fully kubernetes
 orchestrated (K3s edge, AKS cloud).
 
-**Q: How does it scale?**
-A: Multi-tenant site controllers, batched evidence anchoring, horizontal scaling via kubernetes. Design supports 100+ sites with central monitoring.
+**Q: How does it scale?** A: Multi-tenant site controllers, batched evidence
+anchoring, horizontal scaling via kubernetes. Design supports 100+ sites with
+central monitoring.
 
-**Q: How does Azure integration work?** 
-A: AKS for orchestration, ACR for containers, Key Vault for secrets, PostgreSQL/Redis for data, Monitor
-for telemetry, Application Gateway for routing.
+**Q: How does Azure integration work?** A: AKS for orchestration, ACR for
+containers, Key Vault for secrets, PostgreSQL/Redis for data, Monitor for
+telemetry, Application Gateway for routing.
 
 **Q: What's the deployment timeline?** A: Once funded and MVP built: 2-week base
 deployment, 2-week sensor integration, 2-week testing/calibration. Total: 6-8
 weeks from contract to operational.
 
-**Q: Can it integrate with existing C2 systems?** A: Yes - REST APIs, webhook notifications, working toward STANAG 4586 compliance, and adapter patterns for
+**Q: Can it integrate with existing C2 systems?** A: Yes - REST APIs, webhook
+notifications, working toward STANAG 4586 compliance, and adapter patterns for
 major defense platforms.
 
 ---
 
 ## Safety & Compliance
 
-**Q: Is the system export-control safe?**
-A: Design allows modular architecture
+**Q: Is the system export-control safe?** A: Design allows modular architecture
 for export-controlled components isolation; ROE policy packs per jurisdiction;
 working toward ITAR-compliant design.
 
-**Q: How are ROE enforced?** 
-A: Policy DSL translates rules to machine-readable format; real-time validation of every decision; escalation for unclear
+**Q: How are ROE enforced?** A: Policy DSL translates rules to machine-readable
+format; real-time validation of every decision; escalation for unclear
 situations; geographic constraints via geofencing.
 
-**Q: What about civilian casualties?** 
-A: Soft-kill first approach, proportionality assessment, confidence thresholds prevent engagement below cutoffs, mandatory human authorization for kinetic actions.
+**Q: What about civilian casualties?** A: Soft-kill first approach,
+proportionality assessment, confidence thresholds prevent engagement below
+cutoffs, mandatory human authorization for kinetic actions.
 
-**Q: Is evidence court-admissible?** 
-A: Designed to meet both military tribunal
-and civilian court standards through tamper-evident blockchain proof, complete sensor data packages, and preserved chain of custody.
+**Q: Is evidence court-admissible?** A: Designed to meet both military tribunal
+and civilian court standards through tamper-evident blockchain proof, complete
+sensor data packages, and preserved chain of custody.
 
 ---
 
 ## Performance & Reliability
 
-**Q: How is false positive risk managed?** A: Design includes confidence thresholds, multi-sensor correlation, and human-in-the-loop for critical decisions. Target false positive rate <0.5-1% to be validated through testing.
+**Q: How is false positive risk managed?** A: Design includes confidence
+thresholds, multi-sensor correlation, and human-in-the-loop for critical
+decisions. Target false positive rate <0.5-1% to be validated through testing.
 
 **Q: What happens if sensors degrade?** A: Architecture designed for graceful
 degradation - if certain sensors fail, system continues with reduced capability.
@@ -262,17 +272,18 @@ automation. Specific metrics will be measured during pilot deployments.
 ## Risks & Challenges
 
 **Q: What's the biggest technical risk?** A: Sensor variability in contested
-environments. Mitigated by multi-sensor fusion, continuous
-calibration, conservative confidence 
-thresholds, and human oversight.
+environments. Mitigated by multi-sensor fusion, continuous calibration,
+conservative confidence thresholds, and human oversight.
 
 **Q: What if blockchain fails?** A: Local evidence remains valid and
 timestamped; queuing with retry; optional dual-chain; can operate indefinitely
 offline with post-hoc anchoring.
 
-**Q: How do you prevent adversarial AI attacks?** A: Input validation, anomaly detection, confidence
+**Q: How do you prevent adversarial AI attacks?** A: Input validation, anomaly
+detection, confidence
 
-bounds, gradual trust degradation, automatic reversion to conservative modes planned.
+bounds, gradual trust degradation, automatic reversion to conservative modes
+planned.
 
 **Q: What about swarm hijacking?** A: Cryptographic authentication per drone;
 continuous re-validation; automatic quarantine of anomalous units; Byzantine
@@ -285,7 +296,8 @@ fault tolerance assumes 33% compromise.
 **Q: What is the background of the team?** A: The team is led by Jurie Smit
 (LinkedIn: juriesmit, GitHub: JustAGhosT) and Martyn Redelinghuys (LinkedIn:
 martynrede). The Phoenix Rooivalk repository demonstrates strong technical
-capabilities in Rust, blockchain integration (Solana/Etherlink), distributed systems, and modern DevOps practices.
+capabilities in Rust, blockchain integration (Solana/Etherlink), distributed
+systems, and modern DevOps practices.
 
 **Q: What is the current development status of Phoenix Rooivalk?** A: We have a
 monorepo with core components built: Axum API service, blockchain keeper service
@@ -302,8 +314,8 @@ Prof Gerdes, ATP Geopolitics, and CombatVeteranReacts.
 
 **Q: Are there any regulatory or ethical barriers?** A: Yes, autonomous defense
 systems face significant scrutiny. Our approach: human-in-the-loop for kinetic
-actions, modular architecture to isolate ITAR-controlled components,
-compliance tracking (NIST AI RMF), tamper-proof evidence logging for accountability.
+actions, modular architecture to isolate ITAR-controlled components, compliance
+tracking (NIST AI RMF), tamper-proof evidence logging for accountability.
 
 ---
 
@@ -329,16 +341,18 @@ technical foundation (software, architecture, CI/CD). Urgently seeking seed
 investment for hardware procurement and MVP completion.
 
 **Q: What partnerships are needed?** A: Key needs: MVP/POC completion to restart
-Lockheed Martin discussions, sensor manufacturers for hardware integration, regulatory  expertise for defense 
-procurement, operational partners for pilot
+Lockheed Martin discussions, sensor manufacturers for hardware integration,
+regulatory expertise for defense procurement, operational partners for pilot
 deployments, seed funding for demonstrator.
 
 **Q: What's the exit strategy?** A: Potential paths include strategic
-acquisition by defense contractor, licensing of specific technologies, or building standalone defense technology company. Path depends on market traction
+acquisition by defense contractor, licensing of specific technologies, or
+building standalone defense technology company. Path depends on market traction
 and partner relationships.
 
-**Q: How do you measure success?** A: Initial: completing MVP/POC,
-validating sub-200ms latency targets, demonstrating blockchain evidence chain integrity, restarting Lockheed discussions. Long-term: becoming the standard for autonomous
+**Q: How do you measure success?** A: Initial: completing MVP/POC, validating
+sub-200ms latency targets, demonstrating blockchain evidence chain integrity,
+restarting Lockheed discussions. Long-term: becoming the standard for autonomous
 counter-drone defense.
 
 ---
@@ -346,7 +360,8 @@ counter-drone defense.
 ## Roadmap & Future
 
 **Q: What's the next major milestone?** A: Complete MVP/POC hardware build to
-demonstrate the integrated system (sensor fusion, Morpheus AI decision engine, Solana evidence anchoring) working end-to-end. Then restart Lockheed Martin
+demonstrate the integrated system (sensor fusion, Morpheus AI decision engine,
+Solana evidence anchoring) working end-to-end. Then restart Lockheed Martin
 discussions and proceed to pilot deployments.
 
 **Q: What is the timeline for deployment?** A: Currently October 2025. Software
@@ -363,19 +378,22 @@ learning and adaptation. AI-Research-on-AI loop and Experimental Velocity
 Backend designed to accelerate improvements based on operational data.
 
 **Q: What's the competitive moat?** A: First-mover advantage in combining edge
-AI autonomy with cryptographic evidence trails, complexity of integrating multiple cutting-edge technologies, and operational data/relationships from
+AI autonomy with cryptographic evidence trails, complexity of integrating
+multiple cutting-edge technologies, and operational data/relationships from
 early deployments.
 
 ---
 
 ## Quick Reference
 
-**Focus Areas**: Edge autonomy without network dependency, blockchain evidence for accountability, modular architecture for flexibility.
+**Focus Areas**: Edge autonomy without network dependency, blockchain evidence
+for accountability, modular architecture for flexibility.
 
-**Performance Metrics**: Design targets pending hardware validation - 50-195ms latency, <1-2% false positive rate, 99.9% uptime target.
+**Performance Metrics**: Design targets pending hardware validation - 50-195ms
+latency, <1-2% false positive rate, 99.9% uptime target.
 
-**Current Status**: October 2025. Software foundation 75 to 85% complete. Seeking seed
-funding for completion and MVP hardware demonstration.
+**Current Status**: October 2025. Software foundation 75 to 85% complete.
+Seeking seed funding for completion and MVP hardware demonstration.
 
 **Team**: Jurie Smit and Martyn Redelinghuys leading development with strong
 technical capabilities in Rust, blockchain integration, and distributed systems.

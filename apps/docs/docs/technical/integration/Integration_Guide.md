@@ -68,7 +68,8 @@ capabilities through distributed AI processing.
 
 **Morpheus Network Setup**
 
-1. **Agent Registration**: Register Phoenix Rooivalk agents with Morpheus network
+1. **Agent Registration**: Register Phoenix Rooivalk agents with Morpheus
+   network
 2. **Token Management**: Configure MOR token payments for inference services
 3. **Network Configuration**: Set up securec ommunication channels
 4. **Performance Monitoring**: Implement monitoring forMorpheus integration

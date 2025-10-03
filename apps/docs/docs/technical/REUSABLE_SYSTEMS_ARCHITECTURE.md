@@ -9,7 +9,8 @@ sidebar_label: REUSABLE SYSTEMS ARCHITECTURE
 ## Overview
 
 This document outlines the enhanced reusable system architecture implemented for
-the Phoenix Rooivalk ThreatSimulator, designed for seamless porting to Rust in the main counter-drone defense application.
+the Phoenix Rooivalk ThreatSimulator, designed for seamless porting to Rust in
+the main counter-drone defense application.
 
 ## 🎯 Architecture Goals
 
@@ -387,11 +388,11 @@ if (threat) {
 
 The implemented reusable systems architecture provides:
 
-✅ **Language-Agnostic Design**: Easy porting to Rust
-✅ **Performance Optimization**: Efficient resource management
-✅ **Modular Architecture**: ```
+✅ **Language-Agnostic Design**: Easy porting to Rust ✅ **Performance
+Optimization**: Efficient resource management ✅ **Modular Architecture**: ```
 Independent, testable
-``` components
+
+```components
 ✅ **Event-Driven Communication**: Loose coupling between systems
 ✅ **Memory Efficiency**: Object pooling and resource management
 ✅ **Deterministic Behavior**: State machine-based logic
@@ -399,3 +400,4 @@ Independent, testable
 
 This architecture serves as a solid foundation for the main Phoenix Rooivalk
 counter-drone defense system, ensuring seamless transition from TypeScript to Rust while maintaining high performance and reliability.
+```

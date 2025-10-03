@@ -10,8 +10,8 @@ sidebar_label: Implementation Plan
 
 This document provides a comprehensive implementation plan for the Phoenix
 Rooivalk Counter-Drone Defense System. The plan covers development
-`phases, deployment` `strategies, stakeholder` management, and
-success metrics across an 12-month implementation timeline.
+`phases, deployment` `strategies, stakeholder` management, and success metrics
+across an 12-month implementation timeline.
 
 ---
 

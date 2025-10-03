@@ -6,7 +6,8 @@ sidebar_label: System Overview Detailed
 
 # Phoenix Rooivalk System Overview - Detailed
 
-> Public-safe documentation. For restricted partner materials, request access via the repository `ACCESS.md`.
+> Public-safe documentation. For restricted partner materials, request access
+> via the repository `ACCESS.md`.
 
 ## Mission Statement
 
@@ -19,7 +20,8 @@ heavy Electronic Warfare (EW) environments via resilient Free Space Optical
 
 ### Core System Components
 
-**RKV-M (Mothership)**: Aerial VTOL mothership for picket, relay, and mini launch operations
+**RKV-M (Mothership)**: Aerial VTOL mothership for picket, relay, and mini
+launch operations
 
 - **Primary Function**: Mobile command and control platform
 - **Capabilities**: Autonomous flight, sensor integration, effector deployment
@@ -27,21 +29,25 @@ heavy Electronic Warfare (EW) environments via resilient Free Space Optical
 
 **RKV-I (Interceptor)**: Miniature interceptors, decoys, and ISR platforms
 
-- **Primary Function**: Tactical threat neutralization and intelligence gathering
+- **Primary Function**: Tactical threat neutralization and intelligence
+  gathering
 - **Capabilities**: RF control or optional fiber-optic control
 - **Deployment**: Swarm operations with coordinated tactics
 
 **RKV-G (Ground Control)**: Rover as mobile Ground Control Station (GCS)
 
 - **Primary Function**: Mobile ground control and logistics support
-- **Capabilities**: Mast deployment, fiber spool management, logistics coordination
+- **Capabilities**: Mast deployment, fiber spool management, logistics
+  coordination
 - **Deployment**: Ground-based operations with mobility
 
 **RKV-C2 (Command and Control)**: C2/data plane with strict Quality of Service
 (QoS)
 
-- **Primary Function**: Centralized command and control with eventing and observability
-- **Capabilities**: Real-time decision making, event processing, system monitoring
+- **Primary Function**: Centralized command and control with eventing and
+  observability
+- **Capabilities**: Real-time decision making, event processing, system
+  monitoring
 - **Deployment**: Centralized or distributed command operations
 
 ## Operating Modes
@@ -64,7 +70,8 @@ heavy Electronic Warfare (EW) environments via resilient Free Space Optical
 
 - **Purpose**: Secure, jam-resistant operations
 - **Deployment**: Fiber-optic control links for critical operations
-- **Capabilities**: Secure communication, jam-resistant control, high-bandwidth data
+- **Capabilities**: Secure communication, jam-resistant control, high-bandwidth
+  data
 - **Use Cases**: High-threat environments, secure communications
 
 ### Logistics Support
@@ -202,9 +209,10 @@ heavy Electronic Warfare (EW) environments via resilient Free Space Optical
 
 ## Conclusion
 
-The Phoenix Rooivalk system represents a comprehensive approach to counter-drone defense, combining
-advanced technology with responsible use principles. The modular architecture, multiple operating
-modes, and comprehensive integration capabilities make it suitable for a wide range of defense and security
+The Phoenix Rooivalk system represents a comprehensive approach to counter-drone
+defense, combining advanced technology with responsible use principles. The
+modular architecture, multiple operating modes, and comprehensive integration
+capabilities make it suitable for a wide range of defense and security
 applications.
 
 The system's focus on responsible use, legal compliance, and ethical
@@ -213,4 +221,6 @@ highest standards of operational integrity and legal compliance.
 
 ---
 
-_This document contains confidential system specifications. Distribution is restricted to authorized personnel only. ©2025 Phoenix Rooivalk. All rights reserved._
+_This document contains confidential system specifications. Distribution is
+restricted to authorized personnel only. ©2025 Phoenix Rooivalk. All rights
+reserved._

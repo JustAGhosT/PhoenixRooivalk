@@ -156,7 +156,8 @@ Features**:
 ### Countermeasures and Neutralization
 
 - **Soft-Kill Options**: RF jamming, GPS spoofing, communication disruption
-- **Hard-Kill Options**: Physical interception, net deployment, kinetic engagement
+- **Hard-Kill Options**: Physical interception, net deployment, kinetic
+  engagement
 
 neutralization
 

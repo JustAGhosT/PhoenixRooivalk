@@ -100,8 +100,7 @@ operators by 2026.
 
 ### 2. Solana (Evidence Blockchain Anchoring)
 
-- **Performance**: 65,000–100,000 TPS, ~400ms finality, ~$0.00025
-  per anchor
+- **Performance**: 65,000–100,000 TPS, ~400ms finality, ~$0.00025 per anchor
 - **Architecture**: Hash-chained batches, on-chain Merkle roots, off-chain
   encrypted storage
 - **Resilience**: Dual-chain option with Etherlink bridge, local evidence
@@ -155,16 +154,31 @@ tactical vehicle integration.
 
 ## Strategic Recommendations
 
-**Market positioning:** Focus on underserved mobile/on-the-move C-UAS segment with urgent DoD need, specialize in swarm defense capabilities most competitors lack, and position as sensor-agnostic systems integrator rather than point solution provider. Target export markets in Middle East and Asia-Pacific (25.5% CAGR) with less regulatory constraint than US commercial market.
+**Market positioning:** Focus on underserved mobile/on-the-move C-UAS segment
+with urgent DoD need, specialize in swarm defense capabilities most competitors
+lack, and position as sensor-agnostic systems integrator rather than point
+solution provider. Target export markets in Middle East and Asia-Pacific (25.5%
+CAGR) with less regulatory constraint than US commercial market.
 
 **Technology differentiation:** Lead with AI/ML capabilities using real-time
 learning systems and explainable AI for regulatory compliance. Implement hybrid
 soft-kill/hard-kill with layered response optimizing effector selection. Achieve
-performance advantages with detection range over 5km, response time under 200ms, success rate over 99%, and multi-target capacity handling 10+ simultaneous threats.
+performance advantages with detection range over 5km, response time under 200ms,
+success rate over 99%, and multi-target capacity handling 10+ simultaneous
+threats.
 
-**Development roadmap:** Phase 1 focuses on DoD validation through SBIR/STTR and OTA contracts targeting $2-5M in development funding. Phase 2 scales to production with IDIQ contracts and FMS targeting $50M+ annual revenue through partnerships with prime integrators. Phase 3 expands commercially post-regulatory changes targeting $100M+ pipeline with airport, critical infrastructure, and event security customers.
+**Development roadmap:** Phase 1 focuses on DoD validation through SBIR/STTR and
+OTA contracts targeting $2-5M in development funding. Phase 2 scales to
+production with IDIQ contracts and FMS targeting $50M+ annual revenue through
+partnerships with prime integrators. Phase 3 expands commercially
+post-regulatory changes targeting $100M+ pipeline with airport, critical
+infrastructure, and event security customers.
 
-**Capital requirements** total $25-50M for competitive positioning: $10-20M development for AI algorithms and systems integration, $5-10M manufacturing for supply chain and assembly infrastructure, $5M sales and marketing for DoD relationships and demonstrations, and $5-15M working capital for inventory and contract execution.
+**Capital requirements** total $25-50M for competitive positioning: $10-20M
+development for AI algorithms and systems integration, $5-10M manufacturing for
+supply chain and assembly infrastructure, $5M sales and marketing for DoD
+relationships and demonstrations, and $5-15M working capital for inventory and
+contract execution.
 
 ---
 
@@ -172,8 +186,11 @@ performance advantages with detection range over 5km, response time under 200ms,
 
 **Phoenix Rooivalk**
 
-- **Technical Demo** or **Partnership Inquiries**: [jurie@phoenixvc.tech](mailto:jurie@phoenixvc.tech)
+- **Technical Demo** or **Partnership Inquiries**:
+  [jurie@phoenixvc.tech](mailto:jurie@phoenixvc.tech)
 
 ---
 
-_This document contains confidential technical information. Distribution is restricted to authorized personnel only. © 2025 Phoenix Rooivalk. All rights reserved._
+_This document contains confidential technical information. Distribution is
+restricted to authorized personnel only. © 2025 Phoenix Rooivalk. All rights
+reserved._

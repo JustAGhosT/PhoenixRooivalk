@@ -104,8 +104,7 @@ personal AI smart agents
 
 #### Performance Characteristics
 
-- **Throughput**: 50,000–65,000 TPS sustained in real-world
-  conditions
+- **Throughput**: 50,000–65,000 TPS sustained in real-world conditions
 - **Finality**: ~400ms using Proof of History consensus
 - **Cost**: ~$0.00025 USD per evidence anchor
 - **Reliability**: Proven mainnet performance with independent validator network
@@ -121,8 +120,8 @@ personal AI smart agents
 
 #### Technical Specifications for Defense Applications
 
-- **Ed25519 Cryptographic Signatures**: 256-bit security with fast
-  verification optimized for high-throughput
+- **Ed25519 Cryptographic Signatures**: 256-bit security with fast verification
+  optimized for high-throughput
 - **SHA-256 Hashing**: Collision-resistant 32-byte fingerprints of evidence
 - **Proof of History**: Cryptographically verifiable timestamps establishing
   tamper-evident chronological ordering
@@ -131,37 +130,47 @@ personal AI smart agents
 
 #### Legal Admissibility
 
-- **State Legislation**: Vermont, Arizona, and Illinois have enacted explicit legislation recognizing blockchain evidence
-- **Federal Rules of Evidence**: Rule 901 (authentication) and Rule 803(6) (business records exception)
-- **International Precedent**: China's Supreme People's Court formally recognized blockchain evidence in 2018
+- **State Legislation**: Vermont, Arizona, and Illinois have enacted explicit
+  legislation recognizing blockchain evidence
+- **Federal Rules of Evidence**: Rule 901 (authentication) and Rule 803(6)
+  (business records exception)
+- **International Precedent**: China's Supreme People's Court formally
+  recognized blockchain evidence in 2018
 
 ### 3.2 Cognitive Mesh (Multi-Agent Orchestration Framework)
 
-The Cognitive Mesh enables complex coordination among distributed agents (drones, sensors effectors, control nodes) with layers of reasoning and self-optimization.
+The Cognitive Mesh enables complex coordination among distributed agents
+(drones, sensors effectors, control nodes) with layers of reasoning and
+self-optimization.
 
 #### Architecture Layers
 
 **Foundation Layer**
+
 - Zero-trust security model with continuous authentication
 - Network abstraction for mesh networking and peer discovery
 - Edge computing infrastructure management
 
 **Reasoning Layer**
+
 - Multi-sensor data fusion across network-wide inputs
 - Collective threat assessment algorithms
 - Pattern recognition and anomaly detection
 
 **Metacognitive Layer**
+
 - Self-monitoring and performance optimization
 - Real-time parameter adjustment based on outcomes
 - Sensor health monitoring and reliability weighting
 
 **Agency Layer**
+
 - Task execution and resource deployment
 - Dynamic role assignment (leader, scout, interceptor, relay)
 - Coordinated countermeasure execution
 
 **Business Applications Layer**
+
 - External C2 system interfaces
 - Compliance reporting and user-facing functions
 - Command center integration and dashboards
@@ -169,21 +178,25 @@ The Cognitive Mesh enables complex coordination among distributed agents (drones
 #### Key Components
 
 **Agent Registry**
+
 - Catalog of all drone and sensor agents with capabilities and status
 - Dynamic role assignment based on tactical situation
 - Graceful degradation handling when drones are damaged
 
 **Hierarchical Decision Confidence Pack (HDCP)**
+
 - Combines confidence scores from multiple AI agents
 - Ensemble voting to reduce outlier effects
 - Target: Improve detection accuracy from 95.0% to 99.5-99.7%
 
 **Temporal Decision Core (TDC)**
+
 - Context enrichment within 50-100ms after authentication
 - Pattern matching against historical scenarios
 - Eligibility traces for learning from past incidents
 
 **Constraint & Load Engine (CLE)**
+
 - Dynamic balance of response time vs. accuracy
 - Resource allocation under high load conditions
 - Maintains <2ms authentication even under swarm attacks
@@ -191,24 +204,35 @@ The Cognitive Mesh enables complex coordination among distributed agents (drones
 ### 4.1 Sensor Fusion Layer (Custom Rust Implementation)
 
 #### Sensor Suite
-- **RF Spectrum Analysis**: Protocol-agnostic energy detection and signal fingerprints
-- **Radar Systems**: Short-to-mid range sUAS detection with Doppler and micro-Doppler
-- **EO/IR Cameras**: Day/night identification with track confirmation and PID support
-- **Acoustic Sensors**: Blade-harmonic signatures with urban/forest clutter tolerance
-- **EM Anomaly Detection**: Emissions and intent cues in contested RF environments
+
+- **RF Spectrum Analysis**: Protocol-agnostic energy detection and signal
+  fingerprints
+- **Radar Systems**: Short-to-mid range sUAS detection with Doppler and
+  micro-Doppler
+- **EO/IR Cameras**: Day/night identification with track confirmation and PID
+  support
+- **Acoustic Sensors**: Blade-harmonic signatures with urban/forest clutter
+  tolerance
+- **EM Anomaly Detection**: Emissions and intent cues in contested RF
+  environments
 
 #### Processing Pipeline
+
 - **Real-time track generation**: Raw sensor data converted to unified tracks
 - **Feature extraction**: Specialized routines for each sensor modality
 - **Sensor calibration**: Continuous health monitoring and drift correction
-- **Time synchronization**: NTP/hardware clock synchronization across all sensors
-- **Output**: Unified tracks.v1 protobuf stream with validated, deduplicated tracks
+- **Time synchronization**: NTP/hardware clock synchronization across all
+  sensors
+- **Output**: Unified tracks.v1 protobuf stream with validated, deduplicated
+  tracks
 
 #### Performance Targets
+
 - **Processing Latency**: 10-50ms from raw sensor input to fused track
 - **Track Quality**: ≥95% precision and recall within operational envelope
 - **Sensor Health**: Continuous monitoring with automatic recalibration
-- **Multi-modal Correlation**: Cross-sensor validation to suppress false positives
+- **Multi-modal Correlation**: Cross-sensor validation to suppress false
+  positives
 
 ---
 
@@ -217,18 +241,24 @@ The Cognitive Mesh enables complex coordination among distributed agents (drones
 ### Multi-Modal Navigation Architecture
 
 **Primary GNSS**: Multi-constellation (GPS+GLONASS+Galileo+BeiDou)
+
 - **Galileo**: 1m accuracy with free centimeter High Accuracy Service
 - **BeiDou**: Two-way messaging and PPP-B2b corrections across 30+ satellites
 - **Terrain-Aided Navigation**: High-altitude operations
 - **SLAM/VIO**: Low-altitude environments with visual-inertial odometry
 
 ### Visual-Inertial Odometry Performance
-- **VINS-Mono**: Nearly zero drift over 1.62km outdoor paths at 20Hz visual/200Hz IMU
+
+- **VINS-Mono**: Nearly zero drift over 1.62km outdoor paths at 20Hz
+  visual/200Hz IMU
 - **VINS-Fusion**: GPU acceleration processing 250Hz on edge devices
-- **Terrain-Aided SLAM**: 0.2m final position error over 218km (0.09% of distance)
+- **Terrain-Aided SLAM**: 0.2m final position error over 218km (0.09% of
+  distance)
 
 ### Electronic Warfare Resilience
-- **Frequency Hopping**: Doodle Labs "Sense" technology across 2.4GHz, 5.2GHz, 5.8GHz, 900MHz
+
+- **Frequency Hopping**: Doodle Labs "Sense" technology across 2.4GHz, 5.2GHz,
+  5.8GHz, 900MHz
 - **Channel Shifting**: Microsecond response to jamming detection
 - **Tri-Band Implementation**: 15km image transmission under active jamming
 - **Adaptive Filtering**: Configurable notch filters rejecting chirp jammers
@@ -249,8 +279,8 @@ The Cognitive Mesh enables complex coordination among distributed agents (drones
   discrimination
 - **RF Sensors**: Passive detection 300MHz-6GHz with protocol analysis
 - **EO/IR Cameras**: Visual confirmation and payload identification
-- **Acoustic Sensors**: 50-500m range detecting autonomous drones in
-  GPS-denied areas
+- **Acoustic Sensors**: 50-500m range detecting autonomous drones in GPS-denied
+  areas
 - **LiDAR**: 64,000 measurements per second with sub-meter accuracy
 
 **Mesh Networking Resilience**
@@ -326,13 +356,11 @@ The Cognitive Mesh enables complex coordination among distributed agents (drones
 
 ### Recommended System Configuration
 
-**Primary Processing**: Jetson AGX Orin 64GB (275 TOPS)
-**Swarm Coordination**: Distributed Orin NX 16GB nodes (100 TOPS)
-**Camera Coverage**: 4-8 optical cameras via MIPI CSI-2 (1080p-4K)
-**Thermal Cameras**: USB 3.0/GigE connectivity
-**LiDAR Sensors**: PCIe/Ethernet integration
-**RF Detection**: Software-defined radio via USB 3.0
-**Acoustic Sensing**: I2S microphone arrays
+**Primary Processing**: Jetson AGX Orin 64GB (275 TOPS) **Swarm Coordination**:
+Distributed Orin NX 16GB nodes (100 TOPS) **Camera Coverage**: 4-8 optical
+cameras via MIPI CSI-2 (1080p-4K) **Thermal Cameras**: USB 3.0/GigE connectivity
+**LiDAR Sensors**: PCIe/Ethernet integration **RF Detection**: Software-defined
+radio via USB 3.0 **Acoustic Sensing**: I2S microphone arrays
 
 ### Software Stack
 
@@ -341,7 +369,8 @@ The Cognitive Mesh enables complex coordination among distributed agents (drones
 - **Middleware**: ROS 2 Humble with Isaac ROS acceleration
 - **Inference Optimization**: TensorRT achieving 2-10x speedup
 - **Sensor Fusion**: DeepStream 3D framework
-- **Swarm Coordination**: Custom consensus-based mesh protocols (SWARM/SwarmRaft)
+- **Swarm Coordination**: Custom consensus-based mesh protocols
+  (SWARM/SwarmRaft)
 
 ### Network Architecture
 
@@ -358,8 +387,11 @@ The Cognitive Mesh enables complex coordination among distributed agents (drones
 - **Update Rates**: 10-30 Hz multi-sensor fusion
 - **Swarm Coordination**: Network latency under 100ms
 - **Operational Range**: 500m-2km depending on sensor modality
-- **Graceful Degradation**: Reduced functionality when components fail rather than catastrophic failure
+- **Graceful Degradation**: Reduced functionality when components fail rather
+  than catastrophic failure
 
 ---
 
-*This document contains confidential technical information. Distribution is restricted to authorized personnel only. © 2025 Phoenix Rooivalk. All rights reserved.*
+_This document contains confidential technical information. Distribution is
+restricted to authorized personnel only. © 2025 Phoenix Rooivalk. All rights
+reserved._

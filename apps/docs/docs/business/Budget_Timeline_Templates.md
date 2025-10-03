@@ -19,8 +19,8 @@ establish realistic expectations and project parameters.
 ### Phoenix Rooivalk Investment Overview
 
 **Customer**: \***\*\*\*\*\*\*\***\_\***\*\*\*\*\*\*\***
-**Date**: \***\*\*\*\*\*\*\***\_\***\*\*\*\*\*\*\***
-**Sales Rep**: \***\*\*\*\*\*\*\***\_\***\*\*\*\*\*\*\***
+**Date**: \***\*\*\*\*\*\*\***\_\***\*\*\*\*\*\*\*** **Sales
+Rep**: \***\*\*\*\*\*\*\***\_\***\*\*\*\*\*\*\***
 **Project**: \***\*\*\*\*\*\*\***\_\***\*\*\*\*\*\*\***
 
 ---
@@ -107,9 +107,9 @@ establish realistic expectations and project parameters.
 
 ### Phoenix Rooivalk Implementation Timeline
 
-**Project Start Date**: \***\*\*\*\*\*\*\***\_\***\*\*\*\*\*\*\***
-**Target Go-Live Date**: \***\*\*\*\*\*\*\***\_\***\*\*\*\*\*\*\***
-**Project Duration**: 12-18 weeks
+**Project Start Date**: \***\*\*\*\*\*\*\***\_\***\*\*\*\*\*\*\*** **Target
+Go-Live Date**: \***\*\*\*\*\*\*\***\_\***\*\*\*\*\*\*\*** **Project Duration**:
+12-18 weeks
 
 ---
 
