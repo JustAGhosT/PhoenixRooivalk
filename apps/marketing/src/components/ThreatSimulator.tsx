@@ -13,6 +13,8 @@ import ControlBar from './ControlBar';
 import EventFeed from './EventFeed';
 import Disclaimer from './Disclaimer';
 import HelpOverlay from './HelpOverlay';
+import { ThreatSimulatorComponents } from './ThreatSimulatorComponents';
+import { ThreatSimulatorOverlays } from './ThreatSimulatorOverlays';
 import './NewThreatSimulator.css';
 
 interface ThreatSimulatorProps {
@@ -27,6 +29,7 @@ export const ThreatSimulator: React.FC<ThreatSimulatorProps> = ({
   const gameRef = useRef<HTMLDivElement>(null);
   const [isResetting, setIsResetting] = useState(false);
   const [showHelp, setShowHelp] = useState(false);
+  const [showSimulationWarning, setShowSimulationWarning] = useState(true);
 
   const {
     gameState,
@@ -58,6 +61,10 @@ export const ThreatSimulator: React.FC<ThreatSimulatorProps> = ({
     processFadeOut,
     setLevel,
     updateScore,
+    setWeatherMode,
+    setMissionType,
+    setAutomationMode,
+    setShowDeploymentZones,
   } = useGameState();
 
   const { addTimeout, clearTimeouts } = useTimeoutManager();
@@ -137,7 +144,7 @@ export const ThreatSimulator: React.FC<ThreatSimulatorProps> = ({
     particleSystem,
   });
 
-  useFullscreen({
+  const { isFullscreen, enterFullscreen, exitFullscreen } = useFullscreen({
     gameRef,
     autoFullscreen,
     isTeaser,
@@ -163,6 +170,18 @@ export const ThreatSimulator: React.FC<ThreatSimulatorProps> = ({
   useEffect(() => {
     return () => clearTimeouts();
   }, [clearTimeouts]);
+
+  const getThreatAppearance = (type: string) => {
+    const appearances = {
+      drone: { emoji: "🚁", color: "bg-red-600", cssClass: "" },
+      swarm: { emoji: "🐝", color: "bg-orange-500", cssClass: "" },
+      stealth: { emoji: "👻", color: "bg-gray-600", cssClass: "" },
+      kamikaze: { emoji: "💥", color: "bg-red-800", cssClass: "" },
+      decoy: { emoji: "🎭", color: "bg-gray-500", cssClass: "" },
+      shielded: { emoji: "🛡️", color: "bg-blue-700", cssClass: "" },
+    };
+    return appearances[type as keyof typeof appearances] || appearances.drone;
+  };
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -205,9 +224,14 @@ export const ThreatSimulator: React.FC<ThreatSimulatorProps> = ({
         level={gameState.level}
       />
       <RadarCanvas
-        blips={gameState.threats}
         isResetting={isResetting}
         onThreatClick={handleThreatClick}
+      />
+      <ThreatSimulatorComponents
+        gameState={gameState}
+        onThreatClick={handleThreatClick}
+        onThreatHover={() => {}}
+        getThreatAppearance={getThreatAppearance}
       />
       <ControlBar
         onPause={toggleRunningState}
@@ -220,9 +244,24 @@ export const ThreatSimulator: React.FC<ThreatSimulatorProps> = ({
         }}
         isPaused={!gameState.isRunning}
         currentLevel={gameState.level}
+        weatherMode={gameState.weatherMode}
+        setWeatherMode={setWeatherMode}
+        missionType={gameState.missionType}
+        setMissionType={setMissionType}
+        automationMode={gameState.automationMode}
+        setAutomationMode={setAutomationMode}
       />
       <EventFeed feedItems={feedItems} />
       <Disclaimer />
+      <ThreatSimulatorOverlays
+        showSimulationWarning={showSimulationWarning}
+        setShowSimulationWarning={setShowSimulationWarning}
+        showFullscreenPrompt={!isFullscreen && autoFullscreen}
+        isTeaser={isTeaser}
+        isFullscreen={isFullscreen}
+        enterFullscreen={enterFullscreen}
+        exitFullscreen={exitFullscreen}
+      />
     </section>
   );
 };
