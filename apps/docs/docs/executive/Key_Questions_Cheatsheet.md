@@ -70,7 +70,7 @@ accuracy?** A: HDCP is designed to weight sensor inputs by reliability, decompos
 improving detection accuracy from 85.2% to 95.2-98.5% through multi-level
 analysis.
 
-**Q: How does the Temporal Decision Core interface with Level-0 architecture?**
+**Q: How does the Temporal Decision Core interface with SAE Level 4 architecture?**
 A: TDC runs on edge nodes providing context enrichment within 50-100ms after
 sub-2ms authentication. Uses bypass mechanism for critical path while
 maintaining eligibility traces for pattern matching.

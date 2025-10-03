@@ -63,22 +63,22 @@ training, maintenance
 
 5. **Hardware Prototypes**: Development of hardware prototypes
 6. **Software Prototypes**: Development of software prototypes
-{\d+}. **Integration Testing**: Integration testing of system components
-{\d+}. **Performance Testing**: Performance testing and optimization
+7. **Integration Testing**: Integration testing of system components
+8. **Performance Testing**: Performance testing and optimization
 
 **Regulatory Compliance**
 
-{\d+}. **ITAR Compliance**: ITAR registration and compliance procedures
-{\d+}. **Export Controls**: Export control classification and procedures
-{\d+}. **Safety Standards**: Safety standard compliance and certification
-{\d+}. **RF Spectrum**: RF spectrum usage compliance and licensing
+9. **ITAR Compliance**: ITAR registration and compliance procedures
+10. **Export Controls**: Export control classification and procedures
+11. **Safety Standards**: Safety standard compliance and certification
+12. **RF Spectrum**: RF spectrum usage compliance and licensing
 
 **Security and Safety Framework**
 
-{\d+}. **Threat Modeling**: Comprehensive threat modeling and analysis
-{\d+}. **Safety Analysis**: Safety hazard analysis and mitigation
-{\d+}. **Cybersecurity**: Cybersecurity framework development
-{\d+}. **Data Governance**: Data governance and privacy framework
+13. **Threat Modeling**: Comprehensive threat modeling and analysis
+14. **Safety Analysis**: Safety hazard analysis and mitigation
+15. **Cybersecurity**: Cybersecurity framework development
+16. **Data Governance**: Data governance and privacy framework
 
 ### Deliverables
 

@@ -52,10 +52,10 @@ optimization, troubleshooting
 
 **Key Performance Indicators (KPIs)**
 
-- **Detection Accuracy**: Target {\d+}.{\d+}% accuracy
-- **Response Time**: Target {\d+}-195ms response time
-- **System Uptime**: Target {\d+}.{\d+}% uptime
-- **False Positive Rate**: Target <{\d+}-{\d+}% false positive rate
+- **Detection Accuracy**: Target 99.5% accuracy
+- **Response Time**: Target 50-195ms response time
+- **System Uptime**: Target 99.9% uptime
+- **False Positive Rate**: Target <1-3% false positive rate
 - **Sensor Health**: All sensors operational and calibrated
 
 **Performance Metrics**
@@ -77,11 +77,11 @@ optimization, troubleshooting
 
 **Alert Response Procedures**
 
-{\d+}. **Immediate Response**: Acknowledge critical alerts within {\d+} minutes
-{\d+}. **Investigation**: Investigate root cause of the issue
-{\d+}. **Resolution**: Implement appropriate resolution
-{\d+}. **Documentation**: Document incident and resolution
-{\d+}. **Follow-up**: Verify resolution and prevent recurrence
+1. **Immediate Response**: Acknowledge critical alerts within 5 minutes
+2. **Investigation**: Investigate root cause of the issue
+3. **Resolution**: Implement appropriate resolution
+4. **Documentation**: Document incident and resolution
+5. **Follow-up**: Verify resolution and prevent recurrence
 
 ---
 

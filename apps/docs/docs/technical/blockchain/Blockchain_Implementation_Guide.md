@@ -90,9 +90,9 @@ management
 - Security audit reports
 - Performance benchmarks
 
-### Phase {\d+}: Data Logging & AI Integration
+### Phase 2: Data Logging & AI Integration
 
-**Duration**: {\d+} months **Focus**: Tamper-resistant data logging and AI
+**Duration**: 3 months **Focus**: Tamper-resistant data logging and AI
 integration
 
 **Key Components:**
@@ -109,9 +109,9 @@ integration
 - Threat intelligence pipeline
 - Data integrity verification
 
-### Phase {\d+}: Swarm Coordination
+### Phase 3: Swarm Coordination
 
-**Duration**: {\d+} months **Focus**: Multi-agent coordination and consensus
+**Duration**: 4 months **Focus**: Multi-agent coordination and consensus
 
 **Key Components:**
 

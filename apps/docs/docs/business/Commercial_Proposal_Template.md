@@ -30,7 +30,7 @@ Customize based on specific customer requirements and use cases.
 
 ### 1.1 Phoenix Rooivalk System
 
-Phoenix Rooivalk is a Level-0 autonomous counter-drone defense system designed
+Phoenix Rooivalk is a SAE Level 4 autonomous counter-drone defense system designed
 for commercial applications including critical infrastructure protection,
 corporate campus security, and event security. The system provides superior
 performance at a fraction of the cost of traditional solutions.
@@ -38,7 +38,7 @@ performance at a fraction of the cost of traditional solutions.
 #### Key Features
 
 - **Sub-200ms Response Time**: 25-40x faster than industry average
-- **Level-0 Autonomy**: Complete operational independence
+- **SAE Level 4 Autonomy**: Complete operational independence
 - **Blockchain Evidence**: Tamper-proof audit trails for legal compliance
 - **Cost Leadership**: 30-50% lower total cost of ownership
 - **Advanced AI**: Superior threat detection and classification
@@ -106,7 +106,7 @@ performance at a fraction of the cost of traditional solutions.
 
 - **Faster Response**: Sub-200ms threat neutralization
 - **Higher Accuracy**: 95%+ detection accuracy with <5% false positives
-- **Complete Autonomy**: Level-0 operation without human intervention
+- **Complete Autonomy**: SAE Level 4 operation without human intervention
 - **All-Weather Operation**: Reliable performance in all conditions
 - **Scalable Deployment**: Easy expansion and configuration
 
@@ -413,7 +413,7 @@ needs while providing significant cost savings and operational benefits.
 ### Key Benefits
 
 - **Superior Performance**: 25-40x faster response times
-- **Complete Autonomy**: Level-0 edge operation without network dependency
+- **Complete Autonomy**: SAE Level 4 edge operation without network dependency
 - **Cost Leadership**: 30-50% lower total cost of ownership
 - **Legal Defensibility**: Blockchain-based tamper-proof audit trails
 - **Advanced AI**: Superior threat detection and classification

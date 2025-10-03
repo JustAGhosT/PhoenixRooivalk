@@ -65,7 +65,7 @@ rapid response and verifiable accountability in all conditions.
 | ------------------- | ---------------- | ------------------- | ------------------------- |
 | Response Time       | 120-195ms        | 3-10 seconds        | 25-40x faster             |
 | Detection Accuracy  | 95%+             | 70-85%              | 10-25% improvement        |
-| Autonomy Level      | Level-0          | Network-dependent   | Complete independence     |
+| Autonomy Level      | SAE Level 4      | Network-dependent   | Complete independence     |
 | Evidence Management | Blockchain       | Traditional logging | Tamper-proof audit trails |
 | Cost per Unit       | $25k-$100k       | $50k-$200k          | 30-50% lower              |
 
@@ -462,7 +462,7 @@ rapid response and verifiable accountability in all conditions.
 ## 11. Conclusion
 
 Phoenix Rooivalk represents a revolutionary advancement in counter-drone defense
-technology, delivering unprecedented performance through Level-0 edge autonomy,
+technology, delivering unprecedented performance through SAE Level 4 edge autonomy,
 advanced AI integration, and blockchain evidence management. Our proposed
 solution addresses critical DoD requirements while providing significant cost
 advantages and superior performance compared to existing systems.
@@ -470,7 +470,7 @@ advantages and superior performance compared to existing systems.
 ### Key Benefits
 
 - **Superior Performance**: 25-40x faster response times
-- **Complete Autonomy**: Level-0 edge operation without network dependency
+- **Complete Autonomy**: SAE Level 4 edge operation without network dependency
 - **Legal Defensibility**: Blockchain-based tamper-proof audit trails
 - **Cost Leadership**: 30-50% lower total cost of ownership
 - **Advanced AI**: Morpheus Network + Cognitive Mesh integration

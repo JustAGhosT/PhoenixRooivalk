@@ -43,6 +43,12 @@ detect, identify, track, and neutralize unauthorized or hostile drones
 - Critical for sub-200ms response times in counter-drone operations
 - Enables autonomous operation in GPS-denied and EW-contested environments
 
+**SAE J3016**
+- Society of Automotive Engineers standard defining levels of driving automation (0-5)
+- Adapted for Counter-UAS systems: Level 0 (no automation) to Level 5 (full automation)
+- Phoenix Rooivalk implements SAE Level 4 (high automation) for autonomous counter-drone operations
+- Provides industry-standard framework for autonomy level classification
+
 **EW (Electronic Warfare)**
 - Military use of the electromagnetic spectrum to sense, protect, and attack
 - Includes jamming, deception, and electronic attack capabilities

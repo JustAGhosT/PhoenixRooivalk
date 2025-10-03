@@ -206,7 +206,7 @@ infrastructure, integration, and operational requirements.
 
 ### Autonomy Requirements
 
-- [ ] **Level-0 Autonomy**
+- [ ] **SAE Level 4 Autonomy**
   - [ ] Complete edge autonomy
   - [ ] No network dependency
   - [ ] Autonomous decision making

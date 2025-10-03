@@ -34,7 +34,7 @@ propositions.
 #### Phoenix Rooivalk: 120-195ms
 
 - **Edge-first processing** with NVIDIA Jetson AGX Orin
-- **Level-0 autonomy** without network dependency
+- **SAE Level 4 autonomy** without network dependency
 - **Sub-2ms authentication** for rapid threat response
 - **Real-time AI inference** at the edge
 
@@ -51,7 +51,7 @@ propositions.
 
 ### 2. Autonomy Level
 
-#### Phoenix Rooivalk: Level-0 Complete Autonomy
+#### Phoenix Rooivalk: SAE Level 4 Complete Autonomy
 
 - **Comms-Independent Edge Autonomy (CIEA)** architecture
 - **No network dependency** for critical decisions
@@ -135,7 +135,7 @@ performance**
 | Feature                  | Phoenix Rooivalk | Anduril           | Fortem            | DroneShield       | Raytheon          |
 | ------------------------ | ---------------- | ----------------- | ----------------- | ----------------- | ----------------- |
 | **Response Time**        | 120-195ms        | 3-5s              | 2-4s              | 5-10s             | 3-8s              |
-| **Autonomy Level**       | Level-0          | Network-dependent | Network-dependent | Network-dependent | Network-dependent |
+| **Autonomy Level**       | SAE Level 4      | Network-dependent | Network-dependent | Network-dependent | Network-dependent |
 | **Evidence Management**  | Blockchain       | Traditional       | Traditional       | Traditional       | Traditional       |
 | **AI Integration**       | Advanced         | Basic             | Basic             | Basic             | Basic             |
 | **Cost per Unit**        | $25k-$100k       | $100k-$500k       | $50k-$200k        | $25k-$100k        | $200k-$1M         |
@@ -155,7 +155,7 @@ performance**
   competitors fail"**
 - **"25-40x faster response time means the difference between success and
   failure in combat"**
-- **"Level-0 autonomy ensures continuous operation even when networks are
+- **"SAE Level 4 autonomy ensures continuous operation even when networks are
   compromised"**
 
 #### "Legal Defensibility and Compliance"
@@ -245,7 +245,7 @@ what most competitors achieve with cloud processing."
 ### Against Fortem Technologies
 
 - **Emphasize AI capabilities**: Advanced AI vs. basic radar
-- **Highlight autonomy**: Level-0 vs. network-dependent
+- **Highlight autonomy**: SAE Level 4 vs. network-dependent
 - **Stress cost leadership**: Similar pricing with superior performance
 - **Focus on evidence**: Blockchain vs. traditional logging
 
@@ -284,7 +284,7 @@ what most competitors achieve with cloud processing."
 ### Technical Advantages
 
 - **AI Performance**: 275 TOPS vs. 50-100 TOPS competitors
-- **Autonomy Level**: Level-0 vs. network-dependent
+- **Autonomy Level**: SAE Level 4 vs. network-dependent
 - **Evidence Management**: Blockchain vs. traditional
 - **GPS-Denied Operation**: Yes vs. No competitors
 

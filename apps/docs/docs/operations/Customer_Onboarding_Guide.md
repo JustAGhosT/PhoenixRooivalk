@@ -72,7 +72,7 @@ superior counter-drone defense capabilities for your organization.
 
 Your Phoenix Rooivalk system will provide:
 - Sub-200ms response times (25-40x faster than competitors)
-- Level-0 edge autonomy without network dependency
+- SAE Level 4 edge autonomy without network dependency
 - Blockchain evidence management for legal compliance
 - 30-50% lower total cost of ownership
 
