@@ -5,6 +5,7 @@ import { Footer } from "../components/Footer";
 import { Navigation } from "../components/Navigation";
 import { CapabilitiesSection } from "../components/sections/CapabilitiesSection";
 import { ContactSection } from "../components/sections/ContactSection";
+import { CounterDroneMethodsSection } from "../components/sections/CounterDroneMethodsSection";
 import { HeroSection } from "../components/sections/HeroSection";
 import { InteractiveElementsSection } from "../components/sections/InteractiveElementsSection";
 import { TimelineSection } from "../components/sections/TimelineSection";
@@ -29,6 +30,7 @@ export default function HomePage(): React.ReactElement {
       {/* Main Content Sections */}
       <HeroSection />
       <InteractiveElementsSection />
+      <CounterDroneMethodsSection />
       <TimelineSection />
       <CapabilitiesSection />
       <ContactSection />
