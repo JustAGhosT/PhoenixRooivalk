@@ -96,7 +96,7 @@ interface Poolable {
   lastUsed: number;
 }
 
-class ObjectPool&lt;T extends Poolable&gt; {
+class ObjectPool<T extends Poolable> {
   acquire(): T | null;
   release(obj: T): void;
   getStats(): PoolStatistics;
@@ -272,8 +272,8 @@ if (threat) {
 ### **1. Data Structures**
 
 - TypeScript interfaces → Rust structs
-- Optional properties → Rust Option&lt;T&gt;
-- Arrays → Rust Vec&lt;T&gt;
+- Optional properties → Rust Option<T>
+- Arrays → Rust Vec<T>
 - Maps → Rust HashMap<K, V>
 
 ### **2. State Machines**
@@ -290,7 +290,7 @@ if (threat) {
 
 ### **4. Object Pooling**
 
-- TypeScript pools → Rust Vec&lt;T&gt; with indices
+- TypeScript pools → Rust Vec<T> with indices
 - Active/inactive tracking → Rust bit flags
 - Memory management → Rust ownership system
 

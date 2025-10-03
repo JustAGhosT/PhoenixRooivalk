@@ -234,7 +234,7 @@ impl EvidenceAnchoring {
 
 ```rust
 pub trait Sensor {
-    async fn initialize(&mut self) -> Result&lt;(), Error&gt;;
+    async fn initialize(&mut self) -> Result<(), Error>;
     async fn read_data(&self) -> Result<SensorData, Error>;
     async fn calibrate(&mut self) -> Result<(), Error>;
     async fn get_health_status(&self) -> Result<HealthStatus, Error>;

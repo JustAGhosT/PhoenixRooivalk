@@ -96,7 +96,7 @@ personal AI smart agents
 
 - **Decision Latency**: 50-100ms for threat classification and countermeasure
   selection
-- **Model Size**: &lt;50MB optimized models for edge deployment
+- **Model Size**: <50MB optimized models for edge deployment
 - **Confidence Thresholds**: Configurable based on ROE and threat level
 - **Update Mechanism**: A/B testing in sandbox with HITL approval required
 
@@ -186,7 +186,7 @@ The Cognitive Mesh enables complex coordination among distributed agents (drones
 **Constraint & Load Engine (CLE)**
 - Dynamic balance of response time vs. accuracy
 - Resource allocation under high load conditions
-- Maintains &lt;2ms authentication even under swarm attacks
+- Maintains <2ms authentication even under swarm attacks
 
 ### 4.1 Sensor Fusion Layer (Custom Rust Implementation)
 

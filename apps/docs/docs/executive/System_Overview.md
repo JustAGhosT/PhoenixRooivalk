@@ -311,11 +311,8 @@ neutralization
 Phoenix Rooivalk represents a comprehensive, modular approach to counter-drone
 defense that addresses the evolving threat landscape while maintaining
 operational flexibility and cost effectiveness. The system's multi-component
-architecture, advanced capabilities, and
-
-responsible use framework position it
+architecture, advanced capabilities, and responsible use framework position it
 as a leading solution for counter-drone defense across military, critical
-
 infrastructure, and commercial applications.
 
 The system's emphasis on modularity, scalability, and responsible use ensures
@@ -327,4 +324,3 @@ standards of safety, security, and operational effectiveness.
 _This document contains confidential system information. Distribution is
 restricted to authorized personnel only. © 2025 Phoenix Rooivalk. All rights
 reserved._
-

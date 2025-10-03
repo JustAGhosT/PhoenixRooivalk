@@ -108,8 +108,8 @@ performance, hardware capabilities, software performance, and operational metric
 
 **TensorRT Optimization**
 - **Speedup**: 5-10x speedup over standard inference
-- **Model Size**: &lt;50MB optimized models for edge deployment
-- **Latency**: &lt;50ms inference latency
+- **Model Size**: <50MB optimized models for edge deployment
+- **Latency**: <50ms inference latency
 - **Throughput**: High throughput inference on edge devices
 - **Compatibility**: NVIDIA GPU acceleration
 
@@ -298,7 +298,7 @@ performance, hardware capabilities, software performance, and operational metric
 
 **Infrastructure Performance Requirements**
 
-- **Response Time**: &lt;500ms for infrastructure threats
+- **Response Time**: <500ms for infrastructure threats
 - **Accuracy**: >99% detection accuracy
 - **Reliability**: 99.9% system uptime
 - **Range**: 1-3km detection range
