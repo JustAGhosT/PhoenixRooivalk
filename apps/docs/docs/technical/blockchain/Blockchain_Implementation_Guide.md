@@ -52,9 +52,9 @@ graph TB
     end
 
     subgraph "Blockchain Layer"
-        FABRIC[Hyperledger Fabric&lt;br/&gt;Primary Chain]
-        POLKADOT[Polkadot&lt;br/&gt;Cross-Chain Bridge]
-        SOLANA[Solana&lt;br/&gt;High-Performance POC]
+        FABRIC[Hyperledger Fabric<br/>Primary Chain]
+        POLKADOT[Polkadot<br/>Cross-Chain Bridge]
+        SOLANA[Solana<br/>High-Performance POC]
     end
 
     subgraph "Application Layer"
@@ -132,9 +132,9 @@ integration
 - Contested operations protocols
 - Performance optimization
 
-### Phase {\d+}: System Integration
+### Phase 4: System Integration
 
-**Duration**: {\d+} months **Focus**: Full system integration and API
+**Duration**: 4 months **Focus**: Full system integration and API
 development
 
 **Key Components:**
@@ -151,9 +151,9 @@ development
 - Vendor adapter framework
 - Monitoring and observability
 
-### Phase {\d+}: Production Deployment
+### Phase 5: Production Deployment
 
-**Duration**: {\d+} months **Focus**: Production deployment and operations
+**Duration**: 2 months **Focus**: Production deployment and operations
 
 **Key Components:**
 
@@ -328,7 +328,7 @@ development
 #### Network Requirements
 
 - **Bandwidth**: {\d+} Gbps minimum
-- **Latency**: &lt;100ms end-to-end
+- **Latency**: <100ms end-to-end
 - **Redundancy**: Multiple network paths
 - **Security**: VPN, firewall, intrusion detection
 

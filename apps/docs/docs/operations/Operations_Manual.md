@@ -114,27 +114,27 @@ optimization, troubleshooting
 
 **Hardware Failures**
 
-{\d+}. **Failure Detection**: Identify and isolate failed components
-{\d+}. **Impact Assessment**: Assess impact on system operations
-{\d+}. **Replacement**: Replace failed components with spares
-{\d+}. **Testing**: Test replacement components
-{\d+}. **Documentation**: Document failure and resolution
+1. **Failure Detection**: Identify and isolate failed components
+2. **Impact Assessment**: Assess impact on system operations
+3. **Replacement**: Replace failed components with spares
+4. **Testing**: Test replacement components
+5. **Documentation**: Document failure and resolution
 
 **Software Issues**
 
-{\d+}. **Issue Identification**: Identify software problems
-{\d+}. **Root Cause Analysis**: Analyze root cause of issues
-{\d+}. **Fix Implementation**: Implement appropriate fixes
-{\d+}. **Testing**: Test fixes in staging environment
-{\d+}. **Deployment**: Deploy fixes to production
+1. **Issue Identification**: Identify software problems
+2. **Root Cause Analysis**: Analyze root cause of issues
+3. **Fix Implementation**: Implement appropriate fixes
+4. **Testing**: Test fixes in staging environment
+5. **Deployment**: Deploy fixes to production
 
 **Network Problems**
 
-{\d+}. **Connectivity Check**: Verify network connectivity
-{\d+}. **Performance Analysis**: Analyze network performance
-{\d+}. **Configuration Review**: Review network configuration
-{\d+}. **Troubleshooting**: Perform network troubleshooting
-{\d+}. **Resolution**: Implement network fixes
+1. **Connectivity Check**: Verify network connectivity
+2. **Performance Analysis**: Analyze network performance
+3. **Configuration Review**: Review network configuration
+4. **Troubleshooting**: Perform network troubleshooting
+5. **Resolution**: Implement network fixes
 
 ---
 
