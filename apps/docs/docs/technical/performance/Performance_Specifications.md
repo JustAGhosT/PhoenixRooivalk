@@ -197,7 +197,7 @@ ID, sensor
 ### Cloud Connectivity Performance
 
 **Azure Government Cloud**
-- **DoD Impact Level {\d+}-{\d+}**: FedRAMP High through classified Secret networks
+- **DoD Impact Level 2-6**: FedRAMP High through classified Secret networks
 - **SIPRNet Connectivity**: Exclusive US DoD regions
 - **Physical Separation**: Separation from non-DoD tenants
 - **Performance**: High-performance cloud connectivity
@@ -216,10 +216,10 @@ ID, sensor
 
 **Multi-Modal Navigation**
 - **Galileo**: 1m accuracy with free centimeter High Accuracy Service
-- **BeiDou**: Two-way messaging and PPP-B2b corrections across {\d+}+ satellites
-- **VINS-Mono**: Nearly zero drift over {\d+}.62km outdoor paths
+- **BeiDou**: Two-way messaging and PPP-B2b corrections across 30+ satellites
+- **VINS-Mono**: Nearly zero drift over 1.62km outdoor paths
 - **VINS-Fusion**: GPU acceleration processing 250Hz on edge devices
-- **Terrain-Aided SLAM**: {\d+}.2m final position error over 218km ({\d+}.{\d+}% of distance)
+- **Terrain-Aided SLAM**: 0.2m final position error over 218km (0.09% of distance)
 
 **Visual-Inertial Odometry**
 - **Update Rates**: 20Hz visual/200Hz IMU update rates
@@ -230,20 +230,19 @@ ID, sensor
 ### Electronic Warfare Resilience
 
 **Frequency Hopping Performance**
-- **Frequency Bands**: {\d+}.4GHz, {\d+}.2GHz, {\d+}.```
-8GHz, 900MHz
+- **Frequency Bands**: 2.4GHz, 5.2GHz, 5.8GHz, 900MHz
 ````
 
 - **Response Time**: Microsecond response to jamming detection
 - **Adaptive Filtering**: Configurable notch filters rejecting chirp jammers
 - **Performance**: 15km image transmission under active jamming
 
-**Pentagon Demonstration {\d+} Requirements**
+**Pentagon Demonstration 2025 Requirements**
 
 - **Frequency Range**: 30MHz-20GHz under active jamming
 - **Waveform Requirements**: Low probability of intercept/detect waveforms
 - **Autonomous Response**: Electromagnetic spectrum maneuvering
-- **Cueing Accuracy**: Accurate cueing within 2km slant range for Group {\d+}
+- **Cueing Accuracy**: Accurate cueing within 2km slant range for Group 1
   drones
 - **Performance**: Autonomous response to EMS impact without operator
   intervention
@@ -295,11 +294,11 @@ ID, sensor
 
 **Military Performance Requirements**
 
-- **Response Time**: &lt;200ms for critical threats
-- **Accuracy**: >{\d+}% detection accuracy
-- **Reliability**: {\d+}.{\d+}% system uptime
-- **Range**: {\d+}-5km detection range
-- **Concurrent Targets**: {\d+}+ concurrent threats
+- **Response Time**: <200ms for critical threats
+- **Accuracy**: >99% detection accuracy
+- **Reliability**: 99.9% system uptime
+- **Range**: 3-5km detection range
+- **Concurrent Targets**: 10+ concurrent threats
 
 **Tactical Performance Requirements**
 

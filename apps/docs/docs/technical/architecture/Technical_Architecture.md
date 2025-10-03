@@ -286,7 +286,7 @@ validated, deduplicated
 
 ### Lockheed Martin Integration
 
-**Sanctum AI-powered C-UAS Platform** (announced February {\d+})
+**Sanctum AI-powered C-UAS Platform** (announced February 2025)
 
 - Open-architecture approach with modular sensor integration
 - Cloud computing and multiple effector options
@@ -296,7 +296,7 @@ validated, deduplicated
 
 ### Azure Government Cloud Integration
 
-**DoD Impact Level {\d+}-{\d+} Authorizations**
+**DoD Impact Level 2-6 Authorizations**
 
 - FedRAMP High through classified Secret networks
 - SIPRNet connectivity with exclusive US DoD regions
@@ -308,25 +308,25 @@ validated, deduplicated
 - **Azure Stack Edge**: Hardware-accelerated ML inferencing at tactical edge
 - **Azure IoT Edge**: Zero-touch device provisioning with HSM support
 - **Cloud-Based Command and Control (CBC2)**: Deployed to all NORAD sectors
-- **Integration**: {\d+}+ radar feeds with AI-assisted decision-making
+- **Integration**: 50+ radar feeds with AI-assisted decision-making
 
 ### Partnership Development Strategy
 
-**Phase {\d+} ({\d+}-{\d+} months): Early-Stage Programs**
+**Phase 1 (6-12 months): Early-Stage Programs**
 
 - Technology demonstrations integrating C-UAS data with Azure Government
 - Target SBIR/STTR or OTA opportunities
 - Establish supplier diversity relationships with Lockheed Martin early-stage
   programs
 
-**Phase {\d+} ({\d+}-{\d+} months): Teaming Agreements**
+**Phase 2 (12-24 months): Teaming Agreements**
 
 - Execute teaming agreements positioning as specialized C-UAS cloud integration
   provider
 - Leverage Azure certifications and defense compliance for competitive advantage
 - Secure subcontracting opportunities with existing C-UAS prime contractors
 
-**Phase {\d+} ({\d+}+ months): Technology Insertion**
+**Phase 3 (24+ months): Technology Insertion**
 
 - Achieve technology insertion into programs of record (M-``` SHORAD, IAMD
 
@@ -377,5 +377,3 @@ validated, deduplicated
 ---
 
 *This document contains confidential technical information. Distribution is restricted to authorized personnel only. © {\d+} Phoenix Rooivalk. All rights reserved.*
-
-```
