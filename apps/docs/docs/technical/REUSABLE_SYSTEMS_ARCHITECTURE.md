@@ -284,7 +284,7 @@ if (threat) {
 
 ## 🚀 Rust Porting Strategy
 
-### **{\d+}. Data Structures**
+### **1. Data Structures**
 
 - TypeScript interfaces → Rust structs
 - Optional properties → Rust Option&lt;T&gt;
@@ -293,7 +293,7 @@ if (threat) {
 
 ````>
 
-### **{\d+}. State Machines**
+### **2. State Machines**
 
 - String-based states → Rust enums
 - Function callbacks → Rust closures

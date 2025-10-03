@@ -102,33 +102,31 @@ assignment, and
 ``` maintains coordination even with
 50%+ communication loss.
 
-**Q: What is the Cognitive Sandwich Backend's role in weapon authorization?** A:
+**Q: What is the Cognitive Sandwich Backend's role in weapon authorization?
+**A:
 Implements phase-based workflow
 (Detection→Assessment→Authorization→Engagement→Verification) with mandatory
 human checkpoints for weapon release and full blockchain audit trail.
 
-**Q: Do we need a blockchain data infrastructure service?** A: No. We chose to
+**Q: Do we need a blockchain data infrastructure service?
+** A: No. We chose to
 implement direct Solana integration using our custom Rust crates rather than
-using third-party services like ```
-Pinax, which
-``` would have added ${\d+}-2k/month in
-unnecessary overhead. Our direct approach costs only ${\d+}-{\d+}/month for RPC
+using third-party services like Pinax, which would have added $1-2k/month in
+unnecessary overhead. Our direct approach costs only $50-100/month for RPC
 access.
 
 ---
 
 ## Evidence & Security
 
-**Q: How is evidence tamper-proof?** A: Every decision is hash-```
-chained, Merkle
-```-```
-batched, and
-``` anchored on Solana with timestamps. Keys stored in TPM/```
+**Q: How is evidence tamper-proof?** 
+A: Every decision is hash-chained, Merkle-batched, and
+anchored on Solana with timestamps. Keys stored in TPM/```
 HSM, models
 ```/policies signed and verified at boot.
 
-**Q: Why use Solana specifically?** A: High-throughput ({\d+}-{\d+} TPS),
-low-latency (~400ms finality), low-cost anchoring (~${\d+}.{\d+}/anchor), Proof of
+**Q: Why use Solana specifically?** A: High-throughput (65,000-100,000 TPS),
+low-latency (~400ms finality), low-cost anchoring (~$0.00025/anchor), Proof of
 History for cryptographic ```
 timestamping, and
 ``` proven reliability.
@@ -201,7 +199,7 @@ system, with
 storage services. Actual pricing will depend on configuration and scale.
 
 **Q: How big is the market opportunity?** A: Counter-drone market estimated at
-${\d+}-{\d+}.5B ({\d+}) with projections to ${\d+}-16B by {\d+}-{\d+} ({\d+}-{\d+}% CAGR). Total
+$2-3.5B (2024) with projections to $8-16B by 2030-2035 (15-25% CAGR). Total
 drone industry is ~$```
 73B, providing
 ``` additional expansion opportunities.
@@ -210,36 +208,17 @@ drone industry is ~$```
 
 ## Deployment & Operations
 
-**Q: Where does the system run?** A: Edge nodes on-premises (NVIDIA Jetson
+**Q: Where does the system run?**
+A: Edge nodes on-premises (NVIDIA Jetson
 clusters) with optional Azure cloud for monitoring/ops. Fully kubernetes
-orchestrated (K3s ```
-edge, AKS
-``` cloud).
+orchestrated (K3s edge, AKS cloud).
 
-**Q: How does it scale?** A: Multi-tenant site ```
-controllers, batched
-``` evidence
-````
+**Q: How does it scale?**
+A: Multi-tenant site controllers, batched evidence anchoring, horizontal scaling via kubernetes. Design supports 100+ sites with central monitoring.
 
-anchoring, horizontal
-
-````scaling via kubernetes. Design supports {\d+}+ sites with
-central monitoring.
-
-**Q: How does Azure integration work?** A: AKS for ```
-orchestration, ACR
-``` for
-````
-
-containers, Key `Vault for` secrets, PostgreSQL `/Redis for` data, Monitor
-
-```for
-
-```
-
-telemetry, Application
-
-````Gateway for routing.
+**Q: How does Azure integration work?** 
+A: AKS for orchestration, ACR for containers, Key `Vault for` secrets, PostgreSQL `/Redis for` data, Monitor
+for telemetry, Application Gateway for routing.
 
 **Q: What's the deployment timeline?** A: Once funded and MVP built: {\d+}-week base
 deployment, {\d+}-week sensor integration, {\d+}-week testing/calibration. Total: {\d+}-{\d+}
