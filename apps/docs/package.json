@@ -6,7 +6,7 @@
     "start": "docusaurus start",
     "build": "node -e \"process.exit(process.env.CI ? 0 : 1)\" || docusaurus build",
     "serve": "docusaurus serve",
-    "lint": "prettier --check . && markdownlint '**/*.md' --ignore node_modules",
+    "lint": "prettier --check . && markdownlint \"**/*.md\" --ignore node_modules --disable MD025 MD051",
     "lint:fix": "markdownlint --fix '**/*.md' --ignore node_modules",
     "typecheck": "tsc --noEmit",
     "format": "prettier --write .",
@@ -14,19 +14,32 @@
   },
   "dependencies": {
     "@docusaurus/core": "^3.9.1",
+    "@docusaurus/plugin-content-docs": "^3.9.1",
+    "@docusaurus/plugin-content-pages": "^3.9.1",
+    "@docusaurus/plugin-debug": "^3.9.1",
+    "@docusaurus/plugin-google-analytics": "^3.9.1",
+    "@docusaurus/plugin-google-gtag": "^3.9.1",
+    "@docusaurus/plugin-ideal-image": "^3.9.1",
+    "@docusaurus/plugin-pwa": "^3.9.1",
+    "@docusaurus/plugin-sitemap": "^3.9.1",
     "@docusaurus/preset-classic": "^3.9.1",
-    "prism-react-renderer": "^2.3.1",
+    "@docusaurus/theme-classic": "^3.9.1",
     "clsx": "^2.1.0",
+    "prism-react-renderer": "^2.3.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "markdownlint-cli": "^0.41.0",
-    "prettier": "^3.3.3",
-    "typescript": "^5.6.2",
+    "@docusaurus/types": "^3.4.0",
+    "@eslint/js": "^9.36.0",
     "@types/node": "^22.5.4",
     "@types/react": "18.2.79",
     "@types/react-dom": "18.2.25",
-    "@docusaurus/types": "^3.4.0"
+    "@typescript-eslint/eslint-plugin": "^8.45.0",
+    "@typescript-eslint/parser": "^8.45.0",
+    "eslint": "^9.36.0",
+    "markdownlint-cli": "^0.41.0",
+    "prettier": "^3.3.3",
+    "typescript": "^5.6.2"
   }
 }

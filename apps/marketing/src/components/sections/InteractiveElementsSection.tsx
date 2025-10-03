@@ -1,6 +1,6 @@
 "use client";
 import * as React from "react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ThreatSimulator } from "../ThreatSimulator";
 import { Button } from "../ui/button";
 
@@ -15,6 +15,11 @@ export const InteractiveElementsSection: React.FC = () => {
   const [sensitivity, setSensitivity] = useState<
     "conservative" | "median" | "aggressive"
   >("conservative");
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
 
   const calculateROI = () => {
     const {
@@ -89,7 +94,7 @@ export const InteractiveElementsSection: React.FC = () => {
   const roi = calculateROI();
 
   return (
-    <section className="py-20 bg-gradient-to-br from-[rgb(var(--tactical-obsidian))] to-[rgb(var(--tactical-black))] relative overflow-hidden">
+    <section className="py-20 bg-gradient-to-br from-[rgb(var(--bg-primary))] to-[rgb(var(--darker))] relative overflow-hidden">
       {/* Background pattern */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute inset-0 bg-[linear-gradient(rgba(var(--primary),0.1)_1px,_transparent_1px),_linear-gradient(90deg,_rgba(var(--primary),0.1)_1px,_transparent_1px)] bg-[length:50px_50px]"></div>
@@ -99,7 +104,7 @@ export const InteractiveElementsSection: React.FC = () => {
         <div className="max-w-[1400px] mx-auto">
           {/* Section Header */}
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-br from-[rgb(var(--phoenix-white))] to-[rgb(var(--primary))] mb-6">
+            <h2 className="text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-br from-[rgb(var(--text-primary))] to-[rgb(var(--primary))] mb-6">
               Projected ROI Analysis
             </h2>
             <p className="text-xl text-[rgb(var(--gray))] max-w-3xl mx-auto">
@@ -155,7 +160,7 @@ export const InteractiveElementsSection: React.FC = () => {
                 <div>
                   <label
                     htmlFor="roi-threat-frequency"
-                    className="block text-[rgb(var(--phoenix-white))] font-semibold mb-2"
+                    className="block text-[rgb(var(--text-primary))] font-semibold mb-2"
                   >
                     Threat Frequency (per month)
                   </label>
@@ -185,7 +190,7 @@ export const InteractiveElementsSection: React.FC = () => {
                 <div>
                   <label
                     htmlFor="roi-response-time"
-                    className="block text-[rgb(var(--phoenix-white))] font-semibold mb-2"
+                    className="block text-[rgb(var(--text-primary))] font-semibold mb-2"
                   >
                     Current Response Time (ms)
                   </label>
@@ -216,7 +221,7 @@ export const InteractiveElementsSection: React.FC = () => {
                 <div>
                   <label
                     htmlFor="roi-deployment-cost"
-                    className="block text-[rgb(var(--phoenix-white))] font-semibold mb-2"
+                    className="block text-[rgb(var(--text-primary))] font-semibold mb-2"
                   >
                     Deployment Cost (USD)
                   </label>
@@ -238,7 +243,10 @@ export const InteractiveElementsSection: React.FC = () => {
                   <div className="flex justify-between text-[rgb(var(--gray))] text-sm mt-1">
                     <span>$100K</span>
                     <span className="text-[rgb(var(--accent))] font-bold">
-                      ${roiInputs.deploymentCost.toLocaleString()}
+                      $
+                      {isClient
+                        ? roiInputs.deploymentCost.toLocaleString()
+                        : roiInputs.deploymentCost.toString()}
                     </span>
                     <span>$1M</span>
                   </div>
@@ -247,7 +255,7 @@ export const InteractiveElementsSection: React.FC = () => {
 
               {/* Results */}
               <div className="space-y-6">
-                <div className="bg-[rgba(var(--tactical-black),0.6)] rounded-xl p-6 border border-[rgba(var(--primary),0.3)]">
+                <div className="bg-[rgba(var(--bg-secondary),0.6)] rounded-xl p-6 border border-[rgba(var(--primary),0.3)]">
                   <h4 className="text-lg font-bold text-[rgb(var(--primary))] mb-4">
                     Phoenix Rooivalk Results
                   </h4>
@@ -273,7 +281,10 @@ export const InteractiveElementsSection: React.FC = () => {
                         Annual Savings:
                       </span>
                       <span className="text-[rgb(var(--status-active))] font-bold">
-                        ${roi.phoenix.savings.toLocaleString()}
+                        $
+                        {isClient
+                          ? roi.phoenix.savings.toLocaleString()
+                          : roi.phoenix.savings.toString()}
                       </span>
                     </div>
                     <div className="flex justify-between border-t border-[rgba(var(--primary),0.2)] pt-3">
@@ -285,7 +296,7 @@ export const InteractiveElementsSection: React.FC = () => {
                   </div>
                 </div>
 
-                <div className="bg-[rgba(var(--tactical-black),0.6)] rounded-xl p-6 border border-[rgba(var(--tactical-gray),0.3)]">
+                <div className="bg-[rgba(var(--bg-secondary),0.6)] rounded-xl p-6 border border-[rgba(var(--border),0.3)]">
                   <h4 className="text-lg font-bold text-[rgb(var(--gray))] mb-4">
                     Traditional Systems
                   </h4>
@@ -294,7 +305,7 @@ export const InteractiveElementsSection: React.FC = () => {
                       <span className="text-[rgb(var(--gray))]">
                         Success Rate:
                       </span>
-                      <span className="text-[rgb(var(--status-warning))] font-bold">
+                      <span className="text-[rgb(var(--action-warning))] font-bold">
                         {(roi.traditional.successRate * 100).toFixed(1)}%
                       </span>
                     </div>
@@ -310,8 +321,11 @@ export const InteractiveElementsSection: React.FC = () => {
                       <span className="text-[rgb(var(--gray))]">
                         Annual Savings:
                       </span>
-                      <span className="text-[rgb(var(--status-warning))] font-bold">
-                        ${roi.traditional.savings.toLocaleString()}
+                      <span className="text-[rgb(var(--action-warning))] font-bold">
+                        $
+                        {isClient
+                          ? roi.traditional.savings.toLocaleString()
+                          : roi.traditional.savings.toString()}
                       </span>
                     </div>
                     <div className="flex justify-between border-t border-[rgba(var(--primary),0.2)] pt-3">
@@ -340,11 +354,11 @@ export const InteractiveElementsSection: React.FC = () => {
             </div>
 
             <div className="relative">
-              <div className="bg-gradient-to-br from-[rgba(var(--tactical-obsidian),0.8)] to-[rgba(var(--tactical-black),0.8)] rounded-xl border border-[rgba(var(--primary),0.3)] p-4">
+              <div className="bg-gradient-to-br from-[rgba(var(--bg-primary),0.8)] to-[rgba(var(--bg-secondary),0.8)] rounded-xl border border-[rgba(var(--primary),0.3)] p-4">
                 <ThreatSimulator isTeaser={true} />
               </div>
 
-              <div className="text-center mt-4">
+              <div className="text-center mt-6">
                 <Button href="/interactive-demo" variant="primary" size="lg">
                   🚀 Try Full Interactive Demo
                 </Button>
@@ -354,22 +368,22 @@ export const InteractiveElementsSection: React.FC = () => {
 
           {/* Key Performance Metrics */}
           <div className="mt-20">
-            <div className="bg-[rgba(var(--tactical-charcoal),0.8)] backdrop-blur-sm border border-[rgba(var(--primary),0.2)] rounded-2xl p-8">
+            <div className="bg-[rgba(var(--bg-surface),0.8)] backdrop-blur-sm border border-[rgba(var(--primary),0.2)] rounded-2xl p-8">
               <h3 className="text-2xl font-bold text-[rgb(var(--primary))] mb-6 text-center">
                 Performance Comparison
               </h3>
 
               <div className="grid md:grid-cols-3 gap-8">
                 <div className="text-center">
-                  <div className="text-4xl font-bold text-[rgb(var(--status-critical))] mb-2">
+                  <div className="text-4xl font-bold text-[rgb(var(--action-danger))] mb-2">
                     3-10s
                   </div>
                   <div className="text-[rgb(var(--gray))] font-semibold mb-2">
                     Traditional Systems
                   </div>
-                  <div className="w-full bg-[rgba(var(--status-critical),0.2)] rounded-full h-4 border border-[rgba(var(--status-critical),0.3)]">
+                  <div className="w-full bg-[rgba(var(--action-danger),0.2)] rounded-full h-4 border border-[rgba(var(--action-danger),0.3)]">
                     <div
-                      className="bg-gradient-to-r from-[rgb(var(--status-critical))] to-[rgb(var(--status-warning))] h-4 rounded-full"
+                      className="bg-gradient-to-r from-[rgb(var(--action-danger))] to-[rgb(var(--action-warning))] h-4 rounded-full"
                       style={{ width: "100%" }}
                     ></div>
                   </div>
@@ -397,15 +411,15 @@ export const InteractiveElementsSection: React.FC = () => {
                 </div>
 
                 <div className="text-center">
-                  <div className="text-4xl font-bold text-[rgb(var(--status-active))] mb-2">
+                  <div className="text-4xl font-bold text-[rgb(var(--action-success))] mb-2">
                     120ms
                   </div>
                   <div className="text-[rgb(var(--gray))] font-semibold mb-2">
                     Phoenix Rooivalk
                   </div>
-                  <div className="w-full bg-[rgba(var(--status-active),0.2)] rounded-full h-4 border border-[rgba(var(--status-active),0.3)]">
+                  <div className="w-full bg-[rgba(var(--action-success),0.2)] rounded-full h-4 border border-[rgba(var(--action-success),0.3)]">
                     <div
-                      className="bg-gradient-to-r from-[rgb(var(--status-active))] to-[rgb(var(--accent))] h-4 rounded-full"
+                      className="bg-gradient-to-r from-[rgb(var(--action-success))] to-[rgb(var(--accent))] h-4 rounded-full"
                       style={{ width: "4%" }}
                     ></div>
                   </div>

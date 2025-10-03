@@ -1,31 +1,19 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import * as React from "react";
 
-import { StickyHeader } from "@/components/StickyHeader";
 import { Footer } from "../components/Footer";
 import { Navigation } from "../components/Navigation";
 import { CapabilitiesSection } from "../components/sections/CapabilitiesSection";
 import { ContactSection } from "../components/sections/ContactSection";
+import { CounterDroneMethodsSection } from "../components/sections/CounterDroneMethodsSection";
 import { HeroSection } from "../components/sections/HeroSection";
 import { InteractiveElementsSection } from "../components/sections/InteractiveElementsSection";
-import { SocialProofSection } from "../components/sections/SocialProofSection";
+import { TimelineSection } from "../components/sections/TimelineSection";
 import { usePerformanceOptimizations } from "../hooks/usePerformanceOptimizations";
 
 export default function HomePage(): React.ReactElement {
-  const [showStickyHeader, setShowStickyHeader] = useState(false);
-
   // Apply performance optimizations
   usePerformanceOptimizations();
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setShowStickyHeader(window.scrollY > 100);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    handleScroll();
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
   return (
     <main className="relative overflow-hidden bg-[var(--darker)] text-white">
@@ -35,15 +23,15 @@ export default function HomePage(): React.ReactElement {
       </div>
 
       {/* Global Components */}
-      <StickyHeader isVisible={showStickyHeader} />
 
       {/* Navigation */}
       <Navigation />
 
       {/* Main Content Sections */}
       <HeroSection />
-      <SocialProofSection />
       <InteractiveElementsSection />
+      <CounterDroneMethodsSection />
+      <TimelineSection />
       <CapabilitiesSection />
       <ContactSection />
 

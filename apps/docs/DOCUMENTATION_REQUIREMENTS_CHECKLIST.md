@@ -106,8 +106,7 @@
 
 #### Competitive Analysis
 
-- [x] **Detailed Competitive Analysis**
-      (`apps/docs/docs/competitor_analysis.md`)
+- [x] **Detailed Competitive Analysis** (`docs/15-Competitive_Analysis.md`)
   - [x] Feature-by-feature comparison matrix
   - [ ] Pricing analysis and total cost of ownership
   - [ ] Customer satisfaction and performance reviews
@@ -142,7 +141,7 @@
 
 ### A. Executive Summary Documents
 
-- [x] **One-Page Solution Overview** (`apps/docs/docs/executive_summary.md`)
+- [x] **One-Page Solution Overview** (`docs/01-Executive_Summary.md`)
   - [x] Problem statement and market gap
   - [x] Phoenix Rooivalk unique value proposition
   - [x] Key differentiators and competitive advantages
@@ -150,8 +149,7 @@
 
 ### B. Technical Specification Sheets
 
-- [x] **System Specifications Datasheet**
-      (`apps/docs/docs/technical_overview.md`)
+- [x] **System Specifications Datasheet** (`docs/05-Technical_Architecture.md`)
   - [x] Performance metrics and benchmarks
   - [ ] Technical requirements and dependencies
   - [ ] Deployment configurations and scalability

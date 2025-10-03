@@ -11,6 +11,11 @@ export const moveThreats = (
   return threats.map((threat) => {
     const currentTime = Date.now();
 
+    // If threat is not moving (neutralized), return it unchanged
+    if (threat.isMoving === false || threat.status === "neutralized") {
+      return threat;
+    }
+
     // Store current position as last position
     const lastPos = { x: threat.x, y: threat.y };
 

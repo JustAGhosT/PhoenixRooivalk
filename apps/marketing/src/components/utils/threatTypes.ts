@@ -11,6 +11,10 @@ export interface Threat {
   lastPosition: { x: number; y: number };
   behavior: "direct" | "evasive" | "zigzag" | "hover";
   evasionLevel: number; // 0-1, increases with difficulty
+  status?: "active" | "neutralized" | "destroyed" | "crater";
+  isMoving?: boolean;
+  neutralizedAt?: number; // Timestamp when neutralized
+  fadeStartTime?: number; // When fade started
   specialProperties?: {
     isShielded?: boolean;
     shieldStrength?: number;

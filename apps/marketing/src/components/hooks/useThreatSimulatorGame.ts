@@ -1,13 +1,13 @@
 import { useCallback, useEffect, useRef, useState } from "react";
+import type { GameState, Threat } from "../../types/game";
 import { FormationManager } from "../utils/formationManager";
 import { ParticleSystem } from "../utils/particleSystem";
 import { ResponseProtocolEngine } from "../utils/responseProtocols";
 import { StrategicDeploymentEngine } from "../utils/strategicDeployment";
 import { moveThreats, spawnThreat } from "../utils/threatUtils";
-import type { GameState, Threat } from "../../types/game";
 
 interface UseThreatSimulatorGameProps {
-  gameRef: React.RefObject<HTMLDivElement>;
+  gameRef: React.RefObject<HTMLButtonElement>;
   gameState: GameState;
   updateThreats: (threats: Threat[]) => void;
   addThreat: (threat: Threat) => void;
@@ -27,6 +27,7 @@ interface UseThreatSimulatorGameProps {
   setFrameRate: (rate: number) => void;
   addTimeout: (callback: () => void, delay: number) => void;
   clearTimeouts: () => void;
+  processFadeOut: () => void;
 }
 
 export const useThreatSimulatorGame = ({
@@ -50,6 +51,7 @@ export const useThreatSimulatorGame = ({
   setFrameRate: _setFrameRate,
   addTimeout,
   clearTimeouts,
+  processFadeOut,
 }: UseThreatSimulatorGameProps) => {
   const lastFrameTime = useRef<number>(0);
   const animationFrameRef = useRef<number | undefined>(undefined);
@@ -249,6 +251,9 @@ export const useThreatSimulatorGame = ({
 
       // Update drone positions
       updateDronePositions(deltaTime);
+
+      // Process fade-out for neutralized threats
+      processFadeOut();
 
       // Move threats
       moveAllThreats();

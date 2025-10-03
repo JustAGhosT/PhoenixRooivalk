@@ -1,8 +1,8 @@
 import { useCallback, useState } from "react";
-import type { GameState, Threat, SelectionBox } from "../../types/game";
+import type { GameState, SelectionBox, Threat } from "../../types/game";
 
 interface UseThreatSimulatorEventsProps {
-  gameRef: React.RefObject<HTMLDivElement>;
+  gameRef: React.RefObject<HTMLButtonElement>;
   gameState: GameState;
   updateThreats: (threats: Threat[]) => void;
   addThreat: (threat: Threat) => void;
