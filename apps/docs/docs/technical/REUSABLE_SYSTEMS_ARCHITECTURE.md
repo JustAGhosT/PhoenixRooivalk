@@ -299,19 +299,19 @@ if (threat) {
 - Function callbacks → Rust closures
 - Context objects → Rust structs with methods
 
-### **{\d+}. Event System**
+### **3. Event System**
 
 - TypeScript events → Rust enums with data
 - Event handlers → Rust closures/traits
 - Event queues → Rust channels
 
-### **{\d+}. Object Pooling**
+### **4. Object Pooling**
 
 - TypeScript pools → Rust Vec&lt;T&gt; with indices
 - Active/inactive tracking → Rust bit flags
 - Memory management → Rust ownership system
 
-### **{\d+}. Performance Monitoring**
+### **5. Performance Monitoring**
 
 - Browser APIs → Rust system APIs
 - JavaScript timers → Rust std::time

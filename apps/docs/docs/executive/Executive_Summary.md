@@ -89,7 +89,7 @@ operators by 2026.
 
 ## Technology Stack
 
-### {\d+}. Morpheus (Autonomous AI Decision Engine)
+### 1. Morpheus (Autonomous AI Decision Engine)
 
 - **Source**: Morpheus Network (mor.org) – decentralized peer-to-peer network of
   personal AI smart agents
@@ -98,16 +98,16 @@ operators by 2026.
 - **Integration**: Consumes fused sensor tracks, produces engagement decisions,
   includes human override channels
 
-### {\d+}. Solana (Evidence Blockchain Anchoring)
+### 2. Solana (Evidence Blockchain Anchoring)
 
-- **Performance**: {\d+}, {\d+}–{\d+}, {\d+} TPS, ~400ms finality, ~${\d+}.{\d+}
+- **Performance**: 65,000–100,000 TPS, ~400ms finality, ~$0.00025
   per anchor
 - **Architecture**: Hash-chained batches, on-chain Merkle roots, off-chain
   encrypted storage
 - **Resilience**: Dual-chain option with Etherlink bridge, local evidence
   queuing
 
-### {\d+}. Cognitive Mesh (Multi-Agent Orchestration Framework)
+### 3. Cognitive Mesh (Multi-Agent Orchestration Framework)
 
 - **Layers**: Foundation (security/network), Reasoning (fusion/analysis),
   Metacognitive (optimization), Agency (execution), Business (interfaces)
@@ -131,7 +131,7 @@ operators by 2026.
 NVIDIA Jetson AGX Orin 64GB delivers **275 TOPS of AI performance** with 2048
 CUDA cores, 64 Tensor cores, and dedicated Deep Learning Accelerators providing
 the computational foundation for real-time multi-sensor fusion. The platform
-achieves **{\d+}-{\d+} FPS sustained processing** for 4K video streams with
+achieves **30-60 FPS sustained processing** for 4K video streams with
 sensor-to-decision latency under 50ms using TensorRT optimization.
 
 **Drone detection performance:** YOLOv9 achieves **95.2% mAP with 96.8%
