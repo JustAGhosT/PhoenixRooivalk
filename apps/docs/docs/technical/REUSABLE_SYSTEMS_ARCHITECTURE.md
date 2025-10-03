@@ -188,7 +188,7 @@ string, handler
 }
 ````
 
-### {\d+}. **Performance Monitor** (`performanceMonitor.ts`)
+### 1. **Performance Monitor** (`performanceMonitor.ts`)
 
 **Purpose**: Real-time performance metrics and optimization
 
@@ -239,7 +239,7 @@ eventSystem.emit({
   data: { ```
 threatId, threatType
 ```, position },
-  priority: {\d+},
+  priority: 1,
 });
 
 // Other systems listen and respond

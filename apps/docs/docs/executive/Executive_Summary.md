@@ -68,23 +68,23 @@ platforms with AI optimization). North America dominates with 40-45% market
 share, while Asia-Pacific shows fastest growth at 25.5% CAGR. Regulatory
 tailwinds emerge from pending Counter-UAS Authority Act potentially extending
 authorization to state/local law enforcement and critical infrastructure
-operators by {\d+}.
+operators by 2026.
 
 ---
 
 ## Key Performance Indicators
 
-- **{\d+}.{\d+}% AI Detection Accuracy** - Eliminates environmental false
+- **99.5% AI Detection Accuracy** - Eliminates environmental false
   positives
-- **{\d+}-195ms Response Time** - {\d+}-40x faster than current systems
-  ({\d+}-{\d+} seconds baseline)
-- **{\d+}.{\d+}% Data Integrity** - Blockchain-verified audit trails
-- **Level-{\d+} Autonomous Operation** - Complete edge operation without
+- **50-195ms Response Time** - 25-40x faster than current systems
+  (2-5 seconds baseline)
+- **99.9% Data Integrity** - Blockchain-verified audit trails
+- **SAE Level 4 Autonomous Operation** - Complete edge operation without
   communications dependency
-- **RF-Silent Drone Detection** - Handles autonomous threats that {\d+}% of
+- **RF-Silent Drone Detection** - Handles autonomous threats that 80% of
   current systems cannot detect
 - **<2ms Authentication** - Ultra-fast friend-or-foe identification
-- **{\d+}.{\d+}% System Uptime** - High availability with redundant architecture
+- **99.9% System Uptime** - High availability with redundant architecture
 
 ---
 

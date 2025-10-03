@@ -85,7 +85,7 @@ simultaneously. Can relax accuracy requirements to maintain &lt;2ms in critical
 situations while ensuring no slowdown even under swarm attacks.
 
 **Q: How does the Memory Flexibility Suite maintain situational awareness?** A:
-Maintains {\d+}-second working memory buffer (2GB/drone target), stores key
+Maintains 30-second working memory buffer (2GB/drone target), stores key
 events, learns threat patterns, and automatically promotes important patterns from
 working to long-term storage.
 
@@ -100,7 +100,7 @@ topics, CBBA
 auction algorithms for task ```
 assignment, and
 ``` maintains coordination even with
-{\d+}%+ communication loss.
+50%+ communication loss.
 
 **Q: What is the Cognitive Sandwich Backend's role in weapon authorization?** A:
 Implements phase-based workflow

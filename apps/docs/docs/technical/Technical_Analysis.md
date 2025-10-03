@@ -98,22 +98,22 @@ cameras, acoustic
 ### Detection Performance
 
 **Accuracy Benchmarks**
-- **Phoenix Rooivalk**: {\d+}.{\d+}% target accuracy
-- **Industry Average**: {\d+}-{\d+}% typical field performance
-- **Laboratory Performance**: {\d+}-{\d+}% in controlled conditions
-- **Military Systems**: {\d+}-{\d+}% in operational conditions
+- **Phoenix Rooivalk**: 99.5% target accuracy
+- **Industry Average**: 85-95% typical field performance
+- **Laboratory Performance**: 95-98% in controlled conditions
+- **Military Systems**: 90-95% in operational conditions
 
 **Latency Benchmarks**
 - **Phoenix Rooivalk**: &lt;200ms target response time
-- **Industry Average**: {\d+}-{\d+} seconds typical response time
+- **Industry Average**: 2-5 seconds typical response time
 - **Edge Processing**: &lt;50ms for edge-based systems
-- **Cloud Processing**: {\d+}-{\d+} seconds for cloud-based systems
+- **Cloud Processing**: 1-3 seconds for cloud-based systems
 
 **False Positive Benchmarks**
-- **Phoenix Rooivalk**: &lt;{\d+}% target false positive rate
-- **Industry Average**: {\d+}-{\d+}% typical false positive rate
-- **High-Performance Systems**: {\d+}-{\d+}% false positive rate
-- **Military Systems**: {\d+}-{\d+}% false positive rate
+- **Phoenix Rooivalk**: &lt;1% target false positive rate
+- **Industry Average**: 5-15% typical false positive rate
+- **High-Performance Systems**: 2-5% false positive rate
+- **Military Systems**: 1-3% false positive rate
 
 ### System Performance
 

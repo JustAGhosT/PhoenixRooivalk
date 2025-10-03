@@ -50,15 +50,15 @@ description: "Projected market size" }, { label: "Growth Rate", value:
 
 ### Target Markets
 
-- **Military & Defense**: ${\d+}.2B by {\d+}
-- **Critical Infrastructure**: ${\d+}.1B by {\d+}
-- **Commercial & Civilian**: ${\d+}.2B by {\d+} </PitchDeckSlide>
+- **Military & Defense**: $1.2B by 2030
+- **Critical Infrastructure**: $0.8B by 2030
+- **Commercial & Civilian**: $0.5B by 2030 </PitchDeckSlide>
 
 <PitchDeckSlide title="Technology Differentiation" slideNumber={3} totalSlides={15}>
 # Cutting-Edge Technology Stack
 
 <TechnicalHighlight title="Edge-First Architecture" type="success" icon="⚡">
-Sub-2ms authentication and {\d+}–195ms end-to-end decision latency through edge-first processing. All critical decisions made locally without network dependency.
+Sub-2ms authentication and 50–195ms end-to-end decision latency through edge-first processing. All critical decisions made locally without network dependency.
 </TechnicalHighlight>
 
 ## Core Technology Components
