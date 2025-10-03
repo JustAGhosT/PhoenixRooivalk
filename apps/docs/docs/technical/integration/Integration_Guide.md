@@ -111,8 +111,10 @@ impl MorpheusClient {
 
 ### Evidence Anchoring System
 
-**Hash-Chained Evidence** 1. **Evidence Hashing**: SHA-256 hash of drone
-intercept evidence 2. **Metadata Storage**: `Location, timestamp`, operator
+**Hash-Chained Evidence**
+
+1. **Evidence Hashing**: SHA-256 hash of drone intercept evidence
+2. **Metadata Storage**: Location, timestamp, operator
 
 1. **On-Chain Storage**: 32-byte hash with metadata on Solana
 2. **Off-Chain Storage**: Full evidence payloads in encrypted storage
@@ -241,7 +243,7 @@ pub trait Sensor {
 }
 
 pub struct SensorManager {
-    sensors: Vec&lt;Box&lt;dyn Sensor&gt;&gt;,
+    sensors: Vec<Box<dyn Sensor>>,
     fusion_engine: FusionEngine,
 }
 ```
