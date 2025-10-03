@@ -171,9 +171,9 @@ development
 
 ---
 
-## {\d+}. Technical Architecture
+## 3. Technical Architecture
 
-### {\d+}.{\d+} Blockchain Protocols
+### 3.1 Blockchain Protocols
 
 #### Hyperledger Fabric (Primary Chain)
 
