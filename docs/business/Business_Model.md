@@ -14,21 +14,21 @@ critical infrastructure, and commercial market segments.
 
 ### Revenue Streams
 
-**1. Hardware Sales (60% of revenue)**
+#### 1. Hardware Sales (60% of revenue)
 
 - **Base System Units**: $25k-$100k per unit depending on configuration
 - **Sensor Upgrades**: $5k-$15k per additional sensor type
 - **Swarm Expansion**: $15k-$25k per additional drone
 - **Installation Services**: $5k-$10k per deployment
 
-**2. Software Subscriptions (25% of revenue)**
+#### 2. Software Subscriptions (25% of revenue)
 
 - **Monitoring & Analytics**: $1k-$3k/month per site
 - **Evidence Storage**: $500-$2k/month per site
 - **AI Model Updates**: $2k-$5k/year per site
 - **Compliance Modules**: $1k-$3k/year per jurisdiction
 
-**3. Support & Services (15% of revenue)**
+#### 3. Support & Services (15% of revenue)
 
 - **Technical Support**: $2k-$5k/year per site
 - **Training & Certification**: $5k-$15k per program
@@ -39,7 +39,7 @@ critical infrastructure, and commercial market segments.
 
 ## Capital Requirements for Competitive Positioning
 
-**Total Capital Needs: $30-50M**
+### Total Capital Needs: $30-50M
 
 - **Development**: $10-20M for AI algorithms and systems integration
 - **Manufacturing**: $5-10M for supply chain and assembly infrastructure
@@ -48,14 +48,14 @@ critical infrastructure, and commercial market segments.
 
 ### Funding Strategy
 
-**Phase 1 (0-18 months): DoD Validation**
+#### Phase 1 (0-18 months): DoD Validation
 
 - **Target**: SBIR/STTR and OTA contracts
 - **Funding**: $2-5M in development funding
 - **Focus**: Technology demonstrations, Lockheed Martin integration
 - **Milestones**: Prototype validation, initial production deployment
 
-**Phase 2 (18-36 months): Production Scale**
+#### Phase 2 (18-36 months): Production Scale
 
 - **Target**: IDIQ contracts and FMS programs
 - **Funding**: $50M+ annual revenue through prime integrator partnerships
