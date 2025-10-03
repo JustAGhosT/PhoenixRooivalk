@@ -89,12 +89,12 @@ delay-tolerant networking, short-range robust links, signed topics, CBBA-style
 auction algorithms for task assignment, and maintains coordination even with
 50%+ communication loss.
 
-**Q: What is the Cognitive Sandwich Backend's role in weapon authorization? **A:
+**Q: What is the Cognitive Sandwich Backend's role in weapon authorization?** A:
 Implements phase-based workflow
 (Detection→Assessment→Authorization→Engagement→Verification) with mandatory
 human checkpoints for weapon release and full blockchain audit trail.
 
-**Q: Do we need a blockchain data infrastructure service? ** A: No. We chose to
+**Q: Do we need a blockchain data infrastructure service?** A: No. We chose to
 implement direct Solana integration using our custom Rust crates rather than
 using third-party services like Pinax, which would have added $1-2k/month in
 unnecessary overhead. Our direct approach costs only $50-100/month for RPC
