@@ -283,7 +283,7 @@ orchestration, ACR
 ``` for
 ````
 
-containers, Key `Vault for` secrets, PostgreSQL `/Redis for ` data, Monitor
+containers, Key `Vault for` secrets, PostgreSQL `/Redis for` data, Monitor
 
 ```for
 
@@ -347,7 +347,7 @@ sensor data ``` packages, and
 **Q: How is false positive risk managed?** A: Design includes confidence
 ```
 
-thresholds, multi `-sensor ` correlation, and
+thresholds, multi `-sensor` correlation, and
 
 ````human-in-the-loop for critical
 decisions. Target false positive rate <{\d+}-{\d+}% to be validated through testing.

@@ -356,7 +356,7 @@ defense that addresses the evolving threat landscape while maintaining
 operational flexibility and cost effectiveness. The system's multi-component
 ````
 
-architecture, advanced ` ` capabilities, and
+architecture, advanced `` capabilities, and
 
 ````responsible use framework position it
 as a leading solution for counter-drone defense across ```

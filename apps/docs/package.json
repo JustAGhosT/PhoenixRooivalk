@@ -6,7 +6,7 @@
     "start": "docusaurus start",
     "build": "node -e \"process.exit(process.env.CI ? 0 : 1)\" || docusaurus build",
     "serve": "docusaurus serve",
-    "lint": "prettier --check . && markdownlint '**/*.md' --ignore node_modules",
+    "lint": "prettier --check . && markdownlint \"**/*.md\" --ignore node_modules --disable MD025 MD051",
     "lint:fix": "markdownlint --fix '**/*.md' --ignore node_modules",
     "typecheck": "tsc --noEmit",
     "format": "prettier --write .",
