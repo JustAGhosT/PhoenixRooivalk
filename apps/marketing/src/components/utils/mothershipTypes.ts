@@ -71,7 +71,7 @@ export interface Formation {
   isActive: boolean;
   // Semi-circle specific properties
   semicircleDegrees?: number; // Degrees of arc to cover (e.g., 180 for half circle, 90 for quarter circle)
-  circleRadius?: number; // Radius of the semicircle formation
+  semicircleRadius?: number; // Radius of the semicircle formation
   semicircleDirection?: "north" | "south" | "east" | "west"; // Direction the semicircle faces
   type: "defensive" | "offensive" | "patrol" | "escort";
   targetPosition?: { x: number; y: number };

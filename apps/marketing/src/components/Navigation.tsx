@@ -100,7 +100,7 @@ export const Navigation: React.FC = () => {
               <li key={item.href || item.label} className="relative group">
                 {item.type === "dropdown" ? (
                   <>
-                    <button className="hover:text-[var(--text-primary)] transition-colors font-medium flex items-center gap-1">
+                    <button className="hover:text-[var(--text-primary)] focus:text-[var(--text-primary)] transition-colors font-medium flex items-center gap-1">
                       {item.label}
                       <svg
                         className="w-4 h-4"
@@ -117,7 +117,7 @@ export const Navigation: React.FC = () => {
                       </svg>
                     </button>
                     {/* Dropdown Menu */}
-                    <div className="absolute top-full left-0 mt-2 w-64 bg-[var(--bg-surface)] border border-[var(--border)] rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                    <div className="absolute top-full left-0 mt-2 w-64 bg-[var(--bg-surface)] border border-[var(--border)] rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible group-focus-within:opacity-100 group-focus-within:visible transition-all duration-200 z-50">
                       <div className="py-2">
                         {item.items?.map((subItem) => (
                           <Link

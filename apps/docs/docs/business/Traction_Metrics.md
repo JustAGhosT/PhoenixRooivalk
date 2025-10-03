@@ -391,11 +391,11 @@ and demonstrate growth to investors and stakeholders.
 
 #### Anduril Industries
 
-- **Valuation**: $8.5B
+- **Valuation**: $28B
 - **Strengths**: AI capabilities, government contracts
 - **Weaknesses**: High cost, network dependency
 - **Market Share**: 15%
-- **Recent News**: $1.5B Series E funding
+- **Recent News**: Series G financing in June 2025
 
 #### Fortem Technologies
 
