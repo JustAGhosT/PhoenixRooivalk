@@ -44,9 +44,7 @@ performance, hardware capabilities, software performance, and operational metric
 - **Tensor Cores**: 64 Tensor cores
 - **Memory**: 32GB LPDDR5 unified memory
 - **Memory Bandwidth**: 204.8 GB/s unified memory bandwidth
-- **Power Consumption**: 60W ```
-typical, 100W
-``` peak
+- **Power Consumption**: 60W typical, 100W peak
 - **Operating Temperature**: -40°C to +85°C (Industrial variants)
 
 **Jetson Orin NX 16GB**
@@ -55,18 +53,14 @@ typical, 100W
 - **Tensor Cores**: 32 Tensor cores
 - **Memory**: 16GB LPDDR5 unified memory
 - **Memory Bandwidth**: 102.4 GB/s unified memory bandwidth
-- **Power Consumption**: 30W ```
-typical, 50W
-``` peak
+- **Power Consumption**: 30W typical, 50W peak
 - **Operating Temperature**: -40°C to +85°C
 
 **Jetson Nano**
 - **AI Performance**: 0.5 TOPS
 - **CUDA Cores**: 128 CUDA cores
 - **Memory**: 4GB LPDDR4
-- **Power Consumption**: 7W ```
-typical, 15W
-``` peak
+- **Power Consumption**: 7W typical, 15W peak
 - **Operating Temperature**: -40°C to +85°C
 
 ### Sensor Performance Specifications
@@ -107,8 +101,8 @@ typical, 15W
 
 **YOLOv9 Performance**
 - **mAP**: 99.7% mean Average Precision
-- **Precision**: 99.5 precision
-- **Recall**: 99.2 recall
+- **Precision**: 99.5$ precision
+- **Recall**: 99.2% recall
 - **Frame Rate**: 30+ FPS on Jetson Nano, 60+ FPS on Orin platforms
 - **Detection Range**: 100-1000 feet altitude with real-time processing
 
@@ -137,11 +131,7 @@ typical, 15W
 
 **Evidence Anchoring**
 - **Hash Generation**: SHA-256 hashing for evidence
-- **Metadata Storage**: ```
-Location, timestamp
-```, operator ```
-ID, sensor
-``` data
+- **Metadata Storage**: Location, timestamp, operator ID, sensor data
 - **On-Chain Storage**: 32-byte hash with metadata
 - **Off-Chain Storage**: Full evidence payloads in encrypted storage
 - **Chain of Custody**: Complete documentation from creation to presentation

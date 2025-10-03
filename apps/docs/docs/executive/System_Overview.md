@@ -202,9 +202,7 @@ neutralization
 - **Encryption**: AES-256 encryption for all communications
 - **Authentication**: Multi-factor authentication
 - **Access Control**: Role-based access control
-- **Compliance**: ```
-ITAR, CMMC
-``` Level 2, FedRAMP High
+- **Compliance**: ITAR, CMMC Level 2, FedRAMP High
 
 ---
 
@@ -220,9 +218,7 @@ ITAR, CMMC
 ### Operational Resilience
 
 - **GPS-Denied Operations**: Multi-modal navigation
-- **EW Resistance**: Frequency ```
-hopping, adaptive
-``` filtering
+- **EW Resistance**: Frequency hopping, adaptive filtering
 - **Network Independence**: Offline-capable operations
 - **Graceful Degradation**: Continued operations under partial failures
 

@@ -10,7 +10,7 @@ sidebar_label: Blockchain Protocols Analysis
 
 This document provides a comprehensive analysis of blockchain protocols for the
 Phoenix Rooivalk counter-drone defense system. The analysis covers Solana
-proof-of-concept `implementation, Hyperledger` Fabric primary recommendation,
+proof-of-concept implementation, Hyperledger Fabric primary recommendation,
 and
 
 protocol comparison to determine the optimal blockchain architecture for
@@ -215,16 +215,10 @@ providing enterprise-grade security and performance for military applications.
 ### Quantum Resistance
 
 **Post-Quantum Cryptography**:
-- **Lattice-Based**: ```
-NTRU, LWE
-```-based schemes
+- **Lattice-Based**: NTRU, LWE-based schemes
 - **Hash-Based**: SPHINCS+, XMSS schemes
-- **Code-Based**: ```
-McEliece, Niederreiter
-``` schemes
-- **Multivariate**: ```
-Rainbow, UOV
-``` schemes
+- **Code-Based**: McEliece, Niederreiter schemes
+- **Multivariate**: Rainbow, UOV schemes
 
 ### Byzantine Fault Tolerance
 

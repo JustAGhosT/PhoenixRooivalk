@@ -158,11 +158,7 @@ The Cognitive Mesh enables complex coordination among distributed agents (drones
 
 **Agency Layer**
 - Task execution and resource deployment
-- Dynamic role assignment (```
-leader, scout
-```, ```
-interceptor, relay
-```)
+- Dynamic role assignment (leader, scout, interceptor, relay)
 - Coordinated countermeasure execution
 
 **Business Applications Layer**
