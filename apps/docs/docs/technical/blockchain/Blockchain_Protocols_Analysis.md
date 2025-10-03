@@ -268,7 +268,7 @@ Rainbow, UOV
 
 **Horizontal Scaling**:
 - **Sharding**: Distributed state and transaction processing
-- **Layer {\d+}**: Off-chain processing and state channels
+- **Layer 2**: Off-chain processing and state channels
 - **Sidechains**: Parallel blockchain networks
 - **Optimistic Rollups**: Efficient transaction batching
 
@@ -279,30 +279,30 @@ Rainbow, UOV
 ### Implementation Costs
 
 **Hyperledger Fabric**:
-- **Development**: ${\d+}, {\d+} ({\d+} months)
-- **Infrastructure**: ${\d+}, {\d+} (hardware)
-- **Operations**: ${\d+}, {\d+}/year (maintenance)
-- **Total Year {\d+}**: ${\d+}, {\d+}
+- **Development**: $150,000 (6 months)
+- **Infrastructure**: $50,000 (hardware)
+- **Operations**: $25,000/year (maintenance)
+- **Total Year 1**: $225,000
 
 **Solana POC**:
-- **Development**: ${\d+}, {\d+} ({\d+} months)
-- **Infrastructure**: ${\d+}, {\d+} (hardware)
-- **Operations**: ${\d+}, {\d+}/year (maintenance)
-- **Total Year {\d+}**: ${\d+}, {\d+}
+- **Development**: $100,000 (3 months)
+- **Infrastructure**: $30,000 (hardware)
+- **Operations**: $15,000/year (maintenance)
+- **Total Year 1**: $145,000
 
 **Hybrid Architecture**:
-- **Development**: ${\d+}, {\d+} ({\d+} months)
-- **Infrastructure**: ${\d+}, {\d+} (hardware)
-- **Operations**: ${\d+}, {\d+}/year (maintenance)
-- **Total Year {\d+}**: ${\d+}, {\d+},{\d+}
+- **Development**: $200,000 (9 months)
+- **Infrastructure**: $80,000 (hardware)
+- **Operations**: $40,000/year (maintenance)
+- **Total Year 1**: $320,000
 
 ### ROI Analysis
 
 **Cost Benefits**:
-- **Reduced Infrastructure**: {\d+}% cost reduction through optimization
+- **Reduced Infrastructure**: 30% cost reduction through optimization
 - **Improved Performance**: 10x performance improvement
-- **Enhanced Security**: {\d+}.{\d+}% security assurance
-- **Operational Efficiency**: {\d+}% operational cost reduction
+- **Enhanced Security**: 99.9% security assurance
+- **Operational Efficiency**: 25% operational cost reduction
 
 **Revenue Impact**:
 - **Market Differentiation**: Unique blockchain capabilities
@@ -314,17 +314,11 @@ Rainbow, UOV
 
 ## Conclusion
 
-The hybrid blockchain architecture combining Hyperledger Fabric and Solana provides the optimal solution for Phoenix Rooivalk counter-drone defense systems. The architecture delivers enterprise-grade ```
-security, high
-``` ```
-performance, and
-``` cost-effectiveness while maintaining the flexibility to adapt to changing requirements.
+The hybrid blockchain architecture combining Hyperledger Fabric and Solana provides the optimal solution for Phoenix Rooivalk counter-drone defense systems. The architecture delivers enterprise-grade 
+security, high performance, and cost-effectiveness while maintaining the flexibility to adapt to changing requirements.
 
-The comprehensive protocol analysis demonstrates that no single blockchain protocol can meet all ```
-requirements, making
-``` the hybrid approach essential for military applications. The implementation strategy ensures systematic ```
-development, testing
-```, and deployment while managing costs and risks effectively.
+The comprehensive protocol analysis demonstrates that no single blockchain protocol can meet all 
+requirements, making the hybrid approach essential for military applications. The implementation strategy ensures systematic development, testing, and deployment while managing costs and risks effectively.
 
 ---
 
