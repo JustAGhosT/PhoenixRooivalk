@@ -464,7 +464,7 @@ export class StrategicDeploymentEngine {
   private calculateDeploymentEffectiveness(
     zone: DeploymentZone,
     droneType: DroneType,
-    position: { x: number; y: number },
+    _position: { x: number; y: number },
   ): number {
     const baseEffectiveness = {
       interceptor: 0.8,

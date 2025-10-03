@@ -110,7 +110,7 @@ export const SocialProofSection: React.FC = () => {
           {/* What We're Hearing */}
           <div className="mb-20">
             <h3 className="text-2xl font-bold text-[rgb(var(--primary))] mb-8 text-center">
-              What We're Hearing (Discovery Notes, Not Endorsements)
+              What We&apos;re Hearing (Discovery Notes, Not Endorsements)
             </h3>
             <p className="text-sm text-[rgb(var(--gray))] text-center mb-6 max-w-2xl mx-auto">
               Paraphrased insights from exploratory interviews with defense
@@ -126,7 +126,7 @@ export const SocialProofSection: React.FC = () => {
                     <div className="text-3xl">{testimonial.avatar}</div>
                     <div>
                       <p className="text-[rgb(var(--phoenix-white))] text-lg leading-relaxed mb-4">
-                        "{testimonial.quote}"
+                        &quot;{testimonial.quote}&quot;
                       </p>
                       <div>
                         <div className="font-semibold text-[rgb(var(--primary))]">

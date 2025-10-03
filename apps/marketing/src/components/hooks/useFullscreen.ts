@@ -19,7 +19,7 @@ export const useFullscreen = ({
       try {
         await gameRef.current.requestFullscreen();
         setIsFullscreen(true);
-      } catch (error) {
+      } catch (_error) {
         // Fullscreen not supported or denied
       }
     }
@@ -30,7 +30,7 @@ export const useFullscreen = ({
       try {
         await document.exitFullscreen();
         setIsFullscreen(false);
-      } catch (error) {
+      } catch (_error) {
         // Exit fullscreen failed
       }
     }

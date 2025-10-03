@@ -52,7 +52,6 @@ export const useThreatSimulatorGame = ({
   updateResources,
   updateMothershipResources,
   updateDronePositions,
-  setFrameRate,
   addTimeout,
   clearTimeouts,
   processFadeOut,
@@ -154,7 +153,7 @@ export const useThreatSimulatorGame = ({
 
   // Enhanced neutralization with effects
   const neutralizeThreatWithEffects = useCallback((threatId: string) => {
-    const threat = gameState.threats.find((t: any) => t.id === threatId);
+    const threat = gameState.threats.find((t) => t.id === threatId);
     if (!threat || threat.status !== "active") return;
 
     const weapon = gameState.weapons[gameState.selectedWeapon];
@@ -185,7 +184,7 @@ export const useThreatSimulatorGame = ({
     if (threat.type === "kamikaze" && threat.specialProperties?.explosionRadius) {
       // Area damage
       const explosionRadius = threat.specialProperties.explosionRadius;
-      gameState.threats.forEach((nearbyThreat: any) => {
+      gameState.threats.forEach((nearbyThreat) => {
         if (nearbyThreat.id === threatId || nearbyThreat.status !== "active") return;
         
         const distance = Math.sqrt(
@@ -269,7 +268,7 @@ export const useThreatSimulatorGame = ({
             autoTargeting.processAutoTargeting(
               gameState,
               currentTime,
-              (targetId, x, y) => {
+              (targetId, _x, _y) => {
                 const threat = gameState.threats.find(t => t.id === targetId);
                 if (threat && threat.status === "active") {
                   neutralizeThreatWithEffects(targetId);
@@ -310,15 +309,7 @@ export const useThreatSimulatorGame = ({
       }
     };
   }, [
-    gameState.isRunning,
-    gameState.threats,
-    gameState.level,
-    gameState.spawnRate,
-    gameState.lastSpawnTime,
-    gameState.automationMode,
-    gameState.energy,
-    gameState.weapons,
-    gameState.selectedWeapon,
+    gameState,
     moveAllThreats,
     spawnNewThreat,
     neutralizeThreatWithEffects,
@@ -348,7 +339,7 @@ export const useThreatSimulatorGame = ({
     }, 100);
 
     return () => clearTimeout(timer);
-  }, []); // Only run once on mount
+  }, [spawnNewThreat]);
 
   // Update game dimensions
   useEffect(() => {
