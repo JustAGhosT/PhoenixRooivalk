@@ -22,7 +22,7 @@ paths-ignore:
   - "**/.next/**"
   - "**/out/**"
   - "**/coverage/**"
-  - "**/docs/**"
+  - "docs/**"
   - "**/apps/docs/build/**"
   - "**/apps/marketing/out/**"
 
