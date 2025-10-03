@@ -57,7 +57,7 @@ technicians, and administrators.
 **Operational Concepts**
 
 - **Counter-Drone Operations**: Threat detection, classification, response
-- **Autonomous Systems**: Level-0 autonomy and edge computing
+- **Autonomous Systems**: SAE Level 4 autonomy and edge computing
 - **Blockchain Integration**: Evidence anchoring and legal compliance
 - **Safety Procedures**: Operational safety and risk management
 

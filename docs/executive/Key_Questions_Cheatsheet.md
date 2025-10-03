@@ -58,7 +58,7 @@ decompose complex threats into sub-problems, and use ensemble voting. Target is
 improving detection accuracy from 99.3% to 99.6-99.8% through multi-level
 analysis.
 
-**Q: How does the Temporal Decision Core interface with Level-0 architecture?**
+**Q: How does the Temporal Decision Core interface with SAE Level 4 architecture?**
 A: TDC runs on edge nodes providing context enrichment within 50-100ms after
 sub-2ms authentication. Uses bypass mechanism for critical path while
 maintaining eligibility traces for pattern matching.

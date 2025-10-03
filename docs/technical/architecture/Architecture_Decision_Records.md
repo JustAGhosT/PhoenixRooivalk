@@ -99,10 +99,10 @@ smart contracts.
 
 ---
 
-## ADR 0003: Level-0 Autonomy Adoption Strategy
+## ADR 0003: SAE Level 4 Autonomy Adoption Strategy
 
 **Date**: 2025-09-24  
-**Status**: Accepted (Level-0 autonomy)
+**Status**: Accepted (SAE Level 4 autonomy)
 
 ### Context
 
@@ -111,7 +111,7 @@ operational effectiveness with safety and compliance requirements.
 
 ### Options Considered
 
-- **Level-0 Autonomy**: Fully autonomous operation without human intervention
+- **SAE Level 4 Autonomy**: Fully autonomous operation without human intervention
 - **Level-1 Autonomy**: Semi-autonomous with human oversight
 - **Level-2 Autonomy**: Human-in-the-loop for critical decisions
 - **Hybrid Approach**: Different autonomy levels for different scenarios
