@@ -226,53 +226,53 @@ optimization, troubleshooting
 
 **System Diagnostics**
 
-{\d+}. **Health Check**: Perform comprehensive system health check
-{\d+}. **Log Analysis**: Analyze system and application logs
-{\d+}. **Performance Analysis**: Analyze system performance metrics
-{\d+}. **Resource Monitoring**: Monitor system resources
-{\d+}. **Network Diagnostics**: Perform network diagnostics
+1. **Health Check**: Perform comprehensive system health check
+2. **Log Analysis**: Analyze system and application logs
+3. **Performance Analysis**: Analyze system performance metrics
+4. **Resource Monitoring**: Monitor system resources
+5. **Network Diagnostics**: Perform network diagnostics
 
 **Sensor Diagnostics**
 
-{\d+}. **Calibration Check**: Verify sensor calibration
-{\d+}. **Hardware Test**: Test sensor hardware functionality
-{\d+}. **Performance Test**: Test sensor performance
-{\d+}. **Integration Test**: Test sensor integration
-{\d+}. **Data Quality**: Verify sensor data quality
+1. **Calibration Check**: Verify sensor calibration
+2. **Hardware Test**: Test sensor hardware functionality
+3. **Performance Test**: Test sensor performance
+4. **Integration Test**: Test sensor integration
+5. **Data Quality**: Verify sensor data quality
 
 **Network Diagnostics**
 
-{\d+}. **Connectivity Test**: Test network connectivity
-{\d+}. **Performance Test**: Test network performance
-{\d+}. **Configuration Review**: Review network configuration
-{\d+}. **Security Check**: Check network security
-{\d+}. **Troubleshooting**: Perform network troubleshooting
+1. **Connectivity Test**: Test network connectivity
+2. **Performance Test**: Test network performance
+3. **Configuration Review**: Review network configuration
+4. **Security Check**: Check network security
+5. **Troubleshooting**: Perform network troubleshooting
 
 ### Resolution Procedures
 
 **Performance Issues**
 
-{\d+}. **Resource Analysis**: Analyze resource usage
-{\d+}. **Optimization**: Implement performance optimizations
-{\d+}. **Load Balancing**: Implement load balancing
-{\d+}. **Scaling**: Scale system resources if needed
-{\d+}. **Monitoring**: Monitor performance improvements
+1. **Resource Analysis**: Analyze resource usage
+2. **Optimization**: Implement performance optimizations
+3. **Load Balancing**: Implement load balancing
+4. **Scaling**: Scale system resources if needed
+5. **Monitoring**: Monitor performance improvements
 
 **Detection Issues**
 
-{\d+}. **Calibration**: Recalibrate sensors
-{\d+}. **Algorithm Tuning**: Tune detection algorithms
-{\d+}. **Threshold Adjustment**: Adjust detection thresholds
-{\d+}. **Training**: Retrain AI models if needed
-{\d+}. **Validation**: Validate detection improvements
+1. **Calibration**: Recalibrate sensors
+2. **Algorithm Tuning**: Tune detection algorithms
+3. **Threshold Adjustment**: Adjust detection thresholds
+4. **Training**: Retrain AI models if needed
+5. **Validation**: Validate detection improvements
 
 **System Issues**
 
-{\d+}. **Restart**: Restart affected services
-{\d+}. **Configuration**: Review and update configuration
-{\d+}. **Updates**: Apply software updates
-{\d+}. **Hardware**: Check and replace hardware if needed
-{\d+}. **Support**: Contact technical support if needed
+1. **Restart**: Restart affected services
+2. **Configuration**: Review and update configuration
+3. **Updates**: Apply software updates
+4. **Hardware**: Check and replace hardware if needed
+5. **Support**: Contact technical support if needed
 
 ---
 
@@ -305,12 +305,12 @@ optimization, troubleshooting
 
 **Response Procedures**
 
-{\d+}. **Detection**: Detect and identify security incidents
-{\d+}. **Containment**: Contain the security incident
-{\d+}. **Investigation**: Investigate the incident
-{\d+}. **Resolution**: Resolve the security incident
-{\d+}. **Recovery**: Recover from the incident
-{\d+}. **Documentation**: Document the incident and response
+1. **Detection**: Detect and identify security incidents
+2. **Containment**: Contain the security incident
+3. **Investigation**: Investigate the incident
+4. **Resolution**: Resolve the security incident
+5. **Recovery**: Recover from the incident
+6. **Documentation**: Document the incident and response
 
 ### Compliance Monitoring
 
