@@ -1,6 +1,14 @@
+/* eslint-env node */
 import type * as Preset from "@docusaurus/preset-classic";
 import type { Config } from "@docusaurus/types";
+import { resolve } from "path";
 import { themes as prismThemes } from "prism-react-renderer";
+
+// Node.js environment declarations
+declare const process: {
+  env: Record<string, string | undefined>;
+};
+declare const __dirname: string;
 
 const envName =
   process.env.ENV_NAME ||
@@ -44,13 +52,13 @@ const config: Config = {
       {
         docs: {
           routeBasePath: "docs",
-          sidebarPath: require.resolve("./sidebars.ts"),
+          sidebarPath: resolve(__dirname, "./sidebars.ts"),
           editUrl: undefined,
           remarkPlugins: [],
           rehypePlugins: [],
         },
         blog: false,
-        theme: { customCss: require.resolve("./src/css/custom.css") },
+        theme: { customCss: resolve(__dirname, "./src/css/custom.css") },
       } satisfies Preset.Options,
     ],
   ],
@@ -259,7 +267,7 @@ const config: Config = {
     // Enhanced docs
     docs: {
       sidebar: {
-        hideable: true,
+        hideable: true, // cspell:ignore hideable
         autoCollapseCategories: true,
       },
     },
