@@ -2,7 +2,7 @@
 
 ## Lockheed Martin Partnerships and Azure Cloud
 
-Lockheed Martin's **Sanctum AI-powered C-UAS platform** announced February 2025
+Lockheed Martin's **Sanctum AI-powered C-UAS platform** announced February 2026
 exemplifies the open-architecture approach with modular sensor integration,
 cloud computing, and multiple effector options. The **MORFIUS high-powered
 microwave interceptor** provides reusable counter-swarm capability compatible

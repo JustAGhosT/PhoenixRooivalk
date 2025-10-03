@@ -1,19 +1,27 @@
 # Phoenix Rooivalk Global Strategy
 
-## Executive Summary: South African Innovation for Global Defense Markets
+## Executive Summary: Dual Entity Strategy for Global Defense Markets
 
 Phoenix Rooivalk represents a next-generation counter-drone defense system
-designed and manufactured in South Africa for global deployment across European,
-Middle Eastern, African, and Asia-Pacific markets. The innovative multi-part
+operating under a dual entity structure: Delaware C-Corp for US/ITAR markets and
+South African entity for global non-ITAR markets. The innovative multi-part
 architecture featuring ground rovers (GROVER), fiber-tethered drone motherships,
 autonomous swarm dispatch, and blockchain-anchored evidence provides unique
 capabilities unavailable in current market solutions.
 
-### Strategic Advantages of South African Development
+### Strategic Advantages of Dual Entity Structure
 
-**Non-ITAR Jurisdiction**
+**US Entity (Delaware C-Corp)**
 
-- Enables faster export to 140+ countries without US approval
+- ITAR compliance for US DoD contracts
+- Direct access to US defense market
+- Enhanced credibility with US government customers
+- Full compliance with US export controls
+
+**South African Entity (Planned Q2 2026)**
+
+- Non-ITAR jurisdiction for global markets
+- Faster export to 140+ countries without US approval
 - 6-12 month approval processes vs 18-24 months for US systems
 - Direct sales to non-aligned nations and emerging markets
 

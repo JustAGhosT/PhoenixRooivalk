@@ -8,12 +8,10 @@ sidebar_label: Executive Summary
 
 ## Company Status
 
-**Legal Entity**: Delaware C-Corp registration under Nexamesh Technologies (in
-progress)  
-**Business Structure**: Corporate entity established for defense contracting and
-IP protection  
-**Compliance**: ITAR registration pathway and DoD contractor eligibility in
-development
+**Legal Entity**: Delaware C-Corp registration (in progress) + South African
+Entity (planned Q2 2026) **Business Structure**: Corporate entity established
+for defense contracting and IP protection **Compliance**: ITAR registration
+pathway and DoD contractor eligibility in development
 
 ## System Overview
 
@@ -28,9 +26,7 @@ challenges in modern electronic warfare environments.
 
 **True Edge Autonomy** – Fully offline-capable operations without any network
 dependency. Phoenix Rooivalk can detect and neutralize threats autonomously even
-when disconnected from command centers or ``` GPS, ensuring
-
-````continuous protection
+when disconnected from command centers or GPS, ensuring continuous protection
 under infrastructure outages or jamming attacks.
 
 **EW Resilience** – Designed to continue operation under heavy jamming and GPS
@@ -39,50 +35,37 @@ system to function when traditional communication and navigation aids are
 compromised.
 
 **Legal Defensibility** – Every engagement decision is logged to an immutable
-blockchain-based evidence ```
-trail, providing
-``` cryptographic proof of actions taken.
+blockchain-based evidence trail, providing cryptographic proof of actions taken.
 This auditability supports Rules of Engagement (ROE) compliance and generates
 court-admissible records for post-action review.
 
-**Flexible Integration** – ```
-Modular, open
-``` architecture supports swapping or
+**Flexible Integration** – Modular, open architecture supports swapping or
 upgrading sensors and effectors from different vendors without core system
 redesign. The platform's APIs and microservice design allow easy integration
 into existing defense ecosystems and C2 interfaces.
 
-**Swarm Coordination** – Natively supports autonomous swarms of {\d+}–{\d+} ```
-drones, allowing
-``` coordinated defense maneuvers. Drones communicate via a resilient mesh
-network and blockchain ```
-ledger, enabling
-``` cooperative tactics like pincer
+**Swarm Coordination** – Natively supports autonomous swarms of 5-10 drones,
+allowing coordinated defense maneuvers. Drones communicate via a resilient mesh
+network and blockchain ledger, enabling cooperative tactics like pincer
 movements and layered area defense.
 
 ---
 
 ## Market Opportunity: Explosive Growth in Counter-Drone Systems
 
-The C-UAS market presents exceptional ```
-opportunities, valued
-``` at **${\d+}.{\d+}-{\d+}.0B in
-{\d+}** and projected to reach **${\d+}-15B by {\d+}** at {\d+}-{\d+}% CAGR. The Pentagon
+The C-UAS market presents exceptional opportunities, valued at **$2.45-3.0B in
+2025** and projected to reach **$9-15B by 2030** at 23-27% CAGR. The Pentagon
 Replicator program alone commits **$500M** to deploy thousands of autonomous
-drones by August {\d+}, while recent contract awards total over **$6B** including
-Raytheon's massive ${\d+}.04B Coyote interceptor contract through {\d+}. Ukraine's
-experience losing {\d+}, {\d+} drones monthly to jamming demonstrates urgent
-operational needs driving procurement.
+drones by August {\d+}, while recent contract awards total over **$6B**
+including Raytheon's massive ${\d+}.04B Coyote interceptor contract through
+{\d+}. Ukraine's experience losing {\d+}, {\d+} drones monthly to jamming
+demonstrates urgent operational needs driving procurement.
 
 **Critical market gaps exist in mobile/on-the-move C-UAS** (underserved segment
 with urgent DoD need), **swarm defense** (most systems limited against
 coordinated attacks), and **layered system integration** (sensor-agnostic
-platforms with AI optimization). North America dominates with {\d+}-{\d+}% market
-````
-
-share, while
-
-````Asia-Pacific shows fastest growth at {\d+}.{\d+}% CAGR. Regulatory
+platforms with AI optimization). North America dominates with 40-45% market
+share, while Asia-Pacific shows fastest growth at 25.5% CAGR. Regulatory
 tailwinds emerge from pending Counter-UAS Authority Act potentially extending
 authorization to state/local law enforcement and critical infrastructure
 operators by {\d+}.
@@ -91,14 +74,15 @@ operators by {\d+}.
 
 ## Key Performance Indicators
 
-- **{\d+}.{\d+}% AI Detection Accuracy** - Eliminates environmental false positives
-- **{\d+}-195ms Response Time** - {\d+}-40x faster than current systems ({\d+}-{\d+} seconds
-  baseline)
+- **{\d+}.{\d+}% AI Detection Accuracy** - Eliminates environmental false
+  positives
+- **{\d+}-195ms Response Time** - {\d+}-40x faster than current systems
+  ({\d+}-{\d+} seconds baseline)
 - **{\d+}.{\d+}% Data Integrity** - Blockchain-verified audit trails
 - **Level-{\d+} Autonomous Operation** - Complete edge operation without
   communications dependency
-- **RF-Silent Drone Detection** - Handles autonomous threats that {\d+}% of current
-  systems cannot detect
+- **RF-Silent Drone Detection** - Handles autonomous threats that {\d+}% of
+  current systems cannot detect
 - **<2ms Authentication** - Ultra-fast friend-or-foe identification
 - **{\d+}.{\d+}% System Uptime** - High availability with redundant architecture
 
@@ -110,116 +94,62 @@ operators by {\d+}.
 
 - **Source**: Morpheus Network (mor.org) – decentralized peer-to-peer network of
   personal AI smart agents
-- **Capabilities**: Edge-based threat ```
-classification, smart
-``` contract ROE
-````
-
-enforcement, explainable
-
-````AI outputs
-- **Integration**: Consumes fused sensor ```
-tracks, produces
-``` engagement ```
-decisions, includes
-``` human override channels
+- **Capabilities**: Edge-based threat classification, smart contract ROE
+  enforcement, explainable AI outputs
+- **Integration**: Consumes fused sensor tracks, produces engagement decisions,
+  includes human override channels
 
 ### {\d+}. Solana (Evidence Blockchain Anchoring)
 
-- **Performance**: {\d+}, {\d+}–{\d+}, {\d+} TPS, ~400ms finality, ~${\d+}.{\d+} per anchor
-- **Architecture**: Hash-chained ```
-batches, on
-```-chain Merkle ```
-roots, off
-```-chain
+- **Performance**: {\d+}, {\d+}–{\d+}, {\d+} TPS, ~400ms finality, ~${\d+}.{\d+}
+  per anchor
+- **Architecture**: Hash-chained batches, on-chain Merkle roots, off-chain
   encrypted storage
-- **Resilience**: Dual-chain option with Etherlink ```
-bridge, local
-``` evidence
+- **Resilience**: Dual-chain option with Etherlink bridge, local evidence
   queuing
 
 ### {\d+}. Cognitive Mesh (Multi-Agent Orchestration Framework)
 
 - **Layers**: Foundation (security/network), Reasoning (fusion/analysis),
   Metacognitive (optimization), Agency (execution), Business (interfaces)
-- **Components**: Agent ```
-Registry, HDCP
-```, Temporal Decision ```
-Core, Constraint
-``` &
-  Load ```
-Engine, Zero
-```-Trust Security
-- **Benefits**: Role ```
-specialization, hierarchical
-``` ```
-confidence, temporal
-``` pattern
-````
+- **Components**: Agent Registry, HDCP, Temporal Decision Core, Constraint &
+  Load Engine, Zero-Trust Security
+- **Benefits**: Role specialization, hierarchical confidence, temporal pattern
+  recognition, continuous learning
 
-recognition, continuous
+### 4. Sensor Fusion Layer (Custom Rust Implementation)
 
-````learning
-
-### {\d+}. Sensor Fusion Layer (Custom Rust Implementation)
-
-- **Inputs**: RF ```
-spectrum, EO
-```/IR ```
-cameras, radar
-```, acoustic sensors
-- **Processing**: Real-time track ```
-generation, feature
-``` ```
-extraction, sensor
-````
-
-````
-calibration, time
-``` synchronization
-- **Output**: Unified tracks.v1 protobuf stream with ```
-validated, deduplicated
-````
-
-drone tracks
+- **Inputs**: RF spectrum, EO/IR cameras, radar, acoustic sensors
+- **Processing**: Real-time track generation, feature extraction, sensor
+  calibration, time synchronization
+- **Output**: Unified tracks.v1 protobuf stream with validated, deduplicated
+  tracks
 
 ---
 
 ## Hardware Foundation: NVIDIA Jetson for Edge AI
 
-NVIDIA Jetson AGX Orin 64GB delivers **{\d+} TOPS of AI performance** with {\d+}
-CUDA cores, {\d+} Tensor ``` cores, and
-
-````dedicated Deep Learning Accelerators providing
+NVIDIA Jetson AGX Orin 64GB delivers **275 TOPS of AI performance** with 2048
+CUDA cores, 64 Tensor cores, and dedicated Deep Learning Accelerators providing
 the computational foundation for real-time multi-sensor fusion. The platform
 achieves **{\d+}-{\d+} FPS sustained processing** for 4K video streams with
 sensor-to-decision latency under 50ms using TensorRT optimization.
 
-**Drone detection performance:** YOLOv9 achieves **{\d+}.{\d+}% mAP with {\d+}.{\d+}
-precision and {\d+}.{\d+} recall** at {\d+}+ FPS on Jetson ```
-Nano, scaling
-``` to {\d+}+ FPS on
-Orin platforms. Effective detection ranges from {\d+}-{\d+} feet altitude with
+**Drone detection performance:** YOLOv9 achieves **95.2% mAP with 96.8%
+precision and 93.6% recall** at 30+ FPS on Jetson Nano, scaling to 60+ FPS on
+Orin platforms. Effective detection ranges from 50-500 feet altitude with
 real-time processing of multiple concurrent streams.
 
-**Multi-sensor integration capabilities:** Support for up to {\d+} MIPI CSI-{\d+}
-cameras ({\d+} via virtual channels), {\d+} lanes PCIe Gen4 for LiDAR and radar
-````
-
-sensors, 10GbE `networking for RF detection` arrays, and
-
-```{\d+} I2S interfaces for
-acoustic sensor arrays. The unified {\d+}.{\d+} GB/s memory bandwidth enables
+**Multi-sensor integration capabilities:** Support for up to 6 MIPI CSI-2
+cameras (12 via virtual channels), 16 lanes PCIe Gen4 for LiDAR and radar
+sensors, 10GbE networking for RF detection arrays, and 4 I2S interfaces for
+acoustic sensor arrays. The unified 204.8 GB/s memory bandwidth enables
 real-time fusion of disparate sensor modalities.
 
 **Defense-grade ruggedization:** Jetson AGX Xavier Industrial operates from
--{\d+}°C to +{\d+}°C with MIL-STD-810G shock and vibration compliance. Ruggedized
+-40°C to +85°C with MIL-STD-810G shock and vibration compliance. Ruggedized
 integrators like Curtiss-Wright DuraCOR and FORECR MILBOX provide fanless
-```
-
-operation, IP67 `ingress` protection, and
-
-````{\d+}-{\d+} VDC power input suitable for
+operation, IP67 ingress protection, and 9-36 VDC power input suitable for
 tactical vehicle integration.
 
 ---
@@ -227,10 +157,11 @@ tactical vehicle integration.
 ## Strategic Recommendations
 
 **Market positioning:** Focus on underserved mobile/on-the-move C-UAS segment
-with urgent DoD ```
-need, specialize
-``` in swarm defense capabilities most competitors
-````
+with urgent DoD ``` need, specialize
+
+```in swarm defense capabilities most competitors
+
+```
 
 lack, and
 
@@ -277,9 +208,7 @@ contract execution.
 
 **Phoenix Rooivalk**
 
-- **Technical Demo**: [jurie@nexamesh.com](mailto:jurie@nexamesh.com)
-- **Partnership Inquiries**:
-  [partnership@nexamesh.com](mailto:partnership@nexamesh.com)
+- **Technical Demo** or **Partnership Inquiries**: [jurie@phoenixvc.tech](mailto:jurie@phoenixvc.tech)
 
 ---
 

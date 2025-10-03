@@ -3,9 +3,9 @@
 ## Market Opportunity: Explosive Growth in Counter-Drone Systems
 
 The C-UAS market presents exceptional opportunities, valued at **$2.45-3.0B in
-2024** and projected to reach **$9-15B by 2030** at 23-27% CAGR. The Pentagon
+2025** and projected to reach **$9-15B by 2030** at 23-27% CAGR. The Pentagon
 Replicator program alone commits **$500M** to deploy thousands of autonomous
-drones by August 2025, while recent contract awards total over **$6B** including
+drones by August 2026, while recent contract awards total over **$6B** including
 Raytheon's massive $5.04B Coyote interceptor contract through 2033. Ukraine's
 experience losing 10,000 drones monthly to jamming demonstrates urgent
 operational needs driving procurement.
@@ -16,12 +16,12 @@ operational needs driving procurement.
 
 ### Total Addressable Market (TAM)
 
-- **Total Drone Industry (2024)**: ~$73B USD spanning consumer, commercial, and
+- **Total Drone Industry (2025)**: ~$73B USD spanning consumer, commercial, and
   military segments
-- **Counter-Drone Market (2024)**: $2.45-3.0B with 23-27% CAGR
+- **Counter-Drone Market (2025)**: $2.45-3.0B with 23-27% CAGR
 - **Projected C-UAS Market (2030)**: $9-15B annual market value
 - **Pentagon Replicator Program**: $500M commitment to deploy thousands of
-  autonomous drones by August 2025
+  autonomous drones by August 2026
 - **Recent Contract Awards**: Over $6B including Raytheon's $5.04B Coyote
   interceptor contract through 2033
 
@@ -69,7 +69,7 @@ law enforcement by 2028
 
 - **Swarm Attacks**: Coordinated multi-drone assaults increasing 300% annually
 - **Autonomous Drones**: RF-silent threats that bypass 64% of current systems
-- **Commercial Drone Proliferation**: 2.8M registered drones in US alone (2024)
+- **Commercial Drone Proliferation**: 2.8M registered drones in US alone (2025)
 - **Malicious Use Cases**: Drug smuggling, surveillance, kinetic attacks
 
 **2. Regulatory & Compliance Requirements**
@@ -95,14 +95,17 @@ law enforcement by 2028
 
 **Anduril Industries**
 
-- **Valuation**: $30.5B (Series G, 2025)
-- **Strengths**: Strong defense relationships, proven deployment
+- **Valuation**: $28B (Series G, June 2025)
+- **Recent Funding**: $2.5B Series G (June 2025), $1.5B Series F (August 2024),
+  $1.5B Series E (December 2022)
+- **Strengths**: Strong defense relationships, proven deployment, significant
+  funding
 - **Weaknesses**: 2-5 second latency, cloud dependency, no RF-silent detection
 - **Market Share**: ~15% of military segment
 
 **Fortem Technologies**
 
-- **Valuation**: $1.2B (Series C, 2024)
+- **Valuation**: $1.2B (Series C, 2025)
 - **Strengths**: Kinetic interceptor systems, airport deployments
 - **Weaknesses**: Expensive per engagement, sequential processing
 - **Market Share**: ~12% of critical infrastructure segment
@@ -226,7 +229,7 @@ law enforcement by 2028
 
 ### Market Penetration Targets
 
-**Year 1 (2025)**
+**Year 1 (2026)**
 
 - **Units Sold**: 50 systems
 - **Revenue**: $3.5M

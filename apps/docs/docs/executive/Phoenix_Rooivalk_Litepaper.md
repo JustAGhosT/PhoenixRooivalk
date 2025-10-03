@@ -8,7 +8,8 @@ sidebar_label: Phoenix Rooivalk Litepaper
 
 ## Revolutionary Counter-Drone Defense Platform
 
-**Nexamesh Technologies** | **Delaware C-Corp (in progress)** | **2025**
+**Nexamesh Technologies** | **Delaware C-Corp (in progress) + South African
+Entity (planned)** | **2025**
 
 ---
 
@@ -101,7 +102,7 @@ systems that fail when enemies jam communications.
 
 **Market Size & Growth:**
 
-- **2024**: $2.45-3.0B market size
+- **2025**: $2.45-3.0B market size
 - **2030**: $9-15B projected market size
 - **CAGR**: 23-27% annual growth rate
 - **Government Investment**: $500M Pentagon Replicator Program
@@ -224,7 +225,8 @@ systems that fail when enemies jam communications.
 
 ### **Nexamesh Technologies**
 
-**Legal Entity**: Delaware C-Corp registration (in progress)  
+**Legal Entity**: Delaware C-Corp registration (in progress) + South African
+Entity (planned for Q2 2026)  
 **Business Purpose**: Defense contracting, IP protection, and government
 compliance  
 **Regulatory Pathway**: ITAR registration and DoD contractor eligibility
@@ -232,10 +234,11 @@ development
 
 **Key Partnerships:**
 
-- **Lockheed Martin**: Integration and prime contractor relationships
-- **Raytheon**: Technology collaboration and market access
-- **Northrop Grumman**: Defense system integration
-- **Morpheus Network**: AI technology partnership
+- **Lockheed Martin**: Integration and prime contractor relationships (in
+  discussion)
+- **Raytheon**: Technology collaboration and market access (planned)
+- **Northrop Grumman**: Defense system integration (planned)
+- **Morpheus Network**: AI technology partnership (planned)
 - **Cognitive Mesh**: Multi-agent orchestration framework
 
 ---
@@ -347,15 +350,16 @@ development
 **Phoenix Rooivalk**  
 **Nexamesh Technologies**
 
-- **Technical Demo**: [jurie@nexamesh.com](mailto:jurie@nexamesh.com)
-- **Partnership Inquiries**:
-  [partnership@nexamesh.com](mailto:partnership@nexamesh.com)
+- **Technical Demo** | **Partnership Inquiries**:
+  [partnership@phoenixvc.tech](mailto:partnership@phoenixvc.tech)
 - **Investment Opportunities**:
-  [investors@nexamesh.com](mailto:investors@nexamesh.com)
+  [investors@phoenixvc.tech](mailto:investors@phoenixvc.tech)
 
 **Website**:
-[phoenixrooivalk.netlify.app](https://phoenixrooivalk.netlify.app)  
-**Documentation**: [docs-phoenixrooivalk.netlify.app](https://docs-phoenixrooivalk.netlify.app)
+[https://phoenixrooivalk.netlify.app/](https://phoenixrooivalk.netlify.app/)  
+**Documentation**: [https://docs-phoenixrooivalk.netlify.app/](https://docs-phoenixrooivalk.netlify.app/)  
+**Nexamesh
+Technologies**: [https://nexamesh.ai/](https://nexamesh.ai/) (Under Development)
 
 ---
 

@@ -113,7 +113,8 @@ providing capabilities unmatched by current market solutions.
 
 **Rationale**: Hedera's governance council includes Boeing, IBM, and Google
 providing enterprise credibility. Non-US jurisdiction aligns with South African
-sovereignty requirements.
+entity sovereignty requirements, while Solana provides US market compliance for
+Delaware C-Corp entity.
 
 ### AI/ML Framework Architecture
 

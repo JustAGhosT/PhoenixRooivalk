@@ -10,10 +10,8 @@ sidebar_label: Integration Guide
 
 This guide provides comprehensive integration procedures for the Phoenix
 Rooivalk Counter-Drone Defense System with third-party `systems, cloud`
-`platforms, and` external services. The guide covers API
-`specifications, integration` ``` patterns, and
-
-````best practices for seamless system integration.
+platforms, and external services. The guide covers API specifications,
+integration patterns, and best practices for seamless system integration.
 
 ---
 
@@ -21,23 +19,29 @@ Rooivalk Counter-Drone Defense System with third-party `systems, cloud`
 
 ### Architecture Overview
 
-Phoenix Rooivalk integrates Morpheus Network for enhanced threat analysis using decentralized AI inference. This hybrid approach maintains sub-{\d+} second response times while adding advanced pattern recognition and threat intelligence capabilities through distributed AI processing.
+Phoenix Rooivalk integrates Morpheus Network for enhanced threat analysis using
+decentralized AI inference. This hybrid approach maintains sub-{\d+} second
+response times while adding advanced pattern recognition and threat intelligence
+capabilities through distributed AI processing.
 
 ### Dual-Layer Processing Architecture
 
 **Edge Inference Layer**
+
 - **Purpose**: Immediate threat classification
 - **Latency**: &lt;50ms response time
 - **Location**: Local hardware (NVIDIA Jetson)
 - **Function**: Real-time threat detection and initial response
 
 **Morpheus Agent Layer**
+
 - **Purpose**: Enhanced pattern analysis
 - **Latency**: {\d+}-30s processing time
 - **Location**: Distributed Morpheus network
 - **Function**: Advanced threat intelligence and pattern recognition
 
 **Blockchain Verification**
+
 - **Purpose**: Result verification and rewards
 - **Latency**: 400ms blockchain confirmation
 - **Location**: Solana blockchain
@@ -45,57 +49,45 @@ Phoenix Rooivalk integrates Morpheus Network for enhanced threat analysis using 
 
 ### Integration Components
 
-| Component      | Purpose                         | Latency | Location               |
-| -------------- | ------------------------------- | ------- | ---------------------- |
-| Edge Inference | Immediate threat classification | &lt;50ms   | Local hardware         |
-| Morpheus Agent | Enhanced pattern analysis       | {\d+}-30s  | Distributed network    |
-| Solana Program | Result verification & rewards   | 400ms   | Blockchain             |
-| Orchestrator   | Job coordination                | &lt;100ms  | Phoenix infrastructure |
+| Component      | Purpose                         | Latency   | Location               |
+| -------------- | ------------------------------- | --------- | ---------------------- |
+| Edge Inference | Immediate threat classification | &lt;50ms  | Local hardware         |
+| Morpheus Agent | Enhanced pattern analysis       | {\d+}-30s | Distributed network    |
+| Solana Program | Result verification & rewards   | 400ms     | Blockchain             |
+| Orchestrator   | Job coordination                | &lt;100ms | Phoenix infrastructure |
 
 ### Setup Requirements
 
 **Prerequisites**
+
 - Rust: {\d+}.{\d+}+
 - Node.js: {\d+}+
 - Solana CLI: {\d+}.{\d+}+
 - Docker: {\d+}+
 - NVIDIA Jetson with JetPack {\d+}.{\d+}+
 
-**Morpheus Network Setup**
-{\d+}. **Agent Registration**: Register Phoenix Rooivalk agents with Morpheus network
-{\d+}. **Token Management**: Configure MOR token payments for inference services
-{\d+}. **Network Configuration**: Set up secure communication channels
-{\d+}. **Performance Monitoring**: Implement monitoring for Morpheus integration
+**Morpheus Network Setup** {\d+}. **Agent Registration**: Register Phoenix
+Rooivalk agents with Morpheus network {\d+}. **Token Management**: Configure MOR
+token payments for inference services {\d+}. **Network Configuration**: Set up
+secure communication channels {\d+}. **Performance Monitoring**: Implement
+monitoring for Morpheus integration
 
 ### API Integration
 
 **Morpheus API Endpoints**
+
 ```rust
 // Morpheus integration API
 pub struct MorpheusClient {
-    network_url: ```
-String, agent_id
-```: ```
-String, api_key
-```: String,
+    network_url: String, agent_id: String, api_key: String,
 }
 
 impl MorpheusClient {
-    pub async fn submit_inference_job(&```
-self, data
-```: ThreatData) -> Result&lt;```
-JobId, Error
-```&gt;;
-    pub async fn get_inference_result(&```
-self, job_id
-```: JobId) -> Result&lt;```
-AnalysisResult, Error
-```&gt;;
-    pub async fn get_agent_status(&self) -> Result&lt;```
-AgentStatus, Error
-```&gt;;
+    pub async fn submit_inference_job(&self, data: ThreatData) -> Result<JobId, Error>;
+    pub async fn get_inference_result(&self, job_id: JobId) -> Result<AnalysisResult, Error>;
+    pub async fn get_agent_status(&self) -> Result<AgentStatus, Error>;
 }
-````
+```
 
 **Integration Patterns**
 

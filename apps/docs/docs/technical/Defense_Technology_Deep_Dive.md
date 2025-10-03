@@ -115,7 +115,7 @@ description: "Fiber optic bandwidth" } ]} />
 ### Market Size and Growth
 
 <MarketStats title="Global Counter-Drone Market" stats={[ { label:
-"2024 Market", value: "$2.4-3.8B", description: "Current market size" }, {
+"2025 Market", value: "$2.4-3.8B", description: "Current market size" }, {
 label: "2030-2031 Projection", value: "$10-15B", description: "Projected market
 size" }, { label: "Growth Rate", value: "25-28%", description: "Annual CAGR" },
 { label: "Ukraine Impact", value: "70%", description: "Drones account for
@@ -139,7 +139,7 @@ phoenix: true, competitor1: false, competitor2: true, competitor3: true } ]} />
 ### Ukraine War Impact
 
 <TechnicalHighlight title="Combat Validation" type="warning" icon="⚔️">
-The Russia-Ukraine War revolutionized drone and counter-drone tactics at unprecedented speed, with Ukraine producing 2 million drones in 2024, targeting 5 million for 2025, while Russia utilized approximately 4 million UAVs in 2024.
+The Russia-Ukraine War revolutionized drone and counter-drone tactics at unprecedented speed, with Ukraine producing 2 million drones in 2025, targeting 5 million for 2026, while Russia utilized approximately 4 million UAVs in 2025.
 </TechnicalHighlight>
 
 **Electronic Warfare Evolution**

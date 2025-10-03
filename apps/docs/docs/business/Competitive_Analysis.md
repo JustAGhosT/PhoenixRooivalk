@@ -16,7 +16,8 @@ substantial market share by addressing critical gaps in current solutions.
 
 **Military & Defense**
 
-1. **Anduril Industries** - $30.5B valuation, strong defense relationships
+1. **Anduril Industries** - $28B valuation (Series G, June 2025), strong defense
+   relationships
 2. **Lockheed Martin** - Traditional defense contractor with integrated
    solutions
 3. **Raytheon** - Missile defense and sensor integration expertise
@@ -42,7 +43,9 @@ substantial market share by addressing critical gaps in current solutions.
 **Company Overview**
 
 - **Founded**: 2017
-- **Valuation**: $30.5B (Series G, 2025)
+- **Valuation**: $28B (Series G, June 2025)
+- **Recent Funding**: $2.5B Series G (June 2025), $1.5B Series F (August 2024),
+  $1.5B Series E (December 2022)
 - **Employees**: 2,500+
 - **Revenue**: $1B+ (estimated)
 - **Focus**: AI-powered defense systems, autonomous weapons
@@ -90,7 +93,7 @@ substantial market share by addressing critical gaps in current solutions.
 **Company Overview**
 
 - **Founded**: 2016
-- **Valuation**: $1.2B (Series C, 2024)
+- **Valuation**: $1.2B (Series C, 2025)
 - **Employees**: 500+
 - **Revenue**: $200M+ (estimated)
 - **Focus**: Kinetic counter-drone systems, airport security

@@ -15,54 +15,28 @@ solutions like Pinax (which would have added unnecessary overhead).
 
 **Q: How is {\d+}-195ms decision latency achieved?** A: Target latency through
 edge-first architecture - entire fuse-classify-decide-actuate path designed to
-run locally without WAN/cloud round-trips. Sensor fusion targeted at {\d+}-```
-50ms, AI
-
-````
-decision at {\d+}-```
-100ms, with
-``` parallel evidence queueing. These are design targets
+run locally without WAN/cloud round-trips. Sensor fusion targeted at 20-50ms, AI
+decision at 50-100ms, with parallel evidence queueing. These are design targets
 to be validated with hardware testing.
 
 **Q: What ensures safe actions and compliance?** A: Policy-based ROE guardrails
-in the AI ```
-engine, soft
-```-kill first approach ```
-design, geofencing
-``` ```
-capabilities, human
-```-in-the-loop for kinetic ```
-actions, and
-``` blockchain audit trail for
+in the AI engine, soft-kill first approach design, geofencing capabilities,
+human-in-the-loop for kinetic actions, and blockchain audit trail for
 accountability.
 
 **Q: How does the system handle EW and GPS denial?** A: Fully offline-autonomous
 operation; evidence queues locally and anchors asynchronously when connectivity
-resumes. Uses ```
-IMU, visual
-``` ```
-odometry, and
-``` multi-sensor correlation as GPS
+resumes. Uses IMU, visual odometry, and multi-sensor correlation as GPS
 alternatives.
 
-**Q: Can sensors/vendors be swapped?** A: ```
-Yes, our
-``` Rust-based fusion layer
+**Q: Can sensors/vendors be swapped?** A: Yes, our Rust-based fusion layer
 provides stable protobuf contracts abstracting sensor differences. New sensors
 integrate via adapter pattern without affecting downstream components.
 
 **Q: What advantage does it provide over fiber-anchored drones?** A: No physical
-tether ```
-limitations, unlimited
-``` range within deployment ```
-zone, resilience
-``` in
-contested ```
-environments, ability
-``` to operate in network-denied conditions while
-maintaining cryptographic evidence ```
-trail, and
-``` multi-site scalability.
+tether limitations, unlimited range within deployment zone, resilience in
+contested environments, ability to operate in network-denied conditions while
+maintaining cryptographic evidence trail, and multi-site scalability.
 
 ---
 
@@ -70,10 +44,11 @@ trail, and
 
 **Q: How does Cognitive Mesh enhance Phoenix Rooivalk beyond basic autonomy?**
 A: Provides multi-agent orchestration allowing role specialization
-(scout/interceptor/relay), hierarchical decision ```
-confidence, temporal
-``` pattern
-````
+(scout/interceptor/relay), hierarchical decision ``` confidence, temporal
+
+```pattern
+
+```
 
 recognition, and
 
@@ -103,29 +78,17 @@ damaged, and
 ``` rebalances tasks in real-time.
 
 **Q: How does the Hierarchical Decision Confidence Pack (HDCP) improve
-accuracy?** A: HDCP is designed to weight sensor inputs by ```
-reliability, decompose
-``` complex threats into sub-```
-problems, and
-``` use ensemble voting. Target is
-improving detection accuracy from {\d+}.{\d+}% to {\d+}.{\d+}-{\d+}.{\d+}% through multi-level
+accuracy?** A: HDCP is designed to weight sensor inputs by reliability, decompose complex threats into sub-problems, and use ensemble voting. Target is
+improving detection accuracy from 85.2% to 95.2-98.5% through multi-level
 analysis.
 
-**Q: How does the Temporal Decision Core interface with Level-{\d+} architecture?**
-A: TDC runs on edge nodes providing context enrichment within {\d+}-100ms after
+**Q: How does the Temporal Decision Core interface with Level-0 architecture?**
+A: TDC runs on edge nodes providing context enrichment within 50-100ms after
 sub-2ms authentication. Uses bypass mechanism for critical path while
 maintaining eligibility traces for pattern matching.
 
 **Q: How does Cognitive Mesh's Zero-Trust framework enhance security?** A: Every
-drone command requires fresh ```
-authentication, implements
-``` least ```
-privilege, uses
-````
-
-encrypted channels with rotating `keys, logs` all ``` attempts, and
-
-````instantly revokes
+drone command requires fresh authentication, implements least privilege, uses encrypted channels with rotating keys, logs all attempts, and instantly revokes
 compromised drone permissions.
 
 **Q: What role does the Constraint & Load Engine play?** A: Dynamically balances

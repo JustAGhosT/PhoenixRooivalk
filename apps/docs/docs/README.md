@@ -132,7 +132,7 @@ Start with: [Compliance Framework](legal/Compliance_Framework.md) → [Technical
 
 ### **Market Opportunity**
 
-- **Market Size**: $2.45-3.0B (2024) growing to $9-15B (2030)
+- **Market Size**: $2.45-3.0B (2025) growing to $9-15B (2030)
 - **Growth Rate**: 23-27% CAGR with explosive growth trajectory
 - **Government Commitments**: $500M Pentagon Replicator Program, $6B+ recent contracts
 - **Critical Gaps**: Mobile C-UAS, swarm defense, layered integration
@@ -149,12 +149,14 @@ Start with: [Compliance Framework](legal/Compliance_Framework.md) → [Technical
 
 - **Capital Requirements**: $30-50M total needs
 - **Revenue Streams**: Hardware sales, software subscriptions, support services
-- **Partnership Strategy**: Lockheed Martin, Raytheon, Northrop Grumman
+- **Partnership Strategy**: Lockheed Martin (in discussion), Raytheon, Northrop Grumman (planned)
+- **Entity Structure**: Delaware C-Corp (in progress) + South African Entity (planned Q2 2026)
 - **Funding Pathways**: SBIR/STTR non-dilutive funding, OTA contracts
 
 ### **Compliance Framework**
 
-- **ITAR Compliance**: USML Categories VIII and XI, DDTC registration
+- **US Entity (Delaware C-Corp)**: ITAR compliance, USML Categories VIII and XI, DDTC registration
+- **South African Entity (Planned Q2 2026)**: Non-ITAR jurisdiction for global markets
 - **DoD Directive 3000.09**: Autonomous weapons policy compliance
 - **Blockchain Evidence**: Court-admissible audit trails with Solana
 - **Operational Resilience**: Multi-modal navigation, EW resistance
@@ -192,8 +194,7 @@ Start with: [Compliance Framework](legal/Compliance_Framework.md) → [Technical
 
 **Phoenix Rooivalk**
 
-- **Technical Demo**: [jurie@nexamesh.com](mailto:jurie@nexamesh.com)
-- **Partnership Inquiries**: [partnership@nexamesh.com](mailto:partnership@nexamesh.com)
+- **Technical Demo** | **Partnership Inquiries**: [jurie@phoenixvc.tech](mailto:jurie@phoenixvc.tech)
 
 ---
 
@@ -215,4 +216,4 @@ Start with: [Compliance Framework](legal/Compliance_Framework.md) → [Technical
 
 ---
 
-*This documentation index provides comprehensive access to all Phoenix Rooivalk documentation. Last updated: October 2025*
+*This documentation index provides comprehensive access to all Phoenix Rooivalk documentation. Last updated: October 3, 2025*

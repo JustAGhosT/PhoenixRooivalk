@@ -8,18 +8,14 @@ sidebar_label: System Overview
 
 ## Executive Summary
 
-Phoenix Rooivalk is a ``` modular, layered
-
-````defense system designed to provide
+Phoenix Rooivalk is a modular, layered defense system designed to provide
 comprehensive protection against low-cost UAS (Unmanned Aerial System) threats.
 The system employs a multi-component architecture that cues the most
 cost-effective effector first while maintaining command and control (C2)
 capabilities in heavy electronic warfare (EW) environments through resilient
 free-space optical (FSO) and radio frequency (RF) links.
 
-**Mission**: Provide a ```
-modular, layered
-``` defense against low-cost UAS threats by
+**Mission**: Provide a modular, layered defense against low-cost UAS threats by
 cueing the cheapest effective effector first and maintaining C2 in heavy EW via
 resilient FSO and RF links.
 
@@ -31,28 +27,18 @@ resilient FSO and RF links.
 
 #### RKV-M: Aerial VTOL Mothership
 
-- **Primary Function**: ```
-Picket, relay
-```, and mini launch platform
+- **Primary Function**: Picket, relay, and mini launch platform
 - **Capabilities**:
   - Long-endurance aerial operations
   - Multi-sensor threat detection
   - Mini-drone deployment and recovery
   - Command and control relay
 - **Design**: Tilt-quad configuration with ducted rotors
-- **Performance**: High-altitude ```
-operations, extended
-``` ```
-range, payload
-``` capacity
+- **Performance**: High-altitude operations, extended range, payload capacity
 
 #### RKV-I: Interceptor Minis
 
-- **Primary Function**: ```
-Interceptor, decoy
-```, and ISR (```
-Intelligence, Surveillance
-```,
+- **Primary Function**: Interceptor, decoy, and ISR (Intelligence, Surveillance,
   Reconnaissance) operations
 - **Capabilities**:
   - High-speed interception
@@ -60,17 +46,11 @@ Intelligence, Surveillance
   - Intelligence gathering
   - Tactical reconnaissance
 - **Control**: RF control or optional fiber-optic control
-- **Design**: ```
-Compact, high
-```-performance interceptors
+- **Design**: Compact, high-performance interceptors
 
 #### RKV-G: Ground Control Station (GCS)
 
-- **Primary Function**: Mobile ground ```
-control, mast
-``` ```
-operations, and
-``` logistics
+- **Primary Function**: Mobile ground control, mast operations, and logistics
   support
 - **Capabilities**:
   - Mobile command and control
@@ -78,9 +58,7 @@ operations, and
   - Logistics support
   - Fiber spool management
 - **Design**: Rover-based mobile platform
-- **Performance**: All-terrain ```
-mobility, extended
-``` operational range
+- **Performance**: All-terrain mobility, extended operational range
 
 #### RKV-C2: Command and Control System
 
@@ -91,9 +69,7 @@ mobility, extended
   - Event monitoring and alerting
   - System observability
 - **Design**: Distributed C2 architecture
-- **Performance**: Low-latency ```
-operations, high
-``` reliability
+- **Performance**: Low-latency operations, high reliability
 
 ---
 
@@ -171,11 +147,9 @@ Features**:
 
 ### Threat Detection and Assessment
 
-- **Multi-Sensor Fusion**: ```
-RF, radar
-```, EO/```
-IR, acoustic
-```, LiDAR
+- **Multi-Sensor Fusion**: `RF, radar`, EO/``` IR, acoustic
+
+````, LiDAR
 - **AI-Powered Analysis**: Machine learning threat classification
 - **Real-Time Processing**: Sub-200ms threat detection and classification
 - **Pattern Recognition**: Advanced threat pattern analysis
