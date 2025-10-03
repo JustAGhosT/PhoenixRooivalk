@@ -117,7 +117,7 @@ export const ExitIntentModal: React.FC<ExitIntentModalProps> = ({
         {/* Whitepaper preview */}
         <div className="bg-gray-800/50 rounded-lg p-4 mb-6 border border-green-500/20">
           <h3 className="text-green-400 font-semibold text-sm mb-2">
-            What's Inside:
+            What&apos;s Inside:
           </h3>
           <ul className="text-xs text-gray-300 space-y-1">
             <li>• Complete system architecture</li>

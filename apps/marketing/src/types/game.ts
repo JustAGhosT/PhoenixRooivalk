@@ -22,8 +22,8 @@ export interface SelectionBox {
 export interface GameDimensions {
   width: number;
   height: number;
-  centerX: number;
-  centerY: number;
+  centerX?: number;
+  centerY?: number;
 }
 
 export interface ParticleEffect {
@@ -45,14 +45,6 @@ export interface StrategicZone {
   type: "deployment" | "exclusion" | "priority";
   priority: "high" | "medium" | "low";
   active: boolean;
-}
-
-export interface SelectionBox {
-  startX: number;
-  startY: number;
-  endX: number;
-  endY: number;
-  isActive: boolean;
 }
 
 export interface GameState {
@@ -113,11 +105,6 @@ export interface GameState {
   showDeploymentZones: boolean;
 }
 
-export interface GameDimensions {
-  width: number;
-  height: number;
-}
-
 export interface Point {
   x: number;
   y: number;
@@ -162,8 +149,32 @@ export interface ThreatNeutralizedEvent {
   timestamp: number;
 }
 
-export interface GameEvent {
-  type: "threat_spawned" | "threat_neutralized" | "weapon_fired" | "power_up_activated" | "level_up" | "game_over";
-  data: any;
-  timestamp: number;
+export interface ThreatSpawnedEvent {
+  threat: Threat;
 }
+
+export interface PowerUpActivatedEvent {
+  powerUpType: string;
+  duration: number;
+}
+
+export interface LevelUpEvent {
+  level: number;
+}
+
+export interface GameOverEvent {
+  score: number;
+  threatsNeutralized: number;
+}
+
+export type GameEventData =
+  | { type: "threat_spawned"; data: ThreatSpawnedEvent }
+  | { type: "threat_neutralized"; data: ThreatNeutralizedEvent }
+  | { type: "weapon_fired"; data: WeaponFireEvent }
+  | { type: "power_up_activated"; data: PowerUpActivatedEvent }
+  | { type: "level_up"; data: LevelUpEvent }
+  | { type: "game_over"; data: GameOverEvent };
+
+export type GameEvent = GameEventData & {
+  timestamp: number;
+};

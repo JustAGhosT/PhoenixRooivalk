@@ -101,7 +101,9 @@ export const useGameState = () => {
           return JSON.parse(
             localStorage.getItem("threatSimulatorLeaderboard") || "[]",
           );
-        } catch {
+        } catch (error) {
+          // eslint-disable-next-line no-console
+          console.error("Failed to parse leaderboard from localStorage", error);
           return [];
         }
       }
@@ -319,6 +321,7 @@ export const useGameState = () => {
 
   const fireWeapon = useCallback((_targetX: number, _targetY: number) => {
     setGameState((prev) => {
+      // eslint-disable-next-line security/detect-object-injection
       const weapon = prev.weapons[prev.selectedWeapon];
       const currentTime = Date.now();
 
@@ -348,6 +351,7 @@ export const useGameState = () => {
         ...prev,
         weapons: {
           ...prev.weapons,
+          // eslint-disable-next-line security/detect-object-injection
           [prev.selectedWeapon]: newWeapon,
         },
         energy: Math.max(0, prev.energy - 10),
@@ -362,8 +366,10 @@ export const useGameState = () => {
       let hasChanges = false;
 
       Object.keys(updatedWeapons).forEach((weaponId) => {
+        // eslint-disable-next-line security/detect-object-injection
         const weapon = updatedWeapons[weaponId];
         if (!weapon.isReady && currentTime - weapon.lastFired >= weapon.cooldown) {
+          // eslint-disable-next-line security/detect-object-injection
           updatedWeapons[weaponId] = {
             ...weapon,
             isReady: true,
@@ -376,13 +382,13 @@ export const useGameState = () => {
     });
   }, []);
 
-  const activatePowerUp = useCallback((powerUpType: string) => {
+  const activatePowerUp = useCallback((powerUpType: PowerUp["type"]) => {
     setGameState((prev) => {
       const currentTime = Date.now();
       const newPowerUp: PowerUp = {
         id: `${powerUpType}-${currentTime}`,
         name: powerUpType,
-        type: powerUpType as any,
+        type: powerUpType,
         duration: 10000,
         startTime: currentTime,
         isActive: true,
@@ -451,7 +457,10 @@ export const useGameState = () => {
       if (typeof window !== "undefined") {
         try {
           localStorage.setItem("threatSimulatorLeaderboard", JSON.stringify(updatedLeaderboard));
-        } catch {}
+        } catch (error) {
+          // eslint-disable-next-line no-console
+          console.error("Failed to set leaderboard in localStorage", error);
+        }
       }
 
       return { ...prev, leaderboard: updatedLeaderboard };
@@ -509,6 +518,7 @@ export const useGameState = () => {
       ...prev,
       priorityThreats: {
         ...prev.priorityThreats,
+        // eslint-disable-next-line security/detect-object-injection
         [threatId]: priority,
       },
     }));
@@ -517,6 +527,7 @@ export const useGameState = () => {
   const removeThreatPriority = useCallback((threatId: string) => {
     setGameState((prev) => {
       const newPriorities = { ...prev.priorityThreats };
+      // eslint-disable-next-line security/detect-object-injection
       delete newPriorities[threatId];
       return {
         ...prev,

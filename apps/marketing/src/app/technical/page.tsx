@@ -1,6 +1,5 @@
 "use client";
 import Link from "next/link";
-// eslint-disable-next-line import/default
 import React from "react";
 
 export default function TechnicalPage(): React.ReactElement {
