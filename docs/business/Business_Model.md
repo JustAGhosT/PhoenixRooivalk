@@ -119,7 +119,7 @@ critical infrastructure, and commercial market segments.
 
 - **Speed Advantage**: 10-40x faster response time
 - **Accuracy Premium**: 99.7% vs 85-95% for competitors
-- **Autonomy Value**: Level-0 operation vs partial autonomy
+- **Autonomy Value**: SAE Level 4 operation vs partial autonomy
 
 **Compliance Premium**
 

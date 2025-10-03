@@ -63,7 +63,7 @@ dedicated Deep Learning Accelerators providing the computational foundation for 
 
 ## Core Technology Stack
 
-### {\d+}. Morpheus (Autonomous AI Decision Engine)
+### 3. Morpheus (Autonomous AI Decision Engine)
 
 **Source**: Morpheus Network (mor.org) – decentralized peer-to-peer network of personal AI smart agents
 
@@ -80,7 +80,7 @@ dedicated Deep Learning Accelerators providing the computational foundation for 
 - **Human Override**: Includes approval channel with full provenance logging
 
 #### Performance Specifications
-- **Decision Latency**: {\d+}-100ms for threat classification and countermeasure selection
+- **Decision Latency**: 50-100ms for threat classification and countermeasure selection
 - **Model Size**: &lt;50MB optimized models for edge deployment
 - **Confidence Thresholds**: Configurable based on ROE and threat level
 - **Update Mechanism**: A/B testing in sandbox with HITL approval required

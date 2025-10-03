@@ -32,7 +32,7 @@ protocol comparison to determine the optimal blockchain architecture for militar
 ### Performance Specifications
 
 **Solana POC Performance**:
-- **Throughput**: {\d+}, {\d+}+ transactions per second
+- **Throughput**: 65,000+ transactions per second
 - **Latency**: 400ms transaction finality
 - **Block Time**: 400ms block intervals
 - **Consensus**: Proof of History (PoH) with Proof of Stake
@@ -40,15 +40,15 @@ protocol comparison to determine the optimal blockchain architecture for militar
 
 ### Implementation Strategy
 
-**Phase {\d+}: Cloud POC (Months {\d+}-{\d+})**
+**Phase 1: Cloud POC (Months 1-3)**
 - **Infrastructure**: AWS/Azure cloud deployment
-- **Cost**: ${\d+}, {\d+} monthly operational cost
+- **Cost**: $5,000 monthly operational cost
 - **Validation**: Core blockchain functionality and performance
 - **Migration Path**: Clear path to on-premise deployment
 
-**Phase {\d+}: On-Premise Deployment (Months {\d+}-{\d+})**
+**Phase 2: On-Premise Deployment (Months 4-6)**
 - **Hardware**: Production-grade on-premise infrastructure
-- **Cost**: ${\d+}, {\d+} initial hardware investment
+- **Cost**: $50,000 initial hardware investment
 - **Performance**: Full production performance validation
 - **Integration**: Complete system integration testing
 

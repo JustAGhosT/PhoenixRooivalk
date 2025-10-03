@@ -41,35 +41,35 @@ Rooivalk Counter-Drone Defense System. The specifications cover system
 ### NVIDIA Jetson Performance
 
 **Jetson AGX Orin 64GB**
-- **AI Performance**: {\d+} TOPS (Tera Operations Per Second)
-- **CUDA Cores**: {\d+} CUDA cores
-- **Tensor Cores**: {\d+} Tensor cores
+- **AI Performance**: 275 TOPS (Tera Operations Per Second)
+- **CUDA Cores**: 2048 CUDA cores
+- **Tensor Cores**: 64 Tensor cores
 - **Memory**: 32GB LPDDR5 unified memory
-- **Memory Bandwidth**: {\d+}.{\d+} GB/s unified memory bandwidth
+- **Memory Bandwidth**: 204.8 GB/s unified memory bandwidth
 - **Power Consumption**: 60W ```
 typical, 100W
 ``` peak
-- **Operating Temperature**: -{\d+}°C to +{\d+}°C (Industrial variants)
+- **Operating Temperature**: -40°C to +85°C (Industrial variants)
 
 **Jetson Orin NX 16GB**
-- **AI Performance**: {\d+} TOPS
-- **CUDA Cores**: {\d+} CUDA cores
-- **Tensor Cores**: {\d+} Tensor cores
+- **AI Performance**: 100 TOPS
+- **CUDA Cores**: 1024 CUDA cores
+- **Tensor Cores**: 32 Tensor cores
 - **Memory**: 16GB LPDDR5 unified memory
-- **Memory Bandwidth**: {\d+}.{\d+} GB/s unified memory bandwidth
+- **Memory Bandwidth**: 102.4 GB/s unified memory bandwidth
 - **Power Consumption**: 30W ```
 typical, 50W
 ``` peak
-- **Operating Temperature**: -{\d+}°C to +{\d+}°C
+- **Operating Temperature**: -40°C to +85°C
 
 **Jetson Nano**
-- **AI Performance**: {\d+}.{\d+} TOPS
-- **CUDA Cores**: {\d+} CUDA cores
+- **AI Performance**: 0.5 TOPS
+- **CUDA Cores**: 128 CUDA cores
 - **Memory**: 4GB LPDDR4
 - **Power Consumption**: 7W ```
 typical, 15W
 ``` peak
-- **Operating Temperature**: -{\d+}°C to +{\d+}°C
+- **Operating Temperature**: -40°C to +85°C
 
 ### Sensor Performance Specifications
 

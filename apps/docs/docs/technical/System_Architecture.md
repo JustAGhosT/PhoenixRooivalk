@@ -311,7 +311,7 @@ Delaware C-Corp entity.
 
 - **Swarm Size**: 5-20 interceptor drones
 - **Coordination Latency**: &lt;100ms
-- **Autonomous Decision**: Level-0 autonomy
+- **Autonomous Decision**: SAE Level 4 autonomy
 - **Human Override**: Always available
 - **Collision Avoidance**: Real-time path planning
 

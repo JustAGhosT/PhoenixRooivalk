@@ -159,7 +159,7 @@ discovery calls to assess needs, technical requirements, and budget parameters.
 ### Autonomy Requirements
 
 13. **Do you require autonomous operation without human intervention?**
-    - [ ] Yes, fully autonomous (Level-0)
+    - [ ] Yes, fully autonomous (SAE Level 4)
     - [ ] Semi-autonomous with human oversight
     - [ ] Manual operation acceptable
     - [ ] Not sure

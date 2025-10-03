@@ -18,7 +18,7 @@
 PhoenixRooivalk is a next-generation modular counter-Unmanned Aircraft System (c-UAS) defense platform that operates autonomously even when communications are completely jammed. Our system delivers military-grade drone threat detection and neutralization in 120-195ms response times - 25-40x faster than traditional systems that fail when enemies jam communications.
 
 **Key Features:**
-• **Edge Autonomy**: Level-0 autonomous operation without network dependency
+• **Edge Autonomy**: SAE Level 4 autonomous operation without network dependency
 • **Modular Architecture**: VTOL motherships, interceptors, and ground support systems  
 • **Blockchain Evidence**: Tamper-proof dual-chain (Solana + EtherLink) audit trails
 • **Real-time Processing**: Multi-sensor fusion with 95%+ AI detection accuracy

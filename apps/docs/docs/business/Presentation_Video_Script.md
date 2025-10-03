@@ -25,7 +25,7 @@ swarm can bring down entire systems. Traditional defenses are too slow, too
 expensive, and too vulnerable to jamming."
 
 **Visual**: Phoenix Rooivalk system activating  
-**Narration**: "Meet Phoenix Rooivalk - the world's first Level-0 autonomous
+**Narration**: "Meet Phoenix Rooivalk - the world's first SAE Level 4 autonomous
 counter-drone defense system."
 
 ### Problem Statement (15-45 seconds)
@@ -45,7 +45,7 @@ counter-drone defense system."
 ### Solution Introduction (45-90 seconds)
 
 **Visual**: Phoenix Rooivalk system components  
-**Narration**: "Phoenix Rooivalk changes everything with Level-0 edge autonomy:
+**Narration**: "Phoenix Rooivalk changes everything with SAE Level 4 edge autonomy:
 
 - 120-195ms response time - 25-40x faster than competitors
 - Complete operational independence without network dependency

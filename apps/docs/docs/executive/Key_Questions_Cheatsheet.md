@@ -70,7 +70,7 @@ accuracy?** A: HDCP is designed to weight sensor inputs by reliability, decompos
 improving detection accuracy from 85.2% to 95.2-98.5% through multi-level
 analysis.
 
-**Q: How does the Temporal Decision Core interface with Level-0 architecture?**
+**Q: How does the Temporal Decision Core interface with SAE Level 4 architecture?**
 A: TDC runs on edge nodes providing context enrichment within 50-100ms after
 sub-2ms authentication. Uses bypass mechanism for critical path while
 maintaining eligibility traces for pattern matching.
@@ -85,7 +85,7 @@ simultaneously. Can relax accuracy requirements to maintain &lt;2ms in critical
 situations while ensuring no slowdown even under swarm attacks.
 
 **Q: How does the Memory Flexibility Suite maintain situational awareness?** A:
-Maintains {\d+}-second working memory buffer (2GB/drone target), stores key
+Maintains 30-second working memory buffer (2GB/drone target), stores key
 events, learns threat patterns, and automatically promotes important patterns from
 working to long-term storage.
 
@@ -100,7 +100,7 @@ topics, CBBA
 auction algorithms for task ```
 assignment, and
 ``` maintains coordination even with
-{\d+}%+ communication loss.
+50%+ communication loss.
 
 **Q: What is the Cognitive Sandwich Backend's role in weapon authorization?** A:
 Implements phase-based workflow

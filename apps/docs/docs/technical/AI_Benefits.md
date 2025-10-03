@@ -89,15 +89,15 @@ time**, representing a quantum leap over traditional systems that achieve only
 ### Edge AI Processing
 
 **NVIDIA Jetson Platform**
-- **Jetson AGX Orin**: {\d+} TOPS AI performance
-- **Jetson Orin NX**: {\d+} TOPS for distributed processing
-- **Jetson Nano**: {\d+}.{\d+} TOPS for lightweight deployments
-- **TensorRT Optimization**: {\d+}-10x speedup over standard inference
+- **Jetson AGX Orin**: 275 TOPS AI performance
+- **Jetson Orin NX**: 100 TOPS for distributed processing
+- **Jetson Nano**: 0.5 TOPS for lightweight deployments
+- **TensorRT Optimization**: 5-10x speedup over standard inference
 
 **AI Frameworks**
 - **TensorRT**: NVIDIA's inference optimization library
 - **DeepStream**: Video analytics framework
-- **ROS {\d+}**: Robot Operating System for distributed AI
+- **ROS 2**: Robot Operating System for distributed AI
 - **Custom Models**: Optimized models for edge deployment
 
 ### Machine Learning Models

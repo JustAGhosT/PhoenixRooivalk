@@ -142,7 +142,7 @@ Start with: [Compliance Framework](legal/Compliance_Framework.md) → [Technical
 - **AI Performance**: 275 TOPS with NVIDIA Jetson AGX Orin
 - **Response Time**: 120-195ms (10-40x faster than competitors)
 - **Detection Accuracy**: 99.7% with YOLOv9 at 95.7% mAP
-- **Autonomous Operation**: Level-0 edge autonomy without network dependency
+- **Autonomous Operation**: SAE Level 4 edge autonomy without network dependency
 - **EW Resilience**: GPS-denied and jamming-resistant operation
 
 ### **Business Model**

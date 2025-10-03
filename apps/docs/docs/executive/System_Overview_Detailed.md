@@ -216,7 +216,7 @@ DoD, CMMC
 ### Third-Party Integration
 
 - **API Compatibility**: RESTful and GraphQL APIs
-- **Standard Protocols**: STANAG {\d+}, NATO standards
+- **Standard Protocols**: STANAG 4586, NATO standards
 - **Vendor Agnostic**: Multi-vendor sensor and effector integration
 - **Cloud Integration**: Azure Government Cloud integration
 
@@ -231,9 +231,9 @@ DoD, CMMC
 
 ### Environmental Requirements
 
-- **Operating Temperature**: -{\d+}°C to +{\d+}°C
-- **Humidity**: {\d+}-{\d+}% relative humidity
-- **Altitude**: Sea level to {\d+}, 000m
+- **Operating Temperature**: -40°C to +85°C
+- **Humidity**: 5-95% relative humidity
+- **Altitude**: Sea level to 5,000m
 - **Weather**: All-weather operations capability
 
 ### Security Requirements
@@ -293,8 +293,5 @@ highest standards of operational integrity and legal compliance.
 ---
 
 _This document contains confidential system specifications. Distribution is
-restricted to authorized personnel only. © {\d+} Phoenix Rooivalk. All rights
+restricted to authorized personnel only. ©2025 Phoenix Rooivalk. All rights
 reserved._
-
-_Context improved by Giga AI_
-````

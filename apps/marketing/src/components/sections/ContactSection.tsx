@@ -13,7 +13,7 @@ export const ContactSection: React.FC = () => {
       <div className="max-w-[1400px] mx-auto">
         <div className="text-center mb-8">
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-            Ready to Deploy Level-0 Autonomous Defense?
+            Ready to Deploy SAE Level 4 Autonomous Defense?
           </h2>
           <p className="text-[var(--gray)] max-w-2xl mx-auto">
             Join the next generation of counter-drone defense. Request
@@ -27,7 +27,7 @@ export const ContactSection: React.FC = () => {
               Request Capability Demonstration
             </h3>
             <p className="text-gray-300 mb-6">
-              See Phoenix Rooivalk&apos;s Level-0 autonomous architecture in action.
+              See Phoenix Rooivalk's SAE Level 4 autonomous architecture in action.
               Demonstrate &lt;2ms response time, RF-silent drone detection, and
               swarm defense capabilities.
             </p>

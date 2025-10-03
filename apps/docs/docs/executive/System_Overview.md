@@ -98,7 +98,7 @@ Features**:
 
 - Short micro-tether or elevated mast operations
 - Continuous site monitoring
-- {\d+}-degree threat coverage
+- 360-degree threat coverage
 - Persistent surveillance capability
 
 **Use Cases**:
@@ -108,10 +108,11 @@ Features**:
 - VIP protection
 - High-value asset security
 
-### {\d+}. Fiber-Engage Operations
+### 3. Fiber-Engage Operations
 
-**Description**: High-security operations with fiber-optic control **Key
-Features**:
+**Description**: High-security operations with fiber-optic control
+
+**Key Features**:
 
 - Jam-resistant command links
 - High-security communications
