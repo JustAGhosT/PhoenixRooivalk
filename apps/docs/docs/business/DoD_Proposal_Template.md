@@ -16,7 +16,7 @@ partnerships. Customize based on specific solicitation requirements.
 
 ## Executive Summary
 
-### Phoenix Rooivalk: Revolutionary Level-0 Autonomous Counter-UAS Defense Platform
+### Phoenix Rooivalk: Revolutionary SAE Level 4 Autonomous Counter-UAS Defense Platform
 
 **Solicitation**: [Solicitation Number]  
 **Program**: [Program Name]  
@@ -39,7 +39,7 @@ rapid response and verifiable accountability in all conditions.
 
 #### Key Technical Innovations
 
-1. **Level-0 Edge Autonomy**
+1. **SAE Level 4 Edge Autonomy**
 
    - Complete operational independence without network dependency
    - Sub-2ms authentication for rapid threat response

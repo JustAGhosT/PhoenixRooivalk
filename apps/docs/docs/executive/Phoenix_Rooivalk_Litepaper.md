@@ -23,8 +23,8 @@ systems that fail when enemies jam communications.
 
 **Key Differentiators:**
 
-- **Level-0 Edge Autonomy**: Complete operational independence without network
-  dependency
+- **SAE Level 4 Edge Autonomy**: Complete operational independence without
+  network dependency
 - **Blockchain Evidence**: Tamper-proof dual-chain (Solana + EtherLink) audit
   trails
 - **Morpheus AI Integration**: Decentralized AI decision engine for autonomous
@@ -61,7 +61,7 @@ systems that fail when enemies jam communications.
 
 ## 💡 **The Solution**
 
-### **Phoenix Rooivalk: Level-0 Autonomous Defense**
+### **Phoenix Rooivalk: SAE Level 4 Autonomous Defense**
 
 **Core Technology Stack:**
 
@@ -282,7 +282,7 @@ development
 
 **2. Autonomy Level**
 
-- **Phoenix Rooivalk**: Level-0 complete edge autonomy
+- **Phoenix Rooivalk**: SAE Level 4 complete edge autonomy
 - **Competitors**: Network-dependent with human oversight
 - **Competitive Edge**: Operates in GPS-denied and jammed environments
 
