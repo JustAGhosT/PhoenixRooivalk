@@ -246,7 +246,7 @@ const config: Config = {
     announcementBar: {
       id: "phoenix-rooivalk-announcement",
       content:
-        "🚀 Phoenix Rooivalk: Revolutionary Level-0 Autonomous Counter-UAS Defense Platform",
+        "🚀 Phoenix Rooivalk: Revolutionary SAE Level 4 Autonomous Counter-UAS Defense Platform",
       backgroundColor: "rgb(249, 115, 22)",
       textColor: "rgb(15, 23, 42)",
       isCloseable: true,

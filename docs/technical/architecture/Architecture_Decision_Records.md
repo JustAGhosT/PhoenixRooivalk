@@ -119,11 +119,11 @@ operational effectiveness with safety and compliance requirements.
 
 ### Decision
 
-Implement Level-0 autonomy with comprehensive safety and compliance frameworks.
+Implement SAE Level 4 autonomy with comprehensive safety and compliance frameworks.
 
 ### Rationale
 
-- **Operational Effectiveness**: Level-0 autonomy provides maximum operational
+- **Operational Effectiveness**: SAE Level 4 autonomy provides maximum operational
   effectiveness
 - **Response Time**: Sub-200ms response time requires autonomous operation
 - **GPS-Denied Environments**: Autonomous operation essential for GPS-denied
@@ -410,7 +410,7 @@ throughout the system development and deployment.
 Key architectural decisions include:
 
 - **Blockchain**: Solana for evidence anchoring with layered architecture
-- **Autonomy**: Level-0 autonomy with comprehensive safety frameworks
+- **Autonomy**: SAE Level 4 autonomy with comprehensive safety frameworks
 - **Sensors**: Multi-sensor fusion for improved detection accuracy
 - **AI/ML**: Edge AI with cloud backup and distributed learning
 - **Security**: Zero-trust security with defense in depth
