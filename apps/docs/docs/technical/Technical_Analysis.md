@@ -67,7 +67,7 @@ feasibility, performance benchmarks, competitive positioning, and implementation
 
 **Cryptographic Authentication**
 - **Message Authentication**: Cryptographic message authentication on data path
-- **Edge Processing**: &lt;2ms authentication on edge hardware
+- **Edge Processing**: <2ms authentication on edge hardware
 - **Permissioned Ledger**: Records events to permissioned ledger for audit
 - **Off-Path Consensus**: Consensus/finality off real-time path
 
@@ -96,7 +96,7 @@ feasibility, performance benchmarks, competitive positioning, and implementation
 - **Military Systems**: 90-95% in operational conditions
 
 **Latency Benchmarks**
-- **Phoenix Rooivalk**: &lt;200ms target response time
+- **Phoenix Rooivalk**: <200ms target response time
 - **Industry Average**: 2-5 seconds typical response time
 - **Edge Processing**: &lt;50ms for edge-based systems
 - **Cloud Processing**: 1-3 seconds for cloud-based systems

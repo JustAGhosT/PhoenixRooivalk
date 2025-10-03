@@ -471,7 +471,7 @@ design, deployment
 
 **Latency**
 - Time delay between input and output
-- Target &lt;200ms for counter-drone operations
+- Target <200ms for counter-drone operations
 - Critical for real-time response and threat neutralization
 
 **Throughput**
@@ -488,19 +488,13 @@ design, deployment
 
 ## Conclusion
 
-This glossary provides comprehensive definitions of technical terms and concepts used throughout the Phoenix Rooivalk system. The glossary serves as a reference for technical ```
-evaluators, engineers
-```, and system ```
-integrators, ensuring
-``` consistent understanding of system capabilities and requirements.
+This glossary provides comprehensive definitions of technical terms and concepts used throughout the Phoenix Rooivalk system. The glossary serves as a reference for technical evaluators, engineers, and system integrators, ensuring consistent understanding of system capabilities and requirements.
 
 Key areas covered include:
 - **Operations and Concepts**: Core operational terminology and concepts
 - **Messaging and Observability**: Communication and monitoring technologies
 - **Communications and EW**: Electronic warfare and communication systems
-- **Navigation and PNT**: ```
-Positioning, navigation
-```, and timing systems
+- **Navigation and PNT**: Positioning, navigation , and timing systems
 - **System Components**: Hardware and software components
 - **Neutralization and Countermeasures**: Threat neutralization technologies
 - **Blockchain and Evidence**: Evidence anchoring and legal compliance

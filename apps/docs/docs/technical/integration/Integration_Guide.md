@@ -29,7 +29,7 @@ capabilities through distributed AI processing.
 **Edge Inference Layer**
 
 - **Purpose**: Immediate threat classification
-- **Latency**: &lt;50ms response time
+- **Latency**: <50ms response time
 - **Location**: Local hardware (NVIDIA Jetson)
 - **Function**: Real-time threat detection and initial response
 
@@ -66,11 +66,12 @@ capabilities through distributed AI processing.
 - Docker: 24+
 - NVIDIA Jetson with JetPack 5.1+
 
-**Morpheus Network Setup** 1. **Agent Registration**: Register Phoenix Rooivalk
-agents with Morpheus network 2. **Token Management**: Configure MOR token
-payments for inference services 3. **Network Configuration**: Set up secure
-communication channels 4. **Performance Monitoring**: Implement monitoring for
-Morpheus integration
+**Morpheus Network Setup**
+
+1. **Agent Registration**: Register Phoenix Rooivalk agents with Morpheus network
+2. **Token Management**: Configure MOR token payments for inference services
+3. **Network Configuration**: Set up securec ommunication channels
+4. **Performance Monitoring**: Implement monitoring forMorpheus integration
 
 ### API Integration
 
@@ -115,10 +116,9 @@ impl MorpheusClient {
 
 1. **Evidence Hashing**: SHA-256 hash of drone intercept evidence
 2. **Metadata Storage**: Location, timestamp, operator
-
-1. **On-Chain Storage**: 32-byte hash with metadata on Solana
-2. **Off-Chain Storage**: Full evidence payloads in encrypted storage
-3. **Chain of Custody**: Complete documentation from creation to presentation
+3. **On-Chain Storage**: 32-byte hash with metadata on Solana
+4. **Off-Chain Storage**: Full evidence payloads in encrypted storage
+5. **Chain of Custody**: Complete documentation from creation to presentation
 
 **Implementation Pattern**
 
@@ -501,7 +501,3 @@ compliance.
 _This document contains confidential integration information. Distribution is
 restricted to authorized personnel only. ©2005 Phoenix Rooivalk. All rights
 reserved._
-
-```
-
-```

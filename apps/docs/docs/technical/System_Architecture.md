@@ -303,14 +303,14 @@ Delaware C-Corp entity.
 - **Detection Range**: 5-10 km (configurable)
 - **Response Time**: 3-6 seconds end-to-end
 - **Accuracy**: 95%+ threat identification
-- **False Positive Rate**: &lt;5%
+- **False Positive Rate**: <5%
 - **System Availability**: 99.9% uptime
 - **Power Consumption**: 100-250W average
 
 ### Swarm Coordination
 
 - **Swarm Size**: 5-20 interceptor drones
-- **Coordination Latency**: &lt;100ms
+- **Coordination Latency**: <100ms
 - **Autonomous Decision**: SAE Level 4 autonomy
 - **Human Override**: Always available
 - **Collision Avoidance**: Real-time path planning
@@ -320,7 +320,7 @@ Delaware C-Corp entity.
 - **Fiber Bandwidth**: 10Gbps+ sustained
 - **5G Connectivity**: 1Gbps mobile
 - **Mesh Networking**: Self-healing topology
-- **Latency**: &lt;10ms fiber, &lt;50ms wireless
+- **Latency**: <10ms fiber, <50ms wireless
 - **Security**: AES-256 encryption
 
 ---

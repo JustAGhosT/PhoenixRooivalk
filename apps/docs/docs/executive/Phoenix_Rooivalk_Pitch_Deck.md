@@ -220,7 +220,7 @@ services" }, { label: "Year 3 Revenue", value: "R500M", description:
 - **Customer Lifetime Value**: R1,200,000 per system
 - **Payback Period**: 12 months average
 
-&lt;MarketStats title="Investment Requirements" stats={[ { label:
+<MarketStats title="Investment Requirements" stats={[ { label:
 "R&D Investment", value: "R50M", description: "3-year development program" }, {
 label: "Manufacturing Setup", value: "R30M", description: "Production facility
 and equipment" }, { label: "Working Capital", value: "R40M", description:

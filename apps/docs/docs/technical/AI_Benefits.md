@@ -153,7 +153,7 @@ accuracy.
 
 **Response Time Metrics**
 - **<200ms Response Time**: 10-40x faster than current systems
-- **Sub-2ms Authentication**: Cryptographic authentication in &lt;2ms
+- **Sub-2ms Authentication**: Cryptographic authentication in <2ms
 - **Real-Time Processing**: Real-time AI processing and decision making
 - **Edge Autonomy**: SAE Level 4 autonomy without network dependency
 

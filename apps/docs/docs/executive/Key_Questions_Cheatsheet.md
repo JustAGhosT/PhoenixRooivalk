@@ -74,7 +74,7 @@ compromised drone permissions.
 
 **Q: What role does the Constraint & Load Engine play?** A: Dynamically balances
 response time vs accuracy by modeling speed/accuracy/power/bandwidth constraints
-simultaneously. Can relax accuracy requirements to maintain &lt;2ms in critical
+simultaneously. Can relax accuracy requirements to maintain <2ms in critical
 situations while ensuring no slowdown even under swarm attacks.
 
 **Q: How does the Memory Flexibility Suite maintain situational awareness?** A:

@@ -324,7 +324,7 @@ Each implementation phase includes strategic decision points for market adaptati
 - **Operational Excellence**: 99.5% operational reliability
 
 ### Technical Targets
-- **Authentication Latency**: &lt;2ms for cached credentials
+- **Authentication Latency**: <2ms for cached credentials
 - **Threat Detection**: 99.5% accuracy with <50ms latency
 - **Swarm Coordination**: <100ms coordination latency
 - **Evidence Integrity**: 100% cryptographic integrity
