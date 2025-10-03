@@ -1,226 +1,272 @@
-// Utilities for threat management
-
+// apps/marketing/src/components/utils/threatUtils.ts
 import { Threat } from "./threatTypes";
 
-// Function to move threats toward a specified target position with AI behavior
-export const moveThreats = (
-  threats: Threat[],
-  target: { x: number; y: number },
-  gameLevel: number = 1,
-): Threat[] => {
-  return threats.map((threat) => {
-    const currentTime = Date.now();
+/**
+ * Spawns a new threat at the edge of the game area
+ */
+export function spawnThreat(
+  type?: "drone" | "swarm" | "stealth",
+  boundingRect?: DOMRect,
+  level: number = 1
+): Threat {
+  const rect = boundingRect || { width: 800, height: 600, left: 0, top: 0 };
+  const threatType = type || (["drone", "swarm", "stealth"] as const)[Math.floor(Math.random() * 3)];
+  
+  // Spawn from edges
+  const edge = Math.floor(Math.random() * 4);
+  let x = 0;
+  let y = 0;
+  
+  switch (edge) {
+    case 0: // Top
+      x = Math.random() * rect.width;
+      y = 0;
+      break;
+    case 1: // Right
+      x = rect.width;
+      y = Math.random() * rect.height;
+      break;
+    case 2: // Bottom
+      x = Math.random() * rect.width;
+      y = rect.height;
+      break;
+    case 3: // Left
+      x = 0;
+      y = Math.random() * rect.height;
+      break;
+  }
+  
+  // Calculate initial velocity towards center with some randomness
+  const centerX = rect.width / 2;
+  const centerY = rect.height / 2;
+  const angleToCenter = Math.atan2(centerY - y, centerX - x);
+  const angleVariation = (Math.random() - 0.5) * Math.PI / 4; // ±22.5 degrees
+  const finalAngle = angleToCenter + angleVariation;
+  
+  const baseSpeed = threatType === "stealth" ? 0.3 : threatType === "swarm" ? 0.8 : 0.5;
+  const speedMultiplier = 1 + (level - 1) * 0.1; // Speed increases with level
+  const speed = baseSpeed * speedMultiplier;
+  
+  const threat: Threat = {
+    id: `threat-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
+    x,
+    y,
+    type: threatType,
+    speed,
+    vx: Math.cos(finalAngle) * speed,
+    vy: Math.sin(finalAngle) * speed,
+    health: threatType === "stealth" ? 50 : threatType === "swarm" ? 30 : 100,
+    maxHealth: threatType === "stealth" ? 50 : threatType === "swarm" ? 30 : 100,
+    trail: [{ x, y, timestamp: Date.now() }],
+    createdAt: Date.now(),
+    lastUpdate: Date.now(),
+    isMoving: true,
+    status: "active",
+    specialProperties: {
+      stealthMode: threatType === "stealth",
+      swarmBehavior: threatType === "swarm",
+      explosionRadius: threatType === "kamikaze" ? 75 : undefined,
+    }
+  };
+  
+  return threat;
+}
 
-    // If threat is not moving (neutralized), return it unchanged
-    if (threat.isMoving === false || threat.status === "neutralized") {
+/**
+ * Updates threat positions with proper boundary checking and status handling
+ */
+export function moveThreats(
+  threats: Threat[],
+  centerPoint: { x: number; y: number },
+  level: number = 1,
+  deltaTime: number = 1/60 // Default to 60 FPS
+): Threat[] {
+  return threats.map(threat => {
+    // Don't move neutralized or crater threats
+    if (threat.status === "neutralized" || threat.status === "crater" || !threat.isMoving) {
       return threat;
     }
-
-    // Store current position as last position
-    const lastPos = { x: threat.x, y: threat.y };
-
-    // Add to trail (keep last 10 positions)
+    
+    // Calculate attraction to center
+    const dx = centerPoint.x - threat.x;
+    const dy = centerPoint.y - threat.y;
+    const distance = Math.sqrt(dx * dx + dy * dy);
+    
+    // Stop moving if very close to center
+    if (distance < 20) {
+      return {
+        ...threat,
+        vx: 0,
+        vy: 0,
+        isMoving: false
+      };
+    }
+    
+    // Apply acceleration towards center (gravity-like effect)
+    const attraction = 0.02 * (1 + level * 0.01); // Stronger pull at higher levels
+    const ax = (dx / distance) * attraction;
+    const ay = (dy / distance) * attraction;
+    
+    // Update velocity
+    let newVx = threat.vx + ax;
+    let newVy = threat.vy + ay;
+    
+    // Apply drag to prevent infinite acceleration
+    const drag = 0.99;
+    newVx *= drag;
+    newVy *= drag;
+    
+    // Limit maximum speed
+    const maxSpeed = threat.speed * 2; // Allow some acceleration but cap it
+    const currentSpeed = Math.sqrt(newVx * newVx + newVy * newVy);
+    if (currentSpeed > maxSpeed) {
+      const scale = maxSpeed / currentSpeed;
+      newVx *= scale;
+      newVy *= scale;
+    }
+    
+    // Update position
+    const newX = threat.x + newVx * deltaTime * 60; // Scale by 60 for consistent movement
+    const newY = threat.y + newVy * deltaTime * 60;
+    
+    // Update trail (keep last 10 points)
     const newTrail = [
       ...threat.trail.slice(-9),
-      { x: threat.x, y: threat.y, timestamp: currentTime },
+      { x: newX, y: newY, timestamp: Date.now() }
     ];
-
-    let newX = threat.x;
-    let newY = threat.y;
-
-    // Apply different behaviors based on threat type and level
-    switch (threat.behavior) {
-      case "evasive": {
-        // Evasive behavior - move away from center when close
-        const dx = target.x - threat.x;
-        const dy = target.y - threat.y;
-        const distance = Math.sqrt(dx * dx + dy * dy);
-
-        if (distance < 100) {
-          // Move away from center
-          newX =
-            threat.x - (dx / distance) * threat.speed * threat.evasionLevel;
-          newY =
-            threat.y - (dy / distance) * threat.speed * threat.evasionLevel;
-        } else {
-          // Move toward center
-          newX = threat.x + (dx / distance) * threat.speed;
-          newY = threat.y + (dy / distance) * threat.speed;
-        }
-        break;
-      }
-
-      case "zigzag": {
-        // Zigzag pattern
-        const angle = Math.sin(currentTime * 0.01) * 0.5;
-        const baseDx = target.x - threat.x;
-        const baseDy = target.y - threat.y;
-        const baseDistance = Math.sqrt(baseDx * baseDx + baseDy * baseDy);
-
-        if (baseDistance > 5) {
-          const perpX = -baseDy / baseDistance;
-          const perpY = baseDx / baseDistance;
-
-          newX =
-            threat.x +
-            (baseDx / baseDistance) * threat.speed +
-            perpX * threat.speed * angle * threat.evasionLevel;
-          newY =
-            threat.y +
-            (baseDy / baseDistance) * threat.speed +
-            perpY * threat.speed * angle * threat.evasionLevel;
-        }
-        break;
-      }
-
-      case "hover": {
-        // Hover behavior - stay at a distance
-        const hoverDx = target.x - threat.x;
-        const hoverDy = target.y - threat.y;
-        const hoverDistance = Math.sqrt(hoverDx * hoverDx + hoverDy * hoverDy);
-        const desiredDistance = 80 + threat.evasionLevel * 40;
-
-        if (hoverDistance > desiredDistance + 10) {
-          newX = threat.x + (hoverDx / hoverDistance) * threat.speed;
-          newY = threat.y + (hoverDy / hoverDistance) * threat.speed;
-        } else if (hoverDistance < desiredDistance - 10) {
-          newX = threat.x - (hoverDx / hoverDistance) * threat.speed;
-          newY = threat.y - (hoverDy / hoverDistance) * threat.speed;
-        }
-        break;
-      }
-
-      default: {
-        // "direct"
-        // Direct movement toward target
-        const directDx = target.x - threat.x;
-        const directDy = target.y - threat.y;
-        const directDistance = Math.sqrt(
-          directDx * directDx + directDy * directDy,
-        );
-
-        if (directDistance > 5) {
-          newX = threat.x + (directDx / directDistance) * threat.speed;
-          newY = threat.y + (directDy / directDistance) * threat.speed;
-        }
-        break;
-      }
+    
+    // Special behaviors
+    let specialX = newX;
+    let specialY = newY;
+    
+    if (threat.type === "swarm") {
+      // Swarm threats zigzag
+      const time = Date.now() / 1000;
+      const zigzag = Math.sin(time * 5) * 10;
+      specialX += zigzag * (-newVy / currentSpeed); // Perpendicular to direction
+      specialY += zigzag * (newVx / currentSpeed);
+    } else if (threat.type === "stealth") {
+      // Stealth threats phase in and out
+      const time = Date.now() / 2000;
+      threat.specialProperties = {
+        ...threat.specialProperties,
+        opacity: 0.3 + Math.sin(time) * 0.3
+      };
     }
-
+    
     return {
       ...threat,
-      x: newX,
-      y: newY,
+      x: specialX,
+      y: specialY,
+      vx: newVx,
+      vy: newVy,
       trail: newTrail,
-      lastPosition: lastPos,
-      evasionLevel: Math.min(1, 0.3 + (gameLevel - 1) * 0.1), // Increase evasion with level
+      lastUpdate: Date.now()
     };
   });
-};
+}
 
-// Function to spawn a single threat
-export const spawnThreat = (
-  threatType:
-    | "drone"
-    | "swarm"
-    | "stealth"
-    | "kamikaze"
-    | "decoy"
-    | "shielded"
-    | undefined = undefined,
-  boundingRect: DOMRect,
-  gameLevel: number = 1,
-): Threat => {
-  const basicTypes: ("drone" | "swarm" | "stealth")[] = [
-    "drone",
-    "swarm",
-    "stealth",
-  ];
-  const advancedTypes: ("kamikaze" | "decoy" | "shielded")[] = [
-    "kamikaze",
-    "decoy",
-    "shielded",
-  ];
+/**
+ * Checks if a point is within range of a threat
+ */
+export function isPointNearThreat(
+  point: { x: number; y: number },
+  threat: Threat,
+  range: number
+): boolean {
+  const dx = point.x - threat.x;
+  const dy = point.y - threat.y;
+  const distance = Math.sqrt(dx * dx + dy * dy);
+  return distance <= range;
+}
 
-  // Determine available types based on level
-  const availableTypes =
-    gameLevel >= 5
-      ? [...basicTypes, ...advancedTypes]
-      : gameLevel >= 3
-        ? [...basicTypes, "kamikaze"]
-        : basicTypes;
+/**
+ * Finds threats within a selection box
+ */
+export function findThreatsInBox(
+  threats: Threat[],
+  box: { startX: number; startY: number; endX: number; endY: number }
+): Threat[] {
+  const minX = Math.min(box.startX, box.endX);
+  const maxX = Math.max(box.startX, box.endX);
+  const minY = Math.min(box.startY, box.endY);
+  const maxY = Math.max(box.startY, box.endY);
+  
+  return threats.filter(threat => {
+    return threat.x >= minX && 
+           threat.x <= maxX && 
+           threat.y >= minY && 
+           threat.y <= maxY &&
+           threat.status === "active";
+  });
+}
 
-  const type =
-    threatType ||
-    availableTypes[Math.floor(Math.random() * availableTypes.length)];
+/**
+ * Calculates damage to a threat based on weapon effectiveness
+ */
+export function calculateThreatDamage(
+  threat: Threat,
+  weaponType: string,
+  weaponDamage: number,
+  effectiveness: number
+): number {
+  let damage = weaponDamage * effectiveness;
+  
+  // Apply threat-specific resistances
+  if (threat.type === "stealth" && weaponType === "kinetic") {
+    damage *= 0.5; // Stealth resists kinetic
+  } else if (threat.type === "swarm" && weaponType === "laser") {
+    damage *= 0.3; // Swarms spread out, lasers less effective
+  } else if (threat.type === "shielded") {
+    damage *= 0.2; // Shields reduce all damage
+  }
+  
+  return Math.max(0, damage);
+}
 
-  // Determine behavior based on type and level
-  const behaviors: ("direct" | "evasive" | "zigzag" | "hover")[] = [
-    "direct",
-    "evasive",
-    "zigzag",
-    "hover",
-  ];
-  const behavior =
-    gameLevel > 3
-      ? behaviors[Math.floor(Math.random() * behaviors.length)]
-      : "direct";
-
-  // Scale speed and health with level
-  const levelMultiplier = 1 + (gameLevel - 1) * 0.2;
-
-  // Base stats by type
-  const typeStats = {
-    drone: { health: 1, speed: 1 },
-    swarm: { health: 2, speed: 1.5 },
-    stealth: { health: 3, speed: 0.5 },
-    kamikaze: { health: 1, speed: 2 },
-    decoy: { health: 0.5, speed: 0.8 },
-    shielded: { health: 4, speed: 0.7 },
-  };
-
-  const baseStats = typeStats[type as keyof typeof typeStats];
-
-  // Special properties for advanced types
-  const specialProperties = {
-    kamikaze: {
-      explosionRadius: 50,
-      targetPriority: "high" as const,
-      vulnerability: ["kinetic", "laser"],
-    },
-    decoy: {
-      isDecoy: true,
-      targetPriority: "low" as const,
-      vulnerability: ["electronic"],
-    },
-    shielded: {
-      isShielded: true,
-      shieldStrength: 2,
-      targetPriority: "high" as const,
-      vulnerability: ["laser"],
-    },
-  };
-
+/**
+ * Applies damage to a threat and returns updated threat
+ */
+export function damageThreat(threat: Threat, damage: number): Threat {
+  const newHealth = Math.max(0, threat.health - damage);
+  
+  if (newHealth <= 0) {
+    return {
+      ...threat,
+      health: 0,
+      status: "neutralized",
+      isMoving: false,
+      neutralizedAt: Date.now(),
+      fadeStartTime: Date.now() + 2000 // Start fade after 2 seconds
+    };
+  }
+  
   return {
-    id: `threat-${Date.now()}-${Math.random()}`,
-    x: Math.random() * Math.max(boundingRect.width - 40, 200),
-    y: Math.random() * Math.max(boundingRect.height - 40, 200),
-    type: type as
-      | "drone"
-      | "swarm"
-      | "stealth"
-      | "kamikaze"
-      | "decoy"
-      | "shielded",
-    health: Math.floor(baseStats.health * levelMultiplier),
-    speed: baseStats.speed * levelMultiplier,
-    trail: [],
-    lastPosition: { x: 0, y: 0 },
-    behavior,
-    evasionLevel: Math.min(1, 0.3 + (gameLevel - 1) * 0.1),
-    specialProperties:
-      type === "kamikaze" || type === "decoy" || type === "shielded"
-        ? specialProperties[type as keyof typeof specialProperties]
-        : undefined,
+    ...threat,
+    health: newHealth
   };
-};
+}
+
+/**
+ * Gets threat priority based on distance to center and type
+ */
+export function calculateThreatPriority(
+  threat: Threat,
+  centerPoint: { x: number; y: number }
+): "high" | "medium" | "low" {
+  const dx = centerPoint.x - threat.x;
+  const dy = centerPoint.y - threat.y;
+  const distance = Math.sqrt(dx * dx + dy * dy);
+  
+  // High priority threats
+  if (distance < 100 || threat.type === "kamikaze") {
+    return "high";
+  }
+  
+  // Medium priority threats
+  if (distance < 200 || threat.type === "stealth") {
+    return "medium";
+  }
+  
+  return "low";
+}

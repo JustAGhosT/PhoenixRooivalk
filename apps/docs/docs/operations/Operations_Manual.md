@@ -27,11 +27,11 @@ optimization, troubleshooting
 
 **System Startup**
 
-{\d+}. **Power-On Sequence**: Verify all hardware components are powered
-{\d+}. **Network Connectivity**: Confirm network connections and mesh networking
-{\d+}. **Sensor Calibration**: Perform automatic sensor calibration
-{\d+}. **System Health Check**: Verify all systems are operational
-{\d+}. **Performance Validation**: Confirm system performance metrics
+1. **Power-On Sequence**: Verify all hardware components are powered
+2. **Network Connectivity**: Confirm network connections and mesh networking
+3. **Sensor Calibration**: Perform automatic sensor calibration
+4. **System Health Check**: Verify all systems are operational
+5. **Performance Validation**: Confirm system performance metrics
 
 **Operational Monitoring**
 
@@ -42,11 +42,11 @@ optimization, troubleshooting
 
 **System Shutdown**
 
-{\d+}. **Graceful Shutdown**: Initiate graceful shutdown sequence
-{\d+}. **Data Preservation**: Ensure all data is properly saved
-{\d+}. **Evidence Anchoring**: Complete any pending evidence anchoring
-{\d+}. **System Status**: Record final system status
-{\d+}. **Power Down**: Safe power-down of all components
+1. **Graceful Shutdown**: Initiate graceful shutdown sequence
+2. **Data Preservation**: Ensure all data is properly saved
+3. **Evidence Anchoring**: Complete any pending evidence anchoring
+4. **System Status**: Record final system status
+5. **Power Down**: Safe power-down of all components
 
 ### Performance Monitoring
 

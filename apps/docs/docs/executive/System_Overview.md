@@ -75,7 +75,7 @@ resilient FSO and RF links.
 
 ## Operating Modes
 
-### {\d+}. Mobile Picket
+### 1. Mobile Picket
 
 **Description**: Mobile patrol and surveillance operations **Key Features**:
 
@@ -91,7 +91,7 @@ resilient FSO and RF links.
 - Mobile convoy security
 - Dynamic threat response
 
-### {\d+}. Site-Fixed Overwatch
+### 2. Site-Fixed Overwatch
 
 **Description**: Fixed-site protection with elevated surveillance **Key
 Features**:

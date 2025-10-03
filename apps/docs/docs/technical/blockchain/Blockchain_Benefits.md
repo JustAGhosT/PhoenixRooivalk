@@ -9,9 +9,9 @@ sidebar_label: Blockchain Benefits
 ## Executive Summary
 
 The Phoenix Rooivalk system leverages revolutionary blockchain technology to
-deliver unprecedented ``` security, coordination
+deliver unprecedented security, coordination
 
-````, and operational resilience in counter-drone defense. Our blockchain integration provides **{\d+}.{\d+}% data integrity protection**, **sub-2ms authentication latency**, and **{\d+}% tamper-proof audit trails**, representing a paradigm shift from traditional centralized systems.
+, and operational resilience in counter-drone defense. Our blockchain integration provides **99.9% data integrity protection**, **sub-2ms authentication latency**, and **100% tamper-proof audit trails**, representing a paradigm shift from traditional centralized systems.
 
 ---
 
@@ -20,25 +20,20 @@ deliver unprecedented ``` security, coordination
 ### Unprecedented Data Security and Integrity
 
 **Tamper-Proof Audit Trails**
-- **{\d+}% Immutable Logging**: Complete logging of all mission ```
-events, command
-``` ```
-decisions, and
-``` engagement outcomes
+- **100% Immutable Logging**: Complete logging of all mission events, command
+decisions, and engagement outcomes
 - **Forensic Capabilities**: Complete forensic capabilities for military accountability
 - **Regulatory Compliance**: Full compliance with regulatory requirements
 - **Legal Admissibility**: Court-admissible evidence for all operations
 
-**{\d+}.{\d+}% Data Integrity Protection**
-- **Order of Magnitude Improvement**: Over traditional systems ({\d+}% integrity)
+**99.9% Data Integrity Protection**
+- **Order of Magnitude Improvement**: Over traditional systems (90% integrity)
 - **Tampering Elimination**: Eliminates tampering vulnerabilities
 - **Cryptographic Security**: Advanced cryptographic security measures
 - **Data Protection**: Comprehensive data protection and integrity
 
 **Cryptographic Identity Management**
-- **Unique Identities**: Each ```
-drone, payload
-```, and component receives unique cryptographic identity
+- **Unique Identities**: Each drone, payload, and component receives unique cryptographic identity
 - **Secure Authentication**: Secure authentication and authorization
 - **Supply Chain Provenance**: Complete supply chain provenance tracking
 - **Identity Verification**: Comprehensive identity verification and validation
@@ -46,12 +41,12 @@ drone, payload
 ### Decentralized Coordination and Resilience
 
 **Byzantine Fault Tolerance**
-- **DTPBFT Algorithm**: Maintains consensus with {\d+}% malicious nodes
-- **240ms Latency**: For {\d+}-drone swarms
+- **DTPBFT Algorithm**: Maintains consensus with 33% malicious nodes
+- **240ms Latency**: For 10-drone swarms
 - **Military-Grade Resilience**: Resilience in adversarial environments
 - **Fault Tolerance**: Comprehensive fault tolerance capabilities
 
-**{\d+}% Reduction in Single Points of Failure**
+**90% Reduction in Single Points of Failure**
 - **Decentralized Architecture**: Eliminates traditional vulnerabilities
 - **Distributed Processing**: Distributed processing and decision making
 - **Redundancy**: Comprehensive redundancy and failover capabilities

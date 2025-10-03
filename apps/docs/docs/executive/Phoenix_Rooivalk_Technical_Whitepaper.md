@@ -6,7 +6,7 @@ sidebar_label: Phoenix Rooivalk Technical Whitepaper
 
 # Phoenix Rooivalk: Technical Whitepaper
 
-## Revolutionary Level-0 Autonomous Counter-UAS Defense Platform
+## Revolutionary SAE Level 4 Autonomous Counter-UAS Defense Platform
 
 **Nexamesh Technologies** | **Delaware C-Corp (in progress) + South African
 Entity (planned)** | **2025**
@@ -16,7 +16,7 @@ Entity (planned)** | **2025**
 ## Abstract
 
 This technical whitepaper presents the Phoenix Rooivalk counter-drone defense
-system, a revolutionary Level-0 autonomous platform that combines cutting-edge
+system, a revolutionary SAE Level 4 autonomous platform that combines cutting-edge
 artificial intelligence with military-grade blockchain infrastructure. The
 system addresses critical gaps in current counter-drone technology through
 edge-first processing, immutable evidence anchoring, and modular architecture
@@ -67,7 +67,7 @@ technology proliferates and evolves. Current systems suffer from:
 
 ### 1.2 The Solution: Phoenix Rooivalk
 
-Phoenix Rooivalk achieves true Level-0 autonomy through edge-first processing,
+Phoenix Rooivalk achieves true SAE Level 4 autonomy through edge-first processing,
 enabling complete operational independence without network dependency or human
 intervention.
 
@@ -93,7 +93,7 @@ intervention.
 #### Competitive Advantages
 
 - **Response Time**: 25-40x faster than industry average (120-195ms vs 3-10s)
-- **Autonomy Level**: Level-0 complete edge autonomy vs network-dependent
+- **Autonomy Level**: SAE Level 4 complete edge autonomy vs network-dependent
   systems
 - **Evidence Management**: Blockchain-based tamper-proof audit trails
 - **AI Integration**: Decentralized AI with explainable decision-making
@@ -242,7 +242,7 @@ intervention.
 - **System Uptime**: 99.7% target system uptime
 - **Authentication Latency**: <2ms authentication time
 - **Data Integrity**: 99.9% blockchain-verified data integrity
-- **Autonomous Operation**: Level-0 edge autonomy without network dependency
+- **Autonomous Operation**: SAE Level 4 edge autonomy without network dependency
 - **EW Resilience**: GPS-denied and jamming-resistant operation
 
 ### 4.2 Competitive Performance Comparison
@@ -251,7 +251,7 @@ intervention.
 | ------------------- | ---------------- | ------------------- | ------------------------- |
 | Response Time       | 120-195ms        | 3-10 seconds        | 25-40x faster             |
 | Detection Accuracy  | 95%+             | 70-85%              | 10-25% improvement        |
-| Autonomy Level      | Level-0          | Network-dependent   | Complete independence     |
+| Autonomy Level      | SAE Level 4      | Network-dependent   | Complete independence     |
 | Evidence Management | Blockchain       | Traditional logging | Tamper-proof audit trails |
 | Cost per Unit       | $25k-$100k       | $50k-$200k          | 30-50% lower              |
 
@@ -324,7 +324,7 @@ intervention.
 #### Competitive Advantages
 
 1. **Response Time**: 25-40x faster than existing systems
-2. **Autonomy Level**: Level-0 complete edge autonomy
+2. **Autonomy Level**: SAE Level 4 complete edge autonomy
 3. **Evidence Management**: Blockchain-based tamper-proof audit trails
 4. **AI Integration**: Morpheus Network + Cognitive Mesh
 5. **Cost Leadership**: 30-50% lower than US/EU alternatives
@@ -527,13 +527,13 @@ intervention.
 ### 9.1 Technology Leadership
 
 Phoenix Rooivalk represents a paradigm shift in counter-drone defense
-technology, combining Level-0 edge autonomy with blockchain evidence management
+technology, combining SAE Level 4 edge autonomy with blockchain evidence management
 and advanced AI integration. The system addresses critical gaps in current
 technology through:
 
 - **Unprecedented Performance**: 25-40x faster response times than existing
   systems
-- **Complete Autonomy**: Level-0 edge operation without network dependency
+- **Complete Autonomy**: SAE Level 4 edge operation without network dependency
 - **Legal Defensibility**: Blockchain-based tamper-proof audit trails
 - **Advanced AI**: Morpheus Network + Cognitive Mesh integration
 - **Cost Leadership**: 30-50% lower than US/EU alternatives

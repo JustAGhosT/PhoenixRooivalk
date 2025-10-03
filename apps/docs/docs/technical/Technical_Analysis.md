@@ -21,15 +21,15 @@ Rooivalk Counter-Drone Defense System. The analysis covers technical
 ### AI Detection Performance
 
 **Target Performance Metrics**
-- **Detection Accuracy**: {\d+}.{\d+}% AI-driven threat detection accuracy
+- **Detection Accuracy**: 99.5% AI-driven threat detection accuracy
 - **Response Time**: Sub-200ms response time in controlled tests
-- **False Positive Rate**: &lt;{\d+}% target false positive rate
+- **False Positive Rate**: <1% target false positive rate
 - **Multi-Modal Fusion**: Multi-sensor cross-validation for accuracy
 
 **Competitive Benchmarking**
-- **TRIDENT**: {\d+}.{\d+}% accuracy with ~{\d+}.09ms latency in field trials
-- **mmHawkeye**: {\d+}.{\d+}% accuracy over 80m in outdoor experiments
-- **Typical Field Performance**: {\d+}-{\d+}% accuracy with {\d+}-3s latency
+- **TRIDENT**: 95.2% accuracy with ~2.09ms latency in field trials
+- **mmHawkeye**: 97.8% accuracy over 80m in outdoor experiments
+- **Typical Field Performance**: 70-85% accuracy with 1-3s latency
 - **Laboratory Performance**: Higher accuracy in controlled conditions
 
 **Technical Considerations**
@@ -39,7 +39,7 @@ Rooivalk Counter-Drone Defense System. The analysis covers technical
 autonomous, edge
 ```-based processing for &lt;200ms response
 - **Human-in-Loop**: Current systems involve human-in-loop or cloud processing
-- **Military Systems**: Typically {\d+}-{\d+} seconds from detection to response
+- **Military Systems**: Typically 2-5 seconds from detection to response
 
 **Credibility Requirements**
 - **Live Trial Data**: Data from live trials or simulations required
@@ -80,9 +80,9 @@ cameras, acoustic
 - **Off-Path Consensus**: Consensus/finality off real-time path
 
 **Performance Characteristics**
-- **Commit Latencies**: {\d+}.{\d+}-{\d+}.5s in Fabric testbeds
+- **Commit Latencies**: 0.5-1.5s in Fabric testbeds
 - **PBFT/Tendermint**: Up to ~2s in PBFT/Tendermint systems
-- **Integrity Detection**: {\d+}.{\d+}% integrity detection for tamper events
+- **Integrity Detection**: 99.9% integrity detection for tamper events
 - **Audit Trail**: Complete audit trail for post-mission analysis
 
 **Security Considerations**

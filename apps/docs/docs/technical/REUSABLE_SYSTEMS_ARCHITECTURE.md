@@ -36,7 +36,7 @@ effects, easy
 
 ## 🏗️ System Components
 
-### {\d+}. **Game Engine Core** (`gameEngine.ts`)
+### 1. **Game Engine Core** (`gameEngine.ts`)
 
 **Purpose**: Central game logic engine with pure functional approach
 
@@ -75,7 +75,7 @@ GameState, deltaTime
 }
 ````
 
-### {\d+}. **Object Pool System** (`objectPool.ts`)
+### 2. **Object Pool System** (`objectPool.ts`)
 
 **Purpose**: Memory-efficient resource management
 
@@ -110,7 +110,7 @@ class ObjectPool&lt;T extends Poolable&gt; {
 }
 ```
 
-### {\d+}. **State Machine System** (`simpleStateMachine.ts`)
+### 3. **State Machine System** (`simpleStateMachine.ts`)
 
 **Purpose**: Deterministic behavior patterns for game entities
 
@@ -148,7 +148,7 @@ interface SimpleTransition {
 }
 ````
 
-### {\d+}. **Event System** (`eventSystem.ts`)
+### 4. **Event System** (`eventSystem.ts`)
 
 **Purpose**: Protocol-based communication between systems
 

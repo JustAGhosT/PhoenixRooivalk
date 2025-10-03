@@ -191,7 +191,7 @@ const calculateSemicircleFormation = (
 
   // Default semicircle properties
   const degrees = formation.semicircleDegrees || 180; // Default to half circle
-  const radius = formation.semicircleRadius || formation.spacing;
+  const radius = formation.circleRadius || formation.spacing;
   const direction = formation.semicircleDirection || "north";
 
   // Convert degrees to radians
@@ -256,7 +256,7 @@ export const createFormation = (
     spacing,
     isActive: true,
     semicircleDegrees,
-    semicircleRadius,
+    circleRadius: semicircleRadius,
     semicircleDirection,
   };
 };

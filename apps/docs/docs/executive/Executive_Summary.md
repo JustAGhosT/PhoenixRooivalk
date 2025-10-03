@@ -15,7 +15,7 @@ pathway and DoD contractor eligibility in development
 
 ## System Overview
 
-Phoenix Rooivalk is a Level-{\d+} Autonomous Counter-UAS (Counter-Unmanned
+Phoenix Rooivalk is a SAE Level 4 Autonomous Counter-UAS (Counter-Unmanned
 Aerial System) defense platform that represents a revolutionary advancement in
 drone defense technology. The system combines cutting-edge artificial
 intelligence with military-grade blockchain infrastructure to deliver
@@ -56,9 +56,9 @@ movements and layered area defense.
 The C-UAS market presents exceptional opportunities, valued at **$2.45-3.0B in
 2025** and projected to reach **$9-15B by 2030** at 23-27% CAGR. The Pentagon
 Replicator program alone commits **$500M** to deploy thousands of autonomous
-drones by August {\d+}, while recent contract awards total over **$6B**
-including Raytheon's massive ${\d+}.04B Coyote interceptor contract through
-{\d+}. Ukraine's experience losing {\d+}, {\d+} drones monthly to jamming
+drones by August 2025, while recent contract awards total over **$6B**
+including Raytheon's massive $1.04B Coyote interceptor contract through
+2027. Ukraine's experience losing 10,000+ drones monthly to jamming
 demonstrates urgent operational needs driving procurement.
 
 **Critical market gaps exist in mobile/on-the-move C-UAS** (underserved segment

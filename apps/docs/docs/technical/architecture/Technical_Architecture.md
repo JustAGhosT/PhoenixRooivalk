@@ -9,7 +9,7 @@ sidebar_label: Technical Architecture
 ## System Architecture Overview
 
 Phoenix Rooivalk implements a **Comms-Independent Edge Autonomy (CIEA)**
-architecture that achieves sub-2ms authentication and {\d+}–195ms end-to-end
+architecture that achieves sub-2ms authentication and 50–195ms end-to-end
 decision latency through edge-first processing. The system combines AI-driven
 threat detection with cryptographically anchored evidence trails to ensure both
 rapid response and verifiable accountability in all conditions.
@@ -18,48 +18,46 @@ rapid response and verifiable accountability in all conditions.
 
 - **Edge-First Processing**: All critical decisions made locally without network
   dependency
-- **Byzantine Fault Tolerance**: Tolerates up to {\d+}/{\d+} compromised nodes
+- **Byzantine Fault Tolerance**: Tolerates up to 1/3 compromised nodes
   in consensus operations
 - **Modular Design**: Swappable components and vendor-agnostic interfaces
 - **Evidence Off-Path**: Audit recording doesn't impact real-time performance
-- **Quantum-Resistant**: Crypto-agility for post-{\d+} security requirements
+- **Quantum-Resistant**: Crypto-agility for post-quantum security requirements
 
 ---
 
 ## Hardware Foundation: NVIDIA Jetson for Edge AI
 
-NVIDIA Jetson AGX Orin 64GB delivers **{\d+} TOPS of AI performance** with {\d+}
-CUDA cores, {\d+} Tensor ``` cores, and
+NVIDIA Jetson AGX Orin 64GB delivers **275 TOPS of AI performance** with 2048
+CUDA cores, 64 Tensor cores, and
 
-````dedicated Deep Learning Accelerators providing the computational foundation for real-time multi-sensor fusion. The platform achieves **{\d+}-{\d+} FPS sustained processing** for 4K video streams with sensor-to-decision latency under 50ms using TensorRT optimization.
+dedicated Deep Learning Accelerators providing the computational foundation for real-time multi-sensor fusion. The platform achieves **30-60 FPS sustained processing** for 4K video streams with sensor-to-decision latency under 50ms using TensorRT optimization.
 
 ### Performance Specifications
 
-**AI Performance**: {\d+} TOPS (AGX Orin), {\d+}-{\d+} FPS sustained processing for 4K video streams
+**AI Performance**: 275 TOPS (AGX Orin), 30-60 FPS sustained processing for 4K video streams
 **Sensor-to-Decision Latency**: Under 50ms using TensorRT optimization
-**YOLOv9 Performance**: {\d+}.{\d+}% mAP with {\d+}.{\d+} precision and {\d+}.{\d+} recall at {\d+}+ FPS
-**Detection Range**: {\d+}-{\d+} feet altitude with real-time processing of multiple concurrent streams
+**YOLOv9 Performance**: 95.2% mAP with 97.8% precision and 96.5% recall at 30+ FPS
+**Detection Range**: 100-500 feet altitude with real-time processing of multiple concurrent streams
 
 ### Hardware Specifications per Node
 
-- **Compute**: {\d+}-core ARM CPU + {\d+}-core GPU + dual NVDLA v2.{\d+} accelerators
-- **Memory**: 32GB LPDDR5 unified memory ({\d+}.{\d+} GB/s bandwidth)
+- **Compute**: 12-core ARM CPU + 2048-core GPU + dual NVDLA v2.0 accelerators
+- **Memory**: 32GB LPDDR5 unified memory (204.8 GB/s bandwidth)
 - **Storage**: 512GB NVMe SSD for evidence caching
 - **Network**: Dual 10GbE for redundant connectivity
-- **Power**: 60W ```
-typical, 100W
-``` peak consumption
-- **Security**: TPM {\d+}.{\d+} module for secure key storage
-- **Operating Temperature**: -{\d+}°C to +{\d+}°C (Industrial variants)
+- **Power**: 60W typical, 100W peak consumption
+- **Security**: TPM 2.0 module for secure key storage
+- **Operating Temperature**: -40°C to +85°C (Industrial variants)
 - **Compliance**: MIL-STD-810G shock and vibration compliance
 
 ### Multi-Sensor Integration Capabilities
 
-- **Camera Support**: Up to {\d+} MIPI CSI-{\d+} cameras ({\d+} via virtual channels)
-- **LiDAR Integration**: {\d+} lanes PCIe Gen4 for LiDAR and radar sensors
+- **Camera Support**: Up to 8 MIPI CSI-2 cameras (16 via virtual channels)
+- **LiDAR Integration**: 4 lanes PCIe Gen4 for LiDAR and radar sensors
 - **RF Detection**: 10GbE networking for RF detection arrays
-- **Acoustic Arrays**: {\d+} I2S interfaces for acoustic sensor arrays
-- **Unified Memory**: {\d+}.{\d+} GB/s bandwidth enables real-time fusion of disparate sensor modalities
+- **Acoustic Arrays**: 8 I2S interfaces for acoustic sensor arrays
+- **Unified Memory**: 204.8 GB/s bandwidth enables real-time fusion of disparate sensor modalities
 
 ---
 
@@ -74,9 +72,7 @@ typical, 100W
 - **Smart contract ROE enforcement**: Policy rules encoded as machine-readable constraints
 - **Explainable AI outputs**: Confidence scores and rationale for each action
 - **Offline operation**: Distributed agent design with no central server dependency
-- **Model versioning**: Hash-```
-signed, version
-```-controlled AI model updates
+- **Model versioning**: Hash-signed, version-controlled AI model updates
 
 #### Integration Points
 - **Input**: Consumes fused sensor tracks (tracks.v1 format) from sensor fusion layer

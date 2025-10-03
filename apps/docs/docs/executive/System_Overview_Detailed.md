@@ -134,11 +134,11 @@ support, personnel
 
 ### Performance Characteristics
 
-- **Detection Range**: {\d+}-{\d+} km (standard configuration)
-- **Response Time**: &lt;200ms end-to-end decision latency
-- **Throughput**: {\d+}, {\d+}+ transactions per second (blockchain)
-- **Availability**: {\d+}.{\d+}% system uptime
-- **Power Consumption**: {\d+}-250W (average operation)
+- **Detection Range**: 0.5-2 km (standard configuration)
+- **Response Time**: <200ms end-to-end decision latency
+- **Throughput**: 65,000+ transactions per second (blockchain)
+- **Availability**: 99.9% system uptime
+- **Power Consumption**: 150-250W (average operation)
 
 ### Sensor Integration
 

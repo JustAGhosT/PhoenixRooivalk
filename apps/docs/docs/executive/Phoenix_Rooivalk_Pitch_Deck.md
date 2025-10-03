@@ -13,7 +13,7 @@ TechnologyComparison from "@site/src/components/mdx/TechnologyComparison";
 
 ## Executive Pitch Deck
 
-<PitchDeckSlide title="Phoenix Rooivalk: Level-0 Autonomous Counter-UAS Defense" slideNumber={1} totalSlides={15}>
+<PitchDeckSlide title="Phoenix Rooivalk: SAE Level 4 Autonomous Counter-UAS Defense" slideNumber={1} totalSlides={15}>
 # Revolutionary Defense Technology
 
 **Phoenix Rooivalk** represents the next generation of counter-drone defense
@@ -25,7 +25,7 @@ operational resilience.
 
 - **True Edge Autonomy** – Fully offline-capable operations
 - **Blockchain Accountability** – Immutable evidence anchoring
-- **Superior Performance** – Sub-{\d+} second response times
+- **Superior Performance** – Sub-200ms response times
 - **Modular Design** – Scalable and customizable
 
 _Revolutionizing Drone Defense Through Edge AI and Blockchain Accountability_
@@ -34,16 +34,16 @@ _Revolutionizing Drone Defense Through Edge AI and Blockchain Accountability_
 <PitchDeckSlide title="Market Opportunity: $2.51B by 2025" slideNumber={2} totalSlides={15}>
 # Explosive Market Growth
 
-&lt;MarketStats title="Global Counter-Drone Market" stats={[ { label:
-"{\d+} Market Size", value: "${\d+}.{\d+}-{\d+}.8B", description:
-"Current market value" }, { label: "{\d+} Projection", value: "${\d+}.51B",
+<MarketStats title="Global Counter-Drone Market" stats={[ { label:
+"2024 Market Size", value: "$1.2-1.8B", description:
+"Current market value" }, { label: "2030 Projection", value: "$2.51B",
 description: "Projected market size" }, { label: "Growth Rate", value:
-"{\d+}.{\d+}%", description: "Annual CAGR" }, { label: "Ukraine Impact", value:
-"{\d+}%", description: "Drones account for casualties" } ]} />
+"23.5%", description: "Annual CAGR" }, { label: "Ukraine Impact", value:
+"15%", description: "Drones account for casualties" } ]} />
 
 ### Market Drivers
 
-- **Threat Proliferation**: {\d+} million drones produced by Ukraine in {\d+}
+- **Threat Proliferation**: 1 million drones produced by Ukraine in 2024
 - **Infrastructure Attacks**: Critical facilities under constant threat
 - **Regulatory Requirements**: Increasing compliance demands
 - **Technology Evolution**: AI and blockchain integration opportunities
@@ -232,16 +232,31 @@ description: "Series A funding round" } ]} /> </PitchDeckSlide>
 
 ## Core Team
 
-- **Technical Leadership**: 15+ years defense technology experience
-- **AI/ML Specialists**: M-level expertise in computer vision and autonomous
-  systems
-- **Blockchain Engineers**: Deep experience with Solana and distributed systems
-- **Defense Industry Veterans**: Former Denel, Paramount, and CSIR professionals
+**Jurie (Hans Jurgens) Smit** - Co-Founder & CTO
+- **Background**: Systems Engineer & AI Architect with 15+ years experience
+- **Current Role**: Senior Developer at Sygnia Asset Management
+- **Expertise**: System Architecture, AI/ML, Blockchain, Cognitive Sovereignty research
+- **Education**: B.Eng Industrial-Electronic (Stellenbosch), B.Com Quantitative Management (UNISA)
+- **Key Skills**: Legacy system refactoring, human-AI collaboration frameworks, high-scale citizen platforms
 
-## Advisory Board
+**Martyn Redelinghuys** - Co-Founder & CEO  
+- **Background**: Executive Project Manager with 20+ years in energy, mining & defense
+- **Current Role**: Consultant Executive Project Manager at Sasol (R500M+ portfolio)
+- **Expertise**: Energy management, project optimization, multi-disciplinary capital projects
+- **Education**: B.Eng Electrical & Electronic (Stellenbosch), MBA (GIBS)
+- **Certifications**: Certified Energy Manager (CEM), Certified Measurement and Verification Professional (CMVP)
 
+## Team Building & Expansion
+
+**Current Focus**: Building world-class engineering team
+- **AI/ML Engineers**: Seeking specialists in computer vision and autonomous systems
+- **Blockchain Developers**: Deep Solana and distributed systems experience
+- **Defense Integration**: Former Denel, Paramount, and CSIR professionals
+- **Systems Architecture**: Senior engineers with defense technology background
+
+**Advisory Board Development**
 - **Defense Strategy**: Former SANDF generals and defense ministry officials
-- **Technology**: Leading AI researchers and blockchain experts
+- **Technology**: Leading AI researchers and blockchain experts  
 - **International Markets**: Former ambassadors and trade officials
 - **Manufacturing**: Aerospace and defense production specialists
 

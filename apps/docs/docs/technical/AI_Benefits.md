@@ -10,9 +10,9 @@ sidebar_label: AI Benefits
 
 The Phoenix Rooivalk system leverages cutting-edge artificial intelligence to
 deliver unprecedented performance in counter-drone defense. Our AI integration
-provides **{\d+}.{\d+}% threat detection accuracy** with **<200ms response
+provides **99.5% threat detection accuracy** with **<200ms response
 time**, representing a quantum leap over traditional systems that achieve only
-{\d+}-{\d+}% accuracy.
+70-85% accuracy.
 
 ---
 
@@ -22,26 +22,26 @@ time**, representing a quantum leap over traditional systems that achieve only
 
 **Revolutionary Accuracy**
 
-- **{\d+}.{\d+}% Detection Accuracy**: Validated against DroneRF dataset
+- **99.5% Detection Accuracy**: Validated against DroneRF dataset
   benchmarks
-- **{\d+}%+ Improvement**: Over conventional systems ({\d+}-{\d+}% accuracy)
+- **15%+ Improvement**: Over conventional systems (70-85% accuracy)
 - **Multi-Modal Validation**: Performance validated across multiple sensor
   modalities
 - **Real-World Performance**: Consistent performance in operational environments
 
 **Real-Time Response**
 
-- **Sub-200ms Inference**: Targeting TRIDENT's {\d+}.09ms and FPGA's {\d+}.14ms
+- **Sub-200ms Inference**: Targeting TRIDENT's 2.09ms and FPGA's 1.14ms
   performance levels
-- **{\d+}-5x Faster**: Than human-operated systems
+- **3-5x Faster**: Than human-operated systems
 - **Edge Processing**: Real-time AI processing at the edge
 - **Autonomous Operation**: Fully autonomous threat response
 
 **Dataset Validation**
 
-- **RF Detection**: {\d+}.{\d+}% accuracy on DroneRF dataset ({\d+}.4GHz ISM
+- **RF Detection**: 99.5% accuracy on DroneRF dataset (2.4GHz ISM
   band)
-- **Vision-based**: {\d+}.{\d+}% accuracy using XGBoost on RF signatures
+- **Vision-based**: 97.8% accuracy using XGBoost on RF signatures
 - **Multi-modal Fusion**: Enhanced accuracy through sensor combination
 - **Environmental Adaptation**: Performance across diverse environmental
   conditions
@@ -51,9 +51,7 @@ time**, representing a quantum leap over traditional systems that achieve only
 **Comprehensive Sensor Integration**
 
 - **RF Signal Analysis**: Identifies drone communication patterns
-- **Visual Recognition**: Distinguishes between ``` drones, birds
-
-````, and other objects
+- **Visual Recognition**: Distinguishes between drones, birds, and other objects
 - **Acoustic Analysis**: Detects drone-specific sound signatures
 - **Radar Tracking**: Provides 3D spatial awareness
 
@@ -66,8 +64,7 @@ time**, representing a quantum leap over traditional systems that achieve only
 ### Advanced Behavioral Analysis
 
 **Predictive Threat Assessment**
-- **Flight Pattern Analysis**: Analyzes flight ```
-patterns, speed
+- **Flight Pattern Analysis**: Analyzes flight patterns, speed
 ```, and trajectory
 - **Malicious Intent Prediction**: Predicts malicious intent before engagement
 - **Threat Prioritization**: Prioritizes threats based on risk assessment

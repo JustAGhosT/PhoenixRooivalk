@@ -13,7 +13,7 @@ AI decision-making at the edge; Solana anchors tamper-evident evidence on
 blockchain. We use custom Rust crates for sensor fusion instead of third-party
 solutions like Pinax (which would have added unnecessary overhead).
 
-**Q: How is {\d+}-195ms decision latency achieved?** A: Target latency through
+**Q: How is 50-195ms decision latency achieved?** A: Target latency through
 edge-first architecture - entire fuse-classify-decide-actuate path designed to
 run locally without WAN/cloud round-trips. Sensor fusion targeted at 20-50ms, AI
 decision at 50-100ms, with parallel evidence queueing. These are design targets
@@ -57,25 +57,13 @@ latency targets.
 
 **Q: Where does the Cognitive Mesh sit in the system architecture?** A: Operates
 as orchestration layer above the hot decision path - doesn't slow down critical
-decisions but provides ```
-coordination, learning
-```, and optimization capabilities
+decisions but provides coordination, learning, and optimization capabilities
 across the swarm.
 
-**Q: How does the Agent Registry manage {\d+}-{\d+} drone swarms?** A: Each drone
-registers with ```
-ID, capabilities
-```, ```
-role, authority
-``` ```
-level, and
-``` health status.
-Registry dynamically assigns specialized ```
-roles, handles
-``` graceful degradation
-when drones are ```
-damaged, and
-``` rebalances tasks in real-time.
+**Q: How does the Agent Registry manage 10-100 drone swarms?** A: Each drone
+registers with ID, capabilities, role, authority level, and health status.
+Registry dynamically assigns specialized roles, handles graceful degradation
+when drones are damaged, and rebalances tasks in real-time.
 
 **Q: How does the Hierarchical Decision Confidence Pack (HDCP) improve
 accuracy?** A: HDCP is designed to weight sensor inputs by reliability, decompose complex threats into sub-problems, and use ensemble voting. Target is
@@ -97,11 +85,8 @@ simultaneously. Can relax accuracy requirements to maintain &lt;2ms in critical
 situations while ensuring no slowdown even under swarm attacks.
 
 **Q: How does the Memory Flexibility Suite maintain situational awareness?** A:
-Maintains {\d+}-second working memory buffer (2GB/drone target), stores key ```
-events, learns
-``` threat ```
-patterns, and
-``` automatically promotes important patterns from
+Maintains {\d+}-second working memory buffer (2GB/drone target), stores key
+events, learns threat patterns, and automatically promotes important patterns from
 working to long-term storage.
 
 **Q: How does Cognitive Mesh enable swarm coordination under jamming?** A: Uses

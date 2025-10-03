@@ -21,17 +21,17 @@ Rooivalk Counter-Drone Defense System. The specifications cover system
 ### Key Performance Indicators (KPIs)
 
 **Detection Performance**
-- **Detection Accuracy**: {\d+}.{\d+}% AI detection accuracy
-- **Response Time**: {\d+}-195ms end-to-end response time
-- **False Positive Rate**: <{\d+}-{\d+}% target false positive rate
+- **Detection Accuracy**: 99.5% AI detection accuracy
+- **Response Time**: 50-195ms end-to-end response time
+- **False Positive Rate**: <1-2% target false positive rate
 - **Detection Range**: 500m-2km depending on sensor modality
-- **Concurrent Targets**: {\d+}+ concurrent drone targets
+- **Concurrent Targets**: 10+ concurrent drone targets
 
 **System Performance**
-- **System Uptime**: {\d+}.{\d+}% target system uptime
-- **Authentication Latency**: &lt;2ms authentication time
-- **Data Integrity**: {\d+}.{\d+}% blockchain-verified data integrity
-- **Autonomous Operation**: Level-{\d+} edge autonomy without network dependency
+- **System Uptime**: 99.9% target system uptime
+- **Authentication Latency**: sub 2ms authentication time
+- **Data Integrity**: 99.9% blockchain-verified data integrity
+- **Autonomous Operation**: Level-4 edge autonomy without network dependency
 - **EW Resilience**: GPS-denied and jamming-resistant operation
 
 ---

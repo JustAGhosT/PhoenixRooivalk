@@ -28,7 +28,7 @@ export interface Weapon {
 export interface PowerUp {
   id: string;
   name: string;
-  type: "multi-shot" | "rapid-fire" | "area-effect" | "shield-penetration";
+  type: "rapid-fire" | "damage-boost" | "area-effect" | "energy-boost" | "range-boost";
   duration: number; // milliseconds
   startTime: number;
   isActive: boolean;
@@ -36,6 +36,7 @@ export interface PowerUp {
     damageMultiplier?: number;
     cooldownReduction?: number;
     rangeMultiplier?: number;
+    energyBoost?: number;
     penetration?: boolean;
   };
 }

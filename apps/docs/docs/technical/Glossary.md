@@ -10,10 +10,7 @@ sidebar_label: Glossary
 
 This glossary provides comprehensive definitions of technical `terms, acronyms`,
 and concepts used throughout the Phoenix Rooivalk Counter-Drone Defense System
-documentation. The glossary serves as a reference for technical ``` evaluators,
-engineers
-
-````, and system integrators.
+documentation. The glossary serves as a reference for technical evaluators, engineers, and system integrators.
 
 ---
 
@@ -26,27 +23,19 @@ engineers
 
 **C2 (Command and Control)**
 - Interfaces and services used to ```
-task, monitor
-```, and coordinate system components and effectors
+task, monitor, and coordinate system components and effectors
 - Includes STANAG {\d+} compliance for standardized UAS control
 - Supports both manned and unmanned command structures
 
 **Counter-UAS / C-UAS**
 - Systems designed to ```
-detect, identify
-```, ```
-track, and
-``` neutralize unauthorized or hostile drones
+detect, identify, track, and neutralize unauthorized or hostile drones
 - Includes both kinetic and non-kinetic countermeasures
 - Supports multiple threat classifications and response protocols
 
 **DEW (Directed Energy Weapon)**
 - Non-kinetic effectors that use focused energy (e.g., lasers) to disrupt or disable targets
-- Includes laser ```
-dazzlers, high
-```-energy ```
-lasers, and
-``` microwave weapons
+- Includes laser dazzlers, high-energy lasers, and microwave weapons
 - Provides precision engagement with minimal collateral damage
 
 **Edge Computing**
@@ -55,41 +44,27 @@ lasers, and
 - Enables autonomous operation in GPS-denied and EW-contested environments
 
 **EW (Electronic Warfare)**
-- Military use of the electromagnetic spectrum to ```
-sense, protect
-```, and attack
-- Includes ```
-jamming, deception
-```, and electronic attack capabilities
+- Military use of the electromagnetic spectrum to sense, protect, and attack
+- Includes jamming, deception, and electronic attack capabilities
 - Essential for operations in contested electromagnetic environments
 
 **Fiber Control (Tethered/Spool)**
-- Jam-resistant command link over optical ```
-fiber, avoiding
-``` RF denial environments
+- Jam-resistant command link over optical fiber, avoiding RF denial environments
 - Provides secure communication in high-threat environments
 - Enables extended range operations with reduced vulnerability
 
-**ISR (```
-Intelligence, Surveillance
-```, Reconnaissance)**
+**ISR (Intelligence, Surveillance, Reconnaissance)**
 - Sensing and data fusion activities to build situational awareness
 - Includes multi-sensor data collection and analysis
 - Supports threat assessment and mission planning
 
 **Swarm**
 - Coordinated operation of multiple drones to achieve emergent effects
-- Includes distributed ```
-sensing, coordinated
-``` ```
-attack, and
-``` formation flying
+- Includes distributed sensing, coordinated attack, and formation flying
 - Enables scalable operations with graceful degradation
 
 **VTOL (Vertical Take-Off and Landing)**
-- Aircraft capable of vertical take-```
-off, hover
-```, and landing without a runway
+- Aircraft capable of vertical take-off, hover, and landing without a runway
 - Essential for operations in confined spaces and urban environments
 - Supports rapid deployment and recovery operations
 
@@ -113,23 +88,17 @@ off, hover
 ## Messaging and Observability
 
 **gRPC**
-- High-```
-performance, HTTP
-```/{\d+}-based RPC framework used for control plane communications
+- High-performance, HTTP/2-based RPC framework used for control plane communications
 - Provides efficient serialization and streaming capabilities
 - Supports both synchronous and asynchronous communication patterns
 
 **Protobuf (Protocol Buffers)**
-- Language-```
-neutral, platform
-```-neutral serialization format
+- Language-neutral, platform-neutral serialization format
 - Used for efficient data exchange between system components
 - Supports schema evolution and backward compatibility
 
 **WebSocket**
-- Real-```
-time, bidirectional
-``` communication protocol
+- Real-time, bidirectional communication protocol
 - Used for live telemetry and command streaming
 - Supports low-latency communication for time-critical operations
 
@@ -164,11 +133,7 @@ time, bidirectional
 
 **LPI/LPD (Low Probability of Intercept/Detection)**
 - Communication techniques that minimize detection by adversaries
-- Includes frequency ```
-hopping, spread
-``` ```
-spectrum, and
-``` directional antennas
+- Includes frequency hopping, spread spectrum, and directional antennas
 - Critical for operations in contested environments
 
 **Frequency Hopping**
@@ -195,25 +160,13 @@ spectrum, and
 
 ## Navigation and PNT
 
-**PNT (```
-Positioning, Navigation
-```, and Timing)**
-- Integrated system providing ```
-position, navigation
-```, and timing information
-- Includes ```
-GPS, inertial
-``` ```
-navigation, and
-``` other positioning systems
+**PNT (Positioning, Navigation, and Timing)**
+- Integrated system providing position, navigation, and timing information
+- Includes GPS, inertial navigation, and other positioning systems
 - Critical for autonomous operations and precision engagement
 
 **GNSS (Global Navigation Satellite System)**
-- Global positioning system including ```
-GPS, GLONASS
-```, ```
-Galileo, and
-``` BeiDou
+- Global positioning system including GPS, GLONASS, Galileo, and BeiDou
 - Provides worldwide positioning and timing services
 - Supports multi-constellation positioning for improved accuracy
 
@@ -248,11 +201,7 @@ Galileo, and
 
 **NVIDIA Jetson**
 - Edge AI computing platform for autonomous systems
-- Includes Jetson AGX ```
-Orin, Orin
-``` ```
-NX, and
-``` Nano variants
+- Includes Jetson AGX Orin, Orin NX, and Nano variants
 - Provides high-performance AI processing at the edge
 
 **TensorRT**
@@ -287,18 +236,12 @@ NX, and
 **Soft Kill**
 - Non-destructive countermeasures including jamming and spoofing
 - Provides reversible neutralization with minimal collateral damage
-- Includes RF ```
-jamming, GPS
-``` ```
-spoofing, and
-``` communication disruption
+- Includes RF jamming, GPS spoofing, and communication disruption
 
 **Hard Kill**
 - Destructive countermeasures including kinetic interceptors
 - Provides permanent neutralization of threats
-- Includes ```
-missiles, projectiles
-```, and directed energy weapons
+- Includes missiles, projectiles, and directed energy weapons
 
 **RF Jamming**
 - Disruption of radio frequency communications
@@ -371,8 +314,7 @@ missiles, projectiles
 **AI/ML (Artificial Intelligence/Machine Learning)**
 - Technologies enabling autonomous decision-making and pattern recognition
 - Supports threat ```
-detection, classification
-```, and response
+detection, classification, and response
 - Enables adaptive behavior and continuous learning
 
 **Neural Networks**

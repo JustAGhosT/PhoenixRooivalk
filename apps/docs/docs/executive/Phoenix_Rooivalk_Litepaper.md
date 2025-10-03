@@ -23,8 +23,8 @@ systems that fail when enemies jam communications.
 
 **Key Differentiators:**
 
-- **SAE Level 4 Edge Autonomy**: Complete operational independence without
-  network dependency
+- **SAE Level 4 Edge Autonomy**: Complete operational independence without network
+  dependency
 - **Blockchain Evidence**: Tamper-proof dual-chain (Solana + EtherLink) audit
   trails
 - **Morpheus AI Integration**: Decentralized AI decision engine for autonomous
