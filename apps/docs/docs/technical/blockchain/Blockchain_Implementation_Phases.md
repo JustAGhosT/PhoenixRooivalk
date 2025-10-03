@@ -386,6 +386,3 @@ security, performance
 ---
 
 *This document contains confidential implementation specifications. Distribution is restricted to authorized personnel only. © 2025 Phoenix Rooivalk. All rights reserved.*
-
-*Context improved by Giga AI*
-````

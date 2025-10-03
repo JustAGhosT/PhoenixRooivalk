@@ -8,7 +8,7 @@ sidebar_label: Glossary
 
 ## Executive Summary
 
-This glossary provides comprehensive definitions of technical `terms, acronyms`,
+This glossary provides comprehensive definitions of technical terms, acronyms,
 and concepts used throughout the Phoenix Rooivalk Counter-Drone Defense System
 documentation. The glossary serves as a reference for technical evaluators,
 engineers, and system integrators.
@@ -26,15 +26,13 @@ engineers, and system integrators.
 
 **C2 (Command and Control)**
 
-- Interfaces and services used to ``` task, monitor, and coordinate system
-  components and effectors
+- Interfaces and services used to task, monitor, and coordinate system components and effectors
 - Includes STANAG 4586 compliance for standardized UAS control
 - Supports both manned and unmanned command structures
 
 **Counter-UAS / C-UAS**
 
-- Systems designed to ``` detect, identify, track, and neutralize unauthorized
-  or hostile drones
+- Systems designed to detect, identify, track, and neutralize unauthorized or hostile drones
 - Includes both kinetic and non-kinetic countermeasures
 - Supports multiple threat classifications and response protocols
 
@@ -401,9 +399,7 @@ engineers, and system integrators.
 **Computer Vision**
 
 - AI technology for analyzing and understanding visual information
-- Supports object ``` detection, tracking
-
-````, and classification
+- Supports object detection, tracking, and classification
 - Enables autonomous navigation and threat identification
 
 **Natural Language Processing**
@@ -512,12 +508,8 @@ Positioning, navigation
 - **Security and Compliance**: Security frameworks and compliance requirements
 - **Performance and Metrics**: Performance measures and system capabilities
 
-The glossary ensures consistent understanding of technical concepts and supports effective communication between technical ```
-teams, stakeholders
-```, and system integrators.
+The glossary ensures consistent understanding of technical concepts and supports effective communication between technical teams, stakeholders, and system integrators.
 
 ---
 
-*This document contains confidential technical information. Distribution is restricted to authorized personnel only. © {\d+} Phoenix Rooivalk. All rights reserved.*
-
-````
+*This document contains confidential technical information. Distribution is restricted to authorized personnel only. © 2025 Phoenix Rooivalk. All rights reserved.*

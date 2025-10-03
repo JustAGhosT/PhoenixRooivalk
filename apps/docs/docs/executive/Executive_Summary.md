@@ -155,31 +155,12 @@ tactical vehicle integration.
 
 ## Strategic Recommendations
 
-**Market positioning:** Focus on underserved mobile/on-the-move C-UAS segment
-with urgent DoD ``` need, specialize
-
-```in swarm defense capabilities most competitors
-
-```
-
-lack, and
-
-````position as sensor-agnostic systems integrator rather than point
-solution provider. Target export markets in Middle East and Asia-Pacific ({\d+}.{\d+}%
-CAGR) with less regulatory constraint than US commercial market.
+**Market positioning:** Focus on underserved mobile/on-the-move C-UAS segment with urgent DoD need, specialize in swarm defense capabilities most competitors lack, and position as sensor-agnostic systems integrator rather than point solution provider. Target export markets in Middle East and Asia-Pacific (25.5% CAGR) with less regulatory constraint than US commercial market.
 
 **Technology differentiation:** Lead with AI/ML capabilities using real-time
 learning systems and explainable AI for regulatory compliance. Implement hybrid
 soft-kill/hard-kill with layered response optimizing effector selection. Achieve
-performance advantages with detection range over ```
-5km, response
-``` time under {\d+}
-````
-
-seconds, success
-
-````rate over {\d+}%, and multi-target capacity handling {\d+}+
-simultaneous threats.
+performance advantages with detection range over 5km, response time under 200ms, success rate over 99%, and multi-target capacity handling 10+ simultaneous threats.
 
 **Development roadmap:** Phase {\d+} focuses on DoD validation through SBIR/STTR and
 OTA contracts targeting ${\d+}-5M in development funding. Phase {\d+} scales to

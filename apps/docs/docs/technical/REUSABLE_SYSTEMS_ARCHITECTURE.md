@@ -9,10 +9,7 @@ sidebar_label: REUSABLE SYSTEMS ARCHITECTURE
 ## Overview
 
 This document outlines the enhanced reusable system architecture implemented for
-the Phoenix Rooivalk ``` ThreatSimulator, designed
-
-````for seamless porting to Rust in
-the main counter-drone defense application.
+the Phoenix Rooivalk ThreatSimulator, designed for seamless porting to Rust in the main counter-drone defense application.
 
 ## 🎯 Architecture Goals
 
@@ -26,9 +23,7 @@ the main counter-drone defense application.
 
 ### **Rust Porting Readiness**
 
-- **Pure Functions**: No side ```
-effects, easy
-``` to port
+- **Pure Functions**: No side effects, easy to port
 - **Clear Interfaces**: Well-defined data contracts
 - **Algorithm Focus**: Mathematical and logical operations
 - **State Machines**: Deterministic behavior patterns
@@ -69,11 +64,9 @@ interface GameState {
 
 interface GameSystem {
   name: string;
-  update(state: ```
-GameState, deltaTime
-```: number): void;
+  update(state: GameState, deltaTime: number): void;
 }
-````
+```
 
 ### 2. **Object Pool System** (`objectPool.ts`)
 
@@ -131,13 +124,11 @@ class ObjectPool&lt;T extends Poolable&gt; {
 
 **Core Interfaces**:
 
-````typescript
+```typescript
 interface SimpleState {
   name: string;
   onEnter?: (context: any) => void;
-  onUpdate?: (context: ```
-any, deltaTime
-```: number) => void;
+  onUpdate?: (context: any, deltaTime: number) => void;
   onExit?: (context: any) => void;
 }
 
@@ -146,7 +137,7 @@ interface SimpleTransition {
   to: string;
   condition: (context: any) => boolean;
 }
-````
+```
 
 ### 4. **Event System** (`eventSystem.ts`)
 
@@ -169,7 +160,7 @@ interface SimpleTransition {
 
 **Core Interfaces**:
 
-````typescript
+```typescript
 interface Event {
   id: string;
   type: string;
@@ -180,13 +171,11 @@ interface Event {
 }
 
 class EventSystem {
-  subscribe(eventType: ```
-string, handler
-```: EventHandler): string;
+  subscribe(eventType: string, handler: EventHandler): string;
   emit(event: Event): void;
   processEvents(): void;
 }
-````
+```
 
 ### 1. **Performance Monitor** (`performanceMonitor.ts`)
 
@@ -209,15 +198,13 @@ string, handler
 
 **Core Interfaces**:
 
-````typescript
+```typescript
 interface PerformanceMetrics {
   fps: number;
   frameTime: number;
   memoryUsage: number;
   activeEntities: number;
-  systemUpdateTime: Record&lt;```
-string, number
-```&gt;;
+  systemUpdateTime: Record<string, number>;
 }
 
 class PerformanceMonitor {
@@ -225,20 +212,18 @@ class PerformanceMonitor {
   checkThresholds(): PerformanceIssue[];
   generateReport(): PerformanceReport;
 }
-````
+```
 
 ## 🔄 System Integration
 
 ### **Event-Driven Communication**
 
-````typescript
+```typescript
 // Systems communicate via events
 eventSystem.emit({
   type: "threat:spawned",
   source: "threat-system",
-  data: { ```
-threatId, threatType
-```, position },
+  data: { threatId, threatType, position },
   priority: 1,
 });
 
@@ -246,7 +231,7 @@ threatId, threatType
 eventSystem.subscribe("threat:spawned", (event) => {
   // Handle threat spawning
 });
-````
+```
 
 ### **Pure Function Updates**
 
@@ -289,9 +274,7 @@ if (threat) {
 - TypeScript interfaces → Rust structs
 - Optional properties → Rust Option&lt;T&gt;
 - Arrays → Rust Vec&lt;T&gt;
-- Maps → Rust HashMap&lt;``` K, V
-
-````>
+- Maps → Rust HashMap<K, V>
 
 ### **2. State Machines**
 
@@ -321,7 +304,7 @@ if (threat) {
 
 ### **Memory Efficiency**
 
-- Object pooling reduces allocations by {\d+}%
+- Object pooling reduces allocations by 60%
 - Event system eliminates memory leaks
 - State machines use minimal memory footprint
 
@@ -415,12 +398,4 @@ Independent, testable
 ✅ **Real-time Monitoring**: Performance tracking and optimization
 
 This architecture serves as a solid foundation for the main Phoenix Rooivalk
-counter-drone defense ```
-system, ensuring
-``` seamless transition from TypeScript to
-Rust while maintaining high performance and reliability.
-
----
-
-**Context improved by Giga AI**
-````
+counter-drone defense system, ensuring seamless transition from TypeScript to Rust while maintaining high performance and reliability.
