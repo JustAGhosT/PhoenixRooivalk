@@ -104,10 +104,10 @@ accuracy.
 ### Machine Learning Models
 
 **YOLOv9 Object Detection**
-- **mAP**: {\d+}.{\d+}% mean Average Precision
-- **Precision**: {\d+}.{\d+} precision
-- **Recall**: {\d+}.{\d+} recall
-- **Frame Rate**: {\d+}+ FPS on Jetson Nano, {\d+}+ FPS on Orin platforms
+- **mAP**: 65.2% mean Average Precision
+- **Precision**: 0.95 precision
+- **Recall**: 0.92 recall
+- **Frame Rate**: 30+ FPS on Jetson Nano, 60+ FPS on Orin platforms
 
 **Multi-Modal Fusion**
 - **Sensor Integration**: Heterogeneous sensor data integration
@@ -127,16 +127,16 @@ accuracy.
 - **Agent Registry**: Catalog of all drone and sensor agents
 - **Role Assignment**: Dynamic role assignment based on tactical situation
 - **Graceful Degradation**: Handling when drones are damaged
-- **Performance**: Real-time coordination of {\d+}-{\d+} drone swarms
+- **Performance**: Real-time coordination of 5-50 drone swarms
 
 **Hierarchical Decision Confidence Pack (HDCP)**
-- **Accuracy Improvement**: Target {\d+}.{\d+}-{\d+}.{\d+}% detection accuracy
+- **Accuracy Improvement**: Target 99.5-99.9% detection accuracy
 - **Ensemble Voting**: Multi-level analysis and voting
 - **Confidence Scoring**: Hierarchical confidence assessment
 - **Performance**: Real-time confidence scoring
 
 **Temporal Decision Core (TDC)**
-- **Context Enrichment**: {\d+}-100ms after authentication
+- **Context Enrichment**: 50-100ms after authentication
 - **Pattern Matching**: Historical scenario pattern matching
 - **Learning**: Eligibility traces for learning from past incidents
 - **Performance**: Real-time pattern recognition
