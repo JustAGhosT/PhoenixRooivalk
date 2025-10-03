@@ -147,7 +147,7 @@ paradigm shift from traditional centralized systems.
 
 **Data Integrity**
 
-- **{\d+}.{\d+}% Integrity Protection**: Superior to traditional systems ({\d+}%)
+- **99.9% Integrity Protection**: Superior to traditional systems (95%)
 - **Tamper Detection**: Advanced tamper detection capabilities
 - **Cryptographic Security**: Strong cryptographic security measures
 - **Audit Compliance**: Full audit compliance and reporting
@@ -161,7 +161,7 @@ paradigm shift from traditional centralized systems.
 
 **Audit Trail Performance**
 
-- **{\d+}% Immutable Logging**: Complete immutable audit trails
+- **100% Immutable Logging**: Complete immutable audit trails
 - **Forensic Capabilities**: Complete forensic capabilities
 - **Legal Admissibility**: Court-admissible evidence
 - **Compliance**: Full regulatory compliance
@@ -170,8 +170,8 @@ paradigm shift from traditional centralized systems.
 
 **Swarm Coordination**
 
-- **240ms Latency**: For {\d+}-drone swarm coordination
-- **Byzantine Fault Tolerance**: {\d+}% malicious node tolerance
+- **240ms Latency**: For 50-drone swarm coordination
+- **Byzantine Fault Tolerance**: 33% malicious node tolerance
 - **Distributed Processing**: Distributed processing and decision making
 - **Scalable Operations**: Scalable operations across deployments
 
@@ -193,8 +193,8 @@ paradigm shift from traditional centralized systems.
 
 **Transaction Costs**
 
-- **${\d+}.{\d+} per Transaction**: Low transaction costs
-- **${\d+}, {\d+} Annual Cost**: For continuous operation
+- **$0.00025 per Transaction**: Low transaction costs
+- **$1,000 Annual Cost**: For continuous operation
 - **Cost Efficiency**: Orders of magnitude more cost-effective
 - **Scalability**: Linear cost scaling with usage
 

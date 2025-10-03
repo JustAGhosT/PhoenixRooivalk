@@ -44,15 +44,8 @@ maintaining cryptographic evidence trail, and multi-site scalability.
 
 **Q: How does Cognitive Mesh enhance Phoenix Rooivalk beyond basic autonomy?**
 A: Provides multi-agent orchestration allowing role specialization
-(scout/interceptor/relay), hierarchical decision ``` confidence, temporal
-
-```pattern
-
-```
-
-recognition, and
-
-````continuous learning capabilities while maintaining sub-200ms
+(scout/interceptor/relay), hierarchical decision confidence, temporal
+pattern recognition, and continuous learning capabilities while maintaining sub-200ms
 latency targets.
 
 **Q: Where does the Cognitive Mesh sit in the system architecture?** A: Operates
@@ -90,16 +83,8 @@ events, learns threat patterns, and automatically promotes important patterns fr
 working to long-term storage.
 
 **Q: How does Cognitive Mesh enable swarm coordination under jamming?** A: Uses
-delay-tolerant ```
-networking, short
-```-range robust ```
-links, signed
-``` ```
-topics, CBBA
-```-style
-auction algorithms for task ```
-assignment, and
-``` maintains coordination even with
+delay-tolerant networking, short-range robust links, signed topics, CBBA-style
+auction algorithms for task assignment, and maintains coordination even with
 50%+ communication loss.
 
 **Q: What is the Cognitive Sandwich Backend's role in weapon authorization?
@@ -121,36 +106,17 @@ access.
 
 **Q: How is evidence tamper-proof?** 
 A: Every decision is hash-chained, Merkle-batched, and
-anchored on Solana with timestamps. Keys stored in TPM/```
-HSM, models
-```/policies signed and verified at boot.
+anchored on Solana with timestamps. Keys stored in TPM/HSM, models/policies signed and verified at boot.
 
 **Q: Why use Solana specifically?** A: High-throughput (65,000-100,000 TPS),
 low-latency (~400ms finality), low-cost anchoring (~$0.00025/anchor), Proof of
-History for cryptographic ```
-timestamping, and
-``` proven reliability.
+History for cryptographic timestamping, and proven reliability.
 
 **Q: What if Solana is congested or offline?** A: Evidence queues locally with
-exponential ```
-backoff, local
-``` proofs remain ```
-verifiable, alerts
-``` raised for anchor
-````
+exponential backoff, local proofs remain
+verifiable, alerts raised for anchor lag, optional dual-chain anchoring with Etherlink for redundancy.
 
-lag, optional
-
-````dual-chain anchoring with Etherlink for redundancy.
-
-**Q: Can logs be forged?** A: No - keys in TPM/```
-HSM, signed
-``` models/```
-policies, on
-```-chain root ```
-verification, and
-``` correlation IDs linking all evidence layers make
-forgery cryptographically impossible.
+**Q: Can logs be forged?** A: No - keys in TPM/HSM, signed models/policies, on-chain root verification, and correlation IDs linking all evidence layers make forgery cryptographically impossible.
 
 **Q: What about data privacy?** A: Evidence encrypted off-chain in Azure
 Blob/S3; only merkle roots on-chain; GDPR-compliant retention; zero-knowledge
@@ -160,27 +126,13 @@ proof options under exploration.
 
 ## Market & Business
 
-**Q: Who are initial buyers?** A: Defense ```
-primes, critical
-``` infrastructure
-operators (```
-airports, power
-``` plants), NATO-aligned ```
-militaries, and
-``` civilian
-security firms. Focus on customers needing autonomous operation in contested
-environments.
+**Q: Who are initial buyers?** A: Defense primes, critical infrastructure operators (airports, power plants), NATO-aligned militaries, and civilian security firms. Focus on customers needing autonomous operation in contested environments.
 
 **Q: Why now?** A: Ukraine conflict revealed vulnerabilities in
 network-dependent systems; EW-heavy theaters demand offline autonomy; drone
 threats evolving faster than traditional defenses can adapt.
 
-**Q: Is this only military?** A: No - civilian applications include ```
-airports, data
-``` ```
-centers, stadiums
-```, power plants. Insurance and compliance requirements
-driving civilian adoption.
+**Q: Is this only military?** A: No - civilian applications include airports, data centers, stadiums, power plants. Insurance and compliance requirements driving civilian adoption.
 
 **Q: What's the Lockheed Martin angle?** A: Initial discussions occurred but are
 currently frozen pending MVP/POC development. They would serve as systems
@@ -193,16 +145,12 @@ perspective) to build reputation and drive inbound interest - scheduled
 post-MVP.
 
 **Q: What are unit economics?** A: Target pricing around ZAR 850k (~$45k USD)
-for base ```
-system, with
-``` recurring revenue from SaaS monitoring and evidence
+for base system, with recurring revenue from SaaS monitoring and evidence
 storage services. Actual pricing will depend on configuration and scale.
 
 **Q: How big is the market opportunity?** A: Counter-drone market estimated at
 $2-3.5B (2024) with projections to $8-16B by 2030-2035 (15-25% CAGR). Total
-drone industry is ~$```
-73B, providing
-``` additional expansion opportunities.
+drone industry is ~$73B, providing additional expansion opportunities.
 
 ---
 
@@ -251,22 +199,14 @@ and civilian court standards through tamper-evident blockchain proof, complete s
 
 ## Performance & Reliability
 
-**Q: How is false positive risk managed?** A: Design includes confidence
-```
-
-thresholds, multi `-sensor` correlation, and
-
-````human-in-the-loop for critical
-decisions. Target false positive rate <{\d+}-{\d+}% to be validated through testing.
+**Q: How is false positive risk managed?** A: Design includes confidence thresholds, multi-sensor correlation, and human-in-the-loop for critical decisions. Target false positive rate <0.5-1% to be validated through testing.
 
 **Q: What happens if sensors degrade?** A: Architecture designed for graceful
-degradation - if certain sensors ```
-fail, system
-``` continues with reduced capability.
+degradation - if certain sensors fail, system continues with reduced capability.
 Cognitive Mesh monitors health and adjusts operations accordingly.
 
 **Q: What's the target uptime?** A: High availability through redundant edge
-nodes and automatic failover. Target {\d+}.{\d+}% SLA to be validated in production.
+nodes and automatic failover. Target 99.9% SLA to be validated in production.
 
 **Q: How does it perform in adverse weather?** A: Multi-sensor fusion designed
 to compensate for individual sensor limitations. Weather performance will be
@@ -332,60 +272,35 @@ offline with post-hoc anchoring.
 
 **Q: How do you prevent adversarial AI attacks?** A: Input validation, anomaly detection, confidence
 
-bounds, gradual
-``` trust ```
-degradation, automatic
-``` reversion to
-conservative modes planned.
+bounds, gradual trust degradation, automatic reversion to conservative modes planned.
 
 **Q: What about swarm hijacking?** A: Cryptographic authentication per drone;
 continuous re-validation; automatic quarantine of anomalous units; Byzantine
-fault tolerance assumes {\d+}% compromise.
+fault tolerance assumes 33% compromise.
 
 ---
 
 ## Team & Execution
 
 **Q: What is the background of the team?** A: The team is led by Jurie Smit
-(LinkedIn: ```
-juriesmit, GitHub
-```: JustAGhosT) and Martyn Redelinghuys (LinkedIn:
+(LinkedIn: juriesmit, GitHub: JustAGhosT) and Martyn Redelinghuys (LinkedIn:
 martynrede). The Phoenix Rooivalk repository demonstrates strong technical
-capabilities in ```
-Rust, blockchain
-``` integration (Solana/Etherlink), distributed
-
-systems, and modern DevOps practices.
+capabilities in Rust, blockchain integration (Solana/Etherlink), distributed systems, and modern DevOps practices.
 
 **Q: What is the current development status of Phoenix Rooivalk?** A: We have a
-monorepo with core components built: Axum API ```
-service, blockchain
-``` keeper service
-for Solana/Etherlink ```
-anchoring, custom
-``` Rust crates for evidence handling and
-sensor ```
-fusion, Next
-```.js marketing ```
-site, and
-``` Docusaurus documentation. The
+monorepo with core components built: Axum API service, blockchain keeper service
+for Solana/Etherlink anchoring, custom Rust crates for evidence handling and
+sensor fusion, Next.js marketing site, and Docusaurus documentation. The
 software foundation is complete; seeking funding for hardware and MVP
 demonstration.
 
-**Q: How do you plan to go to market?** A: Two-pronged approach: ({\d+}) Defense
+**Q: How do you plan to go to market?** A: Two-pronged approach: (1) Defense
 partnerships - Lockheed Martin discussions frozen pending MVP/POC demonstration.
-Once prototype ```
-ready, restart
-``` engagement for integration and distribution. ({\d+})
+Once prototype ready, restart engagement for integration and distribution. (2)
 Media/influencer strategy targeting defense tech audiences through channels like
-Prof ```
-Gerdes, ATP
-Geopolitics, and
-``` CombatVeteranReacts.
+Prof Gerdes, ATP Geopolitics, and CombatVeteranReacts.
 
-**Q: Are there any regulatory or ethical barriers?** A: ```
-Yes, autonomous
-``` defense
+**Q: Are there any regulatory or ethical barriers?** A: Yes, autonomous defense
 systems face significant scrutiny. Our approach: human-in-the-loop for kinetic
 actions, modular `architecture to isolate ITAR-controlled` components,
 compliance tracking (NIST AI RMF), tamper-proof evidence logging for accountability.
@@ -410,29 +325,17 @@ sensor fusion algorithms represent significant development effort.
 ## Investment & Partnership
 
 **Q: What's the funding status?** A: Currently self-funded/unfunded. Built the
-technical foundation (```
-software, architecture
-```, CI/CD). Urgently seeking seed
+technical foundation (software, architecture, CI/CD). Urgently seeking seed
 investment for hardware procurement and MVP completion.
 
 **Q: What partnerships are needed?** A: Key needs: MVP/POC completion to restart
-Lockheed Martin ```
-discussions, sensor
-``` manufacturers for hardware ```
-integration, regulatory  expertise for defense 
-procurement, operational
-``` partners for pilot
+Lockheed Martin discussions, sensor manufacturers for hardware integration, regulatory  expertise for defense 
+procurement, operational partners for pilot
 
 deployments, seed funding for demonstrator.
 
 **Q: What's the exit strategy?** A: Potential paths include strategic
-acquisition by defense ```
-contractor, licensing
-``` of specific ```
-technologies, or
-````
-
-building standalone defense technology company. Path depends on market traction
+acquisition by defense contractor, licensing of specific technologies, or building standalone defense technology company. Path depends on market traction
 and partner relationships.
 
 **Q: How do you measure success?** A: Initial: completing MVP/POC,
@@ -448,12 +351,12 @@ demonstrate the integrated system (sensor fusion, Morpheus AI decision engine, S
 discussions and proceed to pilot deployments.
 
 **Q: What is the timeline for deployment?** A: Currently October 2025. Software
-foundation complete. Once funded: {\d+}-{\d+} months for MVP, then {\d+}-{\d+} weeks per site
+foundation complete. Once funded: 3-6 months for MVP, then 2-4 weeks per site
 deployment. Production timeline depends on pilot results and customer
 commitments.
 
 **Q: What proof will be shown at pilot exit?** A: Target metrics include latency
-measurements (aiming for &lt;200ms end-to-end), false positive rates <{\d+}%, ROE
+measurements (aiming for <200ms end-to-end), false positive rates <1%, ROE
 compliance verification, and successful blockchain evidence chain validation.
 
 **Q: How does Cognitive Mesh evolve?** A: The framework enables continuous
