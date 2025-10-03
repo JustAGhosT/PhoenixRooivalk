@@ -2,6 +2,11 @@
 
 Modular Counter‑UAS System (restricted partner access)
 
+## 🌐 Live Sites
+
+- **Marketing Website**: [phoenixrooivalk.netlify.app](https://phoenixrooivalk.netlify.app) - Interactive demo, capabilities overview, and contact information
+- **Documentation Site**: [phoenixrooivalk-docs.netlify.app](https://phoenixrooivalk-docs.netlify.app) - Technical specifications, architecture, and implementation guides
+
 ## Monorepo overview
 
 This repository uses a Turborepo + pnpm monorepo to host multiple apps and
@@ -11,23 +16,41 @@ Structure:
 
 - `apps/`
   - `docs/` — Docusaurus site (published under `/docs`).
+    - Comprehensive technical documentation with executive, business, technical, legal, and operations sections.
   - `marketing/` — Next.js 14 static marketing site (exports to `out/`).
+    - Includes threat simulator, ROI calculator, and interactive demos.
   - `api/` — Rust (Axum) API server.
   - `keeper/` — Rust blockchain keeper service.
   - `evidence-cli/` — Rust CLI for evidence management.
+  - `scripts/` — Application-specific scripts.
 - `packages/`
   - `types/` — Shared TypeScript type definitions.
   - `ui/` — Shared React UI components and hooks.
+  - `utils/` — Shared utility functions.
 - `crates/`
   - `evidence/` — Core evidence logging functionality.
   - `anchor-solana/` — Solana blockchain anchoring.
   - `anchor-etherlink/` — EtherLink blockchain anchoring.
   - `address-validation/` — Blockchain address validation.
+- `docs/` — Legacy documentation (migrated to `apps/docs/`).
+- `scripts/` — Root-level deployment and utility scripts.
+- `blockchain_outbox.sqlite3` — SQLite database for blockchain evidence outbox.
+- `ACCESS.md` — Access request information for defense partners.
+- `CONTRIBUTING.md` — Contribution guidelines.
+- `DEPLOYMENT.md` — Deployment documentation.
+- `RESPONSIBLE_USE.md` — Responsible use guidelines.
+- `SECURITY.md` — Security policy and reporting.
 
 Tooling:
 
 - Package manager: `pnpm` (via `corepack`).
 - Orchestrator: `turbo` (see `turbo.json`).
+- Linting: `eslint` with TypeScript, React, and security plugins.
+- Formatting: `prettier` with consistent code style.
+- Pre-commit: `husky` and `lint-staged` for automated quality checks.
+- Spell checking: `cspell` for documentation and code comments.
+- Rust tooling: `clippy` for Rust code quality and `cargo` for dependency management.
+- Configuration: `tsconfig.base.json` for shared TypeScript configuration.
 
 ### Development commands
 
@@ -40,34 +63,59 @@ corepack enable
 # install workspace dependencies
 pnpm install
 
-# develop marketing (Next.js)
+# develop marketing (Next.js) - http://localhost:3000
 pnpm --filter marketing dev
 
-# develop docs (Docusaurus)
-pnpm -C apps/docs start
+# develop docs (Docusaurus) - http://localhost:3000
+pnpm --filter docs start
 
 # build all
 pnpm build
 
 # build single app (static export)
 pnpm --filter marketing build  # outputs to apps/marketing/out/
-pnpm -C apps/docs build
+pnpm --filter docs build       # outputs to apps/docs/build/
 
 # run Rust API locally
 cargo run --manifest-path apps/api/Cargo.toml
+
+# run Rust services
+cargo run --manifest-path apps/keeper/Cargo.toml    # Blockchain keeper
+cargo run --manifest-path apps/evidence-cli/Cargo.toml -- <command>  # Evidence CLI
+
+# run utility scripts
+./scripts/deploy.sh                    # Deployment script
+./scripts/Invoke-Tests.ps1            # PowerShell test runner
+./scripts/Invoke-OutboxWorker.ps1     # Blockchain outbox worker
+
+# linting and formatting
+pnpm lint                              # Run ESLint on all packages
+pnpm typecheck                         # TypeScript type checking
+pnpm format                            # Format code with Prettier
+pnpm format:check                      # Check formatting without fixing
+
+# Rust development
+cargo check                            # Check Rust code without building
+cargo clippy                           # Run Rust linter
+cargo test                             # Run Rust tests
 ```
 
 ### Deployment
 
 Deployments are performed by GitHub Actions to two separate Netlify sites:
 
-- Docs: `.github/workflows/deploy-docs-site.yml` publishes `apps/docs/build`.
-  - Secrets: `NETLIFY_AUTH_TOKEN`, `NETLIFY_DOCS_SITE_ID`.
-- Marketing: `.github/workflows/deploy-marketing-site.yml` publishes
-  `apps/marketing/out`.
-  - Secrets: `NETLIFY_AUTH_TOKEN`, `NETLIFY_MARKETING_SITE_ID`.
+- **Docs**: `.github/workflows/deploy-docs-site.yml` publishes `apps/docs/build/`
+  - Secrets: `NETLIFY_AUTH_TOKEN`, `NETLIFY_DOCS_SITE_ID`
+  - Triggers: Push to `main` branch, changes to `apps/docs/**`
+- **Marketing**: `.github/workflows/deploy-marketing-site.yml` publishes `apps/marketing/out/`
+  - Secrets: `NETLIFY_AUTH_TOKEN`, `NETLIFY_MARKETING_SITE_ID`
+  - Triggers: Push to `main` branch, changes to `apps/marketing/**`
 
-Netlify’s “Deploys from Git” is disabled; Actions upload artifacts directly.
+Additional workflows:
+- **CI/CD**: `.github/workflows/ci-marketing.yml`, `.github/workflows/ci-rust.yml`
+- **Security**: `.github/workflows/codeql.yml` for vulnerability scanning
+
+Netlify's "Deploys from Git" is disabled; Actions upload artifacts directly.
 
 ### Cross‑site links (env)
 
@@ -127,25 +175,16 @@ For detailed specifications and planning baselines, see [`index.md`](./index.md)
 
 ## Documentation map
 
-- Business plan and high‑level brief: see [`index.md`](./index.md)
-  - Technical and business docs (selected public sections):
-    - [Executive summary](./docs/executive_summary.md)
-    - [Technical overview](./docs/technical_overview.md)
-    - [Glossary](./docs/glossary.md)
-    - [Blockchain integration](./docs/blockchain_integration.md)
-    - Architecture Decisions (ADRs):
-      - [ADR 0001: Chain selection for anchoring (Solana vs others)](./docs/adr/0001-solana-vs-others.md)
-      - [ADR 0002: Solana anchoring — Memo vs Smart Contract](./docs/adr/0002-solana-memo-vs-contract.md)
-      - [ADR 0003: L0 adoption strategy and pilots](./docs/adr/0003-l0-adoption-strategy.md)
-      - [ADR 0004: Layered blockchain strategy — L2 + L3 for ops, L1 for anchoring](./docs/adr/0004-layered-strategy-l1-l2-l3.md)
-    - [Competitor analysis](./docs/competitor_analysis.md)
-    - [Marketing and risk analysis](./docs/marketing_and_risk_analysis.md)
-    - [Civilian use cases](./docs/civilian_use_cases.md)
-    - [Financial projections](./docs/financial_projections.md)
-    - [Implementation plan](./docs/implementation_plan.md)
+- **Live Documentation**: [phoenixrooivalk-docs.netlify.app](https://phoenixrooivalk-docs.netlify.app) - Complete technical documentation
+- **Legacy Documentation**: See `docs/` directory for historical reference
+  - Executive: [Executive Summary](./docs/executive/Executive_Summary.md)
+  - Business: [Market Analysis](./docs/business/Market_Analysis.md), [Business Model](./docs/business/Business_Model.md)
+  - Technical: [Technical Analysis](./docs/technical/Technical_Analysis.md), [Glossary](./docs/technical/Glossary.md)
+  - Operations: [Implementation Plan](./docs/operations/Implementation_Plan.md), [Operations Manual](./docs/operations/Operations_Manual.md)
+  - Legal: [Compliance Framework](./docs/legal/Compliance_Framework.md)
+  - Architecture Decisions: [Mechanical Design ADRs](./docs/technical/mechanical/Mechanical_Design_ADRs.md)
 
-If any link appears broken, verify filenames use underscores (not hyphens) in
-the `docs/` directory.
+> **Note**: The primary documentation is now hosted in the Docusaurus site at `apps/docs/`. The `docs/` directory contains legacy documentation for reference.
 
 ## Operational tasks
 
@@ -164,7 +203,7 @@ cargo run --bin keeper -- --interval 5 --batch-limit 25
 
 For runbook-style metrics capture, use the Operations Log template:
 
-- [Operations log template — anchoring runs](./docs/ops/operations_log_template.md)
+- [Operations log template — anchoring runs](./docs/operations/monitoring/Operations_Log_Template.md)
 
 ## Access request (partners)
 
@@ -180,9 +219,12 @@ occurs only under applicable law and export controls. See
 
 ## Site preview
 
-The documentation site is built with Docusaurus and deployed to Netlify via
-GitHub Actions. You can view the rendered documentation at the configured
-Netlify domain.
+Both sites are automatically deployed to Netlify via GitHub Actions:
+
+- **Marketing Site**: Built with Next.js 14 and deployed from `apps/marketing/out/`
+- **Documentation Site**: Built with Docusaurus and deployed from `apps/docs/build/`
+
+You can view the live sites at the configured Netlify domains (see [Live Sites](#-live-sites) section above).
 
 ## Contributing
 
