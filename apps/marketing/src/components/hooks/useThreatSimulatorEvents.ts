@@ -1,6 +1,7 @@
 import { useCallback, useState, type RefObject } from "react";
 import type { GameState, SelectionBox, Threat } from "../../types/game";
 import { ParticleSystem } from "../utils/particleSystem";
+import type { PowerUp } from "../utils/weaponTypes";
 
 interface UseThreatSimulatorEventsProps {
   gameRef: RefObject<HTMLButtonElement>;
@@ -42,7 +43,7 @@ interface UseThreatSimulatorEventsProps {
   moveAllThreats: () => void;
   generateSwarm: () => void;
   spawnMultipleDrones: (count: number) => void;
-  activatePowerUp: (powerUpId: string) => void;
+  activatePowerUp: (powerUpType: PowerUp["type"]) => void;
   clearTimeouts: () => void;
   resetGameState: () => void;
   toggleRunningState: () => void;
@@ -187,20 +188,26 @@ export const useThreatSimulatorEvents = ({
   );
 
   const handleThreatClick = useCallback(
-    (e: React.MouseEvent, threatId: string) => {
+    (e: React.MouseEvent | React.KeyboardEvent, threatId: string) => {
       e.stopPropagation();
+      e.preventDefault();
 
-      // Only prevent default for non-primary buttons to avoid interfering with normal selection
-      if (e.button !== 0) {
-        e.preventDefault();
+      let button = 0;
+      if ("button" in e) {
+        // It's a mouse event
+        button = e.button;
+      } else if ("key" in e) {
+        // it's a keyboard event
+        if (e.key !== "Enter" && e.key !== " ") {
+          return; // Not an activation key
+        }
       }
 
-      if (e.button === 0) {
-        // Left click - select threat
+      if (button === 0) {
+        // Left click or Enter/Space - select threat
         selectThreat(threatId);
-      } else if (e.button === 1) {
+      } else if (button === 1) {
         // Middle click - set priority
-        // Use safer object property access with optional chaining
         const currentPriority = gameState.priorityThreats?.[threatId];
         if (currentPriority === "high") {
           setThreatPriority(threatId, "medium");
@@ -209,7 +216,7 @@ export const useThreatSimulatorEvents = ({
         } else {
           setThreatPriority(threatId, "high");
         }
-      } else if (e.button === 2) {
+      } else if (button === 2) {
         // Right click - neutralize
         neutralizeThreat(threatId);
       }
@@ -314,7 +321,7 @@ export const useThreatSimulatorEvents = ({
 
   // Keyboard shortcuts
   const handleKeyDown = useCallback(
-    (e: KeyboardEvent) => {
+    (e: React.KeyboardEvent) => {
       // Prevent default for game shortcuts
       if (e.ctrlKey || e.metaKey) return;
 

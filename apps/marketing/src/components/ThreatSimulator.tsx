@@ -322,7 +322,6 @@ export const ThreatSimulator: React.FC<ThreatSimulatorProps> = ({
                   !isCrater &&
                   (e.key === "Enter" || e.key === " ")
                 ) {
-                  e.preventDefault();
                   handleThreatClick(e, threat.id);
                 }
               }}
@@ -688,12 +687,6 @@ export const ThreatSimulator: React.FC<ThreatSimulatorProps> = ({
                   onClick={() => spawnMultipleDrones(5)}
                 >
                   🚁 +5 DRONES
-                </button>
-                <button
-                  className="bg-purple-600 hover:bg-purple-700 text-white px-3 py-2 rounded-lg text-xs transition-all shadow-lg"
-                  onClick={() => activatePowerUp("energy-boost")}
-                >
-                  ⚡ POWER-UP
                 </button>
                 <button
                   className="bg-gray-600 hover:bg-gray-700 text-white px-3 py-2 rounded-lg text-xs transition-all shadow-lg"

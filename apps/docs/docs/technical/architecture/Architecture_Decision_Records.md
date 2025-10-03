@@ -111,8 +111,10 @@ operational effectiveness with safety and compliance requirements.
 
 ### Options Considered
 
-- **SAE Level 4 Autonomy**: Fully autonomous operation without human
-  intervention
+- **SAE Level 4 Autonomy**: High automation within a defined Operational Design
+  Domain (ODD); capable of performing all driving tasks without human
+  intervention while inside the ODD, but may require fallback or limited
+  operation outside it.
 - **SAE Level 3 Autonomy**: Conditional automation with human fallback
 - **SAE Level 2 Autonomy**: Partial automation with human monitoring
 - **SAE Level 1 Autonomy**: Driver assistance with human control

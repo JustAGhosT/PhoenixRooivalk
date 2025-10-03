@@ -442,7 +442,7 @@ export const DRONE_TRANSITIONS: SimpleTransition<DroneContext>[] = [
   {
     from: "deployed",
     to: "intercept",
-    condition: (context) => context.mission === "intercept" && context.target,
+    condition: (context) => context.mission === "intercept" && !!context.target,
   },
   {
     from: "deployed",
@@ -454,7 +454,7 @@ export const DRONE_TRANSITIONS: SimpleTransition<DroneContext>[] = [
   {
     from: "patrol",
     to: "intercept",
-    condition: (context) => context.mission === "intercept" && context.target,
+    condition: (context) => context.mission === "intercept" && !!context.target,
   },
   {
     from: "patrol",
@@ -560,7 +560,7 @@ export const WEAPON_TRANSITIONS: SimpleTransition<WeaponContext>[] = [
     from: "ready",
     to: "firing",
     condition: (context) =>
-      context.target && context.ammo > 0 && context.energy > 20,
+      !!context.target && context.ammo > 0 && context.energy > 20,
   },
   {
     from: "ready",
