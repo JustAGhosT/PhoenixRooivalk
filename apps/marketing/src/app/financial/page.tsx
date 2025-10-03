@@ -84,7 +84,7 @@ export default function FinancialPage(): React.ReactElement {
               ROI Calculator & Financial Analysis
             </h1>
             <p className="text-xl text-[rgb(var(--gray))] max-w-3xl mx-auto">
-              Calculate the return on investment for Phoenix Rooivalk's
+              Calculate the return on investment for Phoenix Rooivalk&apos;s
               autonomous counter-drone defense system. Compare costs, savings,
               and performance against traditional solutions.
             </p>

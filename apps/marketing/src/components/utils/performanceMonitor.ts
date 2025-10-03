@@ -50,6 +50,15 @@ export interface PerformanceIssue {
   suggestion: string;
 }
 
+// A type for the non-standard performance.memory API
+interface PerformanceWithMemory extends Performance {
+  memory: {
+    usedJSHeapSize: number;
+    totalJSHeapSize: number;
+    jsHeapSizeLimit: number;
+  };
+}
+
 // Performance Monitor Class
 export class PerformanceMonitor {
   private metrics: PerformanceMetrics;
@@ -182,11 +191,12 @@ export class PerformanceMonitor {
 
   // Update memory metrics
   updateMemoryMetrics(): void {
-    if ((performance as any).memory) {
-      this.metrics.memoryUsage = (performance as any).memory.usedJSHeapSize;
+    const performanceWithMemory = performance as PerformanceWithMemory;
+    if (performanceWithMemory.memory) {
+      this.metrics.memoryUsage = performanceWithMemory.memory.usedJSHeapSize;
       this.metrics.memoryPeak = Math.max(
         this.metrics.memoryPeak,
-        (performance as any).memory.totalJSHeapSize,
+        performanceWithMemory.memory.totalJSHeapSize,
       );
     }
   }
@@ -357,7 +367,7 @@ export class PerformanceMonitor {
 
   // Get average metrics over time
   getAverageMetrics(duration: number = 5000): Partial<PerformanceMetrics> {
-    const cutoff = Date.now() - duration;
+    const _cutoff = Date.now() - duration;
     const recentMetrics = this.history.filter((_, index) => {
       // This is a simplified approach - in practice, you'd want timestamps
       return index >= this.history.length - Math.min(60, this.history.length);
@@ -385,16 +395,19 @@ export class PerformanceMonitor {
 
   // Performance optimization methods
   private optimizeFrameRate(): void {
+    // eslint-disable-next-line no-console
     console.log("Optimizing frame rate...");
     // Implementation would reduce visual complexity
   }
 
   private triggerGarbageCollection(): void {
+    // eslint-disable-next-line no-console
     console.log("Triggering garbage collection...");
     // Implementation would force GC if available
   }
 
   private optimizeEntities(): void {
+    // eslint-disable-next-line no-console
     console.log("Optimizing entities...");
     // Implementation would reduce entity count or complexity
   }
@@ -439,6 +452,7 @@ export class PerformanceUtils {
     const end = performance.now();
 
     if (name) {
+      // eslint-disable-next-line no-console
       console.log(`${name} took ${end - start} milliseconds`);
     }
 
@@ -455,6 +469,7 @@ export class PerformanceUtils {
     const end = performance.now();
 
     if (name) {
+      // eslint-disable-next-line no-console
       console.log(`${name} took ${end - start} milliseconds`);
     }
 
@@ -464,17 +479,18 @@ export class PerformanceUtils {
   // Create a performance timer decorator
   static timer(name: string) {
     return function (
-      target: any,
-      propertyKey: string,
+      _target: object,
+      _propertyKey: string,
       descriptor: PropertyDescriptor,
     ) {
       const originalMethod = descriptor.value;
 
-      descriptor.value = function (...args: any[]) {
+      descriptor.value = function (...args: unknown[]) {
         const start = performance.now();
         const result = originalMethod.apply(this, args);
         const end = performance.now();
 
+        // eslint-disable-next-line no-console
         console.log(`${name} took ${end - start} milliseconds`);
 
         return result;
@@ -486,7 +502,7 @@ export class PerformanceUtils {
 
   // Benchmark multiple functions
   static benchmark(
-    functions: Array<{ name: string; fn: () => any }>,
+    functions: Array<{ name: string; fn: () => unknown }>,
     iterations: number = 1000,
   ): Array<{ name: string; averageTime: number; totalTime: number }> {
     const results: Array<{

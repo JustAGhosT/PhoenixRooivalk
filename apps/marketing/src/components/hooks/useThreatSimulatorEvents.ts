@@ -1,8 +1,9 @@
-import { useCallback, useState } from "react";
+import { useCallback, useState, type RefObject } from "react";
 import type { GameState, SelectionBox, Threat } from "../../types/game";
+import { ParticleSystem } from "../utils/particleSystem";
 
 interface UseThreatSimulatorEventsProps {
-  gameRef: React.RefObject<HTMLButtonElement>;
+  gameRef: RefObject<HTMLButtonElement>;
   gameState: GameState;
   updateThreats: (threats: Threat[]) => void;
   addThreat: (threat: Threat) => void;
@@ -48,36 +49,22 @@ interface UseThreatSimulatorEventsProps {
   setFrameRate: (rate: number) => void;
   consumeEnergy: (amount: number) => void;
   consumeCooling: (amount: number) => void;
-  particleSystem: any;
+  particleSystem: ParticleSystem;
 }
 
 export const useThreatSimulatorEvents = ({
   gameRef,
   gameState,
-  updateThreats: _updateThreats,
-  addThreat: _addThreat,
-  removeThreat: _removeThreat,
-  updateScore: _updateScore,
   selectThreat,
   setThreatPriority,
   neutralizeThreat,
   switchWeapon,
   deployDrone,
   selectDroneType,
-  returnDroneToBase: _returnDroneToBase,
   clearSelection,
   setSelectionBox,
-  spawnNewThreat: _spawnNewThreat,
-  moveAllThreats: _moveAllThreats,
-  generateSwarm: _generateSwarm,
-  spawnMultipleDrones: _spawnMultipleDrones,
-  activatePowerUp: _activatePowerUp,
-  clearTimeouts: _clearTimeouts,
-  resetGameState: _resetGameState,
   toggleRunningState,
-  setFrameRate: _setFrameRate,
   consumeEnergy,
-  consumeCooling: _consumeCooling,
   particleSystem,
 }: UseThreatSimulatorEventsProps) => {
   // Mouse interaction state
@@ -112,7 +99,7 @@ export const useThreatSimulatorEvents = ({
         }
       }
     },
-    [gameState.selectedWeapon, setSelectionBox],
+    [gameRef, gameState.selectedWeapon, setSelectionBox],
   );
 
   const handleMouseMove = useCallback(
@@ -158,7 +145,7 @@ export const useThreatSimulatorEvents = ({
             gameState.selectionBox.endY,
           );
 
-          const selectedThreats = gameState.threats.filter((threat: any) => {
+          const selectedThreats = gameState.threats.filter((threat) => {
             return (
               threat.x >= minX &&
               threat.x <= maxX &&
@@ -169,7 +156,7 @@ export const useThreatSimulatorEvents = ({
 
           if (dragMode === "area-weapon") {
             // Area effect weapon - neutralize all threats in selection
-            selectedThreats.forEach((threat: any) => {
+            selectedThreats.forEach((threat) => {
               neutralizeThreat(threat.id);
               // Create area effect explosion
               particleSystem.createExplosion(threat.x, threat.y, 1.2);
@@ -179,7 +166,7 @@ export const useThreatSimulatorEvents = ({
             consumeEnergy(selectedThreats.length * 10);
           } else {
             // Normal selection mode
-            selectedThreats.forEach((threat: any) => {
+            selectedThreats.forEach((threat) => {
               selectThreat(threat.id);
             });
           }
@@ -196,7 +183,6 @@ export const useThreatSimulatorEvents = ({
       particleSystem,
       consumeEnergy,
       setSelectionBox,
-      gameRef,
     ],
   );
 
@@ -215,9 +201,7 @@ export const useThreatSimulatorEvents = ({
       } else if (e.button === 1) {
         // Middle click - set priority
         // Use safer object property access with optional chaining
-        const currentPriority = gameState.priorityThreats?.[threatId] as
-          | string
-          | undefined;
+        const currentPriority = gameState.priorityThreats?.[threatId];
         if (currentPriority === "high") {
           setThreatPriority(threatId, "medium");
         } else if (currentPriority === "medium") {
@@ -265,7 +249,7 @@ export const useThreatSimulatorEvents = ({
         deployDrone("surveillance", x, y);
       }
     },
-    [gameState.selectedDroneType, deployDrone, switchWeapon, isDragging],
+    [gameRef, gameState.selectedDroneType, deployDrone, switchWeapon, isDragging],
   );
 
   // Keyboard activation handler (no mouse coordinates needed)
@@ -314,7 +298,7 @@ export const useThreatSimulatorEvents = ({
         }
       }
     },
-    [gameState.selectedWeapon, switchWeapon, gameRef],
+    [gameState.selectedWeapon, switchWeapon],
   );
 
   // Context menu handler to prevent right-click menu

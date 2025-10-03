@@ -50,7 +50,7 @@ export interface ThreatEntity extends Entity {
   behavior: string;
   targetPriority: number;
   trail: Position[];
-  specialProperties: Record<string, any>;
+  specialProperties: Record<string, unknown>;
 }
 
 export interface DroneEntity extends Entity {
@@ -110,7 +110,7 @@ export class GameEngine {
   private config: GameConfig;
   private state: GameState;
   private systems: Map<string, GameSystem> = new Map();
-  private eventQueue: GameEvent[] = [];
+  private eventQueue: GameEvent<any>[] = [];
 
   constructor(config: GameConfig) {
     this.config = config;
@@ -159,7 +159,7 @@ export class GameEngine {
   }
 
   // Handle individual game event
-  private handleEvent(event: GameEvent): void {
+  private handleEvent(event: GameEvent<any>): void {
     switch (event.type) {
       case "spawn-threat":
         this.spawnThreat(event.data as ThreatSpawnEvent);
@@ -467,7 +467,7 @@ export class GameEngine {
   }
 
   // Queue game event
-  queueEvent(event: GameEvent): void {
+  queueEvent(event: GameEvent<any>): void {
     this.eventQueue.push(event);
   }
 
@@ -490,9 +490,9 @@ export interface GameSystem {
 }
 
 // Game Event System
-export interface GameEvent {
+export interface GameEvent<T> {
   type: string;
-  data: any;
+  data: T;
   timestamp: number;
 }
 
@@ -503,7 +503,7 @@ export interface ThreatSpawnEvent {
   behavior?: string;
   health?: number;
   priority?: number;
-  specialProperties?: Record<string, any>;
+  specialProperties?: Record<string, unknown>;
 }
 
 export interface DroneDeployEvent {
@@ -535,7 +535,7 @@ export interface ResourceUpdateEvent {
 }
 
 // Event Factory Functions
-export const createEvent = (type: string, data: any): GameEvent => ({
+export const createEvent = <T>(type: string, data: T): GameEvent<T> => ({
   type,
   data,
   timestamp: Date.now(),
@@ -545,7 +545,7 @@ export const createThreatSpawnEvent = (
   position: Position,
   threatType: string,
   options?: Partial<ThreatSpawnEvent>,
-): GameEvent =>
+): GameEvent<ThreatSpawnEvent> =>
   createEvent("spawn-threat", {
     position,
     threatType,
@@ -556,7 +556,7 @@ export const createDroneDeployEvent = (
   position: Position,
   droneType: string,
   options?: Partial<DroneDeployEvent>,
-): GameEvent =>
+): GameEvent<DroneDeployEvent> =>
   createEvent("deploy-drone", {
     position,
     droneType,
@@ -568,7 +568,7 @@ export const createWeaponFireEvent = (
   targetId: string,
   weaponType: string,
   options?: Partial<WeaponFireEvent>,
-): GameEvent =>
+): GameEvent<WeaponFireEvent> =>
   createEvent("fire-weapon", {
     position,
     targetId,
@@ -583,7 +583,7 @@ export const createWeaponFireEvent = (
 export const createThreatNeutralizeEvent = (
   threatId: string,
   scoreBonus?: number,
-): GameEvent =>
+): GameEvent<ThreatNeutralizeEvent> =>
   createEvent("neutralize-threat", {
     threatId,
     scoreBonus,
@@ -592,7 +592,7 @@ export const createThreatNeutralizeEvent = (
 export const createResourceUpdateEvent = (
   energyDelta: number,
   ammunitionDelta: number,
-): GameEvent =>
+): GameEvent<ResourceUpdateEvent> =>
   createEvent("update-resources", {
     energyDelta,
     ammunitionDelta,

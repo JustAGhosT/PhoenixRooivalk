@@ -1,47 +1,48 @@
 // Simple State Machine System - Deterministic Behavior Patterns
 // This system will be ported to Rust in the main application
 
-export interface SimpleState {
+// Generic State Machine Interfaces
+export interface SimpleState<T> {
   name: string;
-  onEnter?: (context: any) => void;
-  onUpdate?: (context: any, deltaTime: number) => void;
-  onExit?: (context: any) => void;
+  onEnter?: (context: T) => void;
+  onUpdate?: (context: T, deltaTime: number) => void;
+  onExit?: (context: T) => void;
 }
 
-export interface SimpleTransition {
+export interface SimpleTransition<T> {
   from: string;
   to: string;
-  condition: (context: any) => boolean;
-  onTransition?: (context: any) => void;
+  condition: (context: T) => boolean;
+  onTransition?: (context: T) => void;
 }
 
-export interface SimpleStateMachine {
+export interface SimpleStateMachine<T> {
   id: string;
   currentState: string;
-  states: Map<string, SimpleState>;
-  transitions: SimpleTransition[];
-  context: any;
+  states: Map<string, SimpleState<T>>;
+  transitions: SimpleTransition<T>[];
+  context: T;
   isRunning: boolean;
 }
 
 // Simple State Machine Engine
 export class SimpleStateMachineEngine {
-  private machines: Map<string, SimpleStateMachine> = new Map();
+  private machines: Map<string, SimpleStateMachine<unknown>> = new Map();
 
   // Create a new state machine
-  createStateMachine(
+  createStateMachine<T>(
     id: string,
     initialState: string,
-    states: SimpleState[],
-    transitions: SimpleTransition[],
-    context: any = {},
-  ): SimpleStateMachine {
-    const stateMap = new Map<string, SimpleState>();
+    states: SimpleState<T>[],
+    transitions: SimpleTransition<T>[],
+    context: T,
+  ): SimpleStateMachine<T> {
+    const stateMap = new Map<string, SimpleState<T>>();
     states.forEach((state) => {
       stateMap.set(state.name, state);
     });
 
-    const machine: SimpleStateMachine = {
+    const machine: SimpleStateMachine<T> = {
       id,
       currentState: initialState,
       states: stateMap,
@@ -50,7 +51,7 @@ export class SimpleStateMachineEngine {
       isRunning: true,
     };
 
-    this.machines.set(id, machine);
+    this.machines.set(id, machine as SimpleStateMachine<unknown>);
 
     // Enter initial state
     const initialStateObj = stateMap.get(initialState);
@@ -80,7 +81,11 @@ export class SimpleStateMachineEngine {
           transition.from === machine.currentState &&
           transition.condition(machine.context)
         ) {
-          this.transitionTo(machine, transition.to, transition.onTransition);
+          this.transitionTo(
+            machine,
+            transition.to,
+            transition.onTransition as (context: unknown) => void,
+          );
           break;
         }
       }
@@ -88,10 +93,10 @@ export class SimpleStateMachineEngine {
   }
 
   // Transition to new state
-  private transitionTo(
-    machine: SimpleStateMachine,
+  private transitionTo<T>(
+    machine: SimpleStateMachine<T>,
     newState: string,
-    onTransition?: (context: any) => void,
+    onTransition?: (context: T) => void,
   ): void {
     const currentStateObj = machine.states.get(machine.currentState);
     const newStateObj = machine.states.get(newState);
@@ -116,8 +121,8 @@ export class SimpleStateMachineEngine {
   }
 
   // Get state machine by ID
-  getStateMachine(id: string): SimpleStateMachine | null {
-    return this.machines.get(id) || null;
+  getStateMachine<T>(id: string): SimpleStateMachine<T> | null {
+    return (this.machines.get(id) as SimpleStateMachine<T>) || null;
   }
 
   // Pause/Resume state machine
@@ -134,18 +139,61 @@ export class SimpleStateMachineEngine {
   }
 
   // Get all state machines
-  getAllStateMachines(): Map<string, SimpleStateMachine> {
+  getAllStateMachines(): Map<string, SimpleStateMachine<unknown>> {
     return new Map(this.machines);
   }
 }
 
 // Game-Specific State Machine Definitions
 
+// Context Interfaces
+interface ThreatContext {
+  id: string;
+  position: { x: number; y: number };
+  speed: number;
+  target: { x: number; y: number };
+  detectionRange: number;
+  health: number;
+  maxHealth: number;
+  isAttacking: boolean;
+}
+
+interface DroneContext {
+  id: string;
+  position: { x: number; y: number };
+  mothership: { x: number; y: number };
+  energy: number;
+  maxEnergy: number;
+  health: number;
+  maxHealth: number;
+  mission: string;
+  target?: { x: number; y: number };
+  isActive: boolean;
+  isPatrolling: boolean;
+  isReturning: boolean;
+}
+
+interface WeaponContext {
+  id: string;
+  isReady: boolean;
+  isFiring: boolean;
+  isReloading: boolean;
+  isOverheated: boolean;
+  cooldown: number;
+  maxCooldown: number;
+  ammo: number;
+  maxAmmo: number;
+  energy: number;
+  maxEnergy: number;
+  target?: { x: number; y: number };
+}
+
 // Threat Behavior States
-export const THREAT_STATES: SimpleState[] = [
+export const THREAT_STATES: SimpleState<ThreatContext>[] = [
   {
     name: "patrol",
     onEnter: (context) => {
+      // eslint-disable-next-line no-console
       console.log(`Threat ${context.id} entering patrol state`);
     },
     onUpdate: (context, deltaTime) => {
@@ -159,6 +207,7 @@ export const THREAT_STATES: SimpleState[] = [
   {
     name: "approach",
     onEnter: (context) => {
+      // eslint-disable-next-line no-console
       console.log(`Threat ${context.id} entering approach state`);
     },
     onUpdate: (context, deltaTime) => {
@@ -177,9 +226,10 @@ export const THREAT_STATES: SimpleState[] = [
   {
     name: "attack",
     onEnter: (context) => {
+      // eslint-disable-next-line no-console
       console.log(`Threat ${context.id} entering attack state`);
     },
-    onUpdate: (context, deltaTime) => {
+    onUpdate: (context, _deltaTime) => {
       // Attack behavior
       context.isAttacking = true;
     },
@@ -187,6 +237,7 @@ export const THREAT_STATES: SimpleState[] = [
   {
     name: "evade",
     onEnter: (context) => {
+      // eslint-disable-next-line no-console
       console.log(`Threat ${context.id} entering evade state`);
     },
     onUpdate: (context, deltaTime) => {
@@ -204,7 +255,7 @@ export const THREAT_STATES: SimpleState[] = [
   },
 ];
 
-export const THREAT_TRANSITIONS: SimpleTransition[] = [
+export const THREAT_TRANSITIONS: SimpleTransition<ThreatContext>[] = [
   {
     from: "patrol",
     to: "approach",
@@ -295,19 +346,21 @@ export const THREAT_TRANSITIONS: SimpleTransition[] = [
 ];
 
 // Drone Mission States
-export const DRONE_STATES: SimpleState[] = [
+export const DRONE_STATES: SimpleState<DroneContext>[] = [
   {
     name: "deployed",
     onEnter: (context) => {
+      // eslint-disable-next-line no-console
       console.log(`Drone ${context.id} entering deployed state`);
     },
-    onUpdate: (context, deltaTime) => {
+    onUpdate: (context, _deltaTime) => {
       context.isActive = true;
     },
   },
   {
     name: "patrol",
     onEnter: (context) => {
+      // eslint-disable-next-line no-console
       console.log(`Drone ${context.id} entering patrol state`);
     },
     onUpdate: (context, deltaTime) => {
@@ -318,6 +371,7 @@ export const DRONE_STATES: SimpleState[] = [
   {
     name: "intercept",
     onEnter: (context) => {
+      // eslint-disable-next-line no-console
       console.log(`Drone ${context.id} entering intercept state`);
     },
     onUpdate: (context, deltaTime) => {
@@ -339,6 +393,7 @@ export const DRONE_STATES: SimpleState[] = [
   {
     name: "return",
     onEnter: (context) => {
+      // eslint-disable-next-line no-console
       console.log(`Drone ${context.id} entering return state`);
     },
     onUpdate: (context, deltaTime) => {
@@ -359,6 +414,7 @@ export const DRONE_STATES: SimpleState[] = [
   {
     name: "docked",
     onEnter: (context) => {
+      // eslint-disable-next-line no-console
       console.log(`Drone ${context.id} entering docked state`);
     },
     onUpdate: (context, deltaTime) => {
@@ -377,7 +433,7 @@ export const DRONE_STATES: SimpleState[] = [
   },
 ];
 
-export const DRONE_TRANSITIONS: SimpleTransition[] = [
+export const DRONE_TRANSITIONS: SimpleTransition<DroneContext>[] = [
   {
     from: "deployed",
     to: "patrol",
@@ -437,22 +493,24 @@ export const DRONE_TRANSITIONS: SimpleTransition[] = [
 ];
 
 // Weapon System States
-export const WEAPON_STATES: SimpleState[] = [
+export const WEAPON_STATES: SimpleState<WeaponContext>[] = [
   {
     name: "ready",
     onEnter: (context) => {
+      // eslint-disable-next-line no-console
       console.log(`Weapon ${context.id} entering ready state`);
     },
-    onUpdate: (context, deltaTime) => {
+    onUpdate: (context, _deltaTime) => {
       context.isReady = true;
     },
   },
   {
     name: "firing",
     onEnter: (context) => {
+      // eslint-disable-next-line no-console
       console.log(`Weapon ${context.id} entering firing state`);
     },
-    onUpdate: (context, deltaTime) => {
+    onUpdate: (context, _deltaTime) => {
       context.isFiring = true;
       context.cooldown = context.maxCooldown;
       context.ammo -= 1;
@@ -462,6 +520,7 @@ export const WEAPON_STATES: SimpleState[] = [
   {
     name: "cooldown",
     onEnter: (context) => {
+      // eslint-disable-next-line no-console
       console.log(`Weapon ${context.id} entering cooldown state`);
     },
     onUpdate: (context, deltaTime) => {
@@ -472,6 +531,7 @@ export const WEAPON_STATES: SimpleState[] = [
   {
     name: "reloading",
     onEnter: (context) => {
+      // eslint-disable-next-line no-console
       console.log(`Weapon ${context.id} entering reloading state`);
     },
     onUpdate: (context, deltaTime) => {
@@ -482,6 +542,7 @@ export const WEAPON_STATES: SimpleState[] = [
   {
     name: "overheated",
     onEnter: (context) => {
+      // eslint-disable-next-line no-console
       console.log(`Weapon ${context.id} entering overheated state`);
     },
     onUpdate: (context, deltaTime) => {
@@ -494,7 +555,7 @@ export const WEAPON_STATES: SimpleState[] = [
   },
 ];
 
-export const WEAPON_TRANSITIONS: SimpleTransition[] = [
+export const WEAPON_TRANSITIONS: SimpleTransition<WeaponContext>[] = [
   {
     from: "ready",
     to: "firing",
@@ -559,32 +620,41 @@ export const WEAPON_TRANSITIONS: SimpleTransition[] = [
 // State Machine Factory
 export const createGameStateMachines = (): {
   engine: SimpleStateMachineEngine;
-  createThreatMachine: (id: string, context: any) => SimpleStateMachine;
-  createDroneMachine: (id: string, context: any) => SimpleStateMachine;
-  createWeaponMachine: (id: string, context: any) => SimpleStateMachine;
+  createThreatMachine: (
+    id: string,
+    context: ThreatContext,
+  ) => SimpleStateMachine<ThreatContext>;
+  createDroneMachine: (
+    id: string,
+    context: DroneContext,
+  ) => SimpleStateMachine<DroneContext>;
+  createWeaponMachine: (
+    id: string,
+    context: WeaponContext,
+  ) => SimpleStateMachine<WeaponContext>;
 } => {
   const engine = new SimpleStateMachineEngine();
 
   return {
     engine,
-    createThreatMachine: (id: string, context: any) =>
-      engine.createStateMachine(
+    createThreatMachine: (id: string, context: ThreatContext) =>
+      engine.createStateMachine<ThreatContext>(
         id,
         "patrol",
         THREAT_STATES,
         THREAT_TRANSITIONS,
         context,
       ),
-    createDroneMachine: (id: string, context: any) =>
-      engine.createStateMachine(
+    createDroneMachine: (id: string, context: DroneContext) =>
+      engine.createStateMachine<DroneContext>(
         id,
         "deployed",
         DRONE_STATES,
         DRONE_TRANSITIONS,
         context,
       ),
-    createWeaponMachine: (id: string, context: any) =>
-      engine.createStateMachine(
+    createWeaponMachine: (id: string, context: WeaponContext) =>
+      engine.createStateMachine<WeaponContext>(
         id,
         "ready",
         WEAPON_STATES,
