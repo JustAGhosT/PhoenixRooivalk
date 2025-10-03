@@ -313,9 +313,9 @@ ID, sensor
 **Infrastructure Performance Requirements**
 
 - **Response Time**: &lt;500ms for infrastructure threats
-- **Accuracy**: >{\d+}% detection accuracy
-- **Reliability**: {\d+}.{\d+}% system uptime
-- **Range**: {\d+}-3km detection range
+- **Accuracy**: >99% detection accuracy
+- **Reliability**: 99.9% system uptime
+- **Range**: 1-3km detection range
 - **Integration**: Seamless integration with existing systems
 
 **Commercial Performance Requirements**
@@ -405,24 +405,18 @@ ID, sensor
 The Phoenix Rooivalk Performance Specifications provide comprehensive
 performance requirements and capabilities for the counter-drone defense system.
 The specifications ensure optimal performance across all system components while
-maintaining the highest standards of ``` reliability, security
-
-````, and compliance.
+maintaining the highest standards of reliability, security, and compliance.
 
 Key performance features include:
-- **High Performance**: {\d+} TOPS AI performance with sub-200ms response times
+- **High Performance**: 275 TOPS AI performance with sub-200ms response times
 - **Multi-Sensor**: Comprehensive sensor integration with real-time processing
 - **Blockchain**: High-performance blockchain evidence anchoring
 - **Network**: Resilient mesh networking with sub-100ms latency
 - **Operational**: GPS-denied and EW-resistant operation
 - **Scalability**: Scalable performance across deployment scenarios
 
-The performance specifications ensure operational effectiveness across the full spectrum of defense scenarios while maintaining the highest standards of ```
-performance, reliability
-```, and compliance.
+The performance specifications ensure operational effectiveness across the full spectrum of defense scenarios while maintaining the highest standards of performance, reliability, and compliance.
 
 ---
 
-*This document contains confidential performance information. Distribution is restricted to authorized personnel only. © {\d+} Phoenix Rooivalk. All rights reserved.*
-
-````
+*This document contains confidential performance information. Distribution is restricted to authorized personnel only. © 2025 Phoenix Rooivalk. All rights reserved.*

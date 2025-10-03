@@ -373,10 +373,9 @@ early deployments.
 
 **Focus Areas**: Edge autonomy without network dependency, blockchain evidence for accountability, modular architecture for flexibility.
 
-**Performance Metrics**: Design targets pending hardware validation - {\d+}-195ms
-latency, <{\d+}-{\d+}% false positive rate, {\d+}.{\d+}% uptime target.
+**Performance Metrics**: Design targets pending hardware validation - 50-195ms latency, <1-2% false positive rate, 99.9% uptime target.
 
-**Current Status**: October {\d+}. Software foundation complete. Seeking seed
+**Current Status**: October 2025. Software foundation complete. Seeking seed
 funding for MVP hardware demonstration.
 
 **Team**: Jurie Smit and Martyn Redelinghuys leading development with strong

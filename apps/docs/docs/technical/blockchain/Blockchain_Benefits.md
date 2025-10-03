@@ -349,9 +349,9 @@ The Phoenix Rooivalk blockchain integration provides unprecedented security, coo
 
 Key blockchain benefits include:
 
-- **Data Security**: {\d+}.{\d+}% data integrity protection with tamper-proof audit trails
-- **Decentralized Coordination**: Byzantine fault tolerance with {\d+}% reduction in single points of failure
-- **Swarm Coordination**: Advanced coordination of {\d+}-{\d+} drone swarms
+- **Data Security**: 99.9% data integrity protection with tamper-proof audit trails
+- **Decentralized Coordination**: Byzantine fault tolerance with 80% reduction in single points of failure
+- **Swarm Coordination**: Advanced coordination of 5-50 drone swarms
 - **Legal Admissibility**: Court-admissible evidence with international precedent
 - **Cost Efficiency**: Low transaction costs with scalable performance
 - **Operational Excellence**: Enhanced operational resilience and capabilities

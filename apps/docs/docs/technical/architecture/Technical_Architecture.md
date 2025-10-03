@@ -376,4 +376,4 @@ validated, deduplicated
 
 ---
 
-*This document contains confidential technical information. Distribution is restricted to authorized personnel only. © {\d+} Phoenix Rooivalk. All rights reserved.*
+*This document contains confidential technical information. Distribution is restricted to authorized personnel only. © 2025 Phoenix Rooivalk. All rights reserved.*

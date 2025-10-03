@@ -491,14 +491,8 @@ Key operational features include:
 - **Training**: Comprehensive training and certification programs
 
 The operations manual ensures optimal system performance and reliability while
-maintaining the highest standards of ```
-security, compliance
-```, and operational
-effectiveness.
+maintaining the highest standards of security, compliance, and operational effectiveness.
 
 ---
 
-_This document contains confidential operational information. Distribution is
-restricted to authorized personnel only. © {\d+} Phoenix Rooivalk. All rights
-reserved._
-````
+_This document contains confidential operational information. Distribution is restricted to authorized personnel only. © 2025 Phoenix Rooivalk. All rights reserved._

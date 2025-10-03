@@ -322,4 +322,4 @@ requirements, making the hybrid approach essential for military applications. Th
 
 ---
 
-*This document contains confidential blockchain protocol analysis. Distribution is restricted to authorized personnel only. © {\d+} Phoenix Rooivalk. All rights reserved.*
+*This document contains confidential blockchain protocol analysis. Distribution is restricted to authorized personnel only. © 2025 Phoenix Rooivalk. All rights reserved.*
