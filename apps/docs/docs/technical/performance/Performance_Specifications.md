@@ -10,9 +10,7 @@ sidebar_label: Performance Specifications
 
 This document provides comprehensive performance specifications for the Phoenix
 Rooivalk Counter-Drone Defense System. The specifications cover system
-`performance, hardware` `capabilities, software` ``` performance, and
-
-````operational metrics across all system components.
+performance, hardware capabilities, software performance, and operational metrics across all system components.
 
 ---
 
@@ -231,8 +229,6 @@ ID, sensor
 
 **Frequency Hopping Performance**
 - **Frequency Bands**: 2.4GHz, 5.2GHz, 5.8GHz, 900MHz
-````
-
 - **Response Time**: Microsecond response to jamming detection
 - **Adaptive Filtering**: Configurable notch filters rejecting chirp jammers
 - **Performance**: 15km image transmission under active jamming

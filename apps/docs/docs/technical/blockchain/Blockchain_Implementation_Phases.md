@@ -42,17 +42,9 @@ ROI**: 300% within 24 months **Performance Target**: 65,000+ TPS, <1s finality,
 
 #### Multi-Factor Authentication
 
-- **Biometric Authentication**: `Fingerprint, facial` ``` recognition, iris
-
-````scanning
-- **Hardware Tokens**: Smart ```
-cards, USB
-``` ```
-tokens, mobile
-``` devices
-- **Knowledge Factors**: ```
-Passwords, PINs
-```, security questions
+- **Biometric Authentication**: Fingerprint, facial recognition, iris scanning
+- **Hardware Tokens**: Smart cards, USB tokens, mobile devices
+- **Knowledge Factors**: Passwords, PINs, security questions
 - **Location Factors**: GPS-based location verification
 
 #### Role-Based Access Control (RBAC)

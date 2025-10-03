@@ -8,16 +8,7 @@ sidebar_label: Operations Manual
 
 ## Executive Summary
 
-This operations manual provides comprehensive procedures for day-to-day
-
-````
-operations, maintenance
-```, and optimization of the Phoenix Rooivalk Counter-Drone
-Defense System. The manual covers system ```
-monitoring, performance
-``` ```
-optimization, troubleshooting
-```, and maintenance procedures.
+This operations manual provides comprehensive procedures for day-to-day operations, maintenance, and optimization of the Phoenix Rooivalk Counter-Drone Defense System. The manual covers system monitoring, performance optimization, troubleshooting, and maintenance procedures.
 
 ---
 
@@ -469,17 +460,8 @@ optimization, troubleshooting
 ## Conclusion
 
 The Phoenix Rooivalk Operations Manual provides comprehensive procedures for
-day-to-day ```
-operations, maintenance
-```, and optimization of the counter-drone
-defense system. The manual emphasizes proactive ```
-maintenance, performance
-````
-
-````
-optimization, and
-``` incident response while maintaining the highest standards of
-security and compliance.
+day-to-day operations, maintenance, and optimization of the counter-drone defense system. The manual emphasizes proactive maintenance, performance optimization, and
+incident response while maintaining the highest standards of security and compliance.
 
 Key operational features include:
 

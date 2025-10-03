@@ -6,16 +6,11 @@ sidebar_label: System Overview Detailed
 
 # Phoenix Rooivalk System Overview - Detailed
 
-> Public-safe documentation. For restricted partner ``` materials, request
-
-````access
-> via the repository `ACCESS.md`.
+> Public-safe documentation. For restricted partner materials, request access via the repository `ACCESS.md`.
 
 ## Mission Statement
 
-Provide a ```
-modular, layered
-``` defense against low-cost UAS threats by cueing the
+Provide a modular, layered defense against low-cost UAS threats by cueing the
 cheapest effective effector first and maintaining Command and Control (C2) in
 heavy Electronic Warfare (EW) environments via resilient Free Space Optical
 (FSO) and Radio Frequency (RF) links.
@@ -24,50 +19,29 @@ heavy Electronic Warfare (EW) environments via resilient Free Space Optical
 
 ### Core System Components
 
-**RKV-M (Mothership)**: Aerial VTOL mothership for ```
-picket, relay
-```, and mini
-launch operations
+**RKV-M (Mothership)**: Aerial VTOL mothership for picket, relay, and mini launch operations
 
 - **Primary Function**: Mobile command and control platform
-- **Capabilities**: Autonomous ```
-flight, sensor
-``` ```
-integration, effector
-``` deployment
+- **Capabilities**: Autonomous flight, sensor integration, effector deployment
 - **Deployment**: Airborne operations with extended endurance
 
-**RKV-I (Interceptor)**: Miniature ```
-interceptors, decoys
-```, and ISR platforms
+**RKV-I (Interceptor)**: Miniature interceptors, decoys, and ISR platforms
 
-- **Primary Function**: Tactical threat neutralization and intelligence
-  gathering
+- **Primary Function**: Tactical threat neutralization and intelligence gathering
 - **Capabilities**: RF control or optional fiber-optic control
 - **Deployment**: Swarm operations with coordinated tactics
 
 **RKV-G (Ground Control)**: Rover as mobile Ground Control Station (GCS)
 
 - **Primary Function**: Mobile ground control and logistics support
-- **Capabilities**: Mast ```
-deployment, fiber
-``` spool ```
-management, logistics
-````
-
-coordination
-
+- **Capabilities**: Mast deployment, fiber spool management, logistics coordination
 - **Deployment**: Ground-based operations with mobility
 
 **RKV-C2 (Command and Control)**: C2/data plane with strict Quality of Service
 (QoS)
 
-- **Primary Function**: Centralized command and control with eventing and
-  observability
-- **Capabilities**: Real-time decision `making, event` ``` processing, system
-
-````
-  monitoring
+- **Primary Function**: Centralized command and control with eventing and observability
+- **Capabilities**: Real-time decision making, event processing, system monitoring
 - **Deployment**: Centralized or distributed command operations
 
 ## Operating Modes
@@ -76,59 +50,29 @@ coordination
 
 - **Purpose**: Mobile surveillance and early warning
 - **Deployment**: Airborne or ground-based mobile platforms
-- **Capabilities**: Continuous ```
-monitoring, threat
-``` ```
-detection, rapid
-``` response
-- **Use Cases**: Perimeter ```
-security, convoy
-``` ```
-protection, area
-``` surveillance
+- **Capabilities**: Continuous monitoring, threat detection, rapid response
+- **Use Cases**: Perimeter security, convoy protection, area surveillance
 
 ### Site-Fixed Overwatch
 
 - **Purpose**: Fixed-site protection and monitoring
 - **Deployment**: Short micro-tether or elevated mast systems
-- **Capabilities**: Persistent ```
-surveillance, threat
-``` ```
-detection, neutralization
-````
-
-- **Use Cases**: Critical infrastructure ``` protection, military
-
-````base security
+- **Capabilities**: Persistent surveilance, threat detection, neutralization
+- **Use Cases**: Critical infrastructure protection, military base security
 
 ### Fiber-Engage
 
-- **Purpose**: ```
-Secure, jam
-```-resistant operations
+- **Purpose**: Secure, jam-resistant operations
 - **Deployment**: Fiber-optic control links for critical operations
-- **Capabilities**: Secure ```
-communication, jam
-```-resistant ```
-control, high
-```-bandwidth
-  data
-- **Use Cases**: High-threat ```
-environments, secure
-``` communications
+- **Capabilities**: Secure communication, jam-resistant control, high-bandwidth data
+- **Use Cases**: High-threat environments, secure communications
 
 ### Logistics Support
 
 - **Purpose**: System maintenance and resupply
 - **Deployment**: Ground-based support vehicles and equipment
-- **Capabilities**: ```
-Maintenance, resupply
-```, personnel support
-- **Use Cases**: Field ```
-operations, maintenance
-``` ```
-support, personnel
-``` logistics
+- **Capabilities**: Maintenance, resupply, personnel support
+- **Use Cases**: Field operations, maintenance support, personnel logistics
 
 ## Technical Specifications
 
@@ -150,24 +94,16 @@ support, personnel
 
 ### Communication Systems
 
-- **Mesh Networking**: Self-```
-forming, self
-```-healing networks
+- **Mesh Networking**: Self-forming, self-healing networks
 - **FSO Links**: Free space optical communication
 - **RF Links**: Radio frequency communication
-- **Fiber Optic**: ```
-Secure, high
-```-bandwidth communication
+- **Fiber Optic**: Secure, high-bandwidth communication
 
 ## Operational Capabilities
 
 ### Threat Detection and Classification
 
-- **Multi-Modal Detection**: ```
-RF, radar
-```, ```
-visual, acoustic
-```, LiDAR
+- **Multi-Modal Detection**: RF, radar, visual, acoustic, LiDAR
 - **AI-Powered Classification**: Machine learning threat identification
 - **Real-Time Processing**: Sub-second threat analysis
 - **Pattern Recognition**: Advanced threat pattern analysis
@@ -191,9 +127,7 @@ visual, acoustic
 ### Legal Compliance
 
 - **Export Controls**: ITAR and international export control compliance
-- **Regulatory Framework**: ```
-DoD, CMMC
-```, and international compliance
+- **Regulatory Framework**: DoD, CMMC, and international compliance
 - **Operational Law**: International humanitarian law compliance
 - **Data Protection**: Privacy and data protection compliance
 
@@ -268,31 +202,15 @@ DoD, CMMC
 
 ## Conclusion
 
-The Phoenix Rooivalk system represents a comprehensive approach to counter-drone
-````
-
-defense, combining
-
-````advanced technology with responsible use principles. The
-modular ```
-architecture, multiple
-``` operating ```
-modes, and
-``` comprehensive integration
-capabilities make it suitable for a wide range of defense and security
+The Phoenix Rooivalk system represents a comprehensive approach to counter-drone defense, combining
+advanced technology with responsible use principles. The modular architecture, multiple operating
+modes, and comprehensive integration capabilities make it suitable for a wide range of defense and security
 applications.
 
-The system's focus on responsible ```
-use, legal
-``` ```
-compliance, and
-``` ethical
+The system's focus on responsible use, legal compliance, and ethical
 considerations ensures that it can be deployed effectively while maintaining the
 highest standards of operational integrity and legal compliance.
 
 ---
 
-_This document contains confidential system specifications. Distribution is
-restricted to authorized personnel only. ©2025 Phoenix Rooivalk. All rights
-reserved._
-````
+_This document contains confidential system specifications. Distribution is restricted to authorized personnel only. ©2025 Phoenix Rooivalk. All rights reserved._

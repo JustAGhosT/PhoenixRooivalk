@@ -375,8 +375,8 @@ early deployments.
 
 **Performance Metrics**: Design targets pending hardware validation - 50-195ms latency, <1-2% false positive rate, 99.9% uptime target.
 
-**Current Status**: October 2025. Software foundation complete. Seeking seed
-funding for MVP hardware demonstration.
+**Current Status**: October 2025. Software foundation 75 to 85% complete. Seeking seed
+funding for completion and MVP hardware demonstration.
 
 **Team**: Jurie Smit and Martyn Redelinghuys leading development with strong
 technical capabilities in Rust, blockchain integration, and distributed systems.
