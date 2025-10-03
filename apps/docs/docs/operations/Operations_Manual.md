@@ -359,27 +359,27 @@ optimization, troubleshooting
 
 **System Recovery**
 
-{\d+}. **Assessment**: Assess system damage
-{\d+}. **Recovery Plan**: Develop recovery plan
-{\d+}. **Backup Restoration**: Restore from backups
-{\d+}. **System Validation**: Validate system functionality
-{\d+}. **Performance Testing**: Test system performance
+1. **Assessment**: Assess system damage
+2. **Recovery Plan**: Develop recovery plan
+3. **Backup Restoration**: Restore from backups
+4. **System Validation**: Validate system functionality
+5. **Performance Testing**: Test system performance
 
 **Data Recovery**
 
-{\d+}. **Data Assessment**: Assess data loss
-{\d+}. **Recovery Method**: Select recovery method
-{\d+}. **Data Restoration**: Restore lost data
-{\d+}. **Data Validation**: Validate restored data
-{\d+}. **System Integration**: Integrate restored data
+1. **Data Assessment**: Assess data loss
+2. **Recovery Method**: Select recovery method
+3. **Data Restoration**: Restore lost data
+4. **Data Validation**: Validate restored data
+5. **System Integration**: Integrate restored data
 
 **Disaster Recovery**
 
-{\d+}. **Disaster Assessment**: Assess disaster impact
-{\d+}. **Recovery Site**: Activate recovery site
-{\d+}. **System Restoration**: Restore systems
-{\d+}. **Data Synchronization**: Synchronize data
-{\d+}. **Service Restoration**: Restore services
+1. **Disaster Assessment**: Assess disaster impact
+2. **Recovery Site**: Activate recovery site
+3. **System Restoration**: Restore systems
+4. **Data Synchronization**: Synchronize data
+5. **Service Restoration**: Restore services
 
 ---
 

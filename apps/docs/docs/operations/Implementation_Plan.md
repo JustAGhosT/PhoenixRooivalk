@@ -430,7 +430,7 @@ risks and achieving key performance indicators.
 
 Key implementation features include:
 
-- **Phased Approach**: Structured {\d+}-month implementation timeline
+- **Phased Approach**: Structured 12-month implementation timeline
 - **Comprehensive Coverage**: Complete development, production, and deployment
   coverage
 - **Risk Management**: Comprehensive risk management and mitigation
