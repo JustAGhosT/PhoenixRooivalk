@@ -126,7 +126,7 @@ Features**:
 - Long-range missions
 - Secure communications
 
-### {\d+}. Logistics Support
+### 4. Logistics Support
 
 **Description**: Support operations for extended missions **Key Features**:
 
@@ -195,28 +195,28 @@ neutralization
 
 ### Performance Metrics
 
-- **Detection Range**: {\d+}-{\d+} km (standard configuration)
-- **Response Time**: &lt;200ms end-to-end decision latency
-- **Accuracy**: {\d+}.{\d+}% threat detection accuracy
-- **Availability**: {\d+}.{\d+}% system availability
-- **Power Consumption**: {\d+}-250W average power draw
+- **Detection Range**: 3-5 km (standard configuration)
+- **Response Time**: <200ms end-to-end decision latency
+- **Accuracy**: 99.5% threat detection accuracy
+- **Availability**: 99.9% system availability
+- **Power Consumption**: 150-250W average power draw
 
 ### Environmental Specifications
 
-- **Operating Temperature**: -{\d+}°C to +{\d+}°C
-- **Humidity**: {\d+}-{\d+}% relative humidity
-- **Altitude**: Sea level to {\d+}, 000m
+- **Operating Temperature**: -40°C to +70°C
+- **Humidity**: 5-95% relative humidity
+- **Altitude**: Sea level to 5,000m
 - **Weather**: All-weather operations capability
-- **EMC**: MIL-STD-{\d+} compliant
+- **EMC**: MIL-STD-461 compliant
 
 ### Security Specifications
 
-- **Encryption**: AES-{\d+} encryption for all communications
+- **Encryption**: AES-256 encryption for all communications
 - **Authentication**: Multi-factor authentication
 - **Access Control**: Role-based access control
 - **Compliance**: ```
 ITAR, CMMC
-``` Level {\d+}, FedRAMP High
+``` Level 2, FedRAMP High
 
 ---
 
@@ -353,7 +353,7 @@ safety, security
 ---
 
 _This document contains confidential system information. Distribution is
-restricted to authorized personnel only. © {\d+} Phoenix Rooivalk. All rights
+restricted to authorized personnel only. © 2025 Phoenix Rooivalk. All rights
 reserved._
 
 _Context improved by Giga AI_

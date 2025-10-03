@@ -118,7 +118,7 @@ cameras, acoustic
 ### System Performance
 
 **Processing Performance**
-- **NVIDIA Jetson AGX Orin**: {\d+} TOPS AI performance
+- **NVIDIA Jetson AGX Orin**: 275 TOPS AI performance
 - **Edge Processing**: Real-time processing at edge
 - **Multi-Sensor Fusion**: Simultaneous multi-sensor processing
 - **AI Inference**: Real-time AI inference and decision making
@@ -127,7 +127,7 @@ cameras, acoustic
 - **Mesh Networking**: Resilient mesh networking capabilities
 - **Latency**: Sub-100ms coordination latency
 - **Throughput**: High-throughput data processing
-- **Reliability**: {\d+}.{\d+}% target system uptime
+- **Reliability**: 99.9% target system uptime
 
 **Storage Performance**
 - **Evidence Storage**: High-performance evidence storage
