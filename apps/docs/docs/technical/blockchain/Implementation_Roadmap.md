@@ -320,22 +320,22 @@ ITAR, DoD
 ## Success Criteria
 
 ### Performance Targets
-- **Throughput**: {\d+}, {\d+}+ transactions per second
-- **Latency**: <{\d+} second transaction finality
-- **Availability**: {\d+}.{\d+}% system uptime
+- **Throughput**: 10,000+ transactions per second
+- **Latency**: <1 second transaction finality
+- **Availability**: 99.9% system uptime
 - **Security**: Zero security breaches
 
 ### Business Targets
-- **ROI**: {\d+}% return on investment within {\d+} months
-- **Market Share**: {\d+}% market share in counter-drone defense
-- **Customer Satisfaction**: {\d+}% customer satisfaction rating
-- **Operational Excellence**: {\d+}.{\d+}% operational reliability
+- **ROI**: 300% return on investment within 24 months
+- **Market Share**: 15% market share in counter-drone defense
+- **Customer Satisfaction**: 95% customer satisfaction rating
+- **Operational Excellence**: 99.5% operational reliability
 
 ### Technical Targets
 - **Authentication Latency**: &lt;2ms for cached credentials
-- **Threat Detection**: {\d+}.{\d+}% accuracy with &lt;50ms latency
-- **Swarm Coordination**: &lt;100ms coordination latency
-- **Evidence Integrity**: {\d+}% cryptographic integrity
+- **Threat Detection**: 99.5% accuracy with <50ms latency
+- **Swarm Coordination**: <100ms coordination latency
+- **Evidence Integrity**: 100% cryptographic integrity
 
 ---
 
