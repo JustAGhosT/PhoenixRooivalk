@@ -89,7 +89,7 @@ export const HeroSection: React.FC = () => {
           <div className="card card--elevated">
             <div className="text-center mb-6">
               <h3 className="text-2xl font-bold text-[var(--action-primary)] mb-4">
-                Level-0 Autonomy Concept
+                SAE Level 4 Autonomy Concept
               </h3>
               <p className="text-[var(--text-muted)] mb-6">
                 Edge-first decision making without network dependency

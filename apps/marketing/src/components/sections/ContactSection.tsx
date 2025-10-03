@@ -56,7 +56,7 @@ export const ContactSection: React.FC = () => {
             </h3>
             <p className="text-gray-300 mb-6">
               Download comprehensive technical documentation and market
-              analysis. Learn about Level-0 architecture, market opportunity,
+              analysis. Learn about SAE Level 4 architecture, market opportunity,
               and competitive positioning.
             </p>
             <div className="space-y-4">

@@ -81,7 +81,7 @@ export default function SBIRPage(): React.ReactElement {
                           ✓
                         </span>
                         <span className="text-[var(--text-muted)]">
-                          Technical validation of Level-0 autonomy concept
+                          Technical validation of SAE Level 4 autonomy concept
                         </span>
                       </li>
                       <li className="flex items-start">
