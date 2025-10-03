@@ -4,6 +4,8 @@ title: Phoenix Rooivalk Pitch Deck
 sidebar_label: Phoenix Rooivalk Pitch Deck
 ---
 
+<!-- markdownlint-disable MD025 -->
+
 # Phoenix Rooivalk: Revolutionary Counter-Drone Defense Platform
 
 import PitchDeckSlide from "@site/src/components/mdx/PitchDeck"; import
