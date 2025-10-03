@@ -111,7 +111,7 @@ paradigm shift from traditional centralized systems.
 **Hash-Chained Evidence**
 
 - **Evidence Hashing**: SHA-256 hash of drone intercept evidence
-- **Metadata Storage**: `Location, timestamp`, operator ID, sensor data
+- **Metadata Storage**: Location, timestamp, operator ID, sensor data
 - **On-Chain Storage**: 32-byte hash with metadata on Solana
 - **Off-Chain Storage**: Full evidence payloads in encrypted storage
 - **Chain of Custody**: Complete documentation from creation to presentation

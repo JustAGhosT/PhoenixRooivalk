@@ -340,8 +340,6 @@ next-generation counter-drone defense systems.
 
 ---
 
-_This document contains confidential technical information. Distribution is
+*This document contains confidential technical information. Distribution is
 restricted to authorized personnel only. © 2025 Phoenix Rooivalk. All rights
-reserved._
-
-_Context improved by Giga AI_
+reserved.*

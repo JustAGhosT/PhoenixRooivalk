@@ -98,11 +98,11 @@ feasibility, performance benchmarks, competitive positioning, and implementation
 **Latency Benchmarks**
 - **Phoenix Rooivalk**: <200ms target response time
 - **Industry Average**: 2-5 seconds typical response time
-- **Edge Processing**: &lt;50ms for edge-based systems
+- **Edge Processing**: <50ms for edge-based systems
 - **Cloud Processing**: 1-3 seconds for cloud-based systems
 
 **False Positive Benchmarks**
-- **Phoenix Rooivalk**: &lt;1% target false positive rate
+- **Phoenix Rooivalk**: <1% target false positive rate
 - **Industry Average**: 5-15% typical false positive rate
 - **High-Performance Systems**: 2-5% false positive rate
 - **Military Systems**: 1-3% false positive rate

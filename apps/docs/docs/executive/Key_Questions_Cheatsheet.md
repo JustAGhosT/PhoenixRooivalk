@@ -165,7 +165,7 @@ orchestrated (K3s edge, AKS cloud).
 A: Multi-tenant site controllers, batched evidence anchoring, horizontal scaling via kubernetes. Design supports 100+ sites with central monitoring.
 
 **Q: How does Azure integration work?** 
-A: AKS for orchestration, ACR for containers, Key `Vault for` secrets, PostgreSQL `/Redis for` data, Monitor
+A: AKS for orchestration, ACR for containers, Key Vault for secrets, PostgreSQL/Redis for data, Monitor
 for telemetry, Application Gateway for routing.
 
 **Q: What's the deployment timeline?** A: Once funded and MVP built: 2-week base
@@ -302,7 +302,7 @@ Prof Gerdes, ATP Geopolitics, and CombatVeteranReacts.
 
 **Q: Are there any regulatory or ethical barriers?** A: Yes, autonomous defense
 systems face significant scrutiny. Our approach: human-in-the-loop for kinetic
-actions, modular `architecture to isolate ITAR-controlled` components,
+actions, modular architecture to isolate ITAR-controlled components,
 compliance tracking (NIST AI RMF), tamper-proof evidence logging for accountability.
 
 ---
@@ -331,7 +331,6 @@ investment for hardware procurement and MVP completion.
 **Q: What partnerships are needed?** A: Key needs: MVP/POC completion to restart
 Lockheed Martin discussions, sensor manufacturers for hardware integration, regulatory  expertise for defense 
 procurement, operational partners for pilot
-
 deployments, seed funding for demonstrator.
 
 **Q: What's the exit strategy?** A: Potential paths include strategic

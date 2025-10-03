@@ -381,7 +381,7 @@ engineers, and system integrators.
 **AI/ML (Artificial Intelligence/Machine Learning)**
 
 - Technologies enabling autonomous decision-making and pattern recognition
-- Supports threat ``` detection, classification, and response
+- Supports threat detection, classification, and response
 - Enables adaptive behavior and continuous learning
 
 **Neural Networks**
@@ -403,11 +403,13 @@ engineers, and system integrators.
 - Enables autonomous navigation and threat identification
 
 **Natural Language Processing**
+
 - AI technology for understanding and processing human language
 - Supports voice commands and text analysis
 - Enables human-machine interaction and communication
 
 **Reinforcement Learning**
+
 - Machine learning technique for learning through interaction
 - Supports adaptive behavior and decision-making
 - Enables continuous improvement and optimization
@@ -417,35 +419,37 @@ engineers, and system integrators.
 ## Security and Compliance
 
 **ITAR (International Traffic in Arms Regulations)**
+
 - US regulations controlling export of defense-related technology
 - Requires registration and compliance for defense contractors
-- Affects system ```
-design, documentation
-```, and export controls
+- Affects system design, documentation, and export controls
 
 **DoD (Department of Defense)**
+
 - US Department of Defense and its regulations and requirements
 - Includes security clearance requirements and compliance standards
-- Affects system ```
-design, deployment
-```, and operational procedures
+- Affects system design, deployment, and operational procedures
 
 **FedRAMP (Federal Risk and Authorization Management Program)**
+
 - US government program for cloud security assessment
 - Required for government cloud deployments
 - Affects cloud architecture and security requirements
 
 **CMMC (Cybersecurity Maturity Model Certification)**
+
 - US Department of Defense cybersecurity framework
 - Required for defense contractors and suppliers
 - Affects security architecture and compliance requirements
 
 **NIST (National Institute of Standards and Technology)**
+
 - US government agency developing cybersecurity standards
 - Provides frameworks for security and compliance
 - Affects system design and security requirements
 
 **Zero Trust**
+
 - Security model requiring verification for all access requests
 - Assumes no implicit trust based on location or network
 - Affects system architecture and security design
@@ -455,31 +459,37 @@ design, deployment
 ## Performance and Metrics
 
 **TOPS (Tera Operations Per Second)**
+
 - Measure of AI processing performance
 - Jetson AGX Orin provides 275 TOPS
 - Critical for real-time AI processing requirements
 
 **FPS (Frames Per Second)**
+
 - Measure of video processing performance
 - YOLOv9 provides 30+ FPS on Jetson Nano, 60+ FPS on Orin platforms
 - Critical for real-time video analysis and processing
 
 **mAP (mean Average Precision)**
+
 - Measure of object detection accuracy
 - YOLOv9 provides 65.2% mAP
 - Critical for threat detection accuracy and reliability
 
 **Latency**
+
 - Time delay between input and output
 - Target <200ms for counter-drone operations
 - Critical for real-time response and threat neutralization
 
 **Throughput**
+
 - Rate of data processing or transmission
 - Solana provides 65,000-100,000 TPS
 - Critical for high-volume data processing and evidence anchoring
 
 **Uptime**
+
 - Percentage of time system is operational
 - Target 99.9% uptime for critical operations
 - Critical for mission success and operational effectiveness
@@ -491,6 +501,7 @@ design, deployment
 This glossary provides comprehensive definitions of technical terms and concepts used throughout the Phoenix Rooivalk system. The glossary serves as a reference for technical evaluators, engineers, and system integrators, ensuring consistent understanding of system capabilities and requirements.
 
 Key areas covered include:
+
 - **Operations and Concepts**: Core operational terminology and concepts
 - **Messaging and Observability**: Communication and monitoring technologies
 - **Communications and EW**: Electronic warfare and communication systems

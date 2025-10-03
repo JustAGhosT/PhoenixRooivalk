@@ -17,7 +17,7 @@ TechnologyComparison from "@site/src/components/mdx/TechnologyComparison";
 # Revolutionary Defense Technology
 
 **Phoenix Rooivalk** represents the next generation of counter-drone defense
-`systems, combining` military-grade blockchain technology with advanced
+systems, combining military-grade blockchain technology with advanced
 AI-driven threat detection to deliver unprecedented security, performance, and
 operational resilience.
 
