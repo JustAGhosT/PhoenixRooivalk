@@ -28,7 +28,7 @@ ROI**: 300% within 24 months **Performance Target**: 65,000+ TPS, <1s finality,
 
 - Implement secure authentication and identity management
 - Establish military-grade security with quantum resistance
-- Achieve &lt;2ms authentication latency
+- Achieve <2ms authentication latency
 - Ensure 99.9% security assurance
 
 ### 1.2 Key Components
@@ -138,8 +138,8 @@ Passwords, PINs
 
 ---
 
-## Phase {\d+}: Swarm Coordination
-**Duration**: {\d+} months | **Investment**: ${\d+}.1M
+## Phase 3: Swarm Coordination
+**Duration**: 4 months | **Investment**: $3.1M
 
 ### 1.1 Objectives
 - Implement multi-agent coordination
@@ -147,7 +147,7 @@ Passwords, PINs
 - Develop swarm formation control
 - Enable contested operations protocols
 
-### {\d+}.{\d+} Key Components
+### 3.1 Key Components
 
 #### Consensus Algorithms
 - **Raft Consensus**: Leader election and log replication

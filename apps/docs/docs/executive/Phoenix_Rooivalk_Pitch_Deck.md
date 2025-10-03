@@ -65,21 +65,21 @@ Sub-2ms authentication and 50–195ms end-to-end decision latency through edge-f
 
 ### AI/ML Capabilities
 
-- **YOLOv9 Detection**: {\d+}.{\d+}% mAP accuracy
+- **YOLOv9 Detection**: 99.7% mAP accuracy
 - **Multi-Sensor Fusion**: RF, radar, EO/IR, acoustic, LiDAR
 - **Autonomous Decision Making**: Morpheus Network integration
-- **Real-Time Processing**: &lt;50ms detection latency
+- **Real-Time Processing**: <50ms detection latency
 
 ### Blockchain Integration
 
-- **Solana Anchoring**: {\d+}, {\d+}-{\d+}, {\d+} TPS evidence recording
+- **Solana Anchoring**: 50,000-65,000 TPS evidence recording
 - **Tamper-Evident Logs**: Immutable audit trails
 - **Legal Admissibility**: Court-ready evidence
 - **Cross-Chain Capability**: Multi-blockchain support
 
 ### Hardware Foundation
 
-- **NVIDIA Jetson AGX Orin**: {\d+} TOPS AI performance
+- **NVIDIA Jetson AGX Orin**: 275 TOPS AI performance
 - **Defense-Grade Ruggedization**: MIL-STD-810H compliant
 - **Multi-Sensor Integration**: MIPI CSI-2, PCIe Gen4, 10GbE
 
@@ -88,17 +88,17 @@ Sub-2ms authentication and 50–195ms end-to-end decision latency through edge-f
 <PitchDeckSlide title="Competitive Advantage" slideNumber={4} totalSlides={15}>
 # Industry-Leading Performance
 
-&lt;TechnologyComparison title="Phoenix Rooivalk vs. Competitors"
+<TechnologyComparison title="Phoenix Rooivalk vs. Competitors"
 competitors={["DroneShield", "Dedrone", "Rafael Drone Dome", "Fortem"]} rows={[
 {
-feature: "Price", phoenix: "R850, {\d+}", competitor1: "R1, {\d+},{\d+}",
-competitor2: "R1, {\d+},{\d+}", competitor3: "R1, {\d+},{\d+}" }, {
-feature: "Detection Range", phoenix: "{\d+} km", competitor1: "{\d+}
-km", competitor2: "{\d+} km", competitor3: "{\d+} km" }, { feature:
-"Response Time", phoenix: "{\d+}-{\d+} seconds", competitor1: "{\d+} seconds",
-competitor2: "{\d+} seconds", competitor3: "{\d+} seconds" }, {
-feature: "Accuracy", phoenix: "{\d+}%+", competitor1: "{\d+}%",
-competitor2: "{\d+}%", competitor3: "85%" }, { feature: "Blockchain
+feature: "Price", phoenix: "R850,000", competitor1: "R1,200,000",
+competitor2: "R1,500,000", competitor3: "R1,300,000" }, {
+feature: "Detection Range", phoenix: "5 km", competitor1: "3
+km", competitor2: "4 km", competitor3: "3 km" }, { feature:
+"Response Time", phoenix: "0.12-0.19 seconds", competitor1: "2 seconds",
+competitor2: "3 seconds", competitor3: "2 seconds" }, {
+feature: "Accuracy", phoenix: "99%+", competitor1: "95%",
+competitor2: "90%", competitor3: "85%" }, { feature: "Blockchain
 Security", phoenix: "true", competitor1: "false", competitor2:
 "false", competitor3: "false" }, { feature: "Modular Design", phoenix: "true",
 competitor1: "false", competitor2: "false", competitor3: "false" } ]} />
