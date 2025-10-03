@@ -100,14 +100,14 @@ personal AI smart agents
 - **Confidence Thresholds**: Configurable based on ROE and threat level
 - **Update Mechanism**: A/B testing in sandbox with HITL approval required
 
-### {\d+}. Solana (Evidence Blockchain Anchoring)
+### 3.1 Solana (Evidence Blockchain Anchoring)
 
 #### Performance Characteristics
 
-- **Throughput**: {\d+}, {\d+}–{\d+}, {\d+} TPS sustained in real-world
+- **Throughput**: 50,000–65,000 TPS sustained in real-world
   conditions
 - **Finality**: ~400ms using Proof of History consensus
-- **Cost**: ~${\d+}.{\d+} USD per evidence anchor
+- **Cost**: ~$0.00025 USD per evidence anchor
 - **Reliability**: Proven mainnet performance with independent validator network
 
 #### Evidence Architecture
@@ -121,9 +121,9 @@ personal AI smart agents
 
 #### Technical Specifications for Defense Applications
 
-- **Ed25519 Cryptographic Signatures**: {\d+}-bit security with fast
+- **Ed25519 Cryptographic Signatures**: 256-bit security with fast
   verification optimized for high-throughput
-- **SHA-{\d+} Hashing**: Collision-resistant {\d+}-byte fingerprints of evidence
+- **SHA-256 Hashing**: Collision-resistant 32-byte fingerprints of evidence
 - **Proof of History**: Cryptographically verifiable timestamps establishing
   tamper-evident chronological ordering
 - **Immutable Programs**: Evidence logging logic cannot be altered
@@ -134,10 +134,10 @@ personal AI smart agents
 - **State Legislation**: ``` Vermont, Arizona
 
 ````, and Illinois have enacted explicit legislation recognizing blockchain evidence
-- **Federal Rules of Evidence**: Rule {\d+} (authentication) and Rule {\d+}({\d+}) (business records exception)
-- **International Precedent**: China's Supreme People's Court formally recognized blockchain evidence in {\d+}
+- **Federal Rules of Evidence**: Rule 901 (authentication) and Rule 803(6) (business records exception)
+- **International Precedent**: China's Supreme People's Court formally recognized blockchain evidence in 2018
 
-### {\d+}. Cognitive Mesh (Multi-Agent Orchestration Framework)
+### 3.2 Cognitive Mesh (Multi-Agent Orchestration Framework)
 
 The Cognitive Mesh enables complex coordination among distributed agents (```
 drones, sensors
@@ -186,10 +186,10 @@ interceptor, relay
 **Hierarchical Decision Confidence Pack (HDCP)**
 - Combines confidence scores from multiple AI agents
 - Ensemble voting to reduce outlier effects
-- Target: Improve detection accuracy from {\d+}.{\d+}% to {\d+}.{\d+}-{\d+}.{\d+}%
+- Target: Improve detection accuracy from 95.0% to 99.5-99.7%
 
 **Temporal Decision Core (TDC)**
-- Context enrichment within {\d+}-100ms after authentication
+- Context enrichment within 50-100ms after authentication
 - Pattern matching against historical scenarios
 - Eligibility traces for learning from past incidents
 

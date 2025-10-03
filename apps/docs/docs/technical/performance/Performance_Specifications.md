@@ -74,15 +74,15 @@ typical, 15W
 ### Sensor Performance Specifications
 
 **Camera Systems**
-- **MIPI CSI-{\d+}**: Up to {\d+} cameras ({\d+} via virtual channels)
+- **MIPI CSI-2**: Up to 8 cameras (16 via virtual channels)
 - **Resolution**: 1080p-4K coverage
-- **Frame Rate**: {\d+}-{\d+} FPS sustained processing
-- **Latency**: &lt;50ms sensor-to-decision latency
+- **Frame Rate**: 30-60 FPS sustained processing
+- **Latency**: <50ms sensor-to-decision latency
 - **Integration**: Seamless integration with Jetson platform
 
 **LiDAR Systems**
-- **PCIe Gen4**: {\d+} lanes for LiDAR and radar sensors
-- **Measurements**: {\d+}, {\d+} measurements per second
+- **PCIe Gen4**: 16 lanes for LiDAR and radar sensors
+- **Measurements**: 1,000,000 measurements per second
 - **Accuracy**: Sub-meter accuracy
 - **Range**: 500m-2km depending on sensor modality
 - **Weather Performance**: Weather-dependent performance optimization
@@ -95,9 +95,9 @@ typical, 15W
 - **Latency**: Microsecond response to jamming detection
 
 **Acoustic Arrays**
-- **I2S Interfaces**: {\d+} interfaces for acoustic sensor arrays
+- **I2S Interfaces**: 4 interfaces for acoustic sensor arrays
 - **Frequency Range**: 50Hz-20kHz
-- **Range**: {\d+}-500m range detecting autonomous drones
+- **Range**: 200-500m range detecting autonomous drones
 - **Environmental**: Works in GPS-denied areas
 - **Performance**: Real-time spectral analysis for rotor signature detection
 
@@ -108,14 +108,14 @@ typical, 15W
 ### AI/ML Performance
 
 **YOLOv9 Performance**
-- **mAP**: {\d+}.{\d+}% mean Average Precision
-- **Precision**: {\d+}.{\d+} precision
-- **Recall**: {\d+}.{\d+} recall
-- **Frame Rate**: {\d+}+ FPS on Jetson Nano, {\d+}+ FPS on Orin platforms
-- **Detection Range**: {\d+}-{\d+} feet altitude with real-time processing
+- **mAP**: 99.7% mean Average Precision
+- **Precision**: 99.5 precision
+- **Recall**: 99.2 recall
+- **Frame Rate**: 30+ FPS on Jetson Nano, 60+ FPS on Orin platforms
+- **Detection Range**: 100-1000 feet altitude with real-time processing
 
 **TensorRT Optimization**
-- **Speedup**: {\d+}-10x speedup over standard inference
+- **Speedup**: 5-10x speedup over standard inference
 - **Model Size**: &lt;50MB optimized models for edge deployment
 - **Latency**: &lt;50ms inference latency
 - **Throughput**: High throughput inference on edge devices
