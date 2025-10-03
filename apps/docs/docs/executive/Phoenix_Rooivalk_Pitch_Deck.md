@@ -460,5 +460,5 @@ Be part of the next generation of defense technology. Phoenix Rooivalk represent
 
 **Phoenix Rooivalk: Securing the Future Through Innovation**
 
-_Revolutionary Level-{\d+} Autonomous Counter-UAS Defense Platform_
+_Revolutionary SAE Level 4 Autonomous Counter-UAS Defense Platform_
 </PitchDeckSlide>

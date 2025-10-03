@@ -264,7 +264,7 @@ engineers, and system integrators.
 - Supports multi-sensor data fusion and real-time processing
 - Enables comprehensive sensor integration and analysis
 
-**ROS {\d+} (Robot Operating System)**
+**ROS 2 (Robot Operating System)**
 
 - Middleware for distributed robotic systems
 - Supports modular architecture and component integration
@@ -279,7 +279,7 @@ engineers, and system integrators.
 **YOLOv9**
 
 - Object detection algorithm optimized for real-time performance
-- Provides {\d+}.{\d+}% mAP with {\d+}+ FPS on Jetson platforms
+- Provides 65.2% mAP with 30+ FPS on Jetson platforms
 - Supports multi-class object detection and tracking
 
 ---
@@ -341,8 +341,8 @@ engineers, and system integrators.
 **Solana**
 
 - High-performance blockchain platform for evidence anchoring
-- Provides {\d+}, {\d+}-{\d+}, {\d+} TPS with sub-{\d+}-second finality
-- Supports cost-effective evidence anchoring at ${\d+}.{\d+} per transaction
+- Provides 65,000-100,000 TPS with sub-400ms finality
+- Supports cost-effective evidence anchoring at $0.00025 per transaction
 
 **Evidence Anchoring**
 
@@ -456,17 +456,17 @@ design, deployment
 
 **TOPS (Tera Operations Per Second)**
 - Measure of AI processing performance
-- Jetson AGX Orin provides {\d+} TOPS
+- Jetson AGX Orin provides 275 TOPS
 - Critical for real-time AI processing requirements
 
 **FPS (Frames Per Second)**
 - Measure of video processing performance
-- YOLOv9 provides {\d+}+ FPS on Jetson Nano, {\d+}+ FPS on Orin platforms
+- YOLOv9 provides 30+ FPS on Jetson Nano, 60+ FPS on Orin platforms
 - Critical for real-time video analysis and processing
 
 **mAP (mean Average Precision)**
 - Measure of object detection accuracy
-- YOLOv9 provides {\d+}.{\d+}% mAP
+- YOLOv9 provides 65.2% mAP
 - Critical for threat detection accuracy and reliability
 
 **Latency**
@@ -476,12 +476,12 @@ design, deployment
 
 **Throughput**
 - Rate of data processing or transmission
-- Solana provides {\d+}, {\d+}-{\d+}, {\d+} TPS
+- Solana provides 65,000-100,000 TPS
 - Critical for high-volume data processing and evidence anchoring
 
 **Uptime**
 - Percentage of time system is operational
-- Target {\d+}.{\d+}% uptime for critical operations
+- Target 99.9% uptime for critical operations
 - Critical for mission success and operational effectiveness
 
 ---
