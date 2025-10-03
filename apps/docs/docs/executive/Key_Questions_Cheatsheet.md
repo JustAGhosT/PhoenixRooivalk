@@ -435,15 +435,8 @@ technologies, or
 building standalone defense technology company. Path depends on market traction
 and partner relationships.
 
-**Q: How do you measure success?** A: Initial: completing MVP/``` POC,
-validating
-
-````
-sub-200ms latency ```
-targets, demonstrating
-``` blockchain evidence chain ```
-integrity, restarting
-``` Lockheed discussions. Long-term: becoming the standard for autonomous
+**Q: How do you measure success?** A: Initial: completing MVP/POC,
+validating sub-200ms latency targets, demonstrating blockchain evidence chain integrity, restarting Lockheed discussions. Long-term: becoming the standard for autonomous
 counter-drone defense.
 
 ---
@@ -451,49 +444,31 @@ counter-drone defense.
 ## Roadmap & Future
 
 **Q: What's the next major milestone?** A: Complete MVP/POC hardware build to
-demonstrate the integrated system (sensor ```
-fusion, Morpheus
-``` AI decision ```
-engine, Solana
-``` evidence anchoring) working end-to-end. Then restart Lockheed Martin
+demonstrate the integrated system (sensor fusion, Morpheus AI decision engine, Solana evidence anchoring) working end-to-end. Then restart Lockheed Martin
 discussions and proceed to pilot deployments.
 
-**Q: What is the timeline for deployment?** A: Currently October {\d+}. Software
-foundation complete. Once funded: {\d+}-{\d+} months for ```
-MVP, then
-``` {\d+}-{\d+} weeks per site
+**Q: What is the timeline for deployment?** A: Currently October 2025. Software
+foundation complete. Once funded: {\d+}-{\d+} months for MVP, then {\d+}-{\d+} weeks per site
 deployment. Production timeline depends on pilot results and customer
 commitments.
 
 **Q: What proof will be shown at pilot exit?** A: Target metrics include latency
 measurements (aiming for &lt;200ms end-to-end), false positive rates <{\d+}%, ROE
-compliance ```
-verification, and
-``` successful blockchain evidence chain validation.
+compliance verification, and successful blockchain evidence chain validation.
 
 **Q: How does Cognitive Mesh evolve?** A: The framework enables continuous
 learning and adaptation. AI-Research-on-AI loop and Experimental Velocity
 Backend designed to accelerate improvements based on operational data.
 
 **Q: What's the competitive moat?** A: First-mover advantage in combining edge
-AI autonomy with cryptographic evidence ```
-trails, complexity
-``` of integrating
-multiple cutting-edge ```
-technologies, and
-``` operational data/relationships from
+AI autonomy with cryptographic evidence trails, complexity of integrating multiple cutting-edge technologies, and operational data/relationships from
 early deployments.
 
 ---
 
 ## Quick Reference
 
-**Focus Areas**: Edge autonomy without network ```
-dependency, blockchain
-``` evidence
-for ```
-accountability, modular
-``` architecture for flexibility.
+**Focus Areas**: Edge autonomy without network dependency, blockchain evidence for accountability, modular architecture for flexibility.
 
 **Performance Metrics**: Design targets pending hardware validation - {\d+}-195ms
 latency, <{\d+}-{\d+}% false positive rate, {\d+}.{\d+}% uptime target.
@@ -502,11 +477,7 @@ latency, <{\d+}-{\d+}% false positive rate, {\d+}.{\d+}% uptime target.
 funding for MVP hardware demonstration.
 
 **Team**: Jurie Smit and Martyn Redelinghuys leading development with strong
-technical capabilities in ```
-Rust, blockchain
-``` ```
-integration, and
-``` distributed systems.
+technical capabilities in Rust, blockchain integration, and distributed systems.
 
 **Key Differentiator**: First-mover advantage in combining edge AI autonomy with
 cryptographic evidence trails for military-grade counter-drone defense.
@@ -514,6 +485,5 @@ cryptographic evidence trails for military-grade counter-drone defense.
 ---
 
 _This document contains confidential technical information. Distribution is
-restricted to authorized personnel only. © {\d+} Phoenix Rooivalk. All rights
+restricted to authorized personnel only. © 2025 Phoenix Rooivalk. All rights
 reserved._
-````

@@ -340,36 +340,36 @@ validated, deduplicated
 
 ### Recommended System Configuration
 
-**Primary Processing**: Jetson AGX Orin 64GB ({\d+} TOPS)
-**Swarm Coordination**: Distributed Orin NX 16GB nodes ({\d+} TOPS)
-**Camera Coverage**: {\d+}-{\d+} optical cameras via MIPI CSI-{\d+} (1080p-4K)
-**Thermal Cameras**: USB {\d+}.{\d+}/GigE connectivity
+**Primary Processing**: Jetson AGX Orin 64GB (275 TOPS)
+**Swarm Coordination**: Distributed Orin NX 16GB nodes (100 TOPS)
+**Camera Coverage**: 4-8 optical cameras via MIPI CSI-2 (1080p-4K)
+**Thermal Cameras**: USB 3.0/GigE connectivity
 **LiDAR Sensors**: PCIe/Ethernet integration
-**RF Detection**: Software-defined radio via USB {\d+}.{\d+}
+**RF Detection**: Software-defined radio via USB 3.0
 **Acoustic Sensing**: I2S microphone arrays
 
 ### Software Stack
 
-- **Operating System**: Ubuntu {\d+}.{\d+}/{\d+}.{\d+} with JetPack {\d+}.{\d+}+
+- **Operating System**: Ubuntu 20.04/22.04 with JetPack 5.1+
 - **RTOS Option**: RedHawk Linux RTOS for mission-critical control
-- **Middleware**: ROS {\d+} Humble with Isaac ROS acceleration
-- **Inference Optimization**: TensorRT achieving {\d+}-10x speedup
+- **Middleware**: ROS 2 Humble with Isaac ROS acceleration
+- **Inference Optimization**: TensorRT achieving 2-10x speedup
 - **Sensor Fusion**: DeepStream 3D framework
 - **Swarm Coordination**: Custom consensus-based mesh protocols (SWARM/SwarmRaft)
 
 ### Network Architecture
 
-- **Local Coordination**: 5G/WiFi {\d+} mesh with sub-100ms latency
+- **Local Coordination**: 5G/WiFi 6 mesh with sub-100ms latency
 - **Ground Link**: 10GbE for data exfiltration to command centers
 - **Resilience**: Redundant radio paths for fault tolerance
-- **Security**: AES-{\d+} real-time encryption
+- **Security**: AES-256 real-time encryption
 - **Cloud Integration**: Azure Government Cloud for strategic-level analytics
 
 ### Performance Targets
 
 - **Detection Latency**: Under 50ms from sensor input to alert generation
-- **Concurrent Targets**: {\d+}+ concurrent drone targets with multi-sensor fusion
-- **Update Rates**: {\d+}-{\d+} Hz multi-sensor fusion
+- **Concurrent Targets**: 10+ concurrent drone targets with multi-sensor fusion
+- **Update Rates**: 10-30 Hz multi-sensor fusion
 - **Swarm Coordination**: Network latency under 100ms
 - **Operational Range**: 500m-2km depending on sensor modality
 - **Graceful Degradation**: Reduced functionality when components fail rather than catastrophic failure
