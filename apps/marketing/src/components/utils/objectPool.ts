@@ -349,7 +349,7 @@ export const createParticlePool = (
 
 // Pool Manager for centralized management
 export class PoolManager {
-  private pools: Map<string, ObjectPool<Poolable>> = new Map();
+  private pools: Map<string, ObjectPool<any>> = new Map();
 
   constructor() {
     this.initializePools();

@@ -134,8 +134,7 @@ integration
 
 ### Phase 4: System Integration
 
-**Duration**: 4 months **Focus**: Full system integration and API
-development
+**Duration**: 4 months **Focus**: Full system integration and API development
 
 **Key Components:**
 

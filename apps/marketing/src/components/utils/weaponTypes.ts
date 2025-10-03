@@ -28,11 +28,7 @@ export interface Weapon {
 export interface PowerUp {
   id: string;
   name: string;
-  type:
-    | "rapid-fire"
-    | "damage-boost"
-    | "area-effect"
-    | "range-boost";
+  type: "rapid-fire" | "damage-boost" | "area-effect" | "range-boost";
   duration: number; // milliseconds
   startTime: number;
   isActive: boolean;
@@ -117,8 +113,8 @@ export const POWER_UP_CONFIGS: Record<
   string,
   Omit<PowerUp, "startTime" | "isActive">
 > = {
-  "multi-shot": {
-    id: "multi-shot",
+  "damage-boost": {
+    id: "damage-boost",
     name: "Damage Boost",
     type: "damage-boost",
     duration: 10000, // 10 seconds

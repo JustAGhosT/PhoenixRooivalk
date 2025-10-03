@@ -119,12 +119,13 @@ operational effectiveness with safety and compliance requirements.
 
 ### Decision
 
-Implement SAE Level 4 autonomy with comprehensive safety and compliance frameworks.
+Implement SAE Level 4 autonomy with comprehensive safety and compliance
+frameworks.
 
 ### Rationale
 
-- **Operational Effectiveness**: SAE Level 4 autonomy provides maximum operational
-  effectiveness
+- **Operational Effectiveness**: SAE Level 4 autonomy provides maximum
+  operational effectiveness
 - **Response Time**: Sub-200ms response time requires autonomous operation
 - **GPS-Denied Environments**: Autonomous operation essential for GPS-denied
   environments

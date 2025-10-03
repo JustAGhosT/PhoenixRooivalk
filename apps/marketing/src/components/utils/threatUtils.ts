@@ -5,14 +5,16 @@ import { Threat } from "./threatTypes";
  * Spawns a new threat at the edge of the game area
  */
 export function spawnThreat(
-  type?: "drone" | "swarm" | "stealth",
+  type?: "drone" | "swarm" | "stealth" | "kamikaze",
   boundingRect?: DOMRect,
   level: number = 1,
 ): Threat {
   const rect = boundingRect || { width: 800, height: 600, left: 0, top: 0 };
   const threatType =
     type ||
-    (["drone", "swarm", "stealth"] as const)[Math.floor(Math.random() * 3)];
+    (["drone", "swarm", "stealth", "kamikaze"] as const)[
+      Math.floor(Math.random() * 4)
+    ];
 
   // Spawn from edges
   const edge = Math.floor(Math.random() * 4);

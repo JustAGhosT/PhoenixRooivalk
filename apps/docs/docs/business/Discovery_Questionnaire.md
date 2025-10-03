@@ -18,18 +18,18 @@ discovery calls to assess needs, technical requirements, and budget parameters.
 
 ### Primary Contact
 
-- **Name**: ****\*\*\*\*****\_****\*\*\*\*****
-- **Title**: ****\*\*\*\*****\_****\*\*\*\*****
-- **Organization**: ****\*\*\*\*****\_****\*\*\*\*****
-- **Email**: ****\*\*\*\*****\_****\*\*\*\*****
-- **Phone**: ****\*\*\*\*****\_****\*\*\*\*****
+- **Name**: \***\*\*\*\*\*\*\***\_\***\*\*\*\*\*\*\***
+- **Title**: \***\*\*\*\*\*\*\***\_\***\*\*\*\*\*\*\***
+- **Organization**: \***\*\*\*\*\*\*\***\_\***\*\*\*\*\*\*\***
+- **Email**: \***\*\*\*\*\*\*\***\_\***\*\*\*\*\*\*\***
+- **Phone**: \***\*\*\*\*\*\*\***\_\***\*\*\*\*\*\*\***
 
 ### Decision Makers
 
-- **Technical Decision Maker**: ****\*\*\*\*****\_****\*\*\*\*****
-- **Budget Authority**: ****\*\*\*\*****\_****\*\*\*\*****
-- **Implementation Lead**: ****\*\*\*\*****\_****\*\*\*\*****
-- **Executive Sponsor**: ****\*\*\*\*****\_****\*\*\*\*****
+- **Technical Decision Maker**: \***\*\*\*\*\*\*\***\_\***\*\*\*\*\*\*\***
+- **Budget Authority**: \***\*\*\*\*\*\*\***\_\***\*\*\*\*\*\*\***
+- **Implementation Lead**: \***\*\*\*\*\*\*\***\_\***\*\*\*\*\*\*\***
+- **Executive Sponsor**: \***\*\*\*\*\*\*\***\_\***\*\*\*\*\*\*\***
 
 ### Organization Details
 
@@ -85,7 +85,7 @@ discovery calls to assess needs, technical requirements, and budget parameters.
    - [ ] High operational costs
    - [ ] Limited coverage area
    - [ ] Poor evidence collection
-   - [ ] Other: ****\*\*\*\*****\_****\*\*\*\*****
+   - [ ] Other: \***\*\*\*\*\*\*\***\_\***\*\*\*\*\*\*\***
 
 ---
 
@@ -129,10 +129,10 @@ discovery calls to assess needs, technical requirements, and budget parameters.
    - [ ] No network dependency required
 
 2. **Do you require GPS-denied operation capability?**
-    - [ ] Yes, critical requirement
-    - [ ] Yes, preferred capability
-    - [ ] No, GPS available
-    - [ ] Not sure
+   - [ ] Yes, critical requirement
+   - [ ] Yes, preferred capability
+   - [ ] No, GPS available
+   - [ ] Not sure
 
 ---
 
@@ -141,36 +141,36 @@ discovery calls to assess needs, technical requirements, and budget parameters.
 ### Response Time
 
 1. **What is your target response time for threat neutralization?**
-    - [ ] <200ms (Phoenix Rooivalk capability)
-    - [ ] <1 second
-    - [ ] <5 seconds
-    - [ ] <30 seconds
-    - [ ] Not critical
+   - [ ] <200ms (Phoenix Rooivalk capability)
+   - [ ] <1 second
+   - [ ] <5 seconds
+   - [ ] <30 seconds
+   - [ ] Not critical
 
 ### Detection Accuracy
 
 1. **What detection accuracy do you require?**
-    - [ ] 95%+ (Phoenix Rooivalk capability)
-    - [ ] 90%+
-    - [ ] 85%+
-    - [ ] 80%+
-    - [ ] Not specified
+   - [ ] 95%+ (Phoenix Rooivalk capability)
+   - [ ] 90%+
+   - [ ] 85%+
+   - [ ] 80%+
+   - [ ] Not specified
 
 ### Autonomy Requirements
 
 1. **Do you require autonomous operation without human intervention?**
-    - [ ] Yes, fully autonomous (SAE Level 4)
-    - [ ] Semi-autonomous with human oversight
-    - [ ] Manual operation acceptable
-    - [ ] Not sure
+   - [ ] Yes, fully autonomous (SAE Level 4)
+   - [ ] Semi-autonomous with human oversight
+   - [ ] Manual operation acceptable
+   - [ ] Not sure
 
 ### Evidence Requirements
 
 1. **Do you require legal evidence collection for drone engagements?**
-    - [ ] Yes, court-admissible evidence required
-    - [ ] Yes, audit trail for compliance
-    - [ ] Basic logging sufficient
-    - [ ] Not required
+   - [ ] Yes, court-admissible evidence required
+   - [ ] Yes, audit trail for compliance
+   - [ ] Basic logging sufficient
+   - [ ] Not required
 
 ---
 
@@ -180,35 +180,35 @@ discovery calls to assess needs, technical requirements, and budget parameters.
 
 1. **What is your budget range for counter-drone solutions?**
 
-    - [ ] <$50K
-    - [ ] $50K-$100K
-    - [ ] $100K-$500K
-    - [ ] $500K-$1M
-    - [ ] $1M+
+   - [ ] <$50K
+   - [ ] $50K-$100K
+   - [ ] $100K-$500K
+   - [ ] $500K-$1M
+   - [ ] $1M+
 
 2. **What is your preferred pricing model?**
-    - [ ] One-time purchase
-    - [ ] Subscription-based
-    - [ ] Hybrid (hardware + software)
-    - [ ] Pay-per-use
-    - [ ] Not sure
+   - [ ] One-time purchase
+   - [ ] Subscription-based
+   - [ ] Hybrid (hardware + software)
+   - [ ] Pay-per-use
+   - [ ] Not sure
 
 ### Timeline
 
 1. **When do you need the solution deployed?**
 
-    - [ ] <3 months
-    - [ ] 3-6 months
-    - [ ] 6-12 months
-    - [ ] 12+ months
-    - [ ] No specific timeline
+   - [ ] <3 months
+   - [ ] 3-6 months
+   - [ ] 6-12 months
+   - [ ] 12+ months
+   - [ ] No specific timeline
 
 2. **What is your procurement process?**
-    - [ ] Direct purchase
-    - [ ] RFP process
-    - [ ] Government contracting
-    - [ ] Pilot program first
-    - [ ] Other: ****\*\*\*\*****\_****\*\*\*\*****
+   - [ ] Direct purchase
+   - [ ] RFP process
+   - [ ] Government contracting
+   - [ ] Pilot program first
+   - [ ] Other: \***\*\*\*\*\*\*\***\_\***\*\*\*\*\*\*\***
 
 ---
 
@@ -218,26 +218,26 @@ discovery calls to assess needs, technical requirements, and budget parameters.
 
 1. **What security systems do you currently have?**
 
-    - [ ] CCTV cameras
-    - [ ] Access control systems
-    - [ ] Perimeter sensors
-    - [ ] Command and control centers
-    - [ ] Other: ****\*\*\*\*****\_****\*\*\*\*****
+   - [ ] CCTV cameras
+   - [ ] Access control systems
+   - [ ] Perimeter sensors
+   - [ ] Command and control centers
+   - [ ] Other: \***\*\*\*\*\*\*\***\_\***\*\*\*\*\*\*\***
 
 2. **Do you require integration with existing systems?**
-    - [ ] Yes, critical requirement
-    - [ ] Yes, preferred
-    - [ ] No integration needed
-    - [ ] Not sure
+   - [ ] Yes, critical requirement
+   - [ ] Yes, preferred
+   - [ ] No integration needed
+   - [ ] Not sure
 
 ### Compliance Requirements
 
 1. **What compliance standards do you need to meet?**
-    - [ ] ITAR compliance
-    - [ ] DoD requirements
-    - [ ] FAA regulations
-    - [ ] Industry standards
-    - [ ] None specified
+   - [ ] ITAR compliance
+   - [ ] DoD requirements
+   - [ ] FAA regulations
+   - [ ] Industry standards
+   - [ ] None specified
 
 ---
 
@@ -246,20 +246,20 @@ discovery calls to assess needs, technical requirements, and budget parameters.
 ### Key Performance Indicators
 
 1. **How will you measure success of the counter-drone system?**
-    - [ ] Reduction in security incidents
-    - [ ] Faster response times
-    - [ ] Lower operational costs
-    - [ ] Improved threat detection
-    - [ ] Better evidence collection
-    - [ ] Other: ****\*\*\*\*****\_****\*\*\*\*****
+   - [ ] Reduction in security incidents
+   - [ ] Faster response times
+   - [ ] Lower operational costs
+   - [ ] Improved threat detection
+   - [ ] Better evidence collection
+   - [ ] Other: \***\*\*\*\*\*\*\***\_\***\*\*\*\*\*\*\***
 
 ### Risk Tolerance
 
 1. **What is your risk tolerance for false positives?**
-    - [ ] Very low (<1%)
-    - [ ] Low (1-3%)
-    - [ ] Moderate (3-5%)
-    - [ ] Higher acceptable (5%+)
+   - [ ] Very low (<1%)
+   - [ ] Low (1-3%)
+   - [ ] Moderate (3-5%)
+   - [ ] Higher acceptable (5%+)
 
 ---
 
@@ -269,29 +269,29 @@ discovery calls to assess needs, technical requirements, and budget parameters.
 
 1. **Who else needs to be involved in the decision process?**
 
-    - [ ] Technical team
-    - [ ] Security team
-    - [ ] Legal/compliance
-    - [ ] Executive leadership
-    - [ ] Procurement
-    - [ ] Other: ****\*\*\*\*****\_****\*\*\*\*****
+   - [ ] Technical team
+   - [ ] Security team
+   - [ ] Legal/compliance
+   - [ ] Executive leadership
+   - [ ] Procurement
+   - [ ] Other: \***\*\*\*\*\*\*\***\_\***\*\*\*\*\*\*\***
 
 2. **What information do you need to make a decision?**
-    - [ ] Technical specifications
-    - [ ] Cost analysis
-    - [ ] Pilot demonstration
-    - [ ] References/case studies
-    - [ ] Compliance documentation
-    - [ ] Other: ****\*\*\*\*****\_****\*\*\*\*****
+   - [ ] Technical specifications
+   - [ ] Cost analysis
+   - [ ] Pilot demonstration
+   - [ ] References/case studies
+   - [ ] Compliance documentation
+   - [ ] Other: \***\*\*\*\*\*\*\***\_\***\*\*\*\*\*\*\***
 
 ### Timeline for Decision
 
 1. **When do you expect to make a decision?**
-    - [ ] <1 month
-    - [ ] 1-3 months
-    - [ ] 3-6 months
-    - [ ] 6+ months
-    - [ ] Not determined
+   - [ ] <1 month
+   - [ ] 1-3 months
+   - [ ] 3-6 months
+   - [ ] 6+ months
+   - [ ] Not determined
 
 ---
 
