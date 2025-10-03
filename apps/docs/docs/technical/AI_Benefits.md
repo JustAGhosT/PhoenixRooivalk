@@ -148,21 +148,21 @@ accuracy.
 ### Detection Performance
 
 **Accuracy Metrics**
-- **{\d+}.{\d+}% Detection Accuracy**: Superior to industry average ({\d+}-{\d+}%)
-- **<{\d+}% False Positive Rate**: Significantly lower than industry average ({\d+}-{\d+}%)
+- **99.5% Detection Accuracy**: Superior to industry average (85-95%)
+- **<0.5% False Positive Rate**: Significantly lower than industry average (2-5%)
 - **Multi-Modal Validation**: Enhanced accuracy through sensor fusion
 - **Environmental Adaptation**: Consistent performance across environments
 
 **Response Time Metrics**
-- **<200ms Response Time**: {\d+}-40x faster than current systems
+- **<200ms Response Time**: 10-40x faster than current systems
 - **Sub-2ms Authentication**: Cryptographic authentication in &lt;2ms
 - **Real-Time Processing**: Real-time AI processing and decision making
-- **Edge Autonomy**: Level-{\d+} autonomy without network dependency
+- **Edge Autonomy**: SAE Level 4 autonomy without network dependency
 
 **Scalability Metrics**
-- **Concurrent Targets**: {\d+}+ concurrent drone targets
-- **Swarm Defense**: {\d+}+ drone swarm defense capabilities
-- **System Uptime**: {\d+}.{\d+}% target system uptime
+- **Concurrent Targets**: 10+ concurrent drone targets
+- **Swarm Defense**: 50+ drone swarm defense capabilities
+- **System Uptime**: 99.9% target system uptime
 - **Performance Consistency**: Consistent performance across deployments
 
 ### Operational Benefits

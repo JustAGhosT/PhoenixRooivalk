@@ -220,52 +220,32 @@ A: Multi-tenant site controllers, batched evidence anchoring, horizontal scaling
 A: AKS for orchestration, ACR for containers, Key `Vault for` secrets, PostgreSQL `/Redis for` data, Monitor
 for telemetry, Application Gateway for routing.
 
-**Q: What's the deployment timeline?** A: Once funded and MVP built: {\d+}-week base
-deployment, {\d+}-week sensor integration, {\d+}-week testing/calibration. Total: {\d+}-{\d+}
+**Q: What's the deployment timeline?** A: Once funded and MVP built: 2-week base
+deployment, 2-week sensor integration, 2-week testing/calibration. Total: 6-8
 weeks from contract to operational.
 
-**Q: Can it integrate with existing C2 systems?** A: Yes - REST ```
-APIs, webhook
-````
-
-````
-notifications, working
-``` toward STANAG {\d+} ```
-compliance, and
-``` adapter patterns for
+**Q: Can it integrate with existing C2 systems?** A: Yes - REST APIs, webhook notifications, working toward STANAG 4586 compliance, and adapter patterns for
 major defense platforms.
 
 ---
 
 ## Safety & Compliance
 
-**Q: Is the system export-control safe?** A: Design allows modular architecture
+**Q: Is the system export-control safe?**
+A: Design allows modular architecture
 for export-controlled components isolation; ROE policy packs per jurisdiction;
 working toward ITAR-compliant design.
 
-**Q: How are ROE enforced?** A: Policy DSL translates rules to machine-readable
-format; real-time validation of every decision; escalation for unclear
+**Q: How are ROE enforced?** 
+A: Policy DSL translates rules to machine-readable format; real-time validation of every decision; escalation for unclear
 situations; geographic constraints via geofencing.
 
-**Q: What about civilian casualties?** A: Soft-kill first ```
-approach, proportionality
-``` ```
-assessment, confidence
-``` thresholds prevent engagement below
-````
+**Q: What about civilian casualties?** 
+A: Soft-kill first approach, proportionality assessment, confidence thresholds prevent engagement below cutoffs, mandatory human authorization for kinetic actions.
 
-cutoffs, mandatory
-
-````human authorization for kinetic actions.
-
-**Q: Is evidence court-admissible?** A: Designed to meet both military tribunal
-and civilian court standards through tamper-evident blockchain ```
-proof, complete
-````
-
-sensor data ``` packages, and
-
-```preserved chain of custody.
+**Q: Is evidence court-admissible?** 
+A: Designed to meet both military tribunal
+and civilian court standards through tamper-evident blockchain proof, complete sensor data packages, and preserved chain of custody.
 
 ---
 
@@ -342,25 +322,16 @@ automation. Specific metrics will be measured during pilot deployments.
 ## Risks & Challenges
 
 **Q: What's the biggest technical risk?** A: Sensor variability in contested
-environments. Mitigated by multi-sensor ```
-fusion, continuous
-``` ```
-calibration, conservative
-``` confidence ```
-thresholds, and
-``` human oversight.
+environments. Mitigated by multi-sensor fusion, continuous
+calibration, conservative confidence 
+thresholds, and human oversight.
 
 **Q: What if blockchain fails?** A: Local evidence remains valid and
 timestamped; queuing with retry; optional dual-chain; can operate indefinitely
 offline with post-hoc anchoring.
 
-**Q: How do you prevent adversarial AI attacks?** A: Input ```
-validation, anomaly
-````
+**Q: How do you prevent adversarial AI attacks?** A: Input validation, anomaly detection, confidence
 
-````
-detection, confidence
-``` ```
 bounds, gradual
 ``` trust ```
 degradation, automatic
@@ -383,11 +354,8 @@ martynrede). The Phoenix Rooivalk repository demonstrates strong technical
 capabilities in ```
 Rust, blockchain
 ``` integration (Solana/Etherlink), distributed
-````
 
-systems, and
-
-````modern DevOps practices.
+systems, and modern DevOps practices.
 
 **Q: What is the current development status of Phoenix Rooivalk?** A: We have a
 monorepo with core components built: Axum API ```
@@ -412,7 +380,6 @@ ready, restart
 Media/influencer strategy targeting defense tech audiences through channels like
 Prof ```
 Gerdes, ATP
-``` ```
 Geopolitics, and
 ``` CombatVeteranReacts.
 
@@ -420,13 +387,8 @@ Geopolitics, and
 Yes, autonomous
 ``` defense
 systems face significant scrutiny. Our approach: human-in-the-loop for kinetic
-````
-
 actions, modular `architecture to isolate ITAR-controlled` components,
-compliance
-
-````
-tracking (NIST AI RMF), tamper-proof evidence logging for accountability.
+compliance tracking (NIST AI RMF), tamper-proof evidence logging for accountability.
 
 ---
 
@@ -457,15 +419,11 @@ investment for hardware procurement and MVP completion.
 Lockheed Martin ```
 discussions, sensor
 ``` manufacturers for hardware ```
-integration, regulatory
-``` expertise for defense ```
+integration, regulatory  expertise for defense 
 procurement, operational
 ``` partners for pilot
-````
 
-deployments, seed
-
-````funding for demonstrator.
+deployments, seed funding for demonstrator.
 
 **Q: What's the exit strategy?** A: Potential paths include strategic
 acquisition by defense ```
