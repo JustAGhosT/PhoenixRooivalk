@@ -85,7 +85,7 @@ export const HeroSection: React.FC = () => {
         </div>
 
         {/* Level-0 Autonomy Concept Card - moved below as a row */}
-        <div className="mt-12 max-w-4xl mx-auto">
+        <div className="mt-6 max-w-4xl mx-auto">
           <div className="card card--elevated">
             <div className="text-center mb-6">
               <h3 className="text-2xl font-bold text-[var(--action-primary)] mb-4">

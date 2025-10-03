@@ -48,6 +48,7 @@ export const ThreatSimulator: React.FC<ThreatSimulatorProps> = ({
     returnDroneToBase,
     updateDronePositions,
     resetGameState,
+    processFadeOut,
   } = useGameState();
 
   const { addTimeout, clearTimeouts } = useTimeoutManager();
@@ -85,6 +86,7 @@ export const ThreatSimulator: React.FC<ThreatSimulatorProps> = ({
     setFrameRate,
     addTimeout,
     clearTimeouts,
+    processFadeOut,
   });
 
   // Events hook
@@ -282,44 +284,79 @@ export const ThreatSimulator: React.FC<ThreatSimulatorProps> = ({
           const appearance = getThreatAppearance(threat.type);
           const isSelected = gameState.selectedThreats.includes(threat.id);
           const priority = gameState.priorityThreats?.[threat.id] || "low";
+          const isNeutralized =
+            threat.status === "neutralized" || threat.isMoving === false;
+          const isCrater = threat.status === "crater";
+
+          // Calculate fade opacity for neutralized threats
+          let fadeOpacity = 1;
+          if (threat.status === "neutralized" && threat.fadeStartTime) {
+            const currentTime = Date.now();
+            if (currentTime >= threat.fadeStartTime) {
+              const fadeDuration = 3000; // 3 seconds to fade out
+              const fadeProgress = Math.min(
+                (currentTime - threat.fadeStartTime) / fadeDuration,
+                1,
+              );
+              fadeOpacity = 1 - fadeProgress;
+            }
+          }
 
           return (
             <div
               key={threat.id}
               className={`absolute transform -translate-x-1/2 -translate-y-1/2 transition-all duration-300 ${
                 isSelected ? "scale-125 z-30" : "z-20"
-              }`}
+              } ${isNeutralized ? "opacity-50" : ""}`}
               style={{
                 left: `${threat.x}px`,
                 top: `${threat.y}px`,
+                opacity: isNeutralized ? fadeOpacity : 1,
               }}
-              onClick={(e) => handleThreatClick(e, threat.id)}
+              onClick={(e) =>
+                !isNeutralized && !isCrater && handleThreatClick(e, threat.id)
+              }
               onKeyDown={(e) => {
-                if (e.key === "Enter" || e.key === " ") {
+                if (
+                  !isNeutralized &&
+                  !isCrater &&
+                  (e.key === "Enter" || e.key === " ")
+                ) {
                   e.preventDefault();
                   handleThreatClick(e as any, threat.id);
                 }
               }}
               role="button"
               tabIndex={0}
-              aria-label={`Threat ${threat.type} at position ${Math.round(threat.x)}, ${Math.round(threat.y)}`}
+              aria-label={`Threat ${threat.type} at position ${Math.round(threat.x)}, ${Math.round(threat.y)}${isNeutralized ? " (neutralized)" : isCrater ? " (crater)" : ""}`}
             >
               {/* Threat icon with enhanced styling */}
               <div
                 className={`w-10 h-10 rounded-full flex items-center justify-center text-xl shadow-2xl border-2 ${
-                  appearance.color
+                  isCrater
+                    ? "bg-gray-600/30 border-gray-500/50"
+                    : isNeutralized
+                      ? "bg-red-500/20 border-red-500/50"
+                      : appearance.color
                 } ${
                   isSelected
                     ? "ring-4 ring-blue-400 ring-opacity-75 border-blue-300"
-                    : "border-white/20"
+                    : isCrater
+                      ? "border-gray-500/50"
+                      : isNeutralized
+                        ? "border-red-500/50"
+                        : "border-white/20"
                 } relative`}
               >
-                {appearance.emoji}
+                {isCrater ? "🕳️" : isNeutralized ? "💥" : appearance.emoji}
 
-                {/* Threat trail */}
-                {threat.trail && threat.trail.length > 1 && (
-                  <div className="absolute inset-0 rounded-full border border-white/30 animate-pulse" />
-                )}
+                {/* Threat trail - only show for active threats */}
+                {!isNeutralized &&
+                  !isCrater &&
+                  threat.trail &&
+                  threat.trail.length > 1 && (
+                    <div className="absolute inset-0 rounded-full border border-white/30 animate-pulse" />
+                  )}
               </div>
 
               {/* Priority indicator */}

@@ -231,9 +231,20 @@ export const useGameState = () => {
       const newLevel = Math.floor(prev.neutralized / 10) + 1;
       const newSpawnRate = Math.max(500, 2000 - (newLevel - 1) * 150); // Faster spawning with level
 
+      // Mark the threat as neutralized but keep it visible at crash location
       return {
         ...prev,
-        threats: prev.threats.filter((t) => t.id !== threatId),
+        threats: prev.threats.map((t) =>
+          t.id === threatId
+            ? {
+                ...t,
+                status: "neutralized",
+                isMoving: false,
+                neutralizedAt: currentTime,
+                fadeStartTime: currentTime + 2000, // Start fade after 2 seconds
+              }
+            : t,
+        ),
         neutralized: prev.neutralized + 1,
         level: newLevel,
         spawnRate: newSpawnRate,
@@ -246,6 +257,33 @@ export const useGameState = () => {
     setGameState((prev) => ({
       ...prev,
       threats: updatedThreats,
+    }));
+  }, []);
+
+  // Function to handle fade-out process for neutralized threats
+  const processFadeOut = useCallback(() => {
+    const currentTime = Date.now();
+    setGameState((prev) => ({
+      ...prev,
+      threats: prev.threats.map((threat) => {
+        if (
+          threat.status === "neutralized" &&
+          threat.fadeStartTime &&
+          currentTime >= threat.fadeStartTime
+        ) {
+          const fadeDuration = 3000; // 3 seconds to fade out
+          const fadeProgress = Math.min(
+            (currentTime - threat.fadeStartTime) / fadeDuration,
+            1,
+          );
+
+          if (fadeProgress >= 1) {
+            // Transition to crater state
+            return { ...threat, status: "crater" };
+          }
+        }
+        return threat;
+      }),
     }));
   }, []);
 
@@ -791,5 +829,6 @@ export const useGameState = () => {
     returnDroneToBase,
     updateDronePositions,
     resetGameState,
+    processFadeOut,
   };
 };

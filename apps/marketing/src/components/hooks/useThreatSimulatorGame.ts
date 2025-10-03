@@ -27,6 +27,7 @@ interface UseThreatSimulatorGameProps {
   setFrameRate: (rate: number) => void;
   addTimeout: (callback: () => void, delay: number) => void;
   clearTimeouts: () => void;
+  processFadeOut: () => void;
 }
 
 export const useThreatSimulatorGame = ({
@@ -50,6 +51,7 @@ export const useThreatSimulatorGame = ({
   setFrameRate: _setFrameRate,
   addTimeout,
   clearTimeouts,
+  processFadeOut,
 }: UseThreatSimulatorGameProps) => {
   const lastFrameTime = useRef<number>(0);
   const animationFrameRef = useRef<number | undefined>(undefined);
@@ -249,6 +251,9 @@ export const useThreatSimulatorGame = ({
 
       // Update drone positions
       updateDronePositions(deltaTime);
+
+      // Process fade-out for neutralized threats
+      processFadeOut();
 
       // Move threats
       moveAllThreats();
