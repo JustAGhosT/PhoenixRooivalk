@@ -6,6 +6,15 @@ sidebar_label: Executive Summary
 
 # Phoenix Rooivalk Counter-Drone Defense System: Executive Summary
 
+## Company Status
+
+**Legal Entity**: Delaware C-Corp registration under Nexamesh Technologies (in
+progress)  
+**Business Structure**: Corporate entity established for defense contracting and
+IP protection  
+**Compliance**: ITAR registration pathway and DoD contractor eligibility in
+development
+
 ## System Overview
 
 Phoenix Rooivalk is a Level-{\d+} Autonomous Counter-UAS (Counter-Unmanned

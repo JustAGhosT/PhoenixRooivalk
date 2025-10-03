@@ -14,6 +14,30 @@
 [![ESLint](https://img.shields.io/badge/ESLint-4B32C3?logo=eslint&logoColor=white)](https://eslint.org/)
 [![Prettier](https://img.shields.io/badge/Prettier-F7B93E?logo=prettier&logoColor=white)](https://prettier.io/)
 
+## 🚁 **PhoenixRooivalk Counter-Drone Defense Platform**
+
+PhoenixRooivalk is a next-generation modular counter-Unmanned Aircraft System (c-UAS) defense platform that operates autonomously even when communications are completely jammed. Our system delivers military-grade drone threat detection and neutralization in 120-195ms response times - 25-40x faster than traditional systems that fail when enemies jam communications.
+
+**Key Features:**
+• **Edge Autonomy**: Level-0 autonomous operation without network dependency
+• **Modular Architecture**: VTOL motherships, interceptors, and ground support systems  
+• **Blockchain Evidence**: Tamper-proof dual-chain (Solana + EtherLink) audit trails
+• **Real-time Processing**: Multi-sensor fusion with 95%+ AI detection accuracy
+• **EW Resilience**: GPS-denied and jamming-resistant operation
+
+**Technology Stack:**
+• Rust-based blockchain evidence management
+• Solana and EtherLink dual-chain anchoring
+• NVIDIA Jetson AGX Orin (275 TOPS AI performance)
+• Real-time threat simulation and response systems
+• Military-grade sensor fusion algorithms
+
+Our platform addresses the critical gap in defense systems that fail when communications are compromised, providing reliable protection for critical infrastructure, military installations, and civilian areas against increasingly sophisticated drone threats.
+
+**Corporate Status**: Nexamesh Technologies (Delaware C-Corp in progress)
+
+---
+
 Modular Counter‑UAS System (restricted partner access)
 
 ## 🌐 Live Sites

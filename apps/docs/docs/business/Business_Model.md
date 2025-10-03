@@ -57,6 +57,12 @@ infrastructure, and
 - **Sales & Marketing**: $5M for DoD relationships and demonstrations
 - **Working Capital**: ${\d+}-15M for inventory and contract execution
 
+### Corporate Structure
+
+**Legal Entity**: Delaware C-Corp registration under Nexamesh Technologies (in progress)
+**Business Purpose**: Defense contracting, IP protection, and government compliance
+**Regulatory Pathway**: ITAR registration and DoD contractor eligibility development
+
 ### Funding Strategy
 
 **Phase {\d+} ({\d+}-{\d+} months): DoD Validation**

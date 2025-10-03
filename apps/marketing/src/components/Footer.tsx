@@ -49,6 +49,9 @@ export const Footer: React.FC = () => {
                 Advanced counter-UAS defense systems for military and civilian
                 protection.
               </p>
+              <p className="text-[var(--gray)] text-xs">
+                Nexamesh Technologies (Delaware C-Corp in progress)
+              </p>
               <div className="flex space-x-4">
                 <div className="w-8 h-8 bg-[var(--primary)]/20 rounded-lg flex items-center justify-center">
                   <span className="text-[var(--primary)] text-sm">🛡️</span>
