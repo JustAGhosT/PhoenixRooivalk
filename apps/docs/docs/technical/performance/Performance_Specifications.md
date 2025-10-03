@@ -131,20 +131,20 @@ typical, 15W
 ### Blockchain Performance
 
 **Solana Integration**
-- **Throughput**: {\d+}, {\d+}-{\d+}, {\d+} TPS sustained
+- **Throughput**: 65,000-100,000 TPS sustained
 - **Finality**: ~400ms using Proof of History
-- **Cost**: ~${\d+}.{\d+} USD per evidence anchor
-- **Annual Cost**: ${\d+}, {\d+} for continuous operation
+- **Cost**: ~$0.00025 USD per evidence anchor
+- **Annual Cost**: $1,000 for continuous operation
 - **Reliability**: Proven mainnet performance
 
 **Evidence Anchoring**
-- **Hash Generation**: SHA-{\d+} hashing for evidence
+- **Hash Generation**: SHA-256 hashing for evidence
 - **Metadata Storage**: ```
 Location, timestamp
 ```, operator ```
 ID, sensor
 ``` data
-- **On-Chain Storage**: {\d+}-byte hash with metadata
+- **On-Chain Storage**: 32-byte hash with metadata
 - **Off-Chain Storage**: Full evidence payloads in encrypted storage
 - **Chain of Custody**: Complete documentation from creation to presentation
 
@@ -154,16 +154,16 @@ ID, sensor
 - **Agent Registry**: Catalog of all drone and sensor agents
 - **Role Assignment**: Dynamic role assignment based on tactical situation
 - **Graceful Degradation**: Handling when drones are damaged
-- **Performance**: Real-time coordination of {\d+}-{\d+} drone swarms
+- **Performance**: Real-time coordination of 5-50 drone swarms
 
 **Hierarchical Decision Confidence Pack (HDCP)**
-- **Accuracy Improvement**: Target {\d+}.{\d+}-{\d+}.{\d+}% detection accuracy
+- **Accuracy Improvement**: Target 99.5-99.9% detection accuracy
 - **Ensemble Voting**: Multi-level analysis and voting
 - **Confidence Scoring**: Hierarchical confidence assessment
 - **Performance**: Real-time confidence scoring
 
 **Temporal Decision Core (TDC)**
-- **Context Enrichment**: {\d+}-100ms after authentication
+- **Context Enrichment**: 50-100ms after authentication
 - **Pattern Matching**: Historical scenario pattern matching
 - **Learning**: Eligibility traces for learning from past incidents
 - **Performance**: Real-time pattern recognition
@@ -175,8 +175,8 @@ ID, sensor
 ### Mesh Networking Performance
 
 **MANETs (Mobile Ad-Hoc Networks)**
-- **Frequency Bands**: M1-M6 ({\d+}-2500MHz)
-- **Throughput**: Over {\d+} Mbps with automatic failover routing
+- **Frequency Bands**: M1-M6 (400-2500MHz)
+- **Throughput**: Over 100 Mbps with automatic failover routing
 - **Range**: Over 50km with automatic network reconfiguration
 - **Latency**: Sub-100ms coordination latency
 - **Resilience**: Automatic failover and network healing

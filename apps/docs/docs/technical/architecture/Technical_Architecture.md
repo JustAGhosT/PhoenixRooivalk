@@ -198,7 +198,7 @@ interceptor, relay
 - Resource allocation under high load conditions
 - Maintains &lt;2ms authentication even under swarm attacks
 
-### {\d+}. Sensor Fusion Layer (Custom Rust Implementation)
+### 4.1 Sensor Fusion Layer (Custom Rust Implementation)
 
 #### Sensor Suite
 - **RF Spectrum Analysis**: Protocol-agnostic energy detection and signal fingerprints
@@ -217,8 +217,8 @@ validated, deduplicated
 ``` tracks
 
 #### Performance Targets
-- **Processing Latency**: {\d+}-50ms from raw sensor input to fused track
-- **Track Quality**: ≥{\d+}% precision and recall within operational envelope
+- **Processing Latency**: 10-50ms from raw sensor input to fused track
+- **Track Quality**: ≥95% precision and recall within operational envelope
 - **Sensor Health**: Continuous monitoring with automatic recalibration
 - **Multi-modal Correlation**: Cross-sensor validation to suppress false positives
 
@@ -230,48 +230,45 @@ validated, deduplicated
 
 **Primary GNSS**: Multi-constellation (GPS+GLONASS+Galileo+BeiDou)
 - **Galileo**: 1m accuracy with free centimeter High Accuracy Service
-- **BeiDou**: Two-way messaging and PPP-B2b corrections across {\d+}+ satellites
+- **BeiDou**: Two-way messaging and PPP-B2b corrections across 30+ satellites
 - **Terrain-Aided Navigation**: High-altitude operations
 - **SLAM/VIO**: Low-altitude environments with visual-inertial odometry
 
 ### Visual-Inertial Odometry Performance
-- **VINS-Mono**: Nearly zero drift over {\d+}.62km outdoor paths at 20Hz visual/200Hz IMU
+- **VINS-Mono**: Nearly zero drift over 1.62km outdoor paths at 20Hz visual/200Hz IMU
 - **VINS-Fusion**: GPU acceleration processing 250Hz on edge devices
-- **Terrain-Aided SLAM**: {\d+}.2m final position error over 218km ({\d+}.{\d+}% of distance)
+- **Terrain-Aided SLAM**: 0.2m final position error over 218km (0.09% of distance)
 
 ### Electronic Warfare Resilience
-- **Frequency Hopping**: Doodle Labs "Sense" technology across {\d+}.4GHz, {\d+}.2GHz, {\d+}.```
-8GHz, 900MHz
-````
-
+- **Frequency Hopping**: Doodle Labs "Sense" technology across 2.4GHz, 5.2GHz, 5.8GHz, 900MHz
 - **Channel Shifting**: Microsecond response to jamming detection
 - **Tri-Band Implementation**: 15km image transmission under active jamming
 - **Adaptive Filtering**: Configurable notch filters rejecting chirp jammers
 
-### Pentagon Demonstration {\d+} Requirements (March {\d+})
+### Pentagon Demonstration 2025 Requirements (March 2025)
 
 - Operation from 30MHz-20GHz under active jamming
 - Low probability of intercept/detect waveforms
 - Autonomous electromagnetic spectrum maneuvering
-- Accurate cueing within 2km slant range for Group {\d+} drones
+- Accurate cueing within 2km slant range for Group 1 drones
 - Autonomous response to EMS impact without operator intervention
 
 ### Multi-Sensor Fusion Resilience
 
 **Sensor Redundancy**
 
-- **Micro-Doppler Radar**: {\d+}-degree coverage with rotor signature
+- **Micro-Doppler Radar**: 360-degree coverage with rotor signature
   discrimination
 - **RF Sensors**: Passive detection 300MHz-6GHz with protocol analysis
 - **EO/IR Cameras**: Visual confirmation and payload identification
-- **Acoustic Sensors**: {\d+}-500m range detecting autonomous drones in
+- **Acoustic Sensors**: 50-500m range detecting autonomous drones in
   GPS-denied areas
-- **LiDAR**: {\d+}, {\d+} measurements per second with sub-meter accuracy
+- **LiDAR**: 64,000 measurements per second with sub-meter accuracy
 
 **Mesh Networking Resilience**
 
-- **MANETs**: Doodle Labs Mesh Rider multi-band operation M1-M6 ({\d+}-2500MHz)
-- **Throughput**: Over {\d+} Mbps with automatic failover routing
+- **MANETs**: Doodle Labs Mesh Rider multi-band operation M1-M6 (400-2500MHz)
+- **Throughput**: Over 100 Mbps with automatic failover routing
 - **MIL-STD Compliance**: Tactical band operation with LPI/LPD waveforms
 - **Range**: Over 50km with automatic network reconfiguration
 
