@@ -1,6 +1,6 @@
 "use client";
 import * as React from "react";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useCallback } from "react";
 import { useFullscreen } from "./hooks/useFullscreen";
 import { useGameState } from "./hooks/useGameState";
 import { useThreatSimulatorEvents } from "./hooks/useThreatSimulatorEvents";
@@ -12,8 +12,8 @@ import RadarCanvas from './RadarCanvas';
 import ControlBar from './ControlBar';
 import EventFeed from './EventFeed';
 import Disclaimer from './Disclaimer';
+import HelpOverlay from './HelpOverlay';
 import './NewThreatSimulator.css';
-
 
 interface ThreatSimulatorProps {
   isTeaser?: boolean;
@@ -25,12 +25,11 @@ export const ThreatSimulator: React.FC<ThreatSimulatorProps> = ({
   autoFullscreen = false,
 }): JSX.Element => {
   const gameRef = useRef<HTMLDivElement>(null);
-  const [showSimulationWarning, setShowSimulationWarning] = useState(true);
+  const [isResetting, setIsResetting] = useState(false);
+  const [showHelp, setShowHelp] = useState(false);
 
-  // Core game state
   const {
     gameState,
-    updateScore,
     addThreat,
     removeThreat,
     updateThreats,
@@ -58,10 +57,10 @@ export const ThreatSimulator: React.FC<ThreatSimulatorProps> = ({
     resetGameState,
     processFadeOut,
     setLevel,
+    updateScore,
   } = useGameState();
 
   const { addTimeout, clearTimeouts } = useTimeoutManager();
-
   const { feedItems, addFeed } = useEventFeed();
 
   const neutralizeAndLogThreat = (threatId: string) => {
@@ -72,16 +71,8 @@ export const ThreatSimulator: React.FC<ThreatSimulatorProps> = ({
     removeThreat(threatId);
   };
 
-  // Game logic hook
   const {
     particleSystem,
-    setWeatherMode,
-    setMissionType,
-    setAutomationMode,
-    showDeploymentZones,
-    setShowDeploymentZones,
-    spawnNewThreat,
-    moveAllThreats,
     generateSwarm,
     spawnMultipleDrones,
   } = useThreatSimulatorGame({
@@ -108,7 +99,6 @@ export const ThreatSimulator: React.FC<ThreatSimulatorProps> = ({
     processFadeOut,
   });
 
-  // Events hook
   const {
     handleMouseDown,
     handleMouseMove,
@@ -116,7 +106,6 @@ export const ThreatSimulator: React.FC<ThreatSimulatorProps> = ({
     handleThreatClick,
     handleGameAreaClick,
     handleWheel,
-    handleKeyDown,
     handleContextMenu,
   } = useThreatSimulatorEvents({
     gameRef,
@@ -133,8 +122,9 @@ export const ThreatSimulator: React.FC<ThreatSimulatorProps> = ({
     selectDroneType,
     returnDroneToBase,
     clearSelection,
-    spawnNewThreat,
-    moveAllThreats,
+    setSelectionBox,
+    spawnNewThreat: () => {},
+    moveAllThreats: () => {},
     generateSwarm,
     spawnMultipleDrones,
     activatePowerUp,
@@ -144,43 +134,54 @@ export const ThreatSimulator: React.FC<ThreatSimulatorProps> = ({
     setFrameRate,
     consumeEnergy,
     consumeCooling,
-    setSelectionBox,
     particleSystem,
   });
 
-  // Fullscreen hook
-  const {
-    isFullscreen,
-    enterFullscreen,
-    exitFullscreen,
-    showFullscreenPrompt,
-  } = useFullscreen({
+  useFullscreen({
     gameRef,
     autoFullscreen,
     isTeaser,
   });
 
-  // Cleanup on unmount
+  const handleReset = useCallback(() => {
+    setIsResetting(true);
+    resetGameState();
+    addFeed("Simulator reset.");
+    setTimeout(() => setIsResetting(false), 200);
+  }, [resetGameState, addFeed]);
+
+  const handleSwarm = useCallback(() => {
+    generateSwarm();
+    addFeed("Spawning hostile swarm.");
+  }, [generateSwarm, addFeed]);
+
+  const handlePlus5 = useCallback(() => {
+    spawnMultipleDrones(5);
+    addFeed("Deploying 5 friendly drones.");
+  }, [spawnMultipleDrones, addFeed]);
+
   useEffect(() => {
     return () => clearTimeouts();
   }, [clearTimeouts]);
 
-  // Keyboard shortcuts managed in the main component
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.ctrlKey || e.metaKey || e.altKey) return;
-
       const key = e.key.toLowerCase();
 
       switch (key) {
-        case '1':
-        case '2':
-        case '3':
+        case ' ': e.preventDefault(); toggleRunningState(); break;
+        case 's': e.preventDefault(); handleSwarm(); break;
+        case '+': case '=': e.preventDefault(); handlePlus5(); break;
+        case 'r': e.preventDefault(); handleReset(); break;
+        case '1': case '2': case '3':
           e.preventDefault();
           const level = parseInt(key, 10);
           setLevel(level);
           addFeed(`Level set to ${level}.`);
           break;
+        case 'escape': e.preventDefault(); clearSelection(); selectDroneType(null); break;
+        case '?': e.preventDefault(); setShowHelp(prev => !prev); break;
       }
     };
 
@@ -188,31 +189,31 @@ export const ThreatSimulator: React.FC<ThreatSimulatorProps> = ({
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
     };
-  }, [setLevel, addFeed]);
+  }, [toggleRunningState, handleSwarm, handlePlus5, handleReset, setLevel, addFeed, clearSelection, selectDroneType]);
 
   return (
-    <section ref={gameRef} className="threatsim card" aria-labelledby="sim-title">
+    <section ref={gameRef} className="threatsim card" aria-labelledby="sim-title"
+             onMouseDown={handleMouseDown} onMouseMove={handleMouseMove} onMouseUp={handleMouseUp}
+             onContextMenu={handleContextMenu} onWheel={handleWheel} onClick={handleGameAreaClick} tabIndex={0}>
+
+      {showHelp && <HelpOverlay onClose={() => setShowHelp(false)} />}
+
       <HUDBar
         score={gameState.score}
         threats={gameState.threats.length}
         neutralized={gameState.neutralized}
         level={gameState.level}
       />
-      <RadarCanvas blips={gameState.threats} />
+      <RadarCanvas
+        blips={gameState.threats}
+        isResetting={isResetting}
+        onThreatClick={handleThreatClick}
+      />
       <ControlBar
         onPause={toggleRunningState}
-        onSwarm={() => {
-          generateSwarm();
-          addFeed("Spawning hostile swarm.");
-        }}
-        onPlus5={() => {
-          spawnMultipleDrones(5);
-          addFeed("Deploying 5 friendly drones.");
-        }}
-        onReset={() => {
-          resetGameState();
-          addFeed("Simulator reset.");
-        }}
+        onSwarm={handleSwarm}
+        onPlus5={handlePlus5}
+        onReset={handleReset}
         onLevelChange={(level) => {
           setLevel(level);
           addFeed(`Level set to ${level}.`);

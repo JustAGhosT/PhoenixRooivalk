@@ -5,14 +5,16 @@ interface Blip {
   x: number;
   y: number;
   type: string;
-  status: string;
+  status?: string;
 }
 
 interface RadarCanvasProps {
   blips: Blip[];
+  isResetting?: boolean;
+  onThreatClick?: (e: React.MouseEvent, threatId: string) => void;
 }
 
-const RadarCanvas: React.FC<RadarCanvasProps> = ({ blips }) => {
+const RadarCanvas: React.FC<RadarCanvasProps> = ({ blips, isResetting = false, onThreatClick }) => {
   const getBlipClass = (type: string) => {
     switch (type) {
       case 'hostile':
@@ -25,12 +27,12 @@ const RadarCanvas: React.FC<RadarCanvasProps> = ({ blips }) => {
   };
 
   return (
-    <div className="threatsim__canvas" role="img" aria-label="Concept radar view showing threats within range">
+    <div className="threatsim__canvas" role="img" aria-label="Concept radar view showing threats within range" aria-busy={isResetting}>
       <svg viewBox="0 0 600 600" className="radar" aria-hidden="true">
         <defs>
           <radialGradient id="radar-bg" cx="50%" cy="50%">
-            <stop offset="0%" stop-color="#0e1217"/>
-            <stop offset="100%" stop-color="#0a0d11"/>
+            <stop offset="0%" stopColor="#0e1217"/>
+            <stop offset="100%" stopColor="#0a0d11"/>
           </radialGradient>
         </defs>
         <rect width="600" height="600" fill="url(#radar-bg)"/>
@@ -49,6 +51,8 @@ const RadarCanvas: React.FC<RadarCanvasProps> = ({ blips }) => {
               cx={blip.x}
               cy={blip.y}
               r="5"
+              onClick={(e) => onThreatClick && onThreatClick(e, blip.id)}
+              style={{ cursor: onThreatClick ? 'pointer' : 'default' }}
             />
           ))}
         </g>
