@@ -9,15 +9,19 @@ sidebar_label: Business Model
 ## Executive Summary
 
 Phoenix Rooivalk operates on a hybrid hardware + software-as-a-service (SaaS)
-business ``` model, combining
-
-````high-margin hardware sales with recurring revenue
+business model, combining high-margin hardware sales with recurring revenue
 streams. The business model is designed to maximize customer lifetime value
-while maintaining competitive pricing and strong unit economics across ```
-defense, critical
-``` ```
-infrastructure, and
-``` commercial market segments.
+while maintaining competitive pricing and strong unit economics across defense,
+critical infrastructure, and commercial market segments.
+
+**Market Opportunity**: $2.45-3.0B (2024) growing to $9-15B (2030) at 23-27%
+CAGR  
+**Competitive Advantage**: 25-40x faster response times (120-195ms vs 3-10s
+industry average)  
+**Technology Differentiation**: Level-0 edge autonomy, blockchain evidence,
+Morpheus AI integration  
+**Revenue Potential**: $50M+ annual revenue through DoD contracts and commercial
+partnerships
 
 ---
 
@@ -59,9 +63,10 @@ infrastructure, and
 
 ### Corporate Structure
 
-**Legal Entity**: Delaware C-Corp registration under Nexamesh Technologies (in progress)
-**Business Purpose**: Defense contracting, IP protection, and government compliance
-**Regulatory Pathway**: ITAR registration and DoD contractor eligibility development
+**Legal Entity**: Delaware C-Corp registration under Nexamesh Technologies (in
+progress) **Business Purpose**: Defense contracting, IP protection, and
+government compliance **Regulatory Pathway**: ITAR registration and DoD
+contractor eligibility development
 
 ### Funding Strategy
 
@@ -69,9 +74,9 @@ infrastructure, and
 
 - **Target**: SBIR/STTR and OTA contracts
 - **Funding**: ${\d+}-5M in development funding
-- **Focus**: Technology ```
-demonstrations, Lockheed
-``` Martin integration
+- **Focus**: Technology ``` demonstrations, Lockheed
+
+````Martin integration
 - **Milestones**: Prototype ```
 validation, initial
 ``` production deployment
