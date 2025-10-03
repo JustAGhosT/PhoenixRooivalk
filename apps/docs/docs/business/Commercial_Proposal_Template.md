@@ -30,10 +30,10 @@ Customize based on specific customer requirements and use cases.
 
 ### 1.1 Phoenix Rooivalk System
 
-Phoenix Rooivalk is a SAE Level 4 autonomous counter-drone defense system designed
-for commercial applications including critical infrastructure protection,
-corporate campus security, and event security. The system provides superior
-performance at a fraction of the cost of traditional solutions.
+Phoenix Rooivalk is a SAE Level 4 autonomous counter-drone defense system
+designed for commercial applications including critical infrastructure
+protection, corporate campus security, and event security. The system provides
+superior performance at a fraction of the cost of traditional solutions.
 
 #### Key Features
 

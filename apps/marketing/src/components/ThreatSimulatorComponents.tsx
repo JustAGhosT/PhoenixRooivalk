@@ -92,10 +92,7 @@ export const ThreatSimulatorComponents: React.FC<
           >
             <path
               d={`M ${threat.trail
-                .map(
-                  (point) =>
-                    `${point.x - threat.x},${point.y - threat.y}`,
-                )
+                .map((point) => `${point.x - threat.x},${point.y - threat.y}`)
                 .join(" L ")}`}
               stroke="rgba(255, 255, 255, 0.3)"
               strokeWidth="1"

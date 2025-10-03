@@ -10,9 +10,9 @@ sidebar_label: AI Benefits
 
 The Phoenix Rooivalk system leverages cutting-edge artificial intelligence to
 deliver unprecedented performance in counter-drone defense. Our AI integration
-provides **99.5% threat detection accuracy** with **<200ms response
-time**, representing a quantum leap over traditional systems that achieve only
-70-85% accuracy.
+provides **99.5% threat detection accuracy** with **<200ms response time**,
+representing a quantum leap over traditional systems that achieve only 70-85%
+accuracy.
 
 ---
 
@@ -22,8 +22,7 @@ time**, representing a quantum leap over traditional systems that achieve only
 
 **Revolutionary Accuracy**
 
-- **99.5% Detection Accuracy**: Validated against DroneRF dataset
-  benchmarks
+- **99.5% Detection Accuracy**: Validated against DroneRF dataset benchmarks
 - **15%+ Improvement**: Over conventional systems (70-85% accuracy)
 - **Multi-Modal Validation**: Performance validated across multiple sensor
   modalities
@@ -39,8 +38,7 @@ time**, representing a quantum leap over traditional systems that achieve only
 
 **Dataset Validation**
 
-- **RF Detection**: 99.5% accuracy on DroneRF dataset (2.4GHz ISM
-  band)
+- **RF Detection**: 99.5% accuracy on DroneRF dataset (2.4GHz ISM band)
 - **Vision-based**: 97.8% accuracy using XGBoost on RF signatures
 - **Multi-modal Fusion**: Enhanced accuracy through sensor combination
 - **Environmental Adaptation**: Performance across diverse environmental
@@ -56,6 +54,7 @@ time**, representing a quantum leap over traditional systems that achieve only
 - **Radar Tracking**: Provides 3D spatial awareness
 
 **Sensor Fusion Benefits**
+
 - **Accuracy Improvement**: Multi-sensor fusion improves detection accuracy
 - **False Positive Reduction**: Multi-sensor validation reduces false positives
 - **Environmental Robustness**: Better performance across diverse environments
@@ -64,8 +63,10 @@ time**, representing a quantum leap over traditional systems that achieve only
 ### Advanced Behavioral Analysis
 
 **Predictive Threat Assessment**
+
 - **Flight Pattern Analysis**: Analyzes flight patterns, speed
-```, and trajectory
+
+````, and trajectory
 - **Malicious Intent Prediction**: Predicts malicious intent before engagement
 - **Threat Prioritization**: Prioritizes threats based on risk assessment
 - **Response Planning**: Optimizes response strategies

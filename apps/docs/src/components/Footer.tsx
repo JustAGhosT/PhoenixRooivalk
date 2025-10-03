@@ -20,7 +20,8 @@ export default function Footer(): React.ReactElement {
               />
               <h3 className="footer__title">Phoenix Rooivalk</h3>
               <p className="footer__description">
-                Revolutionary SAE Level 4 Autonomous Counter-UAS Defense Platform
+                Revolutionary SAE Level 4 Autonomous Counter-UAS Defense
+                Platform
               </p>
             </div>
           </div>

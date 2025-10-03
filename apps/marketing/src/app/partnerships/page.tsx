@@ -29,8 +29,8 @@ export default function PartnershipsPage(): React.ReactElement {
                   Partnership Opportunities
                 </h1>
                 <p className="text-xl text-[rgb(var(--gray))] max-w-3xl mx-auto">
-                  Explore collaboration opportunities with Phoenix Rooivalk&apos;s
-                  innovative counter-drone defense technology.
+                  Explore collaboration opportunities with Phoenix
+                  Rooivalk&apos;s innovative counter-drone defense technology.
                 </p>
               </div>
 

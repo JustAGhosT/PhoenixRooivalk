@@ -18,23 +18,23 @@ discovery calls to assess needs, technical requirements, and budget parameters.
 
 ### Primary Contact
 
-- **Name**: ************\_************
-- **Title**: ************\_************
-- **Organization**: ************\_************
-- **Email**: ************\_************
-- **Phone**: ************\_************
+- **Name**: ****\*\*\*\*****\_****\*\*\*\*****
+- **Title**: ****\*\*\*\*****\_****\*\*\*\*****
+- **Organization**: ****\*\*\*\*****\_****\*\*\*\*****
+- **Email**: ****\*\*\*\*****\_****\*\*\*\*****
+- **Phone**: ****\*\*\*\*****\_****\*\*\*\*****
 
 ### Decision Makers
 
-- **Technical Decision Maker**: ************\_************
-- **Budget Authority**: ************\_************
-- **Implementation Lead**: ************\_************
-- **Executive Sponsor**: ************\_************
+- **Technical Decision Maker**: ****\*\*\*\*****\_****\*\*\*\*****
+- **Budget Authority**: ****\*\*\*\*****\_****\*\*\*\*****
+- **Implementation Lead**: ****\*\*\*\*****\_****\*\*\*\*****
+- **Executive Sponsor**: ****\*\*\*\*****\_****\*\*\*\*****
 
 ### Organization Details
 
 - **Industry Sector**: [ ] Military/Defense [ ] Critical Infrastructure [ ] Commercial
-  [ ] Other: ****\_****
+  [ ] Other: \***\*\_\*\***
 - **Organization Size**: [ ] <100 employees [ ] 100-1000 [ ] 1000-5000 [ ] 5000+
 - **Annual Security Budget**: [ ] <$100K [ ] $100K-$500K [ ] $500K-$2M [ ] $2M+
 
@@ -85,7 +85,7 @@ discovery calls to assess needs, technical requirements, and budget parameters.
    - [ ] High operational costs
    - [ ] Limited coverage area
    - [ ] Poor evidence collection
-   - [ ] Other: ************\_************
+   - [ ] Other: ****\*\*\*\*****\_****\*\*\*\*****
 
 ---
 
@@ -208,7 +208,7 @@ discovery calls to assess needs, technical requirements, and budget parameters.
     - [ ] RFP process
     - [ ] Government contracting
     - [ ] Pilot program first
-    - [ ] Other: ************\_************
+    - [ ] Other: ****\*\*\*\*****\_****\*\*\*\*****
 
 ---
 
@@ -222,7 +222,7 @@ discovery calls to assess needs, technical requirements, and budget parameters.
     - [ ] Access control systems
     - [ ] Perimeter sensors
     - [ ] Command and control centers
-    - [ ] Other: ************\_************
+    - [ ] Other: ****\*\*\*\*****\_****\*\*\*\*****
 
 20. **Do you require integration with existing systems?**
     - [ ] Yes, critical requirement
@@ -251,7 +251,7 @@ discovery calls to assess needs, technical requirements, and budget parameters.
     - [ ] Lower operational costs
     - [ ] Improved threat detection
     - [ ] Better evidence collection
-    - [ ] Other: ************\_************
+    - [ ] Other: ****\*\*\*\*****\_****\*\*\*\*****
 
 ### Risk Tolerance
 
@@ -274,7 +274,7 @@ discovery calls to assess needs, technical requirements, and budget parameters.
     - [ ] Legal/compliance
     - [ ] Executive leadership
     - [ ] Procurement
-    - [ ] Other: ************\_************
+    - [ ] Other: ****\*\*\*\*****\_****\*\*\*\*****
 
 25. **What information do you need to make a decision?**
     - [ ] Technical specifications
@@ -282,7 +282,7 @@ discovery calls to assess needs, technical requirements, and budget parameters.
     - [ ] Pilot demonstration
     - [ ] References/case studies
     - [ ] Compliance documentation
-    - [ ] Other: ************\_************
+    - [ ] Other: ****\*\*\*\*****\_****\*\*\*\*****
 
 ### Timeline for Decision
 

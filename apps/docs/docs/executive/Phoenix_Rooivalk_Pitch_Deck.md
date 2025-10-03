@@ -34,12 +34,12 @@ _Revolutionizing Drone Defense Through Edge AI and Blockchain Accountability_
 <PitchDeckSlide title="Market Opportunity: $2.51B by 2025" slideNumber={2} totalSlides={15}>
 # Explosive Market Growth
 
-<MarketStats title="Global Counter-Drone Market" stats={[ { label:
-"2024 Market Size", value: "$1.2-1.8B", description:
-"Current market value" }, { label: "2030 Projection", value: "$2.51B",
-description: "Projected market size" }, { label: "Growth Rate", value:
-"23.5%", description: "Annual CAGR" }, { label: "Ukraine Impact", value:
-"15%", description: "Drones account for casualties" } ]} />
+<MarketStats title="Global Counter-Drone Market" stats={[ { label: "2024 Market
+Size", value: "$1.2-1.8B", description: "Current market value" }, { label:
+"2030 Projection", value: "$2.51B", description: "Projected market size" }, {
+label: "Growth Rate", value: "23.5%", description: "Annual CAGR" }, {
+label: "Ukraine Impact", value: "15%", description: "Drones account
+for casualties" } ]} />
 
 ### Market Drivers
 
@@ -130,11 +130,12 @@ competitor1: "false", competitor2: "false", competitor3: "false" } ]} />
 - **Custom Development**: R500, {\d+}-{\d+}, {\d+},{\d+} per project
 
 &lt;MarketStats title="Financial Projections ({\d+}-Year)" stats={[ { label:
-"Year {\d+} Revenue", value: "R25M", description: "{\d+} systems sold" },
-{ label: "Year {\d+} Revenue", value: "R150M", description: "{\d+} systems
-+ services" }, { label: "Year {\d+} Revenue", value: "R500M",
-description: "{\d+} systems + recurring" }, { label: "Gross Margin",
-value: "{\d+}%", description: "Hardware + software combined" } ]} /> </PitchDeckSlide>
+"Year {\d+} Revenue", value: "R25M", description: "{\d+} systems sold" }, {
+label: "Year {\d+} Revenue", value: "R150M", description: "{\d+} systems
+
+- services" }, { label: "Year {\d+} Revenue", value: "R500M", description:
+  "{\d+} systems + recurring" }, { label: "Gross Margin", value: "{\d+}%",
+  description: "Hardware + software combined" } ]} /> </PitchDeckSlide>
 
 <PitchDeckSlide title="Market Positioning" slideNumber={6} totalSlides={15}>
 # Strategic Market Focus
@@ -233,30 +234,42 @@ description: "Series A funding round" } ]} /> </PitchDeckSlide>
 ## Core Team
 
 **Jurie (Hans Jurgens) Smit** - Co-Founder & CTO
+
 - **Background**: Systems Engineer & AI Architect with 15+ years experience
 - **Current Role**: Senior Developer at Sygnia Asset Management
-- **Expertise**: System Architecture, AI/ML, Blockchain, Cognitive Sovereignty research
-- **Education**: B.Eng Industrial-Electronic (Stellenbosch), B.Com Quantitative Management (UNISA)
-- **Key Skills**: Legacy system refactoring, human-AI collaboration frameworks, high-scale citizen platforms
+- **Expertise**: System Architecture, AI/ML, Blockchain, Cognitive Sovereignty
+  research
+- **Education**: B.Eng Industrial-Electronic (Stellenbosch), B.Com Quantitative
+  Management (UNISA)
+- **Key Skills**: Legacy system refactoring, human-AI collaboration frameworks,
+  high-scale citizen platforms
 
-**Martyn Redelinghuys** - Co-Founder & CEO  
-- **Background**: Executive Project Manager with 20+ years in energy, mining & defense
-- **Current Role**: Consultant Executive Project Manager at Sasol (R500M+ portfolio)
-- **Expertise**: Energy management, project optimization, multi-disciplinary capital projects
+**Martyn Redelinghuys** - Co-Founder & CEO
+
+- **Background**: Executive Project Manager with 20+ years in energy, mining &
+  defense
+- **Current Role**: Consultant Executive Project Manager at Sasol (R500M+
+  portfolio)
+- **Expertise**: Energy management, project optimization, multi-disciplinary
+  capital projects
 - **Education**: B.Eng Electrical & Electronic (Stellenbosch), MBA (GIBS)
-- **Certifications**: Certified Energy Manager (CEM), Certified Measurement and Verification Professional (CMVP)
+- **Certifications**: Certified Energy Manager (CEM), Certified Measurement and
+  Verification Professional (CMVP)
 
 ## Team Building & Expansion
 
 **Current Focus**: Building world-class engineering team
-- **AI/ML Engineers**: Seeking specialists in computer vision and autonomous systems
+
+- **AI/ML Engineers**: Seeking specialists in computer vision and autonomous
+  systems
 - **Blockchain Developers**: Deep Solana and distributed systems experience
 - **Defense Integration**: Former Denel, Paramount, and CSIR professionals
 - **Systems Architecture**: Senior engineers with defense technology background
 
 **Advisory Board Development**
+
 - **Defense Strategy**: Former SANDF generals and defense ministry officials
-- **Technology**: Leading AI researchers and blockchain experts  
+- **Technology**: Leading AI researchers and blockchain experts
 - **International Markets**: Former ambassadors and trade officials
 - **Manufacturing**: Aerospace and defense production specialists
 

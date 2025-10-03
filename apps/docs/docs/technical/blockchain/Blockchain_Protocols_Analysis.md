@@ -10,11 +10,16 @@ sidebar_label: Blockchain Protocols Analysis
 
 This document provides a comprehensive analysis of blockchain protocols for the
 Phoenix Rooivalk counter-drone defense system. The analysis covers Solana
-proof-of-concept `implementation, Hyperledger` Fabric primary recommendation, and
+proof-of-concept `implementation, Hyperledger` Fabric primary recommendation,
+and
 
-protocol comparison to determine the optimal blockchain architecture for military applications.
+protocol comparison to determine the optimal blockchain architecture for
+military applications.
 
-**Key Finding**: Hybrid multi-chain architecture combining Hyperledger Fabric (primary) with Solana (high-performance POC) provides the optimal balance of security, performance, and cost-effectiveness for military counter-drone operations.
+**Key Finding**: Hybrid multi-chain architecture combining Hyperledger Fabric
+(primary) with Solana (high-performance POC) provides the optimal balance of
+security, performance, and cost-effectiveness for military counter-drone
+operations.
 
 ---
 
@@ -22,16 +27,23 @@ protocol comparison to determine the optimal blockchain architecture for militar
 
 ### POC Approach
 
-**Revised POC Strategy**: Cost-effective cloud-based infrastructure with containerized deployments, reducing initial investment by 40% while validating critical capabilities.
+**Revised POC Strategy**: Cost-effective cloud-based infrastructure with
+containerized deployments, reducing initial investment by 40% while validating
+critical capabilities.
 
 **Key Changes**:
-- **Hardware Requirements**: Reduced from $15,000 to $8,000 monthly operational cost
-- **Infrastructure**: Cloud-based isolated infrastructure with migration path to on-premise
-- **Validation**: Critical capability validation without prohibitive hardware costs
+
+- **Hardware Requirements**: Reduced from $15,000 to $8,000 monthly operational
+  cost
+- **Infrastructure**: Cloud-based isolated infrastructure with migration path to
+  on-premise
+- **Validation**: Critical capability validation without prohibitive hardware
+  costs
 
 ### Performance Specifications
 
 **Solana POC Performance**:
+
 - **Throughput**: 65,000+ transactions per second
 - **Latency**: 400ms transaction finality
 - **Block Time**: 400ms block intervals
@@ -41,12 +53,14 @@ protocol comparison to determine the optimal blockchain architecture for militar
 ### Implementation Strategy
 
 **Phase 1: Cloud POC (Months 1-3)**
+
 - **Infrastructure**: AWS/Azure cloud deployment
 - **Cost**: $5,000 monthly operational cost
 - **Validation**: Core blockchain functionality and performance
 - **Migration Path**: Clear path to on-premise deployment
 
 **Phase 2: On-Premise Deployment (Months 4-6)**
+
 - **Hardware**: Production-grade on-premise infrastructure
 - **Cost**: $50,000 initial hardware investment
 - **Performance**: Full production performance validation
@@ -55,12 +69,14 @@ protocol comparison to determine the optimal blockchain architecture for militar
 ### Cost Analysis
 
 **Cloud POC Costs**:
+
 - **Infrastructure**: $3,000/month (compute, storage, networking)
 - **Development**: $5,000/month (development and testing)
 - **Operations**: $2,000/month (monitoring and maintenance)
 - **Total**: $10,000/month
 
 **On-Premise Costs**:
+
 - **Hardware**: $50,000 initial investment
 - **Operations**: $8,000/month (maintenance and support)
 - **ROI**: Break-even at 6 months
@@ -71,9 +87,11 @@ protocol comparison to determine the optimal blockchain architecture for militar
 
 ### Architecture Overview
 
-**Hyperledger Fabric** serves as the primary blockchain for Phoenix Rooivalk, providing enterprise-grade security and performance for military applications.
+**Hyperledger Fabric** serves as the primary blockchain for Phoenix Rooivalk,
+providing enterprise-grade security and performance for military applications.
 
 **Key Features**:
+
 - **Permissioned Network**: Controlled access and participation
 - **Private Channels**: Secure communication between specific participants
 - **Smart Contracts**: Chaincode for business logic implementation
@@ -83,6 +101,7 @@ protocol comparison to determine the optimal blockchain architecture for militar
 ### Performance Specifications
 
 **Hyperledger Fabric Performance**:
+
 - **Throughput**: {\d+}, {\d+}+ transactions per second
 - **Latency**: Sub-second transaction finality
 - **Scalability**: Horizontal scaling through multiple peers
@@ -91,6 +110,7 @@ protocol comparison to determine the optimal blockchain architecture for militar
 ### Security Features
 
 **Enterprise-Grade Security**:
+
 - **Byzantine Fault Tolerance**: Tolerates up to {\d+}/{\d+} compromised nodes
 - **Cryptographic Security**: Advanced encryption and digital signatures
 - **Access Control**: Role-based access control (RBAC)
@@ -99,12 +119,14 @@ protocol comparison to determine the optimal blockchain architecture for militar
 ### Implementation Strategy
 
 **Phase {\d+}: Foundation (Months {\d+}-{\d+})**
+
 - **Network Setup**: Permissioned network configuration
 - **Identity Management**: Comprehensive identity and access control
 - **Smart Contracts**: Core business logic implementation
 - **Security**: Security framework implementation
 
 **Phase {\d+}: Integration (Months {\d+}-{\d+})**
+
 - **System Integration**: Integration with counter-drone systems
 - **Performance Optimization**: Performance tuning and optimization
 - **Security Validation**: Comprehensive security testing
@@ -148,18 +170,21 @@ protocol comparison to determine the optimal blockchain architecture for militar
 ### Three-Layer Design
 
 **Layer 1: Hyperledger Fabric (Primary)**
+
 - **Purpose**: Enterprise-grade permissioned operations
 - **Use Cases**: Sensitive military operations, classified data
 - **Performance**: 65,000+ TPS, sub-second latency
 - **Security**: Highest security and privacy
 
 **Layer 2: Solana (High-Performance POC)**
+
 - **Purpose**: High-throughput operations and testing
 - **Use Cases**: Performance validation, non-sensitive operations
 - **Performance**: 50,000+ TPS, 400ms latency
 - **Security**: Good security with high performance
 
 **Layer 3: Cross-Chain Bridge**
+
 - **Purpose**: Interoperability between chains
 - **Use Cases**: Data transfer, cross-chain operations
 - **Performance**: Variable based on bridge implementation
@@ -168,10 +193,11 @@ protocol comparison to determine the optimal blockchain architecture for militar
 ### Implementation Strategy
 
 **Phase {\d+}: Hyperledger Fabric (Months {\d+}-{\d+})**
+
 - **Priority**: Primary blockchain implementation
-- **Focus**: ```
-Security, compliance
-```, and enterprise features
+- **Focus**: ``` Security, compliance
+
+````, and enterprise features
 - **Deployment**: Production deployment and validation
 
 **Phase {\d+}: Solana POC (Months {\d+}-{\d+})**

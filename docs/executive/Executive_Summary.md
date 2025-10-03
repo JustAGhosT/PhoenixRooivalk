@@ -2,12 +2,12 @@
 
 ## System Overview
 
-Phoenix Rooivalk is a SAE Level 4 Autonomous Counter-UAS (Counter-Unmanned Aerial
-System) defense platform that represents a revolutionary advancement in drone
-defense technology. The system combines cutting-edge artificial intelligence
-with military-grade blockchain infrastructure to deliver unprecedented
-performance metrics while addressing critical operational challenges in modern
-electronic warfare environments.
+Phoenix Rooivalk is a SAE Level 4 Autonomous Counter-UAS (Counter-Unmanned
+Aerial System) defense platform that represents a revolutionary advancement in
+drone defense technology. The system combines cutting-edge artificial
+intelligence with military-grade blockchain infrastructure to deliver
+unprecedented performance metrics while addressing critical operational
+challenges in modern electronic warfare environments.
 
 ### Core Value Propositions
 

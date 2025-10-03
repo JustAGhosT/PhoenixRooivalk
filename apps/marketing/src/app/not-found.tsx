@@ -14,7 +14,8 @@ export default function NotFound(): React.ReactElement {
             Page Not Found
           </h2>
           <p className="text-[rgb(var(--gray))] mb-8">
-            The page you&apos;re looking for doesn&apos;t exist or has been moved.
+            The page you&apos;re looking for doesn&apos;t exist or has been
+            moved.
           </p>
         </div>
 

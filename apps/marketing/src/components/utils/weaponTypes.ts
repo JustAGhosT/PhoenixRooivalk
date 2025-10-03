@@ -28,7 +28,12 @@ export interface Weapon {
 export interface PowerUp {
   id: string;
   name: string;
-  type: "rapid-fire" | "damage-boost" | "area-effect" | "energy-boost" | "range-boost";
+  type:
+    | "rapid-fire"
+    | "damage-boost"
+    | "area-effect"
+    | "energy-boost"
+    | "range-boost";
   duration: number; // milliseconds
   startTime: number;
   isActive: boolean;

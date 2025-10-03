@@ -111,7 +111,8 @@ operational effectiveness with safety and compliance requirements.
 
 ### Options Considered
 
-- **SAE Level 4 Autonomy**: Fully autonomous operation without human intervention
+- **SAE Level 4 Autonomy**: Fully autonomous operation without human
+  intervention
 - **Level-1 Autonomy**: Semi-autonomous with human oversight
 - **Level-2 Autonomy**: Human-in-the-loop for critical decisions
 - **Hybrid Approach**: Different autonomy levels for different scenarios

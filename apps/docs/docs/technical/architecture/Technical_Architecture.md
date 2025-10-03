@@ -18,8 +18,8 @@ rapid response and verifiable accountability in all conditions.
 
 - **Edge-First Processing**: All critical decisions made locally without network
   dependency
-- **Byzantine Fault Tolerance**: Tolerates up to 1/3 compromised nodes
-  in consensus operations
+- **Byzantine Fault Tolerance**: Tolerates up to 1/3 compromised nodes in
+  consensus operations
 - **Modular Design**: Swappable components and vendor-agnostic interfaces
 - **Evidence Off-Path**: Audit recording doesn't impact real-time performance
 - **Quantum-Resistant**: Crypto-agility for post-quantum security requirements
@@ -31,14 +31,18 @@ rapid response and verifiable accountability in all conditions.
 NVIDIA Jetson AGX Orin 64GB delivers **275 TOPS of AI performance** with 2048
 CUDA cores, 64 Tensor cores, and
 
-dedicated Deep Learning Accelerators providing the computational foundation for real-time multi-sensor fusion. The platform achieves **30-60 FPS sustained processing** for 4K video streams with sensor-to-decision latency under 50ms using TensorRT optimization.
+dedicated Deep Learning Accelerators providing the computational foundation for
+real-time multi-sensor fusion. The platform achieves **30-60 FPS sustained
+processing** for 4K video streams with sensor-to-decision latency under 50ms
+using TensorRT optimization.
 
 ### Performance Specifications
 
-**AI Performance**: 275 TOPS (AGX Orin), 30-60 FPS sustained processing for 4K video streams
-**Sensor-to-Decision Latency**: Under 50ms using TensorRT optimization
-**YOLOv9 Performance**: 95.2% mAP with 97.8% precision and 96.5% recall at 30+ FPS
-**Detection Range**: 100-500 feet altitude with real-time processing of multiple concurrent streams
+**AI Performance**: 275 TOPS (AGX Orin), 30-60 FPS sustained processing for 4K
+video streams **Sensor-to-Decision Latency**: Under 50ms using TensorRT
+optimization **YOLOv9 Performance**: 95.2% mAP with 97.8% precision and 96.5%
+recall at 30+ FPS **Detection Range**: 100-500 feet altitude with real-time
+processing of multiple concurrent streams
 
 ### Hardware Specifications per Node
 
@@ -57,7 +61,8 @@ dedicated Deep Learning Accelerators providing the computational foundation for 
 - **LiDAR Integration**: 4 lanes PCIe Gen4 for LiDAR and radar sensors
 - **RF Detection**: 10GbE networking for RF detection arrays
 - **Acoustic Arrays**: 8 I2S interfaces for acoustic sensor arrays
-- **Unified Memory**: 204.8 GB/s bandwidth enables real-time fusion of disparate sensor modalities
+- **Unified Memory**: 204.8 GB/s bandwidth enables real-time fusion of disparate
+  sensor modalities
 
 ---
 
@@ -65,22 +70,32 @@ dedicated Deep Learning Accelerators providing the computational foundation for 
 
 ### 3. Morpheus (Autonomous AI Decision Engine)
 
-**Source**: Morpheus Network (mor.org) – decentralized peer-to-peer network of personal AI smart agents
+**Source**: Morpheus Network (mor.org) – decentralized peer-to-peer network of
+personal AI smart agents
 
 #### Capabilities
-- **Edge-based threat classification**: Real-time decision-making using on-device AI models
-- **Smart contract ROE enforcement**: Policy rules encoded as machine-readable constraints
+
+- **Edge-based threat classification**: Real-time decision-making using
+  on-device AI models
+- **Smart contract ROE enforcement**: Policy rules encoded as machine-readable
+  constraints
 - **Explainable AI outputs**: Confidence scores and rationale for each action
-- **Offline operation**: Distributed agent design with no central server dependency
+- **Offline operation**: Distributed agent design with no central server
+  dependency
 - **Model versioning**: Hash-signed, version-controlled AI model updates
 
 #### Integration Points
-- **Input**: Consumes fused sensor tracks (tracks.v1 format) from sensor fusion layer
-- **Output**: Produces engagement decisions (decisions.v1 format) with confidence levels
+
+- **Input**: Consumes fused sensor tracks (tracks.v1 format) from sensor fusion
+  layer
+- **Output**: Produces engagement decisions (decisions.v1 format) with
+  confidence levels
 - **Human Override**: Includes approval channel with full provenance logging
 
 #### Performance Specifications
-- **Decision Latency**: 50-100ms for threat classification and countermeasure selection
+
+- **Decision Latency**: 50-100ms for threat classification and countermeasure
+  selection
 - **Model Size**: &lt;50MB optimized models for edge deployment
 - **Confidence Thresholds**: Configurable based on ROE and threat level
 - **Update Mechanism**: A/B testing in sandbox with HITL approval required
@@ -88,27 +103,37 @@ dedicated Deep Learning Accelerators providing the computational foundation for 
 ### {\d+}. Solana (Evidence Blockchain Anchoring)
 
 #### Performance Characteristics
-- **Throughput**: {\d+}, {\d+}–{\d+}, {\d+} TPS sustained in real-world conditions
+
+- **Throughput**: {\d+}, {\d+}–{\d+}, {\d+} TPS sustained in real-world
+  conditions
 - **Finality**: ~400ms using Proof of History consensus
 - **Cost**: ~${\d+}.{\d+} USD per evidence anchor
 - **Reliability**: Proven mainnet performance with independent validator network
 
 #### Evidence Architecture
-- **Hash-Chained Batches**: Engagement decisions and sensor snapshots hashed and chained together
+
+- **Hash-Chained Batches**: Engagement decisions and sensor snapshots hashed and
+  chained together
 - **Merkle Root Storage**: Only Merkle roots and indexes stored on-chain
-- **Off-Chain Storage**: Full evidence payloads encrypted in Azure Blob Storage or S3
+- **Off-Chain Storage**: Full evidence payloads encrypted in Azure Blob Storage
+  or S3
 - **Dual-Chain Option**: Etherlink bridge for redundancy and resilience
 
 #### Technical Specifications for Defense Applications
-- **Ed25519 Cryptographic Signatures**: {\d+}-bit security with fast verification optimized for high-throughput
+
+- **Ed25519 Cryptographic Signatures**: {\d+}-bit security with fast
+  verification optimized for high-throughput
 - **SHA-{\d+} Hashing**: Collision-resistant {\d+}-byte fingerprints of evidence
-- **Proof of History**: Cryptographically verifiable timestamps establishing tamper-evident chronological ordering
-- **Immutable Programs**: Evidence logging logic cannot be altered post-deployment
+- **Proof of History**: Cryptographically verifiable timestamps establishing
+  tamper-evident chronological ordering
+- **Immutable Programs**: Evidence logging logic cannot be altered
+  post-deployment
 
 #### Legal Admissibility
-- **State Legislation**: ```
-Vermont, Arizona
-```, and Illinois have enacted explicit legislation recognizing blockchain evidence
+
+- **State Legislation**: ``` Vermont, Arizona
+
+````, and Illinois have enacted explicit legislation recognizing blockchain evidence
 - **Federal Rules of Evidence**: Rule {\d+} (authentication) and Rule {\d+}({\d+}) (business records exception)
 - **International Precedent**: China's Supreme People's Court formally recognized blockchain evidence in {\d+}
 

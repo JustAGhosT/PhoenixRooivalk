@@ -413,9 +413,10 @@ infrastructure, integration, and operational requirements.
 
 **Overall Assessment**: [ ] APPROVED [ ] CONDITIONAL APPROVAL [ ] NOT APPROVED
 
-**Next Steps**: ************************\_************************
+**Next Steps**: **********\*\*\*\***********\_**********\*\*\*\***********
 
-**Approval Date**: ********\_******** **Approved By**: ********\_********
+**Approval Date**: **\*\*\*\***\_**\*\*\*\*** **Approved By**:
+**\*\*\*\***\_**\*\*\*\***
 
 ---
 

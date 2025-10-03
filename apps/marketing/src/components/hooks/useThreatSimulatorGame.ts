@@ -69,56 +69,68 @@ export const useThreatSimulatorGame = ({
   const [formationManager] = useState(() => new FormationManager());
 
   // Game state
-  const [gameDimensions, setGameDimensions] = useState({ width: 800, height: 600 });
-  const [weatherMode, setWeatherMode] = useState<"none" | "rain" | "fog" | "night">("none");
-  const [missionType, setMissionType] = useState<"airport" | "military-base" | "vip-protection" | "border-patrol">("military-base");
-  const [automationMode, setAutomationMode] = useState<"manual" | "automated" | "hybrid">("hybrid");
+  const [gameDimensions, setGameDimensions] = useState({
+    width: 800,
+    height: 600,
+  });
+  const [weatherMode, setWeatherMode] = useState<
+    "none" | "rain" | "fog" | "night"
+  >("none");
+  const [missionType, setMissionType] = useState<
+    "airport" | "military-base" | "vip-protection" | "border-patrol"
+  >("military-base");
+  const [automationMode, setAutomationMode] = useState<
+    "manual" | "automated" | "hybrid"
+  >("hybrid");
   const [showDeploymentZones, setShowDeploymentZones] = useState(false);
 
   // Spawn new threat
-  const spawnNewThreat = useCallback((threatType?: "drone" | "swarm" | "stealth") => {
-    if (!gameRef.current) return;
-    const rect = gameRef.current.getBoundingClientRect();
-    const newThreat = spawnThreat(threatType, rect, gameState.level);
-    addThreat(newThreat);
-  }, [addThreat, gameState.level, gameRef]);
+  const spawnNewThreat = useCallback(
+    (threatType?: "drone" | "swarm" | "stealth") => {
+      if (!gameRef.current) return;
+      const rect = gameRef.current.getBoundingClientRect();
+      const newThreat = spawnThreat(threatType, rect, gameState.level);
+      addThreat(newThreat);
+    },
+    [addThreat, gameState.level, gameRef],
+  );
 
   // Fixed movement function - smooth movement without jumping
   const moveAllThreats = useCallback(() => {
     if (!gameRef.current) return;
-    
+
     const rect = gameRef.current.getBoundingClientRect();
     const centerPoint = { x: rect.width / 2, y: rect.height / 2 };
-    
-    const movedThreats = gameState.threats.map(threat => {
+
+    const movedThreats = gameState.threats.map((threat) => {
       // Skip non-active threats
       if (threat.status !== "active" || !threat.isMoving) {
         return threat;
       }
-      
+
       // Calculate direction to center
       const dx = centerPoint.x - threat.x;
       const dy = centerPoint.y - threat.y;
       const distance = Math.sqrt(dx * dx + dy * dy);
-      
+
       // Stop if reached center
       if (distance < 30) {
         return { ...threat, isMoving: false };
       }
-      
+
       // Calculate smooth movement
       const baseSpeed = threat.speed || 1;
       const speedMultiplier = 1 + (gameState.level - 1) * 0.1; // Speed increases with level
       const actualSpeed = baseSpeed * speedMultiplier;
-      
+
       // Normalize direction and apply speed
       const moveX = (dx / distance) * actualSpeed;
       const moveY = (dy / distance) * actualSpeed;
-      
+
       // Special movement patterns
       let finalX = threat.x + moveX;
       let finalY = threat.y + moveY;
-      
+
       if (threat.type === "swarm") {
         // Swarm zigzag pattern
         const time = Date.now() / 1000;
@@ -130,93 +142,106 @@ export const useThreatSimulatorGame = ({
         const time = Date.now() / 2000;
         threat.specialProperties = {
           ...threat.specialProperties,
-          opacity: 0.3 + Math.sin(time + threat.createdAt) * 0.3
+          opacity: 0.3 + Math.sin(time + threat.createdAt) * 0.3,
         };
       }
-      
+
       // Update trail
-      const newTrail = [...(threat.trail || []).slice(-9), 
-        { x: threat.x, y: threat.y, timestamp: Date.now() }
+      const newTrail = [
+        ...(threat.trail || []).slice(-9),
+        { x: threat.x, y: threat.y, timestamp: Date.now() },
       ];
-      
+
       return {
         ...threat,
         x: finalX,
         y: finalY,
         trail: newTrail,
-        lastUpdate: Date.now()
+        lastUpdate: Date.now(),
       };
     });
-    
+
     updateThreats(movedThreats);
   }, [gameState.threats, gameState.level, updateThreats, gameRef]);
 
   // Enhanced neutralization with effects
-  const neutralizeThreatWithEffects = useCallback((threatId: string) => {
-    const threat = gameState.threats.find((t) => t.id === threatId);
-    if (!threat || threat.status !== "active") return;
+  const neutralizeThreatWithEffects = useCallback(
+    (threatId: string) => {
+      const threat = gameState.threats.find((t) => t.id === threatId);
+      if (!threat || threat.status !== "active") return;
 
-    const weapon = gameState.weapons[gameState.selectedWeapon];
-    if (!weapon) return;
+      const weapon = gameState.weapons[gameState.selectedWeapon];
+      if (!weapon) return;
 
-    // Get weapon effectiveness against threat type
-    const effectiveness = weapon.effectiveness?.[threat.type] ?? 1.0;
-    
-    // Check if we can fire
-    if (!weapon.isReady || weapon.ammo <= 0 || gameState.energy < 10) {
-      return;
-    }
+      // Get weapon effectiveness against threat type
+      const effectiveness = weapon.effectiveness?.[threat.type] ?? 1.0;
 
-    // Fire weapon and consume resources
-    fireWeapon(threat.x, threat.y);
-    consumeEnergy(10);
-    consumeCooling(5);
+      // Check if we can fire
+      if (!weapon.isReady || weapon.ammo <= 0 || gameState.energy < 10) {
+        return;
+      }
 
-    // Create visual effects
-    particleSystem.createExplosion(threat.x, threat.y, 1);
-    
-    if (threat.trail && threat.trail.length > 1) {
-      const lastTrail = threat.trail[threat.trail.length - 1];
-      particleSystem.createTrail(lastTrail.x, lastTrail.y, threat.x, threat.y);
-    }
+      // Fire weapon and consume resources
+      fireWeapon(threat.x, threat.y);
+      consumeEnergy(10);
+      consumeCooling(5);
 
-    // Handle special threat types
-    if (threat.type === "kamikaze" && threat.specialProperties?.explosionRadius) {
-      // Area damage
-      const explosionRadius = threat.specialProperties.explosionRadius;
-      gameState.threats.forEach((nearbyThreat) => {
-        if (nearbyThreat.id === threatId || nearbyThreat.status !== "active") return;
-        
-        const distance = Math.sqrt(
-          Math.pow(nearbyThreat.x - threat.x, 2) + 
-          Math.pow(nearbyThreat.y - threat.y, 2)
+      // Create visual effects
+      particleSystem.createExplosion(threat.x, threat.y, 1);
+
+      if (threat.trail && threat.trail.length > 1) {
+        const lastTrail = threat.trail[threat.trail.length - 1];
+        particleSystem.createTrail(
+          lastTrail.x,
+          lastTrail.y,
+          threat.x,
+          threat.y,
         );
-        
-        if (distance <= explosionRadius) {
-          particleSystem.createExplosion(nearbyThreat.x, nearbyThreat.y, 0.8);
-          removeThreat(nearbyThreat.id);
-          updateScore(50);
-        }
-      });
-    }
+      }
 
-    // Neutralize the threat
-    removeThreat(threatId);
-    updateScore(Math.floor(100 * effectiveness));
-    checkAchievements();
-  }, [
-    gameState.threats,
-    gameState.weapons,
-    gameState.selectedWeapon,
-    gameState.energy,
-    particleSystem,
-    fireWeapon,
-    consumeEnergy,
-    consumeCooling,
-    removeThreat,
-    updateScore,
-    checkAchievements
-  ]);
+      // Handle special threat types
+      if (
+        threat.type === "kamikaze" &&
+        threat.specialProperties?.explosionRadius
+      ) {
+        // Area damage
+        const explosionRadius = threat.specialProperties.explosionRadius;
+        gameState.threats.forEach((nearbyThreat) => {
+          if (nearbyThreat.id === threatId || nearbyThreat.status !== "active")
+            return;
+
+          const distance = Math.sqrt(
+            Math.pow(nearbyThreat.x - threat.x, 2) +
+              Math.pow(nearbyThreat.y - threat.y, 2),
+          );
+
+          if (distance <= explosionRadius) {
+            particleSystem.createExplosion(nearbyThreat.x, nearbyThreat.y, 0.8);
+            removeThreat(nearbyThreat.id);
+            updateScore(50);
+          }
+        });
+      }
+
+      // Neutralize the threat
+      removeThreat(threatId);
+      updateScore(Math.floor(100 * effectiveness));
+      checkAchievements();
+    },
+    [
+      gameState.threats,
+      gameState.weapons,
+      gameState.selectedWeapon,
+      gameState.energy,
+      particleSystem,
+      fireWeapon,
+      consumeEnergy,
+      consumeCooling,
+      removeThreat,
+      updateScore,
+      checkAchievements,
+    ],
+  );
 
   // Generate swarm of threats
   const generateSwarm = useCallback(() => {
@@ -227,15 +252,18 @@ export const useThreatSimulatorGame = ({
   }, [spawnNewThreat, addTimeout, clearTimeouts]);
 
   // Spawn multiple drones
-  const spawnMultipleDrones = useCallback((count: number) => {
-    if (!gameRef.current) return;
-    const rect = gameRef.current.getBoundingClientRect();
-    
-    for (let i = 0; i < count; i++) {
-      const drone = spawnThreat("drone", rect, gameState.level);
-      addThreat(drone);
-    }
-  }, [addThreat, gameState.level, gameRef]);
+  const spawnMultipleDrones = useCallback(
+    (count: number) => {
+      if (!gameRef.current) return;
+      const rect = gameRef.current.getBoundingClientRect();
+
+      for (let i = 0; i < count; i++) {
+        const drone = spawnThreat("drone", rect, gameState.level);
+        addThreat(drone);
+      }
+    },
+    [addThreat, gameState.level, gameRef],
+  );
 
   // Main game loop with auto-targeting
   useEffect(() => {
@@ -261,7 +289,7 @@ export const useThreatSimulatorGame = ({
       // Auto-targeting system (runs every 100ms)
       if (currentTime - lastAutoTargetTime.current > 100) {
         lastAutoTargetTime.current = currentTime;
-        
+
         if (gameState.automationMode !== "manual" && gameState.energy > 10) {
           const weapon = gameState.weapons[gameState.selectedWeapon];
           if (weapon && weapon.isReady && weapon.ammo > 0) {
@@ -269,11 +297,11 @@ export const useThreatSimulatorGame = ({
               gameState,
               currentTime,
               (targetId, _x, _y) => {
-                const threat = gameState.threats.find(t => t.id === targetId);
+                const threat = gameState.threats.find((t) => t.id === targetId);
                 if (threat && threat.status === "active") {
                   neutralizeThreatWithEffects(targetId);
                 }
-              }
+              },
             );
           }
         }
@@ -288,9 +316,14 @@ export const useThreatSimulatorGame = ({
       // Spawn new threats
       const timeSinceLastSpawn = currentTime - gameState.lastSpawnTime;
       const maxThreats = 5 + gameState.level * 2;
-      const activeThreats = gameState.threats.filter(t => t.status === "active").length;
-      
-      if (timeSinceLastSpawn > gameState.spawnRate && activeThreats < maxThreats) {
+      const activeThreats = gameState.threats.filter(
+        (t) => t.status === "active",
+      ).length;
+
+      if (
+        timeSinceLastSpawn > gameState.spawnRate &&
+        activeThreats < maxThreats
+      ) {
         if (Math.random() < 0.4 + gameState.level * 0.05) {
           spawnNewThreat();
         }
@@ -321,7 +354,7 @@ export const useThreatSimulatorGame = ({
     updateResources,
     updateMothershipResources,
     updateDronePositions,
-    processFadeOut
+    processFadeOut,
   ]);
 
   // Initialize strategic systems

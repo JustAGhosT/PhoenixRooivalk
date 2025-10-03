@@ -249,7 +249,13 @@ export const useThreatSimulatorEvents = ({
         deployDrone("surveillance", x, y);
       }
     },
-    [gameRef, gameState.selectedDroneType, deployDrone, switchWeapon, isDragging],
+    [
+      gameRef,
+      gameState.selectedDroneType,
+      deployDrone,
+      switchWeapon,
+      isDragging,
+    ],
   );
 
   // Keyboard activation handler (no mouse coordinates needed)

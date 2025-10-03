@@ -1,12 +1,20 @@
 // Game State and Entity Type Definitions
 // Re-export existing types to maintain compatibility
 
-import { DeploymentBay, Drone, Formation, Mothership } from "../components/utils/mothershipTypes";
+import {
+  DeploymentBay,
+  Drone,
+  Formation,
+  Mothership,
+} from "../components/utils/mothershipTypes";
 import { Threat } from "../components/utils/threatTypes";
 import { PowerUp, Weapon } from "../components/utils/weaponTypes";
 
 export type {
-  DeploymentBay, Drone, Formation, Mothership
+  DeploymentBay,
+  Drone,
+  Formation,
+  Mothership,
 } from "../components/utils/mothershipTypes";
 export type { Threat } from "../components/utils/threatTypes";
 export type { PowerUp, Weapon } from "../components/utils/weaponTypes";
@@ -54,11 +62,11 @@ export interface GameState {
   neutralized: number;
   level: number;
   isRunning: boolean;
-  
+
   // Weapons
   selectedWeapon: "kinetic" | "electronic" | "laser";
   weapons: Record<string, Weapon>;
-  
+
   // Power-ups and timing
   activePowerUps: PowerUp[];
   gameTime: number;
@@ -68,7 +76,7 @@ export interface GameState {
   lastNeutralizationTime: number;
   frameRate: number;
   targetFrameRate: number;
-  
+
   // Achievements and scores
   achievements: string[];
   leaderboard: Array<{
@@ -77,7 +85,7 @@ export interface GameState {
     date: string;
     threatsNeutralized: number;
   }>;
-  
+
   // Resource Management
   energy: number;
   maxEnergy: number;
@@ -85,19 +93,19 @@ export interface GameState {
   cooling: number;
   maxCooling: number;
   coolingRate: number;
-  
+
   // Selection and targeting
   selectedThreats: string[];
   selectionBox: SelectionBox | null;
   priorityThreats: Record<string, "high" | "medium" | "low">;
-  
+
   // Mothership system
   mothership: Mothership;
   drones: Drone[];
   deploymentBays: DeploymentBay[];
   formations: Formation[];
   selectedDroneType: Drone["type"] | null;
-  
+
   // Environment
   weatherMode: "none" | "rain" | "fog" | "night";
   missionType: "airport" | "military-base" | "vip-protection" | "border-patrol";

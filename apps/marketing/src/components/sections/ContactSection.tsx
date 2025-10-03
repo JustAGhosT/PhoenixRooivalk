@@ -27,9 +27,9 @@ export const ContactSection: React.FC = () => {
               Request Capability Demonstration
             </h3>
             <p className="text-gray-300 mb-6">
-              See Phoenix Rooivalk's SAE Level 4 autonomous architecture in action.
-              Demonstrate &lt;2ms response time, RF-silent drone detection, and
-              swarm defense capabilities.
+              See Phoenix Rooivalk's SAE Level 4 autonomous architecture in
+              action. Demonstrate &lt;2ms response time, RF-silent drone
+              detection, and swarm defense capabilities.
             </p>
             <div className="space-y-4">
               <Button
@@ -56,8 +56,8 @@ export const ContactSection: React.FC = () => {
             </h3>
             <p className="text-gray-300 mb-6">
               Download comprehensive technical documentation and market
-              analysis. Learn about SAE Level 4 architecture, market opportunity,
-              and competitive positioning.
+              analysis. Learn about SAE Level 4 architecture, market
+              opportunity, and competitive positioning.
             </p>
             <div className="space-y-4">
               <Button

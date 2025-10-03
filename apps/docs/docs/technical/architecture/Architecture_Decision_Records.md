@@ -111,7 +111,8 @@ operational effectiveness with safety and compliance requirements.
 
 ### Options Considered
 
-- **SAE Level 4 Autonomy**: Fully autonomous operation without human intervention
+- **SAE Level 4 Autonomy**: Fully autonomous operation without human
+  intervention
 - **SAE Level 3 Autonomy**: Conditional automation with human fallback
 - **SAE Level 2 Autonomy**: Partial automation with human monitoring
 - **SAE Level 1 Autonomy**: Driver assistance with human control
@@ -119,18 +120,20 @@ operational effectiveness with safety and compliance requirements.
 
 ### Decision
 
-Implement SAE Level 4 autonomy with comprehensive safety and compliance frameworks.
+Implement SAE Level 4 autonomy with comprehensive safety and compliance
+frameworks.
 
 ### Rationale
 
-- **Operational Effectiveness**: SAE Level 4 autonomy provides maximum operational
-  effectiveness
+- **Operational Effectiveness**: SAE Level 4 autonomy provides maximum
+  operational effectiveness
 - **Response Time**: Sub-200ms response time requires autonomous operation
 - **GPS-Denied Environments**: Autonomous operation essential for GPS-denied
   environments
 - **Safety Framework**: Comprehensive safety framework ensures safe operation
 - **Compliance**: Full compliance with DoD Directive 3000.09
-- **Industry Standard**: SAE J3016 standard provides clear autonomy level definitions
+- **Industry Standard**: SAE J3016 standard provides clear autonomy level
+  definitions
 
 ### Consequences
 
@@ -139,7 +142,8 @@ Implement SAE Level 4 autonomy with comprehensive safety and compliance framewor
 - **Testing**: Extensive testing and validation required
 - **Documentation**: Comprehensive documentation of safety measures
 - **SAE J3016 Compliance**: Must adhere to SAE J3016 standard definitions
-- **Industry Alignment**: Aligns with automotive and aerospace autonomy standards
+- **Industry Alignment**: Aligns with automotive and aerospace autonomy
+  standards
 
 ---
 

@@ -33,17 +33,17 @@ export const UkraineChallengeSection: React.FC = () => {
               <ProblemCard
                 icon="❌"
                 title="False Positives"
-                description="&quot;Puddles get mistaken for tanks, trees confuse targeting&quot;"
+                description='"Puddles get mistaken for tanks, trees confuse targeting"'
               />
               <ProblemCard
                 icon="📡"
                 title="EW Vulnerability"
-                description="&quot;Hit rates declining as electronic warfare evolves faster&quot;"
+                description='"Hit rates declining as electronic warfare evolves faster"'
               />
               <ProblemCard
                 icon="🐝"
                 title="Swarm Coordination"
-                description="Russia&apos;s drones coordinate in groups of six, Ukraine&apos;s hunt alone"
+                description="Russia's drones coordinate in groups of six, Ukraine's hunt alone"
               />
             </div>
           </div>
@@ -79,10 +79,10 @@ export const UkraineChallengeSection: React.FC = () => {
           >
             <h3 className="text-2xl font-bold text-white mb-4">The Stakes</h3>
             <p className="text-[var(--gray)] text-lg mb-6">
-              &quot;Ukraine&apos;s entire war strategy hinges on this race. They&apos;ve
-              survived three years by being smarter, not stronger. If they lose
-              the AI warfare competition, they lose their main advantage over
-              Russia&apos;s superior numbers.&quot;
+              &quot;Ukraine&apos;s entire war strategy hinges on this race.
+              They&apos;ve survived three years by being smarter, not stronger.
+              If they lose the AI warfare competition, they lose their main
+              advantage over Russia&apos;s superior numbers.&quot;
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button href="#contact" size="lg">

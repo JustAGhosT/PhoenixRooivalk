@@ -108,9 +108,9 @@ export const InteractiveElementsSection: React.FC = () => {
               Projected ROI Analysis
             </h2>
             <p className="text-xl text-[rgb(var(--gray))] max-w-3xl mx-auto">
-              Explore the potential return on investment for Phoenix Rooivalk&apos;s
-              target 120ms response time based on current market analysis and
-              projected performance.
+              Explore the potential return on investment for Phoenix
+              Rooivalk&apos;s target 120ms response time based on current market
+              analysis and projected performance.
             </p>
           </div>
 

@@ -108,7 +108,15 @@ export class FormationManager {
     disadvantages: string[];
     modifications: string[];
   } {
-    const combinations: Record<string, { score: number; advantages: string[]; disadvantages: string[]; modifications: string[]; }> = {
+    const combinations: Record<
+      string,
+      {
+        score: number;
+        advantages: string[];
+        disadvantages: string[];
+        modifications: string[];
+      }
+    > = {
       "circle-drone": {
         score: 0.8,
         advantages: ["360-degree coverage", "mutual support"],

@@ -13,10 +13,10 @@ export class AutoTargetingSystem {
   findBestTarget(
     threats: Threat[],
     mothershipPos: { x: number; y: number },
-    weaponRange: number
+    weaponRange: number,
   ): Threat | null {
     // Filter active threats within range
-    const threatsInRange = threats.filter(threat => {
+    const threatsInRange = threats.filter((threat) => {
       if (threat.status !== "active" || !threat.isMoving) return false;
       return isPointNearThreat(mothershipPos, threat, weaponRange);
     });
@@ -24,21 +24,22 @@ export class AutoTargetingSystem {
     if (threatsInRange.length === 0) return null;
 
     // Sort by priority and distance
-    const prioritizedThreats = threatsInRange.map(threat => ({
+    const prioritizedThreats = threatsInRange.map((threat) => ({
       threat,
       priority: calculateThreatPriority(threat, mothershipPos),
       distance: Math.sqrt(
-        Math.pow(threat.x - mothershipPos.x, 2) + 
-        Math.pow(threat.y - mothershipPos.y, 2)
-      )
+        Math.pow(threat.x - mothershipPos.x, 2) +
+          Math.pow(threat.y - mothershipPos.y, 2),
+      ),
     }));
 
     prioritizedThreats.sort((a, b) => {
       // First sort by priority
       const priorityOrder = { high: 3, medium: 2, low: 1 };
-      const priorityDiff = priorityOrder[b.priority] - priorityOrder[a.priority];
+      const priorityDiff =
+        priorityOrder[b.priority] - priorityOrder[a.priority];
       if (priorityDiff !== 0) return priorityDiff;
-      
+
       // Then by distance (closer is higher priority)
       return a.distance - b.distance;
     });
@@ -67,7 +68,7 @@ export class AutoTargetingSystem {
   processAutoTargeting(
     gameState: GameState,
     currentTime: number,
-    onFireWeapon: (targetId: string, x: number, y: number) => void
+    onFireWeapon: (targetId: string, x: number, y: number) => void,
   ): void {
     // Only run in automated or hybrid mode
     if (gameState.automationMode === "manual") return;
@@ -84,7 +85,7 @@ export class AutoTargetingSystem {
     const target = this.findBestTarget(
       gameState.threats,
       gameState.mothership,
-      weaponRange
+      weaponRange,
     );
 
     if (!target) return;
@@ -104,13 +105,13 @@ export class AutoTargetingSystem {
     threats: Threat[],
     centerPoint: { x: number; y: number },
     radius: number,
-    onNeutralizeTarget: (targetId: string) => void
+    onNeutralizeTarget: (targetId: string) => void,
   ): number {
     let targetsHit = 0;
 
-    threats.forEach(threat => {
+    threats.forEach((threat) => {
       if (threat.status !== "active") return;
-      
+
       if (isPointNearThreat(centerPoint, threat, radius)) {
         onNeutralizeTarget(threat.id);
         targetsHit++;
@@ -125,7 +126,7 @@ export class AutoTargetingSystem {
    */
   cleanup(currentTime: number): void {
     const oldThreshold = currentTime - 10000; // Clean entries older than 10 seconds
-    
+
     for (const [threatId, time] of this.lastEngagementTime.entries()) {
       if (time < oldThreshold) {
         this.lastEngagementTime.delete(threatId);

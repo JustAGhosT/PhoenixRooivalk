@@ -56,10 +56,10 @@ movements and layered area defense.
 The C-UAS market presents exceptional opportunities, valued at **$2.45-3.0B in
 2025** and projected to reach **$9-15B by 2030** at 23-27% CAGR. The Pentagon
 Replicator program alone commits **$500M** to deploy thousands of autonomous
-drones by August 2025, while recent contract awards total over **$6B**
-including Raytheon's massive $1.04B Coyote interceptor contract through
-2027. Ukraine's experience losing 10,000+ drones monthly to jamming
-demonstrates urgent operational needs driving procurement.
+drones by August 2025, while recent contract awards total over **$6B** including
+Raytheon's massive $1.04B Coyote interceptor contract through 2027. Ukraine's
+experience losing 10,000+ drones monthly to jamming demonstrates urgent
+operational needs driving procurement.
 
 **Critical market gaps exist in mobile/on-the-move C-UAS** (underserved segment
 with urgent DoD need), **swarm defense** (most systems limited against
@@ -74,15 +74,14 @@ operators by 2026.
 
 ## Key Performance Indicators
 
-- **99.5% AI Detection Accuracy** - Eliminates environmental false
-  positives
-- **50-195ms Response Time** - 25-40x faster than current systems
-  (2-5 seconds baseline)
+- **99.5% AI Detection Accuracy** - Eliminates environmental false positives
+- **50-195ms Response Time** - 25-40x faster than current systems (2-5 seconds
+  baseline)
 - **99.9% Data Integrity** - Blockchain-verified audit trails
 - **SAE Level 4 Autonomous Operation** - Complete edge operation without
   communications dependency
-- **RF-Silent Drone Detection** - Handles autonomous threats that 80% of
-  current systems cannot detect
+- **RF-Silent Drone Detection** - Handles autonomous threats that 80% of current
+  systems cannot detect
 - **<2ms Authentication** - Ultra-fast friend-or-foe identification
 - **99.9% System Uptime** - High availability with redundant architecture
 

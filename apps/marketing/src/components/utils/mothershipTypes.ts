@@ -105,7 +105,7 @@ export const DRONE_CONFIGS: Record<
     isActive: false,
     isReturning: false,
     mission: "intercept",
-    status: "deploying"
+    status: "deploying",
   },
   jammer: {
     type: "jammer",
@@ -120,7 +120,7 @@ export const DRONE_CONFIGS: Record<
     isActive: false,
     isReturning: false,
     mission: "jam",
-    status: "deploying"
+    status: "deploying",
   },
   surveillance: {
     type: "surveillance",
@@ -135,7 +135,7 @@ export const DRONE_CONFIGS: Record<
     isActive: false,
     isReturning: false,
     mission: "surveil",
-    status: "deploying"
+    status: "deploying",
   },
   shield: {
     type: "shield",
@@ -150,7 +150,7 @@ export const DRONE_CONFIGS: Record<
     isActive: false,
     isReturning: false,
     mission: "shield",
-    status: "deploying"
+    status: "deploying",
   },
   "swarm-coordinator": {
     type: "swarm-coordinator",
@@ -165,7 +165,7 @@ export const DRONE_CONFIGS: Record<
     isActive: false,
     isReturning: false,
     mission: "coordinate",
-    status: "deploying"
+    status: "deploying",
   },
 };
 

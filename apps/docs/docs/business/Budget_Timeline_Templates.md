@@ -18,10 +18,10 @@ establish realistic expectations and project parameters.
 
 ### Phoenix Rooivalk Investment Overview
 
-**Customer**: ************\_************  
-**Date**: ************\_************  
-**Sales Rep**: ************\_************  
-**Project**: ************\_************
+**Customer**: ****\*\*\*\*****\_****\*\*\*\*****  
+**Date**: ****\*\*\*\*****\_****\*\*\*\*****  
+**Sales Rep**: ****\*\*\*\*****\_****\*\*\*\*****  
+**Project**: ****\*\*\*\*****\_****\*\*\*\*****
 
 ---
 
@@ -107,8 +107,8 @@ establish realistic expectations and project parameters.
 
 ### Phoenix Rooivalk Implementation Timeline
 
-**Project Start Date**: ************\_************  
-**Target Go-Live Date**: ************\_************  
+**Project Start Date**: ****\*\*\*\*****\_****\*\*\*\*****  
+**Target Go-Live Date**: ****\*\*\*\*****\_****\*\*\*\*****  
 **Project Duration**: 12-18 weeks
 
 ---
@@ -319,17 +319,17 @@ establish realistic expectations and project parameters.
 
 ### Phoenix Rooivalk Team
 
-- **Project Manager**: ************\_************
-- **Technical Lead**: ************\_************
-- **Integration Specialist**: ************\_************
-- **Training Coordinator**: ************\_************
+- **Project Manager**: ****\*\*\*\*****\_****\*\*\*\*****
+- **Technical Lead**: ****\*\*\*\*****\_****\*\*\*\*****
+- **Integration Specialist**: ****\*\*\*\*****\_****\*\*\*\*****
+- **Training Coordinator**: ****\*\*\*\*****\_****\*\*\*\*****
 
 ### Customer Team
 
-- **Project Sponsor**: ************\_************
-- **Technical Lead**: ************\_************
-- **Security Lead**: ************\_************
-- **Operations Lead**: ************\_************
+- **Project Sponsor**: ****\*\*\*\*****\_****\*\*\*\*****
+- **Technical Lead**: ****\*\*\*\*****\_****\*\*\*\*****
+- **Security Lead**: ****\*\*\*\*****\_****\*\*\*\*****
+- **Operations Lead**: ****\*\*\*\*****\_****\*\*\*\*****
 
 ---
 
@@ -363,9 +363,10 @@ establish realistic expectations and project parameters.
 
 **Project Status**: [ ] APPROVED [ ] CONDITIONAL APPROVAL [ ] NOT APPROVED
 
-**Next Steps**: ************************\_************************
+**Next Steps**: **********\*\*\*\***********\_**********\*\*\*\***********
 
-**Approval Date**: ********\_******** **Approved By**: ********\_********
+**Approval Date**: **\*\*\*\***\_**\*\*\*\*** **Approved By**:
+**\*\*\*\***\_**\*\*\*\***
 
 ---
 

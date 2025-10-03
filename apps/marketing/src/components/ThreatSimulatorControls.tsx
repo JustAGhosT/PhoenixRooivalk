@@ -154,7 +154,9 @@ export const ThreatSimulatorControls: React.FC<
                     ? "bg-blue-600/30 border border-blue-400"
                     : "bg-gray-800/50 hover:bg-gray-700/50"
                 }`}
-                onClick={() => switchWeapon(weapon.id as "kinetic" | "electronic" | "laser")}
+                onClick={() =>
+                  switchWeapon(weapon.id as "kinetic" | "electronic" | "laser")
+                }
                 title={`${weapon.name} - ${weapon.ammo}/${weapon.maxAmmo} ammo`}
               >
                 <div className="flex items-center space-x-2">
@@ -252,7 +254,16 @@ export const ThreatSimulatorControls: React.FC<
                     ? "bg-blue-600/30 border border-blue-400"
                     : "bg-gray-800/50 hover:bg-gray-700/50"
                 }`}
-                onClick={() => selectDroneType(drone.id as "interceptor" | "jammer" | "surveillance" | "shield" | "swarm-coordinator")}
+                onClick={() =>
+                  selectDroneType(
+                    drone.id as
+                      | "interceptor"
+                      | "jammer"
+                      | "surveillance"
+                      | "shield"
+                      | "swarm-coordinator",
+                  )
+                }
                 disabled={drone.count >= drone.maxCount}
                 title={`${drone.name} - ${drone.count}/${drone.maxCount} deployed`}
               >
@@ -288,7 +299,9 @@ export const ThreatSimulatorControls: React.FC<
                         ? "bg-blue-600 text-white"
                         : "bg-gray-700 text-gray-300 hover:bg-gray-600"
                     }`}
-                    onClick={() => setWeatherMode(mode as "none" | "rain" | "fog" | "night")}
+                    onClick={() =>
+                      setWeatherMode(mode as "none" | "rain" | "fog" | "night")
+                    }
                   >
                     {mode.charAt(0).toUpperCase() + mode.slice(1)}
                   </button>
@@ -313,7 +326,15 @@ export const ThreatSimulatorControls: React.FC<
                         ? "bg-green-600 text-white"
                         : "bg-gray-700 text-gray-300 hover:bg-gray-600"
                     }`}
-                    onClick={() => setMissionType(mission as "airport" | "military-base" | "vip-protection" | "border-patrol")}
+                    onClick={() =>
+                      setMissionType(
+                        mission as
+                          | "airport"
+                          | "military-base"
+                          | "vip-protection"
+                          | "border-patrol",
+                      )
+                    }
                   >
                     {mission
                       .replace("-", " ")
@@ -335,7 +356,11 @@ export const ThreatSimulatorControls: React.FC<
                         ? "bg-purple-600 text-white"
                         : "bg-gray-700 text-gray-300 hover:bg-gray-600"
                     }`}
-                    onClick={() => setAutomationMode(mode as "manual" | "automated" | "hybrid")}
+                    onClick={() =>
+                      setAutomationMode(
+                        mode as "manual" | "automated" | "hybrid",
+                      )
+                    }
                   >
                     {mode.charAt(0).toUpperCase() + mode.slice(1)}
                   </button>

@@ -175,7 +175,8 @@ accuracy.
 
 **Autonomous Operation**
 
-- **SAE Level 4 Autonomy**: Fully autonomous operation without human intervention
+- **SAE Level 4 Autonomy**: Fully autonomous operation without human
+  intervention
 - **GPS-Denied Environments**: Operation in GPS-denied and EW-contested
   environments
 - **Network Independence**: Operation without network connectivity

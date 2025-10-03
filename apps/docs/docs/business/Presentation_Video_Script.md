@@ -45,7 +45,8 @@ counter-drone defense system."
 ### Solution Introduction (45-90 seconds)
 
 **Visual**: Phoenix Rooivalk system components  
-**Narration**: "Phoenix Rooivalk changes everything with SAE Level 4 edge autonomy:
+**Narration**: "Phoenix Rooivalk changes everything with SAE Level 4 edge
+autonomy:
 
 - 120-195ms response time - 25-40x faster than competitors
 - Complete operational independence without network dependency

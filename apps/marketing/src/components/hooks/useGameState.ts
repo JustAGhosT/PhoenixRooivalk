@@ -220,19 +220,25 @@ export const useGameState = () => {
   const removeThreat = useCallback((threatId: string) => {
     const currentTime = Date.now();
     setGameState((prev) => {
-      const threat = prev.threats.find(t => t.id === threatId);
-      if (!threat || threat.status === "neutralized" || threat.status === "crater") {
+      const threat = prev.threats.find((t) => t.id === threatId);
+      if (
+        !threat ||
+        threat.status === "neutralized" ||
+        threat.status === "crater"
+      ) {
         return prev;
       }
-      
-      const timeSinceLastNeutralization = currentTime - prev.lastNeutralizationTime;
-      const comboMultiplier = timeSinceLastNeutralization < 2000
-        ? Math.min(prev.comboMultiplier + 0.1, 3)
-        : 1;
-      
+
+      const timeSinceLastNeutralization =
+        currentTime - prev.lastNeutralizationTime;
+      const comboMultiplier =
+        timeSinceLastNeutralization < 2000
+          ? Math.min(prev.comboMultiplier + 0.1, 3)
+          : 1;
+
       const newLevel = Math.floor((prev.neutralized + 1) / 10) + 1;
       const newSpawnRate = Math.max(500, 2000 - (newLevel - 1) * 150);
-      
+
       return {
         ...prev,
         threats: prev.threats.map((t) =>
@@ -268,23 +274,32 @@ export const useGameState = () => {
   const processFadeOut = useCallback(() => {
     const currentTime = Date.now();
     setGameState((prev) => {
-      const updatedThreats = prev.threats.map((threat) => {
-        if (threat.status === "neutralized" && threat.fadeStartTime && currentTime >= threat.fadeStartTime) {
-          const fadeDuration = 3000;
-          const fadeProgress = Math.min((currentTime - threat.fadeStartTime) / fadeDuration, 1);
-          
-          if (fadeProgress >= 1) {
-            return { ...threat, status: "crater" as const };
+      const updatedThreats = prev.threats
+        .map((threat) => {
+          if (
+            threat.status === "neutralized" &&
+            threat.fadeStartTime &&
+            currentTime >= threat.fadeStartTime
+          ) {
+            const fadeDuration = 3000;
+            const fadeProgress = Math.min(
+              (currentTime - threat.fadeStartTime) / fadeDuration,
+              1,
+            );
+
+            if (fadeProgress >= 1) {
+              return { ...threat, status: "crater" as const };
+            }
           }
-        }
-        return threat;
-      }).filter((threat) => {
-        // Remove old craters
-        if (threat.status === "crater" && threat.neutralizedAt) {
-          return currentTime - threat.neutralizedAt < 10000;
-        }
-        return true;
-      });
+          return threat;
+        })
+        .filter((threat) => {
+          // Remove old craters
+          if (threat.status === "crater" && threat.neutralizedAt) {
+            return currentTime - threat.neutralizedAt < 10000;
+          }
+          return true;
+        });
 
       if (updatedThreats.length !== prev.threats.length) {
         return { ...prev, threats: updatedThreats };
@@ -330,9 +345,12 @@ export const useGameState = () => {
       }
 
       let effectiveCooldown = weapon.cooldown;
-      
+
       prev.activePowerUps.forEach((powerUp) => {
-        if (powerUp.isActive && currentTime - powerUp.startTime < powerUp.duration) {
+        if (
+          powerUp.isActive &&
+          currentTime - powerUp.startTime < powerUp.duration
+        ) {
           if (powerUp.effect.cooldownReduction) {
             effectiveCooldown *= powerUp.effect.cooldownReduction;
           }
@@ -368,7 +386,10 @@ export const useGameState = () => {
       Object.keys(updatedWeapons).forEach((weaponId) => {
         // eslint-disable-next-line security/detect-object-injection
         const weapon = updatedWeapons[weaponId];
-        if (!weapon.isReady && currentTime - weapon.lastFired >= weapon.cooldown) {
+        if (
+          !weapon.isReady &&
+          currentTime - weapon.lastFired >= weapon.cooldown
+        ) {
           // eslint-disable-next-line security/detect-object-injection
           updatedWeapons[weaponId] = {
             ...weapon,
@@ -422,15 +443,22 @@ export const useGameState = () => {
   const checkAchievements = useCallback(() => {
     setGameState((prev) => {
       const newAchievements = [...prev.achievements];
-      
-      if (prev.neutralized >= 10 && !newAchievements.includes("perfect-defense")) {
+
+      if (
+        prev.neutralized >= 10 &&
+        !newAchievements.includes("perfect-defense")
+      ) {
         newAchievements.push("perfect-defense");
       }
 
-      const recentNeutralizedThreats = prev.threats.filter(t => t.status === "neutralized").slice(-5);
-      if (recentNeutralizedThreats.length === 5 && 
-          recentNeutralizedThreats.every((t) => t.type === "swarm") &&
-          !newAchievements.includes("swarm-master")) {
+      const recentNeutralizedThreats = prev.threats
+        .filter((t) => t.status === "neutralized")
+        .slice(-5);
+      if (
+        recentNeutralizedThreats.length === 5 &&
+        recentNeutralizedThreats.every((t) => t.type === "swarm") &&
+        !newAchievements.includes("swarm-master")
+      ) {
         newAchievements.push("swarm-master");
       }
 
@@ -456,7 +484,10 @@ export const useGameState = () => {
 
       if (typeof window !== "undefined") {
         try {
-          localStorage.setItem("threatSimulatorLeaderboard", JSON.stringify(updatedLeaderboard));
+          localStorage.setItem(
+            "threatSimulatorLeaderboard",
+            JSON.stringify(updatedLeaderboard),
+          );
         } catch (error) {
           // eslint-disable-next-line no-console
           console.error("Failed to set leaderboard in localStorage", error);
@@ -470,8 +501,14 @@ export const useGameState = () => {
   const updateResources = useCallback((deltaTime: number) => {
     setGameState((prev) => ({
       ...prev,
-      energy: Math.min(prev.maxEnergy, prev.energy + prev.energyRegenRate * deltaTime),
-      cooling: Math.min(prev.maxCooling, prev.cooling + prev.coolingRate * deltaTime),
+      energy: Math.min(
+        prev.maxEnergy,
+        prev.energy + prev.energyRegenRate * deltaTime,
+      ),
+      cooling: Math.min(
+        prev.maxCooling,
+        prev.cooling + prev.coolingRate * deltaTime,
+      ),
     }));
   }, []);
 
@@ -513,16 +550,19 @@ export const useGameState = () => {
     }));
   }, []);
 
-  const setThreatPriority = useCallback((threatId: string, priority: "high" | "medium" | "low") => {
-    setGameState((prev) => ({
-      ...prev,
-      priorityThreats: {
-        ...prev.priorityThreats,
-        // eslint-disable-next-line security/detect-object-injection
-        [threatId]: priority,
-      },
-    }));
-  }, []);
+  const setThreatPriority = useCallback(
+    (threatId: string, priority: "high" | "medium" | "low") => {
+      setGameState((prev) => ({
+        ...prev,
+        priorityThreats: {
+          ...prev.priorityThreats,
+          // eslint-disable-next-line security/detect-object-injection
+          [threatId]: priority,
+        },
+      }));
+    },
+    [],
+  );
 
   const removeThreatPriority = useCallback((threatId: string) => {
     setGameState((prev) => {
@@ -536,49 +576,57 @@ export const useGameState = () => {
     });
   }, []);
 
-  const deployDrone = useCallback((droneType: Drone["type"], targetX: number, targetY: number) => {
-    setGameState((prev) => {
-      const bay = prev.deploymentBays.find((b) => b.droneType === droneType);
-      if (!bay || !bay.isReady || bay.currentDrones <= 0 || prev.mothership.energy < MOTHERSHIP_CONFIG.deploymentCost) {
-        return prev;
-      }
+  const deployDrone = useCallback(
+    (droneType: Drone["type"], targetX: number, targetY: number) => {
+      setGameState((prev) => {
+        const bay = prev.deploymentBays.find((b) => b.droneType === droneType);
+        if (
+          !bay ||
+          !bay.isReady ||
+          bay.currentDrones <= 0 ||
+          prev.mothership.energy < MOTHERSHIP_CONFIG.deploymentCost
+        ) {
+          return prev;
+        }
 
-      const currentTime = Date.now();
-      const droneConfig = DRONE_CONFIGS[droneType];
-      const newDrone: Drone = {
-        id: `drone-${currentTime}-${Math.random()}`,
-        x: prev.mothership.x,
-        y: prev.mothership.y,
-        targetX,
-        targetY,
-        lastAction: currentTime,
-        mothershipId: prev.mothership.id,
-        deploymentTime: currentTime,
-        ...droneConfig,
-        type: droneType,
-      };
+        const currentTime = Date.now();
+        const droneConfig = DRONE_CONFIGS[droneType];
+        const newDrone: Drone = {
+          id: `drone-${currentTime}-${Math.random()}`,
+          x: prev.mothership.x,
+          y: prev.mothership.y,
+          targetX,
+          targetY,
+          lastAction: currentTime,
+          mothershipId: prev.mothership.id,
+          deploymentTime: currentTime,
+          ...droneConfig,
+          type: droneType,
+        };
 
-      return {
-        ...prev,
-        drones: [...prev.drones, newDrone],
-        mothership: {
-          ...prev.mothership,
-          energy: prev.mothership.energy - MOTHERSHIP_CONFIG.deploymentCost,
-          deployedDrones: [...prev.mothership.deployedDrones, newDrone.id],
-          lastDeployment: currentTime,
-        },
-        deploymentBays: prev.deploymentBays.map((b) =>
-          b.id === bay.id
-            ? {
-                ...b,
-                currentDrones: b.currentDrones - 1,
-                lastDeployment: currentTime,
-              }
-            : b
-        ),
-      };
-    });
-  }, []);
+        return {
+          ...prev,
+          drones: [...prev.drones, newDrone],
+          mothership: {
+            ...prev.mothership,
+            energy: prev.mothership.energy - MOTHERSHIP_CONFIG.deploymentCost,
+            deployedDrones: [...prev.mothership.deployedDrones, newDrone.id],
+            lastDeployment: currentTime,
+          },
+          deploymentBays: prev.deploymentBays.map((b) =>
+            b.id === bay.id
+              ? {
+                  ...b,
+                  currentDrones: b.currentDrones - 1,
+                  lastDeployment: currentTime,
+                }
+              : b,
+          ),
+        };
+      });
+    },
+    [],
+  );
 
   const updateDrones = useCallback((updatedDrones: Drone[]) => {
     setGameState((prev) => ({
@@ -601,7 +649,7 @@ export const useGameState = () => {
         ...prev.mothership,
         energy: Math.min(
           prev.mothership.maxEnergy,
-          prev.mothership.energy + prev.mothership.energyRegenRate * deltaTime
+          prev.mothership.energy + prev.mothership.energyRegenRate * deltaTime,
         ),
       },
     }));
@@ -622,7 +670,7 @@ export const useGameState = () => {
                 targetX: prev.mothership.x,
                 targetY: prev.mothership.y,
               }
-            : d
+            : d,
         ),
       };
     });
@@ -660,17 +708,22 @@ export const useGameState = () => {
           (d) =>
             d.type === bay.droneType &&
             d.isReturning &&
-            Math.sqrt((d.x - prev.mothership.x) ** 2 + (d.y - prev.mothership.y) ** 2) < 10
+            Math.sqrt(
+              (d.x - prev.mothership.x) ** 2 + (d.y - prev.mothership.y) ** 2,
+            ) < 10,
         );
 
         return {
           ...bay,
-          currentDrones: Math.min(bay.capacity, bay.currentDrones + returnedDrones.length),
+          currentDrones: Math.min(
+            bay.capacity,
+            bay.currentDrones + returnedDrones.length,
+          ),
         };
       });
 
-      const updatedDeployedDrones = prev.mothership.deployedDrones.filter((droneId) =>
-        updatedDrones.some((d) => d.id === droneId)
+      const updatedDeployedDrones = prev.mothership.deployedDrones.filter(
+        (droneId) => updatedDrones.some((d) => d.id === droneId),
       );
 
       return {
@@ -703,7 +756,7 @@ export const useGameState = () => {
             isReady: true,
             ammo: config.maxAmmo,
           },
-        ])
+        ]),
       ),
       activePowerUps: [],
       gameTime: 0,
