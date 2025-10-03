@@ -28,12 +28,7 @@ export interface Weapon {
 export interface PowerUp {
   id: string;
   name: string;
-  type:
-    | "rapid-fire"
-    | "damage-boost"
-    | "area-effect"
-    | "energy-boost"
-    | "range-boost";
+  type: "rapid-fire" | "damage-boost" | "area-effect" | "range-boost";
   duration: number; // milliseconds
   startTime: number;
   isActive: boolean;
@@ -41,7 +36,6 @@ export interface PowerUp {
     damageMultiplier?: number;
     cooldownReduction?: number;
     rangeMultiplier?: number;
-    energyBoost?: number;
     penetration?: boolean;
   };
 }
@@ -119,10 +113,10 @@ export const POWER_UP_CONFIGS: Record<
   string,
   Omit<PowerUp, "startTime" | "isActive">
 > = {
-  "multi-shot": {
-    id: "multi-shot",
-    name: "Multi-Shot",
-    type: "multi-shot",
+  "damage-boost": {
+    id: "damage-boost",
+    name: "Damage Boost",
+    type: "damage-boost",
     duration: 10000, // 10 seconds
     effect: {
       damageMultiplier: 1.5,
@@ -146,13 +140,13 @@ export const POWER_UP_CONFIGS: Record<
       rangeMultiplier: 2.0,
     },
   },
-  "shield-penetration": {
-    id: "shield-penetration",
-    name: "Shield Penetration",
-    type: "shield-penetration",
+  "range-boost": {
+    id: "range-boost",
+    name: "Range Boost",
+    type: "range-boost",
     duration: 12000, // 12 seconds
     effect: {
-      penetration: true,
+      rangeMultiplier: 1.5,
     },
   },
 };

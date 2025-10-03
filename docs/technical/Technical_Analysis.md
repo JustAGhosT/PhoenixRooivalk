@@ -379,7 +379,8 @@ Key technical advantages include:
 - **Superior Performance**: 99.7% accuracy with <200ms response time
 - **Advanced AI**: Multi-modal sensor fusion with edge AI processing
 - **Blockchain Integration**: Secure evidence anchoring with legal admissibility
-- **Operational Excellence**: SAE Level 4 autonomy with comprehensive integration
+- **Operational Excellence**: SAE Level 4 autonomy with comprehensive
+  integration
 - **Competitive Positioning**: Significant performance advantages over existing
   systems
 
