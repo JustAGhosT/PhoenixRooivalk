@@ -148,10 +148,10 @@ cameras, acoustic
 - **Predictive Analytics**: Predictive threat assessment
 
 **Performance Advantages**
-- **Response Time**: {\d+}-40x faster than current systems
+- **Response Time**: 10-40x faster than current systems
 - **Accuracy**: Higher accuracy than industry average
 - **False Positives**: Significantly reduced false positive rate
-- **Autonomy**: Level-{\d+} autonomy without network dependency
+- **Autonomy**: SAE Level 4 autonomy without network dependency
 
 **Integration Capabilities**
 - **System Integration**: Seamless integration with existing systems
@@ -192,10 +192,11 @@ cameras, acoustic
 - **Power Requirements**: Reliable power supply
 
 **Software Requirements**
-- **Operating System**: Ubuntu {\d+}.{\d+}/{\d+}.{\d+} with JetPack {\d+}.{\d+}+
+
+- **Operating System**: Ubuntu 20.04/22.04 with JetPack 5.1+
 - **AI Frameworks**: ```
 TensorRT, DeepStream
-```, ROS {\d+}
+```, ROS 2
 - **Blockchain Integration**: Solana blockchain integration
 - **Security Software**: Comprehensive security software stack
 
@@ -208,8 +209,8 @@ TensorRT, DeepStream
 ### Deployment Considerations
 
 **Environmental Requirements**
-- **Temperature Range**: -{\d+}°C to +{\d+}°C operating temperature
-- **Humidity**: {\d+}-{\d+}% relative humidity
+- **Temperature Range**: -40°C to +70°C operating temperature
+- **Humidity**: 5-95% relative humidity
 - **Weather Resistance**: MIL-STD compliance for weather resistance
 - **EMI/EMC**: Electromagnetic interference and compatibility
 

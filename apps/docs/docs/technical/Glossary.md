@@ -28,7 +28,7 @@ engineers, and system integrators.
 
 - Interfaces and services used to ``` task, monitor, and coordinate system
   components and effectors
-- Includes STANAG {\d+} compliance for standardized UAS control
+- Includes STANAG 4586 compliance for standardized UAS control
 - Supports both manned and unmanned command structures
 
 **Counter-UAS / C-UAS**
@@ -257,7 +257,7 @@ engineers, and system integrators.
 **TensorRT**
 
 - NVIDIA's inference optimization library
-- Provides {\d+}-10x speedup over standard inference
+- Provides 2-10x speedup over standard inference
 - Optimizes models for edge deployment and real-time processing
 
 **DeepStream**
