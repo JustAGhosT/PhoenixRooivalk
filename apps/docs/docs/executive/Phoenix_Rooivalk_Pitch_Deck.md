@@ -115,26 +115,25 @@ competitor1: "false", competitor2: "false", competitor3: "false" } ]} />
 
 ## Revenue Streams
 
-### Hardware Sales ({\d+}% of revenue)
+### Hardware Sales (60% of revenue)
 
-- **Base System Units**: R850, {\d+} per unit
-- **Sensor Upgrades**: R50, {\d+}-{\d+}, {\d+} per additional sensor
+- **Base System Units**: R850,000 per unit
+- **Sensor Upgrades**: R50,000-150,000 per additional sensor
 - **Modular Components**: Customizable threat-specific configurations
-- **Volume Discounts**: {\d+}-{\d+}% for orders >{\d+} units
+- **Volume Discounts**: 10-20% for orders >5 units
 
-### Software & Services ({\d+}% of revenue)
+### Software & Services (40% of revenue)
 
-- **Annual Software Licenses**: R85, {\d+} per system
-- **Maintenance Contracts**: R42, {\d+} per system/year
-- **Training Programs**: R25, {\d+}-{\d+}, {\d+} per operator
-- **Custom Development**: R500, {\d+}-{\d+}, {\d+},{\d+} per project
+- **Annual Software Licenses**: R85,000 per system
+- **Maintenance Contracts**: R42,500 per system/year
+- **Training Programs**: R25,000-50,000 per operator
+- **Custom Development**: R500,000-2,000,000 per project
 
-&lt;MarketStats title="Financial Projections ({\d+}-Year)" stats={[ { label:
-"Year {\d+} Revenue", value: "R25M", description: "{\d+} systems sold" }, {
-label: "Year {\d+} Revenue", value: "R150M", description: "{\d+} systems
-
-- services" }, { label: "Year {\d+} Revenue", value: "R500M", description:
-  "{\d+} systems + recurring" }, { label: "Gross Margin", value: "{\d+}%",
+<MarketStats title="Financial Projections (3-Year)" stats={[ { label:
+"Year 1 Revenue", value: "R25M", description: "15 systems sold" }, {
+label: "Year 2 Revenue", value: "R150M", description: "75 systems
+services" }, { label: "Year 3 Revenue", value: "R500M", description:
+  "200 systems + recurring" }, { label: "Gross Margin", value: "65%",
   description: "Hardware + software combined" } ]} /> </PitchDeckSlide>
 
 <PitchDeckSlide title="Market Positioning" slideNumber={6} totalSlides={15}>
@@ -142,31 +141,31 @@ label: "Year {\d+} Revenue", value: "R150M", description: "{\d+} systems
 
 ## Primary Markets
 
-### {\d+}. South African Defense
+### 1. South African Defense
 
 - **Eskom Power Stations**: Critical infrastructure protection
 - **Mining Operations**: Security for high-value assets
 - **Border Protection**: National security requirements
 - **Local Content**: Government procurement preferences
 
-### {\d+}. African Markets
+### 2. African Markets
 
 - **Nigerian Oil Facilities**: Boko Haram threat mitigation
 - **Kenyan Infrastructure**: Al-Shabaab countermeasures
 - **Egyptian Tourism**: Red Sea resort protection
 - **Regional Partnerships**: BRICS collaboration opportunities
 
-### {\d+}. Middle East
+### 3. Middle East
 
-- **UAE Critical Infrastructure**: Expo {\d+} legacy security
-- **Saudi Vision {\d+}**: NEOM city protection
+- **UAE Critical Infrastructure**: Expo 2020 legacy security
+- **Saudi Vision 2030**: NEOM city protection
 - **Qatar World Cup**: Stadium security systems
 - **Technology Transfer**: Competitive advantage over Western suppliers
 
 ## Competitive Advantages
 
-- **Non-ITAR Jurisdiction**: Export to {\d+}+ countries
-- **Cost Competitiveness**: {\d+}-{\d+}% lower than US/EU alternatives
+- **Non-ITAR Jurisdiction**: Export to 150+ countries
+- **Cost Competitiveness**: 30-50% lower than US/EU alternatives
 - **Technology Transfer**: Willingness to share IP
 - **Political Neutrality**: Access to diverse markets </PitchDeckSlide>
 
@@ -338,12 +337,12 @@ Comprehensive risk management through technology diversification, market expansi
 - **Asian Markets**: Airport and port security
 - **European Integration**: NATO and EU defense cooperation
 
-&lt;MarketStats title="Market Segmentation" stats={[ { label: "Military", value:
-"{\d+}%", description: "Defense and security forces" }, {
-label: "Infrastructure", value: "{\d+}%", description: "Critical
-facilities protection" }, { label: "Commercial", value: "{\d+}%",
+<MarketStats title="Market Segmentation" stats={[ { label: "Military", value:
+"60%", description: "Defense and security forces" }, {
+label: "Infrastructure", value: "25%", description: "Critical
+facilities protection" }, { label: "Commercial", value: "15%",
 description: "Private sector applications" }, { label: "International",
-value: "{\d+}%", description: "Export and partnerships" } ]} />
+value: "25%", description: "Export and partnerships" } ]} />
 </PitchDeckSlide>
 
 <PitchDeckSlide title="Technology Validation" slideNumber={12} totalSlides={15}>
@@ -358,7 +357,7 @@ value: "{\d+}%", description: "Export and partnerships" } ]} />
 
 ## South African Capabilities
 
-- **CSIR Radar Technology**: {\d+}+ years defense research
+- **CSIR Radar Technology**: 30+ years defense research
 - **Reutech Sensors**: Proven military sensor systems
 - **Milkor UAVs**: Combat-proven drone platforms
 - **Paramount Vehicles**: International defense success
@@ -398,11 +397,11 @@ Every component has been validated in real-world combat conditions, ensuring rel
 - **Technology Moats**: AI/ML and blockchain competitive advantages
 - **Export Opportunities**: Global market access through South African advantage
 
-&lt;MarketStats title="Investment Timeline" stats={[ { label: "Series A",
-value: "R120M", description: "Months {\d+}-{\d+}" }, { label: "Series B",
-value: "R300M", description: "Months {\d+}-{\d+}" }, { label: "Series C",
-value: "R500M", description: "Months {\d+}-{\d+}" }, { label: "Exit/IPO", value:
-"R2-5B", description: "Year {\d+}-{\d+}" } ]} /> </PitchDeckSlide>
+<MarketStats title="Investment Timeline" stats={[ { label: "Series A",
+value: "R120M", description: "Months 1-6" }, { label: "Series B",
+value: "R300M", description: "Months 12-18" }, { label: "Series C",
+value: "R500M", description: "Months 24-30" }, { label: "Exit/IPO", value:
+"R2-5B", description: "Year 5-7" } ]} /> </PitchDeckSlide>
 
 <PitchDeckSlide title="Next Steps & Call to Action" slideNumber={14} totalSlides={15}>
 # Partnership & Investment Opportunities
@@ -416,17 +415,17 @@ value: "R500M", description: "Months {\d+}-{\d+}" }, { label: "Exit/IPO", value:
 
 ## Development Timeline
 
-- **Q1 {\d+}**: Series A funding and team expansion
-- **Q2 {\d+}**: Prototype development and initial testing
-- **Q3 {\d+}**: Field trials and customer validation
-- **Q4 {\d+}**: First commercial deployments
+- **Q1 2026**: Series A funding and team expansion
+- **Q2 2026**: Prototype development and initial testing
+- **Q3 2026**: Field trials and customer validation
+- **Q4 2026**: First commercial deployments
 
 ## Success Metrics
 
-- **Technical**: {\d+}%+ detection accuracy, <{\d+} second response time
-- **Commercial**: {\d+} systems sold in Year {\d+}, R25M revenue
-- **Strategic**: {\d+} international partnerships, {\d+} African markets
-- **Financial**: {\d+}% gross margins, {\d+}% EBITDA by Year {\d+}
+- **Technical**: 99%+ detection accuracy, <0.2 second response time
+- **Commercial**: 15 systems sold in Year 1, R25M revenue
+- **Strategic**: 5 international partnerships, 3 African markets
+- **Financial**: 65% gross margins, 25% EBITDA by Year 3
 
 <TechnicalHighlight title="Join the Revolution" type="success" icon="🚀">
 Be part of the next generation of defense technology. Phoenix Rooivalk represents the future of counter-drone defense - secure, autonomous, and blockchain-verified.
@@ -439,7 +438,7 @@ Be part of the next generation of defense technology. Phoenix Rooivalk represent
 ## Investment Contact
 
 - **Email**: jurie@phoenixvc.tech
-- **Phone**: +1 (555) 123-4567
+- **Phone**: +27 (069) 140-6835
 - **Website**: https://phoenixrooivalk.netlify.app/
 - **LinkedIn**: Phoenix Rooivalk Defense Systems
 
@@ -453,7 +452,7 @@ Be part of the next generation of defense technology. Phoenix Rooivalk represent
 ## Key Documents
 
 - **Technical Whitepaper**: Detailed system specifications and capabilities
-- **Financial Model**: {\d+}-year projections and investment returns
+- **Financial Model**: 5-year projections and investment returns
 - **Market Analysis**: Competitive landscape and opportunity assessment
 - **Technology Roadmap**: Development timeline and milestones
 
