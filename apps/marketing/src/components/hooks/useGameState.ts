@@ -309,6 +309,22 @@ export const useGameState = () => {
     setGameState(prev => ({ ...prev, level }));
   }, []);
 
+  const setWeatherMode = useCallback((mode: GameState['weatherMode']) => {
+    setGameState(prev => ({ ...prev, weatherMode: mode }));
+  }, []);
+
+  const setMissionType = useCallback((type: GameState['missionType']) => {
+    setGameState(prev => ({ ...prev, missionType: type }));
+  }, []);
+
+  const setAutomationMode = useCallback((mode: GameState['automationMode']) => {
+    setGameState(prev => ({ ...prev, automationMode: mode }));
+  }, []);
+
+  const setShowDeploymentZones = useCallback((show: boolean) => {
+    setGameState(prev => ({ ...prev, showDeploymentZones: show }));
+  }, []);
+
   const switchWeapon = useCallback((weaponId: string) => {
     setGameState((prev) => ({
       ...prev,
@@ -835,5 +851,9 @@ export const useGameState = () => {
     resetGameState,
     processFadeOut,
     setLevel,
+    setWeatherMode,
+    setMissionType,
+    setAutomationMode,
+    setShowDeploymentZones,
   };
 };
