@@ -19,7 +19,7 @@ Status indicator showing high Rules of Engagement risk level.
 
 ## AI Generation Prompt
 
-```
+```text
 Create a ROE high risk status icon: warning triangle with exclamation mark. Military style, outline-based, 24x24px. Color #ef4444. High risk, warning state aesthetic.
 ```
 

@@ -20,7 +20,7 @@ Protective shield drone for area defense and protection.
 
 ## AI Generation Prompt
 
-```
+```text
 Create a shield drone icon: triangle with shield symbol inside. Military style, outline-based, 24x24px. Color #10b981. Defense, protection, area coverage aesthetic.
 ```
 

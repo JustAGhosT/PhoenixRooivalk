@@ -20,7 +20,7 @@ neutralization.
 
 ## AI Generation Prompt
 
-```
+```text
 Create an airburst weapon icon: explosion burst or shrapnel pattern. Military style, outline-based, 24x24px. Color #ECCC68. Area effect, proximity-fused weapon aesthetic.
 ```
 

@@ -575,7 +575,7 @@ const EffectorIcon: React.FC<IconProps> = ({
 
 ### Directory Structure
 
-```
+```text
 src/components/icons/
 ├── effectors/          # Counter-drone weapon systems (18 icons)
 ├── drones/             # Deployable UAV types (17 icons)

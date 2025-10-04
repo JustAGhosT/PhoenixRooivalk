@@ -20,7 +20,7 @@ misdirection.
 
 ## AI Generation Prompt
 
-```
+```text
 Create an AI deception icon: shimmering effect or neural network pattern. Military style, outline-based, 24x24px. Color #8b5cf6. Advanced electronic warfare, AI-powered aesthetic.
 ```
 

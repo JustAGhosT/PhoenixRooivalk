@@ -19,7 +19,7 @@ Physical net capture system for non-destructive drone neutralization.
 
 ## AI Generation Prompt
 
-```
+```text
 Create a capture net icon: interlaced net pattern or fishing net mesh. Military style, outline-based, 24x24px. Color #10b981. Physical capture, containment, non-destructive aesthetic.
 ```
 

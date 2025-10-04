@@ -19,7 +19,7 @@ High power microwave burst weapon for electronic disruption.
 
 ## AI Generation Prompt
 
-```
+```text
 Create a microwave burst weapon icon: concentric wave rings emanating from center point. Military style, outline-based, 24x24px. Color #FFA502. Electronic disruption, wave propagation effect.
 ```
 

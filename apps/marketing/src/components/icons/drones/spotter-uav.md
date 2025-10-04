@@ -20,7 +20,7 @@ Target designation drone for precision guidance and marking operations.
 
 ## AI Generation Prompt
 
-```
+```text
 Create a spotter drone icon: triangle with crosshair symbol inside. Military style, outline-based, 24x24px. Color #3b82f6. Target designation, precision guidance, marking aesthetic.
 ```
 

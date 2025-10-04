@@ -19,7 +19,7 @@ Area effect enhancement power-up for expanded weapon coverage.
 
 ## AI Generation Prompt
 
-```
+```text
 Create an area effect power-up icon: expanding circle or burst pattern. Military style, outline-based, 24x24px. Color #8b5cf6. Area coverage, expansion aesthetic.
 ```
 

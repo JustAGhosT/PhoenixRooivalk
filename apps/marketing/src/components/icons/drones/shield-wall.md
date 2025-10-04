@@ -20,7 +20,7 @@ Directional shield barrier for area protection and defensive wall operations.
 
 ## AI Generation Prompt
 
-```
+```text
 Create a shield wall icon: wall section with shield overlay pattern. Military style, outline-based, 24x24px. Color #10b981. Directional protection, barrier, defensive wall aesthetic.
 ```
 

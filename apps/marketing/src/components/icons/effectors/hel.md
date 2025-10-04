@@ -20,7 +20,7 @@ hard-kill.
 
 ## AI Generation Prompt
 
-```
+```text
 Create a high-energy laser weapon icon: concentrated laser beam with thermal effect visualization. Military style, outline-based, 24x24px. Color #2ED573. High-energy, thermal defeat, precise targeting aesthetic.
 ```
 

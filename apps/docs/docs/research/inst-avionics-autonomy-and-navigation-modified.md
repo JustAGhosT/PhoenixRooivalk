@@ -7,6 +7,7 @@ RESEARCH SCOPE:
 The assistant should investigate the following technical domains with engineering depth:
 
 **Flight Control Computers & Architectures:**
+
 - Primary and backup flight controller architectures, including redundancy topologies (hot standby, cold standby, triple modular redundancy)
 - Real-Time Operating System (RTOS) implementations: FreeRTOS, VxWorks, PX4, ArduPilot, proprietary military systems
 - Design Assurance Level (DAL) intent and implementation approaches, even for non-certified systems
@@ -15,6 +16,7 @@ The assistant should investigate the following technical domains with engineerin
 - Sensor fusion algorithms and computational requirements
 
 **Navigation Systems:**
+
 - GNSS receiver technologies: multi-constellation (GPS, GLONASS, Galileo, BeiDou), RTK implementations, PPP solutions
 - Inertial Navigation Systems (INS): MEMS IMU specifications, tactical-grade IMUs, fiber optic gyroscopes
 - Visual-Inertial Odometry (VIO) systems: sensor requirements, computational demands, accuracy metrics
@@ -24,6 +26,7 @@ The assistant should investigate the following technical domains with engineerin
 - Optical flow sensors and their integration with navigation stacks
 
 **Detect-and-Avoid (DAA) Systems:**
+
 - ADS-B In receivers: frequency bands, range performance, integration architectures
 - Radar systems for collision avoidance: frequency bands, detection ranges, false alarm rates, weather penetration
 - Vision-based detection: camera specifications, computer vision algorithms, detection ranges and reliability

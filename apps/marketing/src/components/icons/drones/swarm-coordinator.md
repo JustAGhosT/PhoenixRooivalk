@@ -20,7 +20,7 @@ Swarm coordination drone for managing multiple UAV operations.
 
 ## AI Generation Prompt
 
-```
+```text
 Create a swarm coordinator drone icon: triangle with network nodes pattern. Military style, outline-based, 24x24px. Color #f59e0b. Swarm management, coordination, network control aesthetic.
 ```
 

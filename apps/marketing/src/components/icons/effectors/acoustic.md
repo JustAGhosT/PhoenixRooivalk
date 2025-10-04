@@ -19,7 +19,7 @@ Acoustic disruption system for audio interference and drone disruption.
 
 ## AI Generation Prompt
 
-```
+```text
 Create an acoustic disruptor icon: speaker with sound waves or mute symbol. Military style, outline-based, 24x24px. Color #84cc16. Audio disruption, sound interference aesthetic.
 ```
 

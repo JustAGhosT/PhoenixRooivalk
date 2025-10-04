@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
 export type ThreatType = "hostile" | "unknown" | "friendly";
 export type DroneRole =
@@ -50,6 +50,10 @@ export const RadarSystem: React.FC<RadarSystemProps> = ({
 }) => {
   const [selectedTarget, setSelectedTarget] = useState<string | null>(null);
   const [showLegend, setShowLegend] = useState(true);
+  
+  // Animation state for sweep line
+  const [sweepAngle, setSweepAngle] = useState(0);
+  const animationRef = useRef<number>();
 
   const getThreatColor = (type: ThreatType): string => {
     switch (type) {
@@ -119,6 +123,22 @@ export const RadarSystem: React.FC<RadarSystemProps> = ({
   };
 
   const radarSize = 400; // Fixed radar display size
+
+  // Animation loop for sweep line
+  useEffect(() => {
+    const animate = () => {
+      setSweepAngle((prevAngle) => prevAngle + 0.02); // Increment angle for smooth rotation
+      animationRef.current = requestAnimationFrame(animate);
+    };
+    
+    animationRef.current = requestAnimationFrame(animate);
+    
+    return () => {
+      if (animationRef.current) {
+        cancelAnimationFrame(animationRef.current);
+      }
+    };
+  }, []);
 
   return (
     <div className={`enhanced-radar-system ${className}`}>
@@ -342,11 +362,11 @@ export const RadarSystem: React.FC<RadarSystemProps> = ({
               y1={centerPosition.y}
               x2={
                 centerPosition.x +
-                Math.cos(Date.now() * 0.002) * (radarSize / 2 - 20)
+                Math.cos(sweepAngle) * (radarSize / 2 - 20)
               }
               y2={
                 centerPosition.y +
-                Math.sin(Date.now() * 0.002) * (radarSize / 2 - 20)
+                Math.sin(sweepAngle) * (radarSize / 2 - 20)
               }
               stroke="var(--sim-accent)"
               strokeWidth="2"

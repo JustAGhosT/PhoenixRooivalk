@@ -7,7 +7,10 @@ import Disclaimer from "./Disclaimer";
 import { DroneDeployment } from "./DroneDeployment";
 import { EnergyBudget } from "./EnergyBudget";
 import { EnergyManagement } from "./EnergyManagement";
-import { DemoCooldownMeter, WeaponCooldownMeter } from "./EnhancedCooldownMeter";
+import {
+  DemoCooldownMeter,
+  WeaponCooldownMeter,
+} from "./EnhancedCooldownMeter";
 import { ROEIndicator } from "./ROEIndicator";
 import { RadarSystem, FriendlyDeployment, RadarTarget } from "./RadarSystem";
 import EventFeed from "./EventFeed";
@@ -55,7 +58,9 @@ export const ThreatSimulator: React.FC<ThreatSimulatorProps> = ({
     useState(autoFullscreen);
 
   // Demo mode state
-  const [demoViewMode, setDemoViewMode] = useState<"full" | "components" | "systems">("full");
+  const [demoViewMode, setDemoViewMode] = useState<
+    "full" | "components" | "systems"
+  >("full");
   const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
@@ -411,7 +416,9 @@ export const ThreatSimulator: React.FC<ThreatSimulatorProps> = ({
                 <div className="component-showcase">
                   <div className="showcase-header">
                     <h1>Enhanced Threat Simulator Components</h1>
-                    <p>Individual component demonstrations with real-world data</p>
+                    <p>
+                      Individual component demonstrations with real-world data
+                    </p>
                   </div>
 
                   <div className="showcase-grid">
@@ -532,9 +539,21 @@ export const ThreatSimulator: React.FC<ThreatSimulatorProps> = ({
                       <div className="component-demo">
                         <FilterChips
                           chips={[
-                            { id: "hard_kill", label: "Hard Kill", color: "#ef4444" },
-                            { id: "soft_kill", label: "Soft Kill", color: "#f59e0b" },
-                            { id: "deception", label: "Deception", color: "#70A1FF" },
+                            {
+                              id: "hard_kill",
+                              label: "Hard Kill",
+                              color: "#ef4444",
+                            },
+                            {
+                              id: "soft_kill",
+                              label: "Soft Kill",
+                              color: "#f59e0b",
+                            },
+                            {
+                              id: "deception",
+                              label: "Deception",
+                              color: "#70A1FF",
+                            },
                             { id: "denial", label: "Denial", color: "#8b5cf6" },
                           ]}
                           selectedFilters={["hard_kill", "deception"]}
@@ -552,7 +571,9 @@ export const ThreatSimulator: React.FC<ThreatSimulatorProps> = ({
                           brands={["Raytheon", "Lockheed Martin"]}
                           sources={["Defense News", "Jane's Defence Weekly"]}
                         >
-                          <button className="demo-info-btn">Smart Slug Details</button>
+                          <button className="demo-info-btn">
+                            Smart Slug Details
+                          </button>
                         </InfoPopover>
                       </div>
                     </div>
@@ -595,8 +616,8 @@ export const ThreatSimulator: React.FC<ThreatSimulatorProps> = ({
                     <div className="system-demo">
                       <h2>Planning Phase</h2>
                       <p>
-                        Select effectors and drones with energy constraints and legal
-                        compliance
+                        Select effectors and drones with energy constraints and
+                        legal compliance
                       </p>
                       <div className="demo-placeholder">
                         <p>Full planning interface with:</p>
@@ -612,7 +633,9 @@ export const ThreatSimulator: React.FC<ThreatSimulatorProps> = ({
 
                     <div className="system-demo">
                       <h2>Active Phase</h2>
-                      <p>Real-time threat engagement with cooldown management</p>
+                      <p>
+                        Real-time threat engagement with cooldown management
+                      </p>
                       <div className="demo-placeholder">
                         <p>Active engagement interface with:</p>
                         <ul>
