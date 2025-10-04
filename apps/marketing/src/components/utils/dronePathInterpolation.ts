@@ -260,13 +260,25 @@ export function createBezierPath(
   end: { x: number; y: number },
   config: Partial<MovementConfig> = {},
 ): DronePathInterpolator {
-  const interpolator = new DronePathInterpolator({
-    ...config,
-    easing: easingFunctions.bezier,
-  });
-
-  interpolator.setTarget(end.x, end.y, start.x, start.y);
-  return interpolator;
+  // Calculate multiple points along the Bezier curve
+  const points: Array<{ x: number; y: number }> = [];
+  const segments = 10;
+  
+  for (let i = 0; i <= segments; i++) {
+    const t = i / segments;
+    const x = 
+      Math.pow(1 - t, 2) * start.x +
+      2 * (1 - t) * t * control.x +
+      Math.pow(t, 2) * end.x;
+    const y =
+      Math.pow(1 - t, 2) * start.y +
+      2 * (1 - t) * t * control.y +
+      Math.pow(t, 2) * end.y;
+    points.push({ x, y });
+  }
+  
+  // Return a waypoint path through the Bezier points
+  return createWaypointPath(points, start.x, start.y, config);
 }
 
 /**
@@ -277,6 +289,8 @@ export class PatrolPath {
   private currentIndex: number = 0;
   private interpolator: DronePathInterpolator;
   private direction: number = 1; // 1 for forward, -1 for backward
+  private currentX: number = 0;
+  private currentY: number = 0;
 
   constructor(
     waypoints: Array<{ x: number; y: number }>,
@@ -286,6 +300,9 @@ export class PatrolPath {
     this.interpolator = new DronePathInterpolator(config);
 
     if (waypoints.length > 0) {
+      // Initialize current position to first waypoint
+      this.currentX = waypoints[0].x;
+      this.currentY = waypoints[0].y;
       this.interpolator.setTarget(
         waypoints[0].x,
         waypoints[0].y,
@@ -299,6 +316,10 @@ export class PatrolPath {
     currentX: number,
     currentY: number,
   ): { x: number; y: number; velocity: { x: number; y: number } } {
+    // Update our tracked current position
+    this.currentX = currentX;
+    this.currentY = currentY;
+    
     const result = this.interpolator.updatePosition(currentX, currentY);
 
     // Check if we've reached the current waypoint
@@ -324,6 +345,7 @@ export class PatrolPath {
     }
 
     const target = this.waypoints[this.currentIndex];
-    this.interpolator.setTarget(target.x, target.y, target.x, target.y);
+    // Use the real current position instead of duplicating target
+    this.interpolator.setTarget(target.x, target.y, this.currentX, this.currentY);
   }
 }

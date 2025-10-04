@@ -50,7 +50,7 @@ export const RadarSystem: React.FC<RadarSystemProps> = ({
 }) => {
   const [selectedTarget, setSelectedTarget] = useState<string | null>(null);
   const [showLegend, setShowLegend] = useState(true);
-  
+
   // Animation state for sweep line
   const [sweepAngle, setSweepAngle] = useState(0);
   const animationRef = useRef<number>();
@@ -130,9 +130,9 @@ export const RadarSystem: React.FC<RadarSystemProps> = ({
       setSweepAngle((prevAngle) => prevAngle + 0.02); // Increment angle for smooth rotation
       animationRef.current = requestAnimationFrame(animate);
     };
-    
+
     animationRef.current = requestAnimationFrame(animate);
-    
+
     return () => {
       if (animationRef.current) {
         cancelAnimationFrame(animationRef.current);
@@ -240,15 +240,15 @@ export const RadarSystem: React.FC<RadarSystemProps> = ({
             const isSelected = selectedTarget === target.id;
 
             return (
-              <g 
-                key={target.id} 
+              <g
+                key={target.id}
                 className="radar-target focusable-target"
                 tabIndex={0}
                 role="button"
                 aria-label={`Target ${target.id} ${target.type}`}
                 aria-selected={isSelected}
                 onKeyDown={(e) => {
-                  if (e.key === 'Enter' || e.key === ' ') {
+                  if (e.key === "Enter" || e.key === " ") {
                     e.preventDefault();
                     setSelectedTarget(target.id);
                   }
@@ -374,12 +374,10 @@ export const RadarSystem: React.FC<RadarSystemProps> = ({
               x1={centerPosition.x}
               y1={centerPosition.y}
               x2={
-                centerPosition.x +
-                Math.cos(sweepAngle) * (radarSize / 2 - 20)
+                centerPosition.x + Math.cos(sweepAngle) * (radarSize / 2 - 20)
               }
               y2={
-                centerPosition.y +
-                Math.sin(sweepAngle) * (radarSize / 2 - 20)
+                centerPosition.y + Math.sin(sweepAngle) * (radarSize / 2 - 20)
               }
               stroke="var(--sim-accent)"
               strokeWidth="2"

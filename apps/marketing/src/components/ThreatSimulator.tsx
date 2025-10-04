@@ -8,8 +8,8 @@ import { DroneDeployment } from "./DroneDeployment";
 import { EnergyBudget } from "./EnergyBudget";
 import { EnergyManagement } from "./EnergyManagement";
 import {
-    DemoCooldownMeter,
-    WeaponCooldownMeter,
+  DemoCooldownMeter,
+  WeaponCooldownMeter,
 } from "./EnhancedCooldownMeter";
 import EventFeed from "./EventFeed";
 import { FilterChips } from "./FilterChips";
@@ -774,21 +774,27 @@ export const ThreatSimulator: React.FC<ThreatSimulatorProps> = ({
         <TokenStore
           resourceManager={resourceManager}
           onClose={() => setShowTokenStore(false)}
-          onPurchaseDrone={(type) => {
-            // Handle drone purchase logic here
+          onPurchaseDrone={async (type) => {
             try {
-              // TODO: Implement actual purchase logic when API is available
-              // For now, dispatch a meaningful event for tracking
-              const purchaseEvent = new CustomEvent("drone-purchase", {
-                detail: { type, timestamp: Date.now() },
-              });
-              window.dispatchEvent(purchaseEvent);
+              // Call the actual purchase API
+              const success = resourceManager.purchaseDrone(type);
+              
+              if (success) {
+                // Dispatch the existing "drone-purchase" event
+                const purchaseEvent = new CustomEvent("drone-purchase", {
+                  detail: { type, timestamp: Date.now() },
+                });
+                window.dispatchEvent(purchaseEvent);
 
-              // Close the token store modal after purchase
-              setShowTokenStore(false);
+                // Close the token store modal after successful purchase
+                setShowTokenStore(false);
 
-              // Add feedback to the game feed
-              addFeed(`Drone ${type} purchase initiated.`);
+                // Add success feedback to the game feed
+                addFeed(`Drone ${type} purchased successfully!`);
+              } else {
+                // Purchase failed - don't close modal, show error
+                addFeed(`Failed to purchase drone ${type}. Insufficient tokens or drone not unlocked.`);
+              }
             } catch (error) {
               console.error("Failed to process drone purchase:", error);
               addFeed(`Failed to purchase drone ${type}.`);

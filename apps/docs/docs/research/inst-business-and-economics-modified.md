@@ -44,7 +44,7 @@ Risk and ROI sensitivity analysis:
 - Technology obsolescence timelines and upgrade path economics
 - Failure mode economic impact analysis
 
-2. **Technical Performance Analysis**
+1. **Technical Performance Analysis**
 
 Component-level specifications with quantitative benchmarks:
 
