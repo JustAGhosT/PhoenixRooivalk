@@ -72,7 +72,8 @@ on UI analysis and user feedback.
 - [ ] **Color-Blind Resilience on Radar**
 
   - **Problem**: Hostiles rely on red fill only
-  - **Fix**: Use SVG elements with distinct shapes (circle, ring, triangle) and color as secondary cue
+  - **Fix**: Use SVG elements with distinct shapes (circle, ring, triangle) and
+    color as secondary cue
 
   ```html
   <!-- Use SVG elements for proper shape rendering -->
