@@ -14,7 +14,8 @@ export const CooldownMeter: React.FC<CooldownMeterProps> = ({
   className = "",
 }) => {
   const now = Date.now();
-  const elapsed = lastFired ? now - lastFired : Infinity;
+  // Explicitly check for null/undefined to avoid treating 0 as "never fired"
+  const elapsed = lastFired == null ? Infinity : now - lastFired;
   const remaining = Math.max(0, cooldown - elapsed);
   const progress =
     cooldown > 0

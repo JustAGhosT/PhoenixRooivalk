@@ -175,7 +175,7 @@ export const SynergySystem: React.FC<SynergySystemProps> = ({
             <div className="synergy-bonuses">
               {Object.entries(synergy.bonus).map(([stat, value]) => (
                 <div key={stat} className="synergy-bonus">
-                  <span className="bonus-stat">{stat.replace("_", " ")}:</span>
+                  <span className="bonus-stat">{stat.replace(/_/g, " ")}:</span>
                   <span className="bonus-value">
                     +{Math.round(value * 100)}%
                   </span>

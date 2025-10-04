@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useRef } from "react";
 import { EnergyBudget } from "./EnergyBudget";
 
 export interface EnergyCost {
@@ -71,15 +71,11 @@ export const EnergyManagement: React.FC<EnergyManagementProps> = ({
   activePowerUps,
   onEnergyUpdate,
 }) => {
-  const [usedEnergy, setUsedEnergy] = useState(0);
-  const [energyBreakdown, setEnergyBreakdown] = useState<EnergyCost>({
-    effector: 0,
-    drone: 0,
-    powerUp: 0,
-  });
+  // Use ref to track previous total to prevent unnecessary onEnergyUpdate calls
+  const previousTotalRef = useRef<number>(-1);
 
-  useEffect(() => {
-    // Calculate energy usage
+  // Derive energy values from props using useMemo to prevent recalculation
+  const energyBreakdown = useMemo((): EnergyCost => {
     const effectorEnergy = selectedEffectors.reduce((total, effector) => {
       return (
         total +
@@ -104,26 +100,29 @@ export const EnergyManagement: React.FC<EnergyManagementProps> = ({
       );
     }, 0);
 
-    const totalUsed = effectorEnergy + droneEnergy + powerUpEnergy;
-
-    setUsedEnergy(totalUsed);
-    setEnergyBreakdown({
+    return {
       effector: effectorEnergy,
       drone: droneEnergy,
       powerUp: powerUpEnergy,
-    });
+    };
+  }, [selectedEffectors, selectedDrones, activePowerUps]);
 
-    onEnergyUpdate(totalUsed, maxEnergy - totalUsed);
-  }, [
-    selectedEffectors,
-    selectedDrones,
-    activePowerUps,
-    maxEnergy,
-    onEnergyUpdate,
-  ]);
+  const usedEnergy = useMemo(() => {
+    return (
+      energyBreakdown.effector + energyBreakdown.drone + energyBreakdown.powerUp
+    );
+  }, [energyBreakdown]);
 
   const remainingEnergy = maxEnergy - usedEnergy;
   const isOverloaded = usedEnergy > maxEnergy;
+
+  // Only call onEnergyUpdate when the numeric total actually changes
+  useEffect(() => {
+    if (previousTotalRef.current !== usedEnergy) {
+      onEnergyUpdate(usedEnergy, remainingEnergy);
+      previousTotalRef.current = usedEnergy;
+    }
+  }, [usedEnergy, remainingEnergy, onEnergyUpdate]);
 
   return (
     <div className="energy-management">

@@ -56,6 +56,20 @@ export interface ResearchProgress {
 }
 
 /**
+ * Deep clone ResourceState to avoid shared references
+ */
+function deepCloneResourceState(state: ResourceState): ResourceState {
+  return {
+    ...state,
+    unlockedEffectors: [...state.unlockedEffectors],
+    unlockedDrones: [...state.unlockedDrones],
+    availableEffectors: [...state.availableEffectors],
+    availableDrones: [...state.availableDrones],
+    activeResearch: state.activeResearch ? { ...state.activeResearch } : null,
+  };
+}
+
+/**
  * Default starting resources and unlocks
  */
 export const DEFAULT_RESOURCE_STATE: ResourceState = {
@@ -242,7 +256,7 @@ export class ResourceManager {
     initialState: ResourceState = DEFAULT_RESOURCE_STATE,
     onStateChange: (state: ResourceState) => void = () => {},
   ) {
-    this.state = { ...initialState };
+    this.state = deepCloneResourceState(initialState);
     this.onStateChange = onStateChange;
   }
 
@@ -250,7 +264,7 @@ export class ResourceManager {
    * Get current resource state
    */
   getState(): ResourceState {
-    return { ...this.state };
+    return deepCloneResourceState(this.state);
   }
 
   /**
@@ -542,7 +556,7 @@ export class ResourceManager {
    * Reset to default state
    */
   reset(): void {
-    this.state = { ...DEFAULT_RESOURCE_STATE };
+    this.state = deepCloneResourceState(DEFAULT_RESOURCE_STATE);
     this.notifyChange();
   }
 

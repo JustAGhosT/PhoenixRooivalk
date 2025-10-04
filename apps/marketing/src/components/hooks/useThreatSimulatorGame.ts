@@ -83,6 +83,7 @@ export const useThreatSimulatorGame = ({
     () =>
       new WaveManager(
         (spawnEvent) => {
+          const rect = new DOMRect(0, 0, 800, 600);
           const threat = spawnThreat(
             spawnEvent.threatType as
               | "drone"
@@ -92,8 +93,8 @@ export const useThreatSimulatorGame = ({
               | "decoy"
               | "shielded"
               | "boss",
-            spawnEvent.x,
-            spawnEvent.y,
+            rect,
+            gameState.level,
           );
           threat.id = spawnEvent.id;
           addThreat(threat);
@@ -250,9 +251,13 @@ export const useThreatSimulatorGame = ({
           Math.floor((result.impactForce || 10) / 5),
         );
 
-        // Remove colliding threats
+        // Remove colliding threats and clean up physics/path state
         removeThreat(obj1.id);
         removeThreat(obj2.id);
+        collisionSystem.removeObject(obj1.id);
+        collisionSystem.removeObject(obj2.id);
+        pathInterpolators.delete(obj1.id);
+        pathInterpolators.delete(obj2.id);
 
         // Add explosion effect
         particleSystem.createExplosion(
@@ -270,13 +275,13 @@ export const useThreatSimulatorGame = ({
     collisionSystem.updateDebris(16); // 16ms delta time approximation
   }, [
     gameState.threats,
-    gameState.level,
     updateThreats,
     gameRef,
     collisionSystem,
     removeThreat,
     updateScore,
     particleSystem,
+    pathInterpolators,
   ]);
 
   // Enhanced neutralization with effects
@@ -333,13 +338,17 @@ export const useThreatSimulatorGame = ({
           if (distance <= explosionRadius) {
             particleSystem.createExplosion(nearbyThreat.x, nearbyThreat.y, 0.8);
             removeThreat(nearbyThreat.id);
+            collisionSystem.removeObject(nearbyThreat.id);
+            pathInterpolators.delete(nearbyThreat.id);
             updateScore(50);
           }
         });
       }
 
-      // Neutralize the threat
+      // Neutralize the threat and clean up physics/path state
       removeThreat(threatId);
+      collisionSystem.removeObject(threatId);
+      pathInterpolators.delete(threatId);
       updateScore(Math.floor(100 * effectiveness));
       checkAchievements();
     },
@@ -355,6 +364,8 @@ export const useThreatSimulatorGame = ({
       removeThreat,
       updateScore,
       checkAchievements,
+      collisionSystem,
+      pathInterpolators,
     ],
   );
 
@@ -479,6 +490,8 @@ export const useThreatSimulatorGame = ({
     updateMothershipResources,
     updateDronePositions,
     processFadeOut,
+    resourceManager,
+    waveManager,
   ]);
 
   // Initialize strategic systems

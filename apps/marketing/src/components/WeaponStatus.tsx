@@ -65,23 +65,6 @@ export const WeaponStatus: React.FC<WeaponStatusProps> = ({
 
           const isSelected = selectedWeapon === id;
 
-          // Calculate dynamic cooldown percentage based on time elapsed
-          const now = Date.now();
-          const elapsed = weaponState.lastFired
-            ? now - weaponState.lastFired
-            : Infinity;
-          const cooldownPercentage =
-            weaponState.cooldown === 0
-              ? 0
-              : Math.max(
-                  0,
-                  Math.min(
-                    100,
-                    ((weaponState.cooldown - elapsed) / weaponState.cooldown) *
-                      100,
-                  ),
-                );
-
           const handleWeaponClick = () => {
             onSwitchWeapon(id);
           };

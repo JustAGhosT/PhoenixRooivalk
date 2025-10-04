@@ -98,6 +98,7 @@ export function spawnThreat(
     lastUpdate: Date.now(),
     isMoving: true,
     status: "active",
+    allegiance: "hostile", // Default to hostile for enemy threats
     specialProperties: {
       stealthMode: threatType === "stealth",
       swarmBehavior: threatType === "swarm",

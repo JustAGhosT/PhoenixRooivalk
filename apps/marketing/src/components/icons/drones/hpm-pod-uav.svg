@@ -1,0 +1,9 @@
+<svg viewBox="0 0 24 24" fill="none" stroke="#FFA502" stroke-width="2">
+  <!-- Triangle base -->
+  <path d="M12 4L20 18L4 18Z" />
+  <!-- Wave burst pattern inside -->
+  <circle cx="12" cy="12" r="1" fill="#FFA502" />
+  <circle cx="12" cy="12" r="3" />
+  <circle cx="12" cy="12" r="5" />
+  <circle cx="12" cy="12" r="7" />
+</svg>

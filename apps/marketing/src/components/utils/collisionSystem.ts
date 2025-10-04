@@ -75,17 +75,33 @@ export function circleCircleCollision(
 
   if (dist < combinedRadius) {
     const penetrationDepth = combinedRadius - dist;
-    const collisionPoint = {
-      x:
-        circle1.x + (circle2.x - circle1.x) * (circle1.radius / combinedRadius),
-      y:
-        circle1.y + (circle2.y - circle1.y) * (circle1.radius / combinedRadius),
-    };
 
-    const collisionNormal = {
-      x: (circle2.x - circle1.x) / dist,
-      y: (circle2.y - circle1.y) / dist,
-    };
+    // Handle zero distance case to prevent NaN
+    let collisionNormal;
+    let collisionPoint;
+
+    if (dist === 0) {
+      // Use safe default unit vector when objects are exactly on top of each other
+      collisionNormal = { x: 1, y: 0 };
+      collisionPoint = {
+        x: circle1.x + circle1.radius,
+        y: circle1.y,
+      };
+    } else {
+      // Normal case: normalize by distance
+      collisionNormal = {
+        x: (circle2.x - circle1.x) / dist,
+        y: (circle2.y - circle1.y) / dist,
+      };
+      collisionPoint = {
+        x:
+          circle1.x +
+          (circle2.x - circle1.x) * (circle1.radius / combinedRadius),
+        y:
+          circle1.y +
+          (circle2.y - circle1.y) * (circle1.radius / combinedRadius),
+      };
+    }
 
     const impactForce = Math.max(0, penetrationDepth * 10); // Scale factor for visual impact
 
@@ -124,10 +140,18 @@ export function circleRectangleCollision(
     const penetrationDepth = circle.radius - dist;
     const collisionPoint = { x: closestX, y: closestY };
 
-    const collisionNormal = {
-      x: (circle.x - closestX) / dist,
-      y: (circle.y - closestY) / dist,
-    };
+    // Handle zero distance case to prevent NaN
+    let collisionNormal;
+    if (dist === 0) {
+      // Use safe default unit vector when circle is exactly on rectangle corner/edge
+      collisionNormal = { x: 1, y: 0 };
+    } else {
+      // Normal case: normalize by distance
+      collisionNormal = {
+        x: (circle.x - closestX) / dist,
+        y: (circle.y - closestY) / dist,
+      };
+    }
 
     const impactForce = Math.max(0, penetrationDepth * 10);
 

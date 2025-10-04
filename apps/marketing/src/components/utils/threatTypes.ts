@@ -22,6 +22,7 @@ export interface Threat {
   lastUpdate: number;
   isMoving: boolean;
   status: "active" | "neutralized" | "crater";
+  allegiance: "hostile" | "friendly" | "unknown";
   neutralizedAt?: number;
   fadeStartTime?: number;
   specialProperties?: {

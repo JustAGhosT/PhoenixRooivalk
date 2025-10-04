@@ -116,6 +116,7 @@ on UI analysis and user feedback.
   ```
 
 - [ ] **Energy System Unclear**
+
   - **Problem**: Shows cost but not budget or remaining energy
   - **Fix**: Add budget bar with remaining energy display
 
@@ -181,6 +182,7 @@ on UI analysis and user feedback.
   - **Fix**: Minimum 44×44px clickable area; consistent 12-14px internal padding
 
 - [ ] **Radar Scale & Labels**
+
   - **Problem**: Range labels faint; no distance legend
   - **Fix**: Label 2 rings (400m / 800m) with muted blue and 1px halo
 

@@ -193,11 +193,12 @@ export class WaveManager {
 
     this.spawnQueue = [];
     let totalDelay = 0;
+    let spawnIndex = this.threatsSpawned; // Monotonic counter for unique IDs
 
     for (const threatGroup of this.currentWaveConfig.threatTypes) {
       for (let i = 0; i < threatGroup.count; i++) {
         const spawnEvent: SpawnEvent = {
-          id: `wave_${this.currentWave}_${this.threatsSpawned + i}`,
+          id: `wave_${this.currentWave}_${spawnIndex}`,
           threatType: threatGroup.type,
           x: this.getRandomSpawnX(),
           y: this.getRandomSpawnY(),
@@ -207,10 +208,14 @@ export class WaveManager {
         };
 
         this.spawnQueue.push(spawnEvent);
+        spawnIndex++; // Increment for next unique ID
       }
 
       totalDelay += threatGroup.delay || 0;
     }
+
+    // Update threatsSpawned to reflect the final spawnIndex
+    this.threatsSpawned = spawnIndex;
 
     // Sort by timestamp
     this.spawnQueue.sort((a, b) => a.timestamp - b.timestamp);
