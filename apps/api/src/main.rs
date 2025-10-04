@@ -24,11 +24,14 @@ struct AppState {
 struct EvidenceIn {
     id: Option<String>,
     digest_hex: String,
+    #[allow(dead_code)]
     payload_mime: Option<String>,
+    #[allow(dead_code)]
     metadata: Option<serde_json::Value>,
 }
 
 #[derive(Debug, Serialize)]
+#[allow(dead_code)]
 struct EvidenceOut {
     id: String,
     status: String,

@@ -7,6 +7,7 @@ use serde::{Deserialize, Serialize};
 use serde_json::{json, Value};
 use std::time::Duration;
 
+#[derive(Clone)]
 pub struct SolanaProviderStub;
 
 #[async_trait]
@@ -30,35 +31,35 @@ impl AnchorProvider for SolanaProviderStub {
 
 #[derive(Debug, Clone)]
 pub struct SolanaProvider {
-    client: Client,
-    endpoint: String,
-    network: String,
+    pub client: Client,
+    pub endpoint: String,
+    pub network: String,
 }
 
 #[derive(Debug, Serialize)]
-struct SolanaRpcRequest {
-    jsonrpc: String,
-    id: u64,
-    method: String,
-    params: Value,
+pub struct SolanaRpcRequest {
+    pub jsonrpc: String,
+    pub id: u64,
+    pub method: String,
+    pub params: Value,
 }
 
 #[derive(Debug, Deserialize)]
-struct SolanaRpcResponse {
+pub struct SolanaRpcResponse {
     #[allow(dead_code)]
-    jsonrpc: String,
+    pub jsonrpc: String,
     #[allow(dead_code)]
-    id: u64,
-    result: Option<Value>,
-    error: Option<SolanaRpcError>,
+    pub id: u64,
+    pub result: Option<Value>,
+    pub error: Option<SolanaRpcError>,
 }
 
 #[derive(Debug, Deserialize)]
-struct SolanaRpcError {
-    code: i32,
-    message: String,
+pub struct SolanaRpcError {
+    pub code: i32,
+    pub message: String,
     #[allow(dead_code)]
-    data: Option<Value>,
+    pub data: Option<Value>,
 }
 
 #[derive(Debug, Deserialize)]

@@ -59,11 +59,11 @@ pub struct JsonRpcResponse {
 }
 
 #[derive(Debug, Deserialize)]
-struct JsonRpcError {
-    code: i32,
-    message: String,
+pub struct JsonRpcError {
+    pub code: i32,
+    pub message: String,
     #[allow(dead_code)]
-    data: Option<Value>,
+    pub data: Option<Value>,
 }
 
 #[derive(Debug, Deserialize)]
