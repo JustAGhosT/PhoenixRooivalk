@@ -21,33 +21,36 @@ const ThreatSimulatorGame: React.FC<ThreatSimulatorGameProps> = ({
 }) => {
   const { gameState } = useGameState();
   const { feedItems } = useEventFeed();
-  
+
   // Basic event handlers
-  const handleThreatClick = (e: React.MouseEvent | React.KeyboardEvent, threatId: string) => {
+  const handleThreatClick = (
+    e: React.MouseEvent | React.KeyboardEvent,
+    threatId: string,
+  ) => {
     console.log("Threat clicked:", threatId);
   };
-  
+
   const handleGameAreaClick = (_e: React.MouseEvent) => {
     console.log("Game area clicked");
   };
-  
+
   const handleMouseDown = (_e: React.MouseEvent) => {
     console.log("Mouse down");
   };
-  
+
   const handleMouseMove = (_e: React.MouseEvent) => {
     console.log("Mouse move");
   };
-  
+
   const handleMouseUp = (_e: React.MouseEvent) => {
     console.log("Mouse up");
   };
-  
+
   const handleContextMenu = (e: React.MouseEvent) => {
     e.preventDefault();
     console.log("Context menu");
   };
-  
+
   const handleWheel = (_e: React.WheelEvent) => {
     console.log("Wheel event");
   };
@@ -70,7 +73,7 @@ const ThreatSimulatorGame: React.FC<ThreatSimulatorGameProps> = ({
             console.log("Switch weapon:", weapon);
           }}
         />
-        
+
         {/* Game Area Container */}
         <div
           className="relative flex-grow"
@@ -99,7 +102,7 @@ const ThreatSimulatorGame: React.FC<ThreatSimulatorGameProps> = ({
             getThreatAppearance={(_type) => ({
               emoji: "🚁",
               color: "#ef4444",
-              cssClass: "threat-drone"
+              cssClass: "threat-drone",
             })}
           />
         </div>
@@ -119,7 +122,7 @@ const ThreatSimulatorGame: React.FC<ThreatSimulatorGameProps> = ({
             maxEnergy={gameState.maxEnergy}
             selectedEffectors={[]}
             selectedDrones={[]}
-            activePowerUps={gameState.activePowerUps.map(p => p.id)}
+            activePowerUps={gameState.activePowerUps.map((p) => p.id)}
             onEnergyUpdate={() => {}}
           />
         </div>

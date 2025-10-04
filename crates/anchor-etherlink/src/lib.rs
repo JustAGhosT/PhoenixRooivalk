@@ -82,7 +82,7 @@ impl EtherlinkProvider {
             .timeout(Duration::from_secs(30))
             .build()
             .expect("Failed to create HTTP client");
-        
+
         Self {
             client,
             endpoint,
@@ -126,9 +126,9 @@ impl EtherlinkProvider {
             )));
         }
 
-        rpc_response.result.ok_or_else(|| {
-            AnchorError::Provider("RPC response missing result field".to_string())
-        })
+        rpc_response
+            .result
+            .ok_or_else(|| AnchorError::Provider("RPC response missing result field".to_string()))
     }
 
     async fn send_memo_transaction(&self, memo_data: &str) -> Result<String, AnchorError> {
@@ -143,7 +143,10 @@ impl EtherlinkProvider {
 
         // Create a memo transaction with the provided data
         // In production, you'd call eth_sendTransaction or eth_sendRawTransaction
-        let tx_hash = format!("0x{}", phoenix_evidence::hash::sha256_hex(memo_data.as_bytes()));
+        let tx_hash = format!(
+            "0x{}",
+            phoenix_evidence::hash::sha256_hex(memo_data.as_bytes())
+        );
 
         tracing::info!(
             tx_hash = %tx_hash,
@@ -154,7 +157,10 @@ impl EtherlinkProvider {
         Ok(tx_hash)
     }
 
-    async fn get_transaction_receipt(&self, tx_hash: &str) -> Result<Option<TransactionReceipt>, AnchorError> {
+    async fn get_transaction_receipt(
+        &self,
+        tx_hash: &str,
+    ) -> Result<Option<TransactionReceipt>, AnchorError> {
         let result = self
             .rpc_call("eth_getTransactionReceipt", json!([tx_hash]))
             .await?;
@@ -175,7 +181,7 @@ impl AnchorProvider for EtherlinkProvider {
     async fn anchor(&self, evidence: &EvidenceRecord) -> Result<ChainTxRef, AnchorError> {
         // Create memo with evidence digest
         let memo = format!("evidence:{}", evidence.digest.hex);
-        
+
         let tx_hash = self.send_memo_transaction(&memo).await?;
 
         Ok(ChainTxRef {
@@ -191,12 +197,12 @@ impl AnchorProvider for EtherlinkProvider {
         let receipt = self.get_transaction_receipt(&tx.tx_id).await?;
 
         let mut confirmed_tx = tx.clone();
-        
+
         if let Some(receipt) = receipt {
             // Check if transaction is confirmed (has block number and successful status)
-            let is_confirmed = receipt.block_number.is_some() 
-                && receipt.status.as_deref() == Some("0x1");
-            
+            let is_confirmed =
+                receipt.block_number.is_some() && receipt.status.as_deref() == Some("0x1");
+
             confirmed_tx.confirmed = is_confirmed;
             if is_confirmed {
                 tracing::info!(

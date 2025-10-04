@@ -49,8 +49,13 @@ pub mod convert {
     use super::model::*;
 
     /// Example converter from (python-like) dicts to strongly-typed records.
-    pub fn from_map_to_evidence(mut m: serde_json::Map<String, serde_json::Value>) -> EvidenceRecord {
-        let id = m.remove("id").and_then(|v| v.as_str().map(|s| s.to_string())).unwrap_or_default();
+    pub fn from_map_to_evidence(
+        mut m: serde_json::Map<String, serde_json::Value>,
+    ) -> EvidenceRecord {
+        let id = m
+            .remove("id")
+            .and_then(|v| v.as_str().map(|s| s.to_string()))
+            .unwrap_or_default();
         let created_at = m
             .remove("created_at")
             .and_then(|v| v.as_str().and_then(|s| s.parse().ok()))
@@ -79,8 +84,8 @@ pub mod convert {
 }
 
 pub mod anchor {
-    use async_trait::async_trait;
     use super::model::*;
+    use async_trait::async_trait;
 
     #[derive(Debug, thiserror::Error)]
     pub enum AnchorError {

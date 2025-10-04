@@ -37,22 +37,29 @@ pub fn get_address_metadata(chain: &str) -> Result<AddressMetadata, AddressError
     match chain.to_lowercase().as_str() {
         "ethereum" | "etherlink" | "evm" => Ok(AddressMetadata {
             chain: "evm".to_string(),
-            address_format: "0x-prefixed hex (42 chars, 20 bytes). EIP-55 checksum recommended.".to_string(),
+            address_format: "0x-prefixed hex (42 chars, 20 bytes). EIP-55 checksum recommended."
+                .to_string(),
             address_example: "0x742d35Cc6634C0532925a3b844Bc454e4438f44e".to_string(),
         }),
         "solana" => Ok(AddressMetadata {
             chain: "solana".to_string(),
-            address_format: "Base58 encoded; decodes to exactly 32 bytes (length varies).".to_string(),
+            address_format: "Base58 encoded; decodes to exactly 32 bytes (length varies)."
+                .to_string(),
             address_example: "4Nd1mY3iQz9dKqG2m9X3pQxvGXn3a6TT5p7H1cDJ5b5P".to_string(),
         }),
-        _ => Err(AddressError::InvalidPrefix(format!("Unsupported chain: {}", chain))),
+        _ => Err(AddressError::InvalidPrefix(format!(
+            "Unsupported chain: {}",
+            chain
+        ))),
     }
 }
 
 pub fn validate_evm_address(address: &str, require_checksum: bool) -> Result<(), AddressError> {
     // Check prefix
     if !address.starts_with("0x") {
-        return Err(AddressError::InvalidPrefix("must start with 0x".to_string()));
+        return Err(AddressError::InvalidPrefix(
+            "must start with 0x".to_string(),
+        ));
     }
 
     // Check length
@@ -64,10 +71,12 @@ pub fn validate_evm_address(address: &str, require_checksum: bool) -> Result<(),
     }
 
     let hex_part = &address[2..];
-    
+
     // Check hex characters
     if !hex_part.chars().all(|c| c.is_ascii_hexdigit()) {
-        return Err(AddressError::InvalidCharacters("contains non-hex characters".to_string()));
+        return Err(AddressError::InvalidCharacters(
+            "contains non-hex characters".to_string(),
+        ));
     }
 
     // Check EIP-55 checksum if required
@@ -84,14 +93,14 @@ pub fn validate_evm_address(address: &str, require_checksum: bool) -> Result<(),
 pub fn to_eip55_checksum(address: &str) -> Result<String, AddressError> {
     // Validate basic format first
     validate_evm_address(address, false)?;
-    
+
     let hex_part = &address[2..].to_lowercase();
     let hash = Keccak256::digest(hex_part.as_bytes());
     let hash_hex = hex::encode(hash);
-    
+
     let mut result = String::with_capacity(42);
     result.push_str("0x");
-    
+
     for (i, c) in hex_part.chars().enumerate() {
         if c.is_ascii_digit() {
             result.push(c);
@@ -104,18 +113,18 @@ pub fn to_eip55_checksum(address: &str) -> Result<String, AddressError> {
             }
         }
     }
-    
+
     Ok(result)
 }
 
 pub fn get_evm_address_info(address: &str, require_checksum: bool) -> EvmAddressInfo {
     let metadata = get_address_metadata("evm").unwrap();
-    
+
     match validate_evm_address(address, require_checksum) {
         Ok(()) => {
             let normalized = to_eip55_checksum(address).unwrap_or_else(|_| address.to_string());
             let checksum_valid = validate_evm_address(address, true).is_ok();
-            
+
             EvmAddressInfo {
                 chain: "evm".to_string(),
                 address_format: metadata.address_format,
@@ -140,14 +149,14 @@ pub fn validate_solana_address(address: &str) -> Result<(), AddressError> {
     let decoded = bs58::decode(address)
         .into_vec()
         .map_err(|e| AddressError::Base58Error(e.to_string()))?;
-    
+
     if decoded.len() != 32 {
         return Err(AddressError::InvalidLength {
             expected: 32,
             actual: decoded.len(),
         });
     }
-    
+
     Ok(())
 }
 
@@ -159,13 +168,13 @@ mod tests {
     fn test_evm_address_validation() {
         // Valid address
         assert!(validate_evm_address("0x742d35Cc6634C0532925a3b844Bc454e4438f44e", false).is_ok());
-        
+
         // Invalid prefix
         assert!(validate_evm_address("742d35Cc6634C0532925a3b844Bc454e4438f44e", false).is_err());
-        
+
         // Invalid length
         assert!(validate_evm_address("0x742d35Cc6634C0532925a3b844Bc454e4438f44", false).is_err());
-        
+
         // Invalid characters
         assert!(validate_evm_address("0x742d35Cc6634C0532925a3b844Bc454e4438f44g", false).is_err());
     }
@@ -181,7 +190,7 @@ mod tests {
     fn test_solana_address_validation() {
         // Valid Solana address
         assert!(validate_solana_address("4Nd1mY3iQz9dKqG2m9X3pQxvGXn3a6TT5p7H1cDJ5b5P").is_ok());
-        
+
         // Invalid Base58
         assert!(validate_solana_address("invalid0OIl").is_err());
     }
