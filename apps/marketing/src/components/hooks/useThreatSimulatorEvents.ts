@@ -34,12 +34,10 @@ interface UseThreatSimulatorEventsProps {
       | "recovery_uav"
       | "lure_swarm"
       | "perimeter_sentry"
-      | "hpm_pod_uav"
-      | "lidar_mapper"
-      | "micro_decoy_swarm"
-      | "optical_mesh_drone"
-      | "spotter_uav"
-      | "tethered_overwatch"
+      | "spotter"
+      | "hpm_uav"
+      | "shield_wall"
+      | "mapper_lidar"
       | "relay_optical",
     targetX: number,
     targetY: number,
@@ -58,12 +56,10 @@ interface UseThreatSimulatorEventsProps {
       | "recovery_uav"
       | "lure_swarm"
       | "perimeter_sentry"
-      | "hpm_pod_uav"
-      | "lidar_mapper"
-      | "micro_decoy_swarm"
-      | "optical_mesh_drone"
-      | "spotter_uav"
-      | "tethered_overwatch"
+      | "spotter"
+      | "hpm_uav"
+      | "shield_wall"
+      | "mapper_lidar"
       | "relay_optical"
       | null,
   ) => void;

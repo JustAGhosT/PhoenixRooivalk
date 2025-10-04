@@ -25,6 +25,7 @@ export interface MovementConfig {
   deceleration: number;
   turnRate: number; // degrees per frame
   smoothing: number; // 0-1, higher = smoother
+  easing?: (t: number) => number; // optional easing function
 }
 
 /**
@@ -104,6 +105,7 @@ export class DronePathInterpolator {
       deceleration: 0.15,
       turnRate: 5,
       smoothing: 0.8,
+      easing: easingFunctions.easeInOut,
       ...config,
     };
   }
@@ -129,7 +131,7 @@ export class DronePathInterpolator {
       targetY,
       startTime: Date.now(),
       duration,
-      easing: easingFunctions.easeInOut,
+      easing: this.config.easing || easingFunctions.easeInOut,
     };
 
     this.lastPosition = { x: currentX, y: currentY };
