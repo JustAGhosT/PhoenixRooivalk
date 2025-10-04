@@ -4,7 +4,10 @@ import type { Threat } from "../types/game";
 interface RadarCanvasProps {
   threats: Threat[];
   isResetting?: boolean;
-  onThreatClick?: (e: React.MouseEvent | React.KeyboardEvent, threatId: string) => void;
+  onThreatClick?: (
+    e: React.MouseEvent | React.KeyboardEvent,
+    threatId: string,
+  ) => void;
 }
 
 const RadarCanvas: React.FC<RadarCanvasProps> = ({

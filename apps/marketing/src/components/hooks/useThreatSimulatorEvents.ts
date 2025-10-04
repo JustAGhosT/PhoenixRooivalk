@@ -1,5 +1,10 @@
 import { useCallback, useState } from "react";
-import type { GameState, PowerUp, SelectionBox, Threat } from "../../types/game";
+import type {
+  GameState,
+  PowerUp,
+  SelectionBox,
+  Threat,
+} from "../../types/game";
 
 interface UseThreatSimulatorEventsProps {
   gameRef: React.RefObject<HTMLElement>;
@@ -205,11 +210,11 @@ export const useThreatSimulatorEvents = ({
       e.stopPropagation();
 
       // Only prevent default for non-primary buttons to avoid interfering with normal selection
-      if ('button' in e && e.button !== 0) {
+      if ("button" in e && e.button !== 0) {
         e.preventDefault();
       }
 
-      if ('button' in e) {
+      if ("button" in e) {
         if (e.button === 0) {
           // Left click - select threat
           selectThreat(threatId);
