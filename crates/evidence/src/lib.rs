@@ -116,7 +116,7 @@ mod tests {
         assert_eq!(hash::sha256_hex(b""), "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855");
         
         // Test with simple string
-        assert_eq!(hash::sha256_hex(b"hello"), "2cf24dba4f6972e3e3e3e3e3e3e3e3e3e3e3e3e3e3e3e3e3e3e3e3e3e3e3e3");
+        assert_eq!(hash::sha256_hex(b"hello"), "2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824");
         
         // Test with binary data
         let binary_data = vec![0x00, 0x01, 0x02, 0x03, 0xff];
