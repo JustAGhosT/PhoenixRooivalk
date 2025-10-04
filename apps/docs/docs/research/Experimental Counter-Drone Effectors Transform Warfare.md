@@ -1,3 +1,9 @@
+---
+title: "Experimental Counter-Drone Effectors Transform Warfare"
+id: "experimental-counter-drone-effectors-transform-warfare"
+sidebar_label: "Counter-Drone Effectors Research"
+---
+
 # Experimental Counter-Drone Effectors Transform Warfare Economics
 
 The global counter-UAS landscape has reached an inflection point where exotic

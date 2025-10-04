@@ -14,15 +14,15 @@ export default [
   },
   {
     path: '/docs',
-    component: ComponentCreator('/docs', '491'),
+    component: ComponentCreator('/docs', '2b0'),
     routes: [
       {
         path: '/docs',
-        component: ComponentCreator('/docs', '0cf'),
+        component: ComponentCreator('/docs', '56e'),
         routes: [
           {
             path: '/docs',
-            component: ComponentCreator('/docs', '319'),
+            component: ComponentCreator('/docs', 'ef0'),
             routes: [
               {
                 path: '/docs/',
@@ -251,8 +251,8 @@ export default [
                 sidebar: "docs"
               },
               {
-                path: '/docs/research/Experimental Counter-Drone Effectors Transform Warfare',
-                component: ComponentCreator('/docs/research/Experimental Counter-Drone Effectors Transform Warfare', '3ff'),
+                path: '/docs/research/experimental-counter-drone-effectors-transform-warfare',
+                component: ComponentCreator('/docs/research/experimental-counter-drone-effectors-transform-warfare', '34c'),
                 exact: true
               },
               {
