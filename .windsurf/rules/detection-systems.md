@@ -78,7 +78,7 @@ integration, and threat analysis algorithms
 
 # === END USER INSTRUCTIONS ===
 
-# detection-systems
+# Detection Systems Implementation
 
 ## Threat Detection Core
 
@@ -116,7 +116,7 @@ system:
 - Cryptographic signatures for each detection event
 - Geospatial metadata embedding
 
-2. Chain Integration
+1. Chain Integration
 
 ```rust
 pub trait AnchorProvider {
@@ -135,13 +135,13 @@ Importance Score: 80
 - Real-time data fusion from multiple RKV units
 - Automated calibration and sensor health monitoring
 
-2. Threat Analysis Pipeline
+1. Threat Analysis Pipeline
 
 - Machine learning-based threat classification
 - Behavioral pattern recognition
 - Swarm detection algorithms
 
-## Core Files:
+## Core Files
 
 - `apps/keeper/src/lib.rs`: Evidence management system
 - `crates/evidence/src/lib.rs`: Core detection record handling

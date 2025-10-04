@@ -21,8 +21,10 @@ operations.
 
 ## AI Generation Prompt
 
-```text
-Create an HPM pod drone icon: triangle with wave burst pattern inside. Military style, outline-based, 24x24px. Color #FFA502. Mobile electronic attack, high power microwave, portable platform aesthetic.
+````text
+Create an HPM pod drone icon: triangle with wave burst pattern inside.
+Military style, outline-based, 24x24px. Color #FFA502. Mobile electronic
+attack, high power microwave, portable platform aesthetic.
 ```text
 
 ## SVG Structure
@@ -44,3 +46,4 @@ Create an HPM pod drone icon: triangle with wave burst pattern inside. Military 
 - HPM pod UAV systems
 - Mobile electronic attack platforms
 - Portable microwave operations
+````
