@@ -136,8 +136,8 @@ export const useGameState = () => {
     drones: [],
     deploymentBays: [
       {
-        id: "bay-interceptor",
-        droneType: "interceptor",
+        id: "bay-effector",
+        droneType: "effector",
         x: 350,
         y: 280,
         isReady: true,

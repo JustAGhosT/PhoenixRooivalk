@@ -274,5 +274,123 @@ src/components/
 
 ---
 
+## 🎮 **P4 — Resource & Progression Systems (High Priority)**
+
+### **Resource Accumulation**
+- [x] **Token Economy Implementation**
+  - **Problem**: No resource management or progression systems
+  - **Impact**: Lack of long-term engagement and strategic depth
+  - **Fix**: Implement token-based economy with research and unlock systems
+  - **Code**: Add `resourceManager.ts` with token/research accumulation
+
+- [x] **Research & Development System**
+  - **Problem**: No technology progression or unlock mechanics
+  - **Impact**: Static gameplay without advancement incentives
+  - **Fix**: Add research panel for gradual technology unlocks
+  - **Code**: Create `ResearchPanel.tsx` with progress tracking
+
+- [x] **Effector Database Integration**
+  - **Problem**: Limited weapon variety and real-world accuracy
+  - **Impact**: Unrealistic simulation and limited tactical options
+  - **Fix**: Integrate comprehensive effector database with real systems
+  - **Code**: Add `effectorDatabase.json` with 11+ real counter-UAS systems
+
+### **Progression Mechanics**
+- [x] **Starting Limitations**
+  - **Problem**: All weapons/drones available from start
+  - **Impact**: No learning curve or strategic resource management
+  - **Fix**: Start with only 1 weapon type (kinetic) and 1 drone type (effector)
+  - **Code**: Update default resource state and unlock requirements
+
+- [x] **Research Selection System**
+  - **Problem**: No choice in technology development path
+  - **Impact**: Linear progression without strategic decisions
+  - **Fix**: Allow players to select research focus (effector vs drone)
+  - **Code**: Add research category selection with different costs
+
+- [x] **Token-Based Drone Acquisition**
+  - **Problem**: Unlimited drone deployment without cost
+  - **Impact**: No resource management or strategic deployment decisions
+  - **Fix**: Require tokens to purchase additional drones of unlocked types
+  - **Code**: Add `TokenStore.tsx` with purchase mechanics
+
+### **Performance-Based Rewards**
+- [x] **Dynamic Token Rewards**
+  - **Problem**: No incentive for high performance
+  - **Impact**: Lack of motivation for skill improvement
+  - **Fix**: Award tokens based on score, threats neutralized, wave completion
+  - **Code**: Add `awardPerformanceRewards()` to resource manager
+
+- [x] **Research Point Accumulation**
+  - **Problem**: No long-term progression currency
+  - **Impact**: Missing strategic depth and unlock mechanics
+  - **Fix**: Award research points for performance, slower than tokens
+  - **Code**: Add research point system with unlock requirements
+
+### **Advanced Features**
+- [ ] **Effector Class Specialization**
+  - **Problem**: Generic weapon effectiveness across all threats
+  - **Impact**: Lack of tactical depth and real-world accuracy
+  - **Fix**: Implement hard-kill, soft-kill, deception, denial classifications
+  - **Code**: Add effector class system with specialized effectiveness
+  - **Status**: Pending
+
+- [ ] **Legal Compliance Integration**
+  - **Problem**: No consideration of real-world legal constraints
+  - **Impact**: Unrealistic simulation and training value
+  - **Fix**: Add legal flags and compliance requirements to effectors
+  - **Code**: Integrate ITAR, spectrum clearance, safety gates
+  - **Status**: Pending
+
+- [ ] **Swarm Effectiveness Matrix**
+  - **Problem**: No differentiation in swarm vs single target effectiveness
+  - **Impact**: Unrealistic weapon selection for different scenarios
+  - **Fix**: Add swarm effectiveness ratings for each effector type
+  - **Code**: Implement effectiveness scaling based on threat density
+  - **Status**: Pending
+
+---
+
+## 🔬 **P5 — Advanced Research Features (Medium Priority)**
+
+### **Research Depth**
+- [ ] **Multi-Stage Research**
+  - **Problem**: Single-stage unlocks lack progression depth
+  - **Impact**: Oversimplified technology advancement
+  - **Fix**: Add multi-stage research (Basic → Advanced → Expert)
+  - **Code**: Extend research system with multiple tiers
+  - **Status**: Pending
+
+- [ ] **Research Dependencies**
+  - **Problem**: No technology prerequisites or dependencies
+  - **Impact**: Unrealistic advancement paths
+  - **Fix**: Add research tree with prerequisite technologies
+  - **Code**: Implement dependency checking and unlock chains
+  - **Status**: Pending
+
+- [ ] **Research Bonuses**
+  - **Problem**: Static research progression
+  - **Impact**: No strategic optimization opportunities
+  - **Fix**: Add research bonuses based on performance and unlocks
+  - **Code**: Implement research efficiency multipliers
+  - **Status**: Pending
+
+### **Specialization Paths**
+- [ ] **Doctrine Selection**
+  - **Problem**: No strategic doctrine or approach selection
+  - **Impact**: Missing high-level strategic decisions
+  - **Fix**: Add doctrine selection (Kinetic Focus, Electronic Warfare, etc.)
+  - **Code**: Implement doctrine-specific research trees and bonuses
+  - **Status**: Pending
+
+- [ ] **Manufacturing Research**
+  - **Problem**: No consideration of production capabilities
+  - **Impact**: Unrealistic resource management
+  - **Fix**: Add manufacturing research for cost reduction and efficiency
+  - **Code**: Implement production cost and speed modifiers
+  - **Status**: Pending
+
+---
+
 *Last Updated: $(date)*
 *Maintained by: Phoenix Rooivalk Development Team*

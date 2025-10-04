@@ -8,6 +8,7 @@ import { CollisionSystem, createPhysicsObject } from "../utils/collisionSystem";
 import { DronePathInterpolator } from "../utils/dronePathInterpolation";
 import { FormationManager } from "../utils/formationManager";
 import { ParticleSystem } from "../utils/particleSystem";
+import { createResourceManager } from "../utils/resourceManager";
 import { ResponseProtocolEngine } from "../utils/responseProtocols";
 import { StrategicDeploymentEngine } from "../utils/strategicDeployment";
 import { spawnThreat } from "../utils/threatUtils";
@@ -88,11 +89,20 @@ export const useThreatSimulatorGame = ({
     },
     (waveNumber) => {
       console.log(`Wave ${waveNumber} completed!`);
+      // Award resources for wave completion
+      resourceManager.awardPerformanceRewards(
+        gameState.score,
+        gameState.neutralized,
+        true // wave completed
+      );
     },
     () => {
       console.log('Game completed!');
     }
   ));
+  
+  // Resource manager
+  const [resourceManager] = useState(() => createResourceManager());
 
   // Game state
   const [gameDimensions, setGameDimensions] = useState({
@@ -365,6 +375,11 @@ export const useThreatSimulatorGame = ({
 
       // Update wave manager
       waveManager.update();
+      
+      // Update research progress (slow accumulation)
+      if (Math.random() < 0.001) { // 0.1% chance per frame
+        resourceManager.addResearchProgress(1);
+      }
 
       // Move threats smoothly
       moveAllThreats();
@@ -509,5 +524,7 @@ export const useThreatSimulatorGame = ({
     startWave,
     getWaveProgress,
     isWaveRunning,
+    // Resource management
+    resourceManager,
   };
 };

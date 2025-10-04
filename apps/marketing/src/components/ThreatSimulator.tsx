@@ -10,9 +10,11 @@ import HUDBar from "./HUDBar";
 import HelpOverlay from "./HelpOverlay";
 import { ParticleEffects } from "./ParticleEffects";
 import RadarCanvas from "./RadarCanvas";
+import { ResearchPanel } from "./ResearchPanel";
 import "./ThreatSimulator.css";
 import { ThreatSimulatorComponents } from "./ThreatSimulatorComponents";
 import { ThreatSimulatorOverlays } from "./ThreatSimulatorOverlays";
+import { TokenStore } from "./TokenStore";
 import { WeaponStatus } from "./WeaponStatus";
 import { useEventFeed } from "./hooks/useEventFeed";
 import { useFullscreen } from "./hooks/useFullscreen";
@@ -35,6 +37,8 @@ export const ThreatSimulator: React.FC<ThreatSimulatorProps> = ({
   const [showHelp, setShowHelp] = useState(false);
   const [showDetailedStats, setShowDetailedStats] = useState(false);
   const [showSimulationWarning, setShowSimulationWarning] = useState(true);
+  const [showResearch, setShowResearch] = useState(false);
+  const [showTokenStore, setShowTokenStore] = useState(false);
   const [showFullscreenPrompt, setShowFullscreenPrompt] =
     useState(autoFullscreen);
 
@@ -85,8 +89,18 @@ export const ThreatSimulator: React.FC<ThreatSimulatorProps> = ({
     removeThreat(threatId);
   };
 
-  const { particleSystem, generateSwarm, spawnMultipleDrones } =
-    useThreatSimulatorGame({
+  const { 
+    particleSystem, 
+    generateSwarm, 
+    spawnMultipleDrones,
+    spawnNewThreat,
+    moveAllThreats,
+    waveManager: _waveManager,
+    startWave,
+    getWaveProgress: _getWaveProgress,
+    isWaveRunning,
+    resourceManager,
+  } = useThreatSimulatorGame({
       gameRef,
       gameState,
       updateThreats,
@@ -134,8 +148,6 @@ export const ThreatSimulator: React.FC<ThreatSimulatorProps> = ({
     returnDroneToBase,
     clearSelection,
     setSelectionBox,
-    spawnNewThreat: () => {},
-    moveAllThreats: () => {},
     generateSwarm,
     spawnMultipleDrones,
     activatePowerUp,
@@ -145,11 +157,9 @@ export const ThreatSimulator: React.FC<ThreatSimulatorProps> = ({
     setFrameRate,
     consumeEnergy,
     consumeCooling,
+    spawnNewThreat,
+    moveAllThreats,
     particleSystem,
-    // Wave management
-    startWave,
-    getWaveProgress,
-    isWaveRunning,
   });
 
   const { isFullscreen, enterFullscreen, exitFullscreen } = useFullscreen({
@@ -173,7 +183,7 @@ export const ThreatSimulator: React.FC<ThreatSimulatorProps> = ({
       startWave(1);
       addFeed("Starting Wave 1 - Tutorial.");
     }
-  }, [generateSwarm, addFeed]);
+  }, [generateSwarm, addFeed, isWaveRunning, startWave]);
 
   const handlePlus5 = useCallback(() => {
     spawnMultipleDrones(5);
@@ -353,9 +363,27 @@ export const ThreatSimulator: React.FC<ThreatSimulatorProps> = ({
         setShowDeploymentZones={setShowDeploymentZones}
         onShowStats={() => setShowDetailedStats(true)}
         onShowHelp={() => setShowHelp(true)}
+        onShowResearch={() => setShowResearch(true)}
+        onShowTokenStore={() => setShowTokenStore(true)}
       />
       <EventFeed feedItems={feedItems} />
       <Disclaimer />
+      {showResearch && (
+        <ResearchPanel
+          resourceManager={resourceManager}
+          onClose={() => setShowResearch(false)}
+        />
+      )}
+      {showTokenStore && (
+        <TokenStore
+          resourceManager={resourceManager}
+          onClose={() => setShowTokenStore(false)}
+          onPurchaseDrone={(type) => {
+            // Handle drone purchase logic here
+            console.log(`Purchased drone: ${type}`);
+          }}
+        />
+      )}
       <ThreatSimulatorOverlays
         showSimulationWarning={showSimulationWarning}
         setShowSimulationWarning={setShowSimulationWarning}

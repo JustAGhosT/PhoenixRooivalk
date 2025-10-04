@@ -1,6 +1,13 @@
 {
-  "schema_version": "1.3.0",
+  "schema_version": "1.4.0",
   "units": { "distance": "meters", "power": "kW", "currency": "USD" },
+  "coreNames": [
+    {"short":"C2 Node", "long":"Command & Control Node"},
+    {"short":"Sentinel Core", "long":"Sentinel Core (EDN-1)"},
+    {"short":"Edge Defense Node", "long":"Edge Defense Node"},
+    {"short":"Guardian Node", "long":"Guardian Node"},
+    {"short":"Bastion Core", "long":"Bastion Core"}
+  ],
   "ui_theme": {
     "palette": {
       "hard_kill": "#2ED573",
@@ -236,6 +243,246 @@
         "https://www.darpa.mil/research/programs/guaranteeing-ai-robustness-against-deception",
         "https://www.rand.org/pubs/research_reports/RRA866-1.html"
       ]
+    },
+    {
+      "id": "net",
+      "name": "Net Interceptor",
+      "class": "capture",
+      "description": "Captures 1 hostile; disables if < R2",
+      "typical_range_m": 150,
+      "power_kw_nominal": 1,
+      "latency_ms": 100,
+      "collateral_risk": "low",
+      "legal_flags": [],
+      "swarm_effectiveness": "high",
+      "range": "short",
+      "energy": 10,
+      "cooldown": 6,
+      "roe": "low",
+      "brands": [
+        "Fortem DroneHunter F700",
+        "Anduril Anvil (net capture)"
+      ],
+      "sources": [
+        "https://www.fortemtech.com/products/",
+        "https://www.anduril.com/anvil/"
+      ]
+    },
+    {
+      "id": "hpm",
+      "name": "HPM Burst",
+      "class": "directed",
+      "description": "Chance to fry electronics in arc",
+      "typical_range_m": 800,
+      "power_kw_nominal": 50,
+      "latency_ms": 50,
+      "collateral_risk": "medium",
+      "legal_flags": ["ITAR-likely", "Export-controlled"],
+      "swarm_effectiveness": "high",
+      "range": "short-mid",
+      "energy": 25,
+      "cooldown": 10,
+      "roe": "med",
+      "brands": [
+        "Boeing CHAMP",
+        "Raytheon High Power Microwave"
+      ],
+      "sources": [
+        "https://www.boeing.com/defense/champ/",
+        "https://www.rtx.com/raytheon/what-we-do/integrated-air-and-missile-defense/lasers"
+      ]
+    },
+    {
+      "id": "rf_take",
+      "name": "RF Takeover",
+      "class": "ecm",
+      "description": "Convert some C2-dependent hostiles to Unknown or Friendly",
+      "typical_range_m": 1200,
+      "power_kw_nominal": 5,
+      "latency_ms": 200,
+      "collateral_risk": "low",
+      "legal_flags": ["Spectrum authorization required"],
+      "swarm_effectiveness": "medium",
+      "range": "mid",
+      "energy": 20,
+      "cooldown": 12,
+      "roe": "med",
+      "brands": [
+        "BAE Systems Electronic Warfare",
+        "Lockheed Martin DEWS"
+      ],
+      "sources": [
+        "https://www.baesystems.com/en-us/product/electronic-warfare-systems",
+        "https://www.lockheedmartin.com/en-us/products/dews.html"
+      ]
+    },
+    {
+      "id": "gnss_deny",
+      "name": "GNSS Denial Bubble",
+      "class": "ecm",
+      "description": "Creates drift/hover in bubble radius",
+      "typical_range_m": 500,
+      "power_kw_nominal": 2,
+      "latency_ms": 100,
+      "collateral_risk": "low",
+      "legal_flags": ["Spectrum authorization required"],
+      "swarm_effectiveness": "high",
+      "range": "short",
+      "energy": 12,
+      "cooldown": 8,
+      "roe": "low",
+      "brands": [
+        "Raytheon GPS Spoofing",
+        "BAE Systems Navigation Warfare"
+      ],
+      "sources": [
+        "https://www.rtx.com/raytheon/what-we-do/space/gps",
+        "https://www.baesystems.com/en-us/product/navigation-warfare"
+      ]
+    },
+    {
+      "id": "optic_dazzle",
+      "name": "Optical Dazzler",
+      "class": "directed",
+      "description": "Blinds camera-guided drones briefly",
+      "typical_range_m": 300,
+      "power_kw_nominal": 3,
+      "latency_ms": 50,
+      "collateral_risk": "low",
+      "legal_flags": ["Eye-safety compliance required"],
+      "swarm_effectiveness": "medium",
+      "range": "short-mid",
+      "energy": 8,
+      "cooldown": 5,
+      "roe": "low",
+      "brands": [
+        "Leonardo Dazzler",
+        "Rheinmetall Laser Dazzler"
+      ],
+      "sources": [
+        "https://www.leonardocompany.com/en/products/land-electro-optics",
+        "https://www.rheinmetall.com/en/media/news-watch/news/2022/2022-05-19_laser-weapons-against-drones"
+      ]
+    },
+    {
+      "id": "acoustic",
+      "name": "Acoustic Disruptor",
+      "class": "nonkinetic",
+      "description": "Reduces speed/coordination of light drones",
+      "typical_range_m": 200,
+      "power_kw_nominal": 1,
+      "latency_ms": 100,
+      "collateral_risk": "low",
+      "legal_flags": [],
+      "swarm_effectiveness": "medium",
+      "range": "short",
+      "energy": 6,
+      "cooldown": 5,
+      "roe": "low",
+      "brands": [
+        "LRAD Acoustic Hailing Device",
+        "American Technology Corp"
+      ],
+      "sources": [
+        "https://www.lradx.com/",
+        "https://www.atcsd.com/"
+      ]
+    },
+    {
+      "id": "decoy_beacon",
+      "name": "Decoy Beacon",
+      "class": "deception",
+      "description": "Pulls hostiles toward decoy for N seconds",
+      "typical_range_m": 1000,
+      "power_kw_nominal": 0.5,
+      "latency_ms": 50,
+      "collateral_risk": "low",
+      "legal_flags": [],
+      "swarm_effectiveness": "high",
+      "range": "mid",
+      "energy": 5,
+      "cooldown": 10,
+      "roe": "low",
+      "brands": [
+        "Lockheed Martin Decoy Systems",
+        "BAE Systems Electronic Decoys"
+      ],
+      "sources": [
+        "https://www.lockheedmartin.com/en-us/products/electronic-warfare.html",
+        "https://www.baesystems.com/en-us/product/electronic-warfare-systems"
+      ]
+    },
+    {
+      "id": "chaff",
+      "name": "Chaff/Obscurant",
+      "class": "countermeasure",
+      "description": "Lowers vision-based tracking accuracy in zone",
+      "typical_range_m": 100,
+      "power_kw_nominal": 0.1,
+      "latency_ms": 50,
+      "collateral_risk": "low",
+      "legal_flags": [],
+      "swarm_effectiveness": "medium",
+      "range": "short",
+      "energy": 7,
+      "cooldown": 8,
+      "roe": "low",
+      "brands": [
+        "BAE Systems Chaff Systems",
+        "Rheinmetall Obscurants"
+      ],
+      "sources": [
+        "https://www.baesystems.com/en-us/product/chaff-systems",
+        "https://www.rheinmetall.com/en/products/defence-and-security"
+      ]
+    },
+    {
+      "id": "smart_slug",
+      "name": "Smart Slug",
+      "class": "kinetic",
+      "description": "Precision intercept; high single-target kill probability",
+      "typical_range_m": 600,
+      "power_kw_nominal": 5,
+      "latency_ms": 150,
+      "collateral_risk": "medium",
+      "legal_flags": ["ITAR-likely"],
+      "swarm_effectiveness": "low",
+      "range": "mid",
+      "energy": 15,
+      "cooldown": 7,
+      "roe": "med",
+      "brands": [
+        "Raytheon C-RAM",
+        "Rheinmetall Oerlikon Skyguard"
+      ],
+      "sources": [
+        "https://www.rtx.com/raytheon/what-we-do/integrated-air-and-missile-defense/c-ram",
+        "https://www.rheinmetall.com/en/media/news-watch/news/2022/2022-05-19_laser-weapons-against-drones"
+      ]
+    },
+    {
+      "id": "ai_deception",
+      "name": "AI Deception",
+      "class": "ecm",
+      "description": "Increases hostile false-pathing (%) for T seconds",
+      "typical_range_m": 2000,
+      "power_kw_nominal": 3,
+      "latency_ms": 300,
+      "collateral_risk": "low",
+      "legal_flags": ["Export-controlled"],
+      "swarm_effectiveness": "high",
+      "range": "mid-long",
+      "energy": 18,
+      "cooldown": 12,
+      "roe": "med",
+      "brands": [
+        "BAE Systems AI/ML EW",
+        "Lockheed Martin Cognitive EW"
+      ],
+      "sources": [
+        "https://www.baesystems.com/en-us/product/electronic-warfare-systems",
+        "https://www.lockheedmartin.com/en-us/products/electronic-warfare.html"
+      ]
     }
   ],
 
@@ -317,6 +564,210 @@
       ],
       "sources": [
         "https://www.rtx.com/raytheon/what-we-do/air/mald-decoy"
+      ]
+    },
+    {
+      "id": "decoy_uav",
+      "name": "Decoy UAV",
+      "role": "deception",
+      "notes": "Emits lure beacons & spoofed signatures",
+      "energy": 10,
+      "speed": "med",
+      "endurance": "med",
+      "brands": [
+        "Raytheon ADM‑160 MALD",
+        "BAE Systems Electronic Decoys"
+      ],
+      "sources": [
+        "https://www.rtx.com/raytheon/what-we-do/air/mald-decoy",
+        "https://www.baesystems.com/en-us/product/electronic-warfare-systems"
+      ]
+    },
+    {
+      "id": "net_uav",
+      "name": "Net‑Capture UAV",
+      "role": "capture",
+      "notes": "Fires net; drags target down",
+      "energy": 14,
+      "speed": "med",
+      "endurance": "low",
+      "brands": [
+        "Fortem DroneHunter F700",
+        "Anduril Anvil (net capture)"
+      ],
+      "sources": [
+        "https://www.fortemtech.com/products/",
+        "https://www.anduril.com/anvil/"
+      ]
+    },
+    {
+      "id": "relay_uav",
+      "name": "EW Relay UAV",
+      "role": "support",
+      "notes": "Extends RF/EW bubble reach",
+      "energy": 8,
+      "speed": "slow",
+      "endurance": "high",
+      "brands": [
+        "Lockheed Martin DEWS Relay",
+        "BAE Systems EW Relay"
+      ],
+      "sources": [
+        "https://www.lockheedmartin.com/en-us/products/dews.html",
+        "https://www.baesystems.com/en-us/product/electronic-warfare-systems"
+      ]
+    },
+    {
+      "id": "overwatch_tether",
+      "name": "Tethered Overwatch",
+      "role": "sensor",
+      "notes": "Elevated mast; persistent radar/optical",
+      "energy": 12,
+      "speed": "-",
+      "endurance": "very_high",
+      "brands": [
+        "Elistair Orion/SAFE-T",
+        "Hoverfly LiveSky"
+      ],
+      "sources": [
+        "https://elistair.com/",
+        "https://hoverflytech.com/"
+      ]
+    },
+    {
+      "id": "recovery_uav",
+      "name": "Recovery Drone",
+      "role": "logistics",
+      "notes": "Retrieves captured/disabled drones",
+      "energy": 6,
+      "speed": "med",
+      "endurance": "med",
+      "brands": [
+        "General Atomics MQ-9 Reaper",
+        "Northrop Grumman RQ-4 Global Hawk"
+      ],
+      "sources": [
+        "https://www.ga-asi.com/remotely-piloted-aircraft/mq-9",
+        "https://www.northropgrumman.com/what-we-do/air/global-hawk/"
+      ]
+    },
+    {
+      "id": "lure_swarm",
+      "name": "Micro‑Decoy Swarm",
+      "role": "deception",
+      "notes": "Dozens of pingers; saturates seekers",
+      "energy": 15,
+      "speed": "fast",
+      "endurance": "low",
+      "brands": [
+        "Raytheon Coyote",
+        "BAE Systems Swarm Decoys"
+      ],
+      "sources": [
+        "https://www.rtx.com/raytheon/what-we-do/air/coyote",
+        "https://www.baesystems.com/en-us/product/electronic-warfare-systems"
+      ]
+    },
+    {
+      "id": "perimeter_sentry",
+      "name": "Perimeter Sentry",
+      "role": "guard",
+      "notes": "Circles perimeter; auto‑intercept small targets",
+      "energy": 12,
+      "speed": "med",
+      "endurance": "med",
+      "brands": [
+        "Skydio X10D",
+        "DJI Matrice 30T"
+      ],
+      "sources": [
+        "https://www.skydio.com/x10d",
+        "https://www.dji.com/matrice-30-series"
+      ]
+    },
+    {
+      "id": "spotter",
+      "name": "Spotter UAV",
+      "role": "recon",
+      "notes": "Marks targets; improves effector accuracy",
+      "energy": 9,
+      "speed": "fast",
+      "endurance": "med",
+      "brands": [
+        "Teledyne FLIR SkyRanger",
+        "Skydio X10D"
+      ],
+      "sources": [
+        "https://www.flir.com/suas/",
+        "https://www.skydio.com/x10d"
+      ]
+    },
+    {
+      "id": "hpm_uav",
+      "name": "HPM Pod UAV",
+      "role": "directed",
+      "notes": "Mobile HPM arc",
+      "energy": 20,
+      "speed": "slow",
+      "endurance": "low",
+      "brands": [
+        "Epirus Leonidas (pod variants)",
+        "Boeing CHAMP"
+      ],
+      "sources": [
+        "https://www.epirusinc.com/leonidas",
+        "https://www.boeing.com/defense/champ/"
+      ]
+    },
+    {
+      "id": "shield_wall",
+      "name": "Shield Wall",
+      "role": "guard",
+      "notes": "Projects directional shield arc",
+      "energy": 16,
+      "speed": "-",
+      "endurance": "high",
+      "brands": [
+        "Rheinmetall ROSY",
+        "BAE Systems Active Protection"
+      ],
+      "sources": [
+        "https://www.rheinmetall.com/Rheinmetall%20Group/brochure-download/Protection-Systems/B180e0524-ROSY-Rapid-Obscuring-System-for-vehicle-protection.pdf",
+        "https://www.baesystems.com/en-us/product/active-protection-systems"
+      ]
+    },
+    {
+      "id": "mapper_lidar",
+      "name": "LiDAR Mapper",
+      "role": "recon",
+      "notes": "Builds 3D scene; boosts prediction",
+      "energy": 10,
+      "speed": "med",
+      "endurance": "med",
+      "brands": [
+        "Velodyne LiDAR",
+        "Luminar Technologies"
+      ],
+      "sources": [
+        "https://velodynelidar.com/",
+        "https://luminartech.com/"
+      ]
+    },
+    {
+      "id": "relay_optical",
+      "name": "Optical Mesh Drone",
+      "role": "support",
+      "notes": "LOS optical link when RF jammed",
+      "energy": 8,
+      "speed": "med",
+      "endurance": "med",
+      "brands": [
+        "Lockheed Martin Optical Mesh",
+        "BAE Systems Optical Relay"
+      ],
+      "sources": [
+        "https://www.lockheedmartin.com/en-us/products/optical-systems.html",
+        "https://www.baesystems.com/en-us/product/optical-systems"
       ]
     }
   ],

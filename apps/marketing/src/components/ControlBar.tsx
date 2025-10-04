@@ -27,6 +27,8 @@ interface ControlBarProps {
   setShowDeploymentZones: (show: boolean) => void;
   onShowStats: () => void;
   onShowHelp: () => void;
+  onShowResearch: () => void;
+  onShowTokenStore: () => void;
 }
 
 const ControlBar: React.FC<ControlBarProps> = ({
@@ -47,6 +49,8 @@ const ControlBar: React.FC<ControlBarProps> = ({
   setShowDeploymentZones,
   onShowStats,
   onShowHelp,
+  onShowResearch,
+  onShowTokenStore,
 }) => {
   const levels = [1, 2, 3];
 
@@ -155,13 +159,19 @@ const ControlBar: React.FC<ControlBarProps> = ({
 
       <button 
         role="switch"
-        aria-checked={showStats}
-        className={`switch ${showStats ? "switch--on" : ""}`}
+        aria-checked={false}
+        className="switch"
         onClick={onShowStats}
       >
         Show Stats
       </button>
 
+      <button className="btn btn--ghost" onClick={onShowResearch} title="Research">
+        🔬
+      </button>
+      <button className="btn btn--ghost" onClick={onShowTokenStore} title="Token Store">
+        🪙
+      </button>
       <button className="btn btn--ghost" onClick={onShowHelp} title="?">
         ?
       </button>

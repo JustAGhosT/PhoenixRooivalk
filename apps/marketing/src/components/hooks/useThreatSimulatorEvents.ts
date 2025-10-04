@@ -22,7 +22,7 @@ interface UseThreatSimulatorEventsProps {
   switchWeapon: (weaponId: string) => void;
   deployDrone: (
     droneType:
-      | "interceptor"
+      | "effector"
       | "jammer"
       | "surveillance"
       | "shield"
@@ -32,7 +32,7 @@ interface UseThreatSimulatorEventsProps {
   ) => void;
   selectDroneType: (
     droneType:
-      | "interceptor"
+      | "effector"
       | "jammer"
       | "surveillance"
       | "shield"
