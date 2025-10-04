@@ -8,6 +8,25 @@ use std::time::Duration;
 use tempfile::NamedTempFile;
 use tokio::net::TcpListener;
 
+/// Helper function to set environment variable with automatic restoration
+async fn with_env_var<F, Fut>(key: &str, value: &str, f: F)
+where
+    F: FnOnce() -> Fut,
+    Fut: std::future::Future<Output = ()>,
+{
+    let original_value = std::env::var(key).ok();
+    std::env::set_var(key, value);
+    
+    f().await;
+    
+    // Restore original value
+    match original_value {
+        Some(val) => std::env::set_var(key, val),
+        None => std::env::remove_var(key),
+    }
+}
+
+
 #[tokio::test]
 async fn test_build_app() {
     // Create temp DB
@@ -15,18 +34,17 @@ async fn test_build_app() {
     let db_path = temp_db.path().to_str().unwrap();
     let db_url = format!("sqlite://{}", db_path);
 
-    // Set env for API to use temp DB
-    std::env::set_var("API_DB_URL", &db_url);
+    with_env_var("API_DB_URL", &db_url, || async {
+        // Build app
+        let (_app, pool) = build_app().await.unwrap();
 
-    // Build app
-    let (_app, pool) = build_app().await.unwrap();
+        // App should be created (Router doesn't have routes() method in axum 0.7)
+        // Just verify the app was created successfully
 
-    // App should be created (Router doesn't have routes() method in axum 0.7)
-    // Just verify the app was created successfully
-
-    // Pool should be connected
-    let result = sqlx::query("SELECT 1").fetch_one(&pool).await;
-    assert!(result.is_ok());
+        // Pool should be connected
+        let result = sqlx::query("SELECT 1").fetch_one(&pool).await;
+        assert!(result.is_ok());
+    }).await;
 }
 
 #[tokio::test]
@@ -36,6 +54,10 @@ async fn test_build_app_with_fallback_url() {
     let db_path = temp_db.path().to_str().unwrap();
     let db_url = format!("sqlite://{}", db_path);
 
+    // Save original values
+    let original_api_url = std::env::var("API_DB_URL").ok();
+    let original_keeper_url = std::env::var("KEEPER_DB_URL").ok();
+    
     std::env::set_var("KEEPER_DB_URL", &db_url);
     std::env::remove_var("API_DB_URL");
 
@@ -48,11 +70,25 @@ async fn test_build_app_with_fallback_url() {
     // Pool should be connected
     let result = sqlx::query("SELECT 1").fetch_one(&pool).await;
     assert!(result.is_ok());
+
+    // Restore original values
+    match original_api_url {
+        Some(val) => std::env::set_var("API_DB_URL", val),
+        None => std::env::remove_var("API_DB_URL"),
+    }
+    match original_keeper_url {
+        Some(val) => std::env::set_var("KEEPER_DB_URL", val),
+        None => std::env::remove_var("KEEPER_DB_URL"),
+    }
 }
 
 #[tokio::test]
 async fn test_build_app_with_default_url() {
     // Don't set any DB URL, should use default
+    // Save original values
+    let original_api_url = std::env::var("API_DB_URL").ok();
+    let original_keeper_url = std::env::var("KEEPER_DB_URL").ok();
+    
     std::env::remove_var("API_DB_URL");
     std::env::remove_var("KEEPER_DB_URL");
 
@@ -68,6 +104,16 @@ async fn test_build_app_with_default_url() {
             // Default URL might not work in test environment, which is expected
         }
     }
+
+    // Restore original values
+    match original_api_url {
+        Some(val) => std::env::set_var("API_DB_URL", val),
+        None => std::env::remove_var("API_DB_URL"),
+    }
+    match original_keeper_url {
+        Some(val) => std::env::set_var("KEEPER_DB_URL", val),
+        None => std::env::remove_var("KEEPER_DB_URL"),
+    }
 }
 
 #[tokio::test]
@@ -77,38 +123,38 @@ async fn test_health_endpoint() {
     let db_path = temp_db.path().to_str().unwrap();
     let db_url = format!("sqlite://{}", db_path);
 
-    std::env::set_var("API_DB_URL", &db_url);
+    with_env_var("API_DB_URL", &db_url, || async {
+        // Build app
+        let (app, _pool) = build_app().await.unwrap();
 
-    // Build app
-    let (app, _pool) = build_app().await.unwrap();
+        // Find available port
+        let listener = TcpListener::bind("127.0.0.1:0").await.unwrap();
+        let addr = listener.local_addr().unwrap();
+        let port = addr.port();
+        drop(listener);
 
-    // Find available port
-    let listener = TcpListener::bind("127.0.0.1:0").await.unwrap();
-    let addr = listener.local_addr().unwrap();
-    let port = addr.port();
-    drop(listener);
+        // Start server
+        let server = tokio::spawn(async move {
+            let listener = tokio::net::TcpListener::bind(addr).await.unwrap();
+            serve(listener, app.into_make_service()).await.unwrap();
+        });
 
-    // Start server
-    let server = tokio::spawn(async move {
-        let listener = tokio::net::TcpListener::bind(addr).await.unwrap();
-        serve(listener, app.into_make_service()).await.unwrap();
-    });
+        // Wait for server to start
+        tokio::time::sleep(Duration::from_millis(100)).await;
 
-    // Wait for server to start
-    tokio::time::sleep(Duration::from_millis(100)).await;
+        let client = Client::new();
+        let response = client
+            .get(format!("http://127.0.0.1:{}/health", port))
+            .send()
+            .await
+            .unwrap();
 
-    let client = Client::new();
-    let response = client
-        .get(format!("http://127.0.0.1:{}/health", port))
-        .send()
-        .await
-        .unwrap();
+        assert_eq!(response.status(), 200);
+        let body = response.text().await.unwrap();
+        assert_eq!(body, "OK");
 
-    assert_eq!(response.status(), 200);
-    let body = response.text().await.unwrap();
-    assert_eq!(body, "OK");
-
-    server.abort();
+        server.abort();
+    }).await;
 }
 
 #[tokio::test]

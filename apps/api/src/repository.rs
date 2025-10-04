@@ -330,7 +330,7 @@ impl EvidenceRepository {
     pub async fn create_evidence_job_tx(
         &self,
         evidence: &EvidenceIn,
-    ) -> Result<Transaction<'_, Sqlite>> {
+    ) -> Result<(Transaction<'_, Sqlite>, String)> {
         let mut tx = self.pool.begin().await?;
         
         let id = evidence
@@ -357,7 +357,7 @@ impl EvidenceRepository {
             )));
         }
 
-        Ok(tx)
+        Ok((tx, id))
     }
 }
 

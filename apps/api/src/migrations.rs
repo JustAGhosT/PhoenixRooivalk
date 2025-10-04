@@ -56,9 +56,9 @@ impl MigrationManager {
         sqlx::query(sql).execute(&mut *tx).await?;
 
         // Record the migration
-        let now = chrono::Utc::now().timestamp();
+        let now = chrono::Utc::now().timestamp_millis();
         sqlx::query(
-            "INSERT INTO schema_migrations (version, name, applied_at) VALUES (?1, ?2, ?3)"
+            "INSERT OR IGNORE INTO schema_migrations (version, name, applied_at) VALUES (?1, ?2, ?3)"
         )
         .bind(version)
         .bind(name)

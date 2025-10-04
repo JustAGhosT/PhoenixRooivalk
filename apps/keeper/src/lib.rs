@@ -329,6 +329,7 @@ impl JobProviderExt for SqliteJobProvider {
                 "UPDATE outbox_jobs SET status='queued', last_error=?1, updated_ms=?2, next_attempt_ms=?3 WHERE id=?4",
             )
             .bind(reason)
+            .bind(now_ms)
             .bind(next)
             .bind(id)
             .execute(&self.pool)

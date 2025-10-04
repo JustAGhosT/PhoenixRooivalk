@@ -170,7 +170,7 @@ pub async fn create_evidence_with_metadata(
     let mut tx = self.pool.begin().await?;
     
     // Create evidence job
-    let job_id = self.create_evidence_job_tx(&mut tx, evidence).await?;
+    let (mut tx, job_id) = self.create_evidence_job_tx(evidence).await?;
     
     // Store metadata
     self.store_metadata_tx(&mut tx, &job_id, metadata).await?;
