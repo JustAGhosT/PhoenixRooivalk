@@ -1,10 +1,8 @@
-import { useCallback, useState, type RefObject } from "react";
+import { useCallback, useState } from "react";
 import type { GameState, SelectionBox, Threat } from "../../types/game";
-import { ParticleSystem } from "../utils/particleSystem";
-import type { PowerUp } from "../utils/weaponTypes";
 
 interface UseThreatSimulatorEventsProps {
-  gameRef: RefObject<HTMLButtonElement>;
+  gameRef: React.RefObject<HTMLButtonElement>;
   gameState: GameState;
   updateThreats: (threats: Threat[]) => void;
   addThreat: (threat: Threat) => void;
@@ -43,29 +41,43 @@ interface UseThreatSimulatorEventsProps {
   moveAllThreats: () => void;
   generateSwarm: () => void;
   spawnMultipleDrones: (count: number) => void;
-  activatePowerUp: (powerUpType: PowerUp["type"]) => void;
+  activatePowerUp: (powerUpId: string) => void;
   clearTimeouts: () => void;
   resetGameState: () => void;
   toggleRunningState: () => void;
   setFrameRate: (rate: number) => void;
   consumeEnergy: (amount: number) => void;
   consumeCooling: (amount: number) => void;
-  particleSystem: ParticleSystem;
+  particleSystem: any;
 }
 
 export const useThreatSimulatorEvents = ({
   gameRef,
   gameState,
+  updateThreats: _updateThreats,
+  addThreat: _addThreat,
+  removeThreat: _removeThreat,
+  updateScore: _updateScore,
   selectThreat,
   setThreatPriority,
   neutralizeThreat,
   switchWeapon,
   deployDrone,
   selectDroneType,
+  returnDroneToBase: _returnDroneToBase,
   clearSelection,
   setSelectionBox,
+  spawnNewThreat: _spawnNewThreat,
+  moveAllThreats: _moveAllThreats,
+  generateSwarm: _generateSwarm,
+  spawnMultipleDrones: _spawnMultipleDrones,
+  activatePowerUp: _activatePowerUp,
+  clearTimeouts: _clearTimeouts,
+  resetGameState: _resetGameState,
   toggleRunningState,
+  setFrameRate: _setFrameRate,
   consumeEnergy,
+  consumeCooling: _consumeCooling,
   particleSystem,
 }: UseThreatSimulatorEventsProps) => {
   // Mouse interaction state
@@ -100,7 +112,7 @@ export const useThreatSimulatorEvents = ({
         }
       }
     },
-    [gameRef, gameState.selectedWeapon, setSelectionBox],
+    [gameState.selectedWeapon, setSelectionBox],
   );
 
   const handleMouseMove = useCallback(
@@ -146,7 +158,7 @@ export const useThreatSimulatorEvents = ({
             gameState.selectionBox.endY,
           );
 
-          const selectedThreats = gameState.threats.filter((threat) => {
+          const selectedThreats = gameState.threats.filter((threat: any) => {
             return (
               threat.x >= minX &&
               threat.x <= maxX &&
@@ -157,7 +169,7 @@ export const useThreatSimulatorEvents = ({
 
           if (dragMode === "area-weapon") {
             // Area effect weapon - neutralize all threats in selection
-            selectedThreats.forEach((threat) => {
+            selectedThreats.forEach((threat: any) => {
               neutralizeThreat(threat.id);
               // Create area effect explosion
               particleSystem.createExplosion(threat.x, threat.y, 1.2);
@@ -167,7 +179,7 @@ export const useThreatSimulatorEvents = ({
             consumeEnergy(selectedThreats.length * 10);
           } else {
             // Normal selection mode
-            selectedThreats.forEach((threat) => {
+            selectedThreats.forEach((threat: any) => {
               selectThreat(threat.id);
             });
           }
@@ -184,31 +196,28 @@ export const useThreatSimulatorEvents = ({
       particleSystem,
       consumeEnergy,
       setSelectionBox,
+      gameRef,
     ],
   );
 
   const handleThreatClick = useCallback(
-    (e: React.MouseEvent | React.KeyboardEvent, threatId: string) => {
+    (e: React.MouseEvent, threatId: string) => {
       e.stopPropagation();
-      e.preventDefault();
 
-      let button = 0;
-      if ("button" in e) {
-        // It's a mouse event
-        button = e.button;
-      } else if ("key" in e) {
-        // it's a keyboard event
-        if (e.key !== "Enter" && e.key !== " ") {
-          return; // Not an activation key
-        }
+      // Only prevent default for non-primary buttons to avoid interfering with normal selection
+      if (e.button !== 0) {
+        e.preventDefault();
       }
 
-      if (button === 0) {
-        // Left click or Enter/Space - select threat
+      if (e.button === 0) {
+        // Left click - select threat
         selectThreat(threatId);
-      } else if (button === 1) {
+      } else if (e.button === 1) {
         // Middle click - set priority
-        const currentPriority = gameState.priorityThreats?.[threatId];
+        // Use safer object property access with optional chaining
+        const currentPriority = gameState.priorityThreats?.[threatId] as
+          | string
+          | undefined;
         if (currentPriority === "high") {
           setThreatPriority(threatId, "medium");
         } else if (currentPriority === "medium") {
@@ -216,7 +225,7 @@ export const useThreatSimulatorEvents = ({
         } else {
           setThreatPriority(threatId, "high");
         }
-      } else if (button === 2) {
+      } else if (e.button === 2) {
         // Right click - neutralize
         neutralizeThreat(threatId);
       }
@@ -256,13 +265,7 @@ export const useThreatSimulatorEvents = ({
         deployDrone("surveillance", x, y);
       }
     },
-    [
-      gameRef,
-      gameState.selectedDroneType,
-      deployDrone,
-      switchWeapon,
-      isDragging,
-    ],
+    [gameState.selectedDroneType, deployDrone, switchWeapon, isDragging],
   );
 
   // Keyboard activation handler (no mouse coordinates needed)
@@ -311,7 +314,7 @@ export const useThreatSimulatorEvents = ({
         }
       }
     },
-    [gameState.selectedWeapon, switchWeapon],
+    [gameState.selectedWeapon, switchWeapon, gameRef],
   );
 
   // Context menu handler to prevent right-click menu
@@ -321,83 +324,51 @@ export const useThreatSimulatorEvents = ({
 
   // Keyboard shortcuts
   const handleKeyDown = useCallback(
-    (e: React.KeyboardEvent) => {
-      // Prevent default for game shortcuts
-      if (e.ctrlKey || e.metaKey) return;
+    (e: KeyboardEvent) => {
+      // Prevent default for game shortcuts to avoid conflicts with browser shortcuts
+      if (e.ctrlKey || e.metaKey || e.altKey) return;
 
-      switch (e.key) {
-        case "1":
-          e.preventDefault();
-          switchWeapon("kinetic");
-          break;
-        case "2":
-          e.preventDefault();
-          switchWeapon("electronic");
-          break;
-        case "3":
-          e.preventDefault();
-          switchWeapon("laser");
-          break;
-        case "w":
-          e.preventDefault();
-          if (gameState.selectedDroneType) {
-            deployDrone(
-              gameState.selectedDroneType,
-              gameState.mothership.x,
-              gameState.mothership.y - 100,
-            );
-          }
-          break;
-        case "s":
-          e.preventDefault();
-          if (gameState.selectedDroneType) {
-            deployDrone(
-              gameState.selectedDroneType,
-              gameState.mothership.x,
-              gameState.mothership.y + 100,
-            );
-          }
-          break;
-        case "a":
-          e.preventDefault();
-          if (gameState.selectedDroneType) {
-            deployDrone(
-              gameState.selectedDroneType,
-              gameState.mothership.x - 100,
-              gameState.mothership.y,
-            );
-          }
-          break;
-        case "d":
-          e.preventDefault();
-          if (gameState.selectedDroneType) {
-            deployDrone(
-              gameState.selectedDroneType,
-              gameState.mothership.x + 100,
-              gameState.mothership.y,
-            );
-          }
-          break;
-        case "Escape":
-          e.preventDefault();
-          clearSelection();
-          selectDroneType(null);
-          break;
+      const key = e.key.toLowerCase();
+
+      switch (key) {
         case " ":
           e.preventDefault();
           toggleRunningState();
           break;
+        case "s":
+          e.preventDefault();
+          _generateSwarm();
+          break;
+        case "+":
+        case "=": // Handle both + and = for convenience
+          e.preventDefault();
+          _spawnMultipleDrones(5);
+          break;
+        case "r":
+          e.preventDefault();
+          _resetGameState();
+          break;
+        case "1":
+        case "2":
+        case "3":
+          e.preventDefault();
+          // The setLevel function is not available here, so we need to handle this in ThreatSimulator.tsx
+          // For now, we just prevent default. The actual level change will be handled there.
+          break;
+        case "escape":
+          e.preventDefault();
+          clearSelection();
+          selectDroneType(null);
+          break;
       }
     },
     [
-      switchWeapon,
-      gameState.selectedDroneType,
-      gameState.mothership.x,
-      gameState.mothership.y,
-      deployDrone,
+      toggleRunningState,
+      _generateSwarm,
+      _spawnMultipleDrones,
+      _resetGameState,
       clearSelection,
       selectDroneType,
-      toggleRunningState,
     ],
   );
 
