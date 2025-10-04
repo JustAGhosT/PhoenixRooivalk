@@ -69,7 +69,7 @@ async fn main() {
         .with(tracing_subscriber::fmt::layer())
         .init();
 
-    let (app, _pool) = build_app().await;
+    let (app, _pool) = build_app().await.expect("Failed to build app");
 
     let port: u16 = std::env::var("PORT")
         .ok()
@@ -85,7 +85,10 @@ async fn main() {
     };
     let bound = listener.local_addr().unwrap_or(addr);
     tracing::info!(%bound, "starting phoenix-api");
-    if let Err(err) = serve(listener, app.into_make_service()).await {
+    if let Err(err) = axum::serve(listener, app.into_make_service())
+        .with_graceful_shutdown(shutdown_signal())
+        .await
+    {
         tracing::error!(%err, "server error");
     }
 }
@@ -148,8 +151,13 @@ async fn post_evidence(
     .execute(&state.pool)
     .await;
 
-    Json(serde_json::json!({ "id": id, "status": "queued" }))
-}
+    #[cfg(unix)]
+    let terminate = async {
+        signal::unix::signal(signal::unix::SignalKind::terminate())
+            .expect("failed to install signal handler")
+            .recv()
+            .await;
+    };
 
 async fn get_evidence(
     State(state): State<AppState>,
@@ -164,17 +172,10 @@ async fn get_evidence(
     .ok()
     .flatten();
 
-    if let Some(row) = row {
-        let out = EvidenceOut {
-            id: row.get::<String, _>(0),
-            status: row.get::<String, _>(1),
-            attempts: row.get::<i64, _>(2),
-            last_error: row.get::<Option<String>, _>(3),
-            created_ms: row.get::<i64, _>(4),
-            updated_ms: row.get::<i64, _>(5),
-        };
-        return Json(serde_json::to_value(out).unwrap());
+    tokio::select! {
+        _ = ctrl_c => {},
+        _ = terminate => {},
     }
 
-    Json(serde_json::json!({ "id": id, "status": "not_found" }))
+    tracing::info!("signal received, starting graceful shutdown");
 }

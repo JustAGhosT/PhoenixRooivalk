@@ -1496,6 +1496,7 @@ name = "phoenix-api"
 version = "0.1.0"
 dependencies = [
  "anchor-etherlink",
+ "anyhow",
  "axum",
  "chrono",
  "phoenix-evidence",
@@ -1533,6 +1534,7 @@ dependencies = [
  "axum",
  "chrono",
  "phoenix-evidence",
+ "rand",
  "serde",
  "serde_json",
  "sqlx",
