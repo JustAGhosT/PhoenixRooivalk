@@ -1,13 +1,13 @@
 use anchor_solana::{SolanaProvider, SolanaProviderStub};
-use phoenix_evidence::model::{ChainTxRef, DigestAlgo, EvidenceDigest, EvidenceRecord};
-use phoenix_evidence::anchor::AnchorProvider;
 use chrono::Utc;
+use phoenix_evidence::anchor::AnchorProvider;
+use phoenix_evidence::model::{ChainTxRef, DigestAlgo, EvidenceDigest, EvidenceRecord};
 use serde_json::json;
 
 #[tokio::test]
 async fn test_solana_provider_stub_anchor() {
     let provider = SolanaProviderStub;
-    
+
     let evidence = EvidenceRecord {
         id: "test-evidence-123".to_string(),
         created_at: Utc::now(),
@@ -21,7 +21,7 @@ async fn test_solana_provider_stub_anchor() {
 
     let result = provider.anchor(&evidence).await;
     assert!(result.is_ok());
-    
+
     let tx_ref = result.unwrap();
     assert_eq!(tx_ref.network, "solana");
     assert_eq!(tx_ref.chain, "devnet");
@@ -33,7 +33,7 @@ async fn test_solana_provider_stub_anchor() {
 #[tokio::test]
 async fn test_solana_provider_stub_confirm() {
     let provider = SolanaProviderStub;
-    
+
     let tx_ref = ChainTxRef {
         network: "solana".to_string(),
         chain: "devnet".to_string(),
@@ -44,7 +44,7 @@ async fn test_solana_provider_stub_confirm() {
 
     let result = provider.confirm(&tx_ref).await;
     assert!(result.is_ok());
-    
+
     let confirmed_tx = result.unwrap();
     assert_eq!(confirmed_tx.network, tx_ref.network);
     assert_eq!(confirmed_tx.chain, tx_ref.chain);
@@ -59,7 +59,7 @@ async fn test_solana_provider_new() {
         "https://api.devnet.solana.com".to_string(),
         "devnet".to_string(),
     );
-    
+
     // Provider should be created successfully
     assert_eq!(provider.endpoint, "https://api.devnet.solana.com");
     assert_eq!(provider.network, "devnet");
@@ -70,7 +70,7 @@ async fn test_solana_provider_anchor_real() {
     // This test would require a real Solana endpoint
     // For now, we'll test the stub implementation
     let provider = SolanaProviderStub;
-    
+
     let evidence = EvidenceRecord {
         id: "test-evidence-456".to_string(),
         created_at: Utc::now(),
@@ -84,7 +84,7 @@ async fn test_solana_provider_anchor_real() {
 
     let result = provider.anchor(&evidence).await;
     assert!(result.is_ok());
-    
+
     let tx_ref = result.unwrap();
     assert_eq!(tx_ref.tx_id, "fake:deadbeefcafebabe");
 }
@@ -94,7 +94,7 @@ async fn test_solana_provider_confirm_real() {
     // This test would require a real Solana endpoint
     // For now, we'll test the stub implementation
     let provider = SolanaProviderStub;
-    
+
     let tx_ref = ChainTxRef {
         network: "solana".to_string(),
         chain: "devnet".to_string(),
@@ -105,7 +105,7 @@ async fn test_solana_provider_confirm_real() {
 
     let result = provider.confirm(&tx_ref).await;
     assert!(result.is_ok());
-    
+
     let confirmed_tx = result.unwrap();
     assert!(confirmed_tx.confirmed);
 }
@@ -116,7 +116,7 @@ fn test_solana_provider_clone() {
         "https://api.devnet.solana.com".to_string(),
         "devnet".to_string(),
     );
-    
+
     let cloned_provider = provider.clone();
     assert_eq!(cloned_provider.endpoint, provider.endpoint);
     assert_eq!(cloned_provider.network, provider.network);
@@ -133,14 +133,14 @@ fn test_solana_provider_stub_clone() {
 fn test_solana_rpc_request_serialization() {
     use anchor_solana::SolanaRpcRequest;
     use serde_json::json;
-    
+
     let request = SolanaRpcRequest {
         jsonrpc: "2.0".to_string(),
         id: 1,
         method: "sendTransaction".to_string(),
         params: json!(["0x1234567890abcdef"]),
     };
-    
+
     let json_str = serde_json::to_string(&request).unwrap();
     assert!(json_str.contains("2.0"));
     assert!(json_str.contains("sendTransaction"));
@@ -151,13 +151,13 @@ fn test_solana_rpc_request_serialization() {
 #[test]
 fn test_solana_rpc_response_deserialization() {
     use anchor_solana::SolanaRpcResponse;
-    
+
     let json_str = r#"{
         "jsonrpc": "2.0",
         "id": 1,
         "result": "0x1234567890abcdef"
     }"#;
-    
+
     let response: SolanaRpcResponse = serde_json::from_str(json_str).unwrap();
     assert_eq!(response.jsonrpc, "2.0");
     assert_eq!(response.id, 1);
@@ -168,7 +168,7 @@ fn test_solana_rpc_response_deserialization() {
 #[test]
 fn test_solana_rpc_error_response() {
     use anchor_solana::SolanaRpcResponse;
-    
+
     let json_str = r#"{
         "jsonrpc": "2.0",
         "id": 1,
@@ -177,13 +177,13 @@ fn test_solana_rpc_error_response() {
             "message": "Method not found"
         }
     }"#;
-    
+
     let response: SolanaRpcResponse = serde_json::from_str(json_str).unwrap();
     assert_eq!(response.jsonrpc, "2.0");
     assert_eq!(response.id, 1);
     assert!(response.result.is_none());
     assert!(response.error.is_some());
-    
+
     let error = response.error.unwrap();
     assert_eq!(error.code, -32601);
     assert_eq!(error.message, "Method not found");
@@ -195,7 +195,7 @@ fn test_solana_provider_debug() {
         "https://api.devnet.solana.com".to_string(),
         "devnet".to_string(),
     );
-    
+
     let debug_str = format!("{:?}", provider);
     assert!(debug_str.contains("SolanaProvider"));
     assert!(debug_str.contains("https://api.devnet.solana.com"));

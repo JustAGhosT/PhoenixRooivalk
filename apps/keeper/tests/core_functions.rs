@@ -1,14 +1,14 @@
+use chrono::Utc;
+use phoenix_evidence::anchor::{AnchorError, AnchorProvider};
 use phoenix_evidence::model::{ChainTxRef, EvidenceRecord};
 use phoenix_keeper::{
-    run_job_loop, run_confirmation_loop, JobProvider, JobProviderExt, JobError, EvidenceJob,
+    run_confirmation_loop, run_job_loop, EvidenceJob, JobError, JobProvider, JobProviderExt,
     SqliteJobProvider,
 };
-use phoenix_evidence::anchor::{AnchorProvider, AnchorError};
 use std::sync::{Arc, Mutex};
 use std::time::Duration;
 use tempfile::NamedTempFile;
 use tokio::time::timeout;
-use chrono::Utc;
 
 // Mock implementations for testing
 #[derive(Clone)]
@@ -45,7 +45,7 @@ impl JobProvider for MockJobProvider {
 
         let mut index = self.current_index.lock().unwrap();
         let jobs = self.jobs.lock().unwrap();
-        
+
         if *index >= jobs.len() {
             return Ok(None);
         }
@@ -135,7 +135,7 @@ impl AnchorProvider for MockAnchorProvider {
 async fn test_run_job_loop_success() {
     let provider = MockJobProvider::new();
     let anchor = MockAnchorProvider::new();
-    
+
     // Add a test job
     provider.add_job(EvidenceJob {
         id: "test-job-1".to_string(),
@@ -149,8 +149,9 @@ async fn test_run_job_loop_success() {
     // Run for a short duration to test one iteration
     let result = timeout(
         Duration::from_millis(100),
-        run_job_loop(&mut provider, &anchor, Duration::from_millis(10))
-    ).await;
+        run_job_loop(&mut provider, &anchor, Duration::from_millis(10)),
+    )
+    .await;
 
     // Should timeout (loop continues), which is expected behavior
     assert!(result.is_err()); // timeout is expected
@@ -160,10 +161,10 @@ async fn test_run_job_loop_success() {
 async fn test_run_job_loop_anchor_failure() {
     let provider = MockJobProvider::new();
     let anchor = MockAnchorProvider::new();
-    
+
     // Make anchor fail
     anchor.set_should_fail(true);
-    
+
     // Add a test job
     provider.add_job(EvidenceJob {
         id: "test-job-1".to_string(),
@@ -177,8 +178,9 @@ async fn test_run_job_loop_anchor_failure() {
     // Run for a short duration
     let result = timeout(
         Duration::from_millis(100),
-        run_job_loop(&mut provider, &anchor, Duration::from_millis(10))
-    ).await;
+        run_job_loop(&mut provider, &anchor, Duration::from_millis(10)),
+    )
+    .await;
 
     // Should timeout (loop continues), which is expected behavior
     assert!(result.is_err()); // timeout is expected
@@ -188,7 +190,7 @@ async fn test_run_job_loop_anchor_failure() {
 async fn test_run_job_loop_provider_failure() {
     let provider = MockJobProvider::new();
     let anchor = MockAnchorProvider::new();
-    
+
     // Make provider fail
     provider.set_should_fail(true);
 
@@ -198,8 +200,9 @@ async fn test_run_job_loop_provider_failure() {
     // Run for a short duration
     let result = timeout(
         Duration::from_millis(100),
-        run_job_loop(&mut provider, &anchor, Duration::from_millis(10))
-    ).await;
+        run_job_loop(&mut provider, &anchor, Duration::from_millis(10)),
+    )
+    .await;
 
     // Should timeout (loop continues), which is expected behavior
     assert!(result.is_err()); // timeout is expected
@@ -231,7 +234,7 @@ async fn test_run_confirmation_loop_success() {
             tx_id TEXT NOT NULL,
             confirmed INTEGER NOT NULL DEFAULT 0,
             timestamp INTEGER
-        )"
+        )",
     )
     .execute(&pool)
     .await
@@ -240,7 +243,7 @@ async fn test_run_confirmation_loop_success() {
     // Insert a test unconfirmed transaction
     sqlx::query(
         "INSERT INTO outbox_tx_refs (job_id, network, chain, tx_id, confirmed, timestamp) 
-         VALUES (?, ?, ?, ?, ?, ?)"
+         VALUES (?, ?, ?, ?, ?, ?)",
     )
     .bind("test-job-1")
     .bind("testnet")
@@ -257,8 +260,9 @@ async fn test_run_confirmation_loop_success() {
     // Run confirmation loop for a short duration
     let result = timeout(
         Duration::from_millis(100),
-        run_confirmation_loop(&pool, &anchor, Duration::from_millis(10))
-    ).await;
+        run_confirmation_loop(&pool, &anchor, Duration::from_millis(10)),
+    )
+    .await;
 
     // Should timeout (loop continues), which is expected behavior
     assert!(result.is_err()); // timeout is expected
@@ -290,7 +294,7 @@ async fn test_run_confirmation_loop_anchor_failure() {
             tx_id TEXT NOT NULL,
             confirmed INTEGER NOT NULL DEFAULT 0,
             timestamp INTEGER
-        )"
+        )",
     )
     .execute(&pool)
     .await
@@ -299,7 +303,7 @@ async fn test_run_confirmation_loop_anchor_failure() {
     // Insert a test unconfirmed transaction
     sqlx::query(
         "INSERT INTO outbox_tx_refs (job_id, network, chain, tx_id, confirmed, timestamp) 
-         VALUES (?, ?, ?, ?, ?, ?)"
+         VALUES (?, ?, ?, ?, ?, ?)",
     )
     .bind("test-job-1")
     .bind("testnet")
@@ -317,8 +321,9 @@ async fn test_run_confirmation_loop_anchor_failure() {
     // Run confirmation loop for a short duration
     let result = timeout(
         Duration::from_millis(100),
-        run_confirmation_loop(&pool, &anchor, Duration::from_millis(10))
-    ).await;
+        run_confirmation_loop(&pool, &anchor, Duration::from_millis(10)),
+    )
+    .await;
 
     // Should timeout (loop continues), which is expected behavior
     assert!(result.is_err()); // timeout is expected
@@ -352,7 +357,7 @@ async fn test_sqlite_job_provider() {
             created_ms INTEGER NOT NULL,
             updated_ms INTEGER NOT NULL,
             next_attempt_ms INTEGER NOT NULL DEFAULT 0
-        )"
+        )",
     )
     .execute(&pool)
     .await
@@ -368,7 +373,7 @@ async fn test_sqlite_job_provider() {
             confirmed INTEGER NOT NULL,
             timestamp INTEGER,
             PRIMARY KEY (job_id, network, chain)
-        )"
+        )",
     )
     .execute(&pool)
     .await
@@ -404,7 +409,10 @@ async fn test_sqlite_job_provider() {
     provider.mark_done("test-job-1").await.unwrap();
 
     // Test mark_failed
-    provider.mark_failed("test-job-1", "test error").await.unwrap();
+    provider
+        .mark_failed("test-job-1", "test error")
+        .await
+        .unwrap();
 
     // Test mark_tx_and_done
     let tx_ref = ChainTxRef {
@@ -414,17 +422,23 @@ async fn test_sqlite_job_provider() {
         confirmed: false,
         timestamp: Some(Utc::now()),
     };
-    provider.mark_tx_and_done("test-job-1", &tx_ref).await.unwrap();
+    provider
+        .mark_tx_and_done("test-job-1", &tx_ref)
+        .await
+        .unwrap();
 
     // Test mark_failed_or_backoff
-    provider.mark_failed_or_backoff("test-job-1", "test error", true).await.unwrap();
+    provider
+        .mark_failed_or_backoff("test-job-1", "test error", true)
+        .await
+        .unwrap();
 }
 
 #[test]
 fn test_job_error_from_sqlx() {
     let sqlx_err = sqlx::Error::PoolClosed;
     let job_err: JobError = sqlx_err.into();
-    
+
     match job_err {
         JobError::Temporary(msg) => {
             // The actual error message format may vary, so we'll check for key terms

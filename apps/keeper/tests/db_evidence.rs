@@ -2,7 +2,9 @@ use anchor_etherlink::EtherlinkProviderStub;
 use async_trait::async_trait;
 use phoenix_evidence::anchor::{AnchorError, AnchorProvider};
 use phoenix_evidence::model::{ChainTxRef, EvidenceRecord};
-use phoenix_keeper::{ensure_schema, JobProvider, JobProviderExt, SqliteJobProvider, EvidenceJob, JobError};
+use phoenix_keeper::{
+    ensure_schema, EvidenceJob, JobError, JobProvider, JobProviderExt, SqliteJobProvider,
+};
 use sqlx::{sqlite::SqlitePoolOptions, Row};
 use std::sync::atomic::{AtomicBool, Ordering};
 use std::sync::Arc;
@@ -154,13 +156,11 @@ impl JobProvider for TestSqliteJobProvider {
     async fn mark_done(&mut self, id: &str) -> Result<(), JobError> {
         let mut tx = self.pool.begin().await?;
         let now_ms = chrono::Utc::now().timestamp_millis();
-        sqlx::query(
-            "UPDATE outbox_jobs SET status='done', updated_ms=?1 WHERE id=?2",
-        )
-        .bind(now_ms)
-        .bind(id)
-        .execute(&mut *tx)
-        .await?;
+        sqlx::query("UPDATE outbox_jobs SET status='done', updated_ms=?1 WHERE id=?2")
+            .bind(now_ms)
+            .bind(id)
+            .execute(&mut *tx)
+            .await?;
         tx.commit().await?;
         Ok(())
     }
@@ -183,20 +183,14 @@ impl JobProvider for TestSqliteJobProvider {
 
 #[async_trait]
 impl JobProviderExt for TestSqliteJobProvider {
-    async fn mark_tx_and_done(
-        &mut self,
-        id: &str,
-        tx_ref: &ChainTxRef,
-    ) -> Result<(), JobError> {
+    async fn mark_tx_and_done(&mut self, id: &str, tx_ref: &ChainTxRef) -> Result<(), JobError> {
         let mut tx = self.pool.begin().await?;
         let now_ms = chrono::Utc::now().timestamp_millis();
-        sqlx::query(
-            "UPDATE outbox_jobs SET status='done', updated_ms=?1 WHERE id=?2",
-        )
-        .bind(now_ms)
-        .bind(id)
-        .execute(&mut *tx)
-        .await?;
+        sqlx::query("UPDATE outbox_jobs SET status='done', updated_ms=?1 WHERE id=?2")
+            .bind(now_ms)
+            .bind(id)
+            .execute(&mut *tx)
+            .await?;
         sqlx::query(
             "INSERT INTO outbox_tx_refs (job_id, network, chain, tx_id, confirmed, timestamp) VALUES (?1, ?2, ?3, ?4, ?5, ?6)",
         )
@@ -249,7 +243,6 @@ impl JobProviderExt for TestSqliteJobProvider {
 struct FailOnceProvider {
     has_failed: Arc<AtomicBool>,
 }
-
 
 impl FailOnceProvider {
     fn new() -> Self {
@@ -324,7 +317,7 @@ async fn test_db_evidence_retry_flow() {
         // Use the actual run_job_loop with a timeout
         let timeout_duration = Duration::from_secs(15);
         let start_time = std::time::Instant::now();
-        
+
         while start_time.elapsed() < timeout_duration {
             match jp.fetch_next().await {
                 Ok(Some(job)) => {
@@ -383,18 +376,18 @@ async fn test_db_evidence_retry_flow() {
     let attempts: i64 = job_status.get("attempts");
 
     println!("Job status: {}, attempts: {}", status, attempts);
-    
+
     // Check if job is still in progress, if so wait a bit more
     if status == "in_progress" {
         println!("Job still in progress, waiting a bit more...");
         tokio::time::sleep(Duration::from_millis(500)).await;
-        
+
         let job_status = sqlx::query("SELECT status, attempts FROM outbox_jobs WHERE id = ?1")
             .bind(job_id)
             .fetch_one(&pool)
             .await
             .unwrap();
-        
+
         let status: String = job_status.get("status");
         let attempts: i64 = job_status.get("attempts");
         println!("Job status after wait: {}, attempts: {}", status, attempts);

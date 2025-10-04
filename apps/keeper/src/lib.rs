@@ -2,8 +2,8 @@ use async_trait::async_trait;
 use chrono::{TimeZone, Utc};
 use phoenix_evidence::anchor::{AnchorError, AnchorProvider};
 use phoenix_evidence::model::{ChainTxRef, DigestAlgo, EvidenceDigest, EvidenceRecord};
-use sqlx::{Pool, Row, Sqlite};
 use rand::Rng;
+use sqlx::{Pool, Row, Sqlite};
 
 pub mod config;
 

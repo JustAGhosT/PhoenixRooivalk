@@ -2,11 +2,11 @@ use axum::{
     routing::{get, post},
     Router,
 };
-use sqlx::{Pool, Sqlite, sqlite::SqlitePoolOptions};
+use sqlx::{sqlite::SqlitePoolOptions, Pool, Sqlite};
 
 pub mod db;
-pub mod models;
 pub mod handlers;
+pub mod models;
 
 #[derive(Clone)]
 pub struct AppState {

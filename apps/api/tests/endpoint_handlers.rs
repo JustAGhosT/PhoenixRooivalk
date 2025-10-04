@@ -1,12 +1,12 @@
-use phoenix_api::build_app;
-use sqlx::Row;
-use tempfile::NamedTempFile;
-use tokio::net::TcpListener;
 use axum::serve;
+use chrono::Utc;
+use phoenix_api::build_app;
 use reqwest::Client;
 use serde_json::json;
+use sqlx::Row;
 use std::time::Duration;
-use chrono::Utc;
+use tempfile::NamedTempFile;
+use tokio::net::TcpListener;
 
 #[tokio::test]
 async fn test_build_app() {
@@ -21,12 +21,12 @@ async fn test_build_app() {
     // Build app
     let result = build_app().await;
     assert!(result.is_ok());
-    
+
     let (_app, pool) = result.unwrap();
-    
+
     // App should be created (Router doesn't have routes() method in axum 0.7)
     // Just verify the app was created successfully
-    
+
     // Pool should be connected
     let result = sqlx::query("SELECT 1").fetch_one(&pool).await;
     assert!(result.is_ok());
@@ -45,12 +45,12 @@ async fn test_build_app_with_fallback_url() {
     // Build app
     let result = build_app().await;
     assert!(result.is_ok());
-    
+
     let (_app, pool) = result.unwrap();
-    
+
     // App should be created (Router doesn't have routes() method in axum 0.7)
     // Just verify the app was created successfully
-    
+
     // Pool should be connected
     let result = sqlx::query("SELECT 1").fetch_one(&pool).await;
     assert!(result.is_ok());
@@ -87,7 +87,7 @@ async fn test_health_endpoint() {
 
     // Build app
     let (app, _pool) = build_app().await.unwrap();
-    
+
     // Find available port
     let listener = TcpListener::bind("127.0.0.1:0").await.unwrap();
     let addr = listener.local_addr().unwrap();
@@ -128,7 +128,7 @@ async fn test_post_evidence_endpoint() {
 
     // Build app
     let (app, pool) = build_app().await.unwrap();
-    
+
     // Find available port
     let listener = TcpListener::bind("127.0.0.1:0").await.unwrap();
     let addr = listener.local_addr().unwrap();
@@ -145,7 +145,7 @@ async fn test_post_evidence_endpoint() {
     tokio::time::sleep(Duration::from_millis(100)).await;
 
     let client = Client::new();
-    
+
     // Test evidence submission
     let evidence_payload = json!({
         "digest_hex": "deadbeefcafebabe1234567890abcdef1234567890abcdef1234567890abcdef"
@@ -166,7 +166,7 @@ async fn test_post_evidence_endpoint() {
     // Verify job was created in database
     let job_id = result["id"].as_str().unwrap();
     let row = sqlx::query(
-        "SELECT id, status, attempts, created_ms, updated_ms FROM outbox_jobs WHERE id = ?"
+        "SELECT id, status, attempts, created_ms, updated_ms FROM outbox_jobs WHERE id = ?",
     )
     .bind(job_id)
     .fetch_optional(&pool)
@@ -193,7 +193,7 @@ async fn test_post_evidence_with_custom_id() {
 
     // Build app
     let (app, _pool) = build_app().await.unwrap();
-    
+
     // Find available port
     let listener = TcpListener::bind("127.0.0.1:0").await.unwrap();
     let addr = listener.local_addr().unwrap();
@@ -210,7 +210,7 @@ async fn test_post_evidence_with_custom_id() {
     tokio::time::sleep(Duration::from_millis(100)).await;
 
     let client = Client::new();
-    
+
     // Test evidence submission with custom ID
     let evidence_payload = json!({
         "id": "custom-evidence-123",
@@ -243,7 +243,7 @@ async fn test_post_evidence_with_metadata() {
 
     // Build app
     let (app, _pool) = build_app().await.unwrap();
-    
+
     // Find available port
     let listener = TcpListener::bind("127.0.0.1:0").await.unwrap();
     let addr = listener.local_addr().unwrap();
@@ -260,7 +260,7 @@ async fn test_post_evidence_with_metadata() {
     tokio::time::sleep(Duration::from_millis(100)).await;
 
     let client = Client::new();
-    
+
     // Test evidence submission with metadata
     let evidence_payload = json!({
         "digest_hex": "deadbeefcafebabe1234567890abcdef1234567890abcdef1234567890abcdef",
@@ -297,7 +297,7 @@ async fn test_get_evidence_endpoint() {
 
     // Build app
     let (app, pool) = build_app().await.unwrap();
-    
+
     // Find available port
     let listener = TcpListener::bind("127.0.0.1:0").await.unwrap();
     let addr = listener.local_addr().unwrap();
@@ -332,7 +332,7 @@ async fn test_get_evidence_endpoint() {
     .unwrap();
 
     let client = Client::new();
-    
+
     // Test getting evidence status
     let response = client
         .get(&format!("http://127.0.0.1:{}/evidence/{}", port, job_id))
@@ -361,7 +361,7 @@ async fn test_get_evidence_not_found() {
 
     // Build app
     let (app, _pool) = build_app().await.unwrap();
-    
+
     // Find available port
     let listener = TcpListener::bind("127.0.0.1:0").await.unwrap();
     let addr = listener.local_addr().unwrap();
@@ -378,7 +378,7 @@ async fn test_get_evidence_not_found() {
     tokio::time::sleep(Duration::from_millis(100)).await;
 
     let client = Client::new();
-    
+
     // Test getting non-existent evidence
     let response = client
         .get(&format!("http://127.0.0.1:{}/evidence/non-existent", port))
@@ -407,7 +407,7 @@ fn test_evidence_in_deserialization() {
         "payload_mime": "application/json",
         "metadata": {"key": "value"}
     }"#;
-    
+
     // Note: EvidenceIn is not exported from phoenix_api, so we can't test it directly
     // This test would need to be moved to the main crate or the structs need to be exported
     assert!(json_str.contains("test-id"));
@@ -419,7 +419,7 @@ fn test_evidence_in_minimal() {
     let json_str = r#"{
         "digest_hex": "abcd1234"
     }"#;
-    
+
     // Note: EvidenceIn is not exported from phoenix_api, so we can't test it directly
     assert!(json_str.contains("abcd1234"));
 }
@@ -436,7 +436,7 @@ fn test_evidence_out_serialization() {
         "created_ms": 1234567890,
         "updated_ms": 1234567890
     });
-    
+
     let json_str = serde_json::to_string(&test_data).unwrap();
     assert!(json_str.contains("test-id"));
     assert!(json_str.contains("done"));

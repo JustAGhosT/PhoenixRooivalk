@@ -5,7 +5,7 @@ use axum::{
 };
 use serde::{Deserialize, Serialize};
 use sqlx::sqlite::SqlitePoolOptions;
-use sqlx::{Pool, Sqlite, Row};
+use sqlx::{Pool, Row, Sqlite};
 use std::net::SocketAddr;
 use tokio::net::TcpListener;
 use tokio::signal;

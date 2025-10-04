@@ -113,11 +113,17 @@ mod tests {
     #[test]
     fn test_sha256_hex() {
         // Test with empty input
-        assert_eq!(hash::sha256_hex(b""), "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855");
-        
+        assert_eq!(
+            hash::sha256_hex(b""),
+            "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        );
+
         // Test with simple string
-        assert_eq!(hash::sha256_hex(b"hello"), "2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824");
-        
+        assert_eq!(
+            hash::sha256_hex(b"hello"),
+            "2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824"
+        );
+
         // Test with binary data
         let binary_data = vec![0x00, 0x01, 0x02, 0x03, 0xff];
         let result = hash::sha256_hex(&binary_data);
@@ -131,7 +137,7 @@ mod tests {
             algo: model::DigestAlgo::Sha256,
             hex: "abcd1234".to_string(),
         };
-        
+
         assert_eq!(digest.algo, model::DigestAlgo::Sha256);
         assert_eq!(digest.hex, "abcd1234");
     }
@@ -143,7 +149,7 @@ mod tests {
             algo: model::DigestAlgo::Sha256,
             hex: "abcd1234".to_string(),
         };
-        
+
         let record = model::EvidenceRecord {
             id: "test-id".to_string(),
             created_at: now,
@@ -151,7 +157,7 @@ mod tests {
             payload_mime: Some("application/json".to_string()),
             metadata: json!({"key": "value"}),
         };
-        
+
         assert_eq!(record.id, "test-id");
         assert_eq!(record.digest, digest);
         assert_eq!(record.payload_mime, Some("application/json".to_string()));
@@ -167,7 +173,7 @@ mod tests {
             confirmed: false,
             timestamp: Some(now),
         };
-        
+
         assert_eq!(tx_ref.network, "ethereum");
         assert_eq!(tx_ref.chain, "mainnet");
         assert_eq!(tx_ref.tx_id, "0x1234567890abcdef");
@@ -182,9 +188,9 @@ mod tests {
         map.insert("digest_hex".to_string(), json!("abcd1234efgh5678"));
         map.insert("payload_mime".to_string(), json!("application/json"));
         map.insert("custom_field".to_string(), json!("custom_value"));
-        
+
         let evidence = convert::from_map_to_evidence(map);
-        
+
         assert_eq!(evidence.id, "test-evidence-123");
         assert_eq!(evidence.digest.hex, "abcd1234efgh5678");
         assert_eq!(evidence.digest.algo, model::DigestAlgo::Sha256);
@@ -196,7 +202,7 @@ mod tests {
     fn test_from_map_to_evidence_minimal() {
         let map = serde_json::Map::new();
         let evidence = convert::from_map_to_evidence(map);
-        
+
         assert_eq!(evidence.id, "");
         assert_eq!(evidence.digest.hex, "");
         assert_eq!(evidence.digest.algo, model::DigestAlgo::Sha256);
@@ -208,10 +214,10 @@ mod tests {
     fn test_anchor_error() {
         let network_err = anchor::AnchorError::Network("connection failed".to_string());
         assert!(matches!(network_err, anchor::AnchorError::Network(_)));
-        
+
         let invalid_err = anchor::AnchorError::Invalid("bad state".to_string());
         assert!(matches!(invalid_err, anchor::AnchorError::Invalid(_)));
-        
+
         let provider_err = anchor::AnchorError::Provider("service down".to_string());
         assert!(matches!(provider_err, anchor::AnchorError::Provider(_)));
     }
@@ -223,7 +229,7 @@ mod tests {
             algo: model::DigestAlgo::Sha256,
             hex: "abcd1234".to_string(),
         };
-        
+
         let record = model::EvidenceRecord {
             id: "test-id".to_string(),
             created_at: now,
@@ -231,13 +237,13 @@ mod tests {
             payload_mime: Some("application/json".to_string()),
             metadata: json!({"key": "value"}),
         };
-        
+
         // Test JSON serialization
         let json_str = serde_json::to_string(&record).unwrap();
         assert!(json_str.contains("test-id"));
         assert!(json_str.contains("abcd1234"));
         assert!(json_str.contains("application/json"));
-        
+
         // Test JSON deserialization
         let deserialized: model::EvidenceRecord = serde_json::from_str(&json_str).unwrap();
         assert_eq!(deserialized.id, record.id);
@@ -255,14 +261,14 @@ mod tests {
             confirmed: true,
             timestamp: Some(now),
         };
-        
+
         // Test JSON serialization
         let json_str = serde_json::to_string(&tx_ref).unwrap();
         assert!(json_str.contains("ethereum"));
         assert!(json_str.contains("mainnet"));
         assert!(json_str.contains("0x1234567890abcdef"));
         assert!(json_str.contains("true"));
-        
+
         // Test JSON deserialization
         let deserialized: model::ChainTxRef = serde_json::from_str(&json_str).unwrap();
         assert_eq!(deserialized.network, tx_ref.network);
