@@ -1,0 +1,331 @@
+{
+  "schema_version": "1.3.0",
+  "units": { "distance": "meters", "power": "kW", "currency": "USD" },
+  "ui_theme": {
+    "palette": {
+      "hard_kill": "#2ED573",
+      "soft_kill": "#FFA502",
+      "deception": "#70A1FF",
+      "denial": "#ECCC68",
+      "risk_high": "#FF4757",
+      "risk_med": "#FFA502",
+      "risk_low": "#2ED573"
+    },
+    "icons": {
+      "HEL": "laser",
+      "HPM": "wave-burst",
+      "RF_JAM": "antenna-off",
+      "RF_TAKEOVER": "antenna-swap",
+      "GNSS_DENIAL": "sat-off",
+      "NET": "net",
+      "OPT_DAZZLER": "sun-low",
+      "AHEAD_AIRBURST": "burst-round",
+      "OBSCURANT": "cloud-fog",
+      "ACOUSTIC": "speaker-off",
+      "AI_DECEPTION": "shimmer"
+    }
+  },
+
+  "effectors": [
+    {
+      "id": "HEL",
+      "name": "High‑Energy Laser",
+      "class": "hard_kill",
+      "description": "Thermal defeat; precise line‑of‑sight hard‑kill on small UAS.",
+      "typical_range_m": 2000,
+      "power_kw_nominal": 10,
+      "latency_ms": 200,
+      "collateral_risk": "low",
+      "legal_flags": ["ITAR-likely", "Export-controlled"],
+      "swarm_effectiveness": "medium",
+      "brands": [
+        "Raytheon HELWS/H4",
+        "Rheinmetall Laser Weapon Module",
+        "Lockheed Martin HELIOS",
+        "AIM Defence FRActl:2"
+      ],
+      "sources": [
+        "https://www.rtx.com/raytheon/what-we-do/integrated-air-and-missile-defense/lasers",
+        "https://raytheon.mediaroom.com/2019-10-22-Raytheon-delivers-first-laser-counter-UAS-System-to-U-S-Air-Force",
+        "https://www.rheinmetall.com/en/media/news-watch/news/2022/2022-05-19_laser-weapons-against-drones",
+        "https://www.thetimes.co.uk/article/australian-firm-aim-defence-laser-drone-weapon-fractl-2-76bqsvdwc"
+      ]
+    },
+    {
+      "id": "HPM",
+      "name": "High‑Power Microwave (EMP/HPM)",
+      "class": "soft_kill",
+      "description": "Broadband energy pulse to disrupt drone electronics.",
+      "typical_range_m": 1000,
+      "power_kw_nominal": 50,
+      "latency_ms": 50,
+      "collateral_risk": "medium",
+      "legal_flags": ["ITAR-likely", "Spectrum-clearance-required"],
+      "swarm_effectiveness": "high",
+      "brands": [
+        "Epirus Leonidas",
+        "Raytheon PHASER"
+      ],
+      "sources": [
+        "https://www.epirusinc.com/leonidas",
+        "https://www.raytheon.com/news/feature/phasermicrowave"
+      ]
+    },
+    {
+      "id": "RF_TAKEOVER",
+      "name": "RF Protocol Takeover",
+      "class": "deception",
+      "description": "Protocol exploitation to assume control or force safe land/RTH.",
+      "typical_range_m": 2000,
+      "power_kw_nominal": 0.5,
+      "latency_ms": 120,
+      "collateral_risk": "low",
+      "legal_flags": ["Spectrum-clearance-required"],
+      "swarm_effectiveness": "low",
+      "brands": [
+        "D‑Fend Solutions EnforceAir"
+      ],
+      "sources": [
+        "https://d-fendsolutions.com/why-enforceair/"
+      ]
+    },
+    {
+      "id": "RF_JAM",
+      "name": "RF Link Jamming",
+      "class": "denial",
+      "description": "Directional RF disruption to sever C2/video links.",
+      "typical_range_m": 1500,
+      "power_kw_nominal": 1.2,
+      "latency_ms": 80,
+      "collateral_risk": "medium",
+      "legal_flags": ["Spectrum-clearance-required"],
+      "swarm_effectiveness": "medium",
+      "brands": [
+        "DroneShield DroneCannon MkII",
+        "DedroneDefender 2"
+      ],
+      "sources": [
+        "https://www.droneshield.com/",
+        "https://www.dedrone.com/solutions/dedrone-defender-2"
+      ]
+    },
+    {
+      "id": "GNSS_DENIAL",
+      "name": "GNSS Denial/Spoof Guard",
+      "class": "denial",
+      "description": "Localized GNSS spoof/jam bubble to degrade navigation.",
+      "typical_range_m": 800,
+      "power_kw_nominal": 0.6,
+      "latency_ms": 100,
+      "collateral_risk": "medium",
+      "legal_flags": ["Spectrum-clearance-required", "Jurisdiction-sensitive"],
+      "swarm_effectiveness": "low",
+      "brands": [
+        "DedroneDefender 2 (GNSS bands)",
+        "CERBAIR HYDRA (jamming option)"
+      ],
+      "sources": [
+        "https://www.dedrone.com/solutions/dedrone-defender-2",
+        "https://www.cerbair.io/en/hydra/"
+      ]
+    },
+    {
+      "id": "NET",
+      "name": "Net Capture",
+      "class": "soft_kill",
+      "description": "Net projectile or drone‑borne net to capture airframe intact.",
+      "typical_range_m": 100,
+      "power_kw_nominal": 0.1,
+      "latency_ms": 300,
+      "collateral_risk": "low",
+      "legal_flags": [],
+      "swarm_effectiveness": "low",
+      "brands": [
+        "OpenWorks SkyWall",
+        "Fortem DroneHunter (net gun)"
+      ],
+      "sources": [
+        "https://openworksengineering.com/skywall/",
+        "https://www.fortemtech.com/products/"
+      ]
+    },
+    {
+      "id": "OPT_DAZZLER",
+      "name": "Optical Dazzler",
+      "class": "deception",
+      "description": "Eye‑safe green‑laser dazzler to blind EO sensors/humans for de‑escalation.",
+      "typical_range_m": 500,
+      "power_kw_nominal": 0.005,
+      "latency_ms": 50,
+      "collateral_risk": "low",
+      "legal_flags": ["Eye‑safety policies", "Protocol IV compliant"],
+      "swarm_effectiveness": "low",
+      "brands": [
+        "B.E. Meyers GLARE (LA‑22/U, RECOIL)"
+      ],
+      "sources": [
+        "https://bemeyers.com/product/glare-recoil/",
+        "https://www.dsiac.org/articles/this-is-the-laser-that-marines-have-chosen-to-dazzle-hail-and-warn/"
+      ]
+    },
+    {
+      "id": "AHEAD_AIRBURST",
+      "name": "Programmable Airburst (AHEAD/3P)",
+      "class": "hard_kill",
+      "description": "Timed airburst rounds for kinetic defeat of Group 2/3 UAS.",
+      "typical_range_m": 4000,
+      "power_kw_nominal": 150,
+      "latency_ms": 400,
+      "collateral_risk": "high",
+      "legal_flags": ["ITAR/EU Export", "Range‑safety"],
+      "swarm_effectiveness": "medium",
+      "brands": [
+        "Rheinmetall Oerlikon AHEAD / Skynex"
+      ],
+      "sources": [
+        "https://www.rheinmetall.com/en/media/news-watch/news/2022/2022-05-19_laser-weapons-against-drones"
+      ]
+    },
+    {
+      "id": "OBSCURANT",
+      "name": "Obscurant/Smoke Screen",
+      "class": "deception",
+      "description": "Multispectral smoke to break visual/IR line of sight (sensor denial).",
+      "typical_range_m": 0,
+      "power_kw_nominal": 0.0,
+      "latency_ms": 1000,
+      "collateral_risk": "low",
+      "legal_flags": ["Environmental/area safety"],
+      "swarm_effectiveness": "low",
+      "brands": [
+        "Rheinmetall ROSY"
+      ],
+      "sources": [
+        "https://www.rheinmetall.com/Rheinmetall%20Group/brochure-download/Protection-Systems/B180e0524-ROSY-Rapid-Obscuring-System-for-vehicle-protection.pdf"
+      ]
+    },
+    {
+      "id": "ACOUSTIC",
+      "name": "Acoustic Disruptor",
+      "class": "denial",
+      "description": "Directed sound to disrupt operator/sensors (experimental for UAS).",
+      "typical_range_m": 150,
+      "power_kw_nominal": 0.3,
+      "latency_ms": 200,
+      "collateral_risk": "medium",
+      "legal_flags": ["Occupational noise limits"],
+      "swarm_effectiveness": "low",
+      "brands": ["Genasys LRAD (hailer); no widely fielded anti‑UAS acoustic disruptor"],
+      "sources": [
+        "https://genasys.com/lrad-long-range-acoustic-devices/"
+      ]
+    },
+    {
+      "id": "AI_DECEPTION",
+      "name": "AI Perception Deception",
+      "class": "deception",
+      "description": "Adversarial patterns/decoys to mislead ML‑based detection/tracking.",
+      "typical_range_m": 0,
+      "power_kw_nominal": 0.0,
+      "latency_ms": 300,
+      "collateral_risk": "low",
+      "legal_flags": ["Research only"],
+      "swarm_effectiveness": "unknown",
+      "brands": ["none"],
+      "sources": [
+        "https://www.darpa.mil/research/programs/guaranteeing-ai-robustness-against-deception",
+        "https://www.rand.org/pubs/research_reports/RRA866-1.html"
+      ]
+    }
+  ],
+
+  "deployments": [
+    {
+      "id": "INTERCEPTOR_DRONE",
+      "name": "Interceptor UAV (Net/Kinetic)",
+      "role": "active_defeat",
+      "notes": "Autonomous pursuit; net capture preferred for low collateral.",
+      "brands": [
+        "Fortem DroneHunter F700",
+        "Anduril Anvil (kinetic interceptor)"
+      ],
+      "sources": [
+        "https://www.fortemtech.com/products/",
+        "https://www.anduril.com/anvil/"
+      ]
+    },
+    {
+      "id": "JAMMER_UAV",
+      "name": "Airborne Jammer UAV",
+      "role": "EW_denial",
+      "notes": "Less common as sUAS payload; most jammers are man‑portable, vehicle or fixed‑site.",
+      "brands": [
+        "none (typical vendors provide ground/fixed jammers: DroneShield DroneCannon, DedroneDefender)"
+      ],
+      "sources": [
+        "https://www.droneshield.com/",
+        "https://www.dedrone.com/solutions/dedrone-defender-2"
+      ]
+    },
+    {
+      "id": "TETHERED_OVERWATCH",
+      "name": "Tethered Overwatch",
+      "role": "ISR_persistent",
+      "notes": "Persistent EO/IR + RF sensing; power/data over tether.",
+      "brands": [
+        "Elistair Orion/SAFE-T",
+        "Hoverfly LiveSky"
+      ],
+      "sources": [
+        "https://elistair.com/",
+        "https://hoverflytech.com/"
+      ]
+    },
+    {
+      "id": "SPOTTER_UAV",
+      "name": "Spotter/ISR UAV",
+      "role": "detection_tracking",
+      "notes": "Mobile visual identification and target handoff.",
+      "brands": [
+        "Teledyne FLIR SkyRanger/Unmanned systems",
+        "Skydio X10D/X2D"
+      ],
+      "sources": [
+        "https://www.flir.com/suas/",
+        "https://www.skydio.com/x10d"
+      ]
+    },
+    {
+      "id": "HPM_POD_UAV",
+      "name": "HPM POD (UAV/vehicle mount)",
+      "role": "soft_kill_area",
+      "notes": "Podded HPM for close‑in area effects; power & safety constraints apply.",
+      "brands": [
+        "Epirus Leonidas (pod variants)"
+      ],
+      "sources": [
+        "https://www.epirusinc.com/leonidas"
+      ]
+    },
+    {
+      "id": "DECOY_SWARM",
+      "name": "Decoy/Signature Drone(s)",
+      "role": "deception",
+      "notes": "Create false targets or distract defenses; most mature as air‑launched decoys (not sUAS).",
+      "brands": [
+        "Raytheon ADM‑160 MALD (air‑launched decoy; not sUAS)"
+      ],
+      "sources": [
+        "https://www.rtx.com/raytheon/what-we-do/air/mald-decoy"
+      ]
+    }
+  ],
+
+  "compliance": {
+    "planning_phase": true,
+    "financed": false,
+    "export_control_review_required": true,
+    "spectrum_authorizations_required": ["RF_JAM", "RF_TAKEOVER", "GNSS_DENIAL", "HPM"],
+    "safety_gate": ["Eye-safety for OPT_DAZZLER", "Range safety for AHEAD_AIRBURST / HEL"]
+  }
+}

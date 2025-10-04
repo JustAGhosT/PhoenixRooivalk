@@ -20,7 +20,7 @@ export interface Mothership {
 export interface Drone {
   id: string;
   type:
-    | "interceptor"
+    | "effector"
     | "jammer"
     | "surveillance"
     | "shield"
@@ -92,8 +92,8 @@ export const DRONE_CONFIGS: Record<
     | "deploymentTime"
   >
 > = {
-  interceptor: {
-    type: "interceptor",
+  effector: {
+    type: "effector",
     speed: 2.0,
     health: 100,
     maxHealth: 100,

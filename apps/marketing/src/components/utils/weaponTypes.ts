@@ -17,6 +17,7 @@ export interface Weapon {
     kamikaze: number;
     decoy: number;
     shielded: number;
+    boss: number;
   };
   visualEffect: {
     color: string;
@@ -58,6 +59,7 @@ export const WEAPON_CONFIGS: Record<
       kamikaze: 1.2,
       decoy: 0.3,
       shielded: 0.2,
+      boss: 0.5,
     },
     visualEffect: {
       color: "#ef4444",
@@ -79,6 +81,7 @@ export const WEAPON_CONFIGS: Record<
       kamikaze: 0.8,
       decoy: 0.1,
       shielded: 0.9,
+      boss: 0.8,
     },
     visualEffect: {
       color: "#3b82f6",
@@ -100,6 +103,7 @@ export const WEAPON_CONFIGS: Record<
       kamikaze: 0.7,
       decoy: 0.5,
       shielded: 1.5,
+      boss: 0.7,
     },
     visualEffect: {
       color: "#f97316",
