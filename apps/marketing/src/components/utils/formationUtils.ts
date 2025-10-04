@@ -115,7 +115,6 @@ const calculateDiamondFormation = (
 
     drones.slice(0, 4).forEach((drone, index) => {
       positions.push({
-         
         ...diamondPositions[index],
         droneId: drone.id,
       });

@@ -193,7 +193,6 @@ export const THREAT_STATES: SimpleState<ThreatContext>[] = [
   {
     name: "patrol",
     onEnter: (context) => {
-       
       console.log(`Threat ${context.id} entering patrol state`);
     },
     onUpdate: (context, deltaTime) => {
@@ -207,7 +206,6 @@ export const THREAT_STATES: SimpleState<ThreatContext>[] = [
   {
     name: "approach",
     onEnter: (context) => {
-       
       console.log(`Threat ${context.id} entering approach state`);
     },
     onUpdate: (context, deltaTime) => {
@@ -226,7 +224,6 @@ export const THREAT_STATES: SimpleState<ThreatContext>[] = [
   {
     name: "attack",
     onEnter: (context) => {
-       
       console.log(`Threat ${context.id} entering attack state`);
     },
     onUpdate: (context, _deltaTime) => {
@@ -237,7 +234,6 @@ export const THREAT_STATES: SimpleState<ThreatContext>[] = [
   {
     name: "evade",
     onEnter: (context) => {
-       
       console.log(`Threat ${context.id} entering evade state`);
     },
     onUpdate: (context, deltaTime) => {
@@ -350,7 +346,6 @@ export const DRONE_STATES: SimpleState<DroneContext>[] = [
   {
     name: "deployed",
     onEnter: (context) => {
-       
       console.log(`Drone ${context.id} entering deployed state`);
     },
     onUpdate: (context, _deltaTime) => {
@@ -360,7 +355,6 @@ export const DRONE_STATES: SimpleState<DroneContext>[] = [
   {
     name: "patrol",
     onEnter: (context) => {
-       
       console.log(`Drone ${context.id} entering patrol state`);
     },
     onUpdate: (context, deltaTime) => {
@@ -371,7 +365,6 @@ export const DRONE_STATES: SimpleState<DroneContext>[] = [
   {
     name: "intercept",
     onEnter: (context) => {
-       
       console.log(`Drone ${context.id} entering intercept state`);
     },
     onUpdate: (context, deltaTime) => {
@@ -393,7 +386,6 @@ export const DRONE_STATES: SimpleState<DroneContext>[] = [
   {
     name: "return",
     onEnter: (context) => {
-       
       console.log(`Drone ${context.id} entering return state`);
     },
     onUpdate: (context, deltaTime) => {
@@ -414,7 +406,6 @@ export const DRONE_STATES: SimpleState<DroneContext>[] = [
   {
     name: "docked",
     onEnter: (context) => {
-       
       console.log(`Drone ${context.id} entering docked state`);
     },
     onUpdate: (context, deltaTime) => {
@@ -497,7 +488,6 @@ export const WEAPON_STATES: SimpleState<WeaponContext>[] = [
   {
     name: "ready",
     onEnter: (context) => {
-       
       console.log(`Weapon ${context.id} entering ready state`);
     },
     onUpdate: (context, _deltaTime) => {
@@ -507,7 +497,6 @@ export const WEAPON_STATES: SimpleState<WeaponContext>[] = [
   {
     name: "firing",
     onEnter: (context) => {
-       
       console.log(`Weapon ${context.id} entering firing state`);
     },
     onUpdate: (context, _deltaTime) => {
@@ -520,7 +509,6 @@ export const WEAPON_STATES: SimpleState<WeaponContext>[] = [
   {
     name: "cooldown",
     onEnter: (context) => {
-       
       console.log(`Weapon ${context.id} entering cooldown state`);
     },
     onUpdate: (context, deltaTime) => {
@@ -531,7 +519,6 @@ export const WEAPON_STATES: SimpleState<WeaponContext>[] = [
   {
     name: "reloading",
     onEnter: (context) => {
-       
       console.log(`Weapon ${context.id} entering reloading state`);
     },
     onUpdate: (context, deltaTime) => {
@@ -542,7 +529,6 @@ export const WEAPON_STATES: SimpleState<WeaponContext>[] = [
   {
     name: "overheated",
     onEnter: (context) => {
-       
       console.log(`Weapon ${context.id} entering overheated state`);
     },
     onUpdate: (context, deltaTime) => {

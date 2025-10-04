@@ -395,19 +395,16 @@ export class PerformanceMonitor {
 
   // Performance optimization methods
   private optimizeFrameRate(): void {
-     
     console.log("Optimizing frame rate...");
     // Implementation would reduce visual complexity
   }
 
   private triggerGarbageCollection(): void {
-     
     console.log("Triggering garbage collection...");
     // Implementation would force GC if available
   }
 
   private optimizeEntities(): void {
-     
     console.log("Optimizing entities...");
     // Implementation would reduce entity count or complexity
   }
@@ -452,7 +449,6 @@ export class PerformanceUtils {
     const end = performance.now();
 
     if (name) {
-       
       console.log(`${name} took ${end - start} milliseconds`);
     }
 
@@ -469,7 +465,6 @@ export class PerformanceUtils {
     const end = performance.now();
 
     if (name) {
-       
       console.log(`${name} took ${end - start} milliseconds`);
     }
 
@@ -490,7 +485,6 @@ export class PerformanceUtils {
         const result = originalMethod.apply(this, args);
         const end = performance.now();
 
-         
         console.log(`${name} took ${end - start} milliseconds`);
 
         return result;
