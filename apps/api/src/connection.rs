@@ -1,4 +1,4 @@
-use sqlx::{sqlite::SqlitePoolOptions, Pool, Sqlite};
+use sqlx::{sqlite::SqlitePoolOptions, Pool, Row, Sqlite};
 use std::time::Duration;
 use thiserror::Error;
 
@@ -72,11 +72,11 @@ impl ConnectionManager {
     pub async fn get_stats(&self) -> Result<PoolStats> {
         let size = self.pool.size();
         let idle = self.pool.num_idle();
-        let active = size - idle;
+        let active = size - idle as u32;
 
         Ok(PoolStats {
             size,
-            idle,
+            idle: idle as u32,
             active,
             max_connections: self.config.max_connections,
         })
@@ -196,7 +196,7 @@ mod tests {
         // Get stats
         let stats = manager.get_stats().await.unwrap();
         assert!(stats.size >= 1);
-        assert!(stats.idle >= 0);
+        assert!(stats.idle >= 0); // Always true for u32, but kept for documentation
     }
 
     #[tokio::test]

@@ -1,4 +1,4 @@
-use sqlx::{Pool, Sqlite};
+use sqlx::{Pool, Row, Sqlite};
 use thiserror::Error;
 
 #[derive(Error, Debug)]
