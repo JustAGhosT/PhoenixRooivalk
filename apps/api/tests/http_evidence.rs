@@ -1,10 +1,10 @@
-use phoenix_api::main::build_app;
-use phoenix_keeper::{run_job_loop, SqliteJobProvider};
-use sqlx::Row;
 use anchor_etherlink::EtherlinkProviderStub;
 use axum::serve;
+use phoenix_api::main::build_app;
+use phoenix_keeper::{run_job_loop, SqliteJobProvider};
 use reqwest::Client;
 use serde_json::json;
+use sqlx::Row;
 use std::net::TcpListener;
 use std::time::Duration;
 use tempfile::NamedTempFile;
@@ -17,14 +17,14 @@ async fn test_http_evidence_flow() {
     let temp_db = NamedTempFile::new().unwrap();
     let db_path = temp_db.path().to_str().unwrap();
     let db_url = format!("sqlite://{}", db_path);
-    
+
     // Set env for API and keeper to use same DB
     std::env::set_var("API_DB_URL", &db_url);
     std::env::set_var("KEEPER_DB_URL", &db_url);
-    
+
     // Build API app
     let (app, pool) = build_app().await;
-    
+
     // Find available port
     let listener = TcpListener::bind("127.0.0.1:0").unwrap();
     let addr = listener.local_addr().unwrap();

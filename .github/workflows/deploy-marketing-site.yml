@@ -67,6 +67,9 @@ jobs:
           else
             echo "secrets_available=false" >> $GITHUB_OUTPUT
             echo "Warning: Netlify secrets not configured. Skipping deployment."
+            echo "Missing secrets:"
+            [ -z "${{ secrets.NETLIFY_AUTH_TOKEN }}" ] && echo "  - NETLIFY_AUTH_TOKEN"
+            [ -z "${{ secrets.NETLIFY_MARKETING_SITE_ID }}" ] && echo "  - NETLIFY_MARKETING_SITE_ID"
           fi
 
       - name: Deploy to Netlify (Marketing)
@@ -126,6 +129,9 @@ jobs:
           else
             echo "secrets_available=false" >> $GITHUB_OUTPUT
             echo "Warning: Netlify secrets not configured. Skipping preview deployment."
+            echo "Missing secrets:"
+            [ -z "${{ secrets.NETLIFY_AUTH_TOKEN }}" ] && echo "  - NETLIFY_AUTH_TOKEN"
+            [ -z "${{ secrets.NETLIFY_MARKETING_SITE_ID }}" ] && echo "  - NETLIFY_MARKETING_SITE_ID"
           fi
 
       - name: Deploy Preview to Netlify (Marketing)

@@ -68,7 +68,7 @@ generation prompts for all effector and drone icons.
 --directed: #ffa502; /* Directed orange - Mobile platforms */
 ```
 
-## Effector Icons (17 Total)
+## Effector Icons (15 Total)
 
 ### Hard Kill Systems
 
@@ -157,16 +157,15 @@ generation prompts for all effector and drone icons.
 
 ### Directed Energy Systems
 
-#### 9. Laser/HEL
+#### 9. High Energy Laser (HEL)
 
-- **File**: `effectors/laser.md`
-- **Description**: High-energy laser weapon for precise directed energy
-  engagement
-- **Visual**: Concentrated beam with crosshair
-- **Color**: `#2ED573` (hard-kill green)
-- **AI Prompt**: "Create a laser weapon icon: diagonal energy beam with target
-  crosshair. Military style, outline-based, 24x24px. Color #2ED573. Technical,
-  precise, direct energy weapon aesthetic."
+- **File**: `effectors/hel.md`
+- **Description**: High energy laser system for directed energy engagement
+- **Visual**: Laser beam with energy focus
+- **Color**: `#f97316` (directed orange)
+- **AI Prompt**: "Create a high energy laser icon: focused laser beam with
+  energy concentration. Military style, outline-based, 24x24px. Color #f97316.
+  Directed energy, precision targeting aesthetic."
 
 #### 10. Optical Dazzler
 
@@ -203,17 +202,7 @@ generation prompts for all effector and drone icons.
 
 ### Countermeasure Systems
 
-#### 13. Chaff/Obscurant
-
-- **File**: `effectors/chaff.md`
-- **Description**: Smoke/obscurant generator for visual concealment
-- **Visual**: Cloud or fog bank pattern
-- **Color**: `#6b7280` (countermeasure gray)
-- **AI Prompt**: "Create an obscurant icon: cloud or fog bank pattern. Military
-  style, outline-based, 24x24px. Color #6b7280. Visual concealment, smoke
-  generation aesthetic."
-
-#### 14. Acoustic Disruptor
+#### 13. Acoustic Disruptor
 
 - **File**: `effectors/acoustic.md`
 - **Description**: Acoustic disruption system for audio interference
@@ -223,7 +212,7 @@ generation prompts for all effector and drone icons.
   mute symbol. Military style, outline-based, 24x24px. Color #84cc16. Audio
   disruption, sound interference aesthetic."
 
-#### 15. Ahead Airburst
+#### 14. Ahead Airburst
 
 - **File**: `effectors/ahead-airburst.md`
 - **Description**: Proximity-fused explosive for area denial and swarm
@@ -234,7 +223,7 @@ generation prompts for all effector and drone icons.
   fragmentation pattern. Military style, outline-based, 24x24px. Color #dc2626.
   Proximity-fused, area denial, explosive aesthetic."
 
-#### 16. Obscurant
+#### 15. Obscurant
 
 - **File**: `effectors/obscurant.md`
 - **Description**: Visual concealment and smoke generation system
@@ -243,16 +232,6 @@ generation prompts for all effector and drone icons.
 - **AI Prompt**: "Create an obscurant icon: cloud or fog bank pattern. Military
   style, outline-based, 24x24px. Color #6b7280. Visual concealment, smoke
   generation aesthetic."
-
-#### 17. HEL (High Energy Laser)
-
-- **File**: `effectors/hel.md`
-- **Description**: High energy laser system for directed energy engagement
-- **Visual**: Laser beam with energy focus
-- **Color**: `#f97316` (directed orange)
-- **AI Prompt**: "Create a high energy laser icon: focused laser beam with
-  energy concentration. Military style, outline-based, 24x24px. Color #f97316.
-  Directed energy, precision targeting aesthetic."
 
 ## Drone Icons (17 Total)
 

@@ -1,18 +1,19 @@
 use axum::{
-    routing::{get, post},
-    Router,
     extract::{Path, State},
-    Json,
-    serve::Serve,
+    routing::{get, post},
     serve,
+    serve::Serve,
+    Json, Router,
 };
-use tokio::net::TcpListener;
 use serde::{Deserialize, Serialize};
-use sqlx::{Pool, Sqlite, SqlitePool};
 use sqlx::sqlite::SqlitePoolOptions;
+use sqlx::{Pool, Sqlite, SqlitePool};
 use std::net::SocketAddr;
+use tokio::net::TcpListener;
 
-async fn health() -> &'static str { "OK" }
+async fn health() -> &'static str {
+    "OK"
+}
 
 #[derive(Clone)]
 struct AppState {
@@ -70,7 +71,10 @@ async fn main() {
 
     let (app, _pool) = build_app().await;
 
-    let port: u16 = std::env::var("PORT").ok().and_then(|s| s.parse().ok()).unwrap_or(8080);
+    let port: u16 = std::env::var("PORT")
+        .ok()
+        .and_then(|s| s.parse().ok())
+        .unwrap_or(8080);
     let addr: SocketAddr = ([0, 0, 0, 0], port).into();
     let listener = match TcpListener::bind(addr).await {
         Ok(l) => l,
@@ -120,13 +124,18 @@ async fn ensure_schema(pool: &Pool<Sqlite>) -> Result<(), sqlx::Error> {
     .execute(pool)
     .await?;
     // Try to add next_attempt_ms if missing (best-effort)
-    let _ = sqlx::query("ALTER TABLE outbox_jobs ADD COLUMN next_attempt_ms INTEGER NOT NULL DEFAULT 0")
-        .execute(pool)
-        .await;
+    let _ = sqlx::query(
+        "ALTER TABLE outbox_jobs ADD COLUMN next_attempt_ms INTEGER NOT NULL DEFAULT 0",
+    )
+    .execute(pool)
+    .await;
     Ok(())
 }
 
-async fn post_evidence(State(state): State<AppState>, Json(body): Json<EvidenceIn>) -> Json<serde_json::Value> {
+async fn post_evidence(
+    State(state): State<AppState>,
+    Json(body): Json<EvidenceIn>,
+) -> Json<serde_json::Value> {
     let id = body.id.unwrap_or_else(|| uuid::Uuid::new_v4().to_string());
     let now = chrono::Utc::now().timestamp_millis();
     // Insert into outbox
@@ -142,7 +151,10 @@ async fn post_evidence(State(state): State<AppState>, Json(body): Json<EvidenceI
     Json(serde_json::json!({ "id": id, "status": "queued" }))
 }
 
-async fn get_evidence(State(state): State<AppState>, Path(id): Path<String>) -> Json<serde_json::Value> {
+async fn get_evidence(
+    State(state): State<AppState>,
+    Path(id): Path<String>,
+) -> Json<serde_json::Value> {
     let row = sqlx::query(
         "SELECT id, status, attempts, last_error, created_ms, updated_ms FROM outbox_jobs WHERE id=?1"
     )
