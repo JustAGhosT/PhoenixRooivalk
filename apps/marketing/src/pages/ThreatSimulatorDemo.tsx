@@ -16,7 +16,7 @@ import { FilterChips } from "../components/FilterChips";
 import { InfoPopover } from "../components/InfoPopover";
 import { LegalBadge } from "../components/LegalBadge";
 import { MultiSelectDeployment } from "../components/MultiSelectDeployment";
-import { SynergyEffect, SynergySystem } from "../components/SynergySystem";
+import { SynergySystem } from "../components/SynergySystem";
 
 export const ThreatSimulatorDemo: React.FC = () => {
   const [demoMode, setDemoMode] = useState<"full" | "components" | "systems">(
