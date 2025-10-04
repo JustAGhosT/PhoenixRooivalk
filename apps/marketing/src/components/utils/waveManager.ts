@@ -142,7 +142,7 @@ export class WaveManager {
   private threatsSpawned: number = 0;
   private threatsDefeated: number = 0;
   private currentWaveConfig: WaveConfig | null = null;
-  private onSpawnThreat: (event: SpawnEvent) => void = () => {};
+  private onSpawnThreat: (event: SpawnEvent) => void;
   private onWaveComplete: (waveNumber: number) => void = () => {};
   private onGameComplete: () => void = () => {};
 
