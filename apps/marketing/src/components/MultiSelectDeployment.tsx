@@ -35,9 +35,9 @@ export const MultiSelectDeployment: React.FC<MultiSelectDeploymentProps> = ({
       id: deployment.id,
       name: deployment.name,
       role: deployment.role,
-      energy: deployment.energy,
-      speed: deployment.speed,
-      endurance: deployment.endurance,
+      energy: deployment.energy || 0,
+      speed: deployment.speed || 'unknown',
+      endurance: deployment.endurance || 'unknown',
       selected: false,
       disabled: false,
       maxCount: getMaxCountForRole(deployment.role),
@@ -99,16 +99,16 @@ export const MultiSelectDeployment: React.FC<MultiSelectDeploymentProps> = ({
     onSelectionChange(newSelected, usedEnergy);
   };
 
-  const calculateUsedEnergy = () => {
+  const calculateUsedEnergy = React.useCallback(() => {
     return deploymentOptions.reduce((total, option) => {
       return total + (option.energy * option.currentCount);
     }, 0);
-  };
+  }, [deploymentOptions]);
 
   useEffect(() => {
     const total = calculateUsedEnergy();
     setUsedEnergy(total);
-  }, [deploymentOptions]);
+  }, [calculateUsedEnergy]);
 
   const getRoleColor = (role: string): string => {
     const roleColors = {
