@@ -14,15 +14,15 @@ export default [
   },
   {
     path: '/docs',
-    component: ComponentCreator('/docs', 'b06'),
+    component: ComponentCreator('/docs', 'cd7'),
     routes: [
       {
         path: '/docs',
-        component: ComponentCreator('/docs', '793'),
+        component: ComponentCreator('/docs', '475'),
         routes: [
           {
             path: '/docs',
-            component: ComponentCreator('/docs', 'd34'),
+            component: ComponentCreator('/docs', 'b9c'),
             routes: [
               {
                 path: '/docs/',
@@ -31,84 +31,93 @@ export default [
               },
               {
                 path: '/docs/business/budget-timeline-templates',
-                component: ComponentCreator('/docs/business/budget-timeline-templates', 'b8d'),
-                exact: true
+                component: ComponentCreator('/docs/business/budget-timeline-templates', '9d7'),
+                exact: true,
+                sidebar: "docs"
               },
               {
                 path: '/docs/business/business-model',
-                component: ComponentCreator('/docs/business/business-model', 'fc2'),
+                component: ComponentCreator('/docs/business/business-model', '113'),
                 exact: true,
                 sidebar: "docs"
               },
               {
                 path: '/docs/business/commercial-proposal-template',
-                component: ComponentCreator('/docs/business/commercial-proposal-template', 'fbd'),
-                exact: true
+                component: ComponentCreator('/docs/business/commercial-proposal-template', '576'),
+                exact: true,
+                sidebar: "docs"
               },
               {
                 path: '/docs/business/competitive-analysis',
-                component: ComponentCreator('/docs/business/competitive-analysis', '8d1'),
+                component: ComponentCreator('/docs/business/competitive-analysis', 'b17'),
                 exact: true,
                 sidebar: "docs"
               },
               {
                 path: '/docs/business/competitive-differentiation-guide',
-                component: ComponentCreator('/docs/business/competitive-differentiation-guide', '5d2'),
-                exact: true
+                component: ComponentCreator('/docs/business/competitive-differentiation-guide', '3f8'),
+                exact: true,
+                sidebar: "docs"
               },
               {
                 path: '/docs/business/discovery-questionnaire',
-                component: ComponentCreator('/docs/business/discovery-questionnaire', '147'),
-                exact: true
+                component: ComponentCreator('/docs/business/discovery-questionnaire', 'd0e'),
+                exact: true,
+                sidebar: "docs"
               },
               {
                 path: '/docs/business/dod-proposal-template',
-                component: ComponentCreator('/docs/business/dod-proposal-template', '63f'),
-                exact: true
+                component: ComponentCreator('/docs/business/dod-proposal-template', '3de'),
+                exact: true,
+                sidebar: "docs"
               },
               {
-                path: '/docs/business/Emerging_Trends',
-                component: ComponentCreator('/docs/business/Emerging_Trends', '511'),
+                path: '/docs/business/emerging-trends',
+                component: ComponentCreator('/docs/business/emerging-trends', 'f95'),
                 exact: true,
                 sidebar: "docs"
               },
               {
                 path: '/docs/business/market-analysis',
-                component: ComponentCreator('/docs/business/market-analysis', '144'),
+                component: ComponentCreator('/docs/business/market-analysis', '414'),
                 exact: true,
                 sidebar: "docs"
               },
               {
                 path: '/docs/business/presentation-video-script',
-                component: ComponentCreator('/docs/business/presentation-video-script', 'f39'),
-                exact: true
+                component: ComponentCreator('/docs/business/presentation-video-script', '2c0'),
+                exact: true,
+                sidebar: "docs"
               },
               {
                 path: '/docs/business/roi-analysis',
-                component: ComponentCreator('/docs/business/roi-analysis', 'be1'),
+                component: ComponentCreator('/docs/business/roi-analysis', 'cb3'),
                 exact: true,
                 sidebar: "docs"
               },
               {
                 path: '/docs/business/technical-requirements-checklist',
-                component: ComponentCreator('/docs/business/technical-requirements-checklist', 'a98'),
-                exact: true
+                component: ComponentCreator('/docs/business/technical-requirements-checklist', 'de0'),
+                exact: true,
+                sidebar: "docs"
               },
               {
                 path: '/docs/business/traction-metrics',
-                component: ComponentCreator('/docs/business/traction-metrics', 'b2e'),
-                exact: true
+                component: ComponentCreator('/docs/business/traction-metrics', 'ab5'),
+                exact: true,
+                sidebar: "docs"
               },
               {
                 path: '/docs/business/use-cases',
-                component: ComponentCreator('/docs/business/use-cases', '5ec'),
+                component: ComponentCreator('/docs/business/use-cases', '0c7'),
                 exact: true,
                 sidebar: "docs"
               },
               {
                 path: '/docs/design/icon-requirements',
-                component: ComponentCreator('/docs/design/icon-requirements', '6c9'),
-                exact: true
+                component: ComponentCreator('/docs/design/icon-requirements', 'fc9'),
+                exact: true,
+                sidebar: "docs"
               },
               {
                 path: '/docs/executive/executive-summary',
@@ -178,249 +187,269 @@ export default [
               },
               {
                 path: '/docs/legal/compliance-framework',
-                component: ComponentCreator('/docs/legal/compliance-framework', '606'),
+                component: ComponentCreator('/docs/legal/compliance-framework', 'be7'),
                 exact: true,
                 sidebar: "docs"
               },
               {
                 path: '/docs/legal/legal-framework',
-                component: ComponentCreator('/docs/legal/legal-framework', '2af'),
+                component: ComponentCreator('/docs/legal/legal-framework', '666'),
                 exact: true,
                 sidebar: "docs"
               },
               {
                 path: '/docs/operations/customer-onboarding-guide',
-                component: ComponentCreator('/docs/operations/customer-onboarding-guide', 'eda'),
-                exact: true
+                component: ComponentCreator('/docs/operations/customer-onboarding-guide', '156'),
+                exact: true,
+                sidebar: "docs"
               },
               {
-                path: '/docs/operations/deployment/Deployment_Guide',
-                component: ComponentCreator('/docs/operations/deployment/Deployment_Guide', '4f3'),
+                path: '/docs/operations/deployment/deployment-guide',
+                component: ComponentCreator('/docs/operations/deployment/deployment-guide', '951'),
                 exact: true,
                 sidebar: "docs"
               },
               {
                 path: '/docs/operations/implementation-plan',
-                component: ComponentCreator('/docs/operations/implementation-plan', '3da'),
+                component: ComponentCreator('/docs/operations/implementation-plan', '5de'),
                 exact: true,
                 sidebar: "docs"
               },
               {
-                path: '/docs/operations/maintenance/Maintenance_Procedures',
-                component: ComponentCreator('/docs/operations/maintenance/Maintenance_Procedures', '499'),
+                path: '/docs/operations/maintenance/maintenance-procedures',
+                component: ComponentCreator('/docs/operations/maintenance/maintenance-procedures', '7cf'),
                 exact: true,
                 sidebar: "docs"
               },
               {
-                path: '/docs/operations/Manufacturing_Strategy',
-                component: ComponentCreator('/docs/operations/Manufacturing_Strategy', 'e46'),
+                path: '/docs/operations/manufacturing-strategy',
+                component: ComponentCreator('/docs/operations/manufacturing-strategy', 'b3a'),
                 exact: true,
                 sidebar: "docs"
               },
               {
-                path: '/docs/operations/monitoring/Operations_Log_Template',
-                component: ComponentCreator('/docs/operations/monitoring/Operations_Log_Template', '967'),
+                path: '/docs/operations/monitoring/operations-log-template',
+                component: ComponentCreator('/docs/operations/monitoring/operations-log-template', 'e64'),
                 exact: true,
                 sidebar: "docs"
               },
               {
-                path: '/docs/operations/monitoring/Troubleshooting_Guide',
-                component: ComponentCreator('/docs/operations/monitoring/Troubleshooting_Guide', 'fbe'),
+                path: '/docs/operations/monitoring/troubleshooting-guide',
+                component: ComponentCreator('/docs/operations/monitoring/troubleshooting-guide', '2d9'),
                 exact: true,
                 sidebar: "docs"
               },
               {
-                path: '/docs/operations/Operational_Resilience',
-                component: ComponentCreator('/docs/operations/Operational_Resilience', 'fb9'),
-                exact: true,
-                sidebar: "docs"
-              },
-              {
-                path: '/docs/operations/Operations_Modes',
-                component: ComponentCreator('/docs/operations/Operations_Modes', '387'),
+                path: '/docs/operations/operational-resilience',
+                component: ComponentCreator('/docs/operations/operational-resilience', 'd33'),
                 exact: true,
                 sidebar: "docs"
               },
               {
                 path: '/docs/operations/operations-manual',
-                component: ComponentCreator('/docs/operations/operations-manual', '0d5'),
+                component: ComponentCreator('/docs/operations/operations-manual', '224'),
                 exact: true,
                 sidebar: "docs"
               },
               {
-                path: '/docs/operations/training/Training_Materials',
-                component: ComponentCreator('/docs/operations/training/Training_Materials', '835'),
+                path: '/docs/operations/operations-modes',
+                component: ComponentCreator('/docs/operations/operations-modes', 'df5'),
+                exact: true,
+                sidebar: "docs"
+              },
+              {
+                path: '/docs/operations/training/training-materials',
+                component: ComponentCreator('/docs/operations/training/training-materials', 'ed9'),
                 exact: true,
                 sidebar: "docs"
               },
               {
                 path: '/docs/research/experimental-counter-drone-effectors-transform-warfare',
-                component: ComponentCreator('/docs/research/experimental-counter-drone-effectors-transform-warfare', '34c'),
+                component: ComponentCreator('/docs/research/experimental-counter-drone-effectors-transform-warfare', '2c2'),
+                exact: true,
+                sidebar: "docs"
+              },
+              {
+                path: '/docs/research/power-storage-and-management',
+                component: ComponentCreator('/docs/research/power-storage-and-management', 'be6'),
                 exact: true
+              },
+              {
+                path: '/docs/research/sensor-technologies-comprehensive-analysis',
+                component: ComponentCreator('/docs/research/sensor-technologies-comprehensive-analysis', '977'),
+                exact: true,
+                sidebar: "docs"
               },
               {
                 path: '/docs/technical/ai-benefits',
-                component: ComponentCreator('/docs/technical/ai-benefits', 'fd9'),
-                exact: true
+                component: ComponentCreator('/docs/technical/ai-benefits', 'fdd'),
+                exact: true,
+                sidebar: "docs"
               },
               {
                 path: '/docs/technical/architecture/architecture-decision-records',
-                component: ComponentCreator('/docs/technical/architecture/architecture-decision-records', 'c4b'),
-                exact: true
+                component: ComponentCreator('/docs/technical/architecture/architecture-decision-records', '53c'),
+                exact: true,
+                sidebar: "docs"
               },
               {
                 path: '/docs/technical/architecture/technical-architecture',
-                component: ComponentCreator('/docs/technical/architecture/technical-architecture', '519'),
-                exact: true
+                component: ComponentCreator('/docs/technical/architecture/technical-architecture', '79f'),
+                exact: true,
+                sidebar: "docs"
               },
               {
                 path: '/docs/technical/blockchain-integration',
-                component: ComponentCreator('/docs/technical/blockchain-integration', 'b51'),
+                component: ComponentCreator('/docs/technical/blockchain-integration', '729'),
                 exact: true,
                 sidebar: "docs"
               },
               {
-                path: '/docs/technical/blockchain/Blockchain_Architecture',
-                component: ComponentCreator('/docs/technical/blockchain/Blockchain_Architecture', '0a7'),
+                path: '/docs/technical/blockchain/blockchain-architecture',
+                component: ComponentCreator('/docs/technical/blockchain/blockchain-architecture', '0ac'),
                 exact: true,
                 sidebar: "docs"
               },
               {
-                path: '/docs/technical/blockchain/Blockchain_Architecture_Detailed',
-                component: ComponentCreator('/docs/technical/blockchain/Blockchain_Architecture_Detailed', '84d'),
-                exact: true,
-                sidebar: "docs"
-              },
-              {
-                path: '/docs/technical/blockchain/Blockchain_Security_Compliance',
-                component: ComponentCreator('/docs/technical/blockchain/Blockchain_Security_Compliance', '98a'),
+                path: '/docs/technical/blockchain/blockchain-architecture-detailed',
+                component: ComponentCreator('/docs/technical/blockchain/blockchain-architecture-detailed', 'a18'),
                 exact: true,
                 sidebar: "docs"
               },
               {
                 path: '/docs/technical/blockchain/blockchain-benefits',
-                component: ComponentCreator('/docs/technical/blockchain/blockchain-benefits', '9b4'),
+                component: ComponentCreator('/docs/technical/blockchain/blockchain-benefits', '603'),
                 exact: true,
                 sidebar: "docs"
               },
               {
                 path: '/docs/technical/blockchain/blockchain-implementation-guide',
-                component: ComponentCreator('/docs/technical/blockchain/blockchain-implementation-guide', '3da'),
+                component: ComponentCreator('/docs/technical/blockchain/blockchain-implementation-guide', 'd7e'),
                 exact: true,
                 sidebar: "docs"
               },
               {
                 path: '/docs/technical/blockchain/blockchain-implementation-phases',
-                component: ComponentCreator('/docs/technical/blockchain/blockchain-implementation-phases', '9a5'),
+                component: ComponentCreator('/docs/technical/blockchain/blockchain-implementation-phases', 'c59'),
                 exact: true,
                 sidebar: "docs"
               },
               {
                 path: '/docs/technical/blockchain/blockchain-protocols-analysis',
-                component: ComponentCreator('/docs/technical/blockchain/blockchain-protocols-analysis', 'fa6'),
+                component: ComponentCreator('/docs/technical/blockchain/blockchain-protocols-analysis', '96d'),
+                exact: true,
+                sidebar: "docs"
+              },
+              {
+                path: '/docs/technical/blockchain/blockchain-security-compliance',
+                component: ComponentCreator('/docs/technical/blockchain/blockchain-security-compliance', '882'),
                 exact: true,
                 sidebar: "docs"
               },
               {
                 path: '/docs/technical/blockchain/implementation-roadmap',
-                component: ComponentCreator('/docs/technical/blockchain/implementation-roadmap', '609'),
+                component: ComponentCreator('/docs/technical/blockchain/implementation-roadmap', 'bea'),
                 exact: true,
                 sidebar: "docs"
               },
               {
-                path: '/docs/technical/Decentralized_AI',
-                component: ComponentCreator('/docs/technical/Decentralized_AI', '074'),
+                path: '/docs/technical/decentralized-ai',
+                component: ComponentCreator('/docs/technical/decentralized-ai', '875'),
                 exact: true,
                 sidebar: "docs"
               },
               {
-                path: '/docs/technical/Defense_Integration',
-                component: ComponentCreator('/docs/technical/Defense_Integration', 'e46'),
+                path: '/docs/technical/defense-integration',
+                component: ComponentCreator('/docs/technical/defense-integration', '844'),
                 exact: true,
                 sidebar: "docs"
               },
               {
-                path: '/docs/technical/Defense_Technology_Deep_Dive',
-                component: ComponentCreator('/docs/technical/Defense_Technology_Deep_Dive', '42f'),
+                path: '/docs/technical/defense-technology-deep-dive',
+                component: ComponentCreator('/docs/technical/defense-technology-deep-dive', '5d7'),
                 exact: true,
                 sidebar: "docs"
               },
               {
                 path: '/docs/technical/glossary',
-                component: ComponentCreator('/docs/technical/glossary', 'f91'),
-                exact: true
-              },
-              {
-                path: '/docs/technical/hardware-foundation',
-                component: ComponentCreator('/docs/technical/hardware-foundation', 'f77'),
+                component: ComponentCreator('/docs/technical/glossary', '307'),
                 exact: true,
                 sidebar: "docs"
               },
               {
-                path: '/docs/technical/integration/API_Documentation',
-                component: ComponentCreator('/docs/technical/integration/API_Documentation', '5cd'),
+                path: '/docs/technical/hardware-foundation',
+                component: ComponentCreator('/docs/technical/hardware-foundation', '63b'),
+                exact: true,
+                sidebar: "docs"
+              },
+              {
+                path: '/docs/technical/integration/api-documentation',
+                component: ComponentCreator('/docs/technical/integration/api-documentation', '0c6'),
                 exact: true,
                 sidebar: "docs"
               },
               {
                 path: '/docs/technical/integration/integration-guide',
-                component: ComponentCreator('/docs/technical/integration/integration-guide', '1bf'),
+                component: ComponentCreator('/docs/technical/integration/integration-guide', '642'),
                 exact: true,
                 sidebar: "docs"
               },
               {
-                path: '/docs/technical/mechanical/Mechanical_Design_ADRs',
-                component: ComponentCreator('/docs/technical/mechanical/Mechanical_Design_ADRs', '1d1'),
+                path: '/docs/technical/mechanical/mechanical-design-adrs',
+                component: ComponentCreator('/docs/technical/mechanical/mechanical-design-adrs', '53c'),
                 exact: true,
                 sidebar: "docs"
               },
               {
-                path: '/docs/technical/mechanical/Mechanical_Design_Records',
-                component: ComponentCreator('/docs/technical/mechanical/Mechanical_Design_Records', '1bb'),
+                path: '/docs/technical/mechanical/mechanical-design-records',
+                component: ComponentCreator('/docs/technical/mechanical/mechanical-design-records', '8ec'),
                 exact: true,
                 sidebar: "docs"
               },
               {
                 path: '/docs/technical/performance/performance-specifications',
-                component: ComponentCreator('/docs/technical/performance/performance-specifications', '506'),
+                component: ComponentCreator('/docs/technical/performance/performance-specifications', '466'),
                 exact: true,
                 sidebar: "docs"
               },
               {
                 path: '/docs/technical/reusable-systems-architecture',
-                component: ComponentCreator('/docs/technical/reusable-systems-architecture', 'def'),
+                component: ComponentCreator('/docs/technical/reusable-systems-architecture', 'eae'),
                 exact: true
               },
               {
                 path: '/docs/technical/system-architecture',
-                component: ComponentCreator('/docs/technical/system-architecture', '403'),
+                component: ComponentCreator('/docs/technical/system-architecture', 'c68'),
                 exact: true,
                 sidebar: "docs"
-              },
-              {
-                path: '/docs/technical/Technical_Architecture',
-                component: ComponentCreator('/docs/technical/Technical_Architecture', '13e'),
-                exact: true,
-                sidebar: "docs"
-              },
-              {
-                path: '/docs/technical/Technical_Architecture_Synthesis',
-                component: ComponentCreator('/docs/technical/Technical_Architecture_Synthesis', '399'),
-                exact: true
               },
               {
                 path: '/docs/technical/technical-analysis',
-                component: ComponentCreator('/docs/technical/technical-analysis', '385'),
-                exact: true
+                component: ComponentCreator('/docs/technical/technical-analysis', '021'),
+                exact: true,
+                sidebar: "docs"
               },
               {
-                path: '/docs/technical/ThreatSimulator_Enhancements',
-                component: ComponentCreator('/docs/technical/ThreatSimulator_Enhancements', 'fc1'),
-                exact: true
+                path: '/docs/technical/technical-architecture',
+                component: ComponentCreator('/docs/technical/technical-architecture', '1a1'),
+                exact: true,
+                sidebar: "docs"
               },
               {
-                path: '/docs/visual-elements/System_Architecture_Diagrams',
-                component: ComponentCreator('/docs/visual-elements/System_Architecture_Diagrams', '287'),
+                path: '/docs/technical/technical-architecture-synthesis',
+                component: ComponentCreator('/docs/technical/technical-architecture-synthesis', '12b'),
+                exact: true,
+                sidebar: "docs"
+              },
+              {
+                path: '/docs/technical/threatsimulator-enhancements',
+                component: ComponentCreator('/docs/technical/threatsimulator-enhancements', 'b56'),
+                exact: true,
+                sidebar: "docs"
+              },
+              {
+                path: '/docs/visual-elements/system-architecture-diagrams',
+                component: ComponentCreator('/docs/visual-elements/system-architecture-diagrams', 'cb0'),
                 exact: true,
                 sidebar: "docs"
               }
