@@ -67,8 +67,20 @@ jobs:
           name: docs-site-build
           path: apps/docs/build
 
+      - name: Check Netlify secrets
+        id: check_secrets
+        run: |
+          if [ -n "${{ secrets.NETLIFY_AUTH_TOKEN }}" ] && [ -n "${{ secrets.NETLIFY_DOCS_SITE_ID }}" ]; then
+            echo "secrets_available=true" >> $GITHUB_OUTPUT
+          else
+            echo "secrets_available=false" >> $GITHUB_OUTPUT
+            echo "Warning: Netlify secrets not configured. Skipping deployment."
+          fi
+
       - name: Deploy to Netlify
-        if: steps.check_build.outputs.exists == 'true'
+        if:
+          steps.check_build.outputs.exists == 'true' &&
+          steps.check_secrets.outputs.secrets_available == 'true'
         uses: nwtgck/actions-netlify@v3
         with:
           publish-dir: "apps/docs/build"
@@ -130,8 +142,20 @@ jobs:
             echo "exists=false" >> $GITHUB_OUTPUT
           fi
 
+      - name: Check Netlify secrets (Preview)
+        id: check_secrets_preview
+        run: |
+          if [ -n "${{ secrets.NETLIFY_AUTH_TOKEN }}" ] && [ -n "${{ secrets.NETLIFY_DOCS_SITE_ID }}" ]; then
+            echo "secrets_available=true" >> $GITHUB_OUTPUT
+          else
+            echo "secrets_available=false" >> $GITHUB_OUTPUT
+            echo "Warning: Netlify secrets not configured. Skipping preview deployment."
+          fi
+
       - name: Deploy Preview to Netlify
-        if: steps.check_build_preview.outputs.exists == 'true'
+        if:
+          steps.check_build_preview.outputs.exists == 'true' &&
+          steps.check_secrets_preview.outputs.secrets_available == 'true'
         uses: nwtgck/actions-netlify@v3
         with:
           publish-dir: "apps/docs/build"

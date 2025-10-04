@@ -1,9 +1,9 @@
 import { useCallback, useState } from "react";
 import type {
-    GameState,
-    PowerUp,
-    SelectionBox,
-    Threat,
+  GameState,
+  PowerUp,
+  SelectionBox,
+  Threat,
 } from "../../types/game";
 
 interface UseThreatSimulatorEventsProps {

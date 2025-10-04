@@ -178,7 +178,8 @@ export const DRONE_UNLOCK_DATA: Record<string, DroneData> = {
     name: "Effector Drone",
     role: "active_defeat",
     notes: "Autonomous pursuit; net capture preferred for low collateral.",
-    description: "Primary combat drone for direct threat engagement and neutralization.",
+    description:
+      "Primary combat drone for direct threat engagement and neutralization.",
     brands: ["Fortem DroneHunter F700", "Anduril Anvil"],
     sources: [],
     unlockCost: 0, // Already unlocked
@@ -190,7 +191,8 @@ export const DRONE_UNLOCK_DATA: Record<string, DroneData> = {
     name: "Jammer Drone",
     role: "EW_denial",
     notes: "Airborne jamming platform for electronic warfare.",
-    description: "Electronic warfare drone for RF jamming and signal disruption.",
+    description:
+      "Electronic warfare drone for RF jamming and signal disruption.",
     brands: ["Custom Platform"],
     sources: [],
     unlockCost: 180,
@@ -202,7 +204,8 @@ export const DRONE_UNLOCK_DATA: Record<string, DroneData> = {
     name: "Surveillance Drone",
     role: "detection_tracking",
     notes: "Mobile visual identification and target handoff.",
-    description: "Reconnaissance and surveillance drone for threat detection and tracking.",
+    description:
+      "Reconnaissance and surveillance drone for threat detection and tracking.",
     brands: ["Teledyne FLIR SkyRanger", "Skydio X10D"],
     sources: [],
     unlockCost: 100,
@@ -214,7 +217,8 @@ export const DRONE_UNLOCK_DATA: Record<string, DroneData> = {
     name: "Shield Drone",
     role: "protection",
     notes: "Protective barrier and countermeasure deployment.",
-    description: "Defensive drone providing protective barriers and countermeasures.",
+    description:
+      "Defensive drone providing protective barriers and countermeasures.",
     brands: ["Custom Platform"],
     sources: [],
     unlockCost: 250,
