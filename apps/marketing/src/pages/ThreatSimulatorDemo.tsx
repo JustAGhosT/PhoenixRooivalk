@@ -95,7 +95,6 @@ export const ThreatSimulatorDemo: React.FC = () => {
     "rf_take",
   ];
 
-
   const renderFullSimulator = () => (
     <EnhancedThreatSimulator className="demo-simulator" />
   );
