@@ -16,7 +16,7 @@ export const ResearchPanel: React.FC<ResearchPanelProps> = ({
   onClose,
 }) => {
   const [selectedCategory, setSelectedCategory] = useState<'effector' | 'drone'>('effector');
-  const [selectedResearch, setSelectedResearch] = useState<string | null>(null);
+  const [_selectedResearch, setSelectedResearch] = useState<string | null>(null);
   const [selectedFilters, setSelectedFilters] = useState<string[]>([]);
   const [acknowledgedLegal, setAcknowledgedLegal] = useState<Set<string>>(new Set());
 
@@ -178,7 +178,7 @@ export const ResearchPanel: React.FC<ResearchPanelProps> = ({
                             ⚡ {effectorData.energy} Energy
                           </span>
                           <span className="cost-item">
-                            ⏱️ {effectorData.cooldown/1000}s Cooldown
+                            ⏱️ {(effectorData.cooldown || 0)/1000}s Cooldown
                           </span>
                         </>
                       )}
