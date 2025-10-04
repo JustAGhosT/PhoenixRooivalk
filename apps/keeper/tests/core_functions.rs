@@ -1,10 +1,9 @@
-use phoenix_evidence::model::{ChainTxRef, DigestAlgo, EvidenceDigest, EvidenceRecord};
+use phoenix_evidence::model::{ChainTxRef, EvidenceRecord};
 use phoenix_keeper::{
     run_job_loop, run_confirmation_loop, JobProvider, JobProviderExt, JobError, EvidenceJob,
     SqliteJobProvider,
 };
 use phoenix_evidence::anchor::{AnchorProvider, AnchorError};
-use sqlx::{Pool, Sqlite, Row};
 use std::sync::{Arc, Mutex};
 use std::time::Duration;
 use tempfile::NamedTempFile;
@@ -99,6 +98,7 @@ impl MockAnchorProvider {
         *self.should_fail.lock().unwrap() = fail;
     }
 
+    #[allow(dead_code)]
     fn set_should_confirm(&self, confirm: bool) {
         *self.should_confirm.lock().unwrap() = confirm;
     }
