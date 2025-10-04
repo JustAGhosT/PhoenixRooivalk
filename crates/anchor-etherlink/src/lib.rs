@@ -33,29 +33,29 @@ impl AnchorProvider for EtherlinkProviderStub {
 
 #[derive(Clone, Debug)]
 pub struct EtherlinkProvider {
-    client: Client,
-    endpoint: String,
-    network: String,
+    pub client: Client,
+    pub endpoint: String,
+    pub network: String,
     #[allow(dead_code)]
-    private_key: Option<String>,
+    pub private_key: Option<String>,
 }
 
 #[derive(Debug, Serialize)]
-struct JsonRpcRequest {
-    jsonrpc: String,
-    method: String,
-    params: Value,
-    id: u64,
+pub struct JsonRpcRequest {
+    pub jsonrpc: String,
+    pub method: String,
+    pub params: Value,
+    pub id: u64,
 }
 
 #[derive(Debug, Deserialize)]
-struct JsonRpcResponse {
+pub struct JsonRpcResponse {
     #[allow(dead_code)]
-    jsonrpc: String,
+    pub jsonrpc: String,
     #[allow(dead_code)]
-    id: u64,
-    result: Option<Value>,
-    error: Option<JsonRpcError>,
+    pub id: u64,
+    pub result: Option<Value>,
+    pub error: Option<JsonRpcError>,
 }
 
 #[derive(Debug, Deserialize)]
