@@ -240,7 +240,20 @@ export const RadarSystem: React.FC<RadarSystemProps> = ({
             const isSelected = selectedTarget === target.id;
 
             return (
-              <g key={target.id} className="radar-target">
+              <g 
+                key={target.id} 
+                className="radar-target focusable-target"
+                tabIndex={0}
+                role="button"
+                aria-label={`Target ${target.id} ${target.type}`}
+                aria-selected={isSelected}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    setSelectedTarget(target.id);
+                  }
+                }}
+              >
                 <circle
                   cx={scaledPos.x}
                   cy={scaledPos.y}

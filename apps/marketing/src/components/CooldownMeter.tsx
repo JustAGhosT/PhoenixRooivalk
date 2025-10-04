@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 interface CooldownMeterProps {
   cooldown: number; // milliseconds
@@ -19,6 +19,25 @@ export const CooldownMeter: React.FC<CooldownMeterProps> = ({
   showLabel = false,
   label = "",
 }) => {
+  const [_tick, setTick] = useState(0);
+
+  // Force re-render every 250ms while cooldown is active
+  useEffect(() => {
+    if (lastFired == null) return;
+
+    const now = Date.now();
+    const elapsed = now - lastFired;
+    const remaining = Math.max(0, cooldown - elapsed);
+
+    if (remaining <= 0) return;
+
+    const interval = setInterval(() => {
+      setTick(prev => prev + 1);
+    }, 250);
+
+    return () => clearInterval(interval);
+  }, [lastFired, cooldown]);
+
   const now = Date.now();
   // Explicitly check for null/undefined to avoid treating 0 as "never fired"
   const elapsed = lastFired == null ? Infinity : now - lastFired;
@@ -69,7 +88,7 @@ export const CooldownMeter: React.FC<CooldownMeterProps> = ({
             strokeWidth="2"
             strokeLinecap="round"
             style={{
-              transition: "stroke-dasharray 0.3s ease-in-out",
+              transition: animated ? "stroke-dasharray 0.3s ease-in-out" : "none",
             }}
           />
         </svg>
