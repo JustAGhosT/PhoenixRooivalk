@@ -19,8 +19,10 @@ Status indicator showing legal compliance requirements or warnings.
 
 ## AI Generation Prompt
 
-```
-Create a legal warning status icon: shield with legal symbol or scales. Military style, outline-based, 24x24px. Color #f59e0b. Legal compliance, warning state aesthetic.
+```text
+Create a legal warning status icon: shield with legal symbol or scales. Military
+style, outline-based, 24x24px. Color #f59e0b. Legal compliance, warning state
+aesthetic.
 ```
 
 ## SVG Structure
