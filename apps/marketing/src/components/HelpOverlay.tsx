@@ -27,8 +27,12 @@ const HelpOverlay: React.FC<HelpOverlayProps> = ({ onClose }) => {
           <kbd className="help-overlay__key-shortcut">R</kbd>
         </li>
         <li className="help-overlay__list-item">
-          <span className="help-overlay__key-label">Set Level</span>
+          <span className="help-overlay__key-label">Switch Weapon</span>
           <kbd className="help-overlay__key-shortcut">1/2/3</kbd>
+        </li>
+        <li className="help-overlay__list-item">
+          <span className="help-overlay__key-label">Toggle Stats Panel</span>
+          <kbd className="help-overlay__key-shortcut">T</kbd>
         </li>
         <li className="help-overlay__list-item">
           <span className="help-overlay__key-label">Clear Selection</span>

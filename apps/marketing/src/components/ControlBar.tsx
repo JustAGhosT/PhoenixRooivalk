@@ -14,6 +14,10 @@ interface ControlBarProps {
   setMissionType: (type: any) => void;
   automationMode: string;
   setAutomationMode: (mode: any) => void;
+  showDeploymentZones: boolean;
+  setShowDeploymentZones: (show: boolean) => void;
+  onShowStats: () => void;
+  onShowHelp: () => void;
 }
 
 const ControlBar: React.FC<ControlBarProps> = ({
@@ -30,6 +34,10 @@ const ControlBar: React.FC<ControlBarProps> = ({
   setMissionType,
   automationMode,
   setAutomationMode,
+  showDeploymentZones,
+  setShowDeploymentZones,
+  onShowStats,
+  onShowHelp,
 }) => {
   const levels = [1, 2, 3];
 
@@ -79,6 +87,17 @@ const ControlBar: React.FC<ControlBarProps> = ({
       </select>
 
       <button className="btn btn--ghost" id="btn-reset" title="R" onClick={onReset}>Reset</button>
+
+      <button
+        className="btn btn--secondary"
+        onClick={() => setShowDeploymentZones(!showDeploymentZones)}
+      >
+        {showDeploymentZones ? 'Hide Zones' : 'Show Zones'}
+      </button>
+
+      <button className="btn btn--ghost" onClick={onShowStats}>Show Stats</button>
+
+      <button className="btn btn--ghost" onClick={onShowHelp} title="?">?</button>
     </footer>
   );
 };

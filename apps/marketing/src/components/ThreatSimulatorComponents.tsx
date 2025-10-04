@@ -84,6 +84,7 @@ export const ThreatSimulatorComponents: React.FC<
       {gameState.threats.map(threat => {
         const appearance = getThreatAppearance(threat.type);
         const isSelected = gameState.selectedThreats.includes(threat.id);
+        const isHovered = hoveredThreat === threat.id;
         const priority = gameState.priorityThreats?.[threat.id] || "low";
         const isNeutralized =
           threat.status === "neutralized" || threat.isMoving === false;
@@ -105,16 +106,31 @@ export const ThreatSimulatorComponents: React.FC<
           <div
             key={threat.id}
             className={`absolute transform -translate-x-1/2 -translate-y-1/2 transition-all duration-300 ${
-              isSelected ? "scale-125 z-30" : "z-20"
+              isSelected
+                ? "scale-125 z-30"
+                : isHovered
+                  ? "scale-110 z-20"
+                  : "z-20"
             } ${isNeutralized ? "opacity-50" : ""}`}
             style={{
               left: `${threat.x}px`,
               top: `${threat.y}px`,
               opacity: isNeutralized ? fadeOpacity : 1,
+              pointerEvents: "auto", // Enable pointer events for this element
             }}
             onClick={e =>
               !isNeutralized && !isCrater && onThreatClick(e, threat.id)
             }
+            onMouseEnter={() => {
+              if (!isNeutralized && !isCrater) {
+                setHoveredThreat(threat.id);
+                onThreatHover(threat.id);
+              }
+            }}
+            onMouseLeave={() => {
+              setHoveredThreat(null);
+              onThreatHover(null);
+            }}
             onKeyDown={e => {
               if (
                 !isNeutralized &&
@@ -148,22 +164,37 @@ export const ThreatSimulatorComponents: React.FC<
               } ${
                 isSelected
                   ? "ring-4 ring-blue-400 ring-opacity-75 border-blue-300"
-                  : isCrater
-                    ? "border-gray-500/50"
-                    : isNeutralized
-                      ? "border-red-500/50"
-                      : "border-white/20"
+                  : isHovered
+                    ? "ring-2 ring-white/50"
+                    : isCrater
+                      ? "border-gray-500/50"
+                      : isNeutralized
+                        ? "border-red-500/50"
+                        : "border-white/20"
               } relative`}
             >
               {isCrater ? "🕳️" : isNeutralized ? "💥" : appearance.emoji}
-              {/* Threat trail - only show for active threats */}
-              {!isNeutralized &&
-                !isCrater &&
-                threat.trail &&
-                threat.trail.length > 1 && (
-                  <div className="absolute inset-0 rounded-full border border-white/30 animate-pulse" />
-                )}
             </div>
+            {/* Threat Trail SVG */}
+            {!isNeutralized && !isCrater && threat.trail && threat.trail.length > 1 && (
+              <svg
+                className="absolute top-0 left-0 w-full h-full pointer-events-none"
+                style={{
+                  transform: `translate(-${threat.x}px, -${threat.y}px)`,
+                  width: '800px', /* Match game area */
+                  height: '600px'
+                }}
+              >
+                <polyline
+                  points={threat.trail.map(p => `${p.x},${p.y}`).join(' ')}
+                  className="threat-trail"
+                  fill="none"
+                  stroke="rgba(255, 255, 255, 0.2)"
+                  strokeWidth="2"
+                  strokeDasharray="4 4"
+                />
+              </svg>
+            )}
             {/* Priority indicator */}
             {priority !== "low" && (
               <div
@@ -177,7 +208,7 @@ export const ThreatSimulatorComponents: React.FC<
               />
             )}
             {/* Threat label */}
-            {(isSelected || priority !== "low") && (
+            {(isSelected || isHovered || priority !== "low") && (
               <div className="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-black/80 text-white text-xs px-2 py-1 rounded font-mono whitespace-nowrap">
                 {threat.type.toUpperCase()}
                 {priority !== "low" && (
@@ -246,6 +277,31 @@ export const ThreatSimulatorComponents: React.FC<
           }}
         />
       )}
+      {/* Deployment Bays */}
+      {gameState.showDeploymentZones &&
+        gameState.deploymentBays.map(bay => (
+          <div
+            key={bay.id}
+            className="absolute transform -translate-x-1/2 -translate-y-1/2"
+            style={{
+              left: `${bay.x}px`,
+              top: `${bay.y}px`,
+            }}
+          >
+            <div
+              className={`w-12 h-12 rounded-lg border-2 flex items-center justify-center text-lg ${
+                bay.currentDrones > 0
+                  ? "border-green-400 bg-green-400/20"
+                  : "border-gray-600 bg-gray-600/20"
+              }`}
+            >
+              {bay.currentDrones > 0 ? "✅" : "⭕"}
+            </div>
+            <div className="absolute -bottom-6 left-1/2 transform -translate-x-1/2 text-xs text-white bg-black/50 px-1 rounded">
+              {bay.currentDrones}/{bay.capacity}
+            </div>
+          </div>
+        ))}
     </div>
   );
 };

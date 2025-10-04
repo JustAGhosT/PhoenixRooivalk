@@ -13,6 +13,10 @@ import ControlBar from './ControlBar';
 import EventFeed from './EventFeed';
 import Disclaimer from './Disclaimer';
 import HelpOverlay from './HelpOverlay';
+import { WeaponStatus } from './WeaponStatus';
+import { ParticleEffects } from './ParticleEffects';
+import { DroneDeployment } from './DroneDeployment';
+import { DetailedStats } from './DetailedStats';
 import { ThreatSimulatorComponents } from './ThreatSimulatorComponents';
 import { ThreatSimulatorOverlays } from './ThreatSimulatorOverlays';
 import './NewThreatSimulator.css';
@@ -29,6 +33,7 @@ export const ThreatSimulator: React.FC<ThreatSimulatorProps> = ({
   const gameRef = useRef<HTMLDivElement>(null);
   const [isResetting, setIsResetting] = useState(false);
   const [showHelp, setShowHelp] = useState(false);
+  const [showDetailedStats, setShowDetailedStats] = useState(false);
   const [showSimulationWarning, setShowSimulationWarning] = useState(true);
 
   const {
@@ -193,12 +198,10 @@ export const ThreatSimulator: React.FC<ThreatSimulatorProps> = ({
         case 's': e.preventDefault(); handleSwarm(); break;
         case '+': case '=': e.preventDefault(); handlePlus5(); break;
         case 'r': e.preventDefault(); handleReset(); break;
-        case '1': case '2': case '3':
-          e.preventDefault();
-          const level = parseInt(key, 10);
-          setLevel(level);
-          addFeed(`Level set to ${level}.`);
-          break;
+        case '1': e.preventDefault(); switchWeapon("kinetic"); addFeed("Kinetic weapon selected."); break;
+        case '2': e.preventDefault(); switchWeapon("electronic"); addFeed("EMP weapon selected."); break;
+        case '3': e.preventDefault(); switchWeapon("laser"); addFeed("Laser weapon selected."); break;
+        case 't': e.preventDefault(); setShowDetailedStats(prev => !prev); break;
         case 'escape': e.preventDefault(); clearSelection(); selectDroneType(null); break;
         case '?': e.preventDefault(); setShowHelp(prev => !prev); break;
       }
@@ -208,14 +211,17 @@ export const ThreatSimulator: React.FC<ThreatSimulatorProps> = ({
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
     };
-  }, [toggleRunningState, handleSwarm, handlePlus5, handleReset, setLevel, addFeed, clearSelection, selectDroneType]);
+  }, [toggleRunningState, handleSwarm, handlePlus5, handleReset, switchWeapon, addFeed, clearSelection, selectDroneType, setShowDetailedStats, setShowHelp]);
 
   return (
-    <section ref={gameRef} className="threatsim card" aria-labelledby="sim-title"
-             onMouseDown={handleMouseDown} onMouseMove={handleMouseMove} onMouseUp={handleMouseUp}
-             onContextMenu={handleContextMenu} onWheel={handleWheel} onClick={handleGameAreaClick} tabIndex={0}>
-
+    <section
+      ref={gameRef}
+      className="threatsim card flex flex-col h-full"
+      aria-labelledby="sim-title"
+      style={{ minHeight: '800px' }} // Ensure the container has a height
+    >
       {showHelp && <HelpOverlay onClose={() => setShowHelp(false)} />}
+      {showDetailedStats && <DetailedStats gameState={gameState} onClose={() => setShowDetailedStats(false)} />}
 
       <HUDBar
         score={gameState.score}
@@ -223,16 +229,50 @@ export const ThreatSimulator: React.FC<ThreatSimulatorProps> = ({
         neutralized={gameState.neutralized}
         level={gameState.level}
       />
-      <RadarCanvas
-        isResetting={isResetting}
-        onThreatClick={handleThreatClick}
-      />
-      <ThreatSimulatorComponents
-        gameState={gameState}
-        onThreatClick={handleThreatClick}
-        onThreatHover={() => {}}
-        getThreatAppearance={getThreatAppearance}
-      />
+
+      <div className="flex flex-row flex-grow overflow-hidden">
+        <WeaponStatus
+          weapons={gameState.weapons}
+          selectedWeapon={gameState.selectedWeapon}
+          onSwitchWeapon={switchWeapon}
+        />
+        {/* Game Area Container */}
+        <div
+          className="relative flex-grow"
+          onMouseDown={handleMouseDown}
+          onMouseMove={handleMouseMove}
+          onMouseUp={handleMouseUp}
+          onContextMenu={handleContextMenu}
+          onWheel={handleWheel}
+          onClick={handleGameAreaClick}
+          tabIndex={0}
+        >
+          {/* Visual Layers (absolutely positioned inside) */}
+          <RadarCanvas
+            threats={gameState.threats}
+            isResetting={isResetting}
+            onThreatClick={handleThreatClick}
+          />
+          <ParticleEffects
+            activePowerUps={gameState.activePowerUps}
+            gameArea={{ width: 800, height: 600 }}
+          />
+          <ThreatSimulatorComponents
+            gameState={gameState}
+            onThreatClick={handleThreatClick}
+            onThreatHover={() => {}}
+            getThreatAppearance={getThreatAppearance}
+          />
+        </div>
+        <DroneDeployment
+          drones={gameState.drones}
+          deploymentBays={gameState.deploymentBays}
+          selectedDroneType={gameState.selectedDroneType}
+          onSelectDroneType={selectDroneType}
+          energy={gameState.energy}
+        />
+      </div>
+
       <ControlBar
         onPause={toggleRunningState}
         onSwarm={handleSwarm}
@@ -250,6 +290,10 @@ export const ThreatSimulator: React.FC<ThreatSimulatorProps> = ({
         setMissionType={setMissionType}
         automationMode={gameState.automationMode}
         setAutomationMode={setAutomationMode}
+        showDeploymentZones={gameState.showDeploymentZones}
+        setShowDeploymentZones={setShowDeploymentZones}
+        onShowStats={() => setShowDetailedStats(true)}
+        onShowHelp={() => setShowHelp(true)}
       />
       <EventFeed feedItems={feedItems} />
       <Disclaimer />
