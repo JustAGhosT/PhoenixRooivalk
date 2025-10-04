@@ -49,7 +49,8 @@ fn create_etherlink_provider() -> Box<dyn AnchorProvider + Send + Sync> {
                 );
                 std::process::exit(1);
             }
-        }
+        };
+        provider
     }
 }
 

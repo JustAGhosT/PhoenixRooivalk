@@ -22,6 +22,60 @@ impl MigrationManager {
         Self { pool }
     }
 
+    /// Get the list of available migrations
+    fn get_migrations() -> Vec<Migration> {
+        vec![
+            Migration {
+                version: 1,
+                name: "initial_schema",
+                sql: r#"
+                CREATE TABLE IF NOT EXISTS outbox_jobs (
+                    id TEXT PRIMARY KEY,
+                    payload_sha256 TEXT NOT NULL,
+                    status TEXT NOT NULL DEFAULT 'queued',
+                    attempts INTEGER NOT NULL DEFAULT 0,
+                    last_error TEXT,
+                    created_ms INTEGER NOT NULL,
+                    updated_ms INTEGER NOT NULL,
+                    next_attempt_ms INTEGER NOT NULL DEFAULT 0
+                );
+                "#,
+            },
+            Migration {
+                version: 2,
+                name: "add_tx_refs_table",
+                sql: r#"
+                CREATE TABLE IF NOT EXISTS outbox_tx_refs (
+                    job_id TEXT NOT NULL,
+                    network TEXT NOT NULL,
+                    chain TEXT NOT NULL,
+                    tx_id TEXT NOT NULL,
+                    confirmed INTEGER NOT NULL,
+                    timestamp INTEGER,
+                    PRIMARY KEY (job_id, network, chain)
+                );
+                "#,
+            },
+            Migration {
+                version: 3,
+                name: "add_job_indexes",
+                sql: r#"
+                CREATE INDEX IF NOT EXISTS idx_outbox_jobs_status ON outbox_jobs(status);
+                CREATE INDEX IF NOT EXISTS idx_outbox_jobs_created_ms ON outbox_jobs(created_ms);
+                CREATE INDEX IF NOT EXISTS idx_outbox_jobs_next_attempt ON outbox_jobs(next_attempt_ms);
+                "#,
+            },
+            Migration {
+                version: 4,
+                name: "add_tx_refs_indexes",
+                sql: r#"
+                CREATE INDEX IF NOT EXISTS idx_outbox_tx_refs_job_id ON outbox_tx_refs(job_id);
+                CREATE INDEX IF NOT EXISTS idx_outbox_tx_refs_confirmed ON outbox_tx_refs(confirmed);
+                "#,
+            },
+        ]
+    }
+
     /// Initialize migration tracking table
     async fn init_migration_table(&self) -> Result<()> {
         sqlx::query(
@@ -83,57 +137,8 @@ impl MigrationManager {
         self.init_migration_table().await?;
         let current_version = self.get_current_version().await?;
 
-        // Define migrations
-        let migrations = vec![
-            Migration {
-                version: 1,
-                name: "initial_schema",
-                sql: r#"
-                CREATE TABLE IF NOT EXISTS outbox_jobs (
-                    id TEXT PRIMARY KEY,
-                    payload_sha256 TEXT NOT NULL,
-                    status TEXT NOT NULL DEFAULT 'queued',
-                    attempts INTEGER NOT NULL DEFAULT 0,
-                    last_error TEXT,
-                    created_ms INTEGER NOT NULL,
-                    updated_ms INTEGER NOT NULL,
-                    next_attempt_ms INTEGER NOT NULL DEFAULT 0
-                );
-                "#,
-            },
-            Migration {
-                version: 2,
-                name: "add_tx_refs_table",
-                sql: r#"
-                CREATE TABLE IF NOT EXISTS outbox_tx_refs (
-                    job_id TEXT NOT NULL,
-                    network TEXT NOT NULL,
-                    chain TEXT NOT NULL,
-                    tx_id TEXT NOT NULL,
-                    confirmed INTEGER NOT NULL,
-                    timestamp INTEGER,
-                    PRIMARY KEY (job_id, network, chain)
-                );
-                "#,
-            },
-            Migration {
-                version: 3,
-                name: "add_job_indexes",
-                sql: r#"
-                CREATE INDEX IF NOT EXISTS idx_outbox_jobs_status ON outbox_jobs(status);
-                CREATE INDEX IF NOT EXISTS idx_outbox_jobs_created_ms ON outbox_jobs(created_ms);
-                CREATE INDEX IF NOT EXISTS idx_outbox_jobs_next_attempt ON outbox_jobs(next_attempt_ms);
-                "#,
-            },
-            Migration {
-                version: 4,
-                name: "add_tx_refs_indexes",
-                sql: r#"
-                CREATE INDEX IF NOT EXISTS idx_outbox_tx_refs_job_id ON outbox_tx_refs(job_id);
-                CREATE INDEX IF NOT EXISTS idx_outbox_tx_refs_confirmed ON outbox_tx_refs(confirmed);
-                "#,
-            },
-        ];
+        // Get migrations
+        let migrations = Self::get_migrations();
 
         // Apply pending migrations
         for migration in migrations {
@@ -150,7 +155,7 @@ impl MigrationManager {
     pub async fn is_up_to_date(&self) -> Result<bool> {
         self.init_migration_table().await?;
         let current_version = self.get_current_version().await?;
-        let latest_version = self.migrations.len() as i32;
+        let latest_version = Self::get_migrations().len() as i32;
         Ok(current_version >= latest_version)
     }
 
@@ -158,7 +163,7 @@ impl MigrationManager {
     pub async fn get_status(&self) -> Result<MigrationStatus> {
         self.init_migration_table().await?;
         let current_version = self.get_current_version().await?;
-        let latest_version = self.migrations.len() as i32;
+        let latest_version = Self::get_migrations().len() as i32;
 
         let migrations = sqlx::query(
             "SELECT version, name, applied_at FROM schema_migrations ORDER BY version"

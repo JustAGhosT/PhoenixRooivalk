@@ -189,7 +189,10 @@ async fn get_evidence(
             "updated_ms": row.get::<i64, _>("updated_ms")
         })))
     } else {
-        Ok(Json(serde_json::json!({ "error": "Job not found" })))
+        Err((
+            StatusCode::NOT_FOUND,
+            Json(serde_json::json!({ "error": "Job not found" }))
+        ))
     }
 }
 
