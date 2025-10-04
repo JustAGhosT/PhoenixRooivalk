@@ -12,6 +12,9 @@ queries:
   - uses: security-and-quality
   # Use the default CodeQL queries for Rust
   - uses: security-and-quality
+  # Additional Rust-specific queries
+  - uses: security-extended
+  - uses: security-and-quality
 
 # Specify the paths to exclude from analysis
 paths-ignore:

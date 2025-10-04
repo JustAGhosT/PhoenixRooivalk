@@ -10,7 +10,7 @@ export interface ROERiskDetails {
   legalFlags: string[];
 }
 
-export interface EnhancedROEIndicatorProps {
+export interface ROEIndicatorProps {
   riskLevel: ROERiskLevel;
   riskDetails?: ROERiskDetails;
   showDetails?: boolean;
@@ -78,7 +78,7 @@ const ROE_RISK_DEFINITIONS: Record<ROERiskLevel, ROERiskDetails> = {
   },
 };
 
-export const EnhancedROEIndicator: React.FC<EnhancedROEIndicatorProps> = ({
+export const ROEIndicator: React.FC<ROEIndicatorProps> = ({
   riskLevel,
   riskDetails,
   showDetails = false,

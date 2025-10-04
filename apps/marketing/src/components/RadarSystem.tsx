@@ -33,7 +33,7 @@ export interface FriendlyDeployment {
   maxEnergy: number;
 }
 
-export interface EnhancedRadarSystemProps {
+export interface RadarSystemProps {
   targets: RadarTarget[];
   friendlyDeployments: FriendlyDeployment[];
   range: number; // radar range in meters
@@ -41,7 +41,7 @@ export interface EnhancedRadarSystemProps {
   className?: string;
 }
 
-export const EnhancedRadarSystem: React.FC<EnhancedRadarSystemProps> = ({
+export const RadarSystem: React.FC<RadarSystemProps> = ({
   targets,
   friendlyDeployments,
   range,

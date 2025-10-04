@@ -5,12 +5,12 @@ import {
   DemoCooldownMeter,
   WeaponCooldownMeter,
 } from "../components/EnhancedCooldownMeter";
-import { EnhancedROEIndicator } from "../components/EnhancedROEIndicator";
+import { ROEIndicator } from "../components/ROEIndicator";
 import {
-    EnhancedRadarSystem,
+    RadarSystem,
     FriendlyDeployment,
     RadarTarget,
-} from "../components/EnhancedRadarSystem";
+} from "../components/RadarSystem";
 import { ThreatSimulator } from "../components/ThreatSimulator";
 import { FilterChips } from "../components/FilterChips";
 import { InfoPopover } from "../components/InfoPopover";
@@ -118,7 +118,7 @@ const ThreatSimulatorDemo: React.FC = () => {
         <div className="showcase-section">
           <h2>Enhanced Radar System</h2>
           <div className="component-demo">
-            <EnhancedRadarSystem
+                        <RadarSystem
               targets={demoTargets}
               friendlyDeployments={demoDeployments}
               range={500}
@@ -199,7 +199,7 @@ const ThreatSimulatorDemo: React.FC = () => {
             <div className="roe-showcase">
               <div className="roe-item">
                 <h3>Low Risk</h3>
-                <EnhancedROEIndicator
+                        <ROEIndicator
                   riskLevel="low"
                   showDetails={true}
                   size="medium"
@@ -207,7 +207,7 @@ const ThreatSimulatorDemo: React.FC = () => {
               </div>
               <div className="roe-item">
                 <h3>Medium Risk</h3>
-                <EnhancedROEIndicator
+                        <ROEIndicator
                   riskLevel="medium"
                   showDetails={true}
                   size="medium"
@@ -215,7 +215,7 @@ const ThreatSimulatorDemo: React.FC = () => {
               </div>
               <div className="roe-item">
                 <h3>High Risk</h3>
-                <EnhancedROEIndicator
+                        <ROEIndicator
                   riskLevel="high"
                   showDetails={true}
                   size="medium"

@@ -8,8 +8,8 @@ import { DroneDeployment } from "./DroneDeployment";
 import { EnergyBudget } from "./EnergyBudget";
 import { EnergyManagement } from "./EnergyManagement";
 import { DemoCooldownMeter, WeaponCooldownMeter } from "./EnhancedCooldownMeter";
-import { EnhancedROEIndicator } from "./EnhancedROEIndicator";
-import { EnhancedRadarSystem, FriendlyDeployment, RadarTarget } from "./EnhancedRadarSystem";
+import { ROEIndicator } from "./ROEIndicator";
+import { RadarSystem, FriendlyDeployment, RadarTarget } from "./RadarSystem";
 import EventFeed from "./EventFeed";
 import { FilterChips } from "./FilterChips";
 import HUDBar from "./HUDBar";
@@ -419,7 +419,7 @@ export const ThreatSimulator: React.FC<ThreatSimulatorProps> = ({
                     <div className="showcase-section">
                       <h2>Enhanced Radar System</h2>
                       <div className="component-demo">
-                        <EnhancedRadarSystem
+                        <RadarSystem
                           targets={demoTargets}
                           friendlyDeployments={demoDeployments}
                           range={500}
@@ -500,7 +500,7 @@ export const ThreatSimulator: React.FC<ThreatSimulatorProps> = ({
                         <div className="roe-showcase">
                           <div className="roe-item">
                             <h3>Low Risk</h3>
-                            <EnhancedROEIndicator
+                            <ROEIndicator
                               riskLevel="low"
                               showDetails={true}
                               size="medium"
@@ -508,7 +508,7 @@ export const ThreatSimulator: React.FC<ThreatSimulatorProps> = ({
                           </div>
                           <div className="roe-item">
                             <h3>Medium Risk</h3>
-                            <EnhancedROEIndicator
+                            <ROEIndicator
                               riskLevel="medium"
                               showDetails={true}
                               size="medium"
@@ -516,7 +516,7 @@ export const ThreatSimulator: React.FC<ThreatSimulatorProps> = ({
                           </div>
                           <div className="roe-item">
                             <h3>High Risk</h3>
-                            <EnhancedROEIndicator
+                            <ROEIndicator
                               riskLevel="high"
                               showDetails={true}
                               size="medium"
