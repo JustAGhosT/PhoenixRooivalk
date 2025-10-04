@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useId, useRef, useState } from "react";
 
 interface InfoPopoverProps {
   title: string;
@@ -19,6 +19,7 @@ export const InfoPopover: React.FC<InfoPopoverProps> = ({
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const triggerRef = useRef<HTMLDivElement>(null);
   const popoverRef = useRef<HTMLDivElement>(null);
+  const uniqueId = useId();
 
   const updatePosition = () => {
     if (triggerRef.current && popoverRef.current) {
@@ -63,6 +64,36 @@ export const InfoPopover: React.FC<InfoPopoverProps> = ({
 
   const handleMouseLeave = () => {
     setIsOpen(false);
+  };
+
+  const handleKeyDown = (event: React.KeyboardEvent) => {
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      setIsOpen(!isOpen);
+    } else if (event.key === "Escape") {
+      setIsOpen(false);
+    }
+  };
+
+  const getSafeUrlInfo = (source: string) => {
+    try {
+      const url = new URL(source);
+      return {
+        href: source,
+        displayText: url.hostname,
+        isValid: true,
+      };
+    } catch {
+      // Handle invalid URLs gracefully
+      const sanitizedSource = source.replace(/[<>"']/g, "");
+      return {
+        href: source.startsWith("/") ? `https://example.com${source}` : "#",
+        displayText: sanitizedSource.length > 50 
+          ? `${sanitizedSource.substring(0, 47)}...` 
+          : sanitizedSource,
+        isValid: false,
+      };
+    }
   };
 
   return (
