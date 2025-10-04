@@ -73,13 +73,30 @@ const RadarCanvas: React.FC<RadarCanvasProps> = ({
             // For now, all threats are considered hostile. This can be expanded later.
             const blipClass = `blip blip--hostile`;
 
+            const handleThreatClick = (event: React.MouseEvent) => {
+              onThreatClick?.(event, threat.id);
+            };
+
+            const handleKeyDown = (event: React.KeyboardEvent) => {
+              if (event.key === "Enter" || event.key === " ") {
+                event.preventDefault();
+                onThreatClick?.(event, threat.id);
+              }
+            };
+
             return (
               <circle
                 key={threat.id}
                 cx={radarX}
                 cy={radarY}
                 r="4"
-                className={blipClass}
+                className={`${blipClass} cursor-pointer`}
+                role="button"
+                tabIndex={0}
+                onClick={handleThreatClick}
+                onKeyDown={handleKeyDown}
+                aria-label={`Threat ${threat.id}`}
+                style={{ cursor: "pointer" }}
               />
             );
           })}

@@ -318,6 +318,13 @@
   animation-iteration-count: infinite;
 }
 
+/* Respect user's motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .particle {
+    animation: none;
+  }
+}
+
 /* Drone Deployment Panel */
 .drone-deployment-panel {
   width: 240px;

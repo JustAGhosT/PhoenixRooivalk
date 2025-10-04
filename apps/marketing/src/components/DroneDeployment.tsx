@@ -31,6 +31,29 @@ export const DroneDeployment: React.FC<DroneDeploymentProps> = ({
       <div className="drone-list">
         {deploymentBays.map((bay) => {
           const data = DRONE_DATA[bay.droneType as keyof typeof DRONE_DATA];
+
+          // Defensive check for missing drone data
+          if (!data) {
+            console.warn(
+              `Drone data not found for drone type: ${bay.droneType}`,
+            );
+            return (
+              <div
+                key={bay.id}
+                className="drone-item disabled"
+                title="Unknown drone type"
+              >
+                <div className="drone-icon">❓</div>
+                <div className="drone-details">
+                  <div className="drone-name">Unknown Drone</div>
+                  <div className="drone-count">
+                    {bay.currentDrones} / {bay.capacity}
+                  </div>
+                </div>
+              </div>
+            );
+          }
+
           const isSelected = selectedDroneType === bay.droneType;
           const isDisabled =
             bay.currentDrones === 0 || energy < DEPLOYMENT_COST;

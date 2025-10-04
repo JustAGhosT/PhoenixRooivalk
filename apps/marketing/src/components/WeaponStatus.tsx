@@ -24,17 +24,50 @@ export const WeaponStatus: React.FC<WeaponStatusProps> = ({
       <div className="weapon-list">
         {Object.entries(weapons).map(([id, weaponState]) => {
           const wData = weaponData[id as keyof typeof weaponData];
+
+          // Defensive check for missing weapon data
+          if (!wData) {
+            console.warn(`Weapon data not found for weapon ID: ${id}`);
+            return (
+              <div
+                key={id}
+                className="weapon-item disabled"
+                title="Unknown weapon type"
+              >
+                <div className="weapon-icon">❓</div>
+                <div className="weapon-details">
+                  <div className="weapon-name">Unknown Weapon</div>
+                  <div className="weapon-ammo">
+                    {weaponState.ammo} / {weaponState.maxAmmo}
+                  </div>
+                </div>
+              </div>
+            );
+          }
+
           const isSelected = selectedWeapon === id;
-          const cooldownPercentage =
-            weaponState.cooldown > 0
-              ? (weaponState.cooldown / weaponState.maxCooldown) * 100
-              : 0;
+          // Calculate cooldown percentage based on weapon data
+          const cooldownPercentage = weaponState.cooldown > 0 ? 100 : 0;
+
+          const handleWeaponClick = () => {
+            onSwitchWeapon(id);
+          };
+
+          const handleKeyDown = (event: React.KeyboardEvent) => {
+            if (event.key === "Enter" || event.key === " ") {
+              event.preventDefault();
+              onSwitchWeapon(id);
+            }
+          };
 
           return (
-            <div
+            <button
               key={id}
               className={`weapon-item ${isSelected ? "selected" : ""}`}
-              onClick={() => onSwitchWeapon(id)}
+              onClick={handleWeaponClick}
+              onKeyDown={handleKeyDown}
+              type="button"
+              aria-label={`Switch to ${wData.name} weapon`}
             >
               <div className="weapon-icon">{wData.icon}</div>
               <div className="weapon-details">
@@ -51,7 +84,7 @@ export const WeaponStatus: React.FC<WeaponStatusProps> = ({
                   />
                 </div>
               )}
-            </div>
+            </button>
           );
         })}
       </div>

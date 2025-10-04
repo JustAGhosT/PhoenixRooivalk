@@ -1,5 +1,14 @@
 import React from "react";
 
+// Type definitions for game modes
+type WeatherMode = "none" | "rain" | "fog" | "night";
+type MissionType =
+  | "airport"
+  | "military-base"
+  | "vip-protection"
+  | "border-patrol";
+type AutomationMode = "manual" | "automated" | "hybrid";
+
 interface ControlBarProps {
   onPause: () => void;
   onSwarm: () => void;
@@ -8,12 +17,12 @@ interface ControlBarProps {
   onLevelChange: (level: number) => void;
   isPaused: boolean;
   currentLevel: number;
-  weatherMode: string;
-  setWeatherMode: (mode: any) => void;
-  missionType: string;
-  setMissionType: (type: any) => void;
-  automationMode: string;
-  setAutomationMode: (mode: any) => void;
+  weatherMode: WeatherMode;
+  setWeatherMode: (mode: WeatherMode) => void;
+  missionType: MissionType;
+  setMissionType: (type: MissionType) => void;
+  automationMode: AutomationMode;
+  setAutomationMode: (mode: AutomationMode) => void;
   showDeploymentZones: boolean;
   setShowDeploymentZones: (show: boolean) => void;
   onShowStats: () => void;

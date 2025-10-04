@@ -35,6 +35,8 @@ export const ThreatSimulator: React.FC<ThreatSimulatorProps> = ({
   const [showHelp, setShowHelp] = useState(false);
   const [showDetailedStats, setShowDetailedStats] = useState(false);
   const [showSimulationWarning, setShowSimulationWarning] = useState(true);
+  const [showFullscreenPrompt, setShowFullscreenPrompt] =
+    useState(autoFullscreen);
 
   const {
     gameState,
@@ -348,7 +350,8 @@ export const ThreatSimulator: React.FC<ThreatSimulatorProps> = ({
       <ThreatSimulatorOverlays
         showSimulationWarning={showSimulationWarning}
         setShowSimulationWarning={setShowSimulationWarning}
-        showFullscreenPrompt={!isFullscreen && autoFullscreen}
+        showFullscreenPrompt={showFullscreenPrompt}
+        setShowFullscreenPrompt={setShowFullscreenPrompt}
         isTeaser={isTeaser}
         isFullscreen={isFullscreen}
         enterFullscreen={enterFullscreen}
