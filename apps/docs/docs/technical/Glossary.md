@@ -4,8 +4,6 @@ title: Glossary
 sidebar_label: Glossary
 ---
 
-# Phoenix Rooivalk Technical Glossary
-
 ## Executive Summary
 
 This glossary provides comprehensive definitions of technical terms, acronyms,

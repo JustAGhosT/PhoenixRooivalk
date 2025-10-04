@@ -1,4 +1,8 @@
-# Phoenix Rooivalk System Architecture
+---
+id: system-architecture
+title: System Architecture
+sidebar_label: System Architecture
+---
 
 ## Revolutionary Multi-Part Design
 

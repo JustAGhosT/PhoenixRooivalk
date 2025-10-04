@@ -4,8 +4,6 @@ title: Phoenix Rooivalk Litepaper
 sidebar_label: Phoenix Rooivalk Litepaper
 ---
 
-# Phoenix Rooivalk: Litepaper
-
 ## Revolutionary Counter-Drone Defense Platform
 
 **Nexamesh Technologies** | **Delaware C-Corp (in progress) + South African

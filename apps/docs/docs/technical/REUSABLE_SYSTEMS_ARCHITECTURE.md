@@ -4,8 +4,6 @@ title: REUSABLE SYSTEMS ARCHITECTURE
 sidebar_label: REUSABLE SYSTEMS ARCHITECTURE
 ---
 
-# 🔧 Reusable Systems Architecture - Phoenix Rooivalk
-
 ## Overview
 
 This document outlines the enhanced reusable system architecture implemented for

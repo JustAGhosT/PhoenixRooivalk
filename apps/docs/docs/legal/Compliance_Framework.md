@@ -1,4 +1,8 @@
-# Phoenix Rooivalk Compliance Framework
+---
+id: compliance-framework
+title: Compliance Framework
+sidebar_label: Compliance Framework
+---
 
 ## Executive Summary
 

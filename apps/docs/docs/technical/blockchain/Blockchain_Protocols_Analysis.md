@@ -4,8 +4,6 @@ title: Blockchain Protocols Analysis
 sidebar_label: Blockchain Protocols Analysis
 ---
 
-# Phoenix Rooivalk Blockchain Protocols Analysis
-
 ## Executive Summary
 
 This document provides a comprehensive analysis of blockchain protocols for the

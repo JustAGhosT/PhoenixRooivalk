@@ -4,8 +4,6 @@ title: System Overview Detailed
 sidebar_label: System Overview Detailed
 ---
 
-# Phoenix Rooivalk System Overview - Detailed
-
 > Public-safe documentation. For restricted partner materials, request access
 > via the repository `ACCESS.md`.
 
@@ -63,7 +61,7 @@ launch operations
 
 - **Purpose**: Fixed-site protection and monitoring
 - **Deployment**: Short micro-tether or elevated mast systems
-- **Capabilities**: Persistent surveilance, threat detection, neutralization
+- **Capabilities**: Persistent surveillance, threat detection, neutralization
 - **Use Cases**: Critical infrastructure protection, military base security
 
 ### Fiber-Engage

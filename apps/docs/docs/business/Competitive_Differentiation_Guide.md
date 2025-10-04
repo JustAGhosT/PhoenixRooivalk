@@ -4,8 +4,6 @@ title: Competitive Differentiation Guide
 sidebar_label: Competitive Differentiation Guide
 ---
 
-# Phoenix Rooivalk Competitive Differentiation Guide
-
 ## Purpose
 
 This guide provides sales teams with key differentiators and competitive

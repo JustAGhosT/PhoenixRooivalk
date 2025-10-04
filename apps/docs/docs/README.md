@@ -1,4 +1,8 @@
-# Phoenix Rooivalk Documentation
+---
+id: phoenix-rooivalk-documentation
+title: Phoenix Rooivalk Documentation
+sidebar_label: Documentation Overview
+---
 
 ## Overview
 

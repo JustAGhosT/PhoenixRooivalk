@@ -1,4 +1,8 @@
-# Phoenix Rooivalk Global Strategy
+---
+id: global-strategy
+title: Global Strategy
+sidebar_label: Global Strategy
+---
 
 ## Executive Summary: Dual Entity Strategy for Global Defense Markets
 

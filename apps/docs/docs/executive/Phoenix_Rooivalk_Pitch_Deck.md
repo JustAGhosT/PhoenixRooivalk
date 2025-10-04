@@ -4,24 +4,21 @@ title: Phoenix Rooivalk Pitch Deck
 sidebar_label: Phoenix Rooivalk Pitch Deck
 ---
 
+import PitchDeckSlide from "@site/src/components/mdx/PitchDeck";
+import MarketStats from "@site/src/components/mdx/MarketStats";
+import TechnicalHighlight from "@site/src/components/mdx/TechnicalHighlight";
+import TechnologyComparison from "@site/src/components/mdx/TechnologyComparison";
+
 <!-- markdownlint-disable MD025 -->
-
-# Phoenix Rooivalk: Revolutionary Counter-Drone Defense Platform
-
-import PitchDeckSlide from "@site/src/components/mdx/PitchDeck"; import
-MarketStats from "@site/src/components/mdx/MarketStats"; import
-TechnicalHighlight from "@site/src/components/mdx/TechnicalHighlight"; import
-TechnologyComparison from "@site/src/components/mdx/TechnologyComparison";
 
 ## Executive Pitch Deck
 
 <PitchDeckSlide title="Phoenix Rooivalk: SAE Level 4 Autonomous Counter-UAS Defense" slideNumber={1} totalSlides={15}>
 # Revolutionary Defense Technology
 
-**Phoenix Rooivalk** represents the next generation of counter-drone defense
-systems, combining military-grade blockchain technology with advanced AI-driven
-threat detection to deliver unprecedented security, performance, and operational
-resilience.
+**Phoenix Rooivalk** represents the next generation of counter-drone defense systems,
+combining military-grade blockchain technology with advanced AI-driven threat detection
+to deliver unprecedented security, performance, and operational resilience.
 
 ### Key Value Propositions
 
@@ -36,12 +33,15 @@ _Revolutionizing Drone Defense Through Edge AI and Blockchain Accountability_
 <PitchDeckSlide title="Market Opportunity: $2.51B by 2025" slideNumber={2} totalSlides={15}>
 # Explosive Market Growth
 
-<MarketStats title="Global Counter-Drone Market" stats={[ { label: "2024 Market
-Size", value: "$1.2-1.8B", description: "Current market value" }, { label:
-"2030 Projection", value: "$2.51B", description: "Projected market size" }, {
-label: "Growth Rate", value: "23.5%", description: "Annual CAGR" }, {
-label: "Ukraine Impact", value: "15%", description: "Drones account
-for casualties" } ]} />
+<MarketStats
+  title="Global Counter-Drone Market"
+  stats={[
+    { label: "2024 Market Size", value: "$1.2-1.8B", description: "Current market value" },
+    { label: "2030 Projection", value: "$2.51B", description: "Projected market size" },
+    { label: "Growth Rate", value: "23.5%", description: "Annual CAGR" },
+    { label: "Ukraine Impact", value: "15%", description: "Drones account for casualties" }
+  ]}
+/>
 
 ### Market Drivers
 
@@ -60,7 +60,8 @@ for casualties" } ]} />
 # Cutting-Edge Technology Stack
 
 <TechnicalHighlight title="Edge-First Architecture" type="success" icon="⚡">
-Sub-2ms authentication and 50–195ms end-to-end decision latency through edge-first processing. All critical decisions made locally without network dependency.
+Sub-2ms authentication and 50–195ms end-to-end decision latency through edge-first
+processing. All critical decisions made locally without network dependency.
 </TechnicalHighlight>
 
 ## Core Technology Components
@@ -90,19 +91,18 @@ Sub-2ms authentication and 50–195ms end-to-end decision latency through edge-f
 <PitchDeckSlide title="Competitive Advantage" slideNumber={4} totalSlides={15}>
 # Industry-Leading Performance
 
-<TechnologyComparison title="Phoenix Rooivalk vs. Competitors"
-competitors={["DroneShield", "Dedrone", "Rafael Drone Dome", "Fortem"]} rows={[
-{
-feature: "Price", phoenix: "R850,000", competitor1: "R1,200,000",
-competitor2: "R1,500,000", competitor3: "R1,300,000" }, { feature: "Detection
-Range", phoenix: "5 km", competitor1: "3 km", competitor2: "4 km",
-competitor3: "3 km" }, { feature: "Response Time", phoenix: "0.12-0.19
-seconds", competitor1: "2 seconds", competitor2: "3 seconds", competitor3:
-"2 seconds" }, { feature: "Accuracy", phoenix: "99%+", competitor1: "95%",
-competitor2: "90%", competitor3: "85%" }, { feature: "Blockchain
-Security", phoenix: "true", competitor1: "false", competitor2:
-"false", competitor3: "false" }, { feature: "Modular Design", phoenix: "true",
-competitor1: "false", competitor2: "false", competitor3: "false" } ]} />
+<TechnologyComparison
+  title="Phoenix Rooivalk vs. Competitors"
+  competitors={["DroneShield", "Dedrone", "Rafael Drone Dome", "Fortem"]}
+  rows={[
+    { feature: "Price", phoenix: "R850,000", competitor1: "R1,200,000", competitor2: "R1,500,000", competitor3: "R1,300,000" },
+    { feature: "Detection Range", phoenix: "5 km", competitor1: "3 km", competitor2: "4 km", competitor3: "3 km" },
+    { feature: "Response Time", phoenix: "0.12-0.19 seconds", competitor1: "2 seconds", competitor2: "3 seconds", competitor3: "2 seconds" },
+    { feature: "Accuracy", phoenix: "99%+", competitor1: "95%", competitor2: "90%", competitor3: "85%" },
+    { feature: "Blockchain Security", phoenix: "true", competitor1: "false", competitor2: "false", competitor3: "false" },
+    { feature: "Modular Design", phoenix: "true", competitor1: "false", competitor2: "false", competitor3: "false" }
+  ]}
+/>
 
 ### Unique Differentiators
 
@@ -130,12 +130,15 @@ competitor1: "false", competitor2: "false", competitor3: "false" } ]} />
 - **Training Programs**: R25,000-50,000 per operator
 - **Custom Development**: R500,000-2,000,000 per project
 
-<MarketStats title="Financial Projections (3-Year)" stats={[ { label: "Year 1
-Revenue", value: "R25M", description: "15 systems sold" }, { label: "Year 2
-Revenue", value: "R150M", description: "75 systems services" }, { label: "Year 3
-Revenue", value: "R500M", description: "200 systems + recurring" }, {
-label: "Gross Margin", value: "65%", description: "Hardware + software combined"
-} ]} /> </PitchDeckSlide>
+<MarketStats
+  title="Financial Projections (3-Year)"
+  stats={[
+    { label: "Year 1 Revenue", value: "R25M", description: "15 systems sold" },
+    { label: "Year 2 Revenue", value: "R150M", description: "75 systems services" },
+    { label: "Year 3 Revenue", value: "R500M", description: "200 systems + recurring" },
+    { label: "Gross Margin", value: "65%", description: "Hardware + software combined" }
+  ]}
+/> </PitchDeckSlide>
 
 <PitchDeckSlide title="Market Positioning" slideNumber={6} totalSlides={15}>
 # Strategic Market Focus
@@ -221,12 +224,15 @@ label: "Gross Margin", value: "65%", description: "Hardware + software combined"
 - **Customer Lifetime Value**: R1,200,000 per system
 - **Payback Period**: 12 months average
 
-<MarketStats title="Investment Requirements" stats={[ { label: "R&D Investment",
-value: "R50M", description: "3-year development program" }, {
-label: "Manufacturing Setup", value: "R30M", description: "Production facility
-and equipment" }, { label: "Working Capital", value: "R40M", description:
-"Inventory and operations" }, { label: "Total Funding", value: "R120M",
-description: "Series A funding round" } ]} /> </PitchDeckSlide>
+<MarketStats
+  title="Investment Requirements"
+  stats={[
+    { label: "R&D Investment", value: "R50M", description: "3-year development program" },
+    { label: "Manufacturing Setup", value: "R30M", description: "Production facility and equipment" },
+    { label: "Working Capital", value: "R40M", description: "Inventory and operations" },
+    { label: "Total Funding", value: "R120M", description: "Series A funding round" }
+  ]}
+/> </PitchDeckSlide>
 
 <PitchDeckSlide title="Team & Expertise" slideNumber={9} totalSlides={15}>
 # World-Class Team
@@ -237,24 +243,17 @@ description: "Series A funding round" } ]} /> </PitchDeckSlide>
 
 - **Background**: Systems Engineer & AI Architect with 15+ years experience
 - **Current Role**: Senior Developer at Sygnia Asset Management
-- **Expertise**: System Architecture, AI/ML, Blockchain, Cognitive Sovereignty
-  research
-- **Education**: B.Eng Industrial-Electronic (Stellenbosch), B.Com Quantitative
-  Management (UNISA)
-- **Key Skills**: Legacy system refactoring, human-AI collaboration frameworks,
-  high-scale citizen platforms
+- **Expertise**: System Architecture, AI/ML, Blockchain, Cognitive Sovereignty research
+- **Education**: B.Eng Industrial-Electronic (Stellenbosch), B.Com Quantitative Management (UNISA)
+- **Key Skills**: Legacy system refactoring, human-AI collaboration frameworks, high-scale citizen platforms
 
 **Martyn Redelinghuys** - Co-Founder & CEO
 
-- **Background**: Executive Project Manager with 20+ years in energy, mining &
-  defense
-- **Current Role**: Consultant Executive Project Manager at Sasol (R500M+
-  portfolio)
-- **Expertise**: Energy management, project optimization, multi-disciplinary
-  capital projects
+- **Background**: Executive Project Manager with 20+ years in energy, mining & defense
+- **Current Role**: Consultant Executive Project Manager at Sasol (R500M+ portfolio)
+- **Expertise**: Energy management, project optimization, multi-disciplinary capital projects
 - **Education**: B.Eng Electrical & Electronic (Stellenbosch), MBA (GIBS)
-- **Certifications**: Certified Energy Manager (CEM), Certified Measurement and
-  Verification Professional (CMVP)
+- **Certifications**: Certified Energy Manager (CEM), Certified Measurement and Verification Professional (CMVP)
 
 ## Team Building & Expansion
 
@@ -281,7 +280,9 @@ description: "Series A funding round" } ]} /> </PitchDeckSlide>
 - **International**: BRICS defense technology cooperation
 
 <TechnicalHighlight title="Dual Entity Advantage" type="success" icon="🌍">
-Leveraging dual entity structure: Delaware C-Corp for US/ITAR markets and South African entity for global non-ITAR markets, with world-class engineering talent and established defense industry partnerships.
+Leveraging dual entity structure: Delaware C-Corp for US/ITAR markets and South
+African entity for global non-ITAR markets, with world-class engineering talent
+and established defense industry partnerships.
 </TechnicalHighlight>
 </PitchDeckSlide>
 
@@ -310,7 +311,8 @@ Leveraging dual entity structure: Delaware C-Corp for US/ITAR markets and South 
 - **Cybersecurity**: Multi-layered security and regular audits
 
 <TechnicalHighlight title="Risk Mitigation" type="warning" icon="⚠️">
-Comprehensive risk management through technology diversification, market expansion, and strategic partnerships ensures sustainable growth and competitive advantage.
+Comprehensive risk management through technology diversification, market expansion,
+and strategic partnerships ensures sustainable growth and competitive advantage.
 </TechnicalHighlight>
 </PitchDeckSlide>
 
@@ -338,12 +340,15 @@ Comprehensive risk management through technology diversification, market expansi
 - **Asian Markets**: Airport and port security
 - **European Integration**: NATO and EU defense cooperation
 
-<MarketStats title="Market Segmentation" stats={[ { label: "Military", value:
-"60%", description: "Defense and security forces" }, { label: "Infrastructure",
-value: "25%", description: "Critical facilities protection" }, {
-label: "Commercial", value: "15%", description: "Private sector applications"
-}, { label: "International", value: "25%", description: "Export
-and partnerships" } ]} /> </PitchDeckSlide>
+<MarketStats
+  title="Market Segmentation"
+  stats={[
+    { label: "Military", value: "60%", description: "Defense and security forces" },
+    { label: "Infrastructure", value: "25%", description: "Critical facilities protection" },
+    { label: "Commercial", value: "15%", description: "Private sector applications" },
+    { label: "International", value: "25%", description: "Export and partnerships" }
+  ]}
+/> </PitchDeckSlide>
 
 <PitchDeckSlide title="Technology Validation" slideNumber={12} totalSlides={15}>
 # Proven Technology Foundation
@@ -397,11 +402,15 @@ Every component has been validated in real-world combat conditions, ensuring rel
 - **Technology Moats**: AI/ML and blockchain competitive advantages
 - **Export Opportunities**: Global market access through South African advantage
 
-<MarketStats title="Investment Timeline" stats={[ { label: "Series A",
-value: "R120M", description: "Months 1-6" }, { label: "Series B",
-value: "R300M", description: "Months 12-18" }, { label: "Series C",
-value: "R500M", description: "Months 24-30" }, { label: "Exit/IPO", value:
-"R2-5B", description: "Year 5-7" } ]} /> </PitchDeckSlide>
+<MarketStats
+  title="Investment Timeline"
+  stats={[
+    { label: "Series A", value: "R120M", description: "Months 1-6" },
+    { label: "Series B", value: "R300M", description: "Months 12-18" },
+    { label: "Series C", value: "R500M", description: "Months 24-30" },
+    { label: "Exit/IPO", value: "R2-5B", description: "Year 5-7" }
+  ]}
+/> </PitchDeckSlide>
 
 <PitchDeckSlide title="Next Steps & Call to Action" slideNumber={14} totalSlides={15}>
 # Partnership & Investment Opportunities
@@ -428,7 +437,8 @@ value: "R500M", description: "Months 24-30" }, { label: "Exit/IPO", value:
 - **Financial**: 65% gross margins, 25% EBITDA by Year 3
 
 <TechnicalHighlight title="Join the Revolution" type="success" icon="🚀">
-Be part of the next generation of defense technology. Phoenix Rooivalk represents the future of counter-drone defense - secure, autonomous, and blockchain-verified.
+Be part of the next generation of defense technology. Phoenix Rooivalk represents
+the future of counter-drone defense - secure, autonomous, and blockchain-verified.
 </TechnicalHighlight>
 </PitchDeckSlide>
 

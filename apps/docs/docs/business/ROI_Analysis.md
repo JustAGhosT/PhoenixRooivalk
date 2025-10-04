@@ -1,4 +1,8 @@
-# Phoenix Rooivalk ROI Analysis
+---
+id: roi-analysis
+title: ROI Analysis
+sidebar_label: ROI Analysis
+---
 
 ## Executive Summary
 

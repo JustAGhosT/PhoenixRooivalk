@@ -4,8 +4,6 @@ title: Implementation Roadmap
 sidebar_label: Implementation Roadmap
 ---
 
-# Phoenix Rooivalk Blockchain Implementation Roadmap
-
 ## Executive Summary
 
 This document provides a comprehensive implementation roadmap for the Phoenix

@@ -1,4 +1,8 @@
-# Phoenix Rooivalk Strategic Recommendations
+---
+id: strategic-recommendations
+title: Strategic Recommendations
+sidebar_label: Strategic Recommendations
+---
 
 ## Path to Global Leadership
 

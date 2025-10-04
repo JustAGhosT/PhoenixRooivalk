@@ -4,8 +4,6 @@ title: Performance Specifications
 sidebar_label: Performance Specifications
 ---
 
-# Phoenix Rooivalk Performance Specifications
-
 ## Executive Summary
 
 This document provides comprehensive performance specifications for the Phoenix

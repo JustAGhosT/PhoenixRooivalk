@@ -1,4 +1,8 @@
-# Phoenix Rooivalk Blockchain Integration
+---
+id: blockchain-integration
+title: Blockchain Integration
+sidebar_label: Blockchain Integration
+---
 
 ## Solana for Immutable Evidence Anchoring
 

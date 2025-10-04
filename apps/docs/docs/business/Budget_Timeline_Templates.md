@@ -4,8 +4,6 @@ title: Budget and Timeline Templates
 sidebar_label: Budget and Timeline Templates
 ---
 
-# Phoenix Rooivalk Budget and Timeline Templates
-
 ## Purpose
 
 These templates help structure budget discussions and timeline planning for

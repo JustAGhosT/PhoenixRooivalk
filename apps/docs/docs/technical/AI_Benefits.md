@@ -4,8 +4,6 @@ title: AI Benefits
 sidebar_label: AI Benefits
 ---
 
-# Phoenix Rooivalk AI Benefits
-
 ## Executive Summary
 
 The Phoenix Rooivalk system leverages cutting-edge artificial intelligence to

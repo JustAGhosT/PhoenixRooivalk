@@ -4,8 +4,6 @@ title: DoD Proposal Template
 sidebar_label: DoD Proposal Template
 ---
 
-# Phoenix Rooivalk DoD Proposal Template
-
 ## Purpose
 
 This template provides a structured framework for DoD contract proposals,

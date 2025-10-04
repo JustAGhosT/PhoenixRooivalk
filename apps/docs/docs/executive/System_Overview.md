@@ -4,8 +4,6 @@ title: System Overview
 sidebar_label: System Overview
 ---
 
-# Phoenix Rooivalk System Overview
-
 ## Executive Summary
 
 Phoenix Rooivalk is a modular, layered defense system designed to provide

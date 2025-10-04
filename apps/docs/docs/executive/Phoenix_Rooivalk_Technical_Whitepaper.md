@@ -4,8 +4,6 @@ title: Phoenix Rooivalk Technical Whitepaper
 sidebar_label: Phoenix Rooivalk Technical Whitepaper
 ---
 
-# Phoenix Rooivalk: Technical Whitepaper
-
 ## Revolutionary SAE Level 4 Autonomous Counter-UAS Defense Platform
 
 **Nexamesh Technologies** | **Delaware C-Corp (in progress) + South African

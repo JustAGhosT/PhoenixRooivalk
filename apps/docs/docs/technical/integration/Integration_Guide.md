@@ -4,12 +4,10 @@ title: Integration Guide
 sidebar_label: Integration Guide
 ---
 
-# Phoenix Rooivalk Integration Guide
-
 ## Executive Summary
 
 This guide provides comprehensive integration procedures for the Phoenix
-Rooivalk Counter-Drone Defense System with third-party `systems, cloud`
+Rooivalk Counter-Drone Defense System with third-party systems, cloud
 platforms, and external services. The guide covers API specifications,
 integration patterns, and best practices for seamless system integration.
 
@@ -71,7 +69,7 @@ capabilities through distributed AI processing.
 1. **Agent Registration**: Register Phoenix Rooivalk agents with Morpheus
    network
 2. **Token Management**: Configure MOR token payments for inference services
-3. **Network Configuration**: Set up securec ommunication channels
+3. **Network Configuration**: Set up secure communication channels
 4. **Performance Monitoring**: Implement monitoring forMorpheus integration
 
 ### API Integration

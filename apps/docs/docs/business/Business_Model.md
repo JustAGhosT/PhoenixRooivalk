@@ -4,8 +4,6 @@ title: Business Model
 sidebar_label: Business Model
 ---
 
-# Phoenix Rooivalk Business Model
-
 ## Executive Summary
 
 Phoenix Rooivalk operates on a hybrid hardware + software-as-a-service (SaaS)

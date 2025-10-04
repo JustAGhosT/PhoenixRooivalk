@@ -4,8 +4,6 @@ title: Presentation Video Script
 sidebar_label: Presentation Video Script
 ---
 
-# Phoenix Rooivalk Presentation Video Script
-
 ## Purpose
 
 This script provides a comprehensive framework for creating presentation videos

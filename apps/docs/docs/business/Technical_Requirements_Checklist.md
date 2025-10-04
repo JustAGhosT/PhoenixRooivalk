@@ -4,8 +4,6 @@ title: Technical Requirements Checklist
 sidebar_label: Technical Requirements Checklist
 ---
 
-# Phoenix Rooivalk Technical Requirements Checklist
-
 ## Purpose
 
 This checklist ensures system compatibility and validates technical requirements

@@ -4,8 +4,6 @@ title: Technical Analysis
 sidebar_label: Technical Analysis
 ---
 
-# Phoenix Rooivalk Technical Analysis
-
 ## Executive Summary
 
 This document provides a comprehensive technical analysis of the Phoenix

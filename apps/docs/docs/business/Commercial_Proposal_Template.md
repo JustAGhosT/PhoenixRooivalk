@@ -4,8 +4,6 @@ title: Commercial Proposal Template
 sidebar_label: Commercial Proposal Template
 ---
 
-# Phoenix Rooivalk Commercial Proposal Template
-
 ## Purpose
 
 This template provides a structured framework for commercial proposals targeting

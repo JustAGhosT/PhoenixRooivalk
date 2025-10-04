@@ -1,4 +1,8 @@
-# Phoenix Rooivalk Architecture Decision Records
+---
+id: architecture-decision-records
+title: Architecture Decision Records
+sidebar_label: Architecture Decision Records
+---
 
 ## Executive Summary
 

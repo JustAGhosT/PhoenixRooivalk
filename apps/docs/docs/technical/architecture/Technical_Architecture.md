@@ -4,8 +4,6 @@ title: Technical Architecture
 sidebar_label: Technical Architecture
 ---
 
-# Phoenix Rooivalk Technical Architecture
-
 ## System Architecture Overview
 
 Phoenix Rooivalk implements a **Comms-Independent Edge Autonomy (CIEA)**

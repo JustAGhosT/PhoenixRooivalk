@@ -1,4 +1,8 @@
-# Phoenix Rooivalk Market Analysis
+---
+id: market-analysis
+title: Market Analysis
+sidebar_label: Market Analysis
+---
 
 ## Market Opportunity: Explosive Growth in Counter-Drone Systems
 
@@ -119,14 +123,14 @@ law enforcement by 2028
 
 ### Competitive Positioning
 
-| Capability               | Phoenix Rooivalk | Anduril    | Fortem        | DroneShield |
-| ------------------------ | ---------------- | ---------- | ------------- | ----------- |
-| **Response Time**        | 120–195ms        | 2–5s       | 2–5s          | 2–5s        |
-| **RF-Silent Detection**  | ✅ Yes           | ❌ No      | ❌ No         | ❌ No       |
-| **Autonomous Operation** | ✅ SAE Level 4   | ⚠️ Partial | ⚠️ Partial    | ❌ No       |
-| **Swarm Handling**       | ✅ 100+          | ⚠️ Limited | ⚠️ Sequential | ⚠️ Limited  |
-| **Blockchain Evidence**  | ✅ Yes           | ❌ No      | ❌ No         | ❌ No       |
-| **EW Resilience**        | ✅ Yes           | ❌ No      | ❌ No         | ❌ No       |
+| Capability               | Phoenix Rooivalk | Anduril   | Fortem       | DroneShield |
+| ------------------------ | ---------------- | --------- | ------------ | ----------- |
+| **Response Time**        | 120–195ms        | 2–5s      | 2–5s         | 2–5s        |
+| **RF-Silent Detection**  | ✅ Yes            | ❌ No      | ❌ No         | ❌ No        |
+| **Autonomous Operation** | ✅ SAE Level 4    | ⚠️ Partial | ⚠️ Partial    | ❌ No        |
+| **Swarm Handling**       | ✅ 100+           | ⚠️ Limited | ⚠️ Sequential | ⚠️ Limited   |
+| **Blockchain Evidence**  | ✅ Yes            | ❌ No      | ❌ No         | ❌ No        |
+| **EW Resilience**        | ✅ Yes            | ❌ No      | ❌ No         | ❌ No        |
 
 ---
 

@@ -139,21 +139,21 @@ critical infrastructure, and commercial market segments.
 
 ### Customer Acquisition Cost (CAC)
 
-#### Defense Segment
+#### Defense Segment CAC
 
 - **CAC**: $75k-$100k
 - **Components**: Sales team, technical demos, pilot programs
 - **Payback Period**: 18-24 months
 - **Sales Cycle**: 12-24 months
 
-#### Critical Infrastructure
+#### Critical Infrastructure CAC
 
 - **CAC**: $35k-$50k
 - **Components**: Sales team, ROI analysis, compliance validation
 - **Payback Period**: 12-18 months
 - **Sales Cycle**: 6-12 months
 
-#### Commercial
+#### Commercial CAC
 
 - **CAC**: $15k-$25k
 - **Components**: Digital marketing, channel partners, simplified demos
@@ -162,7 +162,7 @@ critical infrastructure, and commercial market segments.
 
 ### Customer Lifetime Value (CLV)
 
-#### Defense Segment
+#### Defense Segment CLV
 
 - **Initial Hardware**: $85k average
 - **Annual Software**: $24k/year
@@ -170,7 +170,7 @@ critical infrastructure, and commercial market segments.
 - **Customer Lifespan**: 8-10 years
 - **CLV**: $400k-$500k
 
-#### Critical Infrastructure
+#### Critical Infrastructure CLV
 
 - **Initial Hardware**: $55k average
 - **Annual Software**: $18k/year
@@ -178,7 +178,7 @@ critical infrastructure, and commercial market segments.
 - **Customer Lifespan**: 6-8 years
 - **CLV**: $250k-$300k
 
-#### Commercial
+#### Commercial CLV
 
 - **Initial Hardware**: $35k average
 - **Annual Software**: $12k/year
@@ -359,7 +359,7 @@ targeting $50M+ annual revenue through partnerships with prime integrators
 Commercial expansion post-regulatory changes targeting $100M+
 pipeline with airport, critical infrastructure, and event security customers
 
-### Partnership Strategy
+### Strategic Partnership Implementation
 
 #### Prime Contractors
 

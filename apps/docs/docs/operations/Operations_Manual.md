@@ -4,8 +4,6 @@ title: Operations Manual
 sidebar_label: Operations Manual
 ---
 
-# Phoenix Rooivalk Operations Manual
-
 ## Executive Summary
 
 This operations manual provides comprehensive procedures for day-to-day

@@ -4,8 +4,6 @@ title: Customer Discovery Questionnaire
 sidebar_label: Customer Discovery Questionnaire
 ---
 
-# Phoenix Rooivalk Customer Discovery Questionnaire
-
 ## Purpose
 
 This questionnaire helps qualify prospects and gather essential information for
