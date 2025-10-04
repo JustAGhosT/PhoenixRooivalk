@@ -136,7 +136,7 @@ export const ThreatSimulatorComponents: React.FC<
                 (e.key === "Enter" || e.key === " ")
               ) {
                 e.preventDefault();
-                onThreatClick(e as any, threat.id);
+                onThreatClick(e as unknown as React.MouseEvent, threat.id);
               }
             }}
             role="button"

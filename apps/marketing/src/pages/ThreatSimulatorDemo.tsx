@@ -2,14 +2,14 @@ import React, { useState } from "react";
 import { EnergyBudget } from "../components/EnergyBudget";
 import { EnergyManagement } from "../components/EnergyManagement";
 import {
-  EnhancedCooldownMeter,
-  WeaponCooldownMeter,
+    EnhancedCooldownMeter,
+    WeaponCooldownMeter,
 } from "../components/EnhancedCooldownMeter";
 import { EnhancedROEIndicator } from "../components/EnhancedROEIndicator";
 import {
-  EnhancedRadarSystem,
-  FriendlyDeployment,
-  RadarTarget,
+    EnhancedRadarSystem,
+    FriendlyDeployment,
+    RadarTarget,
 } from "../components/EnhancedRadarSystem";
 import { EnhancedThreatSimulator } from "../components/EnhancedThreatSimulator";
 import { FilterChips } from "../components/FilterChips";
@@ -18,7 +18,7 @@ import { LegalBadge } from "../components/LegalBadge";
 import { MultiSelectDeployment } from "../components/MultiSelectDeployment";
 import { SynergySystem } from "../components/SynergySystem";
 
-export const ThreatSimulatorDemo: React.FC = () => {
+const ThreatSimulatorDemo: React.FC = () => {
   const [demoMode, setDemoMode] = useState<"full" | "components" | "systems">(
     "full",
   );
@@ -370,3 +370,5 @@ export const ThreatSimulatorDemo: React.FC = () => {
     </div>
   );
 };
+
+export default ThreatSimulatorDemo;

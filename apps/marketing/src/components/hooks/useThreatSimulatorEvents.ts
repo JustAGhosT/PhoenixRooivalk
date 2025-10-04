@@ -77,7 +77,9 @@ interface UseThreatSimulatorEventsProps {
   setFrameRate: (rate: number) => void;
   consumeEnergy: (amount: number) => void;
   consumeCooling: (amount: number) => void;
-  particleSystem: any;
+  particleSystem: {
+    createExplosion: (x: number, y: number, intensity: number) => void;
+  };
 }
 
 export const useThreatSimulatorEvents = ({
@@ -141,7 +143,7 @@ export const useThreatSimulatorEvents = ({
         }
       }
     },
-    [gameState.selectedWeapon, setSelectionBox],
+    [gameState.selectedWeapon, setSelectionBox, gameRef],
   );
 
   const handleMouseMove = useCallback(
@@ -187,7 +189,7 @@ export const useThreatSimulatorEvents = ({
             gameState.selectionBox.endY,
           );
 
-          const selectedThreats = gameState.threats.filter((threat: any) => {
+          const selectedThreats = gameState.threats.filter((threat: Threat) => {
             return (
               threat.x >= minX &&
               threat.x <= maxX &&
@@ -198,7 +200,7 @@ export const useThreatSimulatorEvents = ({
 
           if (dragMode === "area-weapon") {
             // Area effect weapon - neutralize all threats in selection
-            selectedThreats.forEach((threat: any) => {
+            selectedThreats.forEach((threat: Threat) => {
               neutralizeThreat(threat.id);
               // Create area effect explosion
               particleSystem.createExplosion(threat.x, threat.y, 1.2);
@@ -208,7 +210,7 @@ export const useThreatSimulatorEvents = ({
             consumeEnergy(selectedThreats.length * 10);
           } else {
             // Normal selection mode
-            selectedThreats.forEach((threat: any) => {
+            selectedThreats.forEach((threat: Threat) => {
               selectThreat(threat.id);
             });
           }
@@ -225,7 +227,6 @@ export const useThreatSimulatorEvents = ({
       particleSystem,
       consumeEnergy,
       setSelectionBox,
-      gameRef,
     ],
   );
 
@@ -299,7 +300,7 @@ export const useThreatSimulatorEvents = ({
         deployDrone("surveillance", x, y);
       }
     },
-    [gameState.selectedDroneType, deployDrone, switchWeapon, isDragging],
+    [gameState.selectedDroneType, deployDrone, switchWeapon, isDragging, gameRef],
   );
 
   // Keyboard activation handler (no mouse coordinates needed)
@@ -348,7 +349,7 @@ export const useThreatSimulatorEvents = ({
         }
       }
     },
-    [gameState.selectedWeapon, switchWeapon, gameRef],
+    [gameState.selectedWeapon, switchWeapon],
   );
 
   // Context menu handler to prevent right-click menu
