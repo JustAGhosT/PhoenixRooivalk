@@ -19,13 +19,13 @@ interface ThreatSimulatorGameProps {
 const ThreatSimulatorGame: React.FC<ThreatSimulatorGameProps> = ({
   className = "",
 }) => {
-  const { 
-    gameState, 
-    selectThreat, 
-    fireWeapon, 
-    deployDrone, 
+  const {
+    gameState,
+    selectThreat,
+    fireWeapon,
+    deployDrone,
     setSelectionBox,
-    switchWeapon 
+    switchWeapon,
   } = useGameState();
   const { feedItems } = useEventFeed();
 
@@ -33,9 +33,12 @@ const ThreatSimulatorGame: React.FC<ThreatSimulatorGameProps> = ({
   const [showSimulationWarning, setShowSimulationWarning] = useState(false);
   const [showFullscreenPrompt, setShowFullscreenPrompt] = useState(false);
   const [isFullscreen, setIsFullscreen] = useState(false);
-  
+
   // State for selection box
-  const [selectionStart, setSelectionStart] = useState<{x: number, y: number} | null>(null);
+  const [selectionStart, setSelectionStart] = useState<{
+    x: number;
+    y: number;
+  } | null>(null);
 
   // Game event handlers
   const handleThreatClick = (
@@ -46,8 +49,8 @@ const ThreatSimulatorGame: React.FC<ThreatSimulatorGameProps> = ({
       selectThreat(threatId);
     } else {
       const rect = (e.currentTarget as HTMLElement).getBoundingClientRect();
-      const x = 'clientX' in e ? e.clientX - rect.left : 0;
-      const y = 'clientY' in e ? e.clientY - rect.top : 0;
+      const x = "clientX" in e ? e.clientX - rect.left : 0;
+      const y = "clientY" in e ? e.clientY - rect.top : 0;
       fireWeapon(x, y);
     }
   };
@@ -64,12 +67,12 @@ const ThreatSimulatorGame: React.FC<ThreatSimulatorGameProps> = ({
   const handleMouseDown = (e: React.MouseEvent) => {
     const rect = e.currentTarget.getBoundingClientRect();
     setSelectionStart({ x: e.clientX - rect.left, y: e.clientY - rect.top });
-    setSelectionBox({ 
-      startX: e.clientX - rect.left, 
-      startY: e.clientY - rect.top, 
-      endX: e.clientX - rect.left, 
+    setSelectionBox({
+      startX: e.clientX - rect.left,
+      startY: e.clientY - rect.top,
+      endX: e.clientX - rect.left,
       endY: e.clientY - rect.top,
-      isActive: true 
+      isActive: true,
     });
   };
 
@@ -81,7 +84,7 @@ const ThreatSimulatorGame: React.FC<ThreatSimulatorGameProps> = ({
         startY: selectionStart.y,
         endX: e.clientX - rect.left,
         endY: e.clientY - rect.top,
-        isActive: true
+        isActive: true,
       });
     }
   };
@@ -114,8 +117,11 @@ const ThreatSimulatorGame: React.FC<ThreatSimulatorGameProps> = ({
   // Threat appearance mapping
   const getThreatAppearance = (type: string) => {
     const normalizedType = type.toLowerCase();
-    
-    const threatAppearances: Record<string, { emoji: string; color: string; cssClass: string }> = {
+
+    const threatAppearances: Record<
+      string,
+      { emoji: string; color: string; cssClass: string }
+    > = {
       drone: { emoji: "🚁", color: "#ef4444", cssClass: "threat-drone" },
       swarm: { emoji: "🐝", color: "#f59e0b", cssClass: "threat-swarm" },
       missile: { emoji: "🚀", color: "#dc2626", cssClass: "threat-missile" },
@@ -123,14 +129,16 @@ const ThreatSimulatorGame: React.FC<ThreatSimulatorGameProps> = ({
       kamikaze: { emoji: "💥", color: "#dc2626", cssClass: "threat-kamikaze" },
       decoy: { emoji: "🎭", color: "#8b5cf6", cssClass: "threat-decoy" },
       shielded: { emoji: "🛡️", color: "#10b981", cssClass: "threat-shielded" },
-      boss: { emoji: "👹", color: "#dc2626", cssClass: "threat-boss" }
+      boss: { emoji: "👹", color: "#dc2626", cssClass: "threat-boss" },
     };
 
-    return threatAppearances[normalizedType] || { 
-      emoji: "❓", 
-      color: "#6b7280", 
-      cssClass: "threat-unknown" 
-    };
+    return (
+      threatAppearances[normalizedType] || {
+        emoji: "❓",
+        color: "#6b7280",
+        cssClass: "threat-unknown",
+      }
+    );
   };
 
   return (
@@ -194,7 +202,9 @@ const ThreatSimulatorGame: React.FC<ThreatSimulatorGameProps> = ({
           <EnergyManagement
             maxEnergy={gameState.maxEnergy}
             selectedEffectors={gameState.selectedThreats || []}
-            selectedDrones={gameState.drones.filter(d => d.isActive).map(d => d.id)}
+            selectedDrones={gameState.drones
+              .filter((d) => d.isActive)
+              .map((d) => d.id)}
             activePowerUps={gameState.activePowerUps.map((p) => p.id)}
             onEnergyUpdate={() => {}}
           />

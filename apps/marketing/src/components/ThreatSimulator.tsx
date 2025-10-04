@@ -89,16 +89,7 @@ export const ThreatSimulator: React.FC<ThreatSimulatorProps> = ({
     setShowDeploymentZones,
   } = useGameState();
 
-  const {
-    particleSystem,
-    collisionSystem,
-    gameDimensions,
-    weatherMode,
-    missionType,
-    automationMode,
-    showDeploymentZones,
-    resourceManager,
-  } = useThreatSimulatorGame({
+  const { resourceManager } = useThreatSimulatorGame({
     gameRef,
     gameState,
     updateThreats,
@@ -127,7 +118,6 @@ export const ThreatSimulator: React.FC<ThreatSimulatorProps> = ({
     },
     processFadeOut,
   });
-
 
   const { isFullscreen, enterFullscreen, exitFullscreen } = useFullscreen();
 

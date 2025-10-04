@@ -45,7 +45,9 @@ struct SolanaRpcRequest {
 
 #[derive(Debug, Deserialize)]
 struct SolanaRpcResponse {
+    #[allow(dead_code)]
     jsonrpc: String,
+    #[allow(dead_code)]
     id: u64,
     result: Option<Value>,
     error: Option<SolanaRpcError>,
@@ -55,12 +57,14 @@ struct SolanaRpcResponse {
 struct SolanaRpcError {
     code: i32,
     message: String,
+    #[allow(dead_code)]
     data: Option<Value>,
 }
 
 #[derive(Debug, Deserialize)]
 struct TransactionStatus {
     slot: u64,
+    #[allow(dead_code)]
     confirmations: Option<u64>,
     err: Option<Value>,
     confirmation_status: Option<String>,
