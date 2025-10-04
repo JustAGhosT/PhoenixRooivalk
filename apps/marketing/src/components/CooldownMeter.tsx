@@ -5,6 +5,9 @@ interface CooldownMeterProps {
   lastFired: number; // timestamp
   size?: "small" | "medium" | "large";
   className?: string;
+  animated?: boolean; // Optional: enable smooth animations
+  showLabel?: boolean; // Optional: show weapon name
+  label?: string; // Optional: custom label
 }
 
 export const CooldownMeter: React.FC<CooldownMeterProps> = ({
@@ -12,6 +15,9 @@ export const CooldownMeter: React.FC<CooldownMeterProps> = ({
   lastFired,
   size = "medium",
   className = "",
+  animated = false,
+  showLabel = false,
+  label = "",
 }) => {
   const now = Date.now();
   // Explicitly check for null/undefined to avoid treating 0 as "never fired"
@@ -87,6 +93,12 @@ export const CooldownMeter: React.FC<CooldownMeterProps> = ({
       {!isReady && (
         <div className="cooldown-meter-tooltip">
           Ready in {remainingSeconds}s
+        </div>
+      )}
+
+      {showLabel && label && (
+        <div className="cooldown-meter-label">
+          {label}
         </div>
       )}
     </div>

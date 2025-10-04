@@ -20,7 +20,7 @@ Kinetic interceptor drone for direct engagement and threat neutralization.
 
 ## AI Generation Prompt
 
-```
+```text
 Create a kinetic interceptor drone icon: triangle with lightning bolt inside. Military style, outline-based, 24x24px. Color #dc2626. Fast attack, kinetic energy, direct engagement aesthetic.
 ```
 
