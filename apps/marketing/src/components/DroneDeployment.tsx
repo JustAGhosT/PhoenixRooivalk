@@ -86,7 +86,10 @@ export const DroneDeployment: React.FC<DroneDeploymentProps> = ({
         {selectedDroneType && (
           <p>
             Selected:{" "}
-            {DRONE_DATA[selectedDroneType as keyof typeof DRONE_DATA].name}.
+            {(() => {
+              const data = DRONE_DATA[selectedDroneType as keyof typeof DRONE_DATA];
+              return data ? data.name : "Unknown drone";
+            })()}.
             Click on map to deploy.
           </p>
         )}
