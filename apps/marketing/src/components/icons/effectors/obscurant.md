@@ -19,7 +19,7 @@ Smoke/obscurant generator for visual concealment and tracking disruption.
 
 ## AI Generation Prompt
 
-```
+```text
 Create an obscurant icon: cloud or fog bank pattern. Military style, outline-based, 24x24px. Color #6b7280. Visual concealment, smoke generation aesthetic.
 ```
 
