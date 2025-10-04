@@ -31,41 +31,41 @@ generation prompts for all effector and drone icons.
 
 ```css
 /* Hard Kill Systems */
---kinetic: #dc2626; /* Kinetic red - Physical destruction */
---hard-kill: #2ed573; /* Hard kill green - Direct energy */
+--effector-kinetic: #dc2626; /* Kinetic red - Physical destruction */
+--effector-hard-kill: #2ed573; /* Hard kill green - Direct energy */
 
 /* Soft Kill Systems */
---soft-kill: #ffa502; /* Soft kill orange - Electronic disruption */
---ecm: #8b5cf6; /* ECM purple - Electronic warfare */
+--effector-soft-kill: #ffa502; /* Soft kill orange - Electronic disruption */
+--effector-ecm: #8b5cf6; /* ECM purple - Electronic warfare */
 
 /* Deception Systems */
---deception: #70a1ff; /* Deception blue - Misdirection */
---capture: #10b981; /* Capture emerald - Non-destructive */
+--effector-deception: #70a1ff; /* Deception blue - Misdirection */
+--effector-capture: #10b981; /* Capture emerald - Non-destructive */
 
 /* Countermeasure Systems */
---denial: #eccc68; /* Denial yellow - Area denial */
---countermeasure: #6b7280; /* Countermeasure gray - Defensive */
---nonkinetic: #84cc16; /* Nonkinetic lime - Non-destructive */
---directed: #f97316; /* Directed orange - Directed energy */
+--effector-denial: #eccc68; /* Denial yellow - Area denial */
+--effector-countermeasure: #6b7280; /* Countermeasure gray - Defensive */
+--effector-nonkinetic: #84cc16; /* Nonkinetic lime - Non-destructive */
+--effector-directed: #f97316; /* Directed orange - Directed energy */
 ```
 
 ### Drone Role Colors
 
 ```css
 /* Core Drone Types */
---kinetic: #dc2626; /* Kinetic red - Direct engagement */
---ecm: #8b5cf6; /* ECM purple - Electronic warfare */
---recon: #3b82f6; /* Recon blue - Intelligence gathering */
---protection: #10b981; /* Protection green - Area defense */
---coordination: #f59e0b; /* Coordination amber - Swarm management */
+--drone-kinetic: #dc2626; /* Kinetic red - Direct engagement */
+--drone-ecm: #8b5cf6; /* ECM purple - Electronic warfare */
+--drone-recon: #3b82f6; /* Recon blue - Intelligence gathering */
+--drone-protection: #10b981; /* Protection green - Area defense */
+--drone-coordination: #f59e0b; /* Coordination amber - Swarm management */
 
 /* Extended Drone Types */
---deception: #70a1ff; /* Deception blue - Target attraction */
---capture: #10b981; /* Capture emerald - Physical capture */
---support: #8b5cf6; /* Support purple - Extended capabilities */
---sensor: #3b82f6; /* Sensor blue - Persistent monitoring */
---logistics: #6b7280; /* Logistics gray - Recovery operations */
---directed: #ffa502; /* Directed orange - Mobile platforms */
+--drone-deception: #70a1ff; /* Deception blue - Target attraction */
+--drone-capture: #10b981; /* Capture emerald - Physical capture */
+--drone-support: #8b5cf6; /* Support purple - Extended capabilities */
+--drone-sensor: #3b82f6; /* Sensor blue - Persistent monitoring */
+--drone-logistics: #6b7280; /* Logistics gray - Recovery operations */
+--drone-directed: #ffa502; /* Directed orange - Mobile platforms */
 ```
 
 ## Effector Icons (15 Total)
@@ -587,7 +587,7 @@ const EffectorIcon: React.FC<IconProps> = ({
 
 ```text
 src/components/icons/
-├── effectors/          # Counter-drone weapon systems (17 icons)
+├── effectors/          # Counter-drone weapon systems (15 icons)
 ├── drones/             # Deployable UAV types (17 icons)
 ├── powerups/           # Enhancement and power-up systems (4 icons)
 ├── status/             # Status and UI indicators (5 icons)

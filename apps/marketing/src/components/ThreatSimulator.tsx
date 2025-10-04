@@ -9,8 +9,8 @@ import RadarCanvas from "./RadarCanvas";
 import { ResearchPanel } from "./ResearchPanel";
 import "./ThreatSimulator.css";
 import { ThreatSimulatorComponents } from "./ThreatSimulatorComponents";
-import { ThreatSimulatorOverlays } from "./ThreatSimulatorOverlays";
 import ThreatSimulatorGame from "./ThreatSimulatorGame";
+import { ThreatSimulatorOverlays } from "./ThreatSimulatorOverlays";
 import { TokenStore } from "./TokenStore";
 import { WeaponStatus } from "./WeaponStatus";
 import { useEventFeed } from "./hooks/useEventFeed";
@@ -18,7 +18,6 @@ import { useFullscreen } from "./hooks/useFullscreen";
 import { useGameState } from "./hooks/useGameState";
 import { useThreatSimulatorEvents } from "./hooks/useThreatSimulatorEvents";
 import { useThreatSimulatorGame } from "./hooks/useThreatSimulatorGame";
-import { useTimeoutManager } from "./hooks/useTimeoutManager";
 
 interface ThreatSimulatorProps {
   isTeaser?: boolean;
@@ -95,25 +94,9 @@ export const ThreatSimulator: React.FC<ThreatSimulatorProps> = ({
     collisionSystem,
     gameDimensions,
     weatherMode,
-    setWeatherMode,
     missionType,
-    setMissionType,
     automationMode,
-    setAutomationMode,
     showDeploymentZones,
-    setShowDeploymentZones,
-    strategicEngine,
-    responseEngine,
-    formationManager,
-    spawnNewThreat,
-    moveAllThreats,
-    neutralizeThreatWithEffects,
-    generateSwarm,
-    spawnMultipleDrones,
-    waveManager,
-    startWave,
-    getWaveProgress,
-    isWaveRunning,
     resourceManager,
   } = useThreatSimulatorGame({
     gameRef,
@@ -145,14 +128,12 @@ export const ThreatSimulator: React.FC<ThreatSimulatorProps> = ({
     processFadeOut,
   });
 
-  const { addTimeout, clearTimeouts } = useTimeoutManager();
 
   const { isFullscreen, enterFullscreen, exitFullscreen } = useFullscreen();
 
-  const { feedItems, addFeed } = useEventFeed();
+  const { addFeed } = useEventFeed();
 
   const {
-    handleKeyDown,
     handleMouseDown,
     handleMouseMove,
     handleMouseUp,
