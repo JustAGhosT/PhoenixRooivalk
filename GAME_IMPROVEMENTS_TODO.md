@@ -72,23 +72,19 @@ on UI analysis and user feedback.
 - [ ] **Color-Blind Resilience on Radar**
 
   - **Problem**: Hostiles rely on red fill only
-  - **Fix**: Shape-code with color as secondary cue
+  - **Fix**: Use SVG elements with distinct shapes (circle, ring, triangle) and color as secondary cue
 
-  ```css
-  .blip-hostile {
-    fill: #ff5d5d;
-    shape: circle;
-  }
-  .blip-unknown {
-    fill: none;
-    stroke: #ffd166;
-    stroke-width: 2;
-    shape: ring;
-  }
-  .blip-friendly {
-    fill: #4ade80;
-    shape: triangle;
-  }
+  ```html
+  <!-- Use SVG elements for proper shape rendering -->
+  <svg class="radar-blip hostile" width="12" height="12">
+    <circle cx="6" cy="6" r="4" fill="#ff5d5d" />
+  </svg>
+  <svg class="radar-blip unknown" width="12" height="12">
+    <circle cx="6" cy="6" r="4" fill="none" stroke="#ffd166" stroke-width="2" />
+  </svg>
+  <svg class="radar-blip friendly" width="12" height="12">
+    <polygon points="6,2 10,10 2,10" fill="#4ade80" />
+  </svg>
   ```
 
 - [ ] **Reduced-Motion Not Enforced for Sweep**

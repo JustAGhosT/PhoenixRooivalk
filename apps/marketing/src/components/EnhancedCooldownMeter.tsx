@@ -48,7 +48,7 @@ export const EnhancedCooldownMeter: React.FC<EnhancedCooldownMeterProps> = ({
         clearInterval(interval);
       }
     };
-  }, [isActive, cooldownTime, onCooldownComplete]);
+  }, [isActive, cooldownTime, onCooldownComplete, remainingTime]);
 
   const progress = (cooldownTime - remainingTime) / cooldownTime;
   const circumference = 2 * Math.PI * (size / 2 - 2);
@@ -147,7 +147,7 @@ export interface WeaponCooldownMeterProps {
 }
 
 export const WeaponCooldownMeter: React.FC<WeaponCooldownMeterProps> = ({
-  weaponId,
+  weaponId: _weaponId,
   cooldownTime,
   isActive,
   isReady,

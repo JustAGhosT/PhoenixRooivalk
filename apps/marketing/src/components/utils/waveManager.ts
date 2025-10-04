@@ -72,7 +72,11 @@ export function generateWaveConfig(
   environment?: WaveConfig["environment"],
 ): WaveConfig {
   const difficulty = calculateDifficultyScaling(waveNumber);
-  const baseThreatCount = Math.min(20, 3 + waveNumber * 2);
+  // Apply baseDifficulty multiplier to threat count and spawn rate
+  const baseThreatCount = Math.min(
+    20,
+    Math.floor((3 + waveNumber * 2) * baseDifficulty),
+  );
 
   // Determine threat types based on wave number
   const threatTypes: Array<{ type: string; count: number; delay?: number }> =
@@ -80,7 +84,7 @@ export function generateWaveConfig(
 
   if (waveNumber >= 1) {
     threatTypes.push({
-      type: "standard",
+      type: "drone",
       count: Math.floor(baseThreatCount * 0.6),
       delay: 0,
     });
@@ -118,10 +122,10 @@ export function generateWaveConfig(
     });
   }
 
-  // Adjust spawn interval based on difficulty
+  // Adjust spawn interval based on difficulty and baseDifficulty
   const baseInterval = Math.max(800, 1500 - waveNumber * 50);
   const spawnInterval = Math.floor(
-    baseInterval / difficulty.spawnRateMultiplier,
+    baseInterval / (difficulty.spawnRateMultiplier * baseDifficulty),
   );
 
   return {

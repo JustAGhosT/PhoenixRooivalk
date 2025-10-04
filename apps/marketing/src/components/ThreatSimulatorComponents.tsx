@@ -1,5 +1,5 @@
 import * as React from "react";
-import type { GameState, Threat } from "../types/game";
+import type { GameState } from "../types/game";
 
 interface ThreatSimulatorComponentsProps {
   gameState: GameState;

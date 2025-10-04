@@ -1,4 +1,11 @@
 :root {
+  /* Theme tokens */
+  --sim-hover: #1a2332; /* subtle surface highlight */
+  --sim-success: #4ade80; /* maps to friendly green */
+  --sim-warning: #ffd166; /* maps to unknown amber */
+  --sim-danger: #ff5d5d; /* maps to hostile red/orange */
+  --sim-accent-hover: #e63400; /* slightly darker accent variant */
+
   /* Surfaces */
   --sim-bg: #0e1217;
   --sim-panel: #121821;
@@ -175,7 +182,7 @@
 
 .environment-label {
   font-size: 12px;
-  color: var(--sim-text-muted);
+  color: var(--sim-muted);
   font-weight: 600;
   white-space: nowrap;
 }
@@ -498,6 +505,7 @@
   align-items: center;
   justify-content: center;
   z-index: 1000;
+  -webkit-backdrop-filter: blur(4px);
   backdrop-filter: blur(4px);
 }
 
@@ -531,7 +539,7 @@
 .close-button {
   background: none;
   border: none;
-  color: var(--sim-text-muted);
+  color: var(--sim-muted);
   font-size: 1.5rem;
   cursor: pointer;
   padding: 4px 8px;
@@ -560,7 +568,7 @@
 }
 
 .resource-label {
-  color: var(--sim-text-muted);
+  color: var(--sim-muted);
   font-weight: 600;
 }
 
@@ -602,7 +610,7 @@
 
 .research-description {
   font-size: 0.9rem;
-  color: var(--sim-text-muted);
+  color: var(--sim-muted);
 }
 
 .research-progress {
@@ -627,7 +635,7 @@
 
 .progress-text {
   font-size: 0.9rem;
-  color: var(--sim-text-muted);
+  color: var(--sim-muted);
   font-weight: 600;
   min-width: 60px;
   text-align: right;
@@ -707,13 +715,13 @@
 
 .cost-item {
   font-size: 0.85rem;
-  color: var(--sim-text-muted);
+  color: var(--sim-muted);
   font-weight: 600;
 }
 
 .research-option-description {
   margin: 0 0 12px 0;
-  color: var(--sim-text-muted);
+  color: var(--sim-muted);
   font-size: 0.9rem;
   line-height: 1.4;
 }
@@ -778,7 +786,7 @@
 .research-help ul {
   margin: 0;
   padding-left: 20px;
-  color: var(--sim-text-muted);
+  color: var(--sim-muted);
   font-size: 0.9rem;
   line-height: 1.5;
 }
@@ -796,6 +804,7 @@
   align-items: center;
   justify-content: center;
   z-index: 1000;
+  -webkit-backdrop-filter: blur(4px);
   backdrop-filter: blur(4px);
 }
 
@@ -837,7 +846,7 @@
 }
 
 .balance-label {
-  color: var(--sim-text-muted);
+  color: var(--sim-muted);
   font-weight: 600;
 }
 
@@ -858,7 +867,7 @@
 
 .store-description {
   margin: 0 0 16px 0;
-  color: var(--sim-text-muted);
+  color: var(--sim-muted);
   font-size: 0.9rem;
   line-height: 1.4;
 }
@@ -905,7 +914,7 @@
 
 .drone-description {
   margin: 0;
-  color: var(--sim-text-muted);
+  color: var(--sim-muted);
   font-size: 0.85rem;
   line-height: 1.3;
 }
@@ -996,7 +1005,7 @@
 .store-help ul {
   margin: 0;
   padding-left: 20px;
-  color: var(--sim-text-muted);
+  color: var(--sim-muted);
   font-size: 0.9rem;
   line-height: 1.5;
 }
@@ -1010,6 +1019,7 @@
   position: absolute;
   inset: 0;
   background: rgba(0, 0, 0, 0.7);
+  -webkit-backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px);
   backdrop-filter: blur(4px);
   z-index: 100;
@@ -1116,7 +1126,7 @@
 .filter-chips-clear {
   background: none;
   border: none;
-  color: var(--sim-text-muted);
+  color: var(--sim-muted);
   font-size: 12px;
   cursor: pointer;
   padding: 2px 6px;
@@ -1206,7 +1216,7 @@
 .info-popover-close {
   background: none;
   border: none;
-  color: var(--sim-text-muted);
+  color: var(--sim-muted);
   font-size: 18px;
   cursor: pointer;
   padding: 0;
@@ -1254,7 +1264,7 @@
 .info-popover-item {
   padding: 4px 0;
   font-size: 13px;
-  color: var(--sim-text-muted);
+  color: var(--sim-muted);
   border-bottom: 1px solid var(--sim-border);
 }
 
@@ -1277,7 +1287,6 @@
   position: absolute;
   top: -6px;
   left: 50%;
-  transform: translateX(-50%);
   width: 12px;
   height: 12px;
   background: var(--sim-elev);
@@ -1378,7 +1387,7 @@
 .legal-badge-close {
   background: none;
   border: none;
-  color: var(--sim-text-muted);
+  color: var(--sim-muted);
   font-size: 18px;
   cursor: pointer;
   padding: 0;
@@ -1447,7 +1456,7 @@
 .legal-badge-item {
   padding: 4px 0;
   font-size: 13px;
-  color: var(--sim-text-muted);
+  color: var(--sim-muted);
   border-bottom: 1px solid var(--sim-border);
 }
 
@@ -1461,7 +1470,7 @@
   border: 1px solid var(--sim-warning) 30;
   border-radius: 4px;
   font-size: 12px;
-  color: var(--sim-text-muted);
+  color: var(--sim-muted);
 }
 
 .legal-badge-actions {
@@ -1555,7 +1564,7 @@
   border: 1px solid var(--sim-border);
   border-radius: 4px;
   font-size: 10px;
-  color: var(--sim-text-muted);
+  color: var(--sim-muted);
   white-space: nowrap;
   z-index: 100;
 }
@@ -1651,7 +1660,7 @@
 .energy-budget-used,
 .energy-budget-remaining,
 .energy-budget-total {
-  color: var(--sim-text-muted);
+  color: var(--sim-muted);
 }
 
 .energy-budget-used strong,
@@ -1720,7 +1729,7 @@
   gap: 12px;
   margin-top: 6px;
   font-size: 11px;
-  color: var(--sim-text-muted);
+  color: var(--sim-muted);
 }
 
 .research-option-specs span {
@@ -1770,7 +1779,7 @@
   display: flex;
   gap: 8px;
   font-size: 10px;
-  color: var(--sim-text-muted);
+  color: var(--sim-muted);
   margin-top: 2px;
 }
 
@@ -1844,7 +1853,7 @@
   display: flex;
   gap: 6px;
   font-size: 10px;
-  color: var(--sim-text-muted);
+  color: var(--sim-muted);
   margin-top: 2px;
   flex-wrap: wrap;
 }
@@ -1868,7 +1877,7 @@
   border: 1px solid var(--sim-border);
   border-radius: 3px;
   font-size: 9px;
-  color: var(--sim-text-muted);
+  color: var(--sim-muted);
   text-transform: uppercase;
   letter-spacing: 0.3px;
 }
@@ -1889,7 +1898,7 @@
 
 .deployment-instruction {
   font-style: italic;
-  color: var(--sim-text-muted);
+  color: var(--sim-muted);
 }
 
 /* Synergy System Styles */
@@ -1917,7 +1926,7 @@
 
 .synergy-empty-text {
   font-size: 11px;
-  color: var(--sim-text-muted);
+  color: var(--sim-muted);
   font-style: italic;
 }
 
@@ -1957,7 +1966,7 @@
 
 .synergy-description {
   font-size: 10px;
-  color: var(--sim-text-muted);
+  color: var(--sim-muted);
   margin-bottom: 6px;
   line-height: 1.3;
 }
@@ -1976,7 +1985,7 @@
 }
 
 .bonus-stat {
-  color: var(--sim-text-muted);
+  color: var(--sim-muted);
   text-transform: capitalize;
 }
 
@@ -1993,7 +2002,7 @@
 }
 
 .synergy-label {
-  color: var(--sim-text-muted);
+  color: var(--sim-muted);
   font-weight: 500;
 }
 
@@ -2082,7 +2091,7 @@
 }
 
 .breakdown-label {
-  color: var(--sim-text-muted);
+  color: var(--sim-muted);
   text-transform: capitalize;
 }
 
@@ -2317,7 +2326,7 @@
 }
 
 .spec-label {
-  color: var(--sim-text-muted);
+  color: var(--sim-muted);
 }
 
 .spec-value {
@@ -2407,7 +2416,7 @@
 }
 
 .cooldown-idle {
-  color: var(--sim-text-muted);
+  color: var(--sim-muted);
   font-size: 12px;
 }
 
@@ -2442,7 +2451,7 @@
 
 .cooldown-label {
   font-size: 8px;
-  color: var(--sim-text-muted);
+  color: var(--sim-muted);
   text-align: center;
   max-width: 60px;
   line-height: 1.2;
@@ -2561,6 +2570,7 @@
   border: 1px solid;
   border-radius: 4px;
   background: rgba(255, 255, 255, 0.1);
+  -webkit-backdrop-filter: blur(4px);
   backdrop-filter: blur(4px);
 }
 
@@ -2648,7 +2658,7 @@
 .roe-consideration,
 .roe-mitigation {
   font-size: 9px;
-  color: var(--sim-text-muted);
+  color: var(--sim-muted);
   margin-bottom: 3px;
   padding-left: 12px;
   position: relative;
@@ -2699,6 +2709,7 @@
   align-items: center;
   justify-content: center;
   background: rgba(255, 255, 255, 0.1);
+  -webkit-backdrop-filter: blur(4px);
   backdrop-filter: blur(4px);
   cursor: help;
 }
@@ -2950,7 +2961,7 @@
 
 .legend-range {
   font-size: 8px;
-  color: var(--sim-text-muted);
+  color: var(--sim-muted);
   font-family: monospace;
 }
 
@@ -3111,7 +3122,7 @@
 
 .status-label {
   font-size: 9px;
-  color: var(--sim-text-muted);
+  color: var(--sim-muted);
   text-transform: uppercase;
   letter-spacing: 0.3px;
 }
@@ -3183,7 +3194,7 @@
 .effector-class {
   font-size: 9px;
   font-weight: 500;
-  color: var(--sim-text-muted);
+  color: var(--sim-muted);
   text-transform: uppercase;
   letter-spacing: 0.3px;
 }
@@ -3201,7 +3212,7 @@
 }
 
 .spec-label {
-  color: var(--sim-text-muted);
+  color: var(--sim-muted);
 }
 
 .spec-value {
@@ -3361,8 +3372,8 @@
 }
 
 .start-mission-btn.disabled {
-  background: var(--sim-text-muted);
-  border-color: var(--sim-text-muted);
+  background: var(--sim-muted);
+  border-color: var(--sim-muted);
   cursor: not-allowed;
 }
 
@@ -3457,7 +3468,7 @@
 
 .showcase-header p {
   font-size: 16px;
-  color: var(--sim-text-muted);
+  color: var(--sim-muted);
   margin: 0;
 }
 
@@ -3585,7 +3596,7 @@
 
 .system-demo p {
   font-size: 14px;
-  color: var(--sim-text-muted);
+  color: var(--sim-muted);
   margin: 0 0 16px 0;
   line-height: 1.5;
 }
@@ -3613,7 +3624,7 @@
 
 .demo-placeholder li {
   font-size: 12px;
-  color: var(--sim-text-muted);
+  color: var(--sim-muted);
   margin-bottom: 4px;
   line-height: 1.4;
 }
