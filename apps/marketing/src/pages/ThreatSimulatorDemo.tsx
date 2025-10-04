@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { EnergyBudget } from "../components/EnergyBudget";
 import { EnergyManagement } from "../components/EnergyManagement";
 import {
@@ -22,6 +22,11 @@ const ThreatSimulatorDemo: React.FC = () => {
   const [demoMode, setDemoMode] = useState<"full" | "components" | "systems">(
     "full",
   );
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
 
   // Demo data for component showcase
   const demoTargets: RadarTarget[] = [
@@ -96,7 +101,9 @@ const ThreatSimulatorDemo: React.FC = () => {
   ];
 
   const renderFullSimulator = () => (
-    <EnhancedThreatSimulator className="demo-simulator" />
+    <div className="demo-simulator">
+      <EnhancedThreatSimulator className="demo-simulator" />
+    </div>
   );
 
   const renderComponentShowcase = () => (
@@ -363,9 +370,15 @@ const ThreatSimulatorDemo: React.FC = () => {
       </div>
 
       <div className="demo-content">
-        {demoMode === "full" && renderFullSimulator()}
-        {demoMode === "components" && renderComponentShowcase()}
-        {demoMode === "systems" && renderSystemsShowcase()}
+        {!isClient ? (
+          <div className="loading">Loading demo...</div>
+        ) : (
+          <>
+            {demoMode === "full" && renderFullSimulator()}
+            {demoMode === "components" && renderComponentShowcase()}
+            {demoMode === "systems" && renderSystemsShowcase()}
+          </>
+        )}
       </div>
     </div>
   );
