@@ -18,8 +18,8 @@ pub async fn list_evidence(
     State(state): State<AppState>,
     Query(pagination): Query<Pagination>,
 ) -> impl IntoResponse {
-    let page = pagination.page.unwrap_or(1);
-    let per_page = pagination.per_page.unwrap_or(10);
+    let page = pagination.page.unwrap_or(1).max(1);
+    let per_page = pagination.per_page.unwrap_or(10).max(1);
     let offset = (page - 1) * per_page;
 
     match list_evidence_jobs(&state.pool, per_page, offset).await {

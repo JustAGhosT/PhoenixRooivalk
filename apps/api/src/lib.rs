@@ -31,9 +31,8 @@ pub async fn build_app() -> anyhow::Result<(Router, Pool<Sqlite>)> {
     let state = AppState { pool: pool.clone() };
     let app = Router::new()
         .route("/health", get(handlers::health))
-        .route("/evidence", post(handlers::post_evidence))
+        .route("/evidence", post(handlers::post_evidence).get(handlers::list_evidence))
         .route("/evidence/:id", get(handlers::get_evidence))
-        .route("/evidence", get(handlers::list_evidence))
         .with_state(state);
     Ok((app, pool))
 }
