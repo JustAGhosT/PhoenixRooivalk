@@ -25,16 +25,13 @@ fn create_etherlink_provider() -> Box<dyn AnchorProvider + Send + Sync> {
         let network = std::env::var("ETHERLINK_NETWORK").unwrap_or_else(|_| "mainnet".to_string());
         let private_key = std::env::var("ETHERLINK_PRIVATE_KEY").ok();
 
-        match EtherlinkProvider::new(endpoint.clone(), network.clone(), private_key) {
-            provider => {
-                tracing::info!(
-                    endpoint = %endpoint,
-                    network = %network,
-                    "Successfully created EtherlinkProvider"
-                );
-                Box::new(provider)
-            }
-        }
+        let provider = EtherlinkProvider::new(endpoint.clone(), network.clone(), private_key);
+        tracing::info!(
+            endpoint = %endpoint,
+            network = %network,
+            "Successfully created EtherlinkProvider"
+        );
+        Box::new(provider)
     }
 }
 

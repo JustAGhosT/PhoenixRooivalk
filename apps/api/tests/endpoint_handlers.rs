@@ -19,10 +19,7 @@ async fn test_build_app() {
     std::env::set_var("API_DB_URL", &db_url);
 
     // Build app
-    let result = build_app().await;
-    assert!(result.is_ok());
-
-    let (_app, pool) = result.unwrap();
+    let (_app, pool) = build_app().await.unwrap();
 
     // App should be created (Router doesn't have routes() method in axum 0.7)
     // Just verify the app was created successfully
@@ -43,10 +40,7 @@ async fn test_build_app_with_fallback_url() {
     std::env::remove_var("API_DB_URL");
 
     // Build app
-    let result = build_app().await;
-    assert!(result.is_ok());
-
-    let (_app, pool) = result.unwrap();
+    let (_app, pool) = build_app().await.unwrap();
 
     // App should be created (Router doesn't have routes() method in axum 0.7)
     // Just verify the app was created successfully
@@ -105,7 +99,7 @@ async fn test_health_endpoint() {
 
     let client = Client::new();
     let response = client
-        .get(&format!("http://127.0.0.1:{}/health", port))
+        .get(format!("http://127.0.0.1:{}/health", port))
         .send()
         .await
         .unwrap();
@@ -152,7 +146,7 @@ async fn test_post_evidence_endpoint() {
     });
 
     let response = client
-        .post(&format!("http://127.0.0.1:{}/evidence", port))
+        .post(format!("http://127.0.0.1:{}/evidence", port))
         .json(&evidence_payload)
         .send()
         .await
@@ -218,7 +212,7 @@ async fn test_post_evidence_with_custom_id() {
     });
 
     let response = client
-        .post(&format!("http://127.0.0.1:{}/evidence", port))
+        .post(format!("http://127.0.0.1:{}/evidence", port))
         .json(&evidence_payload)
         .send()
         .await
@@ -272,7 +266,7 @@ async fn test_post_evidence_with_metadata() {
     });
 
     let response = client
-        .post(&format!("http://127.0.0.1:{}/evidence", port))
+        .post(format!("http://127.0.0.1:{}/evidence", port))
         .json(&evidence_payload)
         .send()
         .await
@@ -335,7 +329,7 @@ async fn test_get_evidence_endpoint() {
 
     // Test getting evidence status
     let response = client
-        .get(&format!("http://127.0.0.1:{}/evidence/{}", port, job_id))
+        .get(format!("http://127.0.0.1:{}/evidence/{}", port, job_id))
         .send()
         .await
         .unwrap();
@@ -381,7 +375,7 @@ async fn test_get_evidence_not_found() {
 
     // Test getting non-existent evidence
     let response = client
-        .get(&format!("http://127.0.0.1:{}/evidence/non-existent", port))
+        .get(format!("http://127.0.0.1:{}/evidence/non-existent", port))
         .send()
         .await
         .unwrap();
@@ -444,11 +438,3 @@ fn test_evidence_out_serialization() {
     assert!(json_str.contains("1234567890"));
 }
 
-#[test]
-fn test_app_state() {
-    // This test would require a real database connection
-    // For now, we'll test the struct definition
-    // Note: AppState is not exported from phoenix_api, so we can't test it directly
-    // This test would need to be moved to the main crate or the structs need to be exported
-    assert!(true); // Placeholder test
-}
