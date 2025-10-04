@@ -20,7 +20,7 @@ Decoy and lure drone for target attraction and deception operations.
 
 ## AI Generation Prompt
 
-```
+```text
 Create a decoy drone icon: triangle with beacon or flare symbol. Military style, outline-based, 24x24px. Color #70A1FF. Target attraction, deception, lure systems aesthetic.
 ```
 

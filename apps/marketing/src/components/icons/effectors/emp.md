@@ -21,7 +21,7 @@ Electromagnetic pulse weapon for electronic disruption.
 
 ```text
 Create an EMP weapon icon: electrical discharge with concentric pulse waves. Military style, outline-based, 24x24px. Color #FFA502. Electronic disruption, electromagnetic pulse aesthetic.
-```
+```text
 
 ## SVG Structure
 
@@ -35,7 +35,7 @@ Create an EMP weapon icon: electrical discharge with concentric pulse waves. Mil
   <circle cx="12" cy="12" r="10" />
   <circle cx="12" cy="12" r="14" />
 </svg>
-```
+```text
 
 ## Usage Context
 

@@ -21,7 +21,7 @@ Area effect enhancement power-up for expanded weapon coverage.
 
 ```text
 Create an area effect power-up icon: expanding circle or burst pattern. Military style, outline-based, 24x24px. Color #8b5cf6. Area coverage, expansion aesthetic.
-```
+```text
 
 ## SVG Structure
 
@@ -34,7 +34,7 @@ Create an area effect power-up icon: expanding circle or burst pattern. Military
   <!-- Center point -->
   <circle cx="12" cy="12" r="1" fill="#8b5cf6" />
 </svg>
-```
+```text
 
 ## Usage Context
 

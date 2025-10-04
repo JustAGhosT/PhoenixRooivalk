@@ -24,7 +24,7 @@ Electronic warfare relay drone for extended EW range and signal amplification.
 Create an EW relay drone icon: triangle with antenna array pattern. Military style,
 outline-based, 24x24px. Color #8b5cf6. Electronic warfare relay, extended range,
 signal amplification aesthetic.
-```
+```text
 
 ## SVG Structure
 
@@ -40,7 +40,7 @@ signal amplification aesthetic.
   <circle cx="12" cy="8" r="1" fill="#8b5cf6" />
   <circle cx="16" cy="8" r="1" fill="#8b5cf6" />
 </svg>
-```
+```text
 
 ## Usage Context
 

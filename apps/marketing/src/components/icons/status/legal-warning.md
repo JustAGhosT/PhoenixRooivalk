@@ -23,7 +23,7 @@ Status indicator showing legal compliance requirements or warnings.
 Create a legal warning status icon: shield with legal symbol or scales. Military
 style, outline-based, 24x24px. Color #f59e0b. Legal compliance, warning state
 aesthetic.
-```
+```text
 
 ## SVG Structure
 
@@ -38,7 +38,7 @@ aesthetic.
   <circle cx="10" cy="12" r="1" fill="#f59e0b" />
   <circle cx="14" cy="12" r="1" fill="#f59e0b" />
 </svg>
-```
+```text
 
 ## Usage Context
 

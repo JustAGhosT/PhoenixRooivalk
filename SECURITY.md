@@ -8,7 +8,7 @@
 
 - **Reporting**
 
-  - Email: security@phoenixvc.tech (fallback: smit.jurie@gmail.com)
+  - Email: <security@phoenixvc.tech> (fallback: <smit.jurie@gmail.com>)
   - Include: affected files/URLs, reproduction steps, impact, and any logs/PoCs.
   - Use encrypted channel if sensitive; PGP on request.
 

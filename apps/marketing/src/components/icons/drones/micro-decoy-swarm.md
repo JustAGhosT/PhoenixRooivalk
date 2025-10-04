@@ -20,9 +20,9 @@ Swarm of micro-decoys for saturation and multiple target deception.
 
 ## AI Generation Prompt
 
-```
+```text
 Create a micro-decoy swarm icon: triangle with multiple small dots inside. Military style, outline-based, 24x24px. Color #70A1FF. Swarm deception, saturation, multiple targets aesthetic.
-```
+```text
 
 ## SVG Structure
 
@@ -39,7 +39,7 @@ Create a micro-decoy swarm icon: triangle with multiple small dots inside. Milit
   <circle cx="9" cy="14" r="1" fill="#70A1FF" />
   <circle cx="15" cy="14" r="1" fill="#70A1FF" />
 </svg>
-```
+```text
 
 ## Usage Context
 

@@ -19,9 +19,9 @@ Status indicator showing low energy levels.
 
 ## AI Generation Prompt
 
-```
+```text
 Create an energy low status icon: battery with low charge indicator. Military style, outline-based, 24x24px. Color #ef4444. Low energy, warning state aesthetic.
-```
+```text
 
 ## SVG Structure
 
@@ -34,7 +34,7 @@ Create an energy low status icon: battery with low charge indicator. Military st
   <!-- Warning symbol -->
   <path d="M12 6L16 14L8 14Z" fill="#ef4444" opacity="0.3" />
 </svg>
-```
+```text
 
 ## Usage Context
 

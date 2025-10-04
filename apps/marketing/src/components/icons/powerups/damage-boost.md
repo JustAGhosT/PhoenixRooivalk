@@ -21,7 +21,7 @@ Damage enhancement power-up for increased weapon effectiveness.
 
 ```text
 Create a damage boost power-up icon: upward arrow with explosion or burst effect. Military style, outline-based, 24x24px. Color #ef4444. Damage enhancement, weapon boost aesthetic.
-```
+```text
 
 ## SVG Structure
 
@@ -35,7 +35,7 @@ Create a damage boost power-up icon: upward arrow with explosion or burst effect
   <path d="M10 18L14 18" stroke-width="2" />
   <path d="M12 16L12 20" stroke-width="2" />
 </svg>
-```
+```text
 
 ## Usage Context
 

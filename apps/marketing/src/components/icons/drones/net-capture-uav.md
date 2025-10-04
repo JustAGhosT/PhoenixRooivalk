@@ -22,7 +22,7 @@ Net deployment drone for physical capture and containment operations.
 
 ```text
 Create a net-capture drone icon: triangle with net pattern inside. Military style, outline-based, 24x24px. Color #10b981. Physical capture, containment, net deployment aesthetic.
-```
+```text
 
 ## SVG Structure
 
@@ -39,7 +39,7 @@ Create a net-capture drone icon: triangle with net pattern inside. Military styl
   <path d="M8 12L16 12" />
   <path d="M8 14L16 14" />
 </svg>
-```
+```text
 
 ## Usage Context
 

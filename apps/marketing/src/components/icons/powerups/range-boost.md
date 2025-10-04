@@ -23,7 +23,7 @@ Range enhancement power-up for increased weapon reach.
 Create a range boost power-up icon: long-range arrow or targeting reticle. Military
 style, outline-based, 24x24px. Color #06b6d4. Distance enhancement, range extension
 aesthetic.
-```
+```text
 
 ## SVG Structure
 
@@ -37,7 +37,7 @@ aesthetic.
   <path d="M10 12L14 12" stroke-width="2" />
   <path d="M12 10L12 14" stroke-width="2" />
 </svg>
-```
+```text
 
 ## Usage Context
 

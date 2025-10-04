@@ -20,9 +20,9 @@ Reconnaissance drone for intelligence gathering and observation.
 
 ## AI Generation Prompt
 
-```
+```text
 Create a surveillance drone icon: triangle with eye symbol inside. Military style, outline-based, 24x24px. Color #3b82f6. Intelligence gathering, observation, monitoring aesthetic.
-```
+```text
 
 ## SVG Structure
 
@@ -34,7 +34,7 @@ Create a surveillance drone icon: triangle with eye symbol inside. Military styl
   <ellipse cx="12" cy="12" rx="6" ry="4" />
   <circle cx="12" cy="12" r="2" fill="#3b82f6" />
 </svg>
-```
+```text
 
 ## Usage Context
 

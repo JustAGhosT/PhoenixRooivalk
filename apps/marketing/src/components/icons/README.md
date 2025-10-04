@@ -16,7 +16,7 @@ icons/
 ├── status/             # Status and UI indicators (5 icons)
 ├── README.md           # Main documentation
 └── Icon_Requirements.md # Complete specifications
-```
+```text
 
 ## Icon Categories
 

@@ -22,7 +22,7 @@ hard-kill.
 
 ```text
 Create a high-energy laser weapon icon: concentrated laser beam with thermal effect visualization. Military style, outline-based, 24x24px. Color #2ED573. High-energy, thermal defeat, precise targeting aesthetic.
-```
+```text
 
 ## SVG Structure
 
@@ -39,7 +39,7 @@ Create a high-energy laser weapon icon: concentrated laser beam with thermal eff
   <path d="M2 18L6 14" stroke-width="1" opacity="0.6" />
   <path d="M18 6L22 2" stroke-width="1" opacity="0.6" />
 </svg>
-```
+```text
 
 ## Usage Context
 

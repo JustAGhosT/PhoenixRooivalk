@@ -47,7 +47,7 @@ generation prompts for all effector and drone icons.
 --countermeasure: #6b7280; /* Countermeasure gray - Defensive */
 --nonkinetic: #84cc16; /* Nonkinetic lime - Non-destructive */
 --directed: #f97316; /* Directed orange - Directed energy */
-```
+```text
 
 ### Drone Role Colors
 
@@ -66,7 +66,7 @@ generation prompts for all effector and drone icons.
 --sensor: #3b82f6; /* Sensor blue - Persistent monitoring */
 --logistics: #6b7280; /* Logistics gray - Recovery operations */
 --directed: #ffa502; /* Directed orange - Mobile platforms */
-```
+```text
 
 ## Effector Icons (15 Total)
 
@@ -546,7 +546,7 @@ const EffectorIcon: React.FC<IconProps> = ({
     </svg>
   );
 };
-```
+```text
 
 ### CSS Integration
 
@@ -569,7 +569,7 @@ const EffectorIcon: React.FC<IconProps> = ({
   opacity: 0.4;
   cursor: not-allowed;
 }
-```
+```text
 
 ## File Organization
 
@@ -583,7 +583,7 @@ src/components/icons/
 ├── status/             # Status and UI indicators (5 icons)
 ├── README.md           # Main documentation
 └── Icon_Requirements.md # This file
-```
+```text
 
 ### File Naming Convention
 
@@ -600,7 +600,7 @@ export { Kinetic } from "./effectors/Kinetic";
 export { HPM } from "./effectors/HPM";
 export { Effector } from "./drones/Effector";
 // ... all other icons
-```
+```text
 
 ## Accessibility
 
@@ -608,7 +608,7 @@ export { Effector } from "./drones/Effector";
 
 ```tsx
 <EffectorIcon aria-label="High Energy Laser - Hard Kill System" role="img" />
-```
+```text
 
 ### Screen Reader Support
 

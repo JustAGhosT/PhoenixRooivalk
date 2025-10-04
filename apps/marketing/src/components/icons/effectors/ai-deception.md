@@ -22,7 +22,7 @@ misdirection.
 
 ```text
 Create an AI deception icon: shimmering effect or neural network pattern. Military style, outline-based, 24x24px. Color #8b5cf6. Advanced electronic warfare, AI-powered aesthetic.
-```
+```text
 
 ## SVG Structure
 
@@ -41,7 +41,7 @@ Create an AI deception icon: shimmering effect or neural network pattern. Milita
   <path d="M8 8L16 16" stroke-width="1" opacity="0.5" />
   <path d="M16 8L8 16" stroke-width="1" opacity="0.5" />
 </svg>
-```
+```text
 
 ## Usage Context
 

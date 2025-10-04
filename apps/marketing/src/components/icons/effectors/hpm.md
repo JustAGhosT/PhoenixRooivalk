@@ -21,7 +21,7 @@ High power microwave burst weapon for electronic disruption.
 
 ```text
 Create a microwave burst weapon icon: concentric wave rings emanating from center point. Military style, outline-based, 24x24px. Color #FFA502. Electronic disruption, wave propagation effect.
-```
+```text
 
 ## SVG Structure
 
@@ -34,7 +34,7 @@ Create a microwave burst weapon icon: concentric wave rings emanating from cente
   <circle cx="12" cy="12" r="10" />
   <circle cx="12" cy="12" r="13" />
 </svg>
-```
+```text
 
 ## Usage Context
 

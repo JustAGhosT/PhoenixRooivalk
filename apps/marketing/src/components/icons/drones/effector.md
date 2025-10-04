@@ -22,7 +22,7 @@ Kinetic interceptor drone for direct engagement and threat neutralization.
 
 ```text
 Create a kinetic interceptor drone icon: triangle with lightning bolt inside. Military style, outline-based, 24x24px. Color #dc2626. Fast attack, kinetic energy, direct engagement aesthetic.
-```
+```text
 
 ## SVG Structure
 
@@ -33,7 +33,7 @@ Create a kinetic interceptor drone icon: triangle with lightning bolt inside. Mi
   <!-- Lightning bolt inside -->
   <path d="M12 8L10 14L14 14L12 16" stroke-width="2.5" />
 </svg>
-```
+```text
 
 ## Usage Context
 

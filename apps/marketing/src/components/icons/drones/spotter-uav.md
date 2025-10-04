@@ -22,7 +22,7 @@ Target designation drone for precision guidance and marking operations.
 
 ```text
 Create a spotter drone icon: triangle with crosshair symbol inside. Military style, outline-based, 24x24px. Color #3b82f6. Target designation, precision guidance, marking aesthetic.
-```
+```text
 
 ## SVG Structure
 
@@ -36,7 +36,7 @@ Create a spotter drone icon: triangle with crosshair symbol inside. Military sty
   <path d="M12 9L12 15" stroke-width="2.5" />
   <circle cx="12" cy="12" r="2" fill="#3b82f6" />
 </svg>
-```
+```text
 
 ## Usage Context
 

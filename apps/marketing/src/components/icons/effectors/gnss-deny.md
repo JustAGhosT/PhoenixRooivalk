@@ -19,9 +19,9 @@ GPS/satellite signal denial system for navigation disruption.
 
 ## AI Generation Prompt
 
-```
+```text
 Create a GPS denial icon: satellite with slash or X mark. Military style, outline-based, 24x24px. Color #8b5cf6. Navigation disruption, satellite signal blocking aesthetic.
-```
+```text
 
 ## SVG Structure
 
@@ -35,7 +35,7 @@ Create a GPS denial icon: satellite with slash or X mark. Military style, outlin
   <path d="M8 12L16 12" />
   <path d="M4 4L20 20" stroke-width="3" />
 </svg>
-```
+```text
 
 ## Usage Context
 

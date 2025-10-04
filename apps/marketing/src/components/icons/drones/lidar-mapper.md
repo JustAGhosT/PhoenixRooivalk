@@ -22,7 +22,7 @@
 
 ```text
 Create a LiDAR mapper drone icon: triangle with scanning laser lines pattern. Military style, outline-based, 24x24px. Color #3b82f6. 3D mapping, laser scanning, scene reconstruction aesthetic.
-```
+```text
 
 ## SVG Structure
 
@@ -37,7 +37,7 @@ Create a LiDAR mapper drone icon: triangle with scanning laser lines pattern. Mi
   <path d="M11 14L13 14" stroke-width="1" />
   <circle cx="12" cy="12" r="1" fill="#3b82f6" />
 </svg>
-```
+```text
 
 ## Usage Context
 

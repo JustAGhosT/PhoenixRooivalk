@@ -21,7 +21,7 @@ Rapid fire enhancement power-up for increased firing rate.
 
 ```text
 Create a rapid fire power-up icon: multiple projectiles or bullets in sequence. Military style, outline-based, 24x24px. Color #f59e0b. Speed enhancement, rapid fire aesthetic.
-```
+```text
 
 ## SVG Structure
 
@@ -37,7 +37,7 @@ Create a rapid fire power-up icon: multiple projectiles or bullets in sequence. 
   <path d="M2 10L2 14" stroke-width="1" opacity="0.6" />
   <path d="M22 10L22 14" stroke-width="1" opacity="0.6" />
 </svg>
-```
+```text
 
 ## Usage Context
 

@@ -19,9 +19,9 @@ Radio frequency jamming system for communication disruption and signal blocking.
 
 ## AI Generation Prompt
 
-```
+```text
 Create an RF jamming icon: antenna with strike-through or X mark. Military style, outline-based, 24x24px. Color #FFA502. Communication disruption, signal blocking aesthetic.
-```
+```text
 
 ## SVG Structure
 
@@ -34,7 +34,7 @@ Create an RF jamming icon: antenna with strike-through or X mark. Military style
   <path d="M4 12L20 12" />
   <path d="M8 4L16 20" stroke-width="3" />
 </svg>
-```
+```text
 
 ## Usage Context
 

@@ -21,7 +21,7 @@ High-energy laser weapon for precise directed energy engagement.
 
 ```text
 Create a laser weapon icon: diagonal energy beam with target crosshair. Military style, outline-based, 24x24px. Color #2ED573. Technical, precise, direct energy weapon aesthetic.
-```
+```text
 
 ## SVG Structure
 
@@ -34,7 +34,7 @@ Create a laser weapon icon: diagonal energy beam with target crosshair. Military
   <path d="M12 9L12 15" />
   <path d="M4 20L20 4" stroke-width="1" opacity="0.5" />
 </svg>
-```
+```text
 
 ## Usage Context
 

@@ -23,7 +23,7 @@ operations.
 
 ```text
 Create an HPM pod drone icon: triangle with wave burst pattern inside. Military style, outline-based, 24x24px. Color #FFA502. Mobile electronic attack, high power microwave, portable platform aesthetic.
-```
+```text
 
 ## SVG Structure
 
@@ -37,7 +37,7 @@ Create an HPM pod drone icon: triangle with wave burst pattern inside. Military 
   <circle cx="12" cy="12" r="5" />
   <circle cx="12" cy="12" r="7" />
 </svg>
-```
+```text
 
 ## Usage Context
 

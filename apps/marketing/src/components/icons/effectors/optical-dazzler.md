@@ -21,7 +21,7 @@ Bright light dazzler for visual disruption and camera blinding.
 
 ```text
 Create an optical dazzler icon: sun with rays or spotlight beam. Military style, outline-based, 24x24px. Color #f97316. Visual disruption, camera blinding aesthetic.
-```
+```text
 
 ## SVG Structure
 
@@ -38,7 +38,7 @@ Create an optical dazzler icon: sun with rays or spotlight beam. Military style,
   <path d="M5.64 18.36L7.76 16.24" />
   <path d="M16.24 7.76L18.36 5.64" />
 </svg>
-```
+```text
 
 ## Usage Context
 

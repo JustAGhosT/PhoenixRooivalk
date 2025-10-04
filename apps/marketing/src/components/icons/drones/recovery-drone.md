@@ -20,9 +20,9 @@ Drone recovery system for debris cleanup and logistics operations.
 
 ## AI Generation Prompt
 
-```
+```text
 Create a recovery drone icon: triangle with grappling hook or retrieval mechanism. Military style, outline-based, 24x24px. Color #6b7280. Debris cleanup, recovery operations, logistics aesthetic.
-```
+```text
 
 ## SVG Structure
 
@@ -38,7 +38,7 @@ Create a recovery drone icon: triangle with grappling hook or retrieval mechanis
   <circle cx="8" cy="16" r="1" fill="#6b7280" />
   <circle cx="16" cy="16" r="1" fill="#6b7280" />
 </svg>
-```
+```text
 
 ## Usage Context
 

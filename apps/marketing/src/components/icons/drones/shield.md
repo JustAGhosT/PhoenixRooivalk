@@ -22,7 +22,7 @@ Protective shield drone for area defense and protection.
 
 ```text
 Create a shield drone icon: triangle with shield symbol inside. Military style, outline-based, 24x24px. Color #10b981. Defense, protection, area coverage aesthetic.
-```
+```text
 
 ## SVG Structure
 
@@ -33,7 +33,7 @@ Create a shield drone icon: triangle with shield symbol inside. Military style, 
   <!-- Shield symbol inside -->
   <path d="M12 8L8 12L12 16L16 12Z" />
 </svg>
-```
+```text
 
 ## Usage Context
 
