@@ -1,5 +1,5 @@
 import { useCallback, useState } from "react";
-import type { GameState, SelectionBox, Threat, PowerUp } from "../../types/game";
+import type { GameState, PowerUp, SelectionBox, Threat } from "../../types/game";
 
 interface UseThreatSimulatorEventsProps {
   gameRef: React.RefObject<HTMLElement>;
