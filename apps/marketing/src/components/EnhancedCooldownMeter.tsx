@@ -50,7 +50,8 @@ export const DemoCooldownMeter: React.FC<EnhancedCooldownMeterProps> = ({
     };
   }, [isActive, cooldownTime, onCooldownComplete, remainingTime]);
 
-  const progress = cooldownTime > 0 ? (cooldownTime - remainingTime) / cooldownTime : 1;
+  const progress =
+    cooldownTime > 0 ? (cooldownTime - remainingTime) / cooldownTime : 1;
   const circumference = 2 * Math.PI * (size / 2 - 2);
   const strokeDasharray = circumference;
   const strokeDashoffset = circumference * (1 - progress);

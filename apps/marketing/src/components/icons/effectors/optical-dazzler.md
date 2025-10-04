@@ -19,7 +19,7 @@ Bright light dazzler for visual disruption and camera blinding.
 
 ## AI Generation Prompt
 
-```text
+````text
 Create an optical dazzler icon: sun with rays or spotlight beam. Military style, outline-based, 24x24px. Color #f97316. Visual disruption, camera blinding aesthetic.
 ```text
 
@@ -45,3 +45,4 @@ Create an optical dazzler icon: sun with rays or spotlight beam. Military style,
 - Optical dazzler systems
 - Visual disruption
 - Camera blinding
+````

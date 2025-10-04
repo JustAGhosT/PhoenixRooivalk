@@ -19,7 +19,7 @@ Status indicator showing weapon/system is ready to fire.
 
 ## AI Generation Prompt
 
-```text
+````text
 Create a cooldown ready status icon: checkmark or ready indicator. Military style, outline-based, 24x24px. Color #10b981. Ready state, system available aesthetic.
 ```text
 
@@ -37,3 +37,4 @@ Create a cooldown ready status icon: checkmark or ready indicator. Military styl
 - Cooldown status indicators
 - System ready states
 - Available weapon indicators
+````

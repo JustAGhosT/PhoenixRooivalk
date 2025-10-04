@@ -53,7 +53,6 @@ export interface DebrisParticle {
   color: string;
 }
 
-
 /**
  * Check collision between two circles
  */

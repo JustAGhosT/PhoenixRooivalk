@@ -20,7 +20,7 @@ Perimeter patrol drone for boundary protection and patrol operations.
 
 ## AI Generation Prompt
 
-```text
+````text
 Create a perimeter sentry drone icon: triangle with border shield pattern. Military style, outline-based, 24x24px. Color #10b981. Perimeter defense, patrol, boundary protection aesthetic.
 ```text
 
@@ -42,3 +42,4 @@ Create a perimeter sentry drone icon: triangle with border shield pattern. Milit
 - Perimeter sentry systems
 - Boundary protection platforms
 - Patrol operations
+````

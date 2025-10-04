@@ -19,7 +19,7 @@ Precision kinetic projectile system for high-accuracy intercepts.
 
 ## AI Generation Prompt
 
-```text
+````text
 Create a precision projectile icon: crosshair with bullet trajectory line. Military
 style, outline-based, 24x24px. Color #dc2626. High-precision, targeted weapon aesthetic.
 ```text
@@ -41,3 +41,4 @@ style, outline-based, 24x24px. Color #dc2626. High-precision, targeted weapon ae
 - Precision intercept systems
 - High-accuracy kinetic weapons
 - Smart projectile systems
+````

@@ -19,7 +19,7 @@ High-energy laser weapon for precise directed energy engagement.
 
 ## AI Generation Prompt
 
-```text
+````text
 Create a laser weapon icon: diagonal energy beam with target crosshair. Military style, outline-based, 24x24px. Color #2ED573. Technical, precise, direct energy weapon aesthetic.
 ```text
 
@@ -41,3 +41,4 @@ Create a laser weapon icon: diagonal energy beam with target crosshair. Military
 - High-energy laser systems
 - Directed energy weapons
 - Precision targeting
+````

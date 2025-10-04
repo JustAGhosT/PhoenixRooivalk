@@ -20,7 +20,7 @@ Reconnaissance drone for intelligence gathering and observation.
 
 ## AI Generation Prompt
 
-```text
+````text
 Create a surveillance drone icon: triangle with eye symbol inside. Military style, outline-based, 24x24px. Color #3b82f6. Intelligence gathering, observation, monitoring aesthetic.
 ```text
 
@@ -41,3 +41,4 @@ Create a surveillance drone icon: triangle with eye symbol inside. Military styl
 - Surveillance and reconnaissance drones
 - Intelligence gathering systems
 - Observation platforms
+````

@@ -10,13 +10,13 @@ prompts for each icon.
 
 ```text
 icons/
-├── effectors/          # Counter-drone weapon systems (18 icons)
+├── effectors/          # Counter-drone weapon systems (17 icons)
 ├── drones/             # Deployable UAV types (17 icons)
 ├── powerups/           # Enhancement and power-up systems (4 icons)
 ├── status/             # Status and UI indicators (5 icons)
 ├── README.md           # Main documentation
 └── Icon_Requirements.md # Complete specifications
-```text
+```
 
 ## Icon Categories
 

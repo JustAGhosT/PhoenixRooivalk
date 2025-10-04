@@ -47,7 +47,7 @@ generation prompts for all effector and drone icons.
 --countermeasure: #6b7280; /* Countermeasure gray - Defensive */
 --nonkinetic: #84cc16; /* Nonkinetic lime - Non-destructive */
 --directed: #f97316; /* Directed orange - Directed energy */
-```text
+```
 
 ### Drone Role Colors
 
@@ -66,9 +66,9 @@ generation prompts for all effector and drone icons.
 --sensor: #3b82f6; /* Sensor blue - Persistent monitoring */
 --logistics: #6b7280; /* Logistics gray - Recovery operations */
 --directed: #ffa502; /* Directed orange - Mobile platforms */
-```text
+```
 
-## Effector Icons (14 Total)
+## Effector Icons (17 Total)
 
 ### Hard Kill Systems
 
@@ -222,6 +222,37 @@ generation prompts for all effector and drone icons.
 - **AI Prompt**: "Create an acoustic disruptor icon: speaker with sound waves or
   mute symbol. Military style, outline-based, 24x24px. Color #84cc16. Audio
   disruption, sound interference aesthetic."
+
+#### 15. Ahead Airburst
+
+- **File**: `effectors/ahead-airburst.md`
+- **Description**: Proximity-fused explosive for area denial and swarm
+  disruption
+- **Visual**: Explosion burst with fragmentation pattern
+- **Color**: `#dc2626` (kinetic red)
+- **AI Prompt**: "Create an ahead airburst icon: explosion burst with
+  fragmentation pattern. Military style, outline-based, 24x24px. Color #dc2626.
+  Proximity-fused, area denial, explosive aesthetic."
+
+#### 16. Obscurant
+
+- **File**: `effectors/obscurant.md`
+- **Description**: Visual concealment and smoke generation system
+- **Visual**: Cloud or fog bank pattern
+- **Color**: `#6b7280` (countermeasure gray)
+- **AI Prompt**: "Create an obscurant icon: cloud or fog bank pattern. Military
+  style, outline-based, 24x24px. Color #6b7280. Visual concealment, smoke
+  generation aesthetic."
+
+#### 17. HEL (High Energy Laser)
+
+- **File**: `effectors/hel.md`
+- **Description**: High energy laser system for directed energy engagement
+- **Visual**: Laser beam with energy focus
+- **Color**: `#f97316` (directed orange)
+- **AI Prompt**: "Create a high energy laser icon: focused laser beam with
+  energy concentration. Military style, outline-based, 24x24px. Color #f97316.
+  Directed energy, precision targeting aesthetic."
 
 ## Drone Icons (17 Total)
 
@@ -546,7 +577,7 @@ const EffectorIcon: React.FC<IconProps> = ({
     </svg>
   );
 };
-```text
+```
 
 ### CSS Integration
 
@@ -569,7 +600,7 @@ const EffectorIcon: React.FC<IconProps> = ({
   opacity: 0.4;
   cursor: not-allowed;
 }
-```text
+```
 
 ## File Organization
 
@@ -577,13 +608,13 @@ const EffectorIcon: React.FC<IconProps> = ({
 
 ```text
 src/components/icons/
-├── effectors/          # Counter-drone weapon systems (18 icons)
+├── effectors/          # Counter-drone weapon systems (17 icons)
 ├── drones/             # Deployable UAV types (17 icons)
 ├── powerups/           # Enhancement and power-up systems (4 icons)
 ├── status/             # Status and UI indicators (5 icons)
 ├── README.md           # Main documentation
 └── Icon_Requirements.md # This file
-```text
+```
 
 ### File Naming Convention
 
@@ -600,7 +631,7 @@ export { Kinetic } from "./effectors/Kinetic";
 export { HPM } from "./effectors/HPM";
 export { Effector } from "./drones/Effector";
 // ... all other icons
-```text
+```
 
 ## Accessibility
 
@@ -608,7 +639,7 @@ export { Effector } from "./drones/Effector";
 
 ```tsx
 <EffectorIcon aria-label="High Energy Laser - Hard Kill System" role="img" />
-```text
+```
 
 ### Screen Reader Support
 

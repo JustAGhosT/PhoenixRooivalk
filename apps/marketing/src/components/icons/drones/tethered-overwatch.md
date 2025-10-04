@@ -20,7 +20,7 @@ Persistent surveillance mast for elevated monitoring and stationary observation.
 
 ## AI Generation Prompt
 
-```text
+````text
 Create a tethered overwatch icon: tower structure with eye symbol on top. Military style, outline-based, 24x24px. Color #3b82f6. Persistent surveillance, elevated monitoring, stationary observation aesthetic.
 ```text
 
@@ -44,3 +44,4 @@ Create a tethered overwatch icon: tower structure with eye symbol on top. Milita
 - Tethered surveillance systems
 - Persistent monitoring platforms
 - Elevated observation posts
+````

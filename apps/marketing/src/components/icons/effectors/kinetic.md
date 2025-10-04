@@ -19,7 +19,7 @@ Physical projectile weapon system for direct kinetic engagement.
 
 ## AI Generation Prompt
 
-```text
+````text
 Create a minimalist kinetic weapon icon: bullet trajectory with crosshair target. Military style, outline-based, 24x24px. Color #dc2626. Technical, direct, projectile weapon aesthetic.
 ```text
 
@@ -41,3 +41,4 @@ Create a minimalist kinetic weapon icon: bullet trajectory with crosshair target
 - Hard kill weapon systems
 - Direct kinetic engagement
 - Physical projectile weapons
+````

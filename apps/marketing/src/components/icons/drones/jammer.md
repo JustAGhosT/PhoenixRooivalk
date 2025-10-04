@@ -20,7 +20,7 @@ Electronic warfare drone for RF disruption and signal interference.
 
 ## AI Generation Prompt
 
-```text
+````text
 Create an electronic warfare drone icon: triangle with radio wave pattern. Military style, outline-based, 24x24px. Color #8b5cf6. RF disruption, electronic warfare, signal interference aesthetic.
 ```text
 
@@ -42,3 +42,4 @@ Create an electronic warfare drone icon: triangle with radio wave pattern. Milit
 - Electronic warfare drones
 - RF jamming systems
 - Signal interference platforms
+````

@@ -46,7 +46,6 @@ export const easingFunctions = {
   },
 };
 
-
 /**
  * Calculate angle between two points in degrees
  */
@@ -263,10 +262,10 @@ export function createBezierPath(
   // Calculate multiple points along the Bezier curve
   const points: Array<{ x: number; y: number }> = [];
   const segments = 10;
-  
+
   for (let i = 0; i <= segments; i++) {
     const t = i / segments;
-    const x = 
+    const x =
       Math.pow(1 - t, 2) * start.x +
       2 * (1 - t) * t * control.x +
       Math.pow(t, 2) * end.x;
@@ -276,7 +275,7 @@ export function createBezierPath(
       Math.pow(t, 2) * end.y;
     points.push({ x, y });
   }
-  
+
   // Return a waypoint path through the Bezier points
   return createWaypointPath(points, start.x, start.y, config);
 }
@@ -319,7 +318,7 @@ export class PatrolPath {
     // Update our tracked current position
     this.currentX = currentX;
     this.currentY = currentY;
-    
+
     const result = this.interpolator.updatePosition(currentX, currentY);
 
     // Check if we've reached the current waypoint
@@ -346,6 +345,11 @@ export class PatrolPath {
 
     const target = this.waypoints[this.currentIndex];
     // Use the real current position instead of duplicating target
-    this.interpolator.setTarget(target.x, target.y, this.currentX, this.currentY);
+    this.interpolator.setTarget(
+      target.x,
+      target.y,
+      this.currentX,
+      this.currentY,
+    );
   }
 }

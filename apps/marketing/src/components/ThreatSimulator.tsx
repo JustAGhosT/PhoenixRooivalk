@@ -778,7 +778,7 @@ export const ThreatSimulator: React.FC<ThreatSimulatorProps> = ({
             try {
               // Call the actual purchase API
               const success = resourceManager.purchaseDrone(type);
-              
+
               if (success) {
                 // Dispatch the existing "drone-purchase" event
                 const purchaseEvent = new CustomEvent("drone-purchase", {
@@ -793,7 +793,9 @@ export const ThreatSimulator: React.FC<ThreatSimulatorProps> = ({
                 addFeed(`Drone ${type} purchased successfully!`);
               } else {
                 // Purchase failed - don't close modal, show error
-                addFeed(`Failed to purchase drone ${type}. Insufficient tokens or drone not unlocked.`);
+                addFeed(
+                  `Failed to purchase drone ${type}. Insufficient tokens or drone not unlocked.`,
+                );
               }
             } catch (error) {
               console.error("Failed to process drone purchase:", error);

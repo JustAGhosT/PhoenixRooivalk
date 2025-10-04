@@ -74,15 +74,14 @@ export const DroneDeployment: React.FC<DroneDeploymentProps> = ({
           }
 
           const isSelected = selectedDroneType === bay.droneType;
-          
+
           // Get drone data from database for enhanced info
           const droneData = effectorDatabase.deployments.find(
             (d) => d.id === bay.droneType.toUpperCase(),
           );
           const energyCost = droneData?.energy || DEPLOYMENT_COST;
-          
-          const isDisabled =
-            bay.currentDrones === 0 || energy < energyCost;
+
+          const isDisabled = bay.currentDrones === 0 || energy < energyCost;
 
           return (
             <div
@@ -117,7 +116,7 @@ export const DroneDeployment: React.FC<DroneDeploymentProps> = ({
                           aria-label="View drone details"
                           onClick={(e) => e.stopPropagation()}
                           onKeyDown={(e) => {
-                            if (e.key === 'Enter' || e.key === ' ') {
+                            if (e.key === "Enter" || e.key === " ") {
                               e.preventDefault();
                               e.stopPropagation();
                               // Trigger the popover - InfoPopover should handle this

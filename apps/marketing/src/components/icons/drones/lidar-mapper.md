@@ -20,7 +20,7 @@
 
 ## AI Generation Prompt
 
-```text
+````text
 Create a LiDAR mapper drone icon: triangle with scanning laser lines pattern. Military style, outline-based, 24x24px. Color #3b82f6. 3D mapping, laser scanning, scene reconstruction aesthetic.
 ```text
 
@@ -44,3 +44,4 @@ Create a LiDAR mapper drone icon: triangle with scanning laser lines pattern. Mi
 - LiDAR mapper systems
 - 3D mapping platforms
 - Laser scanning operations
+````

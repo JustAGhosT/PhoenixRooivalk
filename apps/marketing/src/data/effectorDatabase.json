@@ -145,7 +145,11 @@
       "energy": 10,
       "cooldown": 6,
       "roe": "low",
-      "brands": ["OpenWorks SkyWall", "Fortem DroneHunter (net gun)", "Anduril Anvil (net capture)"],
+      "brands": [
+        "OpenWorks SkyWall",
+        "Fortem DroneHunter (net gun)",
+        "Anduril Anvil (net capture)"
+      ],
       "sources": [
         "https://openworksengineering.com/skywall/",
         "https://www.fortemtech.com/products/",
@@ -242,7 +246,11 @@
       "energy": 18,
       "cooldown": 12,
       "roe": "med",
-      "brands": ["none", "BAE Systems AI/ML EW", "Lockheed Martin Cognitive EW"],
+      "brands": [
+        "none",
+        "BAE Systems AI/ML EW",
+        "Lockheed Martin Cognitive EW"
+      ],
       "sources": [
         "https://www.darpa.mil/research/programs/guaranteeing-ai-robustness-against-deception",
         "https://www.rand.org/pubs/research_reports/RRA866-1.html",

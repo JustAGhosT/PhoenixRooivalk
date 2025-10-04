@@ -19,7 +19,20 @@ export interface GameState {
   neutralized: number;
   level: number;
   isRunning: boolean;
-  selectedWeapon: "kinetic" | "electronic" | "laser" | "net" | "hpm" | "rf_take" | "gnss_deny" | "optic_dazzle" | "acoustic" | "decoy_beacon" | "chaff" | "smart_slug" | "ai_deception";
+  selectedWeapon:
+    | "kinetic"
+    | "electronic"
+    | "laser"
+    | "net"
+    | "hpm"
+    | "rf_take"
+    | "gnss_deny"
+    | "optic_dazzle"
+    | "acoustic"
+    | "decoy_beacon"
+    | "chaff"
+    | "smart_slug"
+    | "ai_deception";
   weapons: Record<string, Weapon>;
   activePowerUps: PowerUp[];
   gameTime: number;
@@ -349,7 +362,20 @@ export const useGameState = () => {
   const switchWeapon = useCallback((weaponId: string) => {
     setGameState((prev) => ({
       ...prev,
-      selectedWeapon: weaponId as "kinetic" | "electronic" | "laser" | "net" | "hpm" | "rf_take" | "gnss_deny" | "optic_dazzle" | "acoustic" | "decoy_beacon" | "chaff" | "smart_slug" | "ai_deception",
+      selectedWeapon: weaponId as
+        | "kinetic"
+        | "electronic"
+        | "laser"
+        | "net"
+        | "hpm"
+        | "rf_take"
+        | "gnss_deny"
+        | "optic_dazzle"
+        | "acoustic"
+        | "decoy_beacon"
+        | "chaff"
+        | "smart_slug"
+        | "ai_deception",
     }));
   }, []);
 

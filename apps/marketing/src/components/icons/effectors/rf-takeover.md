@@ -19,7 +19,7 @@ Command and control takeover system for electronic warfare.
 
 ## AI Generation Prompt
 
-```text
+````text
 Create an RF takeover icon: two antennas with arrow between them. Military style, outline-based, 24x24px. Color #8b5cf6. Electronic warfare, command and control takeover aesthetic.
 ```text
 
@@ -42,3 +42,4 @@ Create an RF takeover icon: two antennas with arrow between them. Military style
 - Electronic warfare systems
 - Command and control takeover
 - Signal hijacking
+````

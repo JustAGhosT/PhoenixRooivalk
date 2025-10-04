@@ -21,8 +21,10 @@ Directional shield barrier for area protection and defensive wall operations.
 ## AI Generation Prompt
 
 ```text
-Create a shield wall icon: wall section with shield overlay pattern. Military style, outline-based, 24x24px. Color #10b981. Directional protection, barrier, defensive wall aesthetic.
-```text
+Create a shield wall icon: wall section with shield overlay pattern.
+Military style, outline-based, 24x24px. Color #10b981. Directional
+protection, barrier, defensive wall aesthetic.
+```
 
 ## SVG Structure
 
@@ -36,7 +38,7 @@ Create a shield wall icon: wall section with shield overlay pattern. Military st
   <!-- Shield overlay -->
   <path d="M8 6L16 6L14 4L10 4Z" fill="#10b981" opacity="0.3" />
 </svg>
-```text
+```
 
 ## Usage Context
 

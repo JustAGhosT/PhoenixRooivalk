@@ -20,7 +20,7 @@ Net deployment drone for physical capture and containment operations.
 
 ## AI Generation Prompt
 
-```text
+````text
 Create a net-capture drone icon: triangle with net pattern inside. Military style, outline-based, 24x24px. Color #10b981. Physical capture, containment, net deployment aesthetic.
 ```text
 
@@ -46,3 +46,4 @@ Create a net-capture drone icon: triangle with net pattern inside. Military styl
 - Net-capture drone systems
 - Physical capture platforms
 - Containment operations
+````

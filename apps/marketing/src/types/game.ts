@@ -2,19 +2,19 @@
 // Re-export existing types to maintain compatibility
 
 import {
-    DeploymentBay,
-    Drone,
-    Formation,
-    Mothership,
+  DeploymentBay,
+  Drone,
+  Formation,
+  Mothership,
 } from "../components/utils/mothershipTypes";
 import { Threat } from "../components/utils/threatTypes";
 import { PowerUp, Weapon } from "../components/utils/weaponTypes";
 
 export type {
-    DeploymentBay,
-    Drone,
-    Formation,
-    Mothership
+  DeploymentBay,
+  Drone,
+  Formation,
+  Mothership,
 } from "../components/utils/mothershipTypes";
 export type { Threat } from "../components/utils/threatTypes";
 export type { PowerUp, Weapon } from "../components/utils/weaponTypes";
@@ -64,7 +64,20 @@ export interface GameState {
   isRunning: boolean;
 
   // Weapons
-  selectedWeapon: "kinetic" | "electronic" | "laser" | "net" | "hpm" | "rf_take" | "gnss_deny" | "optic_dazzle" | "acoustic" | "decoy_beacon" | "chaff" | "smart_slug" | "ai_deception";
+  selectedWeapon:
+    | "kinetic"
+    | "electronic"
+    | "laser"
+    | "net"
+    | "hpm"
+    | "rf_take"
+    | "gnss_deny"
+    | "optic_dazzle"
+    | "acoustic"
+    | "decoy_beacon"
+    | "chaff"
+    | "smart_slug"
+    | "ai_deception";
   weapons: Record<string, Weapon>;
 
   // Power-ups and timing

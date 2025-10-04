@@ -19,7 +19,7 @@ Range enhancement power-up for increased weapon reach.
 
 ## AI Generation Prompt
 
-```text
+````text
 Create a range boost power-up icon: long-range arrow or targeting reticle. Military
 style, outline-based, 24x24px. Color #06b6d4. Distance enhancement, range extension
 aesthetic.
@@ -44,3 +44,4 @@ aesthetic.
 - Range boost power-ups
 - Distance enhancement systems
 - Range extension boosts
+````

@@ -19,7 +19,7 @@ Lure beacon system for target attraction and decoy operations.
 
 ## AI Generation Prompt
 
-```text
+````text
 Create a decoy beacon icon: lighthouse beacon or radar sweep pattern. Military style, outline-based, 24x24px. Color #70A1FF. Target attraction, decoy systems aesthetic.
 ```text
 
@@ -45,3 +45,4 @@ Create a decoy beacon icon: lighthouse beacon or radar sweep pattern. Military s
 - Decoy beacon systems
 - Target attraction
 - Lure operations
+````

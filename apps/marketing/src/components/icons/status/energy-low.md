@@ -19,7 +19,7 @@ Status indicator showing low energy levels.
 
 ## AI Generation Prompt
 
-```text
+````text
 Create an energy low status icon: battery with low charge indicator. Military style, outline-based, 24x24px. Color #ef4444. Low energy, warning state aesthetic.
 ```text
 
@@ -41,3 +41,4 @@ Create an energy low status icon: battery with low charge indicator. Military st
 - Low energy warnings
 - Battery status indicators
 - Energy level alerts
+````

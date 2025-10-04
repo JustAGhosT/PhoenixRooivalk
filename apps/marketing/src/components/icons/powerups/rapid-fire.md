@@ -19,7 +19,7 @@ Rapid fire enhancement power-up for increased firing rate.
 
 ## AI Generation Prompt
 
-```text
+````text
 Create a rapid fire power-up icon: multiple projectiles or bullets in sequence. Military style, outline-based, 24x24px. Color #f59e0b. Speed enhancement, rapid fire aesthetic.
 ```text
 
@@ -44,3 +44,4 @@ Create a rapid fire power-up icon: multiple projectiles or bullets in sequence. 
 - Rapid fire power-ups
 - Firing rate enhancements
 - Speed boost systems
+````

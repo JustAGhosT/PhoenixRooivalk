@@ -19,7 +19,7 @@ Damage enhancement power-up for increased weapon effectiveness.
 
 ## AI Generation Prompt
 
-```text
+````text
 Create a damage boost power-up icon: upward arrow with explosion or burst effect. Military style, outline-based, 24x24px. Color #ef4444. Damage enhancement, weapon boost aesthetic.
 ```text
 
@@ -42,3 +42,4 @@ Create a damage boost power-up icon: upward arrow with explosion or burst effect
 - Damage boost power-ups
 - Weapon enhancement systems
 - Combat effectiveness boosts
+````
