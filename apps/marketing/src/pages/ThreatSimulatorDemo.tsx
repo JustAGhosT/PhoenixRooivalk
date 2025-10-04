@@ -11,7 +11,7 @@ import {
     FriendlyDeployment,
     RadarTarget,
 } from "../components/EnhancedRadarSystem";
-import { ThreatSimulatorDemo as ThreatSimulatorDemoComponent } from "../components/EnhancedThreatSimulator";
+import { ThreatSimulator } from "../components/ThreatSimulator";
 import { FilterChips } from "../components/FilterChips";
 import { InfoPopover } from "../components/InfoPopover";
 import { LegalBadge } from "../components/LegalBadge";
@@ -102,7 +102,7 @@ const ThreatSimulatorDemo: React.FC = () => {
 
   const renderFullSimulator = () => (
     <div className="demo-simulator">
-      <ThreatSimulatorDemoComponent className="demo-simulator" />
+      <ThreatSimulator demoMode={true} />
     </div>
   );
 

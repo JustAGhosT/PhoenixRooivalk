@@ -51,6 +51,7 @@ jobs:
 
       - name: Build
         run: pnpm run build
+        continue-on-error: false
 
       - name: Debug build output
         run: |
@@ -151,6 +152,7 @@ jobs:
 
       - name: Build
         run: pnpm run build
+        continue-on-error: false
 
       - name: Debug build output (Preview)
         run: |
