@@ -1,3 +1,6 @@
+use phoenix_api::build_app;
+use phoenix_keeper::{run_job_loop, SqliteJobProvider};
+use sqlx::Row;
 use anchor_etherlink::EtherlinkProviderStub;
 use axum::serve;
 use phoenix_api::main::build_app;
@@ -23,8 +26,8 @@ async fn test_http_evidence_flow() {
     std::env::set_var("KEEPER_DB_URL", &db_url);
 
     // Build API app
-    let (app, pool) = build_app().await;
-
+    let (app, pool) = build_app().await.unwrap();
+    
     // Find available port
     let listener = TcpListener::bind("127.0.0.1:0").unwrap();
     let addr = listener.local_addr().unwrap();
