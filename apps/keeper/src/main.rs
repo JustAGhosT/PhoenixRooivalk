@@ -9,10 +9,16 @@ use tracing_subscriber::{layer::SubscriberExt, util::SubscriberInitExt};
 
 /// Creates the appropriate Etherlink provider based on environment configuration
 fn create_etherlink_provider() -> Box<dyn AnchorProvider + Send + Sync> {
-    let use_stub = std::env::var("KEEPER_USE_STUB")
+    let use_stub = match std::env::var("KEEPER_USE_STUB")
         .unwrap_or_else(|_| "true".to_string())
-        .parse::<bool>()
-        .unwrap_or(true);
+        .trim()
+        .to_lowercase()
+        .as_str()
+    {
+        "true" | "1" | "yes" | "on" => true,
+        "false" | "0" | "no" | "off" => false,
+        _ => true, // Default to true for development/testing
+    };
 
     if use_stub {
         tracing::info!("Using EtherlinkProviderStub for development/testing");

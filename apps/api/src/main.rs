@@ -160,26 +160,35 @@ async fn post_evidence(
 async fn get_evidence(
     State(state): State<AppState>,
     Path(id): Path<String>,
-) -> Json<serde_json::Value> {
-    let row = sqlx::query(
+) -> Result<Json<serde_json::Value>, (StatusCode, Json<serde_json::Value>)> {
+    let row = match sqlx::query(
         "SELECT id, status, attempts, last_error, created_ms, updated_ms FROM outbox_jobs WHERE id=?1"
     )
     .bind(&id)
     .fetch_optional(&state.pool)
     .await
-    .unwrap();
+    {
+        Ok(row) => row,
+        Err(e) => {
+            tracing::error!("Database error in get_evidence: {}", e);
+            return Err((
+                StatusCode::INTERNAL_SERVER_ERROR,
+                Json(serde_json::json!({ "error": "Database error" }))
+            ));
+        }
+    };
 
     if let Some(row) = row {
-        Json(serde_json::json!({
+        Ok(Json(serde_json::json!({
             "id": row.get::<String, _>("id"),
             "status": row.get::<String, _>("status"),
             "attempts": row.get::<i64, _>("attempts"),
             "last_error": row.get::<Option<String>, _>("last_error"),
             "created_ms": row.get::<i64, _>("created_ms"),
             "updated_ms": row.get::<i64, _>("updated_ms")
-        }))
+        })))
     } else {
-        Json(serde_json::json!({ "error": "Job not found" }))
+        Ok(Json(serde_json::json!({ "error": "Job not found" })))
     }
 }
 

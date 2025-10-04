@@ -1,6 +1,7 @@
 # Database Access Patterns in Rust
 
-This document outlines the common database access patterns and best practices used in the Phoenix Evidence API.
+This document outlines the common database access patterns and best practices
+used in the Phoenix Evidence API.
 
 ## Architecture Overview
 
@@ -27,12 +28,14 @@ The database layer follows a layered architecture:
 **Purpose**: Manages database connection pools with proper configuration.
 
 **Key Features**:
+
 - Connection pool configuration
 - Health checking
 - Statistics monitoring
 - Environment-based URL building
 
 **Usage**:
+
 ```rust
 use phoenix_api::connection::{ConnectionManager, ConnectionConfig};
 
@@ -56,12 +59,14 @@ let manager = ConnectionManager::with_config(&database_url, config).await?;
 **Purpose**: Handles database schema versioning and migrations.
 
 **Key Features**:
+
 - Versioned migrations
 - Idempotent operations
 - Migration status tracking
 - Rollback support (planned)
 
 **Usage**:
+
 ```rust
 use phoenix_api::migrations::MigrationManager;
 
@@ -78,12 +83,14 @@ println!("Current version: {}", status.current_version);
 **Purpose**: Provides a clean abstraction over database operations.
 
 **Key Features**:
+
 - Type-safe database operations
 - Proper error handling
 - Transaction support
 - Business logic encapsulation
 
 **Usage**:
+
 ```rust
 use phoenix_api::repository::{EvidenceRepository, RepositoryError};
 
@@ -168,13 +175,13 @@ pub async fn create_evidence_with_metadata(
     metadata: &serde_json::Value,
 ) -> Result<String> {
     let mut tx = self.pool.begin().await?;
-    
+
     // Create evidence job
     let (mut tx, job_id) = self.create_evidence_job_tx(evidence).await?;
-    
+
     // Store metadata
     self.store_metadata_tx(&mut tx, &job_id, metadata).await?;
-    
+
     tx.commit().await?;
     Ok(job_id)
 }
@@ -215,9 +222,9 @@ pub async fn list_evidence_jobs(
 
     // Get paginated results
     let rows = sqlx::query(
-        "SELECT id, status, attempts, last_error, created_ms, updated_ms 
-         FROM outbox_jobs 
-         ORDER BY created_ms DESC 
+        "SELECT id, status, attempts, last_error, created_ms, updated_ms
+         FROM outbox_jobs
+         ORDER BY created_ms DESC
          LIMIT ?1 OFFSET ?2"
     )
     .bind(limit)
@@ -274,13 +281,13 @@ mod tests {
         let temp_db = NamedTempFile::new().unwrap();
         let db_path = temp_db.path().to_str().unwrap();
         let db_url = format!("sqlite://{}", db_path);
-        
+
         let pool = SqlitePoolOptions::new()
             .max_connections(1)
             .connect(&db_url)
             .await
             .unwrap();
-        
+
         let repo = EvidenceRepository::new(pool);
         repo.ensure_schema().await.unwrap();
         repo
@@ -300,14 +307,14 @@ mod tests {
 // Health check endpoint
 pub async fn health_check(pool: &Pool<Sqlite>) -> Result<HealthStatus> {
     let start = std::time::Instant::now();
-    
+
     // Test basic connectivity
     sqlx::query("SELECT 1")
         .fetch_one(pool)
         .await?;
 
     let response_time = start.elapsed();
-    
+
     Ok(HealthStatus {
         is_healthy: true,
         response_time,
@@ -327,7 +334,7 @@ pub async fn get_evidence(id: &str) -> Result<EvidenceOut> {
         .create_if_missing(true)
         .connect(&database_url)
         .await?;
-    
+
     // Use connection...
 }
 
@@ -409,4 +416,5 @@ let query = "SELECT * FROM table WHERE id = ?1";
 - Implement audit logging
 - Encrypt sensitive data at rest
 
-This architecture provides a robust, scalable, and maintainable database access layer for the Phoenix Evidence API.
+This architecture provides a robust, scalable, and maintainable database access
+layer for the Phoenix Evidence API.
