@@ -298,4 +298,47 @@ COMPREHENSIVE REFERENCE LIST:
 
 CRITICAL RESEARCH QUESTIONS TO ANSWER:
 
-The assistant should ensure the research addresses these essential questions:
+**Battery Chemistry and Performance Questions:**
+- What are the current energy density limits for different battery chemistries (LiPo, Li-ion, LiFePO4) and how do they compare across military, industrial, and racing applications?
+- How do discharge rate requirements (100C+ racing, 20-50C industrial, 50-80C military) affect battery selection and performance characteristics?
+- What are the safety trade-offs between different battery chemistries for critical applications?
+- How do emerging chemistries (lithium-sulfur, solid-state, graphene-enhanced) compare to current technologies in terms of energy density, safety, and commercialization timeline?
+
+**Battery Specifications and Performance Questions:**
+- What are the optimal capacity and voltage configurations for different mission profiles across sectors?
+- How do environmental factors (temperature, altitude, wind) affect real-world battery performance compared to rated specifications?
+- What are the key factors affecting battery degradation and cycle life in different operational contexts?
+- How do weight-to-power ratios impact overall system performance and mission capability?
+
+**Sector-Specific Power Requirements Questions:**
+- What are the unique power requirements for military ISR missions, combat operations, and swarm coordination?
+- How do industrial applications balance operational efficiency with safety and regulatory compliance?
+- What are the performance optimization strategies for racing applications across different competition classes?
+- How do environmental extremes affect power system design and performance across sectors?
+
+**Power Management and Integration Questions:**
+- What are the critical features of Battery Management Systems (BMS) for different application requirements?
+- How do power distribution architectures vary across military, industrial, and racing applications?
+- What are the key considerations for charging infrastructure design and implementation?
+- How do alternative power sources (solar, hydrogen, tethered) compare for different mission profiles?
+
+**Emerging Technologies and Future Trends Questions:**
+- What emerging battery technologies show the most promise for UAV applications?
+- How do alternative power sources (hydrogen fuel cells, solar integration, wireless charging) compare to conventional batteries?
+- What are the technology readiness levels and commercialization timelines for breakthrough power technologies?
+- How will future power technologies affect UAV mission capabilities and operational concepts?
+
+CRITICAL INSTRUCTIONS:
+
+The assistant should:
+
+1. **Focus on Power System Fundamentals:** Provide detailed analysis of battery chemistry, performance characteristics, and power management principles across different drone applications
+2. **Address Sector-Specific Requirements:** Explain power system requirements and trade-offs for military, industrial, and racing applications
+3. **Consider Integration Challenges:** Address how power system design affects overall UAV performance, weight, and mission capability
+4. **Validate Technical Claims:** Support all technical claims with authoritative sources, performance data, and quantitative analysis
+5. **Provide Comparative Analysis:** Deliver detailed comparisons of different power technologies, battery chemistries, and management approaches
+6. **Consider Economic Factors:** Address cost-benefit analysis, total cost of ownership, and procurement considerations for different power solutions
+7. **Address Safety and Reliability:** Explain safety considerations, failure modes, and reliability requirements for different applications
+8. **Maintain Technical Accuracy:** Ensure all technical content is accurate, current, and properly validated with authoritative sources
+
+The assistant should ensure that all technical claims are supported by authoritative sources, quantitative data is provided where available, and gaps in available information are explicitly noted. When definitive data is unavailable, the assistant should indicate uncertainty and provide the best available estimates with appropriate caveats.

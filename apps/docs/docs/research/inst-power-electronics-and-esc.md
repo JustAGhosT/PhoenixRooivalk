@@ -349,4 +349,61 @@ When conducting this deep research, the assistant should:
 
 3. **Identify Information Gaps:** Explicitly state when authoritative data is unavailable, limited, or proprietary
 
-4. **Consider Temporal Relevance:** Prioritize recent developments (last 
+4. **Consider Temporal Relevance:** Prioritize recent developments (last 3-5 years) while maintaining historical context for technology evolution
+
+5. **Address Sector-Specific Needs:** Tailor analysis depth and focus to military, industrial, and racing application requirements
+
+6. **Provide Actionable Intelligence:** Deliver findings that enable informed decision-making for procurement, design, and operational planning
+
+CRITICAL RESEARCH QUESTIONS TO ANSWER:
+
+**Control Architecture and Topology Questions:**
+- What are the performance trade-offs between trapezoidal commutation and Field-Oriented Control (FOC) for different drone applications?
+- How do current-control bandwidth capabilities vary across control schemes and what are the practical limitations?
+- What are the advantages and disadvantages of Hall-effect sensor-based vs sensorless commutation for different operational contexts?
+- How do real-time performance characteristics (loop rates, latency, jitter) affect motor control precision across sectors?
+
+**Semiconductor Technology Questions:**
+- How do Silicon (Si), Gallium Nitride (GaN), and Silicon Carbide (SiC) technologies compare for UAV ESC applications?
+- What are the thermal derating policies and junction temperature management strategies for different semiconductor technologies?
+- How do device selection criteria vary based on voltage/current requirements for different drone classes?
+- What are the cost-performance trade-offs and technology maturity levels for wide-bandgap semiconductors?
+
+**Functional Safety and Reliability Questions:**
+- What are the implementation approaches for dual-redundant ESC architectures and how do failover mechanisms work?
+- How do fault detection algorithms (overcurrent, overtemperature, desynchronization) ensure system safety?
+- What are the MTBF requirements and reliability prediction methodologies for mission-critical applications?
+- How do conformal coating and potting techniques protect ESCs in harsh environmental conditions?
+
+**EMI/EMC and Integration Questions:**
+- What are the best practices for PCB layout, grounding strategies, and component placement to minimize EMI?
+- How do filtering techniques and shielding approaches address conducted and radiated emissions?
+- What are the compliance requirements for MIL-STD-461 and DO-160 standards?
+- How do ESC designs integrate with overall UAV system architecture and power distribution?
+
+**Sector-Specific Application Questions:**
+- What are the unique ESC requirements for military ISR, combat, logistics, and swarm operations?
+- How do industrial applications balance efficiency, reliability, and cost in ESC selection?
+- What are the performance optimization strategies for racing applications across different competition classes?
+- How do environmental extremes affect ESC design and performance across sectors?
+
+**Emerging Technologies and Future Trends Questions:**
+- What emerging semiconductor technologies (GaN, SiC) show the most promise for UAV ESC applications?
+- How do advanced control algorithms (model predictive control, AI-enhanced optimization) improve ESC performance?
+- What are the integration trends toward motor-ESC integration and distributed power architectures?
+- How will future ESC technologies affect UAV performance, efficiency, and capabilities?
+
+CRITICAL INSTRUCTIONS:
+
+The assistant should:
+
+1. **Focus on Power Electronics Fundamentals:** Provide detailed analysis of ESC control topologies, semiconductor technologies, and power management principles
+2. **Address Sector-Specific Requirements:** Explain ESC requirements and trade-offs for military, industrial, and racing applications
+3. **Consider Integration Challenges:** Address how ESC design affects overall UAV performance, efficiency, and system integration
+4. **Validate Technical Claims:** Support all technical claims with authoritative sources, performance data, and quantitative analysis
+5. **Provide Comparative Analysis:** Deliver detailed comparisons of different ESC technologies, control methods, and semiconductor approaches
+6. **Consider Economic Factors:** Address cost-benefit analysis, total cost of ownership, and procurement considerations for different ESC solutions
+7. **Address Safety and Reliability:** Explain safety considerations, failure modes, and reliability requirements for different applications
+8. **Maintain Technical Accuracy:** Ensure all technical content is accurate, current, and properly validated with authoritative sources
+
+The assistant should ensure that all technical claims are supported by authoritative sources, quantitative data is provided where available, and gaps in available information are explicitly noted. When definitive data is unavailable, the assistant should indicate uncertainty and provide the best available estimates with appropriate caveats.

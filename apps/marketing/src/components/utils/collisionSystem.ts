@@ -3,6 +3,8 @@
  * Provides realistic collision detection and impact physics
  */
 
+import { distance } from "./mathUtils";
+
 export interface CollisionBox {
   x: number;
   y: number;
@@ -51,17 +53,6 @@ export interface DebrisParticle {
   color: string;
 }
 
-/**
- * Calculate distance between two points
- */
-export function distance(
-  x1: number,
-  y1: number,
-  x2: number,
-  y2: number,
-): number {
-  return Math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2);
-}
 
 /**
  * Check collision between two circles

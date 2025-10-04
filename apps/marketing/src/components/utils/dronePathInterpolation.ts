@@ -3,6 +3,8 @@
  * Provides smooth, realistic movement for drones and threats
  */
 
+import { distance } from "./mathUtils";
+
 export interface PathPoint {
   x: number;
   y: number;
@@ -45,17 +47,6 @@ export const easingFunctions = {
   },
 };
 
-/**
- * Calculate distance between two points
- */
-export function distance(
-  x1: number,
-  y1: number,
-  x2: number,
-  y2: number,
-): number {
-  return Math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2);
-}
 
 /**
  * Calculate angle between two points in degrees

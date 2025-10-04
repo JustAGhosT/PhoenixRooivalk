@@ -223,3 +223,54 @@ CRITICAL CONSTRAINTS:
 
 - Maintain technical accuracy and cite authoritative sources for all claims
 - Distinguish between proven technologies, emerging technologies, and speculative future
+- Provide quantitative data where available and indicate uncertainty when data is limited
+- Address both technical and business implications for different stakeholder audiences
+
+CRITICAL RESEARCH QUESTIONS TO ANSWER:
+
+**Command & Control / Data Link Questions:**
+- What are the current state-of-the-art modulation schemes for UAV command and control, and how do they compare in terms of spectral efficiency, range, and interference resistance?
+- How do different frequency bands (900MHz, 1.3GHz, 2.4GHz, 5.8GHz, cellular, SATCOM) compare for LOS vs BVLOS operations across military, industrial, and racing applications?
+- What are the technical and regulatory barriers to widespread BVLOS operations, and which communication technologies are most promising for overcoming them?
+- How are LEO satellite constellations (Starlink, OneWeb) being integrated into UAV operations, and what are their latency, bandwidth, and cost characteristics compared to traditional SATCOM?
+- What mesh networking protocols are most suitable for swarm operations, and how do they scale with increasing numbers of UAVs?
+- What are the practical implementations of LPI/LPD techniques in military UAVs, and what detection ranges can adversaries achieve against these systems?
+- How effective are current anti-jamming techniques (frequency hopping, adaptive nulling, cognitive radio) against sophisticated electronic warfare threats?
+
+**Racing Video System Questions:**
+- What is the measured end-to-end latency distribution for current analog FPV systems vs digital systems (DJI, HDZero, Walksnail), and at what latency threshold do pilots report degraded performance?
+- How do analog and digital FPV systems compare in terms of range, penetration through obstacles, multipath resistance, and image quality?
+- What spectrum coordination protocols are used at major racing events to support 50+ simultaneous pilots, and what are the technical limitations?
+- What VTX power levels provide optimal range vs interference trade-offs for different racing environments (outdoor vs indoor, rural vs urban)?
+- How do different antenna configurations (patch, helical, cloverleaf) and polarizations (RHCP, LHCP) affect video reception quality in racing scenarios?
+- What emerging technologies (WiFi 6E, 60GHz millimeter wave) show promise for ultra-low-latency racing video transmission?
+
+**Ground Control Station Questions:**
+- What human factors research exists on optimal GCS interface design, and how do display layouts, control schemes, and alert systems affect operator performance and fatigue?
+- What redundancy architectures are employed in military vs industrial GCS systems, and what are their failure mode characteristics?
+- How is hot-swap radio capability implemented technically, and what handoff times are achievable without mission interruption?
+- What mission planning software capabilities are considered essential vs optional for military, industrial, and racing applications?
+- How is Precision Time Protocol (PTP) implemented in multi-UAV systems, and what timestamp accuracy is required for effective swarm coordination and sensor fusion?
+- What are the size, weight, power, and cost (SWaP-C) trade-offs between mobile tactical GCS and fixed installation GCS?
+- What operator-to-vehicle ratios are achievable with current supervisory control interfaces, and what are the limiting factors?
+
+**Cross-Cutting Technology Questions:**
+- What are the most significant unsolved engineering challenges in UAV communications across the three sectors?
+- Which emerging technologies (quantum communications, AI-driven spectrum management, reconfigurable intelligent surfaces) are likely to have the greatest impact on UAV communications in the next 5-10 years?
+- How do communication system requirements drive overall UAV system architecture, and what design trade-offs are most critical?
+- What are the total cost of ownership considerations for different communication architectures across military, industrial, and racing applications?
+
+CRITICAL INSTRUCTIONS:
+
+The assistant should:
+
+1. **Focus on Communication System Fundamentals:** Provide detailed analysis of RF systems, data links, and ground control infrastructure across different drone applications
+2. **Address Sector-Specific Requirements:** Explain communication requirements and trade-offs for military, industrial, and racing applications
+3. **Consider Integration Challenges:** Address how communication system design affects overall UAV performance, mission capability, and operational effectiveness
+4. **Validate Technical Claims:** Support all technical claims with authoritative sources, performance data, and quantitative analysis
+5. **Provide Comparative Analysis:** Deliver detailed comparisons of different communication technologies, frequency bands, and system architectures
+6. **Consider Economic Factors:** Address cost-benefit analysis, total cost of ownership, and procurement considerations for different communication solutions
+7. **Address Security and Reliability:** Explain security considerations, anti-jamming capabilities, and reliability requirements for different applications
+8. **Maintain Technical Accuracy:** Ensure all technical content is accurate, current, and properly validated with authoritative sources
+
+The assistant should ensure that all technical claims are supported by authoritative sources, quantitative data is provided where available, and gaps in available information are explicitly noted. When definitive data is unavailable, the assistant should indicate uncertainty and provide the best available estimates with appropriate caveats.

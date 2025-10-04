@@ -69,7 +69,11 @@
       "collateral_risk": "medium",
       "legal_flags": ["ITAR-likely", "Spectrum-clearance-required"],
       "swarm_effectiveness": "high",
-      "brands": ["Epirus Leonidas", "Raytheon PHASER"],
+      "range": "mid-long",
+      "energy": 25,
+      "cooldown": 10,
+      "roe": "med",
+      "brands": ["Epirus Leonidas", "Raytheon PHASER", "Boeing CHAMP"],
       "sources": [
         "https://www.epirusinc.com/leonidas",
         "https://www.raytheon.com/news/feature/phasermicrowave"
@@ -137,10 +141,15 @@
       "collateral_risk": "low",
       "legal_flags": [],
       "swarm_effectiveness": "low",
-      "brands": ["OpenWorks SkyWall", "Fortem DroneHunter (net gun)"],
+      "range": "short",
+      "energy": 10,
+      "cooldown": 6,
+      "roe": "low",
+      "brands": ["OpenWorks SkyWall", "Fortem DroneHunter (net gun)", "Anduril Anvil (net capture)"],
       "sources": [
         "https://openworksengineering.com/skywall/",
-        "https://www.fortemtech.com/products/"
+        "https://www.fortemtech.com/products/",
+        "https://www.anduril.com/anvil/"
       ]
     },
     {
@@ -203,10 +212,20 @@
       "collateral_risk": "medium",
       "legal_flags": ["Occupational noise limits"],
       "swarm_effectiveness": "low",
+      "range": "short",
+      "energy": 6,
+      "cooldown": 5,
+      "roe": "low",
       "brands": [
-        "Genasys LRAD (hailer); no widely fielded anti‑UAS acoustic disruptor"
+        "Genasys LRAD (hailer); no widely fielded anti‑UAS acoustic disruptor",
+        "LRAD Acoustic Hailing Device",
+        "American Technology Corp"
       ],
-      "sources": ["https://genasys.com/lrad-long-range-acoustic-devices/"]
+      "sources": [
+        "https://genasys.com/lrad-long-range-acoustic-devices/",
+        "https://www.lradx.com/",
+        "https://www.atcsd.com/"
+      ]
     },
     {
       "id": "AI_DECEPTION",
@@ -217,54 +236,18 @@
       "power_kw_nominal": 0.0,
       "latency_ms": 300,
       "collateral_risk": "low",
-      "legal_flags": ["Research only"],
+      "legal_flags": ["Research only", "Export-controlled"],
       "swarm_effectiveness": "unknown",
-      "brands": ["none"],
+      "range": "mid-long",
+      "energy": 18,
+      "cooldown": 12,
+      "roe": "med",
+      "brands": ["none", "BAE Systems AI/ML EW", "Lockheed Martin Cognitive EW"],
       "sources": [
         "https://www.darpa.mil/research/programs/guaranteeing-ai-robustness-against-deception",
-        "https://www.rand.org/pubs/research_reports/RRA866-1.html"
-      ]
-    },
-    {
-      "id": "net",
-      "name": "Net Interceptor",
-      "class": "capture",
-      "description": "Captures 1 hostile; disables if < R2",
-      "typical_range_m": 150,
-      "power_kw_nominal": 1,
-      "latency_ms": 100,
-      "collateral_risk": "low",
-      "legal_flags": [],
-      "swarm_effectiveness": "high",
-      "range": "short",
-      "energy": 10,
-      "cooldown": 6,
-      "roe": "low",
-      "brands": ["Fortem DroneHunter F700", "Anduril Anvil (net capture)"],
-      "sources": [
-        "https://www.fortemtech.com/products/",
-        "https://www.anduril.com/anvil/"
-      ]
-    },
-    {
-      "id": "hpm",
-      "name": "HPM Burst",
-      "class": "directed",
-      "description": "Chance to fry electronics in arc",
-      "typical_range_m": 800,
-      "power_kw_nominal": 50,
-      "latency_ms": 50,
-      "collateral_risk": "medium",
-      "legal_flags": ["ITAR-likely", "Export-controlled"],
-      "swarm_effectiveness": "high",
-      "range": "short-mid",
-      "energy": 25,
-      "cooldown": 10,
-      "roe": "med",
-      "brands": ["Boeing CHAMP", "Raytheon High Power Microwave"],
-      "sources": [
-        "https://www.boeing.com/defense/champ/",
-        "https://www.rtx.com/raytheon/what-we-do/integrated-air-and-missile-defense/lasers"
+        "https://www.rand.org/pubs/research_reports/RRA866-1.html",
+        "https://www.baesystems.com/en-us/product/electronic-warfare-systems",
+        "https://www.lockheedmartin.com/en-us/products/electronic-warfare.html"
       ]
     },
     {
@@ -331,24 +314,6 @@
       ]
     },
     {
-      "id": "acoustic",
-      "name": "Acoustic Disruptor",
-      "class": "nonkinetic",
-      "description": "Reduces speed/coordination of light drones",
-      "typical_range_m": 200,
-      "power_kw_nominal": 1,
-      "latency_ms": 100,
-      "collateral_risk": "low",
-      "legal_flags": [],
-      "swarm_effectiveness": "medium",
-      "range": "short",
-      "energy": 6,
-      "cooldown": 5,
-      "roe": "low",
-      "brands": ["LRAD Acoustic Hailing Device", "American Technology Corp"],
-      "sources": ["https://www.lradx.com/", "https://www.atcsd.com/"]
-    },
-    {
       "id": "decoy_beacon",
       "name": "Decoy Beacon",
       "class": "deception",
@@ -412,27 +377,6 @@
       "sources": [
         "https://www.rtx.com/raytheon/what-we-do/integrated-air-and-missile-defense/c-ram",
         "https://www.rheinmetall.com/en/media/news-watch/news/2022/2022-05-19_laser-weapons-against-drones"
-      ]
-    },
-    {
-      "id": "ai_deception",
-      "name": "AI Deception",
-      "class": "ecm",
-      "description": "Increases hostile false-pathing (%) for T seconds",
-      "typical_range_m": 2000,
-      "power_kw_nominal": 3,
-      "latency_ms": 300,
-      "collateral_risk": "low",
-      "legal_flags": ["Export-controlled"],
-      "swarm_effectiveness": "high",
-      "range": "mid-long",
-      "energy": 18,
-      "cooldown": 12,
-      "roe": "med",
-      "brands": ["BAE Systems AI/ML EW", "Lockheed Martin Cognitive EW"],
-      "sources": [
-        "https://www.baesystems.com/en-us/product/electronic-warfare-systems",
-        "https://www.lockheedmartin.com/en-us/products/electronic-warfare.html"
       ]
     }
   ],
