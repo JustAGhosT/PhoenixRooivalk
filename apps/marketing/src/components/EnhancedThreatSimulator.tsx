@@ -4,9 +4,9 @@ import { EnergyManagement } from "./EnergyManagement";
 import { WeaponCooldownMeter } from "./EnhancedCooldownMeter";
 import { CompactROEIndicator } from "./EnhancedROEIndicator";
 import {
-  EnhancedRadarSystem,
-  FriendlyDeployment,
-  RadarTarget,
+    EnhancedRadarSystem,
+    FriendlyDeployment,
+    RadarTarget,
 } from "./EnhancedRadarSystem";
 import { FilterChips } from "./FilterChips";
 import { InfoPopover } from "./InfoPopover";
@@ -14,12 +14,12 @@ import { LegalBadge } from "./LegalBadge";
 import { MultiSelectDeployment } from "./MultiSelectDeployment";
 import { SynergyEffect, SynergySystem } from "./SynergySystem";
 
-export interface EnhancedThreatSimulatorProps {
+export interface ThreatSimulatorDemoProps {
   className?: string;
 }
 
-export const EnhancedThreatSimulator: React.FC<
-  EnhancedThreatSimulatorProps
+export const ThreatSimulatorDemo: React.FC<
+  ThreatSimulatorDemoProps
 > = ({ className = "" }) => {
   // Core system state
   const [currentEnergy, setCurrentEnergy] = useState(100);

@@ -8,17 +8,37 @@
           "label": "Next",
           "isLast": true,
           "path": "/docs",
-          "mainDocId": "README",
+          "mainDocId": "phoenix-rooivalk-documentation",
           "docs": [
+            {
+              "id": "business/budget-timeline-templates",
+              "path": "/docs/business/budget-timeline-templates"
+            },
             {
               "id": "business/business-model",
               "path": "/docs/business/business-model",
               "sidebar": "docs"
             },
             {
-              "id": "business/Competitive_Analysis",
-              "path": "/docs/business/Competitive_Analysis",
+              "id": "business/commercial-proposal-template",
+              "path": "/docs/business/commercial-proposal-template"
+            },
+            {
+              "id": "business/competitive-analysis",
+              "path": "/docs/business/competitive-analysis",
               "sidebar": "docs"
+            },
+            {
+              "id": "business/competitive-differentiation-guide",
+              "path": "/docs/business/competitive-differentiation-guide"
+            },
+            {
+              "id": "business/discovery-questionnaire",
+              "path": "/docs/business/discovery-questionnaire"
+            },
+            {
+              "id": "business/dod-proposal-template",
+              "path": "/docs/business/dod-proposal-template"
             },
             {
               "id": "business/Emerging_Trends",
@@ -26,19 +46,35 @@
               "sidebar": "docs"
             },
             {
-              "id": "business/Market_Analysis",
-              "path": "/docs/business/Market_Analysis",
+              "id": "business/market-analysis",
+              "path": "/docs/business/market-analysis",
               "sidebar": "docs"
             },
             {
-              "id": "business/ROI_Analysis",
-              "path": "/docs/business/ROI_Analysis",
+              "id": "business/presentation-video-script",
+              "path": "/docs/business/presentation-video-script"
+            },
+            {
+              "id": "business/roi-analysis",
+              "path": "/docs/business/roi-analysis",
               "sidebar": "docs"
             },
             {
-              "id": "business/Use_Cases",
-              "path": "/docs/business/Use_Cases",
+              "id": "business/technical-requirements-checklist",
+              "path": "/docs/business/technical-requirements-checklist"
+            },
+            {
+              "id": "business/traction-metrics",
+              "path": "/docs/business/traction-metrics"
+            },
+            {
+              "id": "business/use-cases",
+              "path": "/docs/business/use-cases",
               "sidebar": "docs"
+            },
+            {
+              "id": "design/icon-requirements",
+              "path": "/docs/design/icon-requirements"
             },
             {
               "id": "executive/executive-summary",
@@ -46,8 +82,8 @@
               "sidebar": "docs"
             },
             {
-              "id": "executive/Global_Strategy",
-              "path": "/docs/executive/Global_Strategy",
+              "id": "executive/global-strategy",
+              "path": "/docs/executive/global-strategy",
               "sidebar": "docs"
             },
             {
@@ -56,21 +92,27 @@
               "sidebar": "docs"
             },
             {
+              "id": "executive/phoenix-rooivalk-litepaper",
+              "path": "/docs/executive/phoenix-rooivalk-litepaper",
+              "sidebar": "docs"
+            },
+            {
               "id": "executive/phoenix-rooivalk-pitch-deck",
               "path": "/docs/executive/phoenix-rooivalk-pitch-deck"
             },
             {
               "id": "executive/phoenix-rooivalk-technical-whitepaper",
-              "path": "/docs/executive/phoenix-rooivalk-technical-whitepaper"
-            },
-            {
-              "id": "executive/Presentation_Materials",
-              "path": "/docs/executive/Presentation_Materials",
+              "path": "/docs/executive/phoenix-rooivalk-technical-whitepaper",
               "sidebar": "docs"
             },
             {
-              "id": "executive/Strategic_Recommendations",
-              "path": "/docs/executive/Strategic_Recommendations",
+              "id": "executive/presentation-materials",
+              "path": "/docs/executive/presentation-materials",
+              "sidebar": "docs"
+            },
+            {
+              "id": "executive/strategic-recommendations",
+              "path": "/docs/executive/strategic-recommendations",
               "sidebar": "docs"
             },
             {
@@ -82,19 +124,23 @@
               "path": "/docs/executive/system-overview-detailed"
             },
             {
-              "id": "executive/Team_Status",
-              "path": "/docs/executive/Team_Status",
+              "id": "executive/team-status",
+              "path": "/docs/executive/team-status",
               "sidebar": "docs"
             },
             {
-              "id": "legal/Compliance_Framework",
-              "path": "/docs/legal/Compliance_Framework",
+              "id": "legal/compliance-framework",
+              "path": "/docs/legal/compliance-framework",
               "sidebar": "docs"
             },
             {
-              "id": "legal/Legal_Framework",
-              "path": "/docs/legal/Legal_Framework",
+              "id": "legal/legal-framework",
+              "path": "/docs/legal/legal-framework",
               "sidebar": "docs"
+            },
+            {
+              "id": "operations/customer-onboarding-guide",
+              "path": "/docs/operations/customer-onboarding-guide"
             },
             {
               "id": "operations/deployment/Deployment_Guide",
@@ -147,24 +193,28 @@
               "sidebar": "docs"
             },
             {
-              "id": "README",
+              "id": "phoenix-rooivalk-documentation",
               "path": "/docs/"
+            },
+            {
+              "id": "research/Experimental Counter-Drone Effectors Transform Warfare",
+              "path": "/docs/research/Experimental Counter-Drone Effectors Transform Warfare"
             },
             {
               "id": "technical/ai-benefits",
               "path": "/docs/technical/ai-benefits"
             },
             {
-              "id": "technical/architecture/Architecture_Decision_Records",
-              "path": "/docs/technical/architecture/Architecture_Decision_Records"
+              "id": "technical/architecture/architecture-decision-records",
+              "path": "/docs/technical/architecture/architecture-decision-records"
             },
             {
               "id": "technical/architecture/technical-architecture",
               "path": "/docs/technical/architecture/technical-architecture"
             },
             {
-              "id": "technical/Blockchain_Integration",
-              "path": "/docs/technical/Blockchain_Integration",
+              "id": "technical/blockchain-integration",
+              "path": "/docs/technical/blockchain-integration",
               "sidebar": "docs"
             },
             {
@@ -227,8 +277,8 @@
               "path": "/docs/technical/glossary"
             },
             {
-              "id": "technical/Hardware_Foundation",
-              "path": "/docs/technical/Hardware_Foundation",
+              "id": "technical/hardware-foundation",
+              "path": "/docs/technical/hardware-foundation",
               "sidebar": "docs"
             },
             {
@@ -261,8 +311,8 @@
               "path": "/docs/technical/reusable-systems-architecture"
             },
             {
-              "id": "technical/System_Architecture",
-              "path": "/docs/technical/System_Architecture",
+              "id": "technical/system-architecture",
+              "path": "/docs/technical/system-architecture",
               "sidebar": "docs"
             },
             {

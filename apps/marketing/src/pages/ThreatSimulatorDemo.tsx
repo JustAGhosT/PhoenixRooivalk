@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import { EnergyBudget } from "../components/EnergyBudget";
 import { EnergyManagement } from "../components/EnergyManagement";
 import {
-    EnhancedCooldownMeter,
-    WeaponCooldownMeter,
+  DemoCooldownMeter,
+  WeaponCooldownMeter,
 } from "../components/EnhancedCooldownMeter";
 import { EnhancedROEIndicator } from "../components/EnhancedROEIndicator";
 import {
@@ -11,7 +11,7 @@ import {
     FriendlyDeployment,
     RadarTarget,
 } from "../components/EnhancedRadarSystem";
-import { EnhancedThreatSimulator } from "../components/EnhancedThreatSimulator";
+import { ThreatSimulatorDemo as ThreatSimulatorDemoComponent } from "../components/EnhancedThreatSimulator";
 import { FilterChips } from "../components/FilterChips";
 import { InfoPopover } from "../components/InfoPopover";
 import { LegalBadge } from "../components/LegalBadge";
@@ -102,7 +102,7 @@ const ThreatSimulatorDemo: React.FC = () => {
 
   const renderFullSimulator = () => (
     <div className="demo-simulator">
-      <EnhancedThreatSimulator className="demo-simulator" />
+      <ThreatSimulatorDemoComponent className="demo-simulator" />
     </div>
   );
 
@@ -170,7 +170,7 @@ const ThreatSimulatorDemo: React.FC = () => {
             <div className="cooldown-showcase">
               <div className="cooldown-item">
                 <h3>Enhanced Cooldown Meter</h3>
-                <EnhancedCooldownMeter
+                <DemoCooldownMeter
                   cooldownTime={8}
                   isActive={true}
                   size={60}

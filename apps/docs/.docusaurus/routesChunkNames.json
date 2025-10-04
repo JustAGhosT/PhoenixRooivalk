@@ -13,52 +13,88 @@
     },
     "config": "5e9f5e1a"
   },
-  "/docs-c8f": {
+  "/docs-491": {
     "__comp": "5e95c892",
     "__context": {
       "plugin": "aba21aa0"
     }
   },
-  "/docs-b51": {
+  "/docs-0cf": {
     "__comp": "a7bd4aaa",
     "__props": "0058b4c6"
   },
-  "/docs-d9f": {
+  "/docs-319": {
     "__comp": "a94703ab"
   },
   "/docs/-e35": {
     "__comp": "17896441",
     "content": "23374ca6"
   },
+  "/docs/business/budget-timeline-templates-b8d": {
+    "__comp": "17896441",
+    "content": "d5c5444b"
+  },
   "/docs/business/business-model-fc2": {
     "__comp": "17896441",
     "content": "649e8ab2"
   },
-  "/docs/business/Competitive_Analysis-a6c": {
+  "/docs/business/commercial-proposal-template-fbd": {
+    "__comp": "17896441",
+    "content": "e13a6ff1"
+  },
+  "/docs/business/competitive-analysis-8d1": {
     "__comp": "17896441",
     "content": "9a732008"
+  },
+  "/docs/business/competitive-differentiation-guide-5d2": {
+    "__comp": "17896441",
+    "content": "ffac6612"
+  },
+  "/docs/business/discovery-questionnaire-147": {
+    "__comp": "17896441",
+    "content": "6c6d44c6"
+  },
+  "/docs/business/dod-proposal-template-63f": {
+    "__comp": "17896441",
+    "content": "decc5e68"
   },
   "/docs/business/Emerging_Trends-511": {
     "__comp": "17896441",
     "content": "99f2cf14"
   },
-  "/docs/business/Market_Analysis-484": {
+  "/docs/business/market-analysis-144": {
     "__comp": "17896441",
     "content": "9c4c1f3d"
   },
-  "/docs/business/ROI_Analysis-636": {
+  "/docs/business/presentation-video-script-f39": {
+    "__comp": "17896441",
+    "content": "0c99c161"
+  },
+  "/docs/business/roi-analysis-be1": {
     "__comp": "17896441",
     "content": "e542afd5"
   },
-  "/docs/business/Use_Cases-956": {
+  "/docs/business/technical-requirements-checklist-a98": {
+    "__comp": "17896441",
+    "content": "67a42f4d"
+  },
+  "/docs/business/traction-metrics-b2e": {
+    "__comp": "17896441",
+    "content": "364be80c"
+  },
+  "/docs/business/use-cases-5ec": {
     "__comp": "17896441",
     "content": "06fb56e8"
+  },
+  "/docs/design/icon-requirements-6c9": {
+    "__comp": "17896441",
+    "content": "f32952c7"
   },
   "/docs/executive/executive-summary-41b": {
     "__comp": "17896441",
     "content": "5347ec1a"
   },
-  "/docs/executive/Global_Strategy-05f": {
+  "/docs/executive/global-strategy-83d": {
     "__comp": "17896441",
     "content": "1cad8231"
   },
@@ -66,19 +102,23 @@
     "__comp": "17896441",
     "content": "1d69d61e"
   },
+  "/docs/executive/phoenix-rooivalk-litepaper-361": {
+    "__comp": "17896441",
+    "content": "d9693566"
+  },
   "/docs/executive/phoenix-rooivalk-pitch-deck-33d": {
     "__comp": "17896441",
     "content": "98d15428"
   },
-  "/docs/executive/phoenix-rooivalk-technical-whitepaper-1e6": {
+  "/docs/executive/phoenix-rooivalk-technical-whitepaper-a68": {
     "__comp": "17896441",
     "content": "010e8a4b"
   },
-  "/docs/executive/Presentation_Materials-548": {
+  "/docs/executive/presentation-materials-0c1": {
     "__comp": "17896441",
     "content": "65fe5c38"
   },
-  "/docs/executive/Strategic_Recommendations-db1": {
+  "/docs/executive/strategic-recommendations-c74": {
     "__comp": "17896441",
     "content": "dd2ff445"
   },
@@ -90,17 +130,21 @@
     "__comp": "17896441",
     "content": "ab45e36a"
   },
-  "/docs/executive/Team_Status-d97": {
+  "/docs/executive/team-status-d1a": {
     "__comp": "17896441",
     "content": "e43146b3"
   },
-  "/docs/legal/Compliance_Framework-158": {
+  "/docs/legal/compliance-framework-606": {
     "__comp": "17896441",
     "content": "c6506ae2"
   },
-  "/docs/legal/Legal_Framework-a8d": {
+  "/docs/legal/legal-framework-2af": {
     "__comp": "17896441",
     "content": "540ea4d5"
+  },
+  "/docs/operations/customer-onboarding-guide-eda": {
+    "__comp": "17896441",
+    "content": "76bd784b"
   },
   "/docs/operations/deployment/Deployment_Guide-4f3": {
     "__comp": "17896441",
@@ -142,11 +186,15 @@
     "__comp": "17896441",
     "content": "be9be82a"
   },
+  "/docs/research/Experimental Counter-Drone Effectors Transform Warfare-3ff": {
+    "__comp": "17896441",
+    "content": "fe9fa87f"
+  },
   "/docs/technical/ai-benefits-fd9": {
     "__comp": "17896441",
     "content": "fdc7b9db"
   },
-  "/docs/technical/architecture/Architecture_Decision_Records-be1": {
+  "/docs/technical/architecture/architecture-decision-records-c4b": {
     "__comp": "17896441",
     "content": "ad358c63"
   },
@@ -154,7 +202,7 @@
     "__comp": "17896441",
     "content": "861b020e"
   },
-  "/docs/technical/Blockchain_Integration-58b": {
+  "/docs/technical/blockchain-integration-b51": {
     "__comp": "17896441",
     "content": "f49cf5f4"
   },
@@ -206,7 +254,7 @@
     "__comp": "17896441",
     "content": "d53d0575"
   },
-  "/docs/technical/Hardware_Foundation-b3b": {
+  "/docs/technical/hardware-foundation-f77": {
     "__comp": "17896441",
     "content": "1c607805"
   },
@@ -234,7 +282,7 @@
     "__comp": "17896441",
     "content": "29bf46e2"
   },
-  "/docs/technical/System_Architecture-e5d": {
+  "/docs/technical/system-architecture-403": {
     "__comp": "17896441",
     "content": "e1f280c3"
   },

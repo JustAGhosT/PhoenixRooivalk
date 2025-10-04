@@ -14,19 +14,24 @@ export default [
   },
   {
     path: '/docs',
-    component: ComponentCreator('/docs', 'c8f'),
+    component: ComponentCreator('/docs', '491'),
     routes: [
       {
         path: '/docs',
-        component: ComponentCreator('/docs', 'b51'),
+        component: ComponentCreator('/docs', '0cf'),
         routes: [
           {
             path: '/docs',
-            component: ComponentCreator('/docs', 'd9f'),
+            component: ComponentCreator('/docs', '319'),
             routes: [
               {
                 path: '/docs/',
                 component: ComponentCreator('/docs/', 'e35'),
+                exact: true
+              },
+              {
+                path: '/docs/business/budget-timeline-templates',
+                component: ComponentCreator('/docs/business/budget-timeline-templates', 'b8d'),
                 exact: true
               },
               {
@@ -36,10 +41,30 @@ export default [
                 sidebar: "docs"
               },
               {
-                path: '/docs/business/Competitive_Analysis',
-                component: ComponentCreator('/docs/business/Competitive_Analysis', 'a6c'),
+                path: '/docs/business/commercial-proposal-template',
+                component: ComponentCreator('/docs/business/commercial-proposal-template', 'fbd'),
+                exact: true
+              },
+              {
+                path: '/docs/business/competitive-analysis',
+                component: ComponentCreator('/docs/business/competitive-analysis', '8d1'),
                 exact: true,
                 sidebar: "docs"
+              },
+              {
+                path: '/docs/business/competitive-differentiation-guide',
+                component: ComponentCreator('/docs/business/competitive-differentiation-guide', '5d2'),
+                exact: true
+              },
+              {
+                path: '/docs/business/discovery-questionnaire',
+                component: ComponentCreator('/docs/business/discovery-questionnaire', '147'),
+                exact: true
+              },
+              {
+                path: '/docs/business/dod-proposal-template',
+                component: ComponentCreator('/docs/business/dod-proposal-template', '63f'),
+                exact: true
               },
               {
                 path: '/docs/business/Emerging_Trends',
@@ -48,22 +73,42 @@ export default [
                 sidebar: "docs"
               },
               {
-                path: '/docs/business/Market_Analysis',
-                component: ComponentCreator('/docs/business/Market_Analysis', '484'),
+                path: '/docs/business/market-analysis',
+                component: ComponentCreator('/docs/business/market-analysis', '144'),
                 exact: true,
                 sidebar: "docs"
               },
               {
-                path: '/docs/business/ROI_Analysis',
-                component: ComponentCreator('/docs/business/ROI_Analysis', '636'),
+                path: '/docs/business/presentation-video-script',
+                component: ComponentCreator('/docs/business/presentation-video-script', 'f39'),
+                exact: true
+              },
+              {
+                path: '/docs/business/roi-analysis',
+                component: ComponentCreator('/docs/business/roi-analysis', 'be1'),
                 exact: true,
                 sidebar: "docs"
               },
               {
-                path: '/docs/business/Use_Cases',
-                component: ComponentCreator('/docs/business/Use_Cases', '956'),
+                path: '/docs/business/technical-requirements-checklist',
+                component: ComponentCreator('/docs/business/technical-requirements-checklist', 'a98'),
+                exact: true
+              },
+              {
+                path: '/docs/business/traction-metrics',
+                component: ComponentCreator('/docs/business/traction-metrics', 'b2e'),
+                exact: true
+              },
+              {
+                path: '/docs/business/use-cases',
+                component: ComponentCreator('/docs/business/use-cases', '5ec'),
                 exact: true,
                 sidebar: "docs"
+              },
+              {
+                path: '/docs/design/icon-requirements',
+                component: ComponentCreator('/docs/design/icon-requirements', '6c9'),
+                exact: true
               },
               {
                 path: '/docs/executive/executive-summary',
@@ -72,8 +117,8 @@ export default [
                 sidebar: "docs"
               },
               {
-                path: '/docs/executive/Global_Strategy',
-                component: ComponentCreator('/docs/executive/Global_Strategy', '05f'),
+                path: '/docs/executive/global-strategy',
+                component: ComponentCreator('/docs/executive/global-strategy', '83d'),
                 exact: true,
                 sidebar: "docs"
               },
@@ -84,24 +129,31 @@ export default [
                 sidebar: "docs"
               },
               {
+                path: '/docs/executive/phoenix-rooivalk-litepaper',
+                component: ComponentCreator('/docs/executive/phoenix-rooivalk-litepaper', '361'),
+                exact: true,
+                sidebar: "docs"
+              },
+              {
                 path: '/docs/executive/phoenix-rooivalk-pitch-deck',
                 component: ComponentCreator('/docs/executive/phoenix-rooivalk-pitch-deck', '33d'),
                 exact: true
               },
               {
                 path: '/docs/executive/phoenix-rooivalk-technical-whitepaper',
-                component: ComponentCreator('/docs/executive/phoenix-rooivalk-technical-whitepaper', '1e6'),
-                exact: true
-              },
-              {
-                path: '/docs/executive/Presentation_Materials',
-                component: ComponentCreator('/docs/executive/Presentation_Materials', '548'),
+                component: ComponentCreator('/docs/executive/phoenix-rooivalk-technical-whitepaper', 'a68'),
                 exact: true,
                 sidebar: "docs"
               },
               {
-                path: '/docs/executive/Strategic_Recommendations',
-                component: ComponentCreator('/docs/executive/Strategic_Recommendations', 'db1'),
+                path: '/docs/executive/presentation-materials',
+                component: ComponentCreator('/docs/executive/presentation-materials', '0c1'),
+                exact: true,
+                sidebar: "docs"
+              },
+              {
+                path: '/docs/executive/strategic-recommendations',
+                component: ComponentCreator('/docs/executive/strategic-recommendations', 'c74'),
                 exact: true,
                 sidebar: "docs"
               },
@@ -116,22 +168,27 @@ export default [
                 exact: true
               },
               {
-                path: '/docs/executive/Team_Status',
-                component: ComponentCreator('/docs/executive/Team_Status', 'd97'),
+                path: '/docs/executive/team-status',
+                component: ComponentCreator('/docs/executive/team-status', 'd1a'),
                 exact: true,
                 sidebar: "docs"
               },
               {
-                path: '/docs/legal/Compliance_Framework',
-                component: ComponentCreator('/docs/legal/Compliance_Framework', '158'),
+                path: '/docs/legal/compliance-framework',
+                component: ComponentCreator('/docs/legal/compliance-framework', '606'),
                 exact: true,
                 sidebar: "docs"
               },
               {
-                path: '/docs/legal/Legal_Framework',
-                component: ComponentCreator('/docs/legal/Legal_Framework', 'a8d'),
+                path: '/docs/legal/legal-framework',
+                component: ComponentCreator('/docs/legal/legal-framework', '2af'),
                 exact: true,
                 sidebar: "docs"
+              },
+              {
+                path: '/docs/operations/customer-onboarding-guide',
+                component: ComponentCreator('/docs/operations/customer-onboarding-guide', 'eda'),
+                exact: true
               },
               {
                 path: '/docs/operations/deployment/Deployment_Guide',
@@ -194,13 +251,18 @@ export default [
                 sidebar: "docs"
               },
               {
+                path: '/docs/research/Experimental Counter-Drone Effectors Transform Warfare',
+                component: ComponentCreator('/docs/research/Experimental Counter-Drone Effectors Transform Warfare', '3ff'),
+                exact: true
+              },
+              {
                 path: '/docs/technical/ai-benefits',
                 component: ComponentCreator('/docs/technical/ai-benefits', 'fd9'),
                 exact: true
               },
               {
-                path: '/docs/technical/architecture/Architecture_Decision_Records',
-                component: ComponentCreator('/docs/technical/architecture/Architecture_Decision_Records', 'be1'),
+                path: '/docs/technical/architecture/architecture-decision-records',
+                component: ComponentCreator('/docs/technical/architecture/architecture-decision-records', 'c4b'),
                 exact: true
               },
               {
@@ -209,8 +271,8 @@ export default [
                 exact: true
               },
               {
-                path: '/docs/technical/Blockchain_Integration',
-                component: ComponentCreator('/docs/technical/Blockchain_Integration', '58b'),
+                path: '/docs/technical/blockchain-integration',
+                component: ComponentCreator('/docs/technical/blockchain-integration', 'b51'),
                 exact: true,
                 sidebar: "docs"
               },
@@ -286,8 +348,8 @@ export default [
                 exact: true
               },
               {
-                path: '/docs/technical/Hardware_Foundation',
-                component: ComponentCreator('/docs/technical/Hardware_Foundation', 'b3b'),
+                path: '/docs/technical/hardware-foundation',
+                component: ComponentCreator('/docs/technical/hardware-foundation', 'f77'),
                 exact: true,
                 sidebar: "docs"
               },
@@ -327,8 +389,8 @@ export default [
                 exact: true
               },
               {
-                path: '/docs/technical/System_Architecture',
-                component: ComponentCreator('/docs/technical/System_Architecture', 'e5d'),
+                path: '/docs/technical/system-architecture',
+                component: ComponentCreator('/docs/technical/system-architecture', '403'),
                 exact: true,
                 sidebar: "docs"
               },

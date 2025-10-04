@@ -10,7 +10,7 @@ export interface EnhancedCooldownMeterProps {
   className?: string;
 }
 
-export const EnhancedCooldownMeter: React.FC<EnhancedCooldownMeterProps> = ({
+export const DemoCooldownMeter: React.FC<EnhancedCooldownMeterProps> = ({
   cooldownTime,
   isActive,
   onCooldownComplete,
@@ -160,7 +160,7 @@ export const WeaponCooldownMeter: React.FC<WeaponCooldownMeterProps> = ({
 
   return (
     <div className="weapon-cooldown-meter">
-      <EnhancedCooldownMeter
+      <DemoCooldownMeter
         cooldownTime={cooldownTime}
         isActive={isActive}
         onCooldownComplete={onCooldownComplete}
