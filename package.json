@@ -9,6 +9,9 @@
     "typecheck": "turbo typecheck",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
+    "rust:format": "cargo fmt --all",
+    "rust:format:check": "cargo fmt --all -- --check",
+    "fx": "pnpm run format && pnpm run lint",
     "prepare": "husky"
   },
   "devDependencies": {
