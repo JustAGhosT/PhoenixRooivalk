@@ -295,10 +295,10 @@ impl EvidenceRepository {
         let stats_row = sqlx::query(
             "SELECT 
                 COUNT(*) as total,
-                SUM(CASE WHEN status = 'queued' THEN 1 ELSE 0 END) as queued,
-                SUM(CASE WHEN status = 'in_progress' THEN 1 ELSE 0 END) as in_progress,
-                SUM(CASE WHEN status = 'done' THEN 1 ELSE 0 END) as done,
-                SUM(CASE WHEN status = 'failed' THEN 1 ELSE 0 END) as failed
+                COALESCE(SUM(CASE WHEN status = 'queued' THEN 1 ELSE 0 END), 0) as queued,
+                COALESCE(SUM(CASE WHEN status = 'in_progress' THEN 1 ELSE 0 END), 0) as in_progress,
+                COALESCE(SUM(CASE WHEN status = 'done' THEN 1 ELSE 0 END), 0) as done,
+                COALESCE(SUM(CASE WHEN status = 'failed' THEN 1 ELSE 0 END), 0) as failed
             FROM outbox_jobs"
         )
         .fetch_one(&self.pool)

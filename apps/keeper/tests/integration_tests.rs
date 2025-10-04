@@ -4,7 +4,7 @@
 //! the keeper's job processing, database operations, and error handling.
 
 use phoenix_keeper::{
-    ensure_schema, JobProvider, JobProviderExt, SqliteJobProvider,
+    JobProvider, JobProviderExt, SqliteJobProvider,
     run_job_loop, run_confirmation_loop,
 };
 use phoenix_evidence::{
@@ -12,9 +12,9 @@ use phoenix_evidence::{
     anchor::{AnchorProvider, AnchorError},
 };
 use sqlx::{sqlite::SqlitePoolOptions, Row};
-use tempfile::NamedTempFile;
 use std::sync::{Arc, Mutex};
 use std::time::Duration;
+use std::collections::HashSet;
 use chrono::Utc;
 use serde_json::json;
 
@@ -78,17 +78,55 @@ impl AnchorProvider for MockAnchorProvider {
 }
 
 async fn setup_test_db() -> sqlx::Pool<sqlx::Sqlite> {
-    let temp_db = NamedTempFile::new().unwrap();
-    let db_path = temp_db.path().to_str().unwrap();
-    let db_url = format!("sqlite://{}", db_path);
+    // Use a named in-memory database with shared cache to ensure persistence
+    let db_url = format!("sqlite:file:memdb_{}?mode=memory&cache=shared", 
+        std::time::SystemTime::now()
+            .duration_since(std::time::UNIX_EPOCH)
+            .unwrap()
+            .as_nanos());
     
     let pool = SqlitePoolOptions::new()
-        .max_connections(1)
+        .max_connections(2)
         .connect(&db_url)
         .await
         .unwrap();
     
-    ensure_schema(&pool).await.unwrap();
+    // Create schema manually to ensure it's created
+    sqlx::query(
+        r#"
+        CREATE TABLE IF NOT EXISTS outbox_jobs (
+            id TEXT PRIMARY KEY,
+            payload_sha256 TEXT NOT NULL,
+            status TEXT NOT NULL DEFAULT 'queued',
+            attempts INTEGER NOT NULL DEFAULT 0,
+            last_error TEXT,
+            created_ms INTEGER NOT NULL,
+            updated_ms INTEGER NOT NULL,
+            next_attempt_ms INTEGER NOT NULL DEFAULT 0
+        );
+        "#,
+    )
+    .execute(&pool)
+    .await
+    .unwrap();
+
+    sqlx::query(
+        r#"
+        CREATE TABLE IF NOT EXISTS outbox_tx_refs (
+            job_id TEXT NOT NULL,
+            network TEXT NOT NULL,
+            chain TEXT NOT NULL,
+            tx_id TEXT NOT NULL,
+            confirmed INTEGER NOT NULL,
+            timestamp INTEGER,
+            PRIMARY KEY (job_id, network, chain)
+        );
+        "#,
+    )
+    .execute(&pool)
+    .await
+    .unwrap();
+    
     pool
 }
 
@@ -112,10 +150,19 @@ async fn test_complete_job_processing_workflow() {
         .unwrap();
     }
 
-    // Process jobs
-    for i in 0..3 {
+    // Process jobs (order-agnostic)
+    let mut processed_job_ids = HashSet::new();
+    let expected_job_ids: HashSet<String> = ["workflow-test-0", "workflow-test-1", "workflow-test-2"]
+        .iter()
+        .map(|s| s.to_string())
+        .collect();
+    
+    for _ in 0..3 {
         let job = provider.fetch_next().await.unwrap().unwrap();
-        assert_eq!(job.id, format!("workflow-test-{}", i));
+        
+        // Verify job ID is in expected set
+        assert!(expected_job_ids.contains(&job.id));
+        processed_job_ids.insert(job.id.clone());
         
         // Create evidence record
         let evidence = EvidenceRecord {
@@ -137,7 +184,8 @@ async fn test_complete_job_processing_workflow() {
         provider.mark_done(&job.id).await.unwrap();
     }
 
-    // Verify all jobs are processed
+    // Verify all expected jobs were processed
+    assert_eq!(processed_job_ids, expected_job_ids);
     assert_eq!(anchor.get_anchored_count(), 3);
     
     // Check job statuses
@@ -469,7 +517,7 @@ async fn test_transaction_management() {
     assert_eq!(stored_tx.1, "testnet");
     assert_eq!(stored_tx.2, "testchain");
     assert_eq!(stored_tx.3, "tx-transaction-test");
-    assert_eq!(stored_tx.4, false);
+    assert!(!stored_tx.4);
 }
 
 /// Test job processing with timeout

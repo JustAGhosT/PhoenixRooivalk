@@ -1,0 +1,23 @@
+```mermaid
+sequenceDiagram
+  autonumber
+  participant SVC as Service (producer)
+  participant NATS as NATS
+  participant EVID as Evidence Keeper
+  participant CHAIN as Solana/EtherLink
+  participant OBS as OTEL/Observability
+
+  SVC->>NATS: publish evidence.log (EvidenceEntryV1)
+  NATS-->>EVID: deliver evidence event
+  EVID->>EVID: enqueue in SQLite outbox (idempotent)
+  loop retry/backoff until anchored
+    EVID->>CHAIN: submit tx (content hash + metadata)
+    alt anchor ok
+      CHAIN-->>EVID: tx receipt
+      EVID->>EVID: mark outbox row complete
+    else transient error
+      EVID->>EVID: backoff (jitter) and retry
+    end
+  end
+  EVID-->>OBS: OTLP spans/metrics (success rate, latency)
+```
