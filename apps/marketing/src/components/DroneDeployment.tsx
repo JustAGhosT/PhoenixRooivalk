@@ -1,5 +1,5 @@
 import * as React from "react";
-import type { GameState, Drone } from "../types/game";
+import type { Drone, GameState } from "../types/game";
 
 interface DroneDeploymentProps {
   drones: GameState["drones"];
