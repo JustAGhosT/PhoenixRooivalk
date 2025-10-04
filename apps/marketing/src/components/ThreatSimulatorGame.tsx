@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { DroneDeployment } from "./DroneDeployment";
 import { EnergyManagement } from "./EnergyManagement";
 import EventFeed from "./EventFeed";
@@ -19,31 +19,76 @@ interface ThreatSimulatorGameProps {
 const ThreatSimulatorGame: React.FC<ThreatSimulatorGameProps> = ({
   className = "",
 }) => {
-  const { gameState } = useGameState();
+  const { 
+    gameState, 
+    selectThreat, 
+    fireWeapon, 
+    deployDrone, 
+    setSelectionBox,
+    switchWeapon 
+  } = useGameState();
   const { feedItems } = useEventFeed();
 
-  // Basic event handlers
+  // State for overlays and fullscreen
+  const [showSimulationWarning, setShowSimulationWarning] = useState(false);
+  const [showFullscreenPrompt, setShowFullscreenPrompt] = useState(false);
+  const [isFullscreen, setIsFullscreen] = useState(false);
+  
+  // State for selection box
+  const [selectionStart, setSelectionStart] = useState<{x: number, y: number} | null>(null);
+
+  // Game event handlers
   const handleThreatClick = (
     e: React.MouseEvent | React.KeyboardEvent,
     threatId: string,
   ) => {
-    console.log("Threat clicked:", threatId);
+    if (e.shiftKey || e.ctrlKey) {
+      selectThreat(threatId);
+    } else {
+      const rect = (e.currentTarget as HTMLElement).getBoundingClientRect();
+      const x = 'clientX' in e ? e.clientX - rect.left : 0;
+      const y = 'clientY' in e ? e.clientY - rect.top : 0;
+      fireWeapon(x, y);
+    }
   };
 
-  const handleGameAreaClick = (_e: React.MouseEvent) => {
-    console.log("Game area clicked");
+  const handleGameAreaClick = (e: React.MouseEvent) => {
+    if (gameState.selectedDroneType) {
+      const rect = e.currentTarget.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      deployDrone(gameState.selectedDroneType, x, y);
+    }
   };
 
-  const handleMouseDown = (_e: React.MouseEvent) => {
-    console.log("Mouse down");
+  const handleMouseDown = (e: React.MouseEvent) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    setSelectionStart({ x: e.clientX - rect.left, y: e.clientY - rect.top });
+    setSelectionBox({ 
+      startX: e.clientX - rect.left, 
+      startY: e.clientY - rect.top, 
+      endX: e.clientX - rect.left, 
+      endY: e.clientY - rect.top,
+      isActive: true 
+    });
   };
 
-  const handleMouseMove = (_e: React.MouseEvent) => {
-    console.log("Mouse move");
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (selectionStart) {
+      const rect = e.currentTarget.getBoundingClientRect();
+      setSelectionBox({
+        startX: selectionStart.x,
+        startY: selectionStart.y,
+        endX: e.clientX - rect.left,
+        endY: e.clientY - rect.top,
+        isActive: true
+      });
+    }
   };
 
   const handleMouseUp = (_e: React.MouseEvent) => {
-    console.log("Mouse up");
+    setSelectionStart(null);
+    setSelectionBox(null);
   };
 
   const handleContextMenu = (e: React.MouseEvent) => {
@@ -53,6 +98,39 @@ const ThreatSimulatorGame: React.FC<ThreatSimulatorGameProps> = ({
 
   const handleWheel = (_e: React.WheelEvent) => {
     console.log("Wheel event");
+  };
+
+  // Fullscreen handlers
+  const enterFullscreen = () => {
+    setIsFullscreen(true);
+    setShowFullscreenPrompt(false);
+  };
+
+  const exitFullscreen = () => {
+    setIsFullscreen(false);
+    setShowFullscreenPrompt(false);
+  };
+
+  // Threat appearance mapping
+  const getThreatAppearance = (type: string) => {
+    const normalizedType = type.toLowerCase();
+    
+    const threatAppearances: Record<string, { emoji: string; color: string; cssClass: string }> = {
+      drone: { emoji: "🚁", color: "#ef4444", cssClass: "threat-drone" },
+      swarm: { emoji: "🐝", color: "#f59e0b", cssClass: "threat-swarm" },
+      missile: { emoji: "🚀", color: "#dc2626", cssClass: "threat-missile" },
+      stealth: { emoji: "👻", color: "#6b7280", cssClass: "threat-stealth" },
+      kamikaze: { emoji: "💥", color: "#dc2626", cssClass: "threat-kamikaze" },
+      decoy: { emoji: "🎭", color: "#8b5cf6", cssClass: "threat-decoy" },
+      shielded: { emoji: "🛡️", color: "#10b981", cssClass: "threat-shielded" },
+      boss: { emoji: "👹", color: "#dc2626", cssClass: "threat-boss" }
+    };
+
+    return threatAppearances[normalizedType] || { 
+      emoji: "❓", 
+      color: "#6b7280", 
+      cssClass: "threat-unknown" 
+    };
   };
 
   return (
@@ -69,8 +147,7 @@ const ThreatSimulatorGame: React.FC<ThreatSimulatorGameProps> = ({
           weapons={gameState.weapons}
           selectedWeapon={gameState.selectedWeapon}
           onSwitchWeapon={(weapon) => {
-            // Handle weapon switching
-            console.log("Switch weapon:", weapon);
+            switchWeapon(weapon);
           }}
         />
 
@@ -99,11 +176,7 @@ const ThreatSimulatorGame: React.FC<ThreatSimulatorGameProps> = ({
             gameState={gameState}
             onThreatClick={handleThreatClick}
             onThreatHover={() => {}}
-            getThreatAppearance={(_type) => ({
-              emoji: "🚁",
-              color: "#ef4444",
-              cssClass: "threat-drone",
-            })}
+            getThreatAppearance={getThreatAppearance}
           />
         </div>
 
@@ -120,8 +193,8 @@ const ThreatSimulatorGame: React.FC<ThreatSimulatorGameProps> = ({
           />
           <EnergyManagement
             maxEnergy={gameState.maxEnergy}
-            selectedEffectors={[]}
-            selectedDrones={[]}
+            selectedEffectors={gameState.selectedThreats || []}
+            selectedDrones={gameState.drones.filter(d => d.isActive).map(d => d.id)}
             activePowerUps={gameState.activePowerUps.map((p) => p.id)}
             onEnergyUpdate={() => {}}
           />
@@ -131,14 +204,14 @@ const ThreatSimulatorGame: React.FC<ThreatSimulatorGameProps> = ({
       <EventFeed feedItems={feedItems} />
 
       <ThreatSimulatorOverlays
-        showSimulationWarning={false}
-        setShowSimulationWarning={() => {}}
-        showFullscreenPrompt={false}
-        setShowFullscreenPrompt={() => {}}
+        showSimulationWarning={showSimulationWarning}
+        setShowSimulationWarning={setShowSimulationWarning}
+        showFullscreenPrompt={showFullscreenPrompt}
+        setShowFullscreenPrompt={setShowFullscreenPrompt}
         isTeaser={false}
-        isFullscreen={false}
-        enterFullscreen={() => {}}
-        exitFullscreen={() => {}}
+        isFullscreen={isFullscreen}
+        enterFullscreen={enterFullscreen}
+        exitFullscreen={exitFullscreen}
       />
     </section>
   );
