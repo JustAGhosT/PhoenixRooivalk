@@ -1,5 +1,5 @@
-import React from 'react';
-import type { Threat } from '../types/game';
+import React from "react";
+import type { Threat } from "../types/game";
 
 interface RadarCanvasProps {
   threats: Threat[];
@@ -7,7 +7,10 @@ interface RadarCanvasProps {
   onThreatClick?: (e: React.MouseEvent, threatId: string) => void;
 }
 
-const RadarCanvas: React.FC<RadarCanvasProps> = ({ threats, isResetting = false }) => {
+const RadarCanvas: React.FC<RadarCanvasProps> = ({
+  threats,
+  isResetting = false,
+}) => {
   // Game area dimensions are assumed to be 800x600 for mapping purposes
   const gameCenterX = 400;
   const gameCenterY = 300;
@@ -22,25 +25,32 @@ const RadarCanvas: React.FC<RadarCanvasProps> = ({ threats, isResetting = false 
   const maxGameDistance = 450;
 
   return (
-    <div className="threatsim__canvas" role="img" aria-label="Concept radar view showing threats within range" aria-busy={isResetting}>
+    <div
+      className="threatsim__canvas"
+      role="img"
+      aria-label="Concept radar view showing threats within range"
+      aria-busy={isResetting}
+    >
       <svg viewBox="0 0 600 600" className="radar" aria-hidden="true">
         <defs>
           <radialGradient id="radar-bg" cx="50%" cy="50%">
-            <stop offset="0%" stopColor="#0e1217"/>
-            <stop offset="100%" stopColor="#0a0d11"/>
+            <stop offset="0%" stopColor="#0e1217" />
+            <stop offset="100%" stopColor="#0a0d11" />
           </radialGradient>
         </defs>
-        <rect width="600" height="600" fill="url(#radar-bg)"/>
+        <rect width="600" height="600" fill="url(#radar-bg)" />
         <g className="radar__rings">
-          <circle cx="300" cy="300" r="220" className="ring ring--soft"/>
-          <circle cx="300" cy="300" r="160" className="ring"/>
-          <circle cx="300" cy="300" r="100" className="ring"/>
-          <circle cx="300" cy="300" r="40"  className="ring"/>
+          <circle cx="300" cy="300" r="220" className="ring ring--soft" />
+          <circle cx="300" cy="300" r="160" className="ring" />
+          <circle cx="300" cy="300" r="100" className="ring" />
+          <circle cx="300" cy="300" r="40" className="ring" />
         </g>
-        <g id="ego"><circle cx="300" cy="300" r="6" className="ego"/></g>
+        <g id="ego">
+          <circle cx="300" cy="300" r="6" className="ego" />
+        </g>
         <g id="blips">
-          {threats.map(threat => {
-            if (threat.status === 'neutralized' || threat.status === 'crater') {
+          {threats.map((threat) => {
+            if (threat.status === "neutralized" || threat.status === "crater") {
               return null;
             }
 
@@ -53,14 +63,24 @@ const RadarCanvas: React.FC<RadarCanvasProps> = ({ threats, isResetting = false 
             // Normalize distance and cap it to 1
             const normalizedDistance = Math.min(distance / maxGameDistance, 1);
 
-            const radarX = radarCenterX + Math.cos(angle) * normalizedDistance * radarMaxRadius;
-            const radarY = radarCenterY + Math.sin(angle) * normalizedDistance * radarMaxRadius;
+            const radarX =
+              radarCenterX +
+              Math.cos(angle) * normalizedDistance * radarMaxRadius;
+            const radarY =
+              radarCenterY +
+              Math.sin(angle) * normalizedDistance * radarMaxRadius;
 
             // For now, all threats are considered hostile. This can be expanded later.
             const blipClass = `blip blip--hostile`;
 
             return (
-              <circle key={threat.id} cx={radarX} cy={radarY} r="4" className={blipClass} />
+              <circle
+                key={threat.id}
+                cx={radarX}
+                cy={radarY}
+                r="4"
+                className={blipClass}
+              />
             );
           })}
         </g>

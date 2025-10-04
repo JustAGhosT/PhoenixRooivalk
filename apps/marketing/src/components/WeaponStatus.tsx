@@ -1,9 +1,9 @@
-import * as React from 'react';
-import type { GameState } from '../types/game';
+import * as React from "react";
+import type { GameState } from "../types/game";
 
 interface WeaponStatusProps {
-  weapons: GameState['weapons'];
-  selectedWeapon: GameState['selectedWeapon'];
+  weapons: GameState["weapons"];
+  selectedWeapon: GameState["selectedWeapon"];
   onSwitchWeapon: (weaponId: string) => void;
 }
 
@@ -13,7 +13,11 @@ const weaponData = {
   laser: { name: "Laser", icon: "🔴" },
 };
 
-export const WeaponStatus: React.FC<WeaponStatusProps> = ({ weapons, selectedWeapon, onSwitchWeapon }) => {
+export const WeaponStatus: React.FC<WeaponStatusProps> = ({
+  weapons,
+  selectedWeapon,
+  onSwitchWeapon,
+}) => {
   return (
     <div className="weapon-status-panel">
       <h3 className="weapon-status-title">WEAPON SYSTEMS</h3>
@@ -21,12 +25,15 @@ export const WeaponStatus: React.FC<WeaponStatusProps> = ({ weapons, selectedWea
         {Object.entries(weapons).map(([id, weaponState]) => {
           const wData = weaponData[id as keyof typeof weaponData];
           const isSelected = selectedWeapon === id;
-          const cooldownPercentage = weaponState.cooldown > 0 ? (weaponState.cooldown / weaponState.maxCooldown) * 100 : 0;
+          const cooldownPercentage =
+            weaponState.cooldown > 0
+              ? (weaponState.cooldown / weaponState.maxCooldown) * 100
+              : 0;
 
           return (
             <div
               key={id}
-              className={`weapon-item ${isSelected ? 'selected' : ''}`}
+              className={`weapon-item ${isSelected ? "selected" : ""}`}
               onClick={() => onSwitchWeapon(id)}
             >
               <div className="weapon-icon">{wData.icon}</div>

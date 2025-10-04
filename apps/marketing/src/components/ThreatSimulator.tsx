@@ -7,19 +7,19 @@ import { useThreatSimulatorEvents } from "./hooks/useThreatSimulatorEvents";
 import { useThreatSimulatorGame } from "./hooks/useThreatSimulatorGame";
 import { useTimeoutManager } from "./hooks/useTimeoutManager";
 import { useEventFeed } from "./hooks/useEventFeed";
-import HUDBar from './HUDBar';
-import RadarCanvas from './RadarCanvas';
-import ControlBar from './ControlBar';
-import EventFeed from './EventFeed';
-import Disclaimer from './Disclaimer';
-import HelpOverlay from './HelpOverlay';
-import { WeaponStatus } from './WeaponStatus';
-import { ParticleEffects } from './ParticleEffects';
-import { DroneDeployment } from './DroneDeployment';
-import { DetailedStats } from './DetailedStats';
-import { ThreatSimulatorComponents } from './ThreatSimulatorComponents';
-import { ThreatSimulatorOverlays } from './ThreatSimulatorOverlays';
-import './NewThreatSimulator.css';
+import HUDBar from "./HUDBar";
+import RadarCanvas from "./RadarCanvas";
+import ControlBar from "./ControlBar";
+import EventFeed from "./EventFeed";
+import Disclaimer from "./Disclaimer";
+import HelpOverlay from "./HelpOverlay";
+import { WeaponStatus } from "./WeaponStatus";
+import { ParticleEffects } from "./ParticleEffects";
+import { DroneDeployment } from "./DroneDeployment";
+import { DetailedStats } from "./DetailedStats";
+import { ThreatSimulatorComponents } from "./ThreatSimulatorComponents";
+import { ThreatSimulatorOverlays } from "./ThreatSimulatorOverlays";
+import "./NewThreatSimulator.css";
 
 interface ThreatSimulatorProps {
   isTeaser?: boolean;
@@ -76,40 +76,37 @@ export const ThreatSimulator: React.FC<ThreatSimulatorProps> = ({
   const { feedItems, addFeed } = useEventFeed();
 
   const neutralizeAndLogThreat = (threatId: string) => {
-    const threat = gameState.threats.find(t => t.id === threatId);
+    const threat = gameState.threats.find((t) => t.id === threatId);
     if (threat) {
       addFeed(`Neutralized hostile @ ${Math.round(threat.x)}m`);
     }
     removeThreat(threatId);
   };
 
-  const {
-    particleSystem,
-    generateSwarm,
-    spawnMultipleDrones,
-  } = useThreatSimulatorGame({
-    gameRef,
-    gameState,
-    updateThreats,
-    addThreat,
-    removeThreat,
-    updateScore,
-    neutralizeThreat: neutralizeAndLogThreat,
-    fireWeapon,
-    consumeEnergy,
-    consumeCooling,
-    checkAchievements,
-    updateGameTime,
-    updateWeaponCooldowns,
-    updatePowerUps,
-    updateResources,
-    updateMothershipResources,
-    updateDronePositions,
-    setFrameRate,
-    addTimeout,
-    clearTimeouts,
-    processFadeOut,
-  });
+  const { particleSystem, generateSwarm, spawnMultipleDrones } =
+    useThreatSimulatorGame({
+      gameRef,
+      gameState,
+      updateThreats,
+      addThreat,
+      removeThreat,
+      updateScore,
+      neutralizeThreat: neutralizeAndLogThreat,
+      fireWeapon,
+      consumeEnergy,
+      consumeCooling,
+      checkAchievements,
+      updateGameTime,
+      updateWeaponCooldowns,
+      updatePowerUps,
+      updateResources,
+      updateMothershipResources,
+      updateDronePositions,
+      setFrameRate,
+      addTimeout,
+      clearTimeouts,
+      processFadeOut,
+    });
 
   const {
     handleMouseDown,
@@ -194,34 +191,85 @@ export const ThreatSimulator: React.FC<ThreatSimulatorProps> = ({
       const key = e.key.toLowerCase();
 
       switch (key) {
-        case ' ': e.preventDefault(); toggleRunningState(); break;
-        case 's': e.preventDefault(); handleSwarm(); break;
-        case '+': case '=': e.preventDefault(); handlePlus5(); break;
-        case 'r': e.preventDefault(); handleReset(); break;
-        case '1': e.preventDefault(); switchWeapon("kinetic"); addFeed("Kinetic weapon selected."); break;
-        case '2': e.preventDefault(); switchWeapon("electronic"); addFeed("EMP weapon selected."); break;
-        case '3': e.preventDefault(); switchWeapon("laser"); addFeed("Laser weapon selected."); break;
-        case 't': e.preventDefault(); setShowDetailedStats(prev => !prev); break;
-        case 'escape': e.preventDefault(); clearSelection(); selectDroneType(null); break;
-        case '?': e.preventDefault(); setShowHelp(prev => !prev); break;
+        case " ":
+          e.preventDefault();
+          toggleRunningState();
+          break;
+        case "s":
+          e.preventDefault();
+          handleSwarm();
+          break;
+        case "+":
+        case "=":
+          e.preventDefault();
+          handlePlus5();
+          break;
+        case "r":
+          e.preventDefault();
+          handleReset();
+          break;
+        case "1":
+          e.preventDefault();
+          switchWeapon("kinetic");
+          addFeed("Kinetic weapon selected.");
+          break;
+        case "2":
+          e.preventDefault();
+          switchWeapon("electronic");
+          addFeed("EMP weapon selected.");
+          break;
+        case "3":
+          e.preventDefault();
+          switchWeapon("laser");
+          addFeed("Laser weapon selected.");
+          break;
+        case "t":
+          e.preventDefault();
+          setShowDetailedStats((prev) => !prev);
+          break;
+        case "escape":
+          e.preventDefault();
+          clearSelection();
+          selectDroneType(null);
+          break;
+        case "?":
+          e.preventDefault();
+          setShowHelp((prev) => !prev);
+          break;
       }
     };
 
-    window.addEventListener('keydown', handleKeyDown);
+    window.addEventListener("keydown", handleKeyDown);
     return () => {
-      window.removeEventListener('keydown', handleKeyDown);
+      window.removeEventListener("keydown", handleKeyDown);
     };
-  }, [toggleRunningState, handleSwarm, handlePlus5, handleReset, switchWeapon, addFeed, clearSelection, selectDroneType, setShowDetailedStats, setShowHelp]);
+  }, [
+    toggleRunningState,
+    handleSwarm,
+    handlePlus5,
+    handleReset,
+    switchWeapon,
+    addFeed,
+    clearSelection,
+    selectDroneType,
+    setShowDetailedStats,
+    setShowHelp,
+  ]);
 
   return (
     <section
       ref={gameRef}
       className="threatsim card flex flex-col h-full"
       aria-labelledby="sim-title"
-      style={{ minHeight: '800px' }} // Ensure the container has a height
+      style={{ minHeight: "800px" }} // Ensure the container has a height
     >
       {showHelp && <HelpOverlay onClose={() => setShowHelp(false)} />}
-      {showDetailedStats && <DetailedStats gameState={gameState} onClose={() => setShowDetailedStats(false)} />}
+      {showDetailedStats && (
+        <DetailedStats
+          gameState={gameState}
+          onClose={() => setShowDetailedStats(false)}
+        />
+      )}
 
       <HUDBar
         score={gameState.score}

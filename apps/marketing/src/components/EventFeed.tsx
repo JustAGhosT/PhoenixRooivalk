@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 interface FeedItem {
   timestamp: string;
@@ -14,7 +14,8 @@ const EventFeed: React.FC<EventFeedProps> = ({ feedItems }) => {
     <aside className="threatsim__feed" aria-live="polite" aria-atomic="false">
       {feedItems.length === 0 && (
         <div className="feed-item">
-          <span className="t">--:--:--</span> System initialized. Awaiting events.
+          <span className="t">--:--:--</span> System initialized. Awaiting
+          events.
         </div>
       )}
       {feedItems.map((item, index) => (

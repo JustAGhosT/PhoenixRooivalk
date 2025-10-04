@@ -327,23 +327,23 @@ export const useGameState = () => {
   }, []);
 
   const setLevel = useCallback((level: number) => {
-    setGameState(prev => ({ ...prev, level }));
+    setGameState((prev) => ({ ...prev, level }));
   }, []);
 
-  const setWeatherMode = useCallback((mode: GameState['weatherMode']) => {
-    setGameState(prev => ({ ...prev, weatherMode: mode }));
+  const setWeatherMode = useCallback((mode: GameState["weatherMode"]) => {
+    setGameState((prev) => ({ ...prev, weatherMode: mode }));
   }, []);
 
-  const setMissionType = useCallback((type: GameState['missionType']) => {
-    setGameState(prev => ({ ...prev, missionType: type }));
+  const setMissionType = useCallback((type: GameState["missionType"]) => {
+    setGameState((prev) => ({ ...prev, missionType: type }));
   }, []);
 
-  const setAutomationMode = useCallback((mode: GameState['automationMode']) => {
-    setGameState(prev => ({ ...prev, automationMode: mode }));
+  const setAutomationMode = useCallback((mode: GameState["automationMode"]) => {
+    setGameState((prev) => ({ ...prev, automationMode: mode }));
   }, []);
 
   const setShowDeploymentZones = useCallback((show: boolean) => {
-    setGameState(prev => ({ ...prev, showDeploymentZones: show }));
+    setGameState((prev) => ({ ...prev, showDeploymentZones: show }));
   }, []);
 
   const switchWeapon = useCallback((weaponId: string) => {
