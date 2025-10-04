@@ -326,6 +326,14 @@ export class ResourceManager {
       return false; // Invalid type or already unlocked
     }
 
+    // Check if we have enough research points
+    if (this.state.researchPoints < data.researchCost) {
+      return false; // Insufficient research points
+    }
+
+    // Deduct research points
+    this.state.researchPoints -= data.researchCost;
+
     this.state.activeResearch = {
       type,
       progress: 0,

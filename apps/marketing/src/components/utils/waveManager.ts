@@ -128,9 +128,12 @@ export function generateWaveConfig(
     baseInterval / (difficulty.spawnRateMultiplier * baseDifficulty),
   );
 
+  // Calculate actual total threats from the sum of all threatTypes counts
+  const totalThreats = threatTypes.reduce((sum, threat) => sum + threat.count, 0);
+
   return {
     waveNumber,
-    totalThreats: baseThreatCount,
+    totalThreats,
     spawnInterval,
     threatTypes,
     difficulty: baseDifficulty,
