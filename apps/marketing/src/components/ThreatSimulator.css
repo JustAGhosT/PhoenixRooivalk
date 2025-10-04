@@ -1094,3 +1094,572 @@
   white-space: nowrap;
   border-width: 0;
 }
+
+/* Filter Chips */
+.filter-chips {
+  margin-bottom: 16px;
+}
+
+.filter-chips-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.filter-chips-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--sim-text);
+}
+
+.filter-chips-clear {
+  background: none;
+  border: none;
+  color: var(--sim-text-muted);
+  font-size: 12px;
+  cursor: pointer;
+  padding: 2px 6px;
+  border-radius: 3px;
+  transition: all 0.2s ease;
+}
+
+.filter-chips-clear:hover {
+  color: var(--sim-text);
+  background: var(--sim-hover);
+}
+
+.filter-chips-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.filter-chip {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 8px;
+  border: 1px solid var(--sim-border);
+  border-radius: 16px;
+  background: transparent;
+  color: var(--sim-text);
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.filter-chip:hover {
+  border-color: var(--chip-color, var(--sim-accent));
+  background: var(--chip-color, var(--sim-accent))10;
+}
+
+.filter-chip--selected {
+  border-color: var(--chip-color, var(--sim-accent));
+  background: var(--chip-color, var(--sim-accent))20;
+  color: var(--chip-color, var(--sim-accent));
+}
+
+.filter-chip-count {
+  background: var(--chip-color, var(--sim-accent));
+  color: white;
+  font-size: 10px;
+  padding: 1px 4px;
+  border-radius: 8px;
+  min-width: 16px;
+  text-align: center;
+}
+
+/* Info Popover */
+.info-popover-trigger {
+  position: relative;
+  display: inline-block;
+  cursor: help;
+}
+
+.info-popover {
+  background: var(--sim-elev);
+  border: 1px solid var(--sim-border);
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  max-width: 320px;
+  z-index: 1000;
+}
+
+.info-popover-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--sim-border);
+}
+
+.info-popover-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--sim-text);
+  margin: 0;
+}
+
+.info-popover-close {
+  background: none;
+  border: none;
+  color: var(--sim-text-muted);
+  font-size: 18px;
+  cursor: pointer;
+  padding: 0;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 3px;
+  transition: all 0.2s ease;
+}
+
+.info-popover-close:hover {
+  color: var(--sim-text);
+  background: var(--sim-hover);
+}
+
+.info-popover-content {
+  padding: 16px;
+}
+
+.info-popover-section {
+  margin-bottom: 16px;
+}
+
+.info-popover-section:last-child {
+  margin-bottom: 0;
+}
+
+.info-popover-section-title {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--sim-text);
+  margin: 0 0 8px 0;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.info-popover-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.info-popover-item {
+  padding: 4px 0;
+  font-size: 13px;
+  color: var(--sim-text-muted);
+  border-bottom: 1px solid var(--sim-border);
+}
+
+.info-popover-item:last-child {
+  border-bottom: none;
+}
+
+.info-popover-link {
+  color: var(--sim-accent);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.info-popover-link:hover {
+  color: var(--sim-accent-hover);
+  text-decoration: underline;
+}
+
+.info-popover-arrow {
+  position: absolute;
+  top: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 12px;
+  height: 12px;
+  background: var(--sim-elev);
+  border: 1px solid var(--sim-border);
+  border-bottom: none;
+  border-right: none;
+  transform: translateX(-50%) rotate(45deg);
+}
+
+/* Legal Badge */
+.legal-badge {
+  position: relative;
+  display: inline-block;
+}
+
+.legal-badge-indicator {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 6px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: 1px solid var(--sim-border);
+  background: var(--sim-elev);
+}
+
+.legal-badge-indicator--low {
+  color: var(--sim-success);
+  border-color: var(--sim-success);
+}
+
+.legal-badge-indicator--medium {
+  color: var(--sim-warning);
+  border-color: var(--sim-warning);
+}
+
+.legal-badge-indicator--high {
+  color: var(--sim-danger);
+  border-color: var(--sim-danger);
+}
+
+.legal-badge-indicator:hover {
+  background: var(--sim-hover);
+}
+
+.legal-badge-indicator--acknowledged {
+  opacity: 0.6;
+}
+
+.legal-badge-dot {
+  color: var(--sim-danger);
+  font-size: 8px;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+.legal-badge-details {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  margin-top: 4px;
+  background: var(--sim-elev);
+  border: 1px solid var(--sim-border);
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  z-index: 1000;
+  min-width: 280px;
+  max-width: 400px;
+}
+
+.legal-badge-details-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--sim-border);
+}
+
+.legal-badge-details-header h4 {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--sim-text);
+  margin: 0;
+}
+
+.legal-badge-close {
+  background: none;
+  border: none;
+  color: var(--sim-text-muted);
+  font-size: 18px;
+  cursor: pointer;
+  padding: 0;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 3px;
+  transition: all 0.2s ease;
+}
+
+.legal-badge-close:hover {
+  color: var(--sim-text);
+  background: var(--sim-hover);
+}
+
+.legal-badge-details-content {
+  padding: 16px;
+}
+
+.legal-badge-risk-level {
+  margin-bottom: 12px;
+}
+
+.risk-level {
+  display: inline-block;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.risk-level--low {
+  background: var(--sim-success)20;
+  color: var(--sim-success);
+}
+
+.risk-level--medium {
+  background: var(--sim-warning)20;
+  color: var(--sim-warning);
+}
+
+.risk-level--high {
+  background: var(--sim-danger)20;
+  color: var(--sim-danger);
+}
+
+.legal-badge-requirements h5 {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--sim-text);
+  margin: 0 0 8px 0;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.legal-badge-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 12px 0;
+}
+
+.legal-badge-item {
+  padding: 4px 0;
+  font-size: 13px;
+  color: var(--sim-text-muted);
+  border-bottom: 1px solid var(--sim-border);
+}
+
+.legal-badge-item:last-child {
+  border-bottom: none;
+}
+
+.legal-badge-note {
+  padding: 8px;
+  background: var(--sim-warning)10;
+  border: 1px solid var(--sim-warning)30;
+  border-radius: 4px;
+  font-size: 12px;
+  color: var(--sim-text-muted);
+}
+
+.legal-badge-actions {
+  padding: 12px 16px;
+  border-top: 1px solid var(--sim-border);
+}
+
+.legal-badge-acknowledge {
+  width: 100%;
+  padding: 8px 12px;
+  background: var(--sim-accent);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.legal-badge-acknowledge:hover {
+  background: var(--sim-accent-hover);
+}
+
+/* Cooldown Meter */
+.cooldown-meter {
+  position: relative;
+  display: inline-block;
+}
+
+.cooldown-meter-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cooldown-meter-svg {
+  transform: rotate(-90deg);
+}
+
+.cooldown-meter--small .cooldown-meter-svg {
+  width: 24px;
+  height: 24px;
+}
+
+.cooldown-meter--medium .cooldown-meter-svg {
+  width: 32px;
+  height: 32px;
+}
+
+.cooldown-meter--large .cooldown-meter-svg {
+  width: 48px;
+  height: 48px;
+}
+
+.cooldown-meter-content {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--sim-text);
+}
+
+.cooldown-meter--small .cooldown-meter-content {
+  font-size: 8px;
+}
+
+.cooldown-meter--large .cooldown-meter-content {
+  font-size: 14px;
+}
+
+.cooldown-meter-ready {
+  color: var(--sim-success);
+}
+
+.cooldown-meter-time {
+  color: var(--sim-warning);
+}
+
+.cooldown-meter-tooltip {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: 4px;
+  padding: 2px 6px;
+  background: var(--sim-elev);
+  border: 1px solid var(--sim-border);
+  border-radius: 4px;
+  font-size: 10px;
+  color: var(--sim-text-muted);
+  white-space: nowrap;
+  z-index: 100;
+}
+
+/* ROE Risk Indicator */
+.roe-risk-indicator {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  padding: 2px 6px;
+  border-radius: 8px;
+  font-size: 10px;
+  font-weight: 600;
+  border: 1px solid var(--risk-color, var(--sim-border));
+  background: var(--risk-color, var(--sim-border))10;
+  color: var(--risk-color, var(--sim-text));
+}
+
+.roe-risk-indicator--low {
+  --risk-color: var(--sim-success);
+}
+
+.roe-risk-indicator--med {
+  --risk-color: var(--sim-warning);
+}
+
+.roe-risk-indicator--high {
+  --risk-color: var(--sim-danger);
+}
+
+.roe-risk-icon {
+  font-size: 8px;
+}
+
+.roe-risk-label {
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+/* Energy Budget */
+.energy-budget {
+  background: var(--sim-elev);
+  border: 1px solid var(--sim-border);
+  border-radius: 6px;
+  padding: 12px;
+}
+
+.energy-budget-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.energy-budget-title {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--sim-text);
+}
+
+.energy-budget-status {
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.energy-budget-bar {
+  height: 6px;
+  background: var(--sim-border);
+  border-radius: 3px;
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+
+.energy-budget-fill {
+  height: 100%;
+  border-radius: 3px;
+  transition: width 0.3s ease, background-color 0.3s ease;
+}
+
+.energy-budget-details {
+  font-size: 11px;
+}
+
+.energy-budget-values {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.energy-budget-used,
+.energy-budget-remaining,
+.energy-budget-total {
+  color: var(--sim-text-muted);
+}
+
+.energy-budget-used strong,
+.energy-budget-remaining strong,
+.energy-budget-total strong {
+  color: var(--sim-text);
+}
+
+.energy-budget-warning {
+  margin-top: 8px;
+  padding: 4px 6px;
+  background: var(--sim-warning)20;
+  border: 1px solid var(--sim-warning)40;
+  border-radius: 3px;
+  font-size: 10px;
+  color: var(--sim-warning);
+  text-align: center;
+}
