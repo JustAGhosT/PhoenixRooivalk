@@ -3,6 +3,7 @@ use chrono::{TimeZone, Utc};
 use phoenix_evidence::anchor::{AnchorError, AnchorProvider};
 use phoenix_evidence::model::{ChainTxRef, EvidenceDigest, EvidenceRecord, DigestAlgo};
 use sqlx::{Pool, Row, Sqlite};
+use rand::Rng;
 
 pub mod config;
 
@@ -19,6 +20,12 @@ pub enum JobError {
     Temporary(String),
     #[error("permanent: {0}")]
     Permanent(String),
+}
+
+impl From<sqlx::Error> for JobError {
+    fn from(e: sqlx::Error) -> Self {
+        JobError::Temporary(e.to_string())
+    }
 }
 
 #[async_trait]
@@ -62,7 +69,8 @@ pub async fn run_job_loop<J: JobProvider + JobProviderExt, A: AnchorProvider>(
             Ok(None) => {
                 tokio::time::sleep(poll).await;
             }
-            Err(_) => {
+            Err(e) => {
+                tracing::error!(error = %e, "Failed to fetch next job");
                 tokio::time::sleep(poll).await;
             }
         }
@@ -203,19 +211,14 @@ pub async fn ensure_schema(pool: &Pool<Sqlite>) -> Result<(), sqlx::Error> {
 #[async_trait]
 impl JobProvider for SqliteJobProvider {
     async fn fetch_next(&mut self) -> Result<Option<EvidenceJob>, JobError> {
-        let mut tx = self
-            .pool
-            .begin()
-            .await
-            .map_err(|e| JobError::Temporary(e.to_string()))?;
+        let mut tx = self.pool.begin().await?;
         let now_ms = chrono::Utc::now().timestamp_millis();
         if let Some(row) = sqlx::query(
             "SELECT id, payload_sha256, created_ms FROM outbox_jobs WHERE status='queued' AND next_attempt_ms <= ?1 ORDER BY created_ms ASC LIMIT 1",
         )
         .bind(now_ms)
         .fetch_optional(&mut *tx)
-        .await
-        .map_err(|e| JobError::Temporary(e.to_string()))?
+        .await?
         {
             let id: String = row.get(0);
             sqlx::query(
@@ -224,11 +227,8 @@ impl JobProvider for SqliteJobProvider {
             .bind(now_ms)
             .bind(&id)
             .execute(&mut *tx)
-            .await
-            .map_err(|e| JobError::Temporary(e.to_string()))?;
-            tx.commit()
-                .await
-                .map_err(|e| JobError::Temporary(e.to_string()))?;
+            .await?;
+            tx.commit().await?;
             let payload_sha256: String = row.get(1);
             let created_ms: i64 = row.get(2);
             return Ok(Some(EvidenceJob {
@@ -237,9 +237,7 @@ impl JobProvider for SqliteJobProvider {
                 created_ms,
             }));
         }
-        tx.commit()
-            .await
-            .map_err(|e| JobError::Temporary(e.to_string()))?;
+        tx.commit().await?;
         Ok(None)
     }
 
@@ -249,8 +247,7 @@ impl JobProvider for SqliteJobProvider {
             .bind(now_ms)
             .bind(id)
             .execute(&self.pool)
-            .await
-            .map_err(|e| JobError::Temporary(e.to_string()))?;
+            .await?;
         Ok(())
     }
 
@@ -263,8 +260,7 @@ impl JobProvider for SqliteJobProvider {
         .bind(now_ms)
         .bind(id)
         .execute(&self.pool)
-        .await
-        .map_err(|e| JobError::Temporary(e.to_string()))?;
+        .await?;
         Ok(())
     }
 }
@@ -272,11 +268,7 @@ impl JobProvider for SqliteJobProvider {
 #[async_trait]
 impl JobProviderExt for SqliteJobProvider {
     async fn mark_tx_and_done(&mut self, id: &str, tx: &ChainTxRef) -> Result<(), JobError> {
-        let mut t = self
-            .pool
-            .begin()
-            .await
-            .map_err(|e| JobError::Temporary(e.to_string()))?;
+        let mut t = self.pool.begin().await?;
         sqlx::query(
             "INSERT OR REPLACE INTO outbox_tx_refs (job_id, network, chain, tx_id, confirmed, timestamp) VALUES (?1, ?2, ?3, ?4, ?5, ?6)",
         )
@@ -287,18 +279,14 @@ impl JobProviderExt for SqliteJobProvider {
         .bind(if tx.confirmed { 1 } else { 0 })
         .bind(tx.timestamp.map(|dt| dt.timestamp()))
         .execute(&mut *t)
-        .await
-        .map_err(|e| JobError::Temporary(e.to_string()))?;
+        .await?;
         let now_ms = chrono::Utc::now().timestamp_millis();
         sqlx::query("UPDATE outbox_jobs SET status='done', updated_ms=?1 WHERE id=?2")
             .bind(now_ms)
             .bind(id)
             .execute(&mut *t)
-            .await
-            .map_err(|e| JobError::Temporary(e.to_string()))?;
-        t.commit()
-            .await
-            .map_err(|e| JobError::Temporary(e.to_string()))?;
+            .await?;
+        t.commit().await?;
         Ok(())
     }
 
@@ -313,14 +301,14 @@ impl JobProviderExt for SqliteJobProvider {
             let rec = sqlx::query("SELECT attempts FROM outbox_jobs WHERE id=?1")
                 .bind(id)
                 .fetch_one(&self.pool)
-                .await
-                .map_err(|e| JobError::Temporary(e.to_string()))?;
+                .await?;
             let attempts: i64 = rec.get(0);
             let base: i64 = 5000; // 5s
             let cap: i64 = 300000; // 5m
             let exp: u32 = attempts.clamp(0, 20) as u32;
-            let backoff = (base.saturating_mul(1i64.saturating_shl(exp))).min(cap);
-            let next = now_ms + backoff;
+            let backoff = (base.saturating_mul(2i64.pow(exp))).min(cap);
+            let jitter = rand::thread_rng().gen_range(0..1000);
+            let next = now_ms + backoff + jitter;
             sqlx::query(
                 "UPDATE outbox_jobs SET status='queued', last_error=?1, updated_ms=?2, next_attempt_ms=?3 WHERE id=?4",
             )
@@ -328,8 +316,7 @@ impl JobProviderExt for SqliteJobProvider {
             .bind(next)
             .bind(id)
             .execute(&self.pool)
-            .await
-            .map_err(|e| JobError::Temporary(e.to_string()))?;
+            .await?;
             return Ok(());
         }
         sqlx::query(
@@ -339,8 +326,7 @@ impl JobProviderExt for SqliteJobProvider {
         .bind(now_ms)
         .bind(id)
         .execute(&self.pool)
-        .await
-        .map_err(|e| JobError::Temporary(e.to_string()))?;
+        .await?;
         Ok(())
     }
 }
