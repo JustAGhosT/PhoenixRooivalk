@@ -55,8 +55,8 @@ export function calculateDifficultyScaling(
   const scalingFactor = 1 + (baseWave - 1) * 0.15; // 15% increase per wave
 
   return {
-    speedMultiplier: Math.min(3, 1 + (baseWave - 1) * 0.1),
-    healthMultiplier: Math.min(5, 1 + (baseWave - 1) * 0.2),
+    speedMultiplier: Math.min(3, scalingFactor * 0.67), // Use scalingFactor with appropriate ratio
+    healthMultiplier: Math.min(5, scalingFactor * 1.33), // Use scalingFactor with appropriate ratio
     damageMultiplier: Math.min(4, 1 + (baseWave - 1) * 0.15),
     spawnRateMultiplier: Math.min(2, 1 + (baseWave - 1) * 0.05),
     specialAbilityChance: Math.min(0.5, (baseWave - 1) * 0.03),
@@ -147,9 +147,9 @@ export class WaveManager {
   private threatsSpawned: number = 0;
   private threatsDefeated: number = 0;
   private currentWaveConfig: WaveConfig | null = null;
-  private onSpawnThreat: (event: SpawnEvent) => void = () => {};
-  private onWaveComplete: (waveNumber: number) => void = () => {};
-  private onGameComplete: () => void = () => {};
+  private onSpawnThreat: (event: SpawnEvent) => void;
+  private onWaveComplete: (waveNumber: number) => void;
+  private onGameComplete: () => void;
 
   constructor(
     onSpawnThreat: (event: SpawnEvent) => void,

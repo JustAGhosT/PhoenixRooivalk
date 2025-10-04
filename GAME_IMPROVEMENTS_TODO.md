@@ -109,7 +109,7 @@ on UI analysis and user feedback.
   - **Problem**: "Clear, Military Base, Hybrid" are unclear
   - **Fix**: Split into labeled groups
 
-  ```
+  ```text
   Weather: Clear / Fog / Rain / Night
   Terrain: Military Base / Urban / Open Field
   Rules: Conservative / Hybrid / Aggressive
@@ -118,6 +118,7 @@ on UI analysis and user feedback.
 - [ ] **Energy System Unclear**
   - **Problem**: Shows cost but not budget or remaining energy
   - **Fix**: Add budget bar with remaining energy display
+
   ```html
   <div class="budget">
     <span>Energy</span>
@@ -154,7 +155,7 @@ on UI analysis and user feedback.
   - **Problem**: Single "System initialized" line with no detail
   - **Fix**: Rich event feed with timestamps, severity, and details
 
-  ```
+  ```text
   12:01:23  Neutralized hostile (ID 7) @ 2.1 km  | kinetic
   12:02:05  Jam detected — fallback to optical-only
   ```
@@ -182,6 +183,7 @@ on UI analysis and user feedback.
 - [ ] **Radar Scale & Labels**
   - **Problem**: Range labels faint; no distance legend
   - **Fix**: Label 2 rings (400m / 800m) with muted blue and 1px halo
+
   ```css
   .range-label {
     fill: #8fb3e1;
@@ -306,7 +308,7 @@ on UI analysis and user feedback.
 
 ### **New Components Needed**
 
-```
+```text
 src/components/
 ├── game/
 │   ├── DronePathRenderer.tsx
@@ -415,7 +417,7 @@ src/components/
   - **Fix**: Award research points for performance, slower than tokens
   - **Code**: Add research point system with unlock requirements
 
-### **Advanced Features**
+### **Advanced Gameplay Features**
 
 - [ ] **Effector Class Specialization**
 

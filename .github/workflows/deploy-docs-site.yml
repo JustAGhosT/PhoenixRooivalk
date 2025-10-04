@@ -137,8 +137,7 @@ jobs:
           publish-dir: "apps/docs/build"
           production-deploy: false
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          deploy-message:
-            "Deploy Preview from PR #${{ github.event.pull_request.number }}"
+          deploy-message: "Deploy Preview from PR #${{ github.event.pull_request.number }}"
           enable-commit-comment: true
           enable-commit-status: true
           enable-pull-request-comment: true
@@ -146,3 +145,5 @@ jobs:
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_DOCS_SITE_ID }}
+        permissions:
+          contents: write

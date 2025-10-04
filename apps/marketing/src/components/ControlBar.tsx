@@ -25,6 +25,7 @@ interface ControlBarProps {
   setAutomationMode: (mode: AutomationMode) => void;
   showDeploymentZones: boolean;
   setShowDeploymentZones: (show: boolean) => void;
+  showStats: boolean;
   onShowStats: () => void;
   onShowHelp: () => void;
   onShowResearch: () => void;
@@ -47,6 +48,7 @@ const ControlBar: React.FC<ControlBarProps> = ({
   setAutomationMode,
   showDeploymentZones,
   setShowDeploymentZones,
+  showStats,
   onShowStats,
   onShowHelp,
   onShowResearch,
@@ -159,8 +161,8 @@ const ControlBar: React.FC<ControlBarProps> = ({
 
       <button
         role="switch"
-        aria-checked={false}
-        className="switch"
+        aria-checked={showStats}
+        className={`switch ${showStats ? "switch--on" : ""}`}
         onClick={onShowStats}
       >
         Show Stats

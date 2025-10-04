@@ -20,6 +20,7 @@ _Priority: High | Effort: Low | Impact: High_
 #### **1.1 Caching & Performance**
 
 - [ ] **Node.js Dependency Caching**
+
   ```yaml
   - name: Cache node modules
     uses: actions/cache@v3
@@ -27,7 +28,9 @@ _Priority: High | Effort: Low | Impact: High_
       path: ~/.pnpm-store
       key: ${{ runner.os }}-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}
   ```
+
 - [ ] **Build Artifact Caching**
+
   ```yaml
   - name: Cache build outputs
     uses: actions/cache@v3

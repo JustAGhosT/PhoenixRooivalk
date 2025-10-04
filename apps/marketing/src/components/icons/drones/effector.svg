@@ -1,0 +1,6 @@
+<svg viewBox="0 0 24 24" fill="none" stroke="#dc2626" stroke-width="2">
+  <!-- Triangle base -->
+  <path d="M12 4L20 18L4 18Z" />
+  <!-- Lightning bolt inside -->
+  <path d="M12 8L10 14L14 14L12 16" stroke-width="2.5" />
+</svg>
