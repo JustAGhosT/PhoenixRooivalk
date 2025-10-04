@@ -48,7 +48,7 @@ export const DemoCooldownMeter: React.FC<EnhancedCooldownMeterProps> = ({
         clearInterval(interval);
       }
     };
-  }, [isActive, cooldownTime, onCooldownComplete, remainingTime]);
+  }, [isActive, cooldownTime, onCooldownComplete]);
 
   const progress =
     cooldownTime > 0 ? (cooldownTime - remainingTime) / cooldownTime : 1;

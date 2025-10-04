@@ -774,7 +774,7 @@ export const ThreatSimulator: React.FC<ThreatSimulatorProps> = ({
         <TokenStore
           resourceManager={resourceManager}
           onClose={() => setShowTokenStore(false)}
-          onPurchaseDrone={async (type) => {
+          onPurchaseDrone={(type) => {
             try {
               // Call the actual purchase API
               const success = resourceManager.purchaseDrone(type);

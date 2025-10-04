@@ -84,4 +84,4 @@ If you have any questions or need further assistance, please contact:
 
 **Jurie Smit**  
 **PhoenixVC**  
-**smit.jurie@gmail.com**
+**<smit.jurie@gmail.com>**

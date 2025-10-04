@@ -643,9 +643,10 @@ export { Effector } from "./drones/Effector";
 
 ### Screen Reader Support
 
-- Descriptive `aria-label` attributes
-- `role="img"` for decorative icons
-- `aria-hidden="true"` for purely decorative elements
+- Provide descriptive `aria-label` attributes for meaningful icons (with
+  `role="img"` if needed)
+- Mark purely decorative elements `aria-hidden="true"` with no role or label so
+  screen readers ignore them
 
 ## Testing Requirements
 

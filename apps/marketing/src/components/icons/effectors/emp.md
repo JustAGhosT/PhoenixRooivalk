@@ -27,7 +27,7 @@ electromagnetic pulse aesthetic.
 
 ## SVG Structure
 
-```svg
+````svg
 <svg viewBox="0 0 24 24" fill="none" stroke="#FFA502" stroke-width="2">
   <!-- Electrical discharge with pulse waves -->
   <circle cx="12" cy="12" r="2" fill="#FFA502" />

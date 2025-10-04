@@ -43,11 +43,7 @@ export const DroneDeployment: React.FC<DroneDeploymentProps> = ({
   return (
     <div className="drone-deployment-panel">
       <h3 className="drone-deployment-title">DRONE DEPLOYMENT</h3>
-      <nav
-        aria-label="Drone Deployment"
-        role="checkboxgroup"
-        className="drone-list"
-      >
+      <nav aria-label="Drone Deployment" role="group" className="drone-list">
         {deploymentBays.map((bay) => {
           const data = DRONE_DATA[bay.droneType as keyof typeof DRONE_DATA];
 

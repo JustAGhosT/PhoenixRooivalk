@@ -21,9 +21,9 @@ operations.
 
 ## AI Generation Prompt
 
-````text
-Create an optical mesh drone icon: triangle with light beam or optical link pattern. Military style, outline-based, 24x24px. Color #8b5cf6. Secure communications, optical link, mesh networking aesthetic.
 ```text
+Create an optical mesh drone icon: triangle with light beam or optical link pattern. Military style, outline-based, 24x24px. Color #8b5cf6. Secure communications, optical link, mesh networking aesthetic.
+```
 
 ## SVG Structure
 
@@ -42,11 +42,14 @@ Create an optical mesh drone icon: triangle with light beam or optical link patt
   <path d="M6 16L8 14" stroke-width="1" opacity="0.5" />
   <path d="M18 16L16 14" stroke-width="1" opacity="0.5" />
 </svg>
-```text
+```
 
 ## Usage Context
 
 - Optical mesh drone systems
 - Secure communication platforms
 - Mesh networking operations
-````
+
+```
+
+```
