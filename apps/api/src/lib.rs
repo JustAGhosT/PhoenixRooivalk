@@ -4,9 +4,12 @@ use axum::{
 };
 use sqlx::{sqlite::SqlitePoolOptions, Pool, Sqlite};
 
+pub mod connection;
 pub mod db;
 pub mod handlers;
 pub mod models;
+pub mod migrations;
+pub mod repository;
 
 #[derive(Clone)]
 pub struct AppState {
