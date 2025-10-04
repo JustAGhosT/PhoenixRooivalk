@@ -1,8 +1,8 @@
 import { useCallback, useState } from "react";
-import type { GameState, SelectionBox, Threat } from "../../types/game";
+import type { GameState, SelectionBox, Threat, PowerUp } from "../../types/game";
 
 interface UseThreatSimulatorEventsProps {
-  gameRef: React.RefObject<HTMLButtonElement>;
+  gameRef: React.RefObject<HTMLElement>;
   gameState: GameState;
   updateThreats: (threats: Threat[]) => void;
   addThreat: (threat: Threat) => void;
@@ -41,7 +41,7 @@ interface UseThreatSimulatorEventsProps {
   moveAllThreats: () => void;
   generateSwarm: () => void;
   spawnMultipleDrones: (count: number) => void;
-  activatePowerUp: (powerUpId: string) => void;
+  activatePowerUp: (powerUpType: PowerUp["type"]) => void;
   clearTimeouts: () => void;
   resetGameState: () => void;
   toggleRunningState: () => void;
@@ -201,33 +201,38 @@ export const useThreatSimulatorEvents = ({
   );
 
   const handleThreatClick = useCallback(
-    (e: React.MouseEvent, threatId: string) => {
+    (e: React.MouseEvent | React.KeyboardEvent, threatId: string) => {
       e.stopPropagation();
 
       // Only prevent default for non-primary buttons to avoid interfering with normal selection
-      if (e.button !== 0) {
+      if ('button' in e && e.button !== 0) {
         e.preventDefault();
       }
 
-      if (e.button === 0) {
-        // Left click - select threat
-        selectThreat(threatId);
-      } else if (e.button === 1) {
-        // Middle click - set priority
-        // Use safer object property access with optional chaining
-        const currentPriority = gameState.priorityThreats?.[threatId] as
-          | string
-          | undefined;
-        if (currentPriority === "high") {
-          setThreatPriority(threatId, "medium");
-        } else if (currentPriority === "medium") {
-          setThreatPriority(threatId, "low");
-        } else {
-          setThreatPriority(threatId, "high");
+      if ('button' in e) {
+        if (e.button === 0) {
+          // Left click - select threat
+          selectThreat(threatId);
+        } else if (e.button === 1) {
+          // Middle click - set priority
+          // Use safer object property access with optional chaining
+          const currentPriority = gameState.priorityThreats?.[threatId] as
+            | string
+            | undefined;
+          if (currentPriority === "high") {
+            setThreatPriority(threatId, "medium");
+          } else if (currentPriority === "medium") {
+            setThreatPriority(threatId, "low");
+          } else {
+            setThreatPriority(threatId, "high");
+          }
+        } else if (e.button === 2) {
+          // Right click - neutralize
+          neutralizeThreat(threatId);
         }
-      } else if (e.button === 2) {
-        // Right click - neutralize
-        neutralizeThreat(threatId);
+      } else {
+        // Keyboard event - select threat
+        selectThreat(threatId);
       }
     },
     [

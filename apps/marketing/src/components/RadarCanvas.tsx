@@ -4,12 +4,13 @@ import type { Threat } from "../types/game";
 interface RadarCanvasProps {
   threats: Threat[];
   isResetting?: boolean;
-  onThreatClick?: (e: React.MouseEvent, threatId: string) => void;
+  onThreatClick?: (e: React.MouseEvent | React.KeyboardEvent, threatId: string) => void;
 }
 
 const RadarCanvas: React.FC<RadarCanvasProps> = ({
   threats,
   isResetting = false,
+  onThreatClick,
 }) => {
   // Game area dimensions are assumed to be 800x600 for mapping purposes
   const gameCenterX = 400;

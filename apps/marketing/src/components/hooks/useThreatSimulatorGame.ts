@@ -11,7 +11,7 @@ import { StrategicDeploymentEngine } from "../utils/strategicDeployment";
 import { spawnThreat } from "../utils/threatUtils";
 
 interface UseThreatSimulatorGameProps {
-  gameRef: React.RefObject<HTMLButtonElement>;
+  gameRef: React.RefObject<HTMLElement>;
   gameState: GameState;
   updateThreats: (threats: Threat[]) => void;
   addThreat: (threat: Threat) => void;

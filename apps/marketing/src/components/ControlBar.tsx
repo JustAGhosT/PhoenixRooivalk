@@ -97,7 +97,7 @@ const ControlBar: React.FC<ControlBarProps> = ({
       <select
         className="chip"
         value={weatherMode}
-        onChange={(e) => setWeatherMode(e.target.value)}
+        onChange={(e) => setWeatherMode(e.target.value as WeatherMode)}
       >
         <option value="none">☀️ Clear</option>
         <option value="rain">🌧️ Rain</option>
@@ -108,7 +108,7 @@ const ControlBar: React.FC<ControlBarProps> = ({
       <select
         className="chip"
         value={missionType}
-        onChange={(e) => setMissionType(e.target.value)}
+        onChange={(e) => setMissionType(e.target.value as MissionType)}
       >
         <option value="airport">✈️ Airport</option>
         <option value="military-base">🏭 Military Base</option>
@@ -119,7 +119,7 @@ const ControlBar: React.FC<ControlBarProps> = ({
       <select
         className="chip"
         value={automationMode}
-        onChange={(e) => setAutomationMode(e.target.value)}
+        onChange={(e) => setAutomationMode(e.target.value as AutomationMode)}
       >
         <option value="manual">Manual</option>
         <option value="automated">Automated</option>
