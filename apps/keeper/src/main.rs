@@ -87,7 +87,6 @@ async fn main() {
                 let anchor = create_etherlink_provider();
 
                 // Start job processing loop
-                let _job_pool = pool.clone();
                 let job_anchor = anchor;
                 let job_handle = tokio::spawn(async move {
                     run_job_loop(&mut jp, job_anchor.as_ref(), poll_interval).await;
