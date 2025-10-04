@@ -6,7 +6,7 @@
 export default {
   "title": "PhoenixRooivalk Docs",
   "favicon": "img/favicon.ico",
-  "url": "https://phoenixrooivalk.netlify.app",
+  "url": "https://docs-phoenixrooivalk.netlify.app",
   "baseUrl": "/",
   "organizationName": "JustAGhosT",
   "projectName": "PhoenixRooivalk",
@@ -77,7 +77,7 @@ export default {
           "items": [
             {
               "label": "Executive Summary",
-              "to": "/docs/executive/Executive_Summary"
+              "to": "/docs/executive/executive-summary"
             },
             {
               "label": "Global Strategy",
@@ -111,7 +111,7 @@ export default {
             },
             {
               "label": "Business Model",
-              "to": "/docs/business/Business_Model"
+              "to": "/docs/business/business-model"
             }
           ]
         },
@@ -125,6 +125,11 @@ export default {
               "to": "/docs/operations/Manufacturing_Strategy"
             }
           ]
+        },
+        {
+          "href": "https://phoenixrooivalk.netlify.app",
+          "label": "Website",
+          "position": "right"
         },
         {
           "type": "dropdown",
@@ -163,7 +168,7 @@ export default {
           "items": [
             {
               "label": "Executive Summary",
-              "to": "/docs/executive/Executive_Summary"
+              "to": "/docs/executive/executive-summary"
             },
             {
               "label": "Technical Architecture",
@@ -205,7 +210,7 @@ export default {
             },
             {
               "label": "Business Model",
-              "to": "/docs/business/Business_Model"
+              "to": "/docs/business/business-model"
             }
           ]
         }

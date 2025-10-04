@@ -33,7 +33,7 @@ export interface ProtocolAction {
     | "activate-weapon"
     | "evacuate-zone"
     | "request-backup";
-  parameters: Record<string, any>;
+  parameters: Record<string, unknown>;
   priority: number;
   delay: number; // milliseconds
 }
@@ -42,7 +42,7 @@ export interface ThreatResponse {
   threatId: string;
   protocolId: string;
   actionType: string;
-  parameters: Record<string, any>;
+  parameters: Record<string, unknown>;
   estimatedSuccess: number;
   executionTime: number;
   reasoning: string;
@@ -568,7 +568,7 @@ export class ResponseProtocolEngine {
   executeResponse(
     response: ThreatResponse,
     success: boolean,
-    executionDetails?: Record<string, any>,
+    executionDetails?: Record<string, unknown>,
   ): void {
     const protocol = this.protocols.get(response.protocolId);
     if (!protocol) return;
@@ -591,6 +591,7 @@ export class ResponseProtocolEngine {
     protocol.successRate = successfulExecutions / protocolExecutions.length;
 
     // Log execution details
+
     console.log(`Response executed: ${response.actionType}`, {
       protocol: protocol.name,
       success,

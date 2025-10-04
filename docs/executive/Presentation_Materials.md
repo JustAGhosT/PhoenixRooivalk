@@ -4,7 +4,7 @@
 
 ### Slide 1: Title Slide
 
-**PhoenixRooivalk: Level-0 Autonomous Counter-UAS Defense** _Revolutionizing
+**PhoenixRooivalk: SAE Level 4 Autonomous Counter-UAS Defense** _Revolutionizing
 Drone Defense Through Edge AI and Blockchain Accountability_
 
 **Presenter**: Jurie Smit, Technical Lead **Date**: October 2025 **Audience**:
@@ -37,7 +37,7 @@ vulnerable to evolving drone threats.
 
 ### Slide 3: The Solution
 
-**PhoenixRooivalk: Level-0 Autonomous Counter-UAS Defense**
+**PhoenixRooivalk: SAE Level 4 Autonomous Counter-UAS Defense**
 
 **Core Innovation**: Comms-Independent Edge Autonomy (CIEA)
 
@@ -47,7 +47,7 @@ vulnerable to evolving drone threats.
 - **99.7% Detection Accuracy**: Eliminates environmental false positives
 - **RF-Silent Detection**: Handles autonomous threats others cannot detect
 - **Blockchain Evidence**: Court-admissible audit trails for all engagements
-- **Level-0 Autonomy**: Complete offline operation without communications
+- **SAE Level 4 Autonomy**: Complete offline operation without communications
 - **Swarm Defense**: Handles 100+ concurrent threats with graceful degradation
 
 **The Result**: Unprecedented protection with verifiable accountability.
@@ -96,7 +96,7 @@ vulnerable to evolving drone threats.
 | ------------------------ | ---------------- | ---------- | ------------- | ----------- |
 | **Response Time**        | 120-195ms        | 2-5s       | 2-5s          | 2-5s        |
 | **RF-Silent Detection**  | ✅ Yes           | ❌ No      | ❌ No         | ❌ No       |
-| **Autonomous Operation** | ✅ Level-0       | ⚠️ Partial | ⚠️ Partial    | ❌ No       |
+| **Autonomous Operation** | ✅ SAE Level 4   | ⚠️ Partial | ⚠️ Partial    | ❌ No       |
 | **Swarm Handling**       | ✅ 100+          | ⚠️ Limited | ❌ Sequential | ⚠️ Limited  |
 | **Blockchain Evidence**  | ✅ Yes           | ❌ No      | ❌ No         | ❌ No       |
 | **EW Resilience**        | ✅ Yes           | ❌ No      | ❌ No         | ❌ No       |
@@ -170,7 +170,7 @@ competitors cannot match.
 
 **2. Autonomy**: Complete edge operation without communications
 
-- Level-0 autonomous decision making
+- SAE Level 4 autonomous decision making
 - Operates under EW and GPS denial conditions
 - No single point of failure or decapitation risk
 

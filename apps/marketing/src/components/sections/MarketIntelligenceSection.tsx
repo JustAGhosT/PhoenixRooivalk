@@ -58,7 +58,7 @@ export const MarketIntelligenceSection: React.FC = () => {
           </h2>
           <p className="text-[var(--gray)] max-w-3xl mx-auto">
             Phoenix Rooivalk addresses critical gaps in the $26B counter-drone
-            market with Level-0 autonomous architecture
+            market with SAE Level 4 autonomous architecture
           </p>
         </RevealSection>
 

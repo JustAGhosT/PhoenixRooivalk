@@ -1,4 +1,8 @@
-# PhoenixRooivalk Competitive Analysis
+---
+id: competitive-analysis
+title: Competitive Analysis
+sidebar_label: Competitive Analysis
+---
 
 ## Executive Summary
 
@@ -16,7 +20,8 @@ substantial market share by addressing critical gaps in current solutions.
 
 **Military & Defense**
 
-1. **Anduril Industries** - $30.5B valuation, strong defense relationships
+1. **Anduril Industries** - $28B valuation (Series G, June 2025), strong defense
+   relationships
 2. **Lockheed Martin** - Traditional defense contractor with integrated
    solutions
 3. **Raytheon** - Missile defense and sensor integration expertise
@@ -42,7 +47,9 @@ substantial market share by addressing critical gaps in current solutions.
 **Company Overview**
 
 - **Founded**: 2017
-- **Valuation**: $30.5B (Series G, 2025)
+- **Valuation**: $28B (Series G, June 2025)
+- **Recent Funding**: $2.5B Series G (June 2025), $1.5B Series F (August 2024),
+  $1.5B Series E (December 2022)
 - **Employees**: 2,500+
 - **Revenue**: $1B+ (estimated)
 - **Focus**: AI-powered defense systems, autonomous weapons
@@ -90,7 +97,7 @@ substantial market share by addressing critical gaps in current solutions.
 **Company Overview**
 
 - **Founded**: 2016
-- **Valuation**: $1.2B (Series C, 2024)
+- **Valuation**: $1.2B (Series C, 2025)
 - **Employees**: 500+
 - **Revenue**: $200M+ (estimated)
 - **Focus**: Kinetic counter-drone systems, airport security
@@ -192,7 +199,7 @@ substantial market share by addressing critical gaps in current solutions.
 | **Response Time**        | 120-195ms        | 2-5s       | 2-5s          | 2-5s        | 1-3s    |
 | **Detection Accuracy**   | 99.7%            | 95%        | 90%           | 85%         | 80%     |
 | **RF-Silent Detection**  | ✅ Yes           | ❌ No      | ❌ No         | ❌ No       | ❌ No   |
-| **Autonomous Operation** | ✅ Level-0       | ⚠️ Partial | ❌ No         | ❌ No       | ❌ No   |
+| **Autonomous Operation** | ✅ SAE Level 4   | ⚠️ Partial | ❌ No         | ❌ No       | ❌ No   |
 | **Swarm Handling**       | ✅ 100+          | ⚠️ Limited | ❌ Sequential | ⚠️ Limited  | ❌ No   |
 | **Blockchain Evidence**  | ✅ Yes           | ❌ No      | ❌ No         | ❌ No       | ❌ No   |
 | **EW Resilience**        | ✅ Yes           | ❌ No      | ❌ No         | ❌ No       | ❌ No   |
@@ -229,7 +236,7 @@ substantial market share by addressing critical gaps in current solutions.
 
 **1. Edge Autonomy**
 
-- **Phoenix Rooivalk**: Complete Level-0 autonomous operation
+- **Phoenix Rooivalk**: Complete SAE Level 4 autonomous operation
 - **Competitors**: Cloud-dependent or human-operated systems
 - **Advantage**: Operates in contested environments, no single point of failure
 

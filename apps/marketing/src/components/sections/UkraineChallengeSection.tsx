@@ -79,10 +79,10 @@ export const UkraineChallengeSection: React.FC = () => {
           >
             <h3 className="text-2xl font-bold text-white mb-4">The Stakes</h3>
             <p className="text-[var(--gray)] text-lg mb-6">
-              "Ukraine's entire war strategy hinges on this race. They've
-              survived three years by being smarter, not stronger. If they lose
-              the AI warfare competition, they lose their main advantage over
-              Russia's superior numbers."
+              &quot;Ukraine&apos;s entire war strategy hinges on this race.
+              They&apos;ve survived three years by being smarter, not stronger.
+              If they lose the AI warfare competition, they lose their main
+              advantage over Russia&apos;s superior numbers.&quot;
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button href="#contact" size="lg">

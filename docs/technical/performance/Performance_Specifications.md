@@ -26,7 +26,7 @@ metrics across all system components.
 - **System Uptime**: 99.95% target system uptime
 - **Authentication Latency**: <2ms authentication time
 - **Data Integrity**: 99.3% blockchain-verified data integrity
-- **Autonomous Operation**: Level-0 edge autonomy without network dependency
+- **Autonomous Operation**: SAE Level 4 edge autonomy without network dependency
 - **EW Resilience**: GPS-denied and jamming-resistant operation
 
 ---

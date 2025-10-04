@@ -1,4 +1,8 @@
-# Phoenix Rooivalk System Architecture
+---
+id: system-architecture
+title: System Architecture
+sidebar_label: System Architecture
+---
 
 ## Revolutionary Multi-Part Design
 
@@ -113,7 +117,8 @@ providing capabilities unmatched by current market solutions.
 
 **Rationale**: Hedera's governance council includes Boeing, IBM, and Google
 providing enterprise credibility. Non-US jurisdiction aligns with South African
-sovereignty requirements.
+entity sovereignty requirements, while Solana provides US market compliance for
+Delaware C-Corp entity.
 
 ### AI/ML Framework Architecture
 
@@ -302,15 +307,15 @@ sovereignty requirements.
 - **Detection Range**: 5-10 km (configurable)
 - **Response Time**: 3-6 seconds end-to-end
 - **Accuracy**: 95%+ threat identification
-- **False Positive Rate**: &lt;5%
+- **False Positive Rate**: <5%
 - **System Availability**: 99.9% uptime
 - **Power Consumption**: 100-250W average
 
 ### Swarm Coordination
 
 - **Swarm Size**: 5-20 interceptor drones
-- **Coordination Latency**: &lt;100ms
-- **Autonomous Decision**: Level-0 autonomy
+- **Coordination Latency**: <100ms
+- **Autonomous Decision**: SAE Level 4 autonomy
 - **Human Override**: Always available
 - **Collision Avoidance**: Real-time path planning
 
@@ -319,7 +324,7 @@ sovereignty requirements.
 - **Fiber Bandwidth**: 10Gbps+ sustained
 - **5G Connectivity**: 1Gbps mobile
 - **Mesh Networking**: Self-healing topology
-- **Latency**: &lt;10ms fiber, &lt;50ms wireless
+- **Latency**: <10ms fiber, <50ms wireless
 - **Security**: AES-256 encryption
 
 ---
@@ -342,5 +347,3 @@ next-generation counter-drone defense systems.
 _This document contains confidential technical information. Distribution is
 restricted to authorized personnel only. © 2025 Phoenix Rooivalk. All rights
 reserved._
-
-_Context improved by Giga AI_

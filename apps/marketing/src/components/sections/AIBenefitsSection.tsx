@@ -93,9 +93,10 @@ export const AIBenefitsSection: React.FC = () => {
             </h3>
             <p className="text-[var(--gray)] text-lg mb-6">
               While competitors race to meet the 2027 autonomous warfare
-              deadline, PhoenixRooivalk's integrated AI-blockchain system is
-              ready for immediate deployment, providing a decisive technological
-              advantage in the critical race for autonomous warfare dominance.
+              deadline, PhoenixRooivalk&apos;s integrated AI-blockchain system
+              is ready for immediate deployment, providing a decisive
+              technological advantage in the critical race for autonomous
+              warfare dominance.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button href="#contact" size="lg">

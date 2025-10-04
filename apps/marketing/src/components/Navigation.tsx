@@ -4,23 +4,88 @@ import Link from "next/link";
 import * as React from "react";
 import { useTheme } from "../contexts/ThemeContext";
 
+// Type definitions for discriminated union
+type LinkItem = {
+  type: "link";
+  href: string;
+  label: string;
+};
+
+type DropdownItem = {
+  type: "dropdown";
+  label: string;
+  items: Array<{
+    href: string;
+    label: string;
+    description: string;
+  }>;
+};
+
+type NavigationItem = LinkItem | DropdownItem;
+
 export const Navigation: React.FC = () => {
   const { theme, toggleTheme } = useTheme();
 
-  const navigationItems = [
+  const navigationItems: NavigationItem[] = [
     {
-      href: "/interactive-demo",
-      label: "Demo",
+      type: "dropdown",
+      label: "Technology",
+      items: [
+        {
+          href: "/interactive-demo",
+          label: "Interactive Demo",
+          description: "Try the threat simulator",
+        },
+        {
+          href: "/technical",
+          label: "Technical Specs",
+          description: "Detailed specifications",
+        },
+        {
+          href: "/capabilities",
+          label: "Capabilities",
+          description: "Core system features",
+        },
+        {
+          href: "/methods",
+          label: "Defense Methods",
+          description: "Counter-drone strategies",
+        },
+      ],
     },
     {
+      type: "dropdown",
+      label: "Business",
+      items: [
+        {
+          href: "/roi-calculator",
+          label: "ROI Calculator",
+          description: "Calculate your savings",
+        },
+        {
+          href: "/timeline",
+          label: "Development Timeline",
+          description: "Project roadmap",
+        },
+        {
+          href: "/partnerships",
+          label: "Partnerships",
+          description: "Collaboration opportunities",
+        },
+        {
+          href: "/sbir",
+          label: "SBIR Program",
+          description: "Government funding",
+        },
+      ],
+    },
+    {
+      type: "link",
       href: "/about",
       label: "About",
     },
     {
-      href: "/technical",
-      label: "Technical",
-    },
-    {
+      type: "link",
       href: "/contact",
       label: "Contact",
     },
@@ -49,17 +114,58 @@ export const Navigation: React.FC = () => {
           </div>
         </Link>
 
-        {/* Simplified Navigation */}
+        {/* Enhanced Navigation with Dropdowns */}
         <div className="hidden lg:flex items-center space-x-8">
           <ul className="flex gap-6 text-[var(--text-secondary)]">
             {navigationItems.map((item) => (
-              <li key={item.href}>
-                <Link
-                  href={item.href}
-                  className="hover:text-[var(--text-primary)] transition-colors font-medium"
-                >
-                  {item.label}
-                </Link>
+              <li
+                key={item.type === "link" ? item.href : item.label}
+                className="relative group"
+              >
+                {item.type === "dropdown" ? (
+                  <>
+                    <button className="hover:text-[var(--text-primary)] focus:text-[var(--text-primary)] transition-colors font-medium flex items-center gap-1">
+                      {item.label}
+                      <svg
+                        className="w-4 h-4"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M19 9l-7 7-7-7"
+                        />
+                      </svg>
+                    </button>
+                    {/* Dropdown Menu */}
+                    <div className="absolute top-full left-0 mt-2 w-64 bg-[var(--bg-surface)] border border-[var(--border)] rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible group-focus-within:opacity-100 group-focus-within:visible transition-all duration-200 z-50">
+                      <div className="py-2">
+                        {item.items?.map((subItem) => (
+                          <Link
+                            key={subItem.href}
+                            href={subItem.href}
+                            className="flex flex-col px-4 py-3 text-sm text-[var(--text-primary)] hover:bg-[var(--bg-secondary)] transition-colors"
+                          >
+                            <span className="font-medium">{subItem.label}</span>
+                            <span className="text-xs text-[var(--text-muted)]">
+                              {subItem.description}
+                            </span>
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
+                  </>
+                ) : item.type === "link" ? (
+                  <Link
+                    href={item.href}
+                    className="hover:text-[var(--text-primary)] transition-colors font-medium"
+                  >
+                    {item.label}
+                  </Link>
+                ) : null}
               </li>
             ))}
           </ul>
@@ -158,7 +264,7 @@ export const Navigation: React.FC = () => {
                   </a>
                   <div className="border-t border-[var(--border)] my-1"></div>
                   <a
-                    href="https://phoenixrooivalk.netlify.app"
+                    href="https://docs-phoenixrooivalk.netlify.app"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center px-4 py-2 text-sm text-[var(--text-primary)] hover:bg-[var(--bg-secondary)] transition-colors"

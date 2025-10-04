@@ -1,5 +1,5 @@
 import * as React from "react";
-import type { GameState, Threat } from "../types/game";
+import type { Drone, GameState, Threat } from "../types/game";
 
 interface ThreatSimulatorComponentsProps {
   gameState: GameState;
@@ -92,10 +92,7 @@ export const ThreatSimulatorComponents: React.FC<
           >
             <path
               d={`M ${threat.trail
-                .map(
-                  (point, index) =>
-                    `${point.x - threat.x},${point.y - threat.y}`,
-                )
+                .map((point) => `${point.x - threat.x},${point.y - threat.y}`)
                 .join(" L ")}`}
               stroke="rgba(255, 255, 255, 0.3)"
               strokeWidth="1"
@@ -121,7 +118,7 @@ export const ThreatSimulatorComponents: React.FC<
   };
 
   // Enhanced drone rendering
-  const renderDrone = (drone: any) => {
+  const renderDrone = (drone: Drone) => {
     const droneIcons = {
       interceptor: "🚁",
       jammer: "📡",

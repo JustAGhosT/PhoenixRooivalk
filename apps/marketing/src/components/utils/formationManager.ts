@@ -34,7 +34,7 @@ export interface FormationCommand {
   type: "create" | "modify" | "disband" | "reposition";
   formationId?: string;
   droneIds: string[];
-  parameters: Record<string, any>;
+  parameters: Partial<Formation>;
   priority: number;
   estimatedExecutionTime: number;
 }
@@ -108,7 +108,15 @@ export class FormationManager {
     disadvantages: string[];
     modifications: string[];
   } {
-    const combinations: Record<string, any> = {
+    const combinations: Record<
+      string,
+      {
+        score: number;
+        advantages: string[];
+        disadvantages: string[];
+        modifications: string[];
+      }
+    > = {
       "circle-drone": {
         score: 0.8,
         advantages: ["360-degree coverage", "mutual support"],
@@ -210,21 +218,21 @@ export class FormationManager {
   // Calculate positions for different formation types
   private calculateFormationPositions(formation: Formation): DronePosition[] {
     const positions: DronePosition[] = [];
-    const { droneIds, centerX, centerY, radius, spacing, type } = formation;
+    const { type } = formation;
 
     switch (type) {
       case "circle":
-        return this.calculateCirclePositions(formation, droneIds);
+        return this.calculateCirclePositions(formation, formation.droneIds);
       case "line":
-        return this.calculateLinePositions(formation, droneIds);
+        return this.calculateLinePositions(formation, formation.droneIds);
       case "diamond":
-        return this.calculateDiamondPositions(formation, droneIds);
+        return this.calculateDiamondPositions(formation, formation.droneIds);
       case "wedge":
-        return this.calculateWedgePositions(formation, droneIds);
+        return this.calculateWedgePositions(formation, formation.droneIds);
       case "semicircle":
-        return this.calculateSemicirclePositions(formation, droneIds);
+        return this.calculateSemicirclePositions(formation, formation.droneIds);
       case "swarm":
-        return this.calculateSwarmPositions(formation, droneIds);
+        return this.calculateSwarmPositions(formation, formation.droneIds);
       default:
         return positions;
     }
@@ -558,7 +566,7 @@ export class FormationManager {
     droneCount: number,
     centerX: number,
     centerY: number,
-  ): { type: Formation["type"]; parameters: Record<string, any> } {
+  ): { type: Formation["type"]; parameters: Partial<Formation> } {
     const effectivenessScores = new Map<string, number>();
 
     // Evaluate each formation type
@@ -606,12 +614,10 @@ export class FormationManager {
   private generateFormationParameters(
     formationType: Formation["type"],
     droneCount: number,
-    centerX: number,
-    centerY: number,
-  ): Record<string, any> {
-    const parameters: Record<string, any> = {
-      centerX,
-      centerY,
+    _centerX: number,
+    _centerY: number,
+  ): Partial<Formation> {
+    const parameters: Partial<Formation> = {
       radius: Math.max(50, droneCount * 10),
       spacing: Math.max(30, droneCount * 5),
     };
@@ -634,7 +640,7 @@ export class FormationManager {
     formationId: string,
     threatType: string,
     success: boolean,
-    performanceMetrics?: Record<string, number>,
+    _performanceMetrics?: Record<string, number>,
   ): void {
     const formation = this.formations.get(formationId);
     if (!formation) return;
@@ -696,10 +702,10 @@ export class FormationManager {
     switch (command.type) {
       case "create":
         this.createFormation(
-          command.parameters.name,
-          command.parameters.type,
-          command.parameters.centerX,
-          command.parameters.centerY,
+          command.parameters.name as string,
+          command.parameters.type as Formation["type"],
+          command.parameters.centerX as number,
+          command.parameters.centerY as number,
           command.droneIds,
           command.parameters,
         );

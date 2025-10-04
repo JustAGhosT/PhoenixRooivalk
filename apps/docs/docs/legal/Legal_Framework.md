@@ -1,4 +1,8 @@
-# Phoenix Rooivalk Legal Framework
+---
+id: legal-framework
+title: Legal Framework
+sidebar_label: Legal Framework
+---
 
 ## Executive Summary
 

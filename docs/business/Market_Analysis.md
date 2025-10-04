@@ -120,7 +120,7 @@ law enforcement by 2028
 | ------------------------ | ---------------- | ---------- | ------------- | ----------- |
 | **Response Time**        | 120–195ms        | 2–5s       | 2–5s          | 2–5s        |
 | **RF-Silent Detection**  | ✅ Yes           | ❌ No      | ❌ No         | ❌ No       |
-| **Autonomous Operation** | ✅ Level-0       | ⚠️ Partial | ⚠️ Partial    | ❌ No       |
+| **Autonomous Operation** | ✅ SAE Level 4   | ⚠️ Partial | ⚠️ Partial    | ❌ No       |
 | **Swarm Handling**       | ✅ 100+          | ⚠️ Limited | ⚠️ Sequential | ⚠️ Limited  |
 | **Blockchain Evidence**  | ✅ Yes           | ❌ No      | ❌ No         | ❌ No       |
 | **EW Resilience**        | ✅ Yes           | ❌ No      | ❌ No         | ❌ No       |
@@ -172,7 +172,7 @@ law enforcement by 2028
 
 - **99.7% Detection Accuracy**: Eliminates false positives
 - **120-195ms Response**: 10-40x faster than competitors
-- **Level-0 Autonomy**: Complete edge operation
+- **SAE Level 4 Autonomy**: Complete edge operation
 - **EW Resilience**: Operates under jamming conditions
 - **Blockchain Evidence**: Court-admissible audit trails
 - **Lower TCO**: Reduced operational costs

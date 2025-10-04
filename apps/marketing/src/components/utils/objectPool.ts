@@ -15,6 +15,13 @@ export interface PoolConfig<T> {
   validateFn?: (obj: T) => boolean;
 }
 
+export interface PoolStats {
+  totalObjects: number;
+  activeObjects: number;
+  inactiveObjects: number;
+  utilizationRate: number;
+}
+
 // Generic Object Pool for efficient memory management
 export class ObjectPool<T extends Poolable> {
   private pool: T[] = [];
@@ -118,12 +125,7 @@ export class ObjectPool<T extends Poolable> {
   }
 
   // Get pool statistics
-  getStats(): {
-    totalObjects: number;
-    activeObjects: number;
-    inactiveObjects: number;
-    utilizationRate: number;
-  } {
+  getStats(): PoolStats {
     const activeCount = this.active.size;
     const totalCount = this.pool.length;
     const inactiveCount = totalCount - activeCount;
@@ -152,7 +154,7 @@ export interface ThreatPoolObject extends Poolable {
   maxHealth: number;
   behavior: string;
   trail: Array<{ x: number; y: number; timestamp: number }>;
-  specialProperties: Record<string, any>;
+  specialProperties: Record<string, unknown>;
 }
 
 export interface DronePoolObject extends Poolable {
@@ -362,7 +364,7 @@ export class PoolManager {
 
   // Get pool by name
   getPool<T extends Poolable>(name: string): ObjectPool<T> | null {
-    return this.pools.get(name) || null;
+    return (this.pools.get(name) as ObjectPool<T>) || null;
   }
 
   // Cleanup all pools
@@ -376,8 +378,8 @@ export class PoolManager {
   }
 
   // Get statistics for all pools
-  getAllStats(): Record<string, any> {
-    const stats: Record<string, any> = {};
+  getAllStats(): Record<string, PoolStats> {
+    const stats: Record<string, PoolStats> = {};
     this.pools.forEach((pool, name) => {
       stats[name] = pool.getStats();
     });

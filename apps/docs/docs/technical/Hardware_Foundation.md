@@ -1,4 +1,8 @@
-# Phoenix Rooivalk Hardware Foundation
+---
+id: hardware-foundation
+title: Hardware Foundation
+sidebar_label: Hardware Foundation
+---
 
 ## NVIDIA Jetson for Edge AI
 

@@ -1,6 +1,14 @@
+/* eslint-env node */
 import type * as Preset from "@docusaurus/preset-classic";
 import type { Config } from "@docusaurus/types";
+import { resolve } from "path";
 import { themes as prismThemes } from "prism-react-renderer";
+
+// Node.js environment declarations
+declare const process: {
+  env: Record<string, string | undefined>;
+};
+declare const __dirname: string;
 
 const envName =
   process.env.ENV_NAME ||
@@ -23,12 +31,13 @@ const envClass =
     ? "navbar-env-badge"
     : "navbar-env-badge navbar-env-badge--preview";
 
-const marketingUrl = process.env.MARKETING_URL || "https://";
+const marketingUrl =
+  process.env.MARKETING_URL || "https://phoenixrooivalk.netlify.app";
 
 const config: Config = {
   title: "PhoenixRooivalk Docs",
   favicon: "img/favicon.ico",
-  url: "https://phoenixrooivalk.netlify.app",
+  url: "https://docs-phoenixrooivalk.netlify.app",
   baseUrl: "/",
   organizationName: "JustAGhosT",
   projectName: "PhoenixRooivalk",
@@ -43,13 +52,13 @@ const config: Config = {
       {
         docs: {
           routeBasePath: "docs",
-          sidebarPath: require.resolve("./sidebars.ts"),
+          sidebarPath: resolve(__dirname, "./sidebars.ts"),
           editUrl: undefined,
           remarkPlugins: [],
           rehypePlugins: [],
         },
         blog: false,
-        theme: { customCss: require.resolve("./src/css/custom.css") },
+        theme: { customCss: resolve(__dirname, "./src/css/custom.css") },
       } satisfies Preset.Options,
     ],
   ],
@@ -78,7 +87,7 @@ const config: Config = {
           items: [
             {
               label: "Executive Summary",
-              to: "/docs/executive/Executive_Summary",
+              to: "/docs/executive/executive-summary",
             },
             {
               label: "Global Strategy",
@@ -112,7 +121,7 @@ const config: Config = {
             },
             {
               label: "Business Model",
-              to: "/docs/business/Business_Model",
+              to: "/docs/business/business-model",
             },
           ],
         },
@@ -180,7 +189,7 @@ const config: Config = {
           items: [
             {
               label: "Executive Summary",
-              to: "/docs/executive/Executive_Summary",
+              to: "/docs/executive/executive-summary",
             },
             {
               label: "Technical Architecture",
@@ -222,7 +231,7 @@ const config: Config = {
             },
             {
               label: "Business Model",
-              to: "/docs/business/Business_Model",
+              to: "/docs/business/business-model",
             },
           ],
         },
@@ -245,7 +254,7 @@ const config: Config = {
     announcementBar: {
       id: "phoenix-rooivalk-announcement",
       content:
-        "🚀 Phoenix Rooivalk: Revolutionary Level-0 Autonomous Counter-UAS Defense Platform",
+        "🚀 Phoenix Rooivalk: Revolutionary SAE Level 4 Autonomous Counter-UAS Defense Platform",
       backgroundColor: "rgb(249, 115, 22)",
       textColor: "rgb(15, 23, 42)",
       isCloseable: true,
@@ -258,7 +267,7 @@ const config: Config = {
     // Enhanced docs
     docs: {
       sidebar: {
-        hideable: true,
+        hideable: true, // cspell:ignore hideable
         autoCollapseCategories: true,
       },
     },

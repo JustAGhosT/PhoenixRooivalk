@@ -1,6 +1,7 @@
 import { FlatCompat } from "@eslint/eslintrc";
 import { dirname } from "path";
 import { fileURLToPath } from "url";
+import security from "eslint-plugin-security";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -11,6 +12,14 @@ const compat = new FlatCompat({
 
 const eslintConfig = [
   ...compat.extends("next/core-web-vitals", "next/typescript"),
+  security.configs.recommended,
+  {
+    settings: {
+      "import/resolver": {
+        typescript: {},
+      },
+    },
+  },
   {
     ignores: [
       "node_modules/**",
@@ -33,6 +42,8 @@ const eslintConfig = [
       "@typescript-eslint/no-require-imports": "warn",
       "@next/next/no-img-element": "warn",
       "react-hooks/exhaustive-deps": "warn",
+      // TODO: Address these security warnings in a separate task
+      "security/detect-object-injection": "off",
     },
   },
   {

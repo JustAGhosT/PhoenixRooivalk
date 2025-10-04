@@ -2,10 +2,10 @@
 
 ## Executive Summary
 
-Phoenix Rooivalk's manufacturing strategy leverages South Africa's competitive
-advantages in cost, talent, and strategic positioning to build a global defense
-technology leader. The hybrid production model balances in-house manufacturing
-for IP protection with strategic sourcing for cost optimization and supply chain
+Phoenix Rooivalk's manufacturing strategy leverages a dual entity approach:
+Delaware C-Corp for US/ITAR markets and South African entity for global non-ITAR
+markets. The hybrid production model balances in-house manufacturing for IP
+protection with strategic sourcing for cost optimization and supply chain
 resilience.
 
 ---

@@ -162,7 +162,7 @@ accuracy.
 - **<200ms Response Time**: 10-40x faster than current systems
 - **Sub-2ms Authentication**: Cryptographic authentication in <2ms
 - **Real-Time Processing**: Real-time AI processing and decision making
-- **Edge Autonomy**: Level-0 autonomy without network dependency
+- **Edge Autonomy**: SAE Level 4 autonomy without network dependency
 
 **Scalability Metrics**
 
@@ -175,7 +175,8 @@ accuracy.
 
 **Autonomous Operation**
 
-- **Level-0 Autonomy**: Fully autonomous operation without human intervention
+- **SAE Level 4 Autonomy**: Fully autonomous operation without human
+  intervention
 - **GPS-Denied Environments**: Operation in GPS-denied and EW-contested
   environments
 - **Network Independence**: Operation without network connectivity
@@ -213,7 +214,7 @@ accuracy.
 - **Response Time**: 10-40x faster than current systems
 - **Accuracy**: Higher accuracy than industry average
 - **False Positives**: Significantly reduced false positive rate
-- **Autonomy**: Level-0 autonomy without network dependency
+- **Autonomy**: SAE Level 4 autonomy without network dependency
 
 **Integration Capabilities**
 

@@ -1,8 +1,10 @@
-import { useCallback, useState } from "react";
+import { useCallback, useState, type RefObject } from "react";
 import type { GameState, SelectionBox, Threat } from "../../types/game";
+import { ParticleSystem } from "../utils/particleSystem";
+import type { PowerUp } from "../utils/weaponTypes";
 
 interface UseThreatSimulatorEventsProps {
-  gameRef: React.RefObject<HTMLButtonElement>;
+  gameRef: RefObject<HTMLButtonElement>;
   gameState: GameState;
   updateThreats: (threats: Threat[]) => void;
   addThreat: (threat: Threat) => void;
@@ -41,43 +43,29 @@ interface UseThreatSimulatorEventsProps {
   moveAllThreats: () => void;
   generateSwarm: () => void;
   spawnMultipleDrones: (count: number) => void;
-  activatePowerUp: (powerUpId: string) => void;
+  activatePowerUp: (powerUpType: PowerUp["type"]) => void;
   clearTimeouts: () => void;
   resetGameState: () => void;
   toggleRunningState: () => void;
   setFrameRate: (rate: number) => void;
   consumeEnergy: (amount: number) => void;
   consumeCooling: (amount: number) => void;
-  particleSystem: any;
+  particleSystem: ParticleSystem;
 }
 
 export const useThreatSimulatorEvents = ({
   gameRef,
   gameState,
-  updateThreats: _updateThreats,
-  addThreat: _addThreat,
-  removeThreat: _removeThreat,
-  updateScore: _updateScore,
   selectThreat,
   setThreatPriority,
   neutralizeThreat,
   switchWeapon,
   deployDrone,
   selectDroneType,
-  returnDroneToBase: _returnDroneToBase,
   clearSelection,
   setSelectionBox,
-  spawnNewThreat: _spawnNewThreat,
-  moveAllThreats: _moveAllThreats,
-  generateSwarm: _generateSwarm,
-  spawnMultipleDrones: _spawnMultipleDrones,
-  activatePowerUp: _activatePowerUp,
-  clearTimeouts: _clearTimeouts,
-  resetGameState: _resetGameState,
   toggleRunningState,
-  setFrameRate: _setFrameRate,
   consumeEnergy,
-  consumeCooling: _consumeCooling,
   particleSystem,
 }: UseThreatSimulatorEventsProps) => {
   // Mouse interaction state
@@ -112,7 +100,7 @@ export const useThreatSimulatorEvents = ({
         }
       }
     },
-    [gameState.selectedWeapon, setSelectionBox],
+    [gameRef, gameState.selectedWeapon, setSelectionBox],
   );
 
   const handleMouseMove = useCallback(
@@ -158,7 +146,7 @@ export const useThreatSimulatorEvents = ({
             gameState.selectionBox.endY,
           );
 
-          const selectedThreats = gameState.threats.filter((threat: any) => {
+          const selectedThreats = gameState.threats.filter((threat) => {
             return (
               threat.x >= minX &&
               threat.x <= maxX &&
@@ -169,7 +157,7 @@ export const useThreatSimulatorEvents = ({
 
           if (dragMode === "area-weapon") {
             // Area effect weapon - neutralize all threats in selection
-            selectedThreats.forEach((threat: any) => {
+            selectedThreats.forEach((threat) => {
               neutralizeThreat(threat.id);
               // Create area effect explosion
               particleSystem.createExplosion(threat.x, threat.y, 1.2);
@@ -179,7 +167,7 @@ export const useThreatSimulatorEvents = ({
             consumeEnergy(selectedThreats.length * 10);
           } else {
             // Normal selection mode
-            selectedThreats.forEach((threat: any) => {
+            selectedThreats.forEach((threat) => {
               selectThreat(threat.id);
             });
           }
@@ -196,28 +184,31 @@ export const useThreatSimulatorEvents = ({
       particleSystem,
       consumeEnergy,
       setSelectionBox,
-      gameRef,
     ],
   );
 
   const handleThreatClick = useCallback(
-    (e: React.MouseEvent, threatId: string) => {
+    (e: React.MouseEvent | React.KeyboardEvent, threatId: string) => {
       e.stopPropagation();
+      e.preventDefault();
 
-      // Only prevent default for non-primary buttons to avoid interfering with normal selection
-      if (e.button !== 0) {
-        e.preventDefault();
+      let button = 0;
+      if ("button" in e) {
+        // It's a mouse event
+        button = e.button;
+      } else if ("key" in e) {
+        // it's a keyboard event
+        if (e.key !== "Enter" && e.key !== " ") {
+          return; // Not an activation key
+        }
       }
 
-      if (e.button === 0) {
-        // Left click - select threat
+      if (button === 0) {
+        // Left click or Enter/Space - select threat
         selectThreat(threatId);
-      } else if (e.button === 1) {
+      } else if (button === 1) {
         // Middle click - set priority
-        // Use safer object property access with optional chaining
-        const currentPriority = gameState.priorityThreats?.[threatId] as
-          | string
-          | undefined;
+        const currentPriority = gameState.priorityThreats?.[threatId];
         if (currentPriority === "high") {
           setThreatPriority(threatId, "medium");
         } else if (currentPriority === "medium") {
@@ -225,7 +216,7 @@ export const useThreatSimulatorEvents = ({
         } else {
           setThreatPriority(threatId, "high");
         }
-      } else if (e.button === 2) {
+      } else if (button === 2) {
         // Right click - neutralize
         neutralizeThreat(threatId);
       }
@@ -265,7 +256,13 @@ export const useThreatSimulatorEvents = ({
         deployDrone("surveillance", x, y);
       }
     },
-    [gameState.selectedDroneType, deployDrone, switchWeapon, isDragging],
+    [
+      gameRef,
+      gameState.selectedDroneType,
+      deployDrone,
+      switchWeapon,
+      isDragging,
+    ],
   );
 
   // Keyboard activation handler (no mouse coordinates needed)
@@ -314,7 +311,7 @@ export const useThreatSimulatorEvents = ({
         }
       }
     },
-    [gameState.selectedWeapon, switchWeapon, gameRef],
+    [gameState.selectedWeapon, switchWeapon],
   );
 
   // Context menu handler to prevent right-click menu
@@ -324,7 +321,7 @@ export const useThreatSimulatorEvents = ({
 
   // Keyboard shortcuts
   const handleKeyDown = useCallback(
-    (e: KeyboardEvent) => {
+    (e: React.KeyboardEvent) => {
       // Prevent default for game shortcuts
       if (e.ctrlKey || e.metaKey) return;
 

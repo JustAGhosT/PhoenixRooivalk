@@ -343,9 +343,8 @@ let evidence = client.anchor_evidence(threat_id, sensor_data).await?;
 
 ### Support Channels
 
-- **Email**: api-support@phoenixrooivalk.com
+- **Email**: jurie@phoenixvc.tech
 - **Slack**: #api-support channel
-- **Phone**: +1-555-PHOENIX (24/7 support)
 
 ---
 

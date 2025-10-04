@@ -1,14 +1,19 @@
-# PhoenixRooivalk Presentation Materials
+---
+id: presentation-materials
+title: Presentation Materials
+sidebar_label: Presentation Materials
+---
 
 ## Executive Presentation Script
 
 ### Slide 1: Title Slide
 
-**PhoenixRooivalk: Level-0 Autonomous Counter-UAS Defense** _Revolutionizing
-Drone Defense Through Edge AI and Blockchain Accountability_
+**PhoenixRooivalk: SAE Level 4 Autonomous Counter-UAS Defense**
 
-**Presenter**: Jurie Smit, Technical Lead **Date**: October 2025 **Audience**:
-[Customize based on audience]
+> _Revolutionizing Drone Defense Through Edge AI and Blockchain Accountability_
+
+**Presenter**: Jurie Smit, Technical Lead **Date**: October 3, 2025
+**Audience**: [Customize based on audience]
 
 ---
 
@@ -37,7 +42,7 @@ vulnerable to evolving drone threats.
 
 ### Slide 3: The Solution
 
-**PhoenixRooivalk: Level-0 Autonomous Counter-UAS Defense**
+**PhoenixRooivalk: SAE Level 4 Autonomous Counter-UAS Defense**
 
 **Core Innovation**: Comms-Independent Edge Autonomy (CIEA)
 
@@ -47,7 +52,7 @@ vulnerable to evolving drone threats.
 - **99.7% Detection Accuracy**: Eliminates environmental false positives
 - **RF-Silent Detection**: Handles autonomous threats others cannot detect
 - **Blockchain Evidence**: Court-admissible audit trails for all engagements
-- **Level-0 Autonomy**: Complete offline operation without communications
+- **SAE Level 4 Autonomy**: Complete offline operation without communications
 - **Swarm Defense**: Handles 100+ concurrent threats with graceful degradation
 
 **The Result**: Unprecedented protection with verifiable accountability.
@@ -96,7 +101,7 @@ vulnerable to evolving drone threats.
 | ------------------------ | ---------------- | ---------- | ------------- | ----------- |
 | **Response Time**        | 120-195ms        | 2-5s       | 2-5s          | 2-5s        |
 | **RF-Silent Detection**  | ✅ Yes           | ❌ No      | ❌ No         | ❌ No       |
-| **Autonomous Operation** | ✅ Level-0       | ⚠️ Partial | ⚠️ Partial    | ❌ No       |
+| **Autonomous Operation** | ✅ SAE Level 4   | ⚠️ Partial | ⚠️ Partial    | ❌ No       |
 | **Swarm Handling**       | ✅ 100+          | ⚠️ Limited | ❌ Sequential | ⚠️ Limited  |
 | **Blockchain Evidence**  | ✅ Yes           | ❌ No      | ❌ No         | ❌ No       |
 | **EW Resilience**        | ✅ Yes           | ❌ No      | ❌ No         | ❌ No       |
@@ -112,7 +117,7 @@ competitors cannot match.
 
 **Market Size & Growth:**
 
-- **Current Market**: $2.0-2.5B (2024)
+- **Current Market**: $2.0-2.5B (2025)
 - **Growth Rate**: 20-27% CAGR
 - **Projected 2030**: $9-16B annual market value
 - **Total Drone Industry**: $73B across consumer, commercial, military
@@ -170,7 +175,7 @@ competitors cannot match.
 
 **2. Autonomy**: Complete edge operation without communications
 
-- Level-0 autonomous decision making
+- SAE Level 4 autonomous decision making
 - Operates under EW and GPS denial conditions
 - No single point of failure or decapitation risk
 
@@ -194,9 +199,9 @@ competitors cannot match.
 
 **Completed Milestones:**
 
-- **Q1 2025**: Two-site pilot deployment, soft-kill ROE implementation
-- **Q2 2025**: Public on-chain proof tests, Lockheed Martin integration progress
-- **Q3 2025**: NATO certification process, multi-swarm coordination demo
+- **Q1 2026**: Two-site pilot deployment, soft-kill ROE implementation
+- **Q2 2026**: Public on-chain proof tests, Lockheed Martin integration progress
+- **Q3 2026**: NATO certification process, multi-swarm coordination demo
 
 **Current Status (October 2025):**
 
@@ -204,13 +209,14 @@ competitors cannot match.
 - **Pilot Deployments**: Production-ready with operational validation
 - **Security Evaluation**: Red-team assessment completed with vulnerabilities
   patched
-- **Partnership Progress**: Lockheed Martin integration work ongoing
+- **Partnership Progress**: Lockheed Martin integration work ongoing (in
+  discussion), other partnerships planned
 
 **Next Milestones:**
 
-- **Q4 2025**: Full production deployment, customer acquisition
-- **Q1 2026**: Market expansion, Series B funding
-- **Q2 2026**: International expansion, strategic partnerships
+- **Q4 2026**: Full production deployment, customer acquisition
+- **Q1 2027**: Market expansion, Series B funding
+- **Q2 2027**: International expansion, strategic partnerships
 
 ---
 
@@ -272,7 +278,8 @@ competitors cannot match.
 - **Software Foundation**: Complete and production-ready
 - **Pilot Deployments**: Operational validation completed
 - **Security Assessment**: Red-team evaluation passed
-- **Partnership Progress**: Lockheed Martin integration ongoing
+- **Partnership Progress**: Lockheed Martin integration ongoing (in discussion),
+  other partnerships planned
 
 ---
 
@@ -303,9 +310,8 @@ competitors cannot match.
 
 **Contact Information:**
 
-- **Technical Demo**: [jurie@nexamesh.com](mailto:jurie@nexamesh.com)
-- **Partnership Inquiries**:
-  [partnership@nexamesh.com](mailto:partnership@nexamesh.com)
+- **Technical Demo** | **Partnership Inquiries**:
+  [jurie@phoenixvc.tech](mailto:jurie@phoenixvc.tech)
 
 ---
 
@@ -393,7 +399,7 @@ Market Size ($B)
 10 ┤        ████████████
  5 ┤     ████████
  0 └─────────────────────────────
-   2024  2026  2028  2030
+   2025  2027  2029  2031
 ```
 
 ---

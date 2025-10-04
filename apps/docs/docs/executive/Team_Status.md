@@ -1,4 +1,8 @@
-# Phoenix Rooivalk Team and Repository Status
+---
+id: team-status
+title: Team Status
+sidebar_label: Team Status
+---
 
 ## Project Status Overview
 

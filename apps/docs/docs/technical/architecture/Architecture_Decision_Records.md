@@ -1,4 +1,8 @@
-# Phoenix Rooivalk Architecture Decision Records
+---
+id: architecture-decision-records
+title: Architecture Decision Records
+sidebar_label: Architecture Decision Records
+---
 
 ## Executive Summary
 
@@ -99,10 +103,10 @@ smart contracts.
 
 ---
 
-## ADR 0003: Level-0 Autonomy Adoption Strategy
+## ADR 0003: SAE Level 4 Autonomy Adoption Strategy
 
 **Date**: 2025-09-24  
-**Status**: Accepted (Level-0 autonomy)
+**Status**: Accepted (SAE Level 4 autonomy)
 
 ### Context
 
@@ -111,24 +115,31 @@ operational effectiveness with safety and compliance requirements.
 
 ### Options Considered
 
-- **Level-0 Autonomy**: Fully autonomous operation without human intervention
-- **Level-1 Autonomy**: Semi-autonomous with human oversight
-- **Level-2 Autonomy**: Human-in-the-loop for critical decisions
+- **SAE Level 4 Autonomy**: High automation within a defined Operational Design
+  Domain (ODD); capable of performing all driving tasks without human
+  intervention while inside the ODD, but may require fallback or limited
+  operation outside it.
+- **SAE Level 3 Autonomy**: Conditional automation with human fallback
+- **SAE Level 2 Autonomy**: Partial automation with human monitoring
+- **SAE Level 1 Autonomy**: Driver assistance with human control
 - **Hybrid Approach**: Different autonomy levels for different scenarios
 
 ### Decision
 
-Implement Level-0 autonomy with comprehensive safety and compliance frameworks.
+Implement SAE Level 4 autonomy with comprehensive safety and compliance
+frameworks.
 
 ### Rationale
 
-- **Operational Effectiveness**: Level-0 autonomy provides maximum operational
-  effectiveness
+- **Operational Effectiveness**: SAE Level 4 autonomy provides maximum
+  operational effectiveness
 - **Response Time**: Sub-200ms response time requires autonomous operation
 - **GPS-Denied Environments**: Autonomous operation essential for GPS-denied
   environments
 - **Safety Framework**: Comprehensive safety framework ensures safe operation
 - **Compliance**: Full compliance with DoD Directive 3000.09
+- **Industry Standard**: SAE J3016 standard provides clear autonomy level
+  definitions
 
 ### Consequences
 
@@ -136,6 +147,9 @@ Implement Level-0 autonomy with comprehensive safety and compliance frameworks.
 - **Compliance**: Full compliance with autonomous weapons policies
 - **Testing**: Extensive testing and validation required
 - **Documentation**: Comprehensive documentation of safety measures
+- **SAE J3016 Compliance**: Must adhere to SAE J3016 standard definitions
+- **Industry Alignment**: Aligns with automotive and aerospace autonomy
+  standards
 
 ---
 
@@ -409,7 +423,7 @@ throughout the system development and deployment.
 Key architectural decisions include:
 
 - **Blockchain**: Solana for evidence anchoring with layered architecture
-- **Autonomy**: Level-0 autonomy with comprehensive safety frameworks
+- **Autonomy**: SAE Level 4 autonomy with comprehensive safety frameworks
 - **Sensors**: Multi-sensor fusion for improved detection accuracy
 - **AI/ML**: Edge AI with cloud backup and distributed learning
 - **Security**: Zero-trust security with defense in depth

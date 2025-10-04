@@ -19,7 +19,7 @@ export default function HomepageHero(): React.ReactElement {
             />
             <h1 className="hero__title">Phoenix Rooivalk</h1>
             <p className="hero__subtitle">
-              Level-0 Autonomous Counter-UAS Defense Platform
+              SAE Level 4 Autonomous Counter-UAS Defense Platform
             </p>
           </div>
           <div className="hero__description">

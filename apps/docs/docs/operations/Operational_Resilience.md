@@ -74,7 +74,7 @@ conditions.
   bands
 - **Jamming Resistance**: Maintains communication under active electronic attack
 
-### Pentagon Demonstration 6 Requirements (March 2025)
+### Pentagon Demonstration 6 Requirements (March 2026)
 
 **Frequency Range**: Operation from 30MHz-20GHz under active jamming **Waveform
 Requirements**: Low probability of intercept/detect waveforms **Autonomous

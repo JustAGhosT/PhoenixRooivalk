@@ -1,20 +1,22 @@
 // Event System - Protocol-Based Communication Patterns
 // This system will be ported to Rust in the main application
 
-export interface Event {
+import { Formation } from "./mothershipTypes";
+
+export interface Event<T = Record<string, unknown>> {
   id: string;
   type: string;
   timestamp: number;
   source: string;
   target?: string;
-  data: any;
+  data: T;
   priority: number;
 }
 
-export interface EventHandler {
+export interface EventHandler<T = Record<string, unknown>> {
   id: string;
   type: string;
-  handler: (event: Event) => void;
+  handler: (event: Event<T>) => void;
   priority: number;
   once?: boolean;
 }
@@ -36,9 +38,9 @@ export class EventSystem {
   private nextEventId = 0;
 
   // Subscribe to events
-  subscribe(
+  subscribe<T>(
     eventType: string,
-    handler: (event: Event) => void,
+    handler: (event: Event<T>) => void,
     options?: {
       priority?: number;
       once?: boolean;
@@ -46,7 +48,7 @@ export class EventSystem {
     },
   ): string {
     const handlerId = options?.id || `handler-${this.nextEventId++}`;
-    const eventHandler: EventHandler = {
+    const eventHandler: EventHandler<T> = {
       id: handlerId,
       type: eventType,
       handler,
@@ -59,7 +61,7 @@ export class EventSystem {
     }
 
     const handlers = this.handlers.get(eventType)!;
-    handlers.push(eventHandler);
+    handlers.push(eventHandler as unknown as EventHandler);
 
     // Sort by priority (higher priority first)
     handlers.sort((a, b) => b.priority - a.priority);
@@ -80,14 +82,14 @@ export class EventSystem {
   }
 
   // Emit event
-  emit(event: Omit<Event, "id" | "timestamp">): void {
-    const fullEvent: Event = {
+  emit<T>(event: Omit<Event<T>, "id" | "timestamp">): void {
+    const fullEvent: Event<T> = {
       ...event,
       id: `event-${this.nextEventId++}`,
       timestamp: Date.now(),
     };
 
-    this.eventQueue.push(fullEvent);
+    this.eventQueue.push(fullEvent as unknown as Event);
   }
 
   // Process event queue
@@ -257,7 +259,7 @@ export interface GameEventTypes {
     formationType: string;
     droneIds: string[];
   };
-  "formation:modified": { formationId: string; changes: Record<string, any> };
+  "formation:modified": { formationId: string; changes: Partial<Formation> };
   "formation:disbanded": { formationId: string; reason: string };
 
   // Deployment Events
@@ -297,7 +299,7 @@ export class GameEventFactory {
     threatType: string,
     position: { x: number; y: number },
   ): void {
-    this.eventSystem.emit({
+    this.eventSystem.emit<GameEventTypes["threat:spawned"]>({
       type: "threat:spawned",
       source: "threat-system",
       data: { threatId, threatType, position },
@@ -310,7 +312,7 @@ export class GameEventFactory {
     score: number,
     position: { x: number; y: number },
   ): void {
-    this.eventSystem.emit({
+    this.eventSystem.emit<GameEventTypes["threat:neutralized"]>({
       type: "threat:neutralized",
       source: "weapon-system",
       data: { threatId, score, position },
@@ -319,7 +321,7 @@ export class GameEventFactory {
   }
 
   emitThreatDamaged(threatId: string, damage: number, health: number): void {
-    this.eventSystem.emit({
+    this.eventSystem.emit<GameEventTypes["threat:damaged"]>({
       type: "threat:damaged",
       source: "weapon-system",
       data: { threatId, damage, health },
@@ -332,7 +334,7 @@ export class GameEventFactory {
     oldBehavior: string,
     newBehavior: string,
   ): void {
-    this.eventSystem.emit({
+    this.eventSystem.emit<GameEventTypes["threat:behavior-changed"]>({
       type: "threat:behavior-changed",
       source: "ai-system",
       data: { threatId, oldBehavior, newBehavior },
@@ -346,7 +348,7 @@ export class GameEventFactory {
     droneType: string,
     position: { x: number; y: number },
   ): void {
-    this.eventSystem.emit({
+    this.eventSystem.emit<GameEventTypes["drone:deployed"]>({
       type: "drone:deployed",
       source: "deployment-system",
       data: { droneId, droneType, position },
@@ -355,7 +357,7 @@ export class GameEventFactory {
   }
 
   emitDroneReturned(droneId: string, energy: number, health: number): void {
-    this.eventSystem.emit({
+    this.eventSystem.emit<GameEventTypes["drone:returned"]>({
       type: "drone:returned",
       source: "drone-system",
       data: { droneId, energy, health },
@@ -368,7 +370,7 @@ export class GameEventFactory {
     mission: string,
     success: boolean,
   ): void {
-    this.eventSystem.emit({
+    this.eventSystem.emit<GameEventTypes["drone:mission-completed"]>({
       type: "drone:mission-completed",
       source: "drone-system",
       data: { droneId, mission, success },
@@ -383,7 +385,7 @@ export class GameEventFactory {
     targetId: string | undefined,
     position: { x: number; y: number },
   ): void {
-    this.eventSystem.emit({
+    this.eventSystem.emit<GameEventTypes["weapon:fired"]>({
       type: "weapon:fired",
       source: "weapon-system",
       target: targetId,
@@ -393,7 +395,7 @@ export class GameEventFactory {
   }
 
   emitWeaponReloaded(weaponId: string, ammo: number, maxAmmo: number): void {
-    this.eventSystem.emit({
+    this.eventSystem.emit<GameEventTypes["weapon:reloaded"]>({
       type: "weapon:reloaded",
       source: "weapon-system",
       data: { weaponId, ammo, maxAmmo },
@@ -402,7 +404,7 @@ export class GameEventFactory {
   }
 
   emitWeaponOverheated(weaponId: string, energy: number): void {
-    this.eventSystem.emit({
+    this.eventSystem.emit<GameEventTypes["weapon:overheated"]>({
       type: "weapon:overheated",
       source: "weapon-system",
       data: { weaponId, energy },
@@ -412,7 +414,7 @@ export class GameEventFactory {
 
   // System Events
   emitGameStarted(level: number, missionType: string): void {
-    this.eventSystem.emit({
+    this.eventSystem.emit<GameEventTypes["game:started"]>({
       type: "game:started",
       source: "game-engine",
       data: { level, missionType },
@@ -421,7 +423,7 @@ export class GameEventFactory {
   }
 
   emitGamePaused(reason: string): void {
-    this.eventSystem.emit({
+    this.eventSystem.emit<GameEventTypes["game:paused"]>({
       type: "game:paused",
       source: "game-engine",
       data: { reason },
@@ -430,7 +432,7 @@ export class GameEventFactory {
   }
 
   emitGameResumed(): void {
-    this.eventSystem.emit({
+    this.eventSystem.emit<GameEventTypes["game:resumed"]>({
       type: "game:resumed",
       source: "game-engine",
       data: {},
@@ -439,7 +441,7 @@ export class GameEventFactory {
   }
 
   emitGameLevelCompleted(level: number, score: number, time: number): void {
-    this.eventSystem.emit({
+    this.eventSystem.emit<GameEventTypes["game:level-completed"]>({
       type: "game:level-completed",
       source: "game-engine",
       data: { level, score, time },
@@ -448,7 +450,7 @@ export class GameEventFactory {
   }
 
   emitGameOver(finalScore: number, reason: string): void {
-    this.eventSystem.emit({
+    this.eventSystem.emit<GameEventTypes["game:game-over"]>({
       type: "game:game-over",
       source: "game-engine",
       data: { finalScore, reason },
@@ -458,7 +460,7 @@ export class GameEventFactory {
 
   // Resource Events
   emitResourceEnergyChanged(oldValue: number, newValue: number): void {
-    this.eventSystem.emit({
+    this.eventSystem.emit<GameEventTypes["resource:energy-changed"]>({
       type: "resource:energy-changed",
       source: "resource-system",
       data: { oldValue, newValue, delta: newValue - oldValue },
@@ -467,7 +469,7 @@ export class GameEventFactory {
   }
 
   emitResourceAmmunitionChanged(oldValue: number, newValue: number): void {
-    this.eventSystem.emit({
+    this.eventSystem.emit<GameEventTypes["resource:ammunition-changed"]>({
       type: "resource:ammunition-changed",
       source: "resource-system",
       data: { oldValue, newValue, delta: newValue - oldValue },
@@ -476,7 +478,7 @@ export class GameEventFactory {
   }
 
   emitResourceCritical(resourceType: string, value: number): void {
-    this.eventSystem.emit({
+    this.eventSystem.emit<GameEventTypes["resource:critical"]>({
       type: "resource:critical",
       source: "resource-system",
       data: { resourceType, value },
@@ -490,7 +492,7 @@ export class GameEventFactory {
     formationType: string,
     droneIds: string[],
   ): void {
-    this.eventSystem.emit({
+    this.eventSystem.emit<GameEventTypes["formation:created"]>({
       type: "formation:created",
       source: "formation-system",
       data: { formationId, formationType, droneIds },
@@ -500,9 +502,9 @@ export class GameEventFactory {
 
   emitFormationModified(
     formationId: string,
-    changes: Record<string, any>,
+    changes: Partial<Formation>,
   ): void {
-    this.eventSystem.emit({
+    this.eventSystem.emit<GameEventTypes["formation:modified"]>({
       type: "formation:modified",
       source: "formation-system",
       data: { formationId, changes },
@@ -511,7 +513,7 @@ export class GameEventFactory {
   }
 
   emitFormationDisbanded(formationId: string, reason: string): void {
-    this.eventSystem.emit({
+    this.eventSystem.emit<GameEventTypes["formation:disbanded"]>({
       type: "formation:disbanded",
       source: "formation-system",
       data: { formationId, reason },
@@ -525,7 +527,7 @@ export class GameEventFactory {
     threatLevel: number,
     coverage: number,
   ): void {
-    this.eventSystem.emit({
+    this.eventSystem.emit<GameEventTypes["deployment:zone-updated"]>({
       type: "deployment:zone-updated",
       source: "deployment-system",
       data: { zoneId, threatLevel, coverage },
@@ -538,7 +540,7 @@ export class GameEventFactory {
     droneType: string,
     priority: number,
   ): void {
-    this.eventSystem.emit({
+    this.eventSystem.emit<GameEventTypes["deployment:recommendation"]>({
       type: "deployment:recommendation",
       source: "deployment-system",
       data: { zoneId, droneType, priority },
@@ -551,7 +553,7 @@ export class GameEventFactory {
     droneId: string,
     success: boolean,
   ): void {
-    this.eventSystem.emit({
+    this.eventSystem.emit<GameEventTypes["deployment:executed"]>({
       type: "deployment:executed",
       source: "deployment-system",
       data: { zoneId, droneId, success },
@@ -561,7 +563,7 @@ export class GameEventFactory {
 
   // Protocol Events
   emitProtocolTriggered(protocolId: string, reason: string): void {
-    this.eventSystem.emit({
+    this.eventSystem.emit<GameEventTypes["protocol:triggered"]>({
       type: "protocol:triggered",
       source: "protocol-system",
       data: { protocolId, reason },
@@ -574,7 +576,7 @@ export class GameEventFactory {
     success: boolean,
     actions: string[],
   ): void {
-    this.eventSystem.emit({
+    this.eventSystem.emit<GameEventTypes["protocol:executed"]>({
       type: "protocol:executed",
       source: "protocol-system",
       data: { protocolId, success, actions },
@@ -583,7 +585,7 @@ export class GameEventFactory {
   }
 
   emitProtocolFailed(protocolId: string, error: string): void {
-    this.eventSystem.emit({
+    this.eventSystem.emit<GameEventTypes["protocol:failed"]>({
       type: "protocol:failed",
       source: "protocol-system",
       data: { protocolId, error },

@@ -4,23 +4,26 @@ export interface Threat {
   id: string;
   x: number;
   y: number;
+  vx: number;
+  vy: number;
   type: "drone" | "swarm" | "stealth" | "kamikaze" | "decoy" | "shielded";
-  health: number;
   speed: number;
-  trail: { x: number; y: number; timestamp: number }[];
-  lastPosition: { x: number; y: number };
-  behavior: "direct" | "evasive" | "zigzag" | "hover";
-  evasionLevel: number; // 0-1, increases with difficulty
-  status?: "active" | "neutralized" | "destroyed" | "crater";
-  isMoving?: boolean;
-  neutralizedAt?: number; // Timestamp when neutralized
-  fadeStartTime?: number; // When fade started
+  health: number;
+  maxHealth: number;
+  trail: Array<{ x: number; y: number; timestamp: number }>;
+  createdAt: number;
+  lastUpdate: number;
+  isMoving: boolean;
+  status: "active" | "neutralized" | "crater";
+  neutralizedAt?: number;
+  fadeStartTime?: number;
   specialProperties?: {
-    isShielded?: boolean;
-    shieldStrength?: number;
-    isDecoy?: boolean;
+    stealthMode?: boolean;
+    swarmBehavior?: boolean;
     explosionRadius?: number;
-    targetPriority?: "high" | "medium" | "low";
-    vulnerability?: string[]; // What weapons are effective against this threat
+    shieldStrength?: number;
+    opacity?: number;
   };
+  priorityLevel?: "high" | "medium" | "low";
+  shouldRemove?: boolean;
 }

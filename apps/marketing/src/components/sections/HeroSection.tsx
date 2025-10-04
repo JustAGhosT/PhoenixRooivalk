@@ -19,7 +19,7 @@ export const HeroSection: React.FC = () => {
         <h1 className="text-5xl md:text-7xl font-extrabold leading-tight bg-clip-text text-transparent bg-gradient-to-br from-white to-[rgb(var(--primary))] animate-fadeInUp mb-6">
           Edge Autonomy in RF-Denied Environments
           <span className="block text-3xl md:text-5xl mt-3 text-[rgb(var(--accent))]">
-            Level-0 Local Decisioning
+            SAE Level 4 Local Decisioning
           </span>
         </h1>
         <p className="mb-8 text-xl text-[rgb(var(--gray))] animate-fadeInUp [animation-delay:200ms] leading-relaxed max-w-3xl mx-auto">
@@ -84,12 +84,12 @@ export const HeroSection: React.FC = () => {
           </div>
         </div>
 
-        {/* Level-0 Autonomy Concept Card - moved below as a row */}
+        {/* SAE Level 4 Autonomy Concept Card - moved below as a row */}
         <div className="mt-6 max-w-4xl mx-auto">
           <div className="card card--elevated">
             <div className="text-center mb-6">
               <h3 className="text-2xl font-bold text-[var(--action-primary)] mb-4">
-                Level-0 Autonomy Concept
+                SAE Level 4 Autonomy Concept
               </h3>
               <p className="text-[var(--text-muted)] mb-6">
                 Edge-first decision making without network dependency

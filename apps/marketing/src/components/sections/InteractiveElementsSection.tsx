@@ -108,9 +108,9 @@ export const InteractiveElementsSection: React.FC = () => {
               Projected ROI Analysis
             </h2>
             <p className="text-xl text-[rgb(var(--gray))] max-w-3xl mx-auto">
-              Explore the potential return on investment for Phoenix Rooivalk's
-              target 120ms response time based on current market analysis and
-              projected performance.
+              Explore the potential return on investment for Phoenix
+              Rooivalk&apos;s target 120ms response time based on current market
+              analysis and projected performance.
             </p>
           </div>
 
@@ -437,7 +437,7 @@ export const InteractiveElementsSection: React.FC = () => {
               Concept Adaptation Explorer
             </h3>
             <p className="text-[var(--text-muted)] mb-8 max-w-3xl mx-auto text-center">
-              Explore how Phoenix Rooivalk's core technology could adapt to
+              Explore how Phoenix Rooivalk&apos;s core technology could adapt to
               different operational environments and threat scenarios.
             </p>
 
@@ -602,7 +602,7 @@ export const InteractiveElementsSection: React.FC = () => {
               Interested in the Technology?
             </h3>
             <p className="text-[var(--text-muted)] mb-6 max-w-2xl mx-auto">
-              Learn more about Phoenix Rooivalk's innovative approach to
+              Learn more about Phoenix Rooivalk&apos;s innovative approach to
               autonomous counter-drone defense and explore partnership
               opportunities.
             </p>

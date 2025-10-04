@@ -1,4 +1,8 @@
-# Phoenix Rooivalk Use Cases
+---
+id: use-cases
+title: Use Cases
+sidebar_label: Use Cases
+---
 
 ## Executive Summary
 
@@ -29,7 +33,7 @@ effectiveness in protecting critical assets and infrastructure.
 **Operational Benefits**
 
 - **360-Degree Coverage**: Complete perimeter protection
-- **Autonomous Operation**: Level-0 autonomy in GPS-denied environments
+- **Autonomous Operation**: SAE Level 4 autonomy in GPS-denied environments
 - **Legal Compliance**: Court-admissible evidence for all engagements
 - **Scalable Defense**: Protection against single threats to swarm attacks
 

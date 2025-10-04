@@ -35,6 +35,7 @@ export interface Drone {
   energy: number;
   maxEnergy: number;
   range: number;
+  status: "idle" | "deploying" | "active" | "returning" | "destroyed";
   damage: number;
   cooldown: number;
   lastAction: number;
@@ -72,6 +73,9 @@ export interface Formation {
   semicircleDegrees?: number; // Degrees of arc to cover (e.g., 180 for half circle, 90 for quarter circle)
   semicircleRadius?: number; // Radius of the semicircle formation
   semicircleDirection?: "north" | "south" | "east" | "west"; // Direction the semicircle faces
+  type: "defensive" | "offensive" | "patrol" | "escort";
+  targetPosition?: { x: number; y: number };
+  position: { x: number; y: number };
 }
 
 export const DRONE_CONFIGS: Record<
@@ -101,6 +105,7 @@ export const DRONE_CONFIGS: Record<
     isActive: false,
     isReturning: false,
     mission: "intercept",
+    status: "deploying",
   },
   jammer: {
     type: "jammer",
@@ -115,6 +120,7 @@ export const DRONE_CONFIGS: Record<
     isActive: false,
     isReturning: false,
     mission: "jam",
+    status: "deploying",
   },
   surveillance: {
     type: "surveillance",
@@ -129,6 +135,7 @@ export const DRONE_CONFIGS: Record<
     isActive: false,
     isReturning: false,
     mission: "surveil",
+    status: "deploying",
   },
   shield: {
     type: "shield",
@@ -143,6 +150,7 @@ export const DRONE_CONFIGS: Record<
     isActive: false,
     isReturning: false,
     mission: "shield",
+    status: "deploying",
   },
   "swarm-coordinator": {
     type: "swarm-coordinator",
@@ -157,6 +165,7 @@ export const DRONE_CONFIGS: Record<
     isActive: false,
     isReturning: false,
     mission: "coordinate",
+    status: "deploying",
   },
 };
 

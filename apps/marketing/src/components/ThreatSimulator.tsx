@@ -213,7 +213,7 @@ export const ThreatSimulator: React.FC<ThreatSimulatorProps> = ({
         onMouseUp={handleMouseUp}
         onClick={handleGameAreaClick}
         onWheel={handleWheel}
-        onKeyDown={(e) => handleKeyDown(e as any)}
+        onKeyDown={handleKeyDown}
         onContextMenu={handleContextMenu}
         aria-label="Threat simulation game area"
         type="button"
@@ -322,8 +322,7 @@ export const ThreatSimulator: React.FC<ThreatSimulatorProps> = ({
                   !isCrater &&
                   (e.key === "Enter" || e.key === " ")
                 ) {
-                  e.preventDefault();
-                  handleThreatClick(e as any, threat.id);
+                  handleThreatClick(e, threat.id);
                 }
               }}
               role="button"
@@ -528,7 +527,7 @@ export const ThreatSimulator: React.FC<ThreatSimulatorProps> = ({
                         ? `${weapon.color} text-white shadow-lg`
                         : "bg-gray-700 text-gray-300 hover:bg-gray-600"
                     }`}
-                    onClick={() => switchWeapon(weapon.id as any)}
+                    onClick={() => switchWeapon(weapon.id)}
                   >
                     <span>{weapon.icon}</span>
                     <span>{weapon.name}</span>
@@ -597,7 +596,11 @@ export const ThreatSimulator: React.FC<ThreatSimulatorProps> = ({
                   <select
                     className="w-full px-3 py-2 text-xs bg-gray-700 text-white rounded-lg border border-gray-600 focus:border-blue-500 focus:outline-none"
                     value={gameState.weatherMode}
-                    onChange={(e) => setWeatherMode(e.target.value as any)}
+                    onChange={(e) =>
+                      setWeatherMode(
+                        e.target.value as typeof gameState.weatherMode,
+                      )
+                    }
                   >
                     <option value="none">☀️ Clear</option>
                     <option value="rain">🌧️ Rain</option>
@@ -610,7 +613,11 @@ export const ThreatSimulator: React.FC<ThreatSimulatorProps> = ({
                   <select
                     className="w-full px-3 py-2 text-xs bg-gray-700 text-white rounded-lg border border-gray-600 focus:border-blue-500 focus:outline-none"
                     value={gameState.missionType}
-                    onChange={(e) => setMissionType(e.target.value as any)}
+                    onChange={(e) =>
+                      setMissionType(
+                        e.target.value as typeof gameState.missionType,
+                      )
+                    }
                   >
                     <option value="airport">✈️ Airport</option>
                     <option value="military-base">🏭 Military Base</option>
@@ -636,7 +643,9 @@ export const ThreatSimulator: React.FC<ThreatSimulatorProps> = ({
                         ? "bg-purple-600 text-white"
                         : "bg-gray-700 text-gray-300 hover:bg-gray-600"
                     }`}
-                    onClick={() => setAutomationMode(mode as any)}
+                    onClick={() =>
+                      setAutomationMode(mode as typeof gameState.automationMode)
+                    }
                   >
                     {mode.charAt(0).toUpperCase() + mode.slice(1)}
                   </button>
@@ -678,12 +687,6 @@ export const ThreatSimulator: React.FC<ThreatSimulatorProps> = ({
                   onClick={() => spawnMultipleDrones(5)}
                 >
                   🚁 +5 DRONES
-                </button>
-                <button
-                  className="bg-purple-600 hover:bg-purple-700 text-white px-3 py-2 rounded-lg text-xs transition-all shadow-lg"
-                  onClick={() => activatePowerUp("energy-boost")}
-                >
-                  ⚡ POWER-UP
                 </button>
                 <button
                   className="bg-gray-600 hover:bg-gray-700 text-white px-3 py-2 rounded-lg text-xs transition-all shadow-lg"

@@ -256,8 +256,10 @@ export const createFormation = (
     spacing,
     isActive: true,
     semicircleDegrees,
-    semicircleRadius,
+    semicircleRadius: semicircleRadius,
     semicircleDirection,
+    type: "patrol",
+    position: { x: centerX, y: centerY },
   };
 };
 

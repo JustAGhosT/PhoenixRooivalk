@@ -3,12 +3,9 @@ import * as React from "react";
 
 import { Footer } from "../components/Footer";
 import { Navigation } from "../components/Navigation";
-import { CapabilitiesSection } from "../components/sections/CapabilitiesSection";
 import { ContactSection } from "../components/sections/ContactSection";
-import { CounterDroneMethodsSection } from "../components/sections/CounterDroneMethodsSection";
 import { HeroSection } from "../components/sections/HeroSection";
 import { InteractiveElementsSection } from "../components/sections/InteractiveElementsSection";
-import { TimelineSection } from "../components/sections/TimelineSection";
 import { usePerformanceOptimizations } from "../hooks/usePerformanceOptimizations";
 
 export default function HomePage(): React.ReactElement {
@@ -30,9 +27,6 @@ export default function HomePage(): React.ReactElement {
       {/* Main Content Sections */}
       <HeroSection />
       <InteractiveElementsSection />
-      <CounterDroneMethodsSection />
-      <TimelineSection />
-      <CapabilitiesSection />
       <ContactSection />
 
       {/* Footer */}
@@ -67,7 +61,7 @@ export default function HomePage(): React.ReactElement {
                 name: "What is the market opportunity for Phoenix Rooivalk?",
                 acceptedAnswer: {
                   "@type": "Answer",
-                  text: "The counter-drone market is $2.3-4.5B currently, growing to $9-26B by 2030. Phoenix Rooivalk's Level-0 autonomous capabilities and multi-sensor fusion approach are designed to address key market gaps in this rapidly expanding sector.",
+                  text: "The counter-drone market is $2.3-4.5B currently, growing to $9-26B by 2030. Phoenix Rooivalk's SAE Level 4 autonomous capabilities and multi-sensor fusion approach are designed to address key market gaps in this rapidly expanding sector.",
                 },
               },
               {

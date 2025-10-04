@@ -13,6 +13,8 @@ const sidebars: SidebarsConfig = {
         "executive/Strategic_Recommendations",
         "executive/key-questions-cheatsheet",
         "executive/Presentation_Materials",
+        "executive/phoenix-rooivalk-litepaper",
+        "executive/phoenix-rooivalk-technical-whitepaper",
       ],
     },
     {

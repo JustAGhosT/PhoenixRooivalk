@@ -4,9 +4,9 @@
 
 ### A. System Architecture Documentation
 
-#### Level-0 Autonomous Architecture
+#### SAE Level 4 Autonomous Architecture
 
-- [ ] **Level-0 Autonomous Architecture Whitepaper**
+- [ ] **SAE Level 4 Autonomous Architecture Whitepaper**
   - [x] Edge computing node specifications
         (`apps/docs/docs/blockchain/02-technical-architecture/blockchain-protocols/level-0-architecture.md`)
   - [ ] Inter-node communication protocols (light signals, sound pulses)
@@ -202,7 +202,8 @@
 
 ### Critical Priority (Must Have)
 
-1. **Level-0 Autonomous Architecture Whitepaper** - Core technical foundation
+1. **SAE Level 4 Autonomous Architecture Whitepaper** - Core technical
+   foundation
 2. **Response Time Benchmarking Documentation** - Key performance claim
    validation
 3. **Multi-Sensor Fusion Technical Brief** - Core detection capability

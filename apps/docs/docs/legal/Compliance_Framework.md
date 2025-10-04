@@ -1,4 +1,8 @@
-# Phoenix Rooivalk Compliance Framework
+---
+id: compliance-framework
+title: Compliance Framework
+sidebar_label: Compliance Framework
+---
 
 ## Executive Summary
 
@@ -10,6 +14,25 @@ evidence admissibility, and operational resilience in contested environments.
 ---
 
 ## ITAR Compliance Framework
+
+### Dual Entity Compliance Structure
+
+**US Entity (Delaware C-Corp) - ITAR Controlled**
+
+- **Full ITAR Compliance**: All components and technical data under USML
+  Categories VIII & XI
+- **US Person Access**: Limited to US persons only
+- **Export Controls**: Any export outside the US requires DDTC authorization
+- **DoD Contracts**: Direct access to US defense market
+
+**South African Entity (Planned Q2 2026) - Non-ITAR**
+
+- **Non-ITAR Products**: Commercial-grade components and software
+- **Global Export**: Direct sales to 140+ countries without US approval
+- **Faster Approvals**: 6-12 month approval processes vs 18-24 months for US
+  systems
+- **No US Person Restrictions**: International team access to non-ITAR
+  components
 
 ### ITAR Classification & Requirements
 
@@ -187,7 +210,7 @@ evidence admissibility, and operational resilience in contested environments.
 - **Tri-Band Implementation**: 15km image transmission under active jamming
 - **Adaptive Filtering**: Configurable notch filters rejecting chirp jammers
 
-**Pentagon Demonstration 6 Requirements (March 2025)**
+**Pentagon Demonstration 6 Requirements (March 2026)**
 
 - Operation from 30MHz-20GHz under active jamming
 - Low probability of intercept/detect waveforms
