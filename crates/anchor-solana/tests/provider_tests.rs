@@ -1,6 +1,6 @@
 use anchor_solana::{SolanaProvider, SolanaProviderStub};
 use phoenix_evidence::model::{ChainTxRef, DigestAlgo, EvidenceDigest, EvidenceRecord};
-use phoenix_evidence::anchor::AnchorError;
+use phoenix_evidence::anchor::{AnchorError, AnchorProvider};
 use chrono::Utc;
 use serde_json::json;
 
