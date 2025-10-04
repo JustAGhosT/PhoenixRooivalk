@@ -45,11 +45,10 @@ export const LegalBadge: React.FC<LegalBadgeProps> = ({
 
   return (
     <div className={`legal-badge ${className}`}>
-      <div
+      <button
+        type="button"
         className={`legal-badge-indicator legal-badge-indicator--${riskLevel} ${acknowledged ? "legal-badge-indicator--acknowledged" : ""}`}
         onClick={() => setShowDetails(!showDetails)}
-        role="button"
-        tabIndex={0}
         aria-expanded={showDetails}
         aria-label={`Legal compliance requirements (${riskLevel} risk)`}
       >
@@ -62,7 +61,7 @@ export const LegalBadge: React.FC<LegalBadgeProps> = ({
               : "Restrictions"}
         </span>
         {!acknowledged && <span className="legal-badge-dot">●</span>}
-      </div>
+      </button>
 
       {showDetails && (
         <div className="legal-badge-details">

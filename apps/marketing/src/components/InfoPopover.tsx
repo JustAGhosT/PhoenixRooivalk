@@ -88,9 +88,10 @@ export const InfoPopover: React.FC<InfoPopoverProps> = ({
       const sanitizedSource = source.replace(/[<>"']/g, "");
       return {
         href: source.startsWith("/") ? `https://example.com${source}` : "#",
-        displayText: sanitizedSource.length > 50 
-          ? `${sanitizedSource.substring(0, 47)}...` 
-          : sanitizedSource,
+        displayText:
+          sanitizedSource.length > 50
+            ? `${sanitizedSource.substring(0, 47)}...`
+            : sanitizedSource,
         isValid: false,
       };
     }
