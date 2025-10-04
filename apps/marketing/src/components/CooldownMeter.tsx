@@ -5,7 +5,6 @@ interface CooldownMeterProps {
   lastFired: number; // timestamp
   size?: "small" | "medium" | "large";
   className?: string;
-  animated?: boolean; // Optional: enable smooth animations
   showLabel?: boolean; // Optional: show weapon name
   label?: string; // Optional: custom label
 }
@@ -15,30 +14,26 @@ export const CooldownMeter: React.FC<CooldownMeterProps> = ({
   lastFired,
   size = "medium",
   className = "",
-  animated = false,
   showLabel = false,
   label = "",
 }) => {
-  const [_tick, setTick] = useState(0);
+  const [now, setNow] = useState(Date.now());
 
-  // Force re-render every 250ms while cooldown is active
+  // Update every second while cooldown is active
   useEffect(() => {
     if (lastFired == null) return;
 
-    const now = Date.now();
     const elapsed = now - lastFired;
     const remaining = Math.max(0, cooldown - elapsed);
 
     if (remaining <= 0) return;
 
     const interval = setInterval(() => {
-      setTick(prev => prev + 1);
-    }, 250);
+      setNow(Date.now());
+    }, 1000);
 
     return () => clearInterval(interval);
-  }, [lastFired, cooldown]);
-
-  const now = Date.now();
+  }, [lastFired, cooldown, now]);
   // Explicitly check for null/undefined to avoid treating 0 as "never fired"
   const elapsed = lastFired == null ? Infinity : now - lastFired;
   const remaining = Math.max(0, cooldown - elapsed);
@@ -88,7 +83,7 @@ export const CooldownMeter: React.FC<CooldownMeterProps> = ({
             strokeWidth="2"
             strokeLinecap="round"
             style={{
-              transition: animated ? "stroke-dasharray 0.3s ease-in-out" : "none",
+              transition: "stroke-dasharray 0.3s ease-in-out",
             }}
           />
         </svg>
@@ -116,9 +111,7 @@ export const CooldownMeter: React.FC<CooldownMeterProps> = ({
       )}
 
       {showLabel && label && (
-        <div className="cooldown-meter-label">
-          {label}
-        </div>
+        <div className="cooldown-meter-label">{label}</div>
       )}
     </div>
   );

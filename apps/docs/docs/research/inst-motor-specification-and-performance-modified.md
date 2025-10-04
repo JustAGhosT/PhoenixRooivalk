@@ -601,4 +601,3 @@ authoritative sources, quantitative data is provided where available, and gaps
 in available information are explicitly noted. When definitive data is
 unavailable, the assistant should indicate uncertainty and provide the best
 available estimates with appropriate caveats.
-

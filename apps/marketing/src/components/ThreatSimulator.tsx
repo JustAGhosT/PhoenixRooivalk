@@ -8,11 +8,9 @@ import { DroneDeployment } from "./DroneDeployment";
 import { EnergyBudget } from "./EnergyBudget";
 import { EnergyManagement } from "./EnergyManagement";
 import {
-  DemoCooldownMeter,
-  WeaponCooldownMeter,
+    DemoCooldownMeter,
+    WeaponCooldownMeter,
 } from "./EnhancedCooldownMeter";
-import { ROEIndicator } from "./ROEIndicator";
-import { RadarSystem, FriendlyDeployment, RadarTarget } from "./RadarSystem";
 import EventFeed from "./EventFeed";
 import { FilterChips } from "./FilterChips";
 import HUDBar from "./HUDBar";
@@ -21,7 +19,9 @@ import { InfoPopover } from "./InfoPopover";
 import { LegalBadge } from "./LegalBadge";
 import { MultiSelectDeployment } from "./MultiSelectDeployment";
 import { ParticleEffects } from "./ParticleEffects";
+import { ROEIndicator } from "./ROEIndicator";
 import RadarCanvas from "./RadarCanvas";
+import { FriendlyDeployment, RadarSystem, RadarTarget } from "./RadarSystem";
 import { ResearchPanel } from "./ResearchPanel";
 import { SynergySystem } from "./SynergySystem";
 import "./ThreatSimulator.css";
@@ -776,7 +776,23 @@ export const ThreatSimulator: React.FC<ThreatSimulatorProps> = ({
           onClose={() => setShowTokenStore(false)}
           onPurchaseDrone={(type) => {
             // Handle drone purchase logic here
-            console.log(`Purchased drone: ${type}`);
+            try {
+              // TODO: Implement actual purchase logic when API is available
+              // For now, dispatch a meaningful event for tracking
+              const purchaseEvent = new CustomEvent("drone-purchase", {
+                detail: { type, timestamp: Date.now() },
+              });
+              window.dispatchEvent(purchaseEvent);
+
+              // Close the token store modal after purchase
+              setShowTokenStore(false);
+
+              // Add feedback to the game feed
+              addFeed(`Drone ${type} purchase initiated.`);
+            } catch (error) {
+              console.error("Failed to process drone purchase:", error);
+              addFeed(`Failed to purchase drone ${type}.`);
+            }
           }}
         />
       )}

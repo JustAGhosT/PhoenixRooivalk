@@ -2,6 +2,19 @@ import React from "react";
 
 export type ROERiskLevel = "low" | "medium" | "high";
 
+const getRiskColor = (level: ROERiskLevel): string => {
+  switch (level) {
+    case "low":
+      return "#10b981"; // Green
+    case "medium":
+      return "#f59e0b"; // Amber
+    case "high":
+      return "#ef4444"; // Red
+    default:
+      return "#6b7280"; // Gray
+  }
+};
+
 export interface ROERiskDetails {
   level: ROERiskLevel;
   description: string;
@@ -92,19 +105,6 @@ export const ROEIndicator: React.FC<ROEIndicatorProps> = ({
     large: "roe-indicator-large",
   };
 
-  const getRiskColor = (level: ROERiskLevel): string => {
-    switch (level) {
-      case "low":
-        return "#10b981"; // Green
-      case "medium":
-        return "#f59e0b"; // Amber
-      case "high":
-        return "#ef4444"; // Red
-      default:
-        return "#6b7280"; // Gray
-    }
-  };
-
   const getRiskIcon = (level: ROERiskLevel): string => {
     switch (level) {
       case "low":
@@ -185,19 +185,6 @@ export const CompactROEIndicator: React.FC<CompactROEIndicatorProps> = ({
   riskLevel,
   className = "",
 }) => {
-  const getRiskColor = (level: ROERiskLevel): string => {
-    switch (level) {
-      case "low":
-        return "#10b981";
-      case "medium":
-        return "#f59e0b";
-      case "high":
-        return "#ef4444";
-      default:
-        return "#6b7280";
-    }
-  };
-
   return (
     <div
       className={`compact-roe-indicator ${className}`}
