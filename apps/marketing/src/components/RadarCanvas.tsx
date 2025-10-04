@@ -1,13 +1,20 @@
-import React from 'react';
-import type { Threat } from '../types/game';
+import React from "react";
+import type { Threat } from "../types/game";
 
 interface RadarCanvasProps {
   threats: Threat[];
   isResetting?: boolean;
-  onThreatClick?: (e: React.MouseEvent, threatId: string) => void;
+  onThreatClick?: (
+    e: React.MouseEvent | React.KeyboardEvent,
+    threatId: string,
+  ) => void;
 }
 
-const RadarCanvas: React.FC<RadarCanvasProps> = ({ threats, isResetting = false }) => {
+const RadarCanvas: React.FC<RadarCanvasProps> = ({
+  threats,
+  isResetting = false,
+  onThreatClick,
+}) => {
   // Game area dimensions are assumed to be 800x600 for mapping purposes
   const gameCenterX = 400;
   const gameCenterY = 300;
@@ -22,25 +29,32 @@ const RadarCanvas: React.FC<RadarCanvasProps> = ({ threats, isResetting = false 
   const maxGameDistance = 450;
 
   return (
-    <div className="threatsim__canvas" role="img" aria-label="Concept radar view showing threats within range" aria-busy={isResetting}>
+    <div
+      className="threatsim__canvas"
+      role="img"
+      aria-label="Concept radar view showing threats within range"
+      aria-busy={isResetting}
+    >
       <svg viewBox="0 0 600 600" className="radar" aria-hidden="true">
         <defs>
           <radialGradient id="radar-bg" cx="50%" cy="50%">
-            <stop offset="0%" stopColor="#0e1217"/>
-            <stop offset="100%" stopColor="#0a0d11"/>
+            <stop offset="0%" stopColor="#0e1217" />
+            <stop offset="100%" stopColor="#0a0d11" />
           </radialGradient>
         </defs>
-        <rect width="600" height="600" fill="url(#radar-bg)"/>
+        <rect width="600" height="600" fill="url(#radar-bg)" />
         <g className="radar__rings">
-          <circle cx="300" cy="300" r="220" className="ring ring--soft"/>
-          <circle cx="300" cy="300" r="160" className="ring"/>
-          <circle cx="300" cy="300" r="100" className="ring"/>
-          <circle cx="300" cy="300" r="40"  className="ring"/>
+          <circle cx="300" cy="300" r="220" className="ring ring--soft" />
+          <circle cx="300" cy="300" r="160" className="ring" />
+          <circle cx="300" cy="300" r="100" className="ring" />
+          <circle cx="300" cy="300" r="40" className="ring" />
         </g>
-        <g id="ego"><circle cx="300" cy="300" r="6" className="ego"/></g>
+        <g id="ego">
+          <circle cx="300" cy="300" r="6" className="ego" />
+        </g>
         <g id="blips">
-          {threats.map(threat => {
-            if (threat.status === 'neutralized' || threat.status === 'crater') {
+          {threats.map((threat) => {
+            if (threat.status === "neutralized" || threat.status === "crater") {
               return null;
             }
 
@@ -53,15 +67,91 @@ const RadarCanvas: React.FC<RadarCanvasProps> = ({ threats, isResetting = false 
             // Normalize distance and cap it to 1
             const normalizedDistance = Math.min(distance / maxGameDistance, 1);
 
-            const radarX = radarCenterX + Math.cos(angle) * normalizedDistance * radarMaxRadius;
-            const radarY = radarCenterY + Math.sin(angle) * normalizedDistance * radarMaxRadius;
+            const radarX =
+              radarCenterX +
+              Math.cos(angle) * normalizedDistance * radarMaxRadius;
+            const radarY =
+              radarCenterY +
+              Math.sin(angle) * normalizedDistance * radarMaxRadius;
 
-            // For now, all threats are considered hostile. This can be expanded later.
-            const blipClass = `blip blip--hostile`;
+            // Determine threat type and corresponding shape
+            const isHostile = threat.allegiance === "hostile";
+            const isFriendly = threat.allegiance === "friendly";
 
-            return (
-              <circle key={threat.id} cx={radarX} cy={radarY} r="4" className={blipClass} />
-            );
+            const handleThreatClick = (event: React.MouseEvent) => {
+              onThreatClick?.(event, threat.id);
+            };
+
+            const handleKeyDown = (event: React.KeyboardEvent) => {
+              if (event.key === "Enter" || event.key === " ") {
+                event.preventDefault();
+                onThreatClick?.(event, threat.id);
+              }
+            };
+
+            // Shape-code for color-blind resilience
+            if (isFriendly) {
+              // Triangle for friendly units
+              const size = 4;
+              const points = [
+                `${radarX},${radarY - size}`,
+                `${radarX - size},${radarY + size}`,
+                `${radarX + size},${radarY + size}`,
+              ].join(" ");
+
+              return (
+                <polygon
+                  key={threat.id}
+                  points={points}
+                  className="blip-friendly cursor-pointer"
+                  role="button"
+                  tabIndex={0}
+                  onClick={handleThreatClick}
+                  onKeyDown={handleKeyDown}
+                  aria-label={`Friendly unit ${threat.id}`}
+                  style={{ cursor: "pointer", fill: "#4ade80" }}
+                />
+              );
+            } else if (isHostile) {
+              // Circle for hostile units
+              return (
+                <circle
+                  key={threat.id}
+                  cx={radarX}
+                  cy={radarY}
+                  r="4"
+                  className="blip-hostile cursor-pointer"
+                  role="button"
+                  tabIndex={0}
+                  onClick={handleThreatClick}
+                  onKeyDown={handleKeyDown}
+                  aria-label={`Hostile threat ${threat.id}`}
+                  style={{ cursor: "pointer", fill: "#ff5d5d" }}
+                />
+              );
+            } else {
+              // Ring for unknown units
+              return (
+                <circle
+                  key={threat.id}
+                  cx={radarX}
+                  cy={radarY}
+                  r="6"
+                  className="blip-unknown cursor-pointer"
+                  role="button"
+                  tabIndex={0}
+                  onClick={handleThreatClick}
+                  onKeyDown={handleKeyDown}
+                  aria-label={`Unknown unit ${threat.id}`}
+                  style={{
+                    cursor: "pointer",
+                    fill: "none",
+                    stroke: "#ffd166",
+                    strokeWidth: 2,
+                  }}
+                />
+              );
+            }
           })}
         </g>
       </svg>

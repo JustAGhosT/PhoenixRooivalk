@@ -1,7 +1,7 @@
 use async_trait::async_trait;
 use chrono::{TimeZone, Utc};
 use phoenix_evidence::anchor::{AnchorError, AnchorProvider};
-use phoenix_evidence::model::{ChainTxRef, EvidenceDigest, EvidenceRecord, DigestAlgo};
+use phoenix_evidence::model::{ChainTxRef, DigestAlgo, EvidenceDigest, EvidenceRecord};
 use sqlx::{Pool, Row, Sqlite};
 use rand::Rng;
 
@@ -38,7 +38,12 @@ pub trait JobProvider {
 #[async_trait]
 pub trait JobProviderExt: JobProvider {
     async fn mark_tx_and_done(&mut self, id: &str, tx: &ChainTxRef) -> Result<(), JobError>;
-    async fn mark_failed_or_backoff(&mut self, id: &str, reason: &str, temporary: bool) -> Result<(), JobError>;
+    async fn mark_failed_or_backoff(
+        &mut self,
+        id: &str,
+        reason: &str,
+        temporary: bool,
+    ) -> Result<(), JobError>;
 }
 
 pub async fn run_job_loop<J: JobProvider + JobProviderExt, A: AnchorProvider>(
@@ -52,7 +57,10 @@ pub async fn run_job_loop<J: JobProvider + JobProviderExt, A: AnchorProvider>(
                 let ev = EvidenceRecord {
                     id: job.id.clone(),
                     created_at: Utc::now(),
-                    digest: EvidenceDigest { algo: DigestAlgo::Sha256, hex: job.payload_sha256.clone() },
+                    digest: EvidenceDigest {
+                        algo: DigestAlgo::Sha256,
+                        hex: job.payload_sha256.clone(),
+                    },
                     payload_mime: None,
                     metadata: serde_json::json!({}),
                 };
@@ -61,8 +69,11 @@ pub async fn run_job_loop<J: JobProvider + JobProviderExt, A: AnchorProvider>(
                         let _ = provider.mark_tx_and_done(&job.id, &txref).await;
                     }
                     Err(e) => {
-                        let temporary = matches!(e, AnchorError::Network(_) | AnchorError::Provider(_));
-                        let _ = provider.mark_failed_or_backoff(&job.id, &e.to_string(), temporary).await;
+                        let temporary =
+                            matches!(e, AnchorError::Network(_) | AnchorError::Provider(_));
+                        let _ = provider
+                            .mark_failed_or_backoff(&job.id, &e.to_string(), temporary)
+                            .await;
                     }
                 }
             }
@@ -126,9 +137,7 @@ async fn fetch_unconfirmed_tx_refs(pool: &Pool<Sqlite>) -> Result<Vec<ChainTxRef
     let mut tx_refs = Vec::new();
     for row in rows {
         let timestamp_opt: Option<i64> = row.get("timestamp");
-        let timestamp = timestamp_opt.and_then(|ts| {
-            Utc.timestamp_opt(ts, 0).single()
-        });
+        let timestamp = timestamp_opt.and_then(|ts| Utc.timestamp_opt(ts, 0).single());
 
         tx_refs.push(ChainTxRef {
             network: row.get("network"),
@@ -142,9 +151,12 @@ async fn fetch_unconfirmed_tx_refs(pool: &Pool<Sqlite>) -> Result<Vec<ChainTxRef
     Ok(tx_refs)
 }
 
-async fn update_tx_ref_confirmation(pool: &Pool<Sqlite>, tx_ref: &ChainTxRef) -> Result<(), sqlx::Error> {
+async fn update_tx_ref_confirmation(
+    pool: &Pool<Sqlite>,
+    tx_ref: &ChainTxRef,
+) -> Result<(), sqlx::Error> {
     sqlx::query(
-        "UPDATE outbox_tx_refs SET confirmed = ?1 WHERE tx_id = ?2 AND network = ?3 AND chain = ?4"
+        "UPDATE outbox_tx_refs SET confirmed = ?1 WHERE tx_id = ?2 AND network = ?3 AND chain = ?4",
     )
     .bind(if tx_ref.confirmed { 1 } else { 0 })
     .bind(&tx_ref.tx_id)
@@ -161,7 +173,9 @@ pub struct SqliteJobProvider {
 }
 
 impl SqliteJobProvider {
-    pub fn new(pool: Pool<Sqlite>) -> Self { Self { pool } }
+    pub fn new(pool: Pool<Sqlite>) -> Self {
+        Self { pool }
+    }
 }
 
 pub async fn ensure_schema(pool: &Pool<Sqlite>) -> Result<(), sqlx::Error> {
@@ -201,9 +215,11 @@ pub async fn ensure_schema(pool: &Pool<Sqlite>) -> Result<(), sqlx::Error> {
     .await?;
 
     // Best-effort migration if column missing
-    let _ = sqlx::query("ALTER TABLE outbox_jobs ADD COLUMN next_attempt_ms INTEGER NOT NULL DEFAULT 0")
-        .execute(pool)
-        .await;
+    let _ = sqlx::query(
+        "ALTER TABLE outbox_jobs ADD COLUMN next_attempt_ms INTEGER NOT NULL DEFAULT 0",
+    )
+    .execute(pool)
+    .await;
 
     Ok(())
 }

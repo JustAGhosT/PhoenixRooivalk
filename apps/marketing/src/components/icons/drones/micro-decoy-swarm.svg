@@ -1,0 +1,12 @@
+<svg viewBox="0 0 24 24" fill="none" stroke="#70A1FF" stroke-width="2">
+  <!-- Triangle base -->
+  <path d="M12 4L20 18L4 18Z" />
+  <!-- Multiple dots inside -->
+  <circle cx="8" cy="10" r="1" fill="#70A1FF" />
+  <circle cx="12" cy="8" r="1" fill="#70A1FF" />
+  <circle cx="16" cy="10" r="1" fill="#70A1FF" />
+  <circle cx="10" cy="12" r="1" fill="#70A1FF" />
+  <circle cx="14" cy="12" r="1" fill="#70A1FF" />
+  <circle cx="9" cy="14" r="1" fill="#70A1FF" />
+  <circle cx="15" cy="14" r="1" fill="#70A1FF" />
+</svg>

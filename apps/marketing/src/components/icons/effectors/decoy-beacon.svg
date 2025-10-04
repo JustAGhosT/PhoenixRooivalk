@@ -1,0 +1,12 @@
+<svg viewBox="0 0 24 24" fill="none" stroke="#70A1FF" stroke-width="2">
+  <!-- Beacon with sweep pattern -->
+  <circle cx="12" cy="12" r="8" />
+  <path d="M12 4L12 8" />
+  <path d="M12 16L12 20" />
+  <path d="M4 12L8 12" />
+  <path d="M16 12L20 12" />
+  <path d="M7.76 7.76L10.24 10.24" />
+  <path d="M13.76 13.76L16.24 16.24" />
+  <path d="M16.24 7.76L13.76 10.24" />
+  <path d="M10.24 13.76L7.76 16.24" />
+</svg>

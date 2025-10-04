@@ -56,8 +56,7 @@ async fn main() -> Result<()> {
         serde_json::from_str(&content)
             .with_context(|| format!("Failed to parse JSON from file: {}", path))?
     } else {
-        serde_json::from_str(payload_arg)
-            .with_context(|| "Failed to parse inline JSON payload")?
+        serde_json::from_str(payload_arg).with_context(|| "Failed to parse inline JSON payload")?
     };
 
     // Compute digest
@@ -97,8 +96,11 @@ async fn main() -> Result<()> {
             anyhow::bail!("API request failed with status {}: {}", status, error_text);
         }
 
-        let api_response: Value = response.json().await.context("Failed to parse API response")?;
-        
+        let api_response: Value = response
+            .json()
+            .await
+            .context("Failed to parse API response")?;
+
         match output_format.as_str() {
             "digest-only" => println!("{}", digest),
             "json" => {

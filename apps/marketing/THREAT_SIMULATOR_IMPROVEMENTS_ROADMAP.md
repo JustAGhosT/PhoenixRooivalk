@@ -20,9 +20,9 @@ highly functional threat defense simulation.
 
 ## 🤖 Demo AI-Control Mode (New Priority)
 
-_Advanced autonomous operation with human override capabilities_
+### Advanced autonomous operation with human override capabilities
 
-### AI-Controlled Operations
+#### AI-Controlled Operations
 
 - [ ] **AI Threat Detection**: Autonomous threat identification and
       classification
@@ -36,7 +36,7 @@ _Advanced autonomous operation with human override capabilities_
 - [ ] **AI Threat Response Protocols**: Automated response strategies based on
       threat patterns
 
-### Human Override System
+#### Human Override System
 
 - [ ] **Override Toggle**: Switch between AI-controlled and manual control modes
 - [ ] **Priority Override**: Human commands take precedence over AI decisions
@@ -45,7 +45,7 @@ _Advanced autonomous operation with human override capabilities_
 - [ ] **Learning Mode**: AI learns from human intervention patterns
 - [ ] **Performance Comparison**: Track AI vs human performance metrics
 
-### Demo Mode Features
+#### Demo Mode Features
 
 - [ ] **Autonomous Demo**: Full AI control for demonstration purposes
 - [ ] **Guided Demo**: AI with human guidance and explanation
@@ -57,16 +57,16 @@ _Advanced autonomous operation with human override capabilities_
 
 ## 🚀 Phase 1: Core Foundation (High Priority)
 
-_Foundation elements for enhanced visual appeal and performance_
+### Foundation elements for enhanced visual appeal and performance
 
-### Visual Effects
+#### Visual Effects
 
 - [x] **Particle Systems**: Implement explosion effects when threats are
       neutralized
 - [x] **Trail Effects**: Add visual trails showing threat movement paths
 - [x] **Dynamic Lighting**: Implement realistic shadows and glows for threats
 
-### Audio Integration
+#### Audio Integration
 
 - [ ] **Sound Effects**: Add radar pings, weapon firing, and threat detection
       alerts
@@ -74,14 +74,14 @@ _Foundation elements for enhanced visual appeal and performance_
 - [ ] **Audio Cues**: Different sounds for different threat types and weapon
       systems
 
-### Game Mechanics
+#### Game Mechanics
 
 - [x] **Difficulty Scaling**: Progressive threat spawning with increasing spawn
       rates, speed, and health over time
 - [x] **Dynamic Threat Behavior**: Add threat AI that makes threats more evasive
       as levels progress
 
-### Performance Optimizations
+#### Performance Optimizations
 
 - [x] **Object Pooling**: Reuse threat objects instead of creating/destroying
 - [x] **Efficient Rendering**: Use CSS transforms instead of changing position
@@ -94,16 +94,16 @@ _Foundation elements for enhanced visual appeal and performance_
 
 ## 🎯 Phase 2: Enhanced Gameplay (Medium Priority)
 
-_Advanced features to increase engagement and replayability_
+### Advanced features to increase engagement and replayability
 
-### Advanced Game Mechanics
+#### Advanced Game Mechanics
 
 - [x] **Power-up System**: Introduce temporary abilities like Multi-Shot, Rapid
       Fire, or Area Effect
 - [x] **Advanced Threat Types**: Add kamikaze, decoy, shielded threats with
       unique behaviors
 
-### Scoring & Achievement System
+#### Scoring & Achievement System
 
 - [x] **Combo Multipliers**: Reward consecutive neutralizations
 - [x] **Achievement Badges**: Create "Perfect Defense", "Swarm Master", "Stealth
@@ -111,7 +111,7 @@ _Advanced features to increase engagement and replayability_
 - [x] **Leaderboard**: Local storage for high scores with difficulty level
       tracking
 
-### Advanced Controls & Interaction
+#### Advanced Controls & Interaction
 
 - [x] **Weapon Selection System**: Different damage, range, and cooldown
       properties
@@ -119,7 +119,7 @@ _Advanced features to increase engagement and replayability_
 - [ ] **Multi-target Selection**: Click and drag to select multiple threats
 - [ ] **Priority Targeting**: Mark threats as high/low priority
 
-### UI Enhancements
+#### UI Enhancements
 
 - [ ] **Mini-map**: Show all threats on a smaller radar display
 - [ ] **Threat Trajectory Prediction**: Show predicted paths as dotted lines
@@ -130,9 +130,9 @@ _Advanced features to increase engagement and replayability_
 
 ## 🎓 Phase 3: Educational & Strategic Elements
 
-_Real-world training scenarios and strategic depth_
+### Real-world training scenarios and strategic depth
 
-### Educational Elements
+#### Educational Elements
 
 - [ ] **Threat Analysis Panel**: Show threat specifications (speed, altitude,
       size)
@@ -140,7 +140,7 @@ _Real-world training scenarios and strategic depth_
 - [ ] **Environmental Factors**: Wind, visibility, interference affecting
       performance
 
-### Scenario-Based Training
+#### Scenario-Based Training
 
 - [ ] **Mission Modes**: "Airport Security", "Military Base Defense", "VIP
       Protection"
@@ -148,7 +148,7 @@ _Real-world training scenarios and strategic depth_
       conditions
 - [ ] **Learning Objectives**: Each scenario teaches specific defense concepts
 
-### Strategic Elements
+#### Strategic Elements
 
 - [ ] **Defense Positioning**: Allow players to position defense systems
       strategically
@@ -157,16 +157,16 @@ _Real-world training scenarios and strategic depth_
 
 ## ♿ Phase 4: Accessibility & Analytics
 
-_Inclusive design and performance insights_
+### Inclusive design and performance insights
 
-### Accessibility Features
+#### Accessibility Features
 
 - [ ] **Keyboard Navigation**: Full keyboard control for all interactions
 - [ ] **Screen Reader Support**: Proper ARIA labels and descriptions
 - [ ] **Color Blind Support**: Alternative visual indicators beyond color
 - [ ] **Motion Sensitivity**: Option to reduce animations for sensitive users
 
-### Data Analytics & Insights
+#### Data Analytics & Insights
 
 - [ ] **Performance Tracking**: Track threats neutralized, response time,
       accuracy
@@ -178,15 +178,15 @@ _Inclusive design and performance insights_
 
 ## 🏆 Phase 5: Social & Competitive Features
 
-_Community engagement and competitive elements_
+### Community engagement and competitive elements
 
-### Challenge Modes
+#### Challenge Modes
 
 - [ ] **Daily Challenges**: Special scenarios with unique constraints
 - [ ] **Time Trials**: Complete objectives in minimum time
 - [ ] **Survival Mode**: Defend as long as possible against increasing waves
 
-### Sharing & Export Features
+#### Sharing & Export Features
 
 - [ ] **Replay System**: Record and playback successful defense strategies
 - [ ] **Screenshot Export**: Share impressive defense scenarios
@@ -196,15 +196,15 @@ _Community engagement and competitive elements_
 
 ## 📱 Phase 6: Mobile & Responsive Enhancements
 
-_Cross-platform optimization and mobile-specific features_
+### Cross-platform optimization and mobile-specific features
 
-### Touch Controls
+#### Touch Controls
 
 - [ ] **Gesture Recognition**: Swipe to target multiple threats
 - [ ] **Pinch to Zoom**: Zoom in/out for better precision
 - [ ] **Haptic Feedback**: Vibration feedback for threat detection
 
-### Responsive Design
+#### Responsive Design
 
 - [ ] **Adaptive UI**: Scale interface elements for different screen sizes
 - [ ] **Portrait/Landscape Support**: Optimize layout for both orientations
@@ -214,9 +214,9 @@ _Cross-platform optimization and mobile-specific features_
 
 ## 🚁 Phase 2.5: Phoenix Rooivalk Authenticity (High Priority)
 
-_Realistic system representation based on actual Phoenix Rooivalk capabilities_
+### Realistic system representation based on actual Phoenix Rooivalk capabilities
 
-### Drone Mothership System
+#### Drone Mothership System
 
 - [ ] **Interactive Mothership**: Replace static logo with deployable mothership
       interface
@@ -227,7 +227,7 @@ _Realistic system representation based on actual Phoenix Rooivalk capabilities_
 - [ ] **Return-to-Base**: Drones return to mothership for rearming/resupply
       cycles
 
-### Specialized Drone Deployment
+#### Specialized Drone Deployment
 
 - [ ] **Interceptor Drones**: Fast, agile drones for direct threat engagement
 - [ ] **Jammer Drones**: Electronic warfare drones that disrupt enemy
@@ -237,7 +237,7 @@ _Realistic system representation based on actual Phoenix Rooivalk capabilities_
       swarms
 - [ ] **Defensive Shield Drones**: Drones that create protective barriers
 
-### Enhanced Controls & Interaction
+#### Enhanced Controls & Interaction
 
 - [ ] **Mouse-Based Weapon Selection**: Left/Middle/Right click for different
       weapon types
@@ -246,7 +246,7 @@ _Realistic system representation based on actual Phoenix Rooivalk capabilities_
 - [ ] **Keyboard Shortcuts**: 1-3 for weapon selection, WASD for drone
       deployment positioning
 
-### Tactical Deployment System
+#### Tactical Deployment System
 
 - [ ] **Pre-positioned Drones**: Deploy drones in strategic locations before
       threats arrive
@@ -273,7 +273,7 @@ _Realistic system representation based on actual Phoenix Rooivalk capabilities_
 - **Tactical Deployment**: Strategic positioning, threat response protocols,
   coordinated defense patterns
 
-### Enhanced Controls & Interaction
+### System Enhancement Advanced Controls & Interaction
 
 - **Mouse-Based Weapon Selection**:
   - **Left Click**: Kinetic Interceptor (default)

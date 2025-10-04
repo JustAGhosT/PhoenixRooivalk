@@ -1,0 +1,8 @@
+<svg viewBox="0 0 24 24" fill="none" stroke="#FFA502" stroke-width="2">
+  <!-- Antenna with strike-through -->
+  <path d="M12 2L12 12" />
+  <path d="M8 8L16 8" />
+  <path d="M6 10L18 10" />
+  <path d="M4 12L20 12" />
+  <path d="M8 4L16 20" stroke-width="3" />
+</svg>

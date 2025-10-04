@@ -4,6 +4,7 @@ interface ThreatSimulatorOverlaysProps {
   showSimulationWarning: boolean;
   setShowSimulationWarning: (show: boolean) => void;
   showFullscreenPrompt: boolean;
+  setShowFullscreenPrompt?: (show: boolean) => void;
   isTeaser: boolean;
   isFullscreen: boolean;
   enterFullscreen: () => void;
@@ -17,11 +18,12 @@ export const ThreatSimulatorOverlays: React.FC<
   showSimulationWarning,
   setShowSimulationWarning,
   showFullscreenPrompt,
-  isTeaser,
+  setShowFullscreenPrompt,
+  isTeaser: _isTeaser,
   isFullscreen,
   enterFullscreen,
-  exitFullscreen,
-  showFullscreenIndicator = false,
+  exitFullscreen: _exitFullscreen,
+  showFullscreenIndicator: _showFullscreenIndicator = false,
 }) => {
   return (
     <>
@@ -77,7 +79,7 @@ export const ThreatSimulatorOverlays: React.FC<
               </button>
               <button
                 className="bg-gray-600 hover:bg-gray-700 text-white px-8 py-3 rounded-lg transition-all shadow-lg"
-                onClick={() => setShowSimulationWarning(false)}
+                onClick={() => setShowFullscreenPrompt?.(false)}
               >
                 Continue in Window
               </button>

@@ -1,0 +1,14 @@
+<svg viewBox="0 0 24 24" fill="none" stroke="#8b5cf6" stroke-width="2">
+  <!-- Neural network pattern -->
+  <circle cx="6" cy="6" r="2" />
+  <circle cx="18" cy="6" r="2" />
+  <circle cx="6" cy="18" r="2" />
+  <circle cx="18" cy="18" r="2" />
+  <circle cx="12" cy="12" r="3" />
+  <path d="M6 6L12 12" />
+  <path d="M18 6L12 12" />
+  <path d="M6 18L12 12" />
+  <path d="M18 18L12 12" />
+  <path d="M8 8L16 16" stroke-width="1" opacity="0.5" />
+  <path d="M16 8L8 16" stroke-width="1" opacity="0.5" />
+</svg>

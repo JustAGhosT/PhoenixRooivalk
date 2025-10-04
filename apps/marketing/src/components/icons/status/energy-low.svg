@@ -1,0 +1,8 @@
+<svg viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2">
+  <!-- Battery outline -->
+  <path d="M4 8L4 16L6 16L6 18L8 18L8 16L20 16L20 8L8 8L8 6L6 6L6 8Z" />
+  <!-- Low charge indicator -->
+  <path d="M6 10L6 14" stroke-width="2" fill="#ef4444" />
+  <!-- Warning symbol -->
+  <path d="M12 6L16 14L8 14Z" fill="#ef4444" opacity="0.3" />
+</svg>

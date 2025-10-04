@@ -1,10 +1,10 @@
+use anchor_etherlink::EtherlinkProviderStub;
 use axum::{routing::get, Router};
+use phoenix_keeper::{ensure_schema, run_confirmation_loop, run_job_loop, SqliteJobProvider};
 use sqlx::sqlite::SqlitePoolOptions;
 use std::time::Duration;
 use tokio::signal;
 use tracing_subscriber::{layer::SubscriberExt, util::SubscriberInitExt};
-use anchor_etherlink::EtherlinkProviderStub;
-use phoenix_keeper::{ensure_schema, run_job_loop, run_confirmation_loop, SqliteJobProvider};
 
 #[tokio::main]
 async fn main() {
@@ -34,27 +34,34 @@ async fn main() {
             .map(Duration::from_millis)
             .unwrap_or_else(|| Duration::from_secs(5));
 
-        let db_url = std::env::var("KEEPER_DB_URL").unwrap_or_else(|_| "sqlite://blockchain_outbox.sqlite3".to_string());
-        match SqlitePoolOptions::new().max_connections(5).connect(&db_url).await {
+        let db_url = std::env::var("KEEPER_DB_URL")
+            .unwrap_or_else(|_| "sqlite://blockchain_outbox.sqlite3".to_string());
+        match SqlitePoolOptions::new()
+            .max_connections(5)
+            .connect(&db_url)
+            .await
+        {
             Ok(pool) => {
-                if let Err(e) = ensure_schema(&pool).await { tracing::error!(error=%e, "schema init failed"); }
-                
+                if let Err(e) = ensure_schema(&pool).await {
+                    tracing::error!(error=%e, "schema init failed");
+                }
+
                 let mut jp = SqliteJobProvider::new(pool.clone());
                 let anchor = EtherlinkProviderStub;
-                
+
                 // Start job processing loop
                 let job_pool = pool.clone();
                 let job_anchor = anchor.clone();
                 let job_handle = tokio::spawn(async move {
                     run_job_loop(&mut jp, &job_anchor, poll_interval).await;
                 });
-                
+
                 // Start confirmation polling loop
                 let confirm_interval = Duration::from_secs(30); // Check confirmations every 30s
                 let confirm_handle = tokio::spawn(async move {
                     run_confirmation_loop(&pool, &anchor, confirm_interval).await;
                 });
-                
+
                 // Wait for either loop to complete (they shouldn't)
                 tokio::select! {
                     _ = job_handle => {

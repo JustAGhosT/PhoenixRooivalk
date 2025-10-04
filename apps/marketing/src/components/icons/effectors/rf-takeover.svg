@@ -1,0 +1,9 @@
+<svg viewBox="0 0 24 24" fill="none" stroke="#8b5cf6" stroke-width="2">
+  <!-- Two antennas with arrow -->
+  <path d="M6 2L6 10" />
+  <path d="M4 8L8 8" />
+  <path d="M18 2L18 10" />
+  <path d="M16 8L20 8" />
+  <path d="M10 12L14 12" />
+  <path d="M12 10L14 12L12 14" />
+</svg>

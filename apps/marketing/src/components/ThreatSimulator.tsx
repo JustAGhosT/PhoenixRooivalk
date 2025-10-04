@@ -1,43 +1,58 @@
 "use client";
 import * as React from "react";
-import { useEffect, useRef, useState, useCallback } from "react";
+import { useEffect, useRef, useState } from "react";
+import { DetailedStats } from "./DetailedStats";
+import HUDBar from "./HUDBar";
+import HelpOverlay from "./HelpOverlay";
+import { ParticleEffects } from "./ParticleEffects";
+import RadarCanvas from "./RadarCanvas";
+import { ResearchPanel } from "./ResearchPanel";
+import "./ThreatSimulator.css";
+import { ThreatSimulatorComponents } from "./ThreatSimulatorComponents";
+import ThreatSimulatorGame from "./ThreatSimulatorGame";
+import { ThreatSimulatorOverlays } from "./ThreatSimulatorOverlays";
+import { TokenStore } from "./TokenStore";
+import { WeaponStatus } from "./WeaponStatus";
+import { useEventFeed } from "./hooks/useEventFeed";
 import { useFullscreen } from "./hooks/useFullscreen";
 import { useGameState } from "./hooks/useGameState";
 import { useThreatSimulatorEvents } from "./hooks/useThreatSimulatorEvents";
 import { useThreatSimulatorGame } from "./hooks/useThreatSimulatorGame";
-import { useTimeoutManager } from "./hooks/useTimeoutManager";
-import { useEventFeed } from "./hooks/useEventFeed";
-import HUDBar from './HUDBar';
-import RadarCanvas from './RadarCanvas';
-import ControlBar from './ControlBar';
-import EventFeed from './EventFeed';
-import Disclaimer from './Disclaimer';
-import HelpOverlay from './HelpOverlay';
-import { WeaponStatus } from './WeaponStatus';
-import { ParticleEffects } from './ParticleEffects';
-import { DroneDeployment } from './DroneDeployment';
-import { DetailedStats } from './DetailedStats';
-import { ThreatSimulatorComponents } from './ThreatSimulatorComponents';
-import { ThreatSimulatorOverlays } from './ThreatSimulatorOverlays';
-import './NewThreatSimulator.css';
 
 interface ThreatSimulatorProps {
   isTeaser?: boolean;
   autoFullscreen?: boolean;
+  demoMode?: boolean; // Show component showcase instead of game
 }
 
 export const ThreatSimulator: React.FC<ThreatSimulatorProps> = ({
   isTeaser = false,
   autoFullscreen = false,
+  demoMode = false,
 }): JSX.Element => {
   const gameRef = useRef<HTMLDivElement>(null);
   const [isResetting, setIsResetting] = useState(false);
   const [showHelp, setShowHelp] = useState(false);
   const [showDetailedStats, setShowDetailedStats] = useState(false);
   const [showSimulationWarning, setShowSimulationWarning] = useState(true);
+  const [showResearch, setShowResearch] = useState(false);
+  const [showTokenStore, setShowTokenStore] = useState(false);
+  const [showFullscreenPrompt, setShowFullscreenPrompt] =
+    useState(autoFullscreen);
+
+  // Demo mode state
+  const [demoViewMode, setDemoViewMode] = useState<
+    "full" | "components" | "systems"
+  >("full");
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
 
   const {
     gameState,
+    updateScore,
     addThreat,
     removeThreat,
     updateThreats,
@@ -50,6 +65,7 @@ export const ThreatSimulator: React.FC<ThreatSimulatorProps> = ({
     activatePowerUp,
     updatePowerUps,
     checkAchievements,
+    addToLeaderboard,
     updateResources,
     consumeEnergy,
     consumeCooling,
@@ -57,7 +73,9 @@ export const ThreatSimulator: React.FC<ThreatSimulatorProps> = ({
     clearSelection,
     setSelectionBox,
     setThreatPriority,
+    removeThreatPriority,
     deployDrone,
+    updateDrones,
     selectDroneType,
     updateMothershipResources,
     returnDroneToBase,
@@ -65,28 +83,21 @@ export const ThreatSimulator: React.FC<ThreatSimulatorProps> = ({
     resetGameState,
     processFadeOut,
     setLevel,
-    updateScore,
     setWeatherMode,
     setMissionType,
     setAutomationMode,
     setShowDeploymentZones,
   } = useGameState();
 
-  const { addTimeout, clearTimeouts } = useTimeoutManager();
-  const { feedItems, addFeed } = useEventFeed();
-
-  const neutralizeAndLogThreat = (threatId: string) => {
-    const threat = gameState.threats.find(t => t.id === threatId);
-    if (threat) {
-      addFeed(`Neutralized hostile @ ${Math.round(threat.x)}m`);
-    }
-    removeThreat(threatId);
-  };
-
   const {
     particleSystem,
-    generateSwarm,
-    spawnMultipleDrones,
+    collisionSystem,
+    gameDimensions,
+    weatherMode,
+    missionType,
+    automationMode,
+    showDeploymentZones,
+    resourceManager,
   } = useThreatSimulatorGame({
     gameRef,
     gameState,
@@ -94,7 +105,9 @@ export const ThreatSimulator: React.FC<ThreatSimulatorProps> = ({
     addThreat,
     removeThreat,
     updateScore,
-    neutralizeThreat: neutralizeAndLogThreat,
+    neutralizeThreat: (threatId: string) => {
+      // Implementation for neutralizing threats
+    },
     fireWeapon,
     consumeEnergy,
     consumeCooling,
@@ -106,84 +119,83 @@ export const ThreatSimulator: React.FC<ThreatSimulatorProps> = ({
     updateMothershipResources,
     updateDronePositions,
     setFrameRate,
-    addTimeout,
-    clearTimeouts,
+    addTimeout: (callback: () => void, delay: number) => {
+      // Implementation for adding timeout
+    },
+    clearTimeouts: () => {
+      // Implementation for clearing timeouts
+    },
     processFadeOut,
   });
+
+
+  const { isFullscreen, enterFullscreen, exitFullscreen } = useFullscreen();
+
+  const { addFeed } = useEventFeed();
 
   const {
     handleMouseDown,
     handleMouseMove,
     handleMouseUp,
-    handleThreatClick,
-    handleGameAreaClick,
-    handleWheel,
     handleContextMenu,
+    handleWheel,
+    handleGameAreaClick,
+    handleThreatClick,
+    handleDroneClick,
+    handleWeaponActivate,
+    handlePowerUpClick,
+    handleResearchClick,
+    handleTokenStoreClick,
   } = useThreatSimulatorEvents({
     gameRef,
     gameState,
-    updateThreats,
+    updateScore,
     addThreat,
     removeThreat,
-    updateScore,
-    selectThreat,
-    setThreatPriority,
-    neutralizeThreat: neutralizeAndLogThreat,
-    switchWeapon,
-    deployDrone,
-    selectDroneType,
-    returnDroneToBase,
-    clearSelection,
-    setSelectionBox,
-    spawnNewThreat: () => {},
-    moveAllThreats: () => {},
-    generateSwarm,
-    spawnMultipleDrones,
-    activatePowerUp,
-    clearTimeouts,
-    resetGameState,
+    updateThreats,
     toggleRunningState,
+    updateGameTime,
     setFrameRate,
+    switchWeapon,
+    fireWeapon,
+    updateWeaponCooldowns,
+    activatePowerUp,
+    updatePowerUps,
+    checkAchievements,
+    addToLeaderboard,
+    updateResources,
     consumeEnergy,
     consumeCooling,
-    particleSystem,
+    selectThreat,
+    clearSelection,
+    setSelectionBox,
+    setThreatPriority,
+    removeThreatPriority,
+    deployDrone,
+    updateDrones,
+    selectDroneType,
+    updateMothershipResources,
+    returnDroneToBase,
+    updateDronePositions,
+    resetGameState,
+    processFadeOut,
+    setLevel,
+    setWeatherMode,
+    setMissionType,
+    setAutomationMode,
+    setShowDeploymentZones,
+    setShowResearch,
+    setShowTokenStore,
+    setShowHelp,
+    setShowDetailedStats,
+    addFeed,
   });
-
-  const { isFullscreen, enterFullscreen, exitFullscreen } = useFullscreen({
-    gameRef,
-    autoFullscreen,
-    isTeaser,
-  });
-
-  const handleReset = useCallback(() => {
-    setIsResetting(true);
-    resetGameState();
-    addFeed("Simulator reset.");
-    setTimeout(() => setIsResetting(false), 200);
-  }, [resetGameState, addFeed]);
-
-  const handleSwarm = useCallback(() => {
-    generateSwarm();
-    addFeed("Spawning hostile swarm.");
-  }, [generateSwarm, addFeed]);
-
-  const handlePlus5 = useCallback(() => {
-    spawnMultipleDrones(5);
-    addFeed("Deploying 5 friendly drones.");
-  }, [spawnMultipleDrones, addFeed]);
-
-  useEffect(() => {
-    return () => clearTimeouts();
-  }, [clearTimeouts]);
 
   const getThreatAppearance = (type: string) => {
     const appearances = {
-      drone: { emoji: "🚁", color: "bg-red-600", cssClass: "" },
-      swarm: { emoji: "🐝", color: "bg-orange-500", cssClass: "" },
-      stealth: { emoji: "👻", color: "bg-gray-600", cssClass: "" },
-      kamikaze: { emoji: "💥", color: "bg-red-800", cssClass: "" },
-      decoy: { emoji: "🎭", color: "bg-gray-500", cssClass: "" },
-      shielded: { emoji: "🛡️", color: "bg-blue-700", cssClass: "" },
+      drone: { color: "#ef4444", size: 8 },
+      swarm: { color: "#f59e0b", size: 6 },
+      stealth: { color: "#6b7280", size: 6 },
     };
     return appearances[type as keyof typeof appearances] || appearances.drone;
   };
@@ -194,34 +206,168 @@ export const ThreatSimulator: React.FC<ThreatSimulatorProps> = ({
       const key = e.key.toLowerCase();
 
       switch (key) {
-        case ' ': e.preventDefault(); toggleRunningState(); break;
-        case 's': e.preventDefault(); handleSwarm(); break;
-        case '+': case '=': e.preventDefault(); handlePlus5(); break;
-        case 'r': e.preventDefault(); handleReset(); break;
-        case '1': e.preventDefault(); switchWeapon("kinetic"); addFeed("Kinetic weapon selected."); break;
-        case '2': e.preventDefault(); switchWeapon("electronic"); addFeed("EMP weapon selected."); break;
-        case '3': e.preventDefault(); switchWeapon("laser"); addFeed("Laser weapon selected."); break;
-        case 't': e.preventDefault(); setShowDetailedStats(prev => !prev); break;
-        case 'escape': e.preventDefault(); clearSelection(); selectDroneType(null); break;
-        case '?': e.preventDefault(); setShowHelp(prev => !prev); break;
+        case " ":
+          e.preventDefault();
+          toggleRunningState();
+          break;
+        case "r":
+          if (e.shiftKey) {
+            resetGameState();
+          }
+          break;
+        case "h":
+          setShowHelp(!showHelp);
+          break;
+        case "s":
+          setShowDetailedStats(!showDetailedStats);
+          break;
+        case "f":
+          if (isFullscreen) {
+            exitFullscreen();
+          } else {
+            enterFullscreen();
+          }
+          break;
       }
     };
 
-    window.addEventListener('keydown', handleKeyDown);
+    window.addEventListener("keydown", handleKeyDown);
     return () => {
-      window.removeEventListener('keydown', handleKeyDown);
+      window.removeEventListener("keydown", handleKeyDown);
     };
-  }, [toggleRunningState, handleSwarm, handlePlus5, handleReset, switchWeapon, addFeed, clearSelection, selectDroneType, setShowDetailedStats, setShowHelp]);
+  }, [
+    toggleRunningState,
+    resetGameState,
+    showHelp,
+    setShowHelp,
+    showDetailedStats,
+    setShowDetailedStats,
+    isFullscreen,
+    enterFullscreen,
+    exitFullscreen,
+  ]);
+
+  // Demo mode - show component showcase
+  if (demoMode) {
+    return (
+      <div className="threat-simulator-demo">
+        <div className="demo-controls">
+          <h1>Phoenix Rooivalk - Threat Simulator Demo</h1>
+          <div className="demo-mode-selector">
+            <button
+              className={demoViewMode === "full" ? "active" : ""}
+              onClick={() => setDemoViewMode("full")}
+            >
+              Full Simulator
+            </button>
+            <button
+              className={demoViewMode === "components" ? "active" : ""}
+              onClick={() => setDemoViewMode("components")}
+            >
+              Component Showcase
+            </button>
+            <button
+              className={demoViewMode === "systems" ? "active" : ""}
+              onClick={() => setDemoViewMode("systems")}
+            >
+              System Architecture
+            </button>
+          </div>
+        </div>
+
+        <div className="demo-content">
+          {!isClient ? (
+            <div className="loading">Loading demo...</div>
+          ) : (
+            <>
+              {demoViewMode === "full" && (
+                <div className="demo-simulator">
+                  <ThreatSimulatorGame />
+                </div>
+              )}
+              {demoViewMode === "components" && (
+                <div className="component-showcase">
+                  <div className="showcase-header">
+                    <h1>Enhanced Threat Simulator Components</h1>
+                    <p>
+                      Explore the individual components that make up the Phoenix
+                      Rooivalk threat simulation system.
+                    </p>
+                  </div>
+                  <div className="component-grid">
+                    <div className="component-card">
+                      <h3>Radar System</h3>
+                      <p>
+                        Advanced threat detection and tracking with real-time
+                        visualization.
+                      </p>
+                    </div>
+                    <div className="component-card">
+                      <h3>Drone Deployment</h3>
+                      <p>
+                        Intelligent drone deployment system with energy
+                        management.
+                      </p>
+                    </div>
+                    <div className="component-card">
+                      <h3>Weapon Systems</h3>
+                      <p>
+                        Multi-spectrum weapon systems for threat neutralization.
+                      </p>
+                    </div>
+                    <div className="component-card">
+                      <h3>Research Panel</h3>
+                      <p>Technology research and development interface.</p>
+                    </div>
+                  </div>
+                </div>
+              )}
+              {demoViewMode === "systems" && (
+                <div className="system-architecture">
+                  <div className="architecture-header">
+                    <h1>System Architecture</h1>
+                    <p>
+                      Comprehensive overview of the Phoenix Rooivalk system
+                      architecture.
+                    </p>
+                  </div>
+                  <div className="architecture-diagram">
+                    <div className="system-layer">
+                      <h3>Presentation Layer</h3>
+                      <p>React components, UI/UX, visualization</p>
+                    </div>
+                    <div className="system-layer">
+                      <h3>Application Layer</h3>
+                      <p>Game logic, state management, event handling</p>
+                    </div>
+                    <div className="system-layer">
+                      <h3>Data Layer</h3>
+                      <p>Game state, persistence, configuration</p>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </>
+          )}
+        </div>
+      </div>
+    );
+  }
 
   return (
     <section
       ref={gameRef}
       className="threatsim card flex flex-col h-full"
       aria-labelledby="sim-title"
-      style={{ minHeight: '800px' }} // Ensure the container has a height
+      style={{ minHeight: "800px" }} // Ensure the container has a height
     >
       {showHelp && <HelpOverlay onClose={() => setShowHelp(false)} />}
-      {showDetailedStats && <DetailedStats gameState={gameState} onClose={() => setShowDetailedStats(false)} />}
+      {showDetailedStats && (
+        <DetailedStats
+          gameState={gameState}
+          onClose={() => setShowDetailedStats(false)}
+        />
+      )}
 
       <HUDBar
         score={gameState.score}
@@ -260,47 +406,74 @@ export const ThreatSimulator: React.FC<ThreatSimulatorProps> = ({
           <ThreatSimulatorComponents
             gameState={gameState}
             onThreatClick={handleThreatClick}
-            onThreatHover={() => {}}
-            getThreatAppearance={getThreatAppearance}
+            onDroneClick={handleDroneClick}
+            onWeaponActivate={handleWeaponActivate}
+            onPowerUpClick={handlePowerUpClick}
+            onResearchClick={handleResearchClick}
+            onTokenStoreClick={handleTokenStoreClick}
+            isResetting={isResetting}
           />
         </div>
-        <DroneDeployment
-          drones={gameState.drones}
-          deploymentBays={gameState.deploymentBays}
-          selectedDroneType={gameState.selectedDroneType}
-          onSelectDroneType={selectDroneType}
-          energy={gameState.energy}
-        />
       </div>
 
-      <ControlBar
-        onPause={toggleRunningState}
-        onSwarm={handleSwarm}
-        onPlus5={handlePlus5}
-        onReset={handleReset}
-        onLevelChange={(level) => {
-          setLevel(level);
-          addFeed(`Level set to ${level}.`);
-        }}
-        isPaused={!gameState.isRunning}
-        currentLevel={gameState.level}
-        weatherMode={gameState.weatherMode}
-        setWeatherMode={setWeatherMode}
-        missionType={gameState.missionType}
-        setMissionType={setMissionType}
-        automationMode={gameState.automationMode}
-        setAutomationMode={setAutomationMode}
-        showDeploymentZones={gameState.showDeploymentZones}
-        setShowDeploymentZones={setShowDeploymentZones}
-        onShowStats={() => setShowDetailedStats(true)}
-        onShowHelp={() => setShowHelp(true)}
-      />
-      <EventFeed feedItems={feedItems} />
-      <Disclaimer />
+      {showResearch && (
+        <ResearchPanel
+          researchState={gameState.research}
+          onStartResearch={(type) => {
+            try {
+              const success = startResearch(type);
+              if (success) {
+                addFeed(`Started research: ${type}`);
+                setShowResearch(false);
+              } else {
+                addFeed(`Failed to start research: ${type}`);
+              }
+            } catch (error) {
+              console.error("Failed to start research:", error);
+              addFeed(`Failed to start research: ${type}`);
+            }
+          }}
+        />
+      )}
+
+      {showTokenStore && (
+        <TokenStore
+          tokens={gameState.tokens}
+          onPurchase={(type) => {
+            try {
+              // Call the actual purchase API
+              const success = resourceManager.purchaseDrone(type);
+
+              if (success) {
+                // Dispatch the existing "drone-purchase" event
+                const purchaseEvent = new CustomEvent("drone-purchase", {
+                  detail: { type, timestamp: Date.now() },
+                });
+                window.dispatchEvent(purchaseEvent);
+
+                // Close the token store modal after successful purchase
+                setShowTokenStore(false);
+
+                // Add success feedback to the game feed
+                addFeed(`Drone ${type} purchased successfully!`);
+              } else {
+                // Purchase failed - don't close modal, show error
+                addFeed(
+                  `Failed to purchase drone ${type}. Insufficient tokens or drone not unlocked.`,
+                );
+              }
+            } catch (error) {
+              console.error("Failed to process drone purchase:", error);
+              addFeed(`Failed to purchase drone ${type}.`);
+            }
+          }}
+        />
+      )}
       <ThreatSimulatorOverlays
         showSimulationWarning={showSimulationWarning}
         setShowSimulationWarning={setShowSimulationWarning}
-        showFullscreenPrompt={!isFullscreen && autoFullscreen}
+        showFullscreenPrompt={showFullscreenPrompt}
+        setShowFullscreenPrompt={setShowFullscreenPrompt}
         isTeaser={isTeaser}
         isFullscreen={isFullscreen}
         enterFullscreen={enterFullscreen}
@@ -309,3 +482,5 @@ export const ThreatSimulator: React.FC<ThreatSimulatorProps> = ({
     </section>
   );
 };
+
+export default ThreatSimulator;

@@ -51,11 +51,26 @@ jobs:
 
       - name: Build
         run: pnpm run build
+        continue-on-error: false
+
+      - name: Debug build output
+        run: |
+          echo "Current directory: $(pwd)"
+          echo "Contents of current directory:"
+          ls -la
+          echo "Checking for build directory:"
+          if [ -d "build" ]; then
+            echo "SUCCESS: Build directory exists"
+            echo "Build directory contents:"
+            ls -la build/
+          else
+            echo "ERROR: Build directory not found"
+          fi
 
       - name: Check build directory exists
         id: check_build
         run: |
-          if [ -d "apps/docs/build" ]; then
+          if [ -d "build" ]; then
             echo "exists=true" >> $GITHUB_OUTPUT
           else
             echo "exists=false" >> $GITHUB_OUTPUT
@@ -65,13 +80,30 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: docs-site-build
-          path: apps/docs/build
+          path: build
+
+      - name: Check Netlify secrets
+        id: check_secrets
+        run: |
+          echo "Checking secrets availability..."
+          if [ -n "${{ secrets.NETLIFY_AUTH_TOKEN }}" ] && [ -n "${{ secrets.NETLIFY_DOCS_SITE_ID }}" ]; then
+            echo "SUCCESS: All required secrets are available"
+            echo "secrets_available=true" >> $GITHUB_OUTPUT
+          else
+            echo "ERROR: Missing required secrets:"
+            [ -z "${{ secrets.NETLIFY_AUTH_TOKEN }}" ] && echo "  - NETLIFY_AUTH_TOKEN"
+            [ -z "${{ secrets.NETLIFY_DOCS_SITE_ID }}" ] && echo "  - NETLIFY_DOCS_SITE_ID"
+            echo "secrets_available=false" >> $GITHUB_OUTPUT
+            echo "Warning: Netlify secrets not configured. Skipping deployment."
+          fi
 
       - name: Deploy to Netlify
-        if: steps.check_build.outputs.exists == 'true'
+        if:
+          steps.check_build.outputs.exists == 'true' &&
+          steps.check_secrets.outputs.secrets_available == 'true'
         uses: nwtgck/actions-netlify@v3
         with:
-          publish-dir: "apps/docs/build"
+          publish-dir: "build"
           production-deploy: true
           github-token: ${{ secrets.GITHUB_TOKEN }}
           deploy-message: "Automated deploy from GitHub Actions"
@@ -89,7 +121,7 @@ jobs:
       BRANCH: ${{ github.head_ref }}
     runs-on: ubuntu-latest
     permissions:
-      contents: read
+      contents: write
       statuses: write
       pull-requests: write
     defaults:
@@ -120,28 +152,60 @@ jobs:
 
       - name: Build
         run: pnpm run build
+        continue-on-error: false
+
+      - name: Debug build output (Preview)
+        run: |
+          echo "Current directory: $(pwd)"
+          echo "Contents of current directory:"
+          ls -la
+          echo "Checking for build directory:"
+          if [ -d "build" ]; then
+            echo "SUCCESS: Build directory exists"
+            echo "Build directory contents:"
+            ls -la build/
+          else
+            echo "ERROR: Build directory not found"
+          fi
 
       - name: Check build directory exists
         id: check_build_preview
         run: |
-          if [ -d "apps/docs/build" ]; then
+          if [ -d "build" ]; then
             echo "exists=true" >> $GITHUB_OUTPUT
           else
             echo "exists=false" >> $GITHUB_OUTPUT
           fi
 
+      - name: Check Netlify secrets (Preview)
+        id: check_secrets_preview
+        run: |
+          echo "Checking secrets availability for preview..."
+          if [ -n "${{ secrets.NETLIFY_AUTH_TOKEN }}" ] && [ -n "${{ secrets.NETLIFY_DOCS_SITE_ID }}" ]; then
+            echo "SUCCESS: All required secrets are available"
+            echo "secrets_available=true" >> $GITHUB_OUTPUT
+          else
+            echo "ERROR: Missing required secrets:"
+            [ -z "${{ secrets.NETLIFY_AUTH_TOKEN }}" ] && echo "  - NETLIFY_AUTH_TOKEN"
+            [ -z "${{ secrets.NETLIFY_DOCS_SITE_ID }}" ] && echo "  - NETLIFY_DOCS_SITE_ID"
+            echo "secrets_available=false" >> $GITHUB_OUTPUT
+            echo "Warning: Netlify secrets not configured. Skipping preview deployment."
+          fi
+
       - name: Deploy Preview to Netlify
-        if: steps.check_build_preview.outputs.exists == 'true'
+        if:
+          steps.check_build_preview.outputs.exists == 'true' &&
+          steps.check_secrets_preview.outputs.secrets_available == 'true'
         uses: nwtgck/actions-netlify@v3
         with:
-          publish-dir: "apps/docs/build"
+          publish-dir: "build"
           production-deploy: false
           github-token: ${{ secrets.GITHUB_TOKEN }}
           deploy-message:
             "Deploy Preview from PR #${{ github.event.pull_request.number }}"
-          enable-commit-comment: false
-          enable-commit-status: false
-          enable-pull-request-comment: false
+          enable-commit-comment: true
+          enable-commit-status: true
+          enable-pull-request-comment: true
           alias: ${{ github.head_ref }}
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
