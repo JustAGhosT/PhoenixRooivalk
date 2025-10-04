@@ -19,9 +19,11 @@ Electromagnetic pulse weapon for electronic disruption.
 
 ## AI Generation Prompt
 
-````text
-Create an EMP weapon icon: electrical discharge with concentric pulse waves. Military style, outline-based, 24x24px. Color #FFA502. Electronic disruption, electromagnetic pulse aesthetic.
 ```text
+Create an EMP weapon icon: electrical discharge with concentric pulse waves.
+Military style, outline-based, 24x24px. Color #FFA502. Electronic disruption,
+electromagnetic pulse aesthetic.
+```
 
 ## SVG Structure
 
@@ -33,7 +35,7 @@ Create an EMP weapon icon: electrical discharge with concentric pulse waves. Mil
   <path d="M4 12L20 12" stroke-width="1" />
   <circle cx="12" cy="12" r="6" />
   <circle cx="12" cy="12" r="10" />
-  <circle cx="12" cy="12" r="14" />
+  <circle cx="12" cy="12" r="12" />
 </svg>
 ```text
 
