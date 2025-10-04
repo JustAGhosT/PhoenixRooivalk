@@ -14,15 +14,15 @@ export default [
   },
   {
     path: '/docs',
-    component: ComponentCreator('/docs', '2b0'),
+    component: ComponentCreator('/docs', 'b06'),
     routes: [
       {
         path: '/docs',
-        component: ComponentCreator('/docs', '56e'),
+        component: ComponentCreator('/docs', '793'),
         routes: [
           {
             path: '/docs',
-            component: ComponentCreator('/docs', 'ef0'),
+            component: ComponentCreator('/docs', 'd34'),
             routes: [
               {
                 path: '/docs/',
@@ -112,64 +112,67 @@ export default [
               },
               {
                 path: '/docs/executive/executive-summary',
-                component: ComponentCreator('/docs/executive/executive-summary', '41b'),
+                component: ComponentCreator('/docs/executive/executive-summary', '2f6'),
                 exact: true,
                 sidebar: "docs"
               },
               {
                 path: '/docs/executive/global-strategy',
-                component: ComponentCreator('/docs/executive/global-strategy', '83d'),
+                component: ComponentCreator('/docs/executive/global-strategy', 'e2c'),
                 exact: true,
                 sidebar: "docs"
               },
               {
                 path: '/docs/executive/key-questions-cheatsheet',
-                component: ComponentCreator('/docs/executive/key-questions-cheatsheet', '888'),
+                component: ComponentCreator('/docs/executive/key-questions-cheatsheet', '283'),
                 exact: true,
                 sidebar: "docs"
               },
               {
                 path: '/docs/executive/phoenix-rooivalk-litepaper',
-                component: ComponentCreator('/docs/executive/phoenix-rooivalk-litepaper', '361'),
+                component: ComponentCreator('/docs/executive/phoenix-rooivalk-litepaper', '9bb'),
                 exact: true,
                 sidebar: "docs"
               },
               {
                 path: '/docs/executive/phoenix-rooivalk-pitch-deck',
-                component: ComponentCreator('/docs/executive/phoenix-rooivalk-pitch-deck', '33d'),
-                exact: true
+                component: ComponentCreator('/docs/executive/phoenix-rooivalk-pitch-deck', '418'),
+                exact: true,
+                sidebar: "docs"
               },
               {
                 path: '/docs/executive/phoenix-rooivalk-technical-whitepaper',
-                component: ComponentCreator('/docs/executive/phoenix-rooivalk-technical-whitepaper', 'a68'),
+                component: ComponentCreator('/docs/executive/phoenix-rooivalk-technical-whitepaper', 'e3c'),
                 exact: true,
                 sidebar: "docs"
               },
               {
                 path: '/docs/executive/presentation-materials',
-                component: ComponentCreator('/docs/executive/presentation-materials', '0c1'),
+                component: ComponentCreator('/docs/executive/presentation-materials', '805'),
                 exact: true,
                 sidebar: "docs"
               },
               {
                 path: '/docs/executive/strategic-recommendations',
-                component: ComponentCreator('/docs/executive/strategic-recommendations', 'c74'),
+                component: ComponentCreator('/docs/executive/strategic-recommendations', 'bcb'),
                 exact: true,
                 sidebar: "docs"
               },
               {
                 path: '/docs/executive/system-overview',
-                component: ComponentCreator('/docs/executive/system-overview', 'b1b'),
-                exact: true
+                component: ComponentCreator('/docs/executive/system-overview', '327'),
+                exact: true,
+                sidebar: "docs"
               },
               {
                 path: '/docs/executive/system-overview-detailed',
-                component: ComponentCreator('/docs/executive/system-overview-detailed', 'a78'),
-                exact: true
+                component: ComponentCreator('/docs/executive/system-overview-detailed', 'fcf'),
+                exact: true,
+                sidebar: "docs"
               },
               {
                 path: '/docs/executive/team-status',
-                component: ComponentCreator('/docs/executive/team-status', 'd1a'),
+                component: ComponentCreator('/docs/executive/team-status', '4d0'),
                 exact: true,
                 sidebar: "docs"
               },

@@ -98,7 +98,8 @@
             },
             {
               "id": "executive/phoenix-rooivalk-pitch-deck",
-              "path": "/docs/executive/phoenix-rooivalk-pitch-deck"
+              "path": "/docs/executive/phoenix-rooivalk-pitch-deck",
+              "sidebar": "docs"
             },
             {
               "id": "executive/phoenix-rooivalk-technical-whitepaper",
@@ -117,11 +118,13 @@
             },
             {
               "id": "executive/system-overview",
-              "path": "/docs/executive/system-overview"
+              "path": "/docs/executive/system-overview",
+              "sidebar": "docs"
             },
             {
               "id": "executive/system-overview-detailed",
-              "path": "/docs/executive/system-overview-detailed"
+              "path": "/docs/executive/system-overview-detailed",
+              "sidebar": "docs"
             },
             {
               "id": "executive/team-status",
