@@ -52,8 +52,16 @@ impl MigrationManager {
     async fn apply_migration(&self, version: i32, name: &str, sql: &str) -> Result<()> {
         let mut tx = self.pool.begin().await?;
 
-        // Execute the migration SQL
-        sqlx::query(sql).execute(&mut *tx).await?;
+        // Execute the migration SQL - split on semicolons and execute each statement
+        let statements: Vec<&str> = sql
+            .split(';')
+            .map(|s| s.trim())
+            .filter(|s| !s.is_empty())
+            .collect();
+
+        for statement in statements {
+            sqlx::query(statement).execute(&mut *tx).await?;
+        }
 
         // Record the migration
         let now = chrono::Utc::now().timestamp_millis();
