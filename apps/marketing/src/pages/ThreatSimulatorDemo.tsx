@@ -94,28 +94,7 @@ export const ThreatSimulatorDemo: React.FC = () => {
     "gnss_deny",
     "rf_take",
   ];
-  const demoSynergies: SynergyEffect[] = [
-    {
-      id: "spotter_precision",
-      name: "Spotter-Assisted Precision",
-      description:
-        "Spotter UAV improves targeting accuracy for precision weapons",
-      effectors: ["spotter", "smart_slug", "laser"],
-      bonus: { accuracy: 0.25, damage: 0.15 },
-      visualEffect: "crosshair enhancement",
-      color: "#3b82f6",
-    },
-    {
-      id: "gnss_rf_combo",
-      name: "Navigation Disruption",
-      description:
-        "GNSS Denial and RF Takeover work together to confuse drone navigation",
-      effectors: ["gnss_deny", "rf_take"],
-      bonus: { accuracy: 0.3, range: 0.2 },
-      visualEffect: "navigation confusion",
-      color: "#8b5cf6",
-    },
-  ];
+
 
   const renderFullSimulator = () => (
     <EnhancedThreatSimulator className="demo-simulator" />
