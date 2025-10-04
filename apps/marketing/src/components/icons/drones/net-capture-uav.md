@@ -1,14 +1,17 @@
 # Net-Capture UAV Icon
 
 ## Description
+
 Net deployment drone for physical capture and containment operations.
 
 ## Visual Elements
+
 - Triangle with net pattern
 - Physical capture representation
 - Containment system visualization
 
 ## Technical Specifications
+
 - **Size**: 24x24px viewBox
 - **Style**: Military, outline-based
 - **Stroke Width**: 2px
@@ -16,11 +19,13 @@ Net deployment drone for physical capture and containment operations.
 - **Base Shape**: Triangle (70% of viewBox)
 
 ## AI Generation Prompt
+
 ```
 Create a net-capture drone icon: triangle with net pattern inside. Military style, outline-based, 24x24px. Color #10b981. Physical capture, containment, net deployment aesthetic.
 ```
 
 ## SVG Structure
+
 ```svg
 <svg viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2">
   <!-- Triangle base -->
@@ -37,6 +42,7 @@ Create a net-capture drone icon: triangle with net pattern inside. Military styl
 ```
 
 ## Usage Context
+
 - Net-capture drone systems
 - Physical capture platforms
 - Containment operations

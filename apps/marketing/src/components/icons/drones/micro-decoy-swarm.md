@@ -1,14 +1,17 @@
 # Micro-Decoy Swarm Icon
 
 ## Description
+
 Swarm of micro-decoys for saturation and multiple target deception.
 
 ## Visual Elements
+
 - Triangle with multiple small dots
 - Swarm representation
 - Multiple target visualization
 
 ## Technical Specifications
+
 - **Size**: 24x24px viewBox
 - **Style**: Military, outline-based
 - **Stroke Width**: 2px
@@ -16,11 +19,13 @@ Swarm of micro-decoys for saturation and multiple target deception.
 - **Base Shape**: Triangle (70% of viewBox)
 
 ## AI Generation Prompt
+
 ```
 Create a micro-decoy swarm icon: triangle with multiple small dots inside. Military style, outline-based, 24x24px. Color #70A1FF. Swarm deception, saturation, multiple targets aesthetic.
 ```
 
 ## SVG Structure
+
 ```svg
 <svg viewBox="0 0 24 24" fill="none" stroke="#70A1FF" stroke-width="2">
   <!-- Triangle base -->
@@ -37,6 +42,7 @@ Create a micro-decoy swarm icon: triangle with multiple small dots inside. Milit
 ```
 
 ## Usage Context
+
 - Micro-decoy swarm systems
 - Saturation deception platforms
 - Multiple target operations

@@ -182,7 +182,7 @@ export const DRONE_CONFIGS: Record<
     mission: "coordinate",
     status: "deploying",
   },
-  "decoy_uav": {
+  decoy_uav: {
     type: "decoy_uav",
     speed: 2.0,
     health: 80,
@@ -197,7 +197,7 @@ export const DRONE_CONFIGS: Record<
     mission: "patrol",
     status: "deploying",
   },
-  "net_uav": {
+  net_uav: {
     type: "net_uav",
     speed: 2.5,
     health: 100,
@@ -212,7 +212,7 @@ export const DRONE_CONFIGS: Record<
     mission: "intercept",
     status: "deploying",
   },
-  "relay_uav": {
+  relay_uav: {
     type: "relay_uav",
     speed: 1.0,
     health: 150,
@@ -227,7 +227,7 @@ export const DRONE_CONFIGS: Record<
     mission: "patrol",
     status: "deploying",
   },
-  "overwatch_tether": {
+  overwatch_tether: {
     type: "overwatch_tether",
     speed: 0,
     health: 200,
@@ -242,7 +242,7 @@ export const DRONE_CONFIGS: Record<
     mission: "surveil",
     status: "deploying",
   },
-  "recovery_uav": {
+  recovery_uav: {
     type: "recovery_uav",
     speed: 2.0,
     health: 90,
@@ -257,7 +257,7 @@ export const DRONE_CONFIGS: Record<
     mission: "patrol",
     status: "deploying",
   },
-  "lure_swarm": {
+  lure_swarm: {
     type: "lure_swarm",
     speed: 3.0,
     health: 40,
@@ -272,7 +272,7 @@ export const DRONE_CONFIGS: Record<
     mission: "patrol",
     status: "deploying",
   },
-  "perimeter_sentry": {
+  perimeter_sentry: {
     type: "perimeter_sentry",
     speed: 2.0,
     health: 110,
@@ -287,7 +287,7 @@ export const DRONE_CONFIGS: Record<
     mission: "patrol",
     status: "deploying",
   },
-  "spotter": {
+  spotter: {
     type: "spotter",
     speed: 3.0,
     health: 70,
@@ -302,7 +302,7 @@ export const DRONE_CONFIGS: Record<
     mission: "surveil",
     status: "deploying",
   },
-  "hpm_uav": {
+  hpm_uav: {
     type: "hpm_uav",
     speed: 1.0,
     health: 180,
@@ -317,7 +317,7 @@ export const DRONE_CONFIGS: Record<
     mission: "intercept",
     status: "deploying",
   },
-  "shield_wall": {
+  shield_wall: {
     type: "shield_wall",
     speed: 0,
     health: 250,
@@ -332,7 +332,7 @@ export const DRONE_CONFIGS: Record<
     mission: "shield",
     status: "deploying",
   },
-  "mapper_lidar": {
+  mapper_lidar: {
     type: "mapper_lidar",
     speed: 2.0,
     health: 100,
@@ -347,7 +347,7 @@ export const DRONE_CONFIGS: Record<
     mission: "surveil",
     status: "deploying",
   },
-  "relay_optical": {
+  relay_optical: {
     type: "relay_optical",
     speed: 2.0,
     health: 90,

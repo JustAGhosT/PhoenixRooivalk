@@ -1,25 +1,30 @@
 # Obscurant Icon
 
 ## Description
+
 Smoke/obscurant generator for visual concealment and tracking disruption.
 
 ## Visual Elements
+
 - Cloud or fog bank pattern
 - Visual concealment symbol
 - Obscurant generation representation
 
 ## Technical Specifications
+
 - **Size**: 24x24px viewBox
 - **Style**: Military, outline-based
 - **Stroke Width**: 2px
 - **Color**: `#6b7280` (countermeasure gray)
 
 ## AI Generation Prompt
+
 ```
 Create an obscurant icon: cloud or fog bank pattern. Military style, outline-based, 24x24px. Color #6b7280. Visual concealment, smoke generation aesthetic.
 ```
 
 ## SVG Structure
+
 ```svg
 <svg viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2">
   <!-- Cloud/fog pattern -->
@@ -30,6 +35,7 @@ Create an obscurant icon: cloud or fog bank pattern. Military style, outline-bas
 ```
 
 ## Usage Context
+
 - Obscurant generation systems
 - Visual concealment
 - Smoke generation

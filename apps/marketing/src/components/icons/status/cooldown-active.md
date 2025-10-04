@@ -1,25 +1,30 @@
 # Cooldown Active Status Icon
 
 ## Description
+
 Status indicator showing weapon/system is in cooldown period.
 
 ## Visual Elements
+
 - Circular progress indicator
 - Cooldown timer representation
 - Active cooldown symbol
 
 ## Technical Specifications
+
 - **Size**: 24x24px viewBox
 - **Style**: Military, outline-based
 - **Stroke Width**: 2px
 - **Color**: `#f59e0b` (warning amber)
 
 ## AI Generation Prompt
+
 ```
 Create a cooldown active status icon: circular progress indicator or timer. Military style, outline-based, 24x24px. Color #f59e0b. Active cooldown, waiting state aesthetic.
 ```
 
 ## SVG Structure
+
 ```svg
 <svg viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2">
   <!-- Circular progress -->
@@ -30,6 +35,7 @@ Create a cooldown active status icon: circular progress indicator or timer. Mili
 ```
 
 ## Usage Context
+
 - Active cooldown indicators
 - System waiting states
 - Timer-based status displays

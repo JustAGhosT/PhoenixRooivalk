@@ -1,43 +1,43 @@
-import React from 'react';
+import React from "react";
 
 interface ROERiskIndicatorProps {
-  riskLevel: 'low' | 'med' | 'high';
+  riskLevel: "low" | "med" | "high";
   className?: string;
 }
 
 export const ROERiskIndicator: React.FC<ROERiskIndicatorProps> = ({
   riskLevel,
-  className = '',
+  className = "",
 }) => {
   const getRiskConfig = (level: string) => {
     switch (level) {
-      case 'low':
+      case "low":
         return {
-          color: 'var(--sim-success)',
-          label: 'Low',
-          icon: '✓',
-          description: 'Minimal collateral risk'
+          color: "var(--sim-success)",
+          label: "Low",
+          icon: "✓",
+          description: "Minimal collateral risk",
         };
-      case 'med':
+      case "med":
         return {
-          color: 'var(--sim-warning)',
-          label: 'Med',
-          icon: '⚠',
-          description: 'Moderate collateral risk'
+          color: "var(--sim-warning)",
+          label: "Med",
+          icon: "⚠",
+          description: "Moderate collateral risk",
         };
-      case 'high':
+      case "high":
         return {
-          color: 'var(--sim-danger)',
-          label: 'High',
-          icon: '⚠',
-          description: 'High collateral risk'
+          color: "var(--sim-danger)",
+          label: "High",
+          icon: "⚠",
+          description: "High collateral risk",
         };
       default:
         return {
-          color: 'var(--sim-text-muted)',
-          label: 'Unknown',
-          icon: '?',
-          description: 'Risk level unknown'
+          color: "var(--sim-text-muted)",
+          label: "Unknown",
+          icon: "?",
+          description: "Risk level unknown",
         };
     }
   };
@@ -45,9 +45,9 @@ export const ROERiskIndicator: React.FC<ROERiskIndicatorProps> = ({
   const config = getRiskConfig(riskLevel);
 
   return (
-    <div 
+    <div
       className={`roe-risk-indicator roe-risk-indicator--${riskLevel} ${className}`}
-      style={{ '--risk-color': config.color } as React.CSSProperties}
+      style={{ "--risk-color": config.color } as React.CSSProperties}
       role="img"
       aria-label={`ROE Risk: ${config.label} - ${config.description}`}
       title={config.description}

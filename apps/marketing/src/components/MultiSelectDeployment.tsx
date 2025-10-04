@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import effectorDatabase from '../data/effectorDatabase.json';
-import { EnergyManagement } from './EnergyManagement';
-import { InfoPopover } from './InfoPopover';
+import React, { useEffect, useState } from "react";
+import effectorDatabase from "../data/effectorDatabase.json";
+import { EnergyManagement } from "./EnergyManagement";
+import { InfoPopover } from "./InfoPopover";
 
 export interface DeploymentOption {
   id: string;
@@ -23,55 +23,59 @@ export interface MultiSelectDeploymentProps {
 
 export const MultiSelectDeployment: React.FC<MultiSelectDeploymentProps> = ({
   availableEnergy,
-  onSelectionChange
+  onSelectionChange,
 }) => {
-  const [deploymentOptions, setDeploymentOptions] = useState<DeploymentOption[]>([]);
+  const [deploymentOptions, setDeploymentOptions] = useState<
+    DeploymentOption[]
+  >([]);
   const [selectedDeployments, setSelectedDeployments] = useState<string[]>([]);
   const [usedEnergy, setUsedEnergy] = useState(0);
 
   // Initialize deployment options from database
   useEffect(() => {
-    const options = effectorDatabase.deployments.map(deployment => ({
+    const options = effectorDatabase.deployments.map((deployment) => ({
       id: deployment.id,
       name: deployment.name,
       role: deployment.role,
       energy: deployment.energy || 0,
-      speed: deployment.speed || 'unknown',
-      endurance: deployment.endurance || 'unknown',
+      speed: deployment.speed || "unknown",
+      endurance: deployment.endurance || "unknown",
       selected: false,
       disabled: false,
       maxCount: getMaxCountForRole(deployment.role),
-      currentCount: 0
+      currentCount: 0,
     }));
     setDeploymentOptions(options);
   }, []);
 
   // Update disabled state based on energy constraints
   useEffect(() => {
-    setDeploymentOptions(prev => prev.map(option => ({
-      ...option,
-      disabled: option.energy > availableEnergy
-    })));
+    setDeploymentOptions((prev) =>
+      prev.map((option) => ({
+        ...option,
+        disabled: option.energy > availableEnergy,
+      })),
+    );
   }, [availableEnergy]);
 
   const getMaxCountForRole = (role: string): number => {
     // Define max counts based on role and operational constraints
     const roleLimits = {
-      'guard': 3,
-      'recon': 4,
-      'ecm': 2,
-      'support': 2,
-      'deception': 3,
-      'capture': 2,
-      'sensor': 1,
-      'logistics': 2,
-      'directed': 1
+      guard: 3,
+      recon: 4,
+      ecm: 2,
+      support: 2,
+      deception: 3,
+      capture: 2,
+      sensor: 1,
+      logistics: 2,
+      directed: 1,
     };
     return roleLimits[role as keyof typeof roleLimits] || 2;
   };
 
   const handleSelectionChange = (optionId: string, selected: boolean) => {
-    const option = deploymentOptions.find(opt => opt.id === optionId);
+    const option = deploymentOptions.find((opt) => opt.id === optionId);
     if (!option || option.disabled) return;
 
     let newCurrentCount = option.currentCount;
@@ -83,17 +87,25 @@ export const MultiSelectDeployment: React.FC<MultiSelectDeploymentProps> = ({
       newCurrentCount -= 1;
     }
 
-    setDeploymentOptions(prev => prev.map(opt => 
-      opt.id === optionId 
-        ? { ...opt, currentCount: newCurrentCount, selected: newCurrentCount > 0 }
-        : opt
-    ));
+    setDeploymentOptions((prev) =>
+      prev.map((opt) =>
+        opt.id === optionId
+          ? {
+              ...opt,
+              currentCount: newCurrentCount,
+              selected: newCurrentCount > 0,
+            }
+          : opt,
+      ),
+    );
 
     // Update selected deployments list
     const newSelected = deploymentOptions
-      .map(opt => opt.id === optionId ? { ...opt, currentCount: newCurrentCount } : opt)
-      .filter(opt => opt.currentCount > 0)
-      .flatMap(opt => Array(opt.currentCount).fill(opt.id));
+      .map((opt) =>
+        opt.id === optionId ? { ...opt, currentCount: newCurrentCount } : opt,
+      )
+      .filter((opt) => opt.currentCount > 0)
+      .flatMap((opt) => Array(opt.currentCount).fill(opt.id));
 
     setSelectedDeployments(newSelected);
     onSelectionChange(newSelected, usedEnergy);
@@ -101,7 +113,7 @@ export const MultiSelectDeployment: React.FC<MultiSelectDeploymentProps> = ({
 
   const calculateUsedEnergy = React.useCallback(() => {
     return deploymentOptions.reduce((total, option) => {
-      return total + (option.energy * option.currentCount);
+      return total + option.energy * option.currentCount;
     }, 0);
   }, [deploymentOptions]);
 
@@ -112,17 +124,17 @@ export const MultiSelectDeployment: React.FC<MultiSelectDeploymentProps> = ({
 
   const getRoleColor = (role: string): string => {
     const roleColors = {
-      'guard': '#10b981',
-      'recon': '#3b82f6',
-      'ecm': '#8b5cf6',
-      'support': '#f59e0b',
-      'deception': '#70A1FF',
-      'capture': '#10b981',
-      'sensor': '#3b82f6',
-      'logistics': '#6b7280',
-      'directed': '#FFA502'
+      guard: "#10b981",
+      recon: "#3b82f6",
+      ecm: "#8b5cf6",
+      support: "#f59e0b",
+      deception: "#70A1FF",
+      capture: "#10b981",
+      sensor: "#3b82f6",
+      logistics: "#6b7280",
+      directed: "#FFA502",
     };
-    return roleColors[role as keyof typeof roleColors] || '#6b7280';
+    return roleColors[role as keyof typeof roleColors] || "#6b7280";
   };
 
   return (
@@ -130,32 +142,50 @@ export const MultiSelectDeployment: React.FC<MultiSelectDeploymentProps> = ({
       <div className="deployment-header">
         <h3 className="deployment-title">DEPLOYMENT SELECTION</h3>
         <div className="deployment-summary">
-          <span className="deployment-count">{selectedDeployments.length} Selected</span>
-          <span className="deployment-energy">{usedEnergy}/{availableEnergy} Energy</span>
+          <span className="deployment-count">
+            {selectedDeployments.length} Selected
+          </span>
+          <span className="deployment-energy">
+            {usedEnergy}/{availableEnergy} Energy
+          </span>
         </div>
       </div>
 
       <div className="deployment-options">
-        {deploymentOptions.map(option => {
-          const droneData = effectorDatabase.deployments.find(d => d.id === option.id);
-          const canSelect = !option.disabled && option.currentCount < option.maxCount;
+        {deploymentOptions.map((option) => {
+          const droneData = effectorDatabase.deployments.find(
+            (d) => d.id === option.id,
+          );
+          const canSelect =
+            !option.disabled && option.currentCount < option.maxCount;
           const canDeselect = option.currentCount > 0;
 
           return (
-            <div key={option.id} className={`deployment-option ${option.disabled ? 'disabled' : ''}`}>
+            <div
+              key={option.id}
+              className={`deployment-option ${option.disabled ? "disabled" : ""}`}
+            >
               <div className="deployment-option-header">
                 <div className="deployment-checkbox-container">
                   <input
                     type="checkbox"
                     id={`deploy-${option.id}`}
                     checked={option.selected}
-                    onChange={(e) => handleSelectionChange(option.id, e.target.checked)}
+                    onChange={(e) =>
+                      handleSelectionChange(option.id, e.target.checked)
+                    }
                     disabled={option.disabled}
                     className="deployment-checkbox"
                   />
-                  <label htmlFor={`deploy-${option.id}`} className="deployment-label">
+                  <label
+                    htmlFor={`deploy-${option.id}`}
+                    className="deployment-label"
+                  >
                     <div className="deployment-name">{option.name}</div>
-                    <div className="deployment-role" style={{ color: getRoleColor(option.role) }}>
+                    <div
+                      className="deployment-role"
+                      style={{ color: getRoleColor(option.role) }}
+                    >
                       {option.role.toUpperCase()}
                     </div>
                   </label>
@@ -190,7 +220,10 @@ export const MultiSelectDeployment: React.FC<MultiSelectDeploymentProps> = ({
                       brands={droneData.brands}
                       sources={droneData.sources}
                     >
-                      <button className="deployment-info-btn" aria-label="View details">
+                      <button
+                        className="deployment-info-btn"
+                        aria-label="View details"
+                      >
                         ℹ️
                       </button>
                     </InfoPopover>

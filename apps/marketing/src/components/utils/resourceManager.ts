@@ -50,7 +50,7 @@ export interface ResearchProgress {
   type: string;
   progress: number;
   target: number;
-  category: 'effector' | 'drone';
+  category: "effector" | "drone";
   name: string;
   description: string;
 }
@@ -62,10 +62,10 @@ export const DEFAULT_RESOURCE_STATE: ResourceState = {
   tokens: 100, // Starting tokens
   researchPoints: 0,
   activeResearch: null,
-  unlockedEffectors: ['kinetic'], // Start with only kinetic weapon
-  unlockedDrones: ['effector'], // Start with only effector drone
-  availableEffectors: ['kinetic'], // Only kinetic available initially
-  availableDrones: ['effector'], // Only effector available initially
+  unlockedEffectors: ["kinetic"], // Start with only kinetic weapon
+  unlockedDrones: ["effector"], // Start with only effector drone
+  availableEffectors: ["kinetic"], // Only kinetic available initially
+  availableDrones: ["effector"], // Only effector available initially
 };
 
 /**
@@ -73,81 +73,81 @@ export const DEFAULT_RESOURCE_STATE: ResourceState = {
  */
 export const EFFECTOR_UNLOCK_DATA: Record<string, EffectorData> = {
   kinetic: {
-    id: 'kinetic',
-    name: 'Kinetic Weapon',
-    class: 'hard_kill',
-    description: 'Standard kinetic rounds for direct engagement.',
+    id: "kinetic",
+    name: "Kinetic Weapon",
+    class: "hard_kill",
+    description: "Standard kinetic rounds for direct engagement.",
     typical_range_m: 1000,
     power_kw_nominal: 5,
     latency_ms: 100,
-    collateral_risk: 'medium',
+    collateral_risk: "medium",
     legal_flags: [],
-    swarm_effectiveness: 'medium',
-    brands: ['Standard Issue'],
+    swarm_effectiveness: "medium",
+    brands: ["Standard Issue"],
     sources: [],
     unlockCost: 0, // Already unlocked
     researchCost: 0,
   },
   emp: {
-    id: 'emp',
-    name: 'EMP Weapon',
-    class: 'soft_kill',
-    description: 'Electromagnetic pulse for electronic disruption.',
+    id: "emp",
+    name: "EMP Weapon",
+    class: "soft_kill",
+    description: "Electromagnetic pulse for electronic disruption.",
     typical_range_m: 800,
     power_kw_nominal: 25,
     latency_ms: 50,
-    collateral_risk: 'medium',
-    legal_flags: ['Spectrum-clearance-required'],
-    swarm_effectiveness: 'high',
-    brands: ['Epirus Leonidas', 'Raytheon PHASER'],
+    collateral_risk: "medium",
+    legal_flags: ["Spectrum-clearance-required"],
+    swarm_effectiveness: "high",
+    brands: ["Epirus Leonidas", "Raytheon PHASER"],
     sources: [],
     unlockCost: 150, // Tokens to unlock
     researchCost: 50, // Research points to unlock
   },
   laser: {
-    id: 'laser',
-    name: 'High-Energy Laser',
-    class: 'hard_kill',
-    description: 'Thermal defeat; precise line-of-sight hard-kill.',
+    id: "laser",
+    name: "High-Energy Laser",
+    class: "hard_kill",
+    description: "Thermal defeat; precise line-of-sight hard-kill.",
     typical_range_m: 2000,
     power_kw_nominal: 10,
     latency_ms: 200,
-    collateral_risk: 'low',
-    legal_flags: ['ITAR-likely', 'Export-controlled'],
-    swarm_effectiveness: 'medium',
-    brands: ['Raytheon HELWS/H4', 'Rheinmetall Laser Weapon Module'],
+    collateral_risk: "low",
+    legal_flags: ["ITAR-likely", "Export-controlled"],
+    swarm_effectiveness: "medium",
+    brands: ["Raytheon HELWS/H4", "Rheinmetall Laser Weapon Module"],
     sources: [],
     unlockCost: 300,
     researchCost: 100,
   },
   rf_jam: {
-    id: 'rf_jam',
-    name: 'RF Jamming',
-    class: 'denial',
-    description: 'Directional RF disruption to sever C2/video links.',
+    id: "rf_jam",
+    name: "RF Jamming",
+    class: "denial",
+    description: "Directional RF disruption to sever C2/video links.",
     typical_range_m: 1500,
     power_kw_nominal: 1.2,
     latency_ms: 80,
-    collateral_risk: 'medium',
-    legal_flags: ['Spectrum-clearance-required'],
-    swarm_effectiveness: 'medium',
-    brands: ['DroneShield DroneCannon MkII', 'DedroneDefender 2'],
+    collateral_risk: "medium",
+    legal_flags: ["Spectrum-clearance-required"],
+    swarm_effectiveness: "medium",
+    brands: ["DroneShield DroneCannon MkII", "DedroneDefender 2"],
     sources: [],
     unlockCost: 200,
     researchCost: 75,
   },
   net_capture: {
-    id: 'net_capture',
-    name: 'Net Capture',
-    class: 'soft_kill',
-    description: 'Net projectile to capture airframe intact.',
+    id: "net_capture",
+    name: "Net Capture",
+    class: "soft_kill",
+    description: "Net projectile to capture airframe intact.",
     typical_range_m: 100,
     power_kw_nominal: 0.1,
     latency_ms: 300,
-    collateral_risk: 'low',
+    collateral_risk: "low",
     legal_flags: [],
-    swarm_effectiveness: 'low',
-    brands: ['OpenWorks SkyWall', 'Fortem DroneHunter'],
+    swarm_effectiveness: "low",
+    brands: ["OpenWorks SkyWall", "Fortem DroneHunter"],
     sources: [],
     unlockCost: 120,
     researchCost: 40,
@@ -159,55 +159,55 @@ export const EFFECTOR_UNLOCK_DATA: Record<string, EffectorData> = {
  */
 export const DRONE_UNLOCK_DATA: Record<string, DroneData> = {
   effector: {
-    id: 'effector',
-    name: 'Effector Drone',
-    role: 'active_defeat',
-    notes: 'Autonomous pursuit; net capture preferred for low collateral.',
-    brands: ['Fortem DroneHunter F700', 'Anduril Anvil'],
+    id: "effector",
+    name: "Effector Drone",
+    role: "active_defeat",
+    notes: "Autonomous pursuit; net capture preferred for low collateral.",
+    brands: ["Fortem DroneHunter F700", "Anduril Anvil"],
     sources: [],
     unlockCost: 0, // Already unlocked
     researchCost: 0,
     tokenCost: 50, // Cost to deploy one
   },
   jammer: {
-    id: 'jammer',
-    name: 'Jammer Drone',
-    role: 'EW_denial',
-    notes: 'Airborne jamming platform for electronic warfare.',
-    brands: ['Custom Platform'],
+    id: "jammer",
+    name: "Jammer Drone",
+    role: "EW_denial",
+    notes: "Airborne jamming platform for electronic warfare.",
+    brands: ["Custom Platform"],
     sources: [],
     unlockCost: 180,
     researchCost: 60,
     tokenCost: 75,
   },
   surveillance: {
-    id: 'surveillance',
-    name: 'Surveillance Drone',
-    role: 'detection_tracking',
-    notes: 'Mobile visual identification and target handoff.',
-    brands: ['Teledyne FLIR SkyRanger', 'Skydio X10D'],
+    id: "surveillance",
+    name: "Surveillance Drone",
+    role: "detection_tracking",
+    notes: "Mobile visual identification and target handoff.",
+    brands: ["Teledyne FLIR SkyRanger", "Skydio X10D"],
     sources: [],
     unlockCost: 100,
     researchCost: 30,
     tokenCost: 40,
   },
   shield: {
-    id: 'shield',
-    name: 'Shield Drone',
-    role: 'protection',
-    notes: 'Protective barrier and countermeasure deployment.',
-    brands: ['Custom Platform'],
+    id: "shield",
+    name: "Shield Drone",
+    role: "protection",
+    notes: "Protective barrier and countermeasure deployment.",
+    brands: ["Custom Platform"],
     sources: [],
     unlockCost: 250,
     researchCost: 80,
     tokenCost: 100,
   },
   coordinator: {
-    id: 'coordinator',
-    name: 'Coordinator Drone',
-    role: 'command_control',
-    notes: 'Swarm coordination and mission command.',
-    brands: ['Custom Platform'],
+    id: "coordinator",
+    name: "Coordinator Drone",
+    role: "command_control",
+    notes: "Swarm coordination and mission command.",
+    brands: ["Custom Platform"],
     sources: [],
     unlockCost: 400,
     researchCost: 120,
@@ -220,14 +220,14 @@ export const DRONE_UNLOCK_DATA: Record<string, DroneData> = {
  */
 export const RESEARCH_CATEGORIES = {
   effector: {
-    name: 'Effector Research',
-    description: 'Research new weapon systems and countermeasures',
-    icon: '⚡',
+    name: "Effector Research",
+    description: "Research new weapon systems and countermeasures",
+    icon: "⚡",
   },
   drone: {
-    name: 'Drone Research',
-    description: 'Research new drone types and capabilities',
-    icon: '🚁',
+    name: "Drone Research",
+    description: "Research new drone types and capabilities",
+    icon: "🚁",
   },
 } as const;
 
@@ -240,7 +240,7 @@ export class ResourceManager {
 
   constructor(
     initialState: ResourceState = DEFAULT_RESOURCE_STATE,
-    onStateChange: (state: ResourceState) => void = () => {}
+    onStateChange: (state: ResourceState) => void = () => {},
   ) {
     this.state = { ...initialState };
     this.onStateChange = onStateChange;
@@ -284,16 +284,21 @@ export class ResourceManager {
   /**
    * Start researching a new effector or drone
    */
-  startResearch(type: string, category: 'effector' | 'drone'): boolean {
+  startResearch(type: string, category: "effector" | "drone"): boolean {
     if (this.state.activeResearch) {
       return false; // Already researching something
     }
 
-    const data = category === 'effector' 
-      ? EFFECTOR_UNLOCK_DATA[type]
-      : DRONE_UNLOCK_DATA[type];
+    const data =
+      category === "effector"
+        ? EFFECTOR_UNLOCK_DATA[type]
+        : DRONE_UNLOCK_DATA[type];
 
-    if (!data || this.state.unlockedEffectors.includes(type) || this.state.unlockedDrones.includes(type)) {
+    if (
+      !data ||
+      this.state.unlockedEffectors.includes(type) ||
+      this.state.unlockedDrones.includes(type)
+    ) {
       return false; // Invalid type or already unlocked
     }
 
@@ -318,7 +323,9 @@ export class ResourceManager {
     this.state.activeResearch.progress += amount;
 
     // Check if research is complete
-    if (this.state.activeResearch.progress >= this.state.activeResearch.target) {
+    if (
+      this.state.activeResearch.progress >= this.state.activeResearch.target
+    ) {
       this.completeResearch();
     } else {
       this.notifyChange();
@@ -404,7 +411,7 @@ export class ResourceManager {
    */
   getAvailableResearch(): Array<{
     type: string;
-    category: 'effector' | 'drone';
+    category: "effector" | "drone";
     name: string;
     description: string;
     researchCost: number;
@@ -413,7 +420,7 @@ export class ResourceManager {
   }> {
     const options: Array<{
       type: string;
-      category: 'effector' | 'drone';
+      category: "effector" | "drone";
       name: string;
       description: string;
       researchCost: number;
@@ -426,7 +433,7 @@ export class ResourceManager {
       if (!this.state.unlockedEffectors.includes(type)) {
         options.push({
           type,
-          category: 'effector',
+          category: "effector",
           name: data.name,
           description: data.description,
           researchCost: data.researchCost,
@@ -441,7 +448,7 @@ export class ResourceManager {
       if (!this.state.unlockedDrones.includes(type)) {
         options.push({
           type,
-          category: 'drone',
+          category: "drone",
           name: data.name,
           description: data.description,
           researchCost: data.researchCost,
@@ -471,7 +478,7 @@ export class ResourceManager {
         type,
         progress,
         target,
-        category: 'effector',
+        category: "effector",
         name: effectorData.name,
         description: effectorData.description,
       };
@@ -480,7 +487,7 @@ export class ResourceManager {
         type,
         progress,
         target,
-        category: 'drone',
+        category: "drone",
         name: droneData.name,
         description: droneData.description,
       };
@@ -549,13 +556,17 @@ export class ResourceManager {
   /**
    * Award resources based on performance
    */
-  awardPerformanceRewards(score: number, threatsNeutralized: number, waveCompleted: boolean): void {
+  awardPerformanceRewards(
+    score: number,
+    threatsNeutralized: number,
+    waveCompleted: boolean,
+  ): void {
     // Base token reward
     let tokenReward = Math.floor(score / 100);
-    
+
     // Bonus for neutralizing threats
     tokenReward += threatsNeutralized * 5;
-    
+
     // Bonus for completing waves
     if (waveCompleted) {
       tokenReward += 25;
@@ -566,7 +577,7 @@ export class ResourceManager {
     // Research points (slower accumulation)
     let researchReward = Math.floor(score / 500);
     researchReward += Math.floor(threatsNeutralized / 5);
-    
+
     if (waveCompleted) {
       researchReward += 5;
     }
@@ -580,7 +591,7 @@ export class ResourceManager {
  */
 export function createResourceManager(
   initialState?: ResourceState,
-  onStateChange?: (state: ResourceState) => void
+  onStateChange?: (state: ResourceState) => void,
 ): ResourceManager {
   return new ResourceManager(initialState, onStateChange);
 }

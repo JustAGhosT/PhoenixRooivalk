@@ -1,25 +1,30 @@
 # Damage Boost Power-up Icon
 
 ## Description
+
 Damage enhancement power-up for increased weapon effectiveness.
 
 ## Visual Elements
+
 - Upward arrow with explosion or burst
 - Damage enhancement representation
 - Power-up symbol
 
 ## Technical Specifications
+
 - **Size**: 24x24px viewBox
 - **Style**: Military, outline-based
 - **Stroke Width**: 2px
 - **Color**: `#ef4444` (danger red)
 
 ## AI Generation Prompt
+
 ```
 Create a damage boost power-up icon: upward arrow with explosion or burst effect. Military style, outline-based, 24x24px. Color #ef4444. Damage enhancement, weapon boost aesthetic.
 ```
 
 ## SVG Structure
+
 ```svg
 <svg viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2">
   <!-- Upward arrow -->
@@ -33,6 +38,7 @@ Create a damage boost power-up icon: upward arrow with explosion or burst effect
 ```
 
 ## Usage Context
+
 - Damage boost power-ups
 - Weapon enhancement systems
 - Combat effectiveness boosts

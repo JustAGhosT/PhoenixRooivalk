@@ -1,103 +1,120 @@
-import React, { useState } from 'react';
-import { EnergyBudget } from '../components/EnergyBudget';
-import { EnergyManagement } from '../components/EnergyManagement';
-import { EnhancedCooldownMeter, WeaponCooldownMeter } from '../components/EnhancedCooldownMeter';
-import { EnhancedROEIndicator } from '../components/EnhancedROEIndicator';
-import { EnhancedRadarSystem, FriendlyDeployment, RadarTarget } from '../components/EnhancedRadarSystem';
-import { EnhancedThreatSimulator } from '../components/EnhancedThreatSimulator';
-import { FilterChips } from '../components/FilterChips';
-import { InfoPopover } from '../components/InfoPopover';
-import { LegalBadge } from '../components/LegalBadge';
-import { MultiSelectDeployment } from '../components/MultiSelectDeployment';
-import { SynergyEffect, SynergySystem } from '../components/SynergySystem';
+import React, { useState } from "react";
+import { EnergyBudget } from "../components/EnergyBudget";
+import { EnergyManagement } from "../components/EnergyManagement";
+import {
+  EnhancedCooldownMeter,
+  WeaponCooldownMeter,
+} from "../components/EnhancedCooldownMeter";
+import { EnhancedROEIndicator } from "../components/EnhancedROEIndicator";
+import {
+  EnhancedRadarSystem,
+  FriendlyDeployment,
+  RadarTarget,
+} from "../components/EnhancedRadarSystem";
+import { EnhancedThreatSimulator } from "../components/EnhancedThreatSimulator";
+import { FilterChips } from "../components/FilterChips";
+import { InfoPopover } from "../components/InfoPopover";
+import { LegalBadge } from "../components/LegalBadge";
+import { MultiSelectDeployment } from "../components/MultiSelectDeployment";
+import { SynergyEffect, SynergySystem } from "../components/SynergySystem";
 
 export const ThreatSimulatorDemo: React.FC = () => {
-  const [demoMode, setDemoMode] = useState<'full' | 'components' | 'systems'>('full');
+  const [demoMode, setDemoMode] = useState<"full" | "components" | "systems">(
+    "full",
+  );
 
   // Demo data for component showcase
   const demoTargets: RadarTarget[] = [
     {
-      id: 'TGT-001',
-      type: 'hostile',
+      id: "TGT-001",
+      type: "hostile",
       position: { x: 150, y: 200 },
       distance: 250,
       bearing: 45,
       speed: 15,
       altitude: 100,
       confidence: 0.85,
-      lastUpdate: Date.now()
+      lastUpdate: Date.now(),
     },
     {
-      id: 'TGT-002',
-      type: 'unknown',
+      id: "TGT-002",
+      type: "unknown",
       position: { x: -100, y: 150 },
       distance: 180,
       bearing: 135,
       speed: 8,
       altitude: 50,
       confidence: 0.65,
-      lastUpdate: Date.now()
+      lastUpdate: Date.now(),
     },
     {
-      id: 'TGT-003',
-      type: 'friendly',
+      id: "TGT-003",
+      type: "friendly",
       position: { x: 80, y: -120 },
       distance: 144,
       bearing: 315,
       speed: 12,
       altitude: 75,
       confidence: 0.95,
-      lastUpdate: Date.now()
-    }
+      lastUpdate: Date.now(),
+    },
   ];
 
   const demoDeployments: FriendlyDeployment[] = [
     {
-      id: 'DRONE-001',
-      role: 'recon',
+      id: "DRONE-001",
+      role: "recon",
       position: { x: 50, y: -100 },
-      status: 'active',
+      status: "active",
       energy: 80,
-      maxEnergy: 100
+      maxEnergy: 100,
     },
     {
-      id: 'DRONE-002',
-      role: 'guard',
+      id: "DRONE-002",
+      role: "guard",
       position: { x: -80, y: 50 },
-      status: 'idle',
+      status: "idle",
       energy: 60,
-      maxEnergy: 100
+      maxEnergy: 100,
     },
     {
-      id: 'DRONE-003',
-      role: 'ecm',
+      id: "DRONE-003",
+      role: "ecm",
       position: { x: 120, y: 80 },
-      status: 'returning',
+      status: "returning",
       energy: 40,
-      maxEnergy: 100
-    }
+      maxEnergy: 100,
+    },
   ];
 
-  const demoEffectors = ['spotter', 'smart_slug', 'laser', 'gnss_deny', 'rf_take'];
+  const demoEffectors = [
+    "spotter",
+    "smart_slug",
+    "laser",
+    "gnss_deny",
+    "rf_take",
+  ];
   const demoSynergies: SynergyEffect[] = [
     {
-      id: 'spotter_precision',
-      name: 'Spotter-Assisted Precision',
-      description: 'Spotter UAV improves targeting accuracy for precision weapons',
-      effectors: ['spotter', 'smart_slug', 'laser'],
+      id: "spotter_precision",
+      name: "Spotter-Assisted Precision",
+      description:
+        "Spotter UAV improves targeting accuracy for precision weapons",
+      effectors: ["spotter", "smart_slug", "laser"],
       bonus: { accuracy: 0.25, damage: 0.15 },
-      visualEffect: 'crosshair enhancement',
-      color: '#3b82f6'
+      visualEffect: "crosshair enhancement",
+      color: "#3b82f6",
     },
     {
-      id: 'gnss_rf_combo',
-      name: 'Navigation Disruption',
-      description: 'GNSS Denial and RF Takeover work together to confuse drone navigation',
-      effectors: ['gnss_deny', 'rf_take'],
-      bonus: { accuracy: 0.30, range: 0.20 },
-      visualEffect: 'navigation confusion',
-      color: '#8b5cf6'
-    }
+      id: "gnss_rf_combo",
+      name: "Navigation Disruption",
+      description:
+        "GNSS Denial and RF Takeover work together to confuse drone navigation",
+      effectors: ["gnss_deny", "rf_take"],
+      bonus: { accuracy: 0.3, range: 0.2 },
+      visualEffect: "navigation confusion",
+      color: "#8b5cf6",
+    },
   ];
 
   const renderFullSimulator = () => (
@@ -143,8 +160,8 @@ export const ThreatSimulatorDemo: React.FC = () => {
             <EnergyManagement
               maxEnergy={100}
               selectedEffectors={demoEffectors}
-              selectedDrones={['recon', 'guard', 'ecm']}
-              activePowerUps={['damage-boost']}
+              selectedDrones={["recon", "guard", "ecm"]}
+              activePowerUps={["damage-boost"]}
               onEnergyUpdate={() => {}}
             />
           </div>
@@ -229,12 +246,12 @@ export const ThreatSimulatorDemo: React.FC = () => {
           <div className="component-demo">
             <FilterChips
               chips={[
-                { id: 'hard_kill', label: 'Hard Kill', color: '#ef4444' },
-                { id: 'soft_kill', label: 'Soft Kill', color: '#f59e0b' },
-                { id: 'deception', label: 'Deception', color: '#70A1FF' },
-                { id: 'denial', label: 'Denial', color: '#8b5cf6' }
+                { id: "hard_kill", label: "Hard Kill", color: "#ef4444" },
+                { id: "soft_kill", label: "Soft Kill", color: "#f59e0b" },
+                { id: "deception", label: "Deception", color: "#70A1FF" },
+                { id: "denial", label: "Denial", color: "#8b5cf6" },
               ]}
-              selectedFilters={['hard_kill', 'deception']}
+              selectedFilters={["hard_kill", "deception"]}
               onFilterChange={() => {}}
             />
           </div>
@@ -246,8 +263,8 @@ export const ThreatSimulatorDemo: React.FC = () => {
           <div className="component-demo">
             <InfoPopover
               title="Smart Slug"
-              brands={['Raytheon', 'Lockheed Martin']}
-              sources={['Defense News', 'Jane\'s Defence Weekly']}
+              brands={["Raytheon", "Lockheed Martin"]}
+              sources={["Defense News", "Jane's Defence Weekly"]}
             >
               <button className="demo-info-btn">Smart Slug Details</button>
             </InfoPopover>
@@ -260,11 +277,11 @@ export const ThreatSimulatorDemo: React.FC = () => {
           <div className="component-demo">
             <div className="legal-showcase">
               <LegalBadge
-                legalFlags={['operational_approval']}
+                legalFlags={["operational_approval"]}
                 onAcknowledge={() => {}}
               />
               <LegalBadge
-                legalFlags={['command_approval']}
+                legalFlags={["command_approval"]}
                 onAcknowledge={() => {}}
               />
             </div>
@@ -275,11 +292,7 @@ export const ThreatSimulatorDemo: React.FC = () => {
         <div className="showcase-section">
           <h2>Energy Budget</h2>
           <div className="component-demo">
-            <EnergyBudget
-              used={75}
-              max={100}
-              showDetails={true}
-            />
+            <EnergyBudget used={75} max={100} showDetails={true} />
           </div>
         </div>
       </div>
@@ -296,7 +309,10 @@ export const ThreatSimulatorDemo: React.FC = () => {
       <div className="systems-grid">
         <div className="system-demo">
           <h2>Planning Phase</h2>
-          <p>Select effectors and drones with energy constraints and legal compliance</p>
+          <p>
+            Select effectors and drones with energy constraints and legal
+            compliance
+          </p>
           <div className="demo-placeholder">
             <p>Full planning interface with:</p>
             <ul>
@@ -348,20 +364,20 @@ export const ThreatSimulatorDemo: React.FC = () => {
         <h1>Phoenix Rooivalk - Threat Simulator Demo</h1>
         <div className="demo-mode-selector">
           <button
-            className={`mode-btn ${demoMode === 'full' ? 'active' : ''}`}
-            onClick={() => setDemoMode('full')}
+            className={`mode-btn ${demoMode === "full" ? "active" : ""}`}
+            onClick={() => setDemoMode("full")}
           >
             Full Simulator
           </button>
           <button
-            className={`mode-btn ${demoMode === 'components' ? 'active' : ''}`}
-            onClick={() => setDemoMode('components')}
+            className={`mode-btn ${demoMode === "components" ? "active" : ""}`}
+            onClick={() => setDemoMode("components")}
           >
             Component Showcase
           </button>
           <button
-            className={`mode-btn ${demoMode === 'systems' ? 'active' : ''}`}
-            onClick={() => setDemoMode('systems')}
+            className={`mode-btn ${demoMode === "systems" ? "active" : ""}`}
+            onClick={() => setDemoMode("systems")}
           >
             System Integration
           </button>
@@ -369,9 +385,9 @@ export const ThreatSimulatorDemo: React.FC = () => {
       </div>
 
       <div className="demo-content">
-        {demoMode === 'full' && renderFullSimulator()}
-        {demoMode === 'components' && renderComponentShowcase()}
-        {demoMode === 'systems' && renderSystemsShowcase()}
+        {demoMode === "full" && renderFullSimulator()}
+        {demoMode === "components" && renderComponentShowcase()}
+        {demoMode === "systems" && renderSystemsShowcase()}
       </div>
     </div>
   );

@@ -75,9 +75,10 @@ const RadarCanvas: React.FC<RadarCanvasProps> = ({
               Math.sin(angle) * normalizedDistance * radarMaxRadius;
 
             // Determine threat type and corresponding shape
-            const isHostile = threat.status === "hostile" || threat.status === "unknown";
+            const isHostile =
+              threat.status === "hostile" || threat.status === "unknown";
             const isFriendly = threat.status === "friendly";
-            
+
             const handleThreatClick = (event: React.MouseEvent) => {
               onThreatClick?.(event, threat.id);
             };
@@ -96,9 +97,9 @@ const RadarCanvas: React.FC<RadarCanvasProps> = ({
               const points = [
                 `${radarX},${radarY - size}`,
                 `${radarX - size},${radarY + size}`,
-                `${radarX + size},${radarY + size}`
-              ].join(' ');
-              
+                `${radarX + size},${radarY + size}`,
+              ].join(" ");
+
               return (
                 <polygon
                   key={threat.id}
@@ -143,11 +144,11 @@ const RadarCanvas: React.FC<RadarCanvasProps> = ({
                   onClick={handleThreatClick}
                   onKeyDown={handleKeyDown}
                   aria-label={`Unknown unit ${threat.id}`}
-                  style={{ 
-                    cursor: "pointer", 
-                    fill: "none", 
-                    stroke: "#ffd166", 
-                    strokeWidth: 2 
+                  style={{
+                    cursor: "pointer",
+                    fill: "none",
+                    stroke: "#ffd166",
+                    strokeWidth: 2,
                   }}
                 />
               );

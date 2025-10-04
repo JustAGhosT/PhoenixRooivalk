@@ -1,25 +1,30 @@
 # Optical Dazzler Effector Icon
 
 ## Description
+
 Bright light dazzler for visual disruption and camera blinding.
 
 ## Visual Elements
+
 - Sun with rays or spotlight
 - Bright light visualization
 - Visual disruption symbol
 
 ## Technical Specifications
+
 - **Size**: 24x24px viewBox
 - **Style**: Military, outline-based
 - **Stroke Width**: 2px
 - **Color**: `#f97316` (directed orange)
 
 ## AI Generation Prompt
+
 ```
 Create an optical dazzler icon: sun with rays or spotlight beam. Military style, outline-based, 24x24px. Color #f97316. Visual disruption, camera blinding aesthetic.
 ```
 
 ## SVG Structure
+
 ```svg
 <svg viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width="2">
   <!-- Sun with rays -->
@@ -36,6 +41,7 @@ Create an optical dazzler icon: sun with rays or spotlight beam. Military style,
 ```
 
 ## Usage Context
+
 - Optical dazzler systems
 - Visual disruption
 - Camera blinding

@@ -1,25 +1,31 @@
 # AHEAD Airburst Icon
 
 ## Description
-Proximity-fused airburst weapon for area effect and shrapnel-based neutralization.
+
+Proximity-fused airburst weapon for area effect and shrapnel-based
+neutralization.
 
 ## Visual Elements
+
 - Explosion burst or shrapnel pattern
 - Area effect representation
 - Proximity-fused weapon symbol
 
 ## Technical Specifications
+
 - **Size**: 24x24px viewBox
 - **Style**: Military, outline-based
 - **Stroke Width**: 2px
 - **Color**: `#ECCC68` (denial yellow)
 
 ## AI Generation Prompt
+
 ```
 Create an airburst weapon icon: explosion burst or shrapnel pattern. Military style, outline-based, 24x24px. Color #ECCC68. Area effect, proximity-fused weapon aesthetic.
 ```
 
 ## SVG Structure
+
 ```svg
 <svg viewBox="0 0 24 24" fill="none" stroke="#ECCC68" stroke-width="2">
   <!-- Explosion burst -->
@@ -37,6 +43,7 @@ Create an airburst weapon icon: explosion burst or shrapnel pattern. Military st
 ```
 
 ## Usage Context
+
 - AHEAD airburst systems
 - Area effect weapons
 - Proximity-fused munitions

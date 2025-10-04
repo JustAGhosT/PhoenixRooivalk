@@ -1,14 +1,17 @@
 # Shield Drone Icon
 
 ## Description
+
 Protective shield drone for area defense and protection.
 
 ## Visual Elements
+
 - Triangle with shield symbol
 - Defense and protection representation
 - Area coverage symbol
 
 ## Technical Specifications
+
 - **Size**: 24x24px viewBox
 - **Style**: Military, outline-based
 - **Stroke Width**: 2px
@@ -16,11 +19,13 @@ Protective shield drone for area defense and protection.
 - **Base Shape**: Triangle (70% of viewBox)
 
 ## AI Generation Prompt
+
 ```
 Create a shield drone icon: triangle with shield symbol inside. Military style, outline-based, 24x24px. Color #10b981. Defense, protection, area coverage aesthetic.
 ```
 
 ## SVG Structure
+
 ```svg
 <svg viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2">
   <!-- Triangle base -->
@@ -31,6 +36,7 @@ Create a shield drone icon: triangle with shield symbol inside. Military style, 
 ```
 
 ## Usage Context
+
 - Shield and protection drones
 - Area defense systems
 - Protective platforms

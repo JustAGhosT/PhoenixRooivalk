@@ -1,14 +1,17 @@
 # Jammer Drone Icon
 
 ## Description
+
 Electronic warfare drone for RF disruption and signal interference.
 
 ## Visual Elements
+
 - Triangle with radio wave pattern
 - RF disruption visualization
 - Electronic warfare symbol
 
 ## Technical Specifications
+
 - **Size**: 24x24px viewBox
 - **Style**: Military, outline-based
 - **Stroke Width**: 2px
@@ -16,11 +19,13 @@ Electronic warfare drone for RF disruption and signal interference.
 - **Base Shape**: Triangle (70% of viewBox)
 
 ## AI Generation Prompt
+
 ```
 Create an electronic warfare drone icon: triangle with radio wave pattern. Military style, outline-based, 24x24px. Color #8b5cf6. RF disruption, electronic warfare, signal interference aesthetic.
 ```
 
 ## SVG Structure
+
 ```svg
 <svg viewBox="0 0 24 24" fill="none" stroke="#8b5cf6" stroke-width="2">
   <!-- Triangle base -->
@@ -33,6 +38,7 @@ Create an electronic warfare drone icon: triangle with radio wave pattern. Milit
 ```
 
 ## Usage Context
+
 - Electronic warfare drones
 - RF jamming systems
 - Signal interference platforms

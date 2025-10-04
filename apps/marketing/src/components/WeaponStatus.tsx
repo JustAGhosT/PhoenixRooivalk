@@ -35,7 +35,11 @@ export const WeaponStatus: React.FC<WeaponStatusProps> = ({
   return (
     <div className="weapon-status-panel">
       <h3 className="weapon-status-title">WEAPON SYSTEMS</h3>
-      <nav aria-label="Weapon Systems" role="radiogroup" className="weapon-list">
+      <nav
+        aria-label="Weapon Systems"
+        role="radiogroup"
+        className="weapon-list"
+      >
         {Object.entries(weapons).map(([id, weaponState]) => {
           const wData = weaponData[id as keyof typeof weaponData];
 
@@ -90,7 +94,9 @@ export const WeaponStatus: React.FC<WeaponStatusProps> = ({
           };
 
           // Get effector data from database for enhanced info
-          const effectorData = effectorDatabase.effectors.find(e => e.id === id);
+          const effectorData = effectorDatabase.effectors.find(
+            (e) => e.id === id,
+          );
 
           return (
             <div
@@ -116,7 +122,7 @@ export const WeaponStatus: React.FC<WeaponStatusProps> = ({
                     />
                   </div>
                 </div>
-                
+
                 <div className="weapon-details">
                   <div className="weapon-name">{wData.name}</div>
                   <div className="weapon-specs">
@@ -125,8 +131,12 @@ export const WeaponStatus: React.FC<WeaponStatusProps> = ({
                     </div>
                     {effectorData && (
                       <>
-                        <div className="weapon-energy">⚡ {effectorData.energy}</div>
-                        <div className="weapon-range">📏 {effectorData.range}</div>
+                        <div className="weapon-energy">
+                          ⚡ {effectorData.energy}
+                        </div>
+                        <div className="weapon-range">
+                          📏 {effectorData.range}
+                        </div>
                       </>
                     )}
                   </div>
@@ -134,7 +144,9 @@ export const WeaponStatus: React.FC<WeaponStatusProps> = ({
 
                 {effectorData && (
                   <div className="weapon-badges">
-                    <ROERiskIndicator riskLevel={effectorData.roe as 'low' | 'med' | 'high'} />
+                    <ROERiskIndicator
+                      riskLevel={effectorData.roe as "low" | "med" | "high"}
+                    />
                   </div>
                 )}
               </button>
@@ -146,7 +158,10 @@ export const WeaponStatus: React.FC<WeaponStatusProps> = ({
                     brands={effectorData.brands}
                     sources={effectorData.sources}
                   >
-                    <button className="weapon-info-button" aria-label="View weapon details">
+                    <button
+                      className="weapon-info-button"
+                      aria-label="View weapon details"
+                    >
                       ℹ️
                     </button>
                   </InfoPopover>

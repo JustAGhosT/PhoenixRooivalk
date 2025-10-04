@@ -1,14 +1,17 @@
 # Surveillance Drone Icon
 
 ## Description
+
 Reconnaissance drone for intelligence gathering and observation.
 
 ## Visual Elements
+
 - Triangle with eye symbol
 - Intelligence gathering representation
 - Observation and monitoring symbol
 
 ## Technical Specifications
+
 - **Size**: 24x24px viewBox
 - **Style**: Military, outline-based
 - **Stroke Width**: 2px
@@ -16,11 +19,13 @@ Reconnaissance drone for intelligence gathering and observation.
 - **Base Shape**: Triangle (70% of viewBox)
 
 ## AI Generation Prompt
+
 ```
 Create a surveillance drone icon: triangle with eye symbol inside. Military style, outline-based, 24x24px. Color #3b82f6. Intelligence gathering, observation, monitoring aesthetic.
 ```
 
 ## SVG Structure
+
 ```svg
 <svg viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2">
   <!-- Triangle base -->
@@ -32,6 +37,7 @@ Create a surveillance drone icon: triangle with eye symbol inside. Military styl
 ```
 
 ## Usage Context
+
 - Surveillance and reconnaissance drones
 - Intelligence gathering systems
 - Observation platforms

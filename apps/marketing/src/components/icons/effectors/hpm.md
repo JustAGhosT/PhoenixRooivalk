@@ -1,25 +1,30 @@
 # HPM (High Power Microwave) Effector Icon
 
 ## Description
+
 High power microwave burst weapon for electronic disruption.
 
 ## Visual Elements
+
 - Concentric wave rings
 - Burst center point
 - Microwave propagation pattern
 
 ## Technical Specifications
+
 - **Size**: 24x24px viewBox
 - **Style**: Military, outline-based
 - **Stroke Width**: 2px
 - **Color**: `#FFA502` (soft-kill orange)
 
 ## AI Generation Prompt
+
 ```
 Create a microwave burst weapon icon: concentric wave rings emanating from center point. Military style, outline-based, 24x24px. Color #FFA502. Electronic disruption, wave propagation effect.
 ```
 
 ## SVG Structure
+
 ```svg
 <svg viewBox="0 0 24 24" fill="none" stroke="#FFA502" stroke-width="2">
   <!-- Concentric wave rings with burst center -->
@@ -32,6 +37,7 @@ Create a microwave burst weapon icon: concentric wave rings emanating from cente
 ```
 
 ## Usage Context
+
 - High power microwave systems
 - Electronic disruption weapons
 - Microwave burst technology

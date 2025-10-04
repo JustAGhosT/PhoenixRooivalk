@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { EnergyBudget } from './EnergyBudget';
+import React, { useEffect, useState } from "react";
+import { EnergyBudget } from "./EnergyBudget";
 
 export interface EnergyCost {
   effector: number;
@@ -31,37 +31,37 @@ const ENERGY_COSTS = {
     decoy_beacon: 5,
     chaff: 7,
     smart_slug: 15,
-    ai_deception: 18
+    ai_deception: 18,
   },
-  
+
   // Drone energy costs
   drones: {
     effector: 12,
     jammer: 10,
     surveillance: 8,
     shield: 16,
-    'swarm-coordinator': 10,
-    'decoy_uav': 10,
-    'net_uav': 14,
-    'relay_uav': 8,
-    'overwatch_tether': 12,
-    'recovery_uav': 6,
-    'lure_swarm': 15,
-    'perimeter_sentry': 12,
-    'spotter': 9,
-    'hpm_uav': 20,
-    'shield_wall': 16,
-    'mapper_lidar': 10,
-    'relay_optical': 8
+    "swarm-coordinator": 10,
+    decoy_uav: 10,
+    net_uav: 14,
+    relay_uav: 8,
+    overwatch_tether: 12,
+    recovery_uav: 6,
+    lure_swarm: 15,
+    perimeter_sentry: 12,
+    spotter: 9,
+    hpm_uav: 20,
+    shield_wall: 16,
+    mapper_lidar: 10,
+    relay_optical: 8,
   },
-  
+
   // Power-up energy costs
   powerUps: {
-    'damage-boost': 5,
-    'rapid-fire': 8,
-    'area-effect': 12,
-    'range-boost': 10
-  }
+    "damage-boost": 5,
+    "rapid-fire": 8,
+    "area-effect": 12,
+    "range-boost": 10,
+  },
 };
 
 export const EnergyManagement: React.FC<EnergyManagementProps> = ({
@@ -69,40 +69,58 @@ export const EnergyManagement: React.FC<EnergyManagementProps> = ({
   selectedEffectors,
   selectedDrones,
   activePowerUps,
-  onEnergyUpdate
+  onEnergyUpdate,
 }) => {
   const [usedEnergy, setUsedEnergy] = useState(0);
   const [energyBreakdown, setEnergyBreakdown] = useState<EnergyCost>({
     effector: 0,
     drone: 0,
-    powerUp: 0
+    powerUp: 0,
   });
 
   useEffect(() => {
     // Calculate energy usage
     const effectorEnergy = selectedEffectors.reduce((total, effector) => {
-      return total + (ENERGY_COSTS.effectors[effector as keyof typeof ENERGY_COSTS.effectors] || 0);
+      return (
+        total +
+        (ENERGY_COSTS.effectors[
+          effector as keyof typeof ENERGY_COSTS.effectors
+        ] || 0)
+      );
     }, 0);
 
     const droneEnergy = selectedDrones.reduce((total, drone) => {
-      return total + (ENERGY_COSTS.drones[drone as keyof typeof ENERGY_COSTS.drones] || 0);
+      return (
+        total +
+        (ENERGY_COSTS.drones[drone as keyof typeof ENERGY_COSTS.drones] || 0)
+      );
     }, 0);
 
     const powerUpEnergy = activePowerUps.reduce((total, powerUp) => {
-      return total + (ENERGY_COSTS.powerUps[powerUp as keyof typeof ENERGY_COSTS.powerUps] || 0);
+      return (
+        total +
+        (ENERGY_COSTS.powerUps[powerUp as keyof typeof ENERGY_COSTS.powerUps] ||
+          0)
+      );
     }, 0);
 
     const totalUsed = effectorEnergy + droneEnergy + powerUpEnergy;
-    
+
     setUsedEnergy(totalUsed);
     setEnergyBreakdown({
       effector: effectorEnergy,
       drone: droneEnergy,
-      powerUp: powerUpEnergy
+      powerUp: powerUpEnergy,
     });
 
     onEnergyUpdate(totalUsed, maxEnergy - totalUsed);
-  }, [selectedEffectors, selectedDrones, activePowerUps, maxEnergy, onEnergyUpdate]);
+  }, [
+    selectedEffectors,
+    selectedDrones,
+    activePowerUps,
+    maxEnergy,
+    onEnergyUpdate,
+  ]);
 
   const remainingEnergy = maxEnergy - usedEnergy;
   const isOverloaded = usedEnergy > maxEnergy;
@@ -111,16 +129,14 @@ export const EnergyManagement: React.FC<EnergyManagementProps> = ({
     <div className="energy-management">
       <div className="energy-management-header">
         <h4 className="energy-management-title">ENERGY MANAGEMENT</h4>
-        <div className={`energy-status ${isOverloaded ? 'energy-overloaded' : ''}`}>
-          {isOverloaded ? 'OVERLOADED' : 'NOMINAL'}
+        <div
+          className={`energy-status ${isOverloaded ? "energy-overloaded" : ""}`}
+        >
+          {isOverloaded ? "OVERLOADED" : "NOMINAL"}
         </div>
       </div>
 
-      <EnergyBudget 
-        used={usedEnergy} 
-        max={maxEnergy} 
-        showDetails={true}
-      />
+      <EnergyBudget used={usedEnergy} max={maxEnergy} showDetails={true} />
 
       {usedEnergy > 0 && (
         <div className="energy-breakdown">
@@ -129,7 +145,9 @@ export const EnergyManagement: React.FC<EnergyManagementProps> = ({
             {energyBreakdown.effector > 0 && (
               <div className="energy-breakdown-item">
                 <span className="breakdown-label">Effectors:</span>
-                <span className="breakdown-value">{energyBreakdown.effector}</span>
+                <span className="breakdown-value">
+                  {energyBreakdown.effector}
+                </span>
               </div>
             )}
             {energyBreakdown.drone > 0 && (
@@ -141,7 +159,9 @@ export const EnergyManagement: React.FC<EnergyManagementProps> = ({
             {energyBreakdown.powerUp > 0 && (
               <div className="energy-breakdown-item">
                 <span className="breakdown-label">Power-ups:</span>
-                <span className="breakdown-value">{energyBreakdown.powerUp}</span>
+                <span className="breakdown-value">
+                  {energyBreakdown.powerUp}
+                </span>
               </div>
             )}
           </div>
@@ -152,8 +172,8 @@ export const EnergyManagement: React.FC<EnergyManagementProps> = ({
         <div className="energy-warning">
           <div className="energy-warning-icon">⚠️</div>
           <div className="energy-warning-text">
-            Energy consumption exceeds available capacity. 
-            Remove systems or upgrade power generation.
+            Energy consumption exceeds available capacity. Remove systems or
+            upgrade power generation.
           </div>
         </div>
       )}

@@ -157,7 +157,7 @@ const ControlBar: React.FC<ControlBarProps> = ({
         Show Zones
       </button>
 
-      <button 
+      <button
         role="switch"
         aria-checked={false}
         className="switch"
@@ -166,10 +166,18 @@ const ControlBar: React.FC<ControlBarProps> = ({
         Show Stats
       </button>
 
-      <button className="btn btn--ghost" onClick={onShowResearch} title="Research">
+      <button
+        className="btn btn--ghost"
+        onClick={onShowResearch}
+        title="Research"
+      >
         🔬
       </button>
-      <button className="btn btn--ghost" onClick={onShowTokenStore} title="Token Store">
+      <button
+        className="btn btn--ghost"
+        onClick={onShowTokenStore}
+        title="Token Store"
+      >
         🪙
       </button>
       <button className="btn btn--ghost" onClick={onShowHelp} title="?">

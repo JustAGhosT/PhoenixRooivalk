@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 export interface FilterChip {
   id: string;
@@ -18,11 +18,11 @@ export const FilterChips: React.FC<FilterChipsProps> = ({
   chips,
   selectedFilters,
   onFilterChange,
-  className = '',
+  className = "",
 }) => {
   const handleChipClick = (chipId: string) => {
     if (selectedFilters.includes(chipId)) {
-      onFilterChange(selectedFilters.filter(id => id !== chipId));
+      onFilterChange(selectedFilters.filter((id) => id !== chipId));
     } else {
       onFilterChange([...selectedFilters, chipId]);
     }
@@ -37,7 +37,7 @@ export const FilterChips: React.FC<FilterChipsProps> = ({
       <div className="filter-chips-header">
         <span className="filter-chips-title">Filter by Class:</span>
         {selectedFilters.length > 0 && (
-          <button 
+          <button
             className="filter-chips-clear"
             onClick={handleClearAll}
             aria-label="Clear all filters"
@@ -52,16 +52,20 @@ export const FilterChips: React.FC<FilterChipsProps> = ({
           return (
             <button
               key={chip.id}
-              className={`filter-chip ${isSelected ? 'filter-chip--selected' : ''}`}
-              style={{ 
-                '--chip-color': chip.color,
-                borderColor: isSelected ? chip.color : 'var(--sim-border)',
-                backgroundColor: isSelected ? `${chip.color}20` : 'transparent',
-                color: isSelected ? chip.color : 'var(--sim-text)'
-              } as React.CSSProperties}
+              className={`filter-chip ${isSelected ? "filter-chip--selected" : ""}`}
+              style={
+                {
+                  "--chip-color": chip.color,
+                  borderColor: isSelected ? chip.color : "var(--sim-border)",
+                  backgroundColor: isSelected
+                    ? `${chip.color}20`
+                    : "transparent",
+                  color: isSelected ? chip.color : "var(--sim-text)",
+                } as React.CSSProperties
+              }
               onClick={() => handleChipClick(chip.id)}
               aria-pressed={isSelected}
-              aria-label={`Filter by ${chip.label}${chip.count ? ` (${chip.count} items)` : ''}`}
+              aria-label={`Filter by ${chip.label}${chip.count ? ` (${chip.count} items)` : ""}`}
             >
               <span className="filter-chip-label">{chip.label}</span>
               {chip.count !== undefined && (

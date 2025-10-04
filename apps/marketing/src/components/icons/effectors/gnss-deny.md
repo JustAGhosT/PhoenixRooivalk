@@ -1,25 +1,30 @@
 # GNSS Denial Effector Icon
 
 ## Description
+
 GPS/satellite signal denial system for navigation disruption.
 
 ## Visual Elements
+
 - Satellite with slash or X
 - Navigation blocking symbol
 - GPS disruption representation
 
 ## Technical Specifications
+
 - **Size**: 24x24px viewBox
 - **Style**: Military, outline-based
 - **Stroke Width**: 2px
 - **Color**: `#8b5cf6` (ECM purple)
 
 ## AI Generation Prompt
+
 ```
 Create a GPS denial icon: satellite with slash or X mark. Military style, outline-based, 24x24px. Color #8b5cf6. Navigation disruption, satellite signal blocking aesthetic.
 ```
 
 ## SVG Structure
+
 ```svg
 <svg viewBox="0 0 24 24" fill="none" stroke="#8b5cf6" stroke-width="2">
   <!-- Satellite with strike-through -->
@@ -33,6 +38,7 @@ Create a GPS denial icon: satellite with slash or X mark. Military style, outlin
 ```
 
 ## Usage Context
+
 - GNSS denial systems
 - GPS disruption
 - Navigation blocking

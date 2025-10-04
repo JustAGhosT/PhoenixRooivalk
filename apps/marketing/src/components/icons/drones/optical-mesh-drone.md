@@ -1,14 +1,18 @@
 # Optical Mesh Drone Icon
 
 ## Description
-Optical communication relay for secure communications and mesh networking operations.
+
+Optical communication relay for secure communications and mesh networking
+operations.
 
 ## Visual Elements
+
 - Triangle with light beam pattern
 - Optical link representation
 - Secure communication visualization
 
 ## Technical Specifications
+
 - **Size**: 24x24px viewBox
 - **Style**: Military, outline-based
 - **Stroke Width**: 2px
@@ -16,11 +20,13 @@ Optical communication relay for secure communications and mesh networking operat
 - **Base Shape**: Triangle (70% of viewBox)
 
 ## AI Generation Prompt
+
 ```
 Create an optical mesh drone icon: triangle with light beam or optical link pattern. Military style, outline-based, 24x24px. Color #8b5cf6. Secure communications, optical link, mesh networking aesthetic.
 ```
 
 ## SVG Structure
+
 ```svg
 <svg viewBox="0 0 24 24" fill="none" stroke="#8b5cf6" stroke-width="2">
   <!-- Triangle base -->
@@ -39,6 +45,7 @@ Create an optical mesh drone icon: triangle with light beam or optical link patt
 ```
 
 ## Usage Context
+
 - Optical mesh drone systems
 - Secure communication platforms
 - Mesh networking operations

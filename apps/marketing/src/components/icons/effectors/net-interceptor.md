@@ -1,25 +1,30 @@
 # Net Interceptor Effector Icon
 
 ## Description
+
 Physical net capture system for non-destructive drone neutralization.
 
 ## Visual Elements
+
 - Interlaced net pattern
 - Fishing net mesh design
 - Containment representation
 
 ## Technical Specifications
+
 - **Size**: 24x24px viewBox
 - **Style**: Military, outline-based
 - **Stroke Width**: 2px
 - **Color**: `#10b981` (capture emerald)
 
 ## AI Generation Prompt
+
 ```
 Create a capture net icon: interlaced net pattern or fishing net mesh. Military style, outline-based, 24x24px. Color #10b981. Physical capture, containment, non-destructive aesthetic.
 ```
 
 ## SVG Structure
+
 ```svg
 <svg viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2">
   <!-- Net mesh pattern -->
@@ -34,6 +39,7 @@ Create a capture net icon: interlaced net pattern or fishing net mesh. Military 
 ```
 
 ## Usage Context
+
 - Physical capture systems
 - Non-destructive neutralization
 - Containment operations

@@ -18,18 +18,18 @@ const DRONE_DATA = {
   surveillance: { name: "Surveillance", icon: "👁️" },
   shield: { name: "Shield", icon: "🛡️" },
   "swarm-coordinator": { name: "Coordinator", icon: "🐝" },
-  "decoy_uav": { name: "Decoy UAV", icon: "🎭" },
-  "net_uav": { name: "Net-Capture UAV", icon: "🕸️" },
-  "relay_uav": { name: "EW Relay UAV", icon: "📶" },
-  "overwatch_tether": { name: "Tethered Overwatch", icon: "🗼" },
-  "recovery_uav": { name: "Recovery Drone", icon: "🪝" },
-  "lure_swarm": { name: "Micro-Decoy Swarm", icon: "🐝" },
-  "perimeter_sentry": { name: "Perimeter Sentry", icon: "🔍" },
-  "spotter": { name: "Spotter UAV", icon: "🎯" },
-  "hpm_uav": { name: "HPM Pod UAV", icon: "📡" },
-  "shield_wall": { name: "Shield Wall", icon: "🛡️" },
-  "mapper_lidar": { name: "LiDAR Mapper", icon: "📐" },
-  "relay_optical": { name: "Optical Mesh Drone", icon: "💡" },
+  decoy_uav: { name: "Decoy UAV", icon: "🎭" },
+  net_uav: { name: "Net-Capture UAV", icon: "🕸️" },
+  relay_uav: { name: "EW Relay UAV", icon: "📶" },
+  overwatch_tether: { name: "Tethered Overwatch", icon: "🗼" },
+  recovery_uav: { name: "Recovery Drone", icon: "🪝" },
+  lure_swarm: { name: "Micro-Decoy Swarm", icon: "🐝" },
+  perimeter_sentry: { name: "Perimeter Sentry", icon: "🔍" },
+  spotter: { name: "Spotter UAV", icon: "🎯" },
+  hpm_uav: { name: "HPM Pod UAV", icon: "📡" },
+  shield_wall: { name: "Shield Wall", icon: "🛡️" },
+  mapper_lidar: { name: "LiDAR Mapper", icon: "📐" },
+  relay_optical: { name: "Optical Mesh Drone", icon: "💡" },
 };
 
 const DEPLOYMENT_COST = 25; // Example energy cost
@@ -43,7 +43,11 @@ export const DroneDeployment: React.FC<DroneDeploymentProps> = ({
   return (
     <div className="drone-deployment-panel">
       <h3 className="drone-deployment-title">DRONE DEPLOYMENT</h3>
-      <nav aria-label="Drone Deployment" role="checkboxgroup" className="drone-list">
+      <nav
+        aria-label="Drone Deployment"
+        role="checkboxgroup"
+        className="drone-list"
+      >
         {deploymentBays.map((bay) => {
           const data = DRONE_DATA[bay.droneType as keyof typeof DRONE_DATA];
 
@@ -74,7 +78,9 @@ export const DroneDeployment: React.FC<DroneDeploymentProps> = ({
             bay.currentDrones === 0 || energy < DEPLOYMENT_COST;
 
           // Get drone data from database for enhanced info
-          const droneData = effectorDatabase.deployments.find(d => d.id === bay.droneType.toUpperCase());
+          const droneData = effectorDatabase.deployments.find(
+            (d) => d.id === bay.droneType.toUpperCase(),
+          );
           const energyCost = droneData?.energy || DEPLOYMENT_COST;
 
           return (
@@ -103,8 +109,8 @@ export const DroneDeployment: React.FC<DroneDeploymentProps> = ({
                         brands={droneData.brands}
                         sources={droneData.sources}
                       >
-                        <button 
-                          className="info-button" 
+                        <button
+                          className="info-button"
                           aria-label="View drone details"
                           onClick={(e) => e.stopPropagation()}
                         >
@@ -114,7 +120,7 @@ export const DroneDeployment: React.FC<DroneDeploymentProps> = ({
                     </div>
                   )}
                 </div>
-                
+
                 <div className="drone-details">
                   <div className="drone-name">{data.name}</div>
                   <div className="drone-specs">
@@ -125,7 +131,9 @@ export const DroneDeployment: React.FC<DroneDeploymentProps> = ({
                       <>
                         <div className="drone-energy">⚡ {energyCost}</div>
                         <div className="drone-speed">🏃 {droneData.speed}</div>
-                        <div className="drone-endurance">⏱️ {droneData.endurance}</div>
+                        <div className="drone-endurance">
+                          ⏱️ {droneData.endurance}
+                        </div>
                       </>
                     )}
                   </div>
@@ -137,19 +145,17 @@ export const DroneDeployment: React.FC<DroneDeploymentProps> = ({
                   </div>
                 )}
 
-                {!bay.isReady && <div className="drone-cooldown">RECHARGING</div>}
+                {!bay.isReady && (
+                  <div className="drone-cooldown">RECHARGING</div>
+                )}
               </button>
             </div>
           );
         })}
       </nav>
       <div className="drone-deployment-info">
-        <EnergyBudget 
-          used={energy} 
-          max={100} 
-          showDetails={false}
-        />
-        
+        <EnergyBudget used={energy} max={100} showDetails={false} />
+
         {selectedDroneType && (
           <div className="deployment-selection">
             <p>
@@ -160,9 +166,7 @@ export const DroneDeployment: React.FC<DroneDeploymentProps> = ({
                 return data ? data.name : "Unknown drone";
               })()}
             </p>
-            <p className="deployment-instruction">
-              Click on map to deploy.
-            </p>
+            <p className="deployment-instruction">Click on map to deploy.</p>
           </div>
         )}
       </div>

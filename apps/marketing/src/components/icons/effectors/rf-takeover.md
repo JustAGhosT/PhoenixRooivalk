@@ -1,25 +1,30 @@
 # RF Takeover Effector Icon
 
 ## Description
+
 Command and control takeover system for electronic warfare.
 
 ## Visual Elements
+
 - Two antennas with arrow between
 - C2 takeover representation
 - Signal hijacking symbol
 
 ## Technical Specifications
+
 - **Size**: 24x24px viewBox
 - **Style**: Military, outline-based
 - **Stroke Width**: 2px
 - **Color**: `#8b5cf6` (ECM purple)
 
 ## AI Generation Prompt
+
 ```
 Create an RF takeover icon: two antennas with arrow between them. Military style, outline-based, 24x24px. Color #8b5cf6. Electronic warfare, command and control takeover aesthetic.
 ```
 
 ## SVG Structure
+
 ```svg
 <svg viewBox="0 0 24 24" fill="none" stroke="#8b5cf6" stroke-width="2">
   <!-- Two antennas with arrow -->
@@ -33,6 +38,7 @@ Create an RF takeover icon: two antennas with arrow between them. Military style
 ```
 
 ## Usage Context
+
 - Electronic warfare systems
 - Command and control takeover
 - Signal hijacking

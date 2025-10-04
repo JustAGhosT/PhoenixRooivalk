@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 interface LegalBadgeProps {
   legalFlags: string[];
@@ -9,7 +9,7 @@ interface LegalBadgeProps {
 export const LegalBadge: React.FC<LegalBadgeProps> = ({
   legalFlags,
   onAcknowledge,
-  className = '',
+  className = "",
 }) => {
   const [acknowledged, setAcknowledged] = useState(false);
   const [showDetails, setShowDetails] = useState(false);
@@ -23,22 +23,30 @@ export const LegalBadge: React.FC<LegalBadgeProps> = ({
     onAcknowledge?.();
   };
 
-  const getRiskLevel = (flags: string[]): 'low' | 'medium' | 'high' => {
-    if (flags.some(flag => flag.includes('ITAR') || flag.includes('Export-controlled'))) {
-      return 'high';
+  const getRiskLevel = (flags: string[]): "low" | "medium" | "high" => {
+    if (
+      flags.some(
+        (flag) => flag.includes("ITAR") || flag.includes("Export-controlled"),
+      )
+    ) {
+      return "high";
     }
-    if (flags.some(flag => flag.includes('Spectrum') || flag.includes('Eye-safety'))) {
-      return 'medium';
+    if (
+      flags.some(
+        (flag) => flag.includes("Spectrum") || flag.includes("Eye-safety"),
+      )
+    ) {
+      return "medium";
     }
-    return 'low';
+    return "low";
   };
 
   const riskLevel = getRiskLevel(legalFlags);
 
   return (
     <div className={`legal-badge ${className}`}>
-      <div 
-        className={`legal-badge-indicator legal-badge-indicator--${riskLevel} ${acknowledged ? 'legal-badge-indicator--acknowledged' : ''}`}
+      <div
+        className={`legal-badge-indicator legal-badge-indicator--${riskLevel} ${acknowledged ? "legal-badge-indicator--acknowledged" : ""}`}
         onClick={() => setShowDetails(!showDetails)}
         role="button"
         tabIndex={0}
@@ -47,8 +55,11 @@ export const LegalBadge: React.FC<LegalBadgeProps> = ({
       >
         <span className="legal-badge-icon">⚠️</span>
         <span className="legal-badge-text">
-          {riskLevel === 'high' ? 'ITAR/Export' : 
-           riskLevel === 'medium' ? 'Compliance' : 'Restrictions'}
+          {riskLevel === "high"
+            ? "ITAR/Export"
+            : riskLevel === "medium"
+              ? "Compliance"
+              : "Restrictions"}
         </span>
         {!acknowledged && <span className="legal-badge-dot">●</span>}
       </div>
@@ -57,7 +68,7 @@ export const LegalBadge: React.FC<LegalBadgeProps> = ({
         <div className="legal-badge-details">
           <div className="legal-badge-details-header">
             <h4>Legal Compliance Requirements</h4>
-            <button 
+            <button
               className="legal-badge-close"
               onClick={() => setShowDetails(false)}
               aria-label="Close details"
@@ -65,14 +76,14 @@ export const LegalBadge: React.FC<LegalBadgeProps> = ({
               ×
             </button>
           </div>
-          
+
           <div className="legal-badge-details-content">
             <div className="legal-badge-risk-level">
               <span className={`risk-level risk-level--${riskLevel}`}>
                 {riskLevel.toUpperCase()} RISK
               </span>
             </div>
-            
+
             <div className="legal-badge-requirements">
               <h5>Requirements:</h5>
               <ul className="legal-badge-list">
@@ -83,18 +94,19 @@ export const LegalBadge: React.FC<LegalBadgeProps> = ({
                 ))}
               </ul>
             </div>
-            
+
             <div className="legal-badge-note">
               <p>
-                This is a concept demonstration system. In actual deployment, 
-                all legal requirements must be properly addressed and authorized.
+                This is a concept demonstration system. In actual deployment,
+                all legal requirements must be properly addressed and
+                authorized.
               </p>
             </div>
           </div>
 
           {!acknowledged && (
             <div className="legal-badge-actions">
-              <button 
+              <button
                 className="legal-badge-acknowledge"
                 onClick={handleAcknowledge}
               >

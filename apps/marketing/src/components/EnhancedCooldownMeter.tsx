@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 
 export interface EnhancedCooldownMeterProps {
   cooldownTime: number; // in seconds
@@ -16,8 +16,8 @@ export const EnhancedCooldownMeter: React.FC<EnhancedCooldownMeterProps> = ({
   onCooldownComplete,
   size = 40,
   showText = true,
-  label = '',
-  className = ''
+  label = "",
+  className = "",
 }) => {
   const [remainingTime, setRemainingTime] = useState(cooldownTime);
   const [isAnimating, setIsAnimating] = useState(false);
@@ -28,7 +28,7 @@ export const EnhancedCooldownMeter: React.FC<EnhancedCooldownMeterProps> = ({
     if (isActive && remainingTime > 0) {
       setIsAnimating(true);
       interval = setInterval(() => {
-        setRemainingTime(prev => {
+        setRemainingTime((prev) => {
           const newTime = prev - 0.1;
           if (newTime <= 0) {
             setIsAnimating(false);
@@ -65,7 +65,7 @@ export const EnhancedCooldownMeter: React.FC<EnhancedCooldownMeterProps> = ({
           width={size}
           height={size}
           className="cooldown-svg"
-          style={{ transform: 'rotate(-90deg)' }}
+          style={{ transform: "rotate(-90deg)" }}
         >
           {/* Background circle */}
           <circle
@@ -77,22 +77,24 @@ export const EnhancedCooldownMeter: React.FC<EnhancedCooldownMeterProps> = ({
             strokeWidth="2"
             className="cooldown-bg"
           />
-          
+
           {/* Progress circle */}
           <circle
             cx={size / 2}
             cy={size / 2}
             r={size / 2 - 2}
             fill="none"
-            stroke={isReady ? 'var(--sim-success)' : 'var(--sim-accent)'}
+            stroke={isReady ? "var(--sim-success)" : "var(--sim-accent)"}
             strokeWidth="2"
             strokeLinecap="round"
             strokeDasharray={strokeDasharray}
             strokeDashoffset={strokeDashoffset}
-            className={`cooldown-progress ${isAnimating ? 'cooldown-animating' : ''}`}
+            className={`cooldown-progress ${isAnimating ? "cooldown-animating" : ""}`}
             style={{
-              transition: isAnimating ? 'none' : 'stroke-dashoffset 0.3s ease',
-              filter: isReady ? 'drop-shadow(0 0 4px var(--sim-success))' : 'none'
+              transition: isAnimating ? "none" : "stroke-dashoffset 0.3s ease",
+              filter: isReady
+                ? "drop-shadow(0 0 4px var(--sim-success))"
+                : "none",
             }}
           />
         </svg>
@@ -115,25 +117,19 @@ export const EnhancedCooldownMeter: React.FC<EnhancedCooldownMeterProps> = ({
         </div>
 
         {/* Pulse effect for ready state */}
-        {isReady && (
-          <div className="cooldown-pulse" />
-        )}
+        {isReady && <div className="cooldown-pulse" />}
       </div>
 
       {/* Label */}
-      {label && (
-        <div className="cooldown-label">{label}</div>
-      )}
+      {label && <div className="cooldown-label">{label}</div>}
 
       {/* Tooltip */}
       <div className="cooldown-tooltip">
-        {isReady ? (
-          'Ready to fire'
-        ) : isCooldown ? (
-          `Ready in ${Math.ceil(remainingTime)}s`
-        ) : (
-          `${cooldownTime}s cooldown`
-        )}
+        {isReady
+          ? "Ready to fire"
+          : isCooldown
+            ? `Ready in ${Math.ceil(remainingTime)}s`
+            : `${cooldownTime}s cooldown`}
       </div>
     </div>
   );
@@ -157,7 +153,7 @@ export const WeaponCooldownMeter: React.FC<WeaponCooldownMeterProps> = ({
   isReady,
   energyCost,
   currentEnergy,
-  onCooldownComplete
+  onCooldownComplete,
 }) => {
   const hasEnergy = currentEnergy >= energyCost;
   const canFire = isReady && hasEnergy;
@@ -170,11 +166,13 @@ export const WeaponCooldownMeter: React.FC<WeaponCooldownMeterProps> = ({
         onCooldownComplete={onCooldownComplete}
         size={32}
         showText={true}
-        className={`weapon-cooldown ${!hasEnergy ? 'insufficient-energy' : ''}`}
+        className={`weapon-cooldown ${!hasEnergy ? "insufficient-energy" : ""}`}
       />
-      
+
       {/* Energy indicator */}
-      <div className={`energy-indicator ${hasEnergy ? 'sufficient' : 'insufficient'}`}>
+      <div
+        className={`energy-indicator ${hasEnergy ? "sufficient" : "insufficient"}`}
+      >
         <div className="energy-icon">⚡</div>
         <div className="energy-cost">{energyCost}</div>
       </div>

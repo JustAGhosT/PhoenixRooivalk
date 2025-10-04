@@ -5,7 +5,14 @@ import { Threat } from "./threatTypes";
  * Spawns a new threat at the edge of the game area
  */
 export function spawnThreat(
-  type?: "drone" | "swarm" | "stealth" | "kamikaze" | "decoy" | "shielded" | "boss",
+  type?:
+    | "drone"
+    | "swarm"
+    | "stealth"
+    | "kamikaze"
+    | "decoy"
+    | "shielded"
+    | "boss",
   boundingRect?: DOMRect,
   level: number = 1,
 ): Threat {

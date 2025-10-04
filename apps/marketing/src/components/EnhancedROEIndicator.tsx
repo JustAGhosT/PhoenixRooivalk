@@ -1,6 +1,6 @@
-import React from 'react';
+import React from "react";
 
-export type ROERiskLevel = 'low' | 'medium' | 'high';
+export type ROERiskLevel = "low" | "medium" | "high";
 
 export interface ROERiskDetails {
   level: ROERiskLevel;
@@ -14,104 +14,117 @@ export interface EnhancedROEIndicatorProps {
   riskLevel: ROERiskLevel;
   riskDetails?: ROERiskDetails;
   showDetails?: boolean;
-  size?: 'small' | 'medium' | 'large';
+  size?: "small" | "medium" | "large";
   className?: string;
 }
 
 // ROE risk definitions based on real-world counter-drone operations
 const ROE_RISK_DEFINITIONS: Record<ROERiskLevel, ROERiskDetails> = {
   low: {
-    level: 'low',
-    description: 'Minimal risk of collateral damage or legal issues',
+    level: "low",
+    description: "Minimal risk of collateral damage or legal issues",
     considerations: [
-      'Non-lethal effects only',
-      'Controlled environment',
-      'Clear threat identification',
-      'Minimal civilian presence'
+      "Non-lethal effects only",
+      "Controlled environment",
+      "Clear threat identification",
+      "Minimal civilian presence",
     ],
     mitigation: [
-      'Use non-kinetic effectors',
-      'Implement safety protocols',
-      'Maintain situational awareness',
-      'Follow established ROE procedures'
+      "Use non-kinetic effectors",
+      "Implement safety protocols",
+      "Maintain situational awareness",
+      "Follow established ROE procedures",
     ],
-    legalFlags: ['operational_approval', 'environmental_clearance']
+    legalFlags: ["operational_approval", "environmental_clearance"],
   },
   medium: {
-    level: 'medium',
-    description: 'Moderate risk requiring careful consideration',
+    level: "medium",
+    description: "Moderate risk requiring careful consideration",
     considerations: [
-      'Potential for minor collateral damage',
-      'Mixed civilian/military environment',
-      'Limited threat verification',
-      'Weather/environmental factors'
+      "Potential for minor collateral damage",
+      "Mixed civilian/military environment",
+      "Limited threat verification",
+      "Weather/environmental factors",
     ],
     mitigation: [
-      'Verify target identification',
-      'Minimize engagement range',
-      'Use precision targeting',
-      'Coordinate with local authorities'
+      "Verify target identification",
+      "Minimize engagement range",
+      "Use precision targeting",
+      "Coordinate with local authorities",
     ],
-    legalFlags: ['command_approval', 'legal_review', 'civilian_notification']
+    legalFlags: ["command_approval", "legal_review", "civilian_notification"],
   },
   high: {
-    level: 'high',
-    description: 'Significant risk requiring explicit authorization',
+    level: "high",
+    description: "Significant risk requiring explicit authorization",
     considerations: [
-      'High probability of collateral damage',
-      'Dense civilian population',
-      'Unclear threat status',
-      'Limited engagement options'
+      "High probability of collateral damage",
+      "Dense civilian population",
+      "Unclear threat status",
+      "Limited engagement options",
     ],
     mitigation: [
-      'Require explicit authorization',
-      'Implement additional safety measures',
-      'Consider alternative engagement methods',
-      'Document all decisions and rationale'
+      "Require explicit authorization",
+      "Implement additional safety measures",
+      "Consider alternative engagement methods",
+      "Document all decisions and rationale",
     ],
-    legalFlags: ['command_approval', 'legal_review', 'civilian_notification', 'risk_assessment']
-  }
+    legalFlags: [
+      "command_approval",
+      "legal_review",
+      "civilian_notification",
+      "risk_assessment",
+    ],
+  },
 };
 
 export const EnhancedROEIndicator: React.FC<EnhancedROEIndicatorProps> = ({
   riskLevel,
   riskDetails,
   showDetails = false,
-  size = 'medium',
-  className = ''
+  size = "medium",
+  className = "",
 }) => {
   const details = riskDetails || ROE_RISK_DEFINITIONS[riskLevel];
   const sizeClasses = {
-    small: 'roe-indicator-small',
-    medium: 'roe-indicator-medium',
-    large: 'roe-indicator-large'
+    small: "roe-indicator-small",
+    medium: "roe-indicator-medium",
+    large: "roe-indicator-large",
   };
 
   const getRiskColor = (level: ROERiskLevel): string => {
     switch (level) {
-      case 'low': return '#10b981'; // Green
-      case 'medium': return '#f59e0b'; // Amber
-      case 'high': return '#ef4444'; // Red
-      default: return '#6b7280'; // Gray
+      case "low":
+        return "#10b981"; // Green
+      case "medium":
+        return "#f59e0b"; // Amber
+      case "high":
+        return "#ef4444"; // Red
+      default:
+        return "#6b7280"; // Gray
     }
   };
 
   const getRiskIcon = (level: ROERiskLevel): string => {
     switch (level) {
-      case 'low': return '✓';
-      case 'medium': return '⚠';
-      case 'high': return '⚠';
-      default: return '?';
+      case "low":
+        return "✓";
+      case "medium":
+        return "⚠";
+      case "high":
+        return "⚠";
+      default:
+        return "?";
     }
   };
 
   return (
     <div className={`enhanced-roe-indicator ${sizeClasses[size]} ${className}`}>
-      <div 
+      <div
         className="roe-indicator-main"
-        style={{ 
+        style={{
           backgroundColor: getRiskColor(riskLevel),
-          borderColor: getRiskColor(riskLevel)
+          borderColor: getRiskColor(riskLevel),
         }}
       >
         <div className="roe-icon">{getRiskIcon(riskLevel)}</div>
@@ -121,7 +134,7 @@ export const EnhancedROEIndicator: React.FC<EnhancedROEIndicatorProps> = ({
       {showDetails && (
         <div className="roe-details">
           <div className="roe-description">{details.description}</div>
-          
+
           <div className="roe-section">
             <div className="roe-section-title">Key Considerations:</div>
             <ul className="roe-considerations">
@@ -150,7 +163,7 @@ export const EnhancedROEIndicator: React.FC<EnhancedROEIndicatorProps> = ({
               <div className="roe-legal-flags">
                 {details.legalFlags.map((flag, index) => (
                   <span key={index} className="roe-legal-flag">
-                    {flag.replace('_', ' ').toUpperCase()}
+                    {flag.replace("_", " ").toUpperCase()}
                   </span>
                 ))}
               </div>
@@ -170,27 +183,33 @@ export interface CompactROEIndicatorProps {
 
 export const CompactROEIndicator: React.FC<CompactROEIndicatorProps> = ({
   riskLevel,
-  className = ''
+  className = "",
 }) => {
   const getRiskColor = (level: ROERiskLevel): string => {
     switch (level) {
-      case 'low': return '#10b981';
-      case 'medium': return '#f59e0b';
-      case 'high': return '#ef4444';
-      default: return '#6b7280';
+      case "low":
+        return "#10b981";
+      case "medium":
+        return "#f59e0b";
+      case "high":
+        return "#ef4444";
+      default:
+        return "#6b7280";
     }
   };
 
   return (
-    <div 
+    <div
       className={`compact-roe-indicator ${className}`}
-      style={{ 
+      style={{
         backgroundColor: getRiskColor(riskLevel),
-        borderColor: getRiskColor(riskLevel)
+        borderColor: getRiskColor(riskLevel),
       }}
       title={`ROE Risk: ${riskLevel.toUpperCase()}`}
     >
-      <span className="roe-level-text">{riskLevel.charAt(0).toUpperCase()}</span>
+      <span className="roe-level-text">
+        {riskLevel.charAt(0).toUpperCase()}
+      </span>
     </div>
   );
 };

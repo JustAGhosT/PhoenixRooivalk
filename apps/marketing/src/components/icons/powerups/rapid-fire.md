@@ -1,25 +1,30 @@
 # Rapid Fire Power-up Icon
 
 ## Description
+
 Rapid fire enhancement power-up for increased firing rate.
 
 ## Visual Elements
+
 - Multiple projectiles or bullets
 - Speed enhancement representation
 - Rapid fire symbol
 
 ## Technical Specifications
+
 - **Size**: 24x24px viewBox
 - **Style**: Military, outline-based
 - **Stroke Width**: 2px
 - **Color**: `#f59e0b` (warning amber)
 
 ## AI Generation Prompt
+
 ```
 Create a rapid fire power-up icon: multiple projectiles or bullets in sequence. Military style, outline-based, 24x24px. Color #f59e0b. Speed enhancement, rapid fire aesthetic.
 ```
 
 ## SVG Structure
+
 ```svg
 <svg viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2">
   <!-- Multiple projectiles -->
@@ -35,6 +40,7 @@ Create a rapid fire power-up icon: multiple projectiles or bullets in sequence. 
 ```
 
 ## Usage Context
+
 - Rapid fire power-ups
 - Firing rate enhancements
 - Speed boost systems

@@ -1,5 +1,5 @@
-import React from 'react';
-import { ResourceManager } from './utils/resourceManager';
+import React from "react";
+import { ResourceManager } from "./utils/resourceManager";
 
 interface TokenStoreProps {
   resourceManager: ResourceManager;
@@ -39,9 +39,10 @@ export const TokenStore: React.FC<TokenStoreProps> = ({
         <div className="store-section">
           <h4>Deploy Drones</h4>
           <p className="store-description">
-            Purchase additional drones for deployment. You can only deploy drones you have researched.
+            Purchase additional drones for deployment. You can only deploy
+            drones you have researched.
           </p>
-          
+
           <div className="drone-purchase-list">
             {unlockedDrones.map((type) => {
               const droneData = resourceManager.getDroneData(type);
@@ -102,7 +103,9 @@ export const TokenStore: React.FC<TokenStoreProps> = ({
         <div className="store-help">
           <h4>Tips</h4>
           <ul>
-            <li>Focus on neutralizing threats efficiently to earn more tokens</li>
+            <li>
+              Focus on neutralizing threats efficiently to earn more tokens
+            </li>
             <li>Complete waves for bonus token rewards</li>
             <li>Research new drone types to unlock more purchase options</li>
             <li>Balance your drone purchases with your tactical needs</li>

@@ -1,14 +1,17 @@
 # Perimeter Sentry Icon
 
 ## Description
+
 Perimeter patrol drone for boundary protection and patrol operations.
 
 ## Visual Elements
+
 - Triangle with border shield pattern
 - Perimeter defense representation
 - Boundary protection visualization
 
 ## Technical Specifications
+
 - **Size**: 24x24px viewBox
 - **Style**: Military, outline-based
 - **Stroke Width**: 2px
@@ -16,11 +19,13 @@ Perimeter patrol drone for boundary protection and patrol operations.
 - **Base Shape**: Triangle (70% of viewBox)
 
 ## AI Generation Prompt
+
 ```
 Create a perimeter sentry drone icon: triangle with border shield pattern. Military style, outline-based, 24x24px. Color #10b981. Perimeter defense, patrol, boundary protection aesthetic.
 ```
 
 ## SVG Structure
+
 ```svg
 <svg viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2">
   <!-- Triangle base -->
@@ -33,6 +38,7 @@ Create a perimeter sentry drone icon: triangle with border shield pattern. Milit
 ```
 
 ## Usage Context
+
 - Perimeter sentry systems
 - Boundary protection platforms
 - Patrol operations

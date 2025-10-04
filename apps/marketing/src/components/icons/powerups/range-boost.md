@@ -1,25 +1,30 @@
 # Range Boost Power-up Icon
 
 ## Description
+
 Range enhancement power-up for increased weapon reach.
 
 ## Visual Elements
+
 - Long-range arrow or targeting reticle
 - Distance enhancement representation
 - Range extension symbol
 
 ## Technical Specifications
+
 - **Size**: 24x24px viewBox
 - **Style**: Military, outline-based
 - **Stroke Width**: 2px
 - **Color**: `#06b6d4` (info cyan)
 
 ## AI Generation Prompt
+
 ```
 Create a range boost power-up icon: long-range arrow or targeting reticle. Military style, outline-based, 24x24px. Color #06b6d4. Distance enhancement, range extension aesthetic.
 ```
 
 ## SVG Structure
+
 ```svg
 <svg viewBox="0 0 24 24" fill="none" stroke="#06b6d4" stroke-width="2">
   <!-- Long-range arrow -->
@@ -33,6 +38,7 @@ Create a range boost power-up icon: long-range arrow or targeting reticle. Milit
 ```
 
 ## Usage Context
+
 - Range boost power-ups
 - Distance enhancement systems
 - Range extension boosts

@@ -1,25 +1,30 @@
 # Legal Warning Status Icon
 
 ## Description
+
 Status indicator showing legal compliance requirements or warnings.
 
 ## Visual Elements
+
 - Shield with legal symbol or scales
 - Legal compliance representation
 - Warning symbol
 
 ## Technical Specifications
+
 - **Size**: 24x24px viewBox
 - **Style**: Military, outline-based
 - **Stroke Width**: 2px
 - **Color**: `#f59e0b` (warning amber)
 
 ## AI Generation Prompt
+
 ```
 Create a legal warning status icon: shield with legal symbol or scales. Military style, outline-based, 24x24px. Color #f59e0b. Legal compliance, warning state aesthetic.
 ```
 
 ## SVG Structure
+
 ```svg
 <svg viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2">
   <!-- Shield -->
@@ -34,6 +39,7 @@ Create a legal warning status icon: shield with legal symbol or scales. Military
 ```
 
 ## Usage Context
+
 - Legal compliance warnings
 - ITAR/export control alerts
 - Regulatory requirement indicators

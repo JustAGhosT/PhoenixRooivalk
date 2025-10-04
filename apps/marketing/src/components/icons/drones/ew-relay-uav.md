@@ -1,14 +1,17 @@
 # EW Relay UAV Icon
 
 ## Description
+
 Electronic warfare relay drone for extended EW range and signal amplification.
 
 ## Visual Elements
+
 - Triangle with antenna array
 - Signal relay representation
 - Extended range visualization
 
 ## Technical Specifications
+
 - **Size**: 24x24px viewBox
 - **Style**: Military, outline-based
 - **Stroke Width**: 2px
@@ -16,11 +19,13 @@ Electronic warfare relay drone for extended EW range and signal amplification.
 - **Base Shape**: Triangle (70% of viewBox)
 
 ## AI Generation Prompt
+
 ```
 Create an EW relay drone icon: triangle with antenna array pattern. Military style, outline-based, 24x24px. Color #8b5cf6. Electronic warfare relay, extended range, signal amplification aesthetic.
 ```
 
 ## SVG Structure
+
 ```svg
 <svg viewBox="0 0 24 24" fill="none" stroke="#8b5cf6" stroke-width="2">
   <!-- Triangle base -->
@@ -36,6 +41,7 @@ Create an EW relay drone icon: triangle with antenna array pattern. Military sty
 ```
 
 ## Usage Context
+
 - Electronic warfare relay systems
 - Signal amplification platforms
 - Extended range EW operations

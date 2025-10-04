@@ -1,14 +1,17 @@
 # Recovery Drone Icon
 
 ## Description
+
 Drone recovery system for debris cleanup and logistics operations.
 
 ## Visual Elements
+
 - Triangle with grappling hook
 - Recovery mechanism representation
 - Logistics operation visualization
 
 ## Technical Specifications
+
 - **Size**: 24x24px viewBox
 - **Style**: Military, outline-based
 - **Stroke Width**: 2px
@@ -16,11 +19,13 @@ Drone recovery system for debris cleanup and logistics operations.
 - **Base Shape**: Triangle (70% of viewBox)
 
 ## AI Generation Prompt
+
 ```
 Create a recovery drone icon: triangle with grappling hook or retrieval mechanism. Military style, outline-based, 24x24px. Color #6b7280. Debris cleanup, recovery operations, logistics aesthetic.
 ```
 
 ## SVG Structure
+
 ```svg
 <svg viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2">
   <!-- Triangle base -->
@@ -36,6 +41,7 @@ Create a recovery drone icon: triangle with grappling hook or retrieval mechanis
 ```
 
 ## Usage Context
+
 - Recovery drone systems
 - Debris cleanup platforms
 - Logistics operations

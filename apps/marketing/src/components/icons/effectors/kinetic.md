@@ -1,25 +1,30 @@
 # Kinetic Effector Icon
 
 ## Description
+
 Physical projectile weapon system for direct kinetic engagement.
 
 ## Visual Elements
+
 - Bullet trajectory with target crosshair
 - Angular, direct design
 - Kinetic energy representation
 
 ## Technical Specifications
+
 - **Size**: 24x24px viewBox
 - **Style**: Military, outline-based
 - **Stroke Width**: 2px
 - **Color**: `#dc2626` (kinetic red)
 
 ## AI Generation Prompt
+
 ```
 Create a minimalist kinetic weapon icon: bullet trajectory with crosshair target. Military style, outline-based, 24x24px. Color #dc2626. Technical, direct, projectile weapon aesthetic.
 ```
 
 ## SVG Structure
+
 ```svg
 <svg viewBox="0 0 24 24" fill="none" stroke="#dc2626" stroke-width="2">
   <!-- Bullet/projectile with crosshair -->
@@ -32,6 +37,7 @@ Create a minimalist kinetic weapon icon: bullet trajectory with crosshair target
 ```
 
 ## Usage Context
+
 - Hard kill weapon systems
 - Direct kinetic engagement
 - Physical projectile weapons

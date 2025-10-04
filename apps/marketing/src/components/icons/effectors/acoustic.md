@@ -1,25 +1,30 @@
 # Acoustic Disruptor Effector Icon
 
 ## Description
+
 Acoustic disruption system for audio interference and drone disruption.
 
 ## Visual Elements
+
 - Speaker with sound waves
 - Mute symbol or wave pattern
 - Audio disruption visualization
 
 ## Technical Specifications
+
 - **Size**: 24x24px viewBox
 - **Style**: Military, outline-based
 - **Stroke Width**: 2px
 - **Color**: `#84cc16` (nonkinetic lime)
 
 ## AI Generation Prompt
+
 ```
 Create an acoustic disruptor icon: speaker with sound waves or mute symbol. Military style, outline-based, 24x24px. Color #84cc16. Audio disruption, sound interference aesthetic.
 ```
 
 ## SVG Structure
+
 ```svg
 <svg viewBox="0 0 24 24" fill="none" stroke="#84cc16" stroke-width="2">
   <!-- Speaker with sound waves -->
@@ -32,6 +37,7 @@ Create an acoustic disruptor icon: speaker with sound waves or mute symbol. Mili
 ```
 
 ## Usage Context
+
 - Acoustic disruption systems
 - Audio interference
 - Sound-based countermeasures

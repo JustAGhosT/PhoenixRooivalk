@@ -1,25 +1,31 @@
 # AI Deception Effector Icon
 
 ## Description
-AI-powered deception system for advanced electronic warfare and target misdirection.
+
+AI-powered deception system for advanced electronic warfare and target
+misdirection.
 
 ## Visual Elements
+
 - Shimmering effect or neural network pattern
 - Brain/neural network visualization
 - Advanced AI representation
 
 ## Technical Specifications
+
 - **Size**: 24x24px viewBox
 - **Style**: Military, outline-based
 - **Stroke Width**: 2px
 - **Color**: `#8b5cf6` (ECM purple)
 
 ## AI Generation Prompt
+
 ```
 Create an AI deception icon: shimmering effect or neural network pattern. Military style, outline-based, 24x24px. Color #8b5cf6. Advanced electronic warfare, AI-powered aesthetic.
 ```
 
 ## SVG Structure
+
 ```svg
 <svg viewBox="0 0 24 24" fill="none" stroke="#8b5cf6" stroke-width="2">
   <!-- Neural network pattern -->
@@ -38,6 +44,7 @@ Create an AI deception icon: shimmering effect or neural network pattern. Milita
 ```
 
 ## Usage Context
+
 - AI deception systems
 - Advanced electronic warfare
 - Neural network-based countermeasures

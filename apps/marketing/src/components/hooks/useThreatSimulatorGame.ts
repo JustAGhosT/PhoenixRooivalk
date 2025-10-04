@@ -71,36 +71,48 @@ export const useThreatSimulatorGame = ({
   const [strategicEngine] = useState(() => new StrategicDeploymentEngine());
   const [responseEngine] = useState(() => new ResponseProtocolEngine());
   const [formationManager] = useState(() => new FormationManager());
-  
+
   // New P0 systems
   const [collisionSystem] = useState(() => new CollisionSystem());
-  const [pathInterpolators] = useState<Map<string, DronePathInterpolator>>(() => new Map());
-  
+  const [pathInterpolators] = useState<Map<string, DronePathInterpolator>>(
+    () => new Map(),
+  );
+
   // Wave manager
-  const [waveManager] = useState(() => new WaveManager(
-    (spawnEvent) => {
-      const threat = spawnThreat(
-        spawnEvent.threatType as "drone" | "swarm" | "stealth" | "kamikaze" | "decoy" | "shielded" | "boss",
-        spawnEvent.x,
-        spawnEvent.y
-      );
-      threat.id = spawnEvent.id;
-      addThreat(threat);
-    },
-    (waveNumber) => {
-      console.log(`Wave ${waveNumber} completed!`);
-      // Award resources for wave completion
-      resourceManager.awardPerformanceRewards(
-        gameState.score,
-        gameState.neutralized,
-        true // wave completed
-      );
-    },
-    () => {
-      console.log('Game completed!');
-    }
-  ));
-  
+  const [waveManager] = useState(
+    () =>
+      new WaveManager(
+        (spawnEvent) => {
+          const threat = spawnThreat(
+            spawnEvent.threatType as
+              | "drone"
+              | "swarm"
+              | "stealth"
+              | "kamikaze"
+              | "decoy"
+              | "shielded"
+              | "boss",
+            spawnEvent.x,
+            spawnEvent.y,
+          );
+          threat.id = spawnEvent.id;
+          addThreat(threat);
+        },
+        (waveNumber) => {
+          console.log(`Wave ${waveNumber} completed!`);
+          // Award resources for wave completion
+          resourceManager.awardPerformanceRewards(
+            gameState.score,
+            gameState.neutralized,
+            true, // wave completed
+          );
+        },
+        () => {
+          console.log("Game completed!");
+        },
+      ),
+  );
+
   // Resource manager
   const [resourceManager] = useState(() => createResourceManager());
 
@@ -161,10 +173,15 @@ export const useThreatSimulatorGame = ({
           speed: threat.speed || 2,
           maxSpeed: 5,
           acceleration: 0.1,
-          smoothing: 0.8
+          smoothing: 0.8,
         });
         pathInterpolators.set(threat.id, interpolator);
-        interpolator.setTarget(centerPoint.x, centerPoint.y, threat.x, threat.y);
+        interpolator.setTarget(
+          centerPoint.x,
+          centerPoint.y,
+          threat.x,
+          threat.y,
+        );
       }
 
       // Update position using smooth interpolation
@@ -177,15 +194,15 @@ export const useThreatSimulatorGame = ({
         threat.id,
         finalX,
         finalY,
-        'circle',
+        "circle",
         {
           radius: 8,
-          mass: threat.type === 'boss' ? 5 : 1,
+          mass: threat.type === "boss" ? 5 : 1,
           restitution: 0.3,
-          velocity: movementResult.velocity
-        }
+          velocity: movementResult.velocity,
+        },
       );
-      
+
       collisionSystem.addObject(physicsObj);
 
       // Special movement patterns
@@ -220,7 +237,7 @@ export const useThreatSimulatorGame = ({
     });
 
     updateThreats(movedThreats);
-    
+
     // Check for collisions
     const collisions = collisionSystem.checkCollisions();
     collisions.forEach(({ obj1, obj2, result }) => {
@@ -230,29 +247,37 @@ export const useThreatSimulatorGame = ({
           result.collisionPoint.x,
           result.collisionPoint.y,
           result.impactForce || 10,
-          Math.floor((result.impactForce || 10) / 5)
+          Math.floor((result.impactForce || 10) / 5),
         );
-        
+
         // Remove colliding threats
         removeThreat(obj1.id);
         removeThreat(obj2.id);
-        
+
         // Add explosion effect
         particleSystem.createExplosion(
           result.collisionPoint.x,
           result.collisionPoint.y,
-          1.0
+          1.0,
         );
-        
+
         // Award points for collision
         updateScore(25);
       }
     });
-    
+
     // Update debris
     collisionSystem.updateDebris(16); // 16ms delta time approximation
-    
-  }, [gameState.threats, gameState.level, updateThreats, gameRef, collisionSystem, removeThreat, updateScore, particleSystem]);
+  }, [
+    gameState.threats,
+    gameState.level,
+    updateThreats,
+    gameRef,
+    collisionSystem,
+    removeThreat,
+    updateScore,
+    particleSystem,
+  ]);
 
   // Enhanced neutralization with effects
   const neutralizeThreatWithEffects = useCallback(
@@ -375,9 +400,10 @@ export const useThreatSimulatorGame = ({
 
       // Update wave manager
       waveManager.update();
-      
+
       // Update research progress (slow accumulation)
-      if (Math.random() < 0.001) { // 0.1% chance per frame
+      if (Math.random() < 0.001) {
+        // 0.1% chance per frame
         resourceManager.addResearchProgress(1);
       }
 
@@ -487,9 +513,12 @@ export const useThreatSimulatorGame = ({
   }, [gameRef]);
 
   // Wave management functions
-  const startWave = useCallback((waveNumber?: number) => {
-    waveManager.startWave(waveNumber);
-  }, [waveManager]);
+  const startWave = useCallback(
+    (waveNumber?: number) => {
+      waveManager.startWave(waveNumber);
+    },
+    [waveManager],
+  );
 
   const getWaveProgress = useCallback(() => {
     return waveManager.getWaveProgress();

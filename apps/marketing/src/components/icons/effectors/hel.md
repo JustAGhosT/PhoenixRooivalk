@@ -1,25 +1,31 @@
 # HEL (High-Energy Laser) Icon
 
 ## Description
-High-Energy Laser weapon system for thermal defeat and precise line-of-sight hard-kill.
+
+High-Energy Laser weapon system for thermal defeat and precise line-of-sight
+hard-kill.
 
 ## Visual Elements
+
 - Concentrated laser beam with thermal effect
 - High-energy weapon representation
 - Precision targeting elements
 
 ## Technical Specifications
+
 - **Size**: 24x24px viewBox
 - **Style**: Military, outline-based
 - **Stroke Width**: 2px
 - **Color**: `#2ED573` (hard-kill green)
 
 ## AI Generation Prompt
+
 ```
 Create a high-energy laser weapon icon: concentrated laser beam with thermal effect visualization. Military style, outline-based, 24x24px. Color #2ED573. High-energy, thermal defeat, precise targeting aesthetic.
 ```
 
 ## SVG Structure
+
 ```svg
 <svg viewBox="0 0 24 24" fill="none" stroke="#2ED573" stroke-width="2">
   <!-- High-energy laser beam -->
@@ -36,6 +42,7 @@ Create a high-energy laser weapon icon: concentrated laser beam with thermal eff
 ```
 
 ## Usage Context
+
 - High-energy laser systems
 - Thermal defeat weapons
 - Precision hard-kill systems

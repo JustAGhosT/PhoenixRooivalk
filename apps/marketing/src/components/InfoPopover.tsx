@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect } from "react";
 
 interface InfoPopoverProps {
   title: string;
@@ -13,7 +13,7 @@ export const InfoPopover: React.FC<InfoPopoverProps> = ({
   brands,
   sources,
   children,
-  className = '',
+  className = "",
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [position, setPosition] = useState({ x: 0, y: 0 });
@@ -24,10 +24,10 @@ export const InfoPopover: React.FC<InfoPopoverProps> = ({
     if (triggerRef.current && popoverRef.current) {
       const rect = triggerRef.current.getBoundingClientRect();
       const popoverRect = popoverRef.current.getBoundingClientRect();
-      
+
       let x = rect.left + rect.width / 2 - popoverRect.width / 2;
       let y = rect.bottom + 8;
-      
+
       // Adjust if popover goes off screen
       if (x < 8) x = 8;
       if (x + popoverRect.width > window.innerWidth - 8) {
@@ -36,7 +36,7 @@ export const InfoPopover: React.FC<InfoPopoverProps> = ({
       if (y + popoverRect.height > window.innerHeight - 8) {
         y = rect.top - popoverRect.height - 8;
       }
-      
+
       setPosition({ x, y });
     }
   };
@@ -46,13 +46,13 @@ export const InfoPopover: React.FC<InfoPopoverProps> = ({
       updatePosition();
       const handleResize = () => updatePosition();
       const handleScroll = () => updatePosition();
-      
-      window.addEventListener('resize', handleResize);
-      window.addEventListener('scroll', handleScroll, true);
-      
+
+      window.addEventListener("resize", handleResize);
+      window.addEventListener("scroll", handleScroll, true);
+
       return () => {
-        window.removeEventListener('resize', handleResize);
-        window.removeEventListener('scroll', handleScroll, true);
+        window.removeEventListener("resize", handleResize);
+        window.removeEventListener("scroll", handleScroll, true);
       };
     }
   }, [isOpen]);
@@ -66,23 +66,23 @@ export const InfoPopover: React.FC<InfoPopoverProps> = ({
   };
 
   return (
-    <div 
+    <div
       className={`info-popover-trigger ${className}`}
       ref={triggerRef}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       role="button"
       tabIndex={0}
-      aria-describedby={isOpen ? 'popover-content' : undefined}
+      aria-describedby={isOpen ? "popover-content" : undefined}
     >
       {children}
-      
+
       {isOpen && (
         <div
           ref={popoverRef}
           className="info-popover"
           style={{
-            position: 'fixed',
+            position: "fixed",
             left: position.x,
             top: position.y,
             zIndex: 1000,
@@ -93,7 +93,7 @@ export const InfoPopover: React.FC<InfoPopoverProps> = ({
         >
           <div className="info-popover-header">
             <h4 className="info-popover-title">{title}</h4>
-            <button 
+            <button
               className="info-popover-close"
               onClick={() => setIsOpen(false)}
               aria-label="Close popover"
@@ -101,11 +101,13 @@ export const InfoPopover: React.FC<InfoPopoverProps> = ({
               ×
             </button>
           </div>
-          
+
           <div className="info-popover-content">
             {brands.length > 0 && (
               <div className="info-popover-section">
-                <h5 className="info-popover-section-title">Real-World Analogues:</h5>
+                <h5 className="info-popover-section-title">
+                  Real-World Analogues:
+                </h5>
                 <ul className="info-popover-list">
                   {brands.map((brand, index) => (
                     <li key={index} className="info-popover-item">
@@ -115,16 +117,16 @@ export const InfoPopover: React.FC<InfoPopoverProps> = ({
                 </ul>
               </div>
             )}
-            
+
             {sources.length > 0 && (
               <div className="info-popover-section">
                 <h5 className="info-popover-section-title">Sources:</h5>
                 <ul className="info-popover-list">
                   {sources.map((source, index) => (
                     <li key={index} className="info-popover-item">
-                      <a 
-                        href={source} 
-                        target="_blank" 
+                      <a
+                        href={source}
+                        target="_blank"
                         rel="noopener noreferrer"
                         className="info-popover-link"
                         onClick={(e) => e.stopPropagation()}
@@ -137,7 +139,7 @@ export const InfoPopover: React.FC<InfoPopoverProps> = ({
               </div>
             )}
           </div>
-          
+
           <div className="info-popover-arrow"></div>
         </div>
       )}

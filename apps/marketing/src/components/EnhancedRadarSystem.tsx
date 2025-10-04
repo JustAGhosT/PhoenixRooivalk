@@ -1,7 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
-export type ThreatType = 'hostile' | 'unknown' | 'friendly';
-export type DroneRole = 'guard' | 'recon' | 'ecm' | 'support' | 'deception' | 'capture' | 'sensor' | 'logistics' | 'directed';
+export type ThreatType = "hostile" | "unknown" | "friendly";
+export type DroneRole =
+  | "guard"
+  | "recon"
+  | "ecm"
+  | "support"
+  | "deception"
+  | "capture"
+  | "sensor"
+  | "logistics"
+  | "directed";
 
 export interface RadarTarget {
   id: string;
@@ -19,7 +28,7 @@ export interface FriendlyDeployment {
   id: string;
   role: DroneRole;
   position: { x: number; y: number };
-  status: 'active' | 'idle' | 'returning' | 'disabled';
+  status: "active" | "idle" | "returning" | "disabled";
   energy: number;
   maxEnergy: number;
 }
@@ -37,59 +46,75 @@ export const EnhancedRadarSystem: React.FC<EnhancedRadarSystemProps> = ({
   friendlyDeployments,
   range,
   centerPosition,
-  className = ''
+  className = "",
 }) => {
   const [selectedTarget, setSelectedTarget] = useState<string | null>(null);
   const [showLegend, setShowLegend] = useState(true);
 
   const getThreatColor = (type: ThreatType): string => {
     switch (type) {
-      case 'hostile': return '#ef4444'; // Red
-      case 'unknown': return '#f59e0b'; // Amber
-      case 'friendly': return '#10b981'; // Green
-      default: return '#6b7280'; // Gray
+      case "hostile":
+        return "#ef4444"; // Red
+      case "unknown":
+        return "#f59e0b"; // Amber
+      case "friendly":
+        return "#10b981"; // Green
+      default:
+        return "#6b7280"; // Gray
     }
   };
 
   const getThreatShape = (type: ThreatType): string => {
     switch (type) {
-      case 'hostile': return '●'; // Filled circle
-      case 'unknown': return '○'; // Ring
-      case 'friendly': return '▲'; // Triangle
-      default: return '?';
+      case "hostile":
+        return "●"; // Filled circle
+      case "unknown":
+        return "○"; // Ring
+      case "friendly":
+        return "▲"; // Triangle
+      default:
+        return "?";
     }
   };
 
   const getRoleIcon = (role: DroneRole): string => {
     const roleIcons = {
-      'guard': '🛡',
-      'recon': '👁',
-      'ecm': '📡',
-      'support': '🔧',
-      'deception': '🎭',
-      'capture': '🕸',
-      'sensor': '📊',
-      'logistics': '📦',
-      'directed': '⚡'
+      guard: "🛡",
+      recon: "👁",
+      ecm: "📡",
+      support: "🔧",
+      deception: "🎭",
+      capture: "🕸",
+      sensor: "📊",
+      logistics: "📦",
+      directed: "⚡",
     };
-    return roleIcons[role] || '?';
+    return roleIcons[role] || "?";
   };
 
   const getStatusColor = (status: string): string => {
     switch (status) {
-      case 'active': return '#10b981';
-      case 'idle': return '#6b7280';
-      case 'returning': return '#f59e0b';
-      case 'disabled': return '#ef4444';
-      default: return '#6b7280';
+      case "active":
+        return "#10b981";
+      case "idle":
+        return "#6b7280";
+      case "returning":
+        return "#f59e0b";
+      case "disabled":
+        return "#ef4444";
+      default:
+        return "#6b7280";
     }
   };
 
-  const scalePosition = (position: { x: number; y: number }, radarSize: number) => {
+  const scalePosition = (
+    position: { x: number; y: number },
+    radarSize: number,
+  ) => {
     const scale = radarSize / (range * 2); // Convert meters to pixels
     return {
-      x: centerPosition.x + (position.x * scale),
-      y: centerPosition.y - (position.y * scale) // Flip Y axis for radar display
+      x: centerPosition.x + position.x * scale,
+      y: centerPosition.y - position.y * scale, // Flip Y axis for radar display
     };
   };
 
@@ -99,32 +124,43 @@ export const EnhancedRadarSystem: React.FC<EnhancedRadarSystemProps> = ({
     <div className={`enhanced-radar-system ${className}`}>
       {/* Radar Display */}
       <div className="radar-container">
-        <svg 
-          width={radarSize} 
-          height={radarSize} 
+        <svg
+          width={radarSize}
+          height={radarSize}
           className="radar-display"
           viewBox={`0 0 ${radarSize} ${radarSize}`}
         >
           {/* Radar Grid */}
           <defs>
-            <pattern id="radarGrid" patternUnits="userSpaceOnUse" width="40" height="40">
-              <path d="M 40 0 L 0 0 0 40" fill="none" stroke="var(--sim-border)" strokeWidth="0.5" opacity="0.3"/>
+            <pattern
+              id="radarGrid"
+              patternUnits="userSpaceOnUse"
+              width="40"
+              height="40"
+            >
+              <path
+                d="M 40 0 L 0 0 0 40"
+                fill="none"
+                stroke="var(--sim-border)"
+                strokeWidth="0.5"
+                opacity="0.3"
+              />
             </pattern>
           </defs>
-          
+
           {/* Radar Background */}
-          <circle 
-            cx={centerPosition.x} 
-            cy={centerPosition.y} 
-            r={radarSize / 2 - 20} 
-            fill="url(#radarGrid)" 
-            stroke="var(--sim-border)" 
+          <circle
+            cx={centerPosition.x}
+            cy={centerPosition.y}
+            r={radarSize / 2 - 20}
+            fill="url(#radarGrid)"
+            stroke="var(--sim-border)"
             strokeWidth="2"
             className="radar-background"
           />
-          
+
           {/* Range Rings */}
-          {[0.25, 0.5, 0.75, 1.0].map(ring => (
+          {[0.25, 0.5, 0.75, 1.0].map((ring) => (
             <circle
               key={ring}
               cx={centerPosition.x}
@@ -139,20 +175,20 @@ export const EnhancedRadarSystem: React.FC<EnhancedRadarSystemProps> = ({
           ))}
 
           {/* Center Crosshairs */}
-          <line 
-            x1={centerPosition.x - 10} 
-            y1={centerPosition.y} 
-            x2={centerPosition.x + 10} 
-            y2={centerPosition.y} 
-            stroke="var(--sim-accent)" 
+          <line
+            x1={centerPosition.x - 10}
+            y1={centerPosition.y}
+            x2={centerPosition.x + 10}
+            y2={centerPosition.y}
+            stroke="var(--sim-accent)"
             strokeWidth="2"
           />
-          <line 
-            x1={centerPosition.x} 
-            y1={centerPosition.y - 10} 
-            x2={centerPosition.x} 
-            y2={centerPosition.y + 10} 
-            stroke="var(--sim-accent)" 
+          <line
+            x1={centerPosition.x}
+            y1={centerPosition.y - 10}
+            x2={centerPosition.x}
+            y2={centerPosition.y + 10}
+            stroke="var(--sim-accent)"
             strokeWidth="2"
           />
 
@@ -179,10 +215,10 @@ export const EnhancedRadarSystem: React.FC<EnhancedRadarSystemProps> = ({
           </text>
 
           {/* Threat Targets */}
-          {targets.map(target => {
+          {targets.map((target) => {
             const scaledPos = scalePosition(target.position, radarSize);
             const isSelected = selectedTarget === target.id;
-            
+
             return (
               <g key={target.id} className="radar-target">
                 <circle
@@ -192,7 +228,7 @@ export const EnhancedRadarSystem: React.FC<EnhancedRadarSystemProps> = ({
                   fill={getThreatColor(target.type)}
                   stroke="white"
                   strokeWidth="1"
-                  className={`target-marker ${isSelected ? 'selected' : ''}`}
+                  className={`target-marker ${isSelected ? "selected" : ""}`}
                   onClick={() => setSelectedTarget(target.id)}
                 />
                 <text
@@ -206,7 +242,7 @@ export const EnhancedRadarSystem: React.FC<EnhancedRadarSystemProps> = ({
                 >
                   {getThreatShape(target.type)}
                 </text>
-                
+
                 {/* Target Info */}
                 {isSelected && (
                   <g className="target-info">
@@ -220,16 +256,36 @@ export const EnhancedRadarSystem: React.FC<EnhancedRadarSystemProps> = ({
                       strokeWidth="1"
                       rx="4"
                     />
-                    <text x={scaledPos.x + 15} y={scaledPos.y - 8} fontSize="8" fill="var(--sim-text)">
+                    <text
+                      x={scaledPos.x + 15}
+                      y={scaledPos.y - 8}
+                      fontSize="8"
+                      fill="var(--sim-text)"
+                    >
                       ID: {target.id}
                     </text>
-                    <text x={scaledPos.x + 15} y={scaledPos.y + 2} fontSize="8" fill="var(--sim-text)">
+                    <text
+                      x={scaledPos.x + 15}
+                      y={scaledPos.y + 2}
+                      fontSize="8"
+                      fill="var(--sim-text)"
+                    >
                       Range: {Math.round(target.distance)}m
                     </text>
-                    <text x={scaledPos.x + 15} y={scaledPos.y + 12} fontSize="8" fill="var(--sim-text)">
+                    <text
+                      x={scaledPos.x + 15}
+                      y={scaledPos.y + 12}
+                      fontSize="8"
+                      fill="var(--sim-text)"
+                    >
                       Speed: {Math.round(target.speed)}m/s
                     </text>
-                    <text x={scaledPos.x + 15} y={scaledPos.y + 22} fontSize="8" fill="var(--sim-text)}">
+                    <text
+                      x={scaledPos.x + 15}
+                      y={scaledPos.y + 22}
+                      fontSize="8"
+                      fill="var(--sim-text)}"
+                    >
                       Alt: {Math.round(target.altitude)}m
                     </text>
                   </g>
@@ -239,9 +295,9 @@ export const EnhancedRadarSystem: React.FC<EnhancedRadarSystemProps> = ({
           })}
 
           {/* Friendly Deployments */}
-          {friendlyDeployments.map(deployment => {
+          {friendlyDeployments.map((deployment) => {
             const scaledPos = scalePosition(deployment.position, radarSize);
-            
+
             return (
               <g key={deployment.id} className="friendly-deployment">
                 <polygon
@@ -262,7 +318,7 @@ export const EnhancedRadarSystem: React.FC<EnhancedRadarSystemProps> = ({
                 >
                   {getRoleIcon(deployment.role)}
                 </text>
-                
+
                 {/* Energy Status Ring */}
                 <circle
                   cx={scaledPos.x}
@@ -284,8 +340,14 @@ export const EnhancedRadarSystem: React.FC<EnhancedRadarSystemProps> = ({
             <line
               x1={centerPosition.x}
               y1={centerPosition.y}
-              x2={centerPosition.x + Math.cos(Date.now() * 0.002) * (radarSize / 2 - 20)}
-              y2={centerPosition.y + Math.sin(Date.now() * 0.002) * (radarSize / 2 - 20)}
+              x2={
+                centerPosition.x +
+                Math.cos(Date.now() * 0.002) * (radarSize / 2 - 20)
+              }
+              y2={
+                centerPosition.y +
+                Math.sin(Date.now() * 0.002) * (radarSize / 2 - 20)
+              }
               stroke="var(--sim-accent)"
               strokeWidth="2"
               opacity="0.8"
@@ -299,7 +361,7 @@ export const EnhancedRadarSystem: React.FC<EnhancedRadarSystemProps> = ({
       {showLegend && (
         <div className="radar-legend">
           <div className="legend-title">RADAR LEGEND</div>
-          
+
           <div className="legend-section">
             <div className="legend-subtitle">Threat Types</div>
             <div className="legend-item">
@@ -335,13 +397,17 @@ export const EnhancedRadarSystem: React.FC<EnhancedRadarSystemProps> = ({
           <div className="legend-section">
             <div className="legend-subtitle">Range Rings</div>
             <div className="legend-item">
-              <span className="legend-range">0-{Math.round(range * 0.25)}m</span>
+              <span className="legend-range">
+                0-{Math.round(range * 0.25)}m
+              </span>
             </div>
             <div className="legend-item">
               <span className="legend-range">0-{Math.round(range * 0.5)}m</span>
             </div>
             <div className="legend-item">
-              <span className="legend-range">0-{Math.round(range * 0.75)}m</span>
+              <span className="legend-range">
+                0-{Math.round(range * 0.75)}m
+              </span>
             </div>
             <div className="legend-item">
               <span className="legend-range">0-{range}m</span>
@@ -352,11 +418,11 @@ export const EnhancedRadarSystem: React.FC<EnhancedRadarSystemProps> = ({
 
       {/* Controls */}
       <div className="radar-controls">
-        <button 
+        <button
           className="radar-control-btn"
           onClick={() => setShowLegend(!showLegend)}
         >
-          {showLegend ? 'Hide' : 'Show'} Legend
+          {showLegend ? "Hide" : "Show"} Legend
         </button>
       </div>
     </div>

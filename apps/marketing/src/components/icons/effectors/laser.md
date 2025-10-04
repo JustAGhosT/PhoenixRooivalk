@@ -1,25 +1,30 @@
 # Laser (HEL) Effector Icon
 
 ## Description
+
 High-energy laser weapon for precise directed energy engagement.
 
 ## Visual Elements
+
 - Concentrated beam with crosshair
 - Direct energy visualization
 - Precision targeting elements
 
 ## Technical Specifications
+
 - **Size**: 24x24px viewBox
 - **Style**: Military, outline-based
 - **Stroke Width**: 2px
 - **Color**: `#2ED573` (hard-kill green)
 
 ## AI Generation Prompt
+
 ```
 Create a laser weapon icon: diagonal energy beam with target crosshair. Military style, outline-based, 24x24px. Color #2ED573. Technical, precise, direct energy weapon aesthetic.
 ```
 
 ## SVG Structure
+
 ```svg
 <svg viewBox="0 0 24 24" fill="none" stroke="#2ED573" stroke-width="2">
   <!-- Laser beam with crosshair -->
@@ -32,6 +37,7 @@ Create a laser weapon icon: diagonal energy beam with target crosshair. Military
 ```
 
 ## Usage Context
+
 - High-energy laser systems
 - Directed energy weapons
 - Precision targeting

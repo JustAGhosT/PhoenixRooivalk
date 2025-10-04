@@ -1,14 +1,18 @@
 # HPM Pod UAV Icon
 
 ## Description
-Mobile HPM platform for portable electronic attack and high power microwave operations.
+
+Mobile HPM platform for portable electronic attack and high power microwave
+operations.
 
 ## Visual Elements
+
 - Triangle with wave burst pattern
 - Mobile electronic attack representation
 - Portable platform visualization
 
 ## Technical Specifications
+
 - **Size**: 24x24px viewBox
 - **Style**: Military, outline-based
 - **Stroke Width**: 2px
@@ -16,11 +20,13 @@ Mobile HPM platform for portable electronic attack and high power microwave oper
 - **Base Shape**: Triangle (70% of viewBox)
 
 ## AI Generation Prompt
+
 ```
 Create an HPM pod drone icon: triangle with wave burst pattern inside. Military style, outline-based, 24x24px. Color #FFA502. Mobile electronic attack, high power microwave, portable platform aesthetic.
 ```
 
 ## SVG Structure
+
 ```svg
 <svg viewBox="0 0 24 24" fill="none" stroke="#FFA502" stroke-width="2">
   <!-- Triangle base -->
@@ -34,6 +40,7 @@ Create an HPM pod drone icon: triangle with wave burst pattern inside. Military 
 ```
 
 ## Usage Context
+
 - HPM pod UAV systems
 - Mobile electronic attack platforms
 - Portable microwave operations

@@ -89,9 +89,9 @@ export const ThreatSimulator: React.FC<ThreatSimulatorProps> = ({
     removeThreat(threatId);
   };
 
-  const { 
-    particleSystem, 
-    generateSwarm, 
+  const {
+    particleSystem,
+    generateSwarm,
     spawnMultipleDrones,
     spawnNewThreat,
     moveAllThreats,
@@ -101,28 +101,28 @@ export const ThreatSimulator: React.FC<ThreatSimulatorProps> = ({
     isWaveRunning,
     resourceManager,
   } = useThreatSimulatorGame({
-      gameRef,
-      gameState,
-      updateThreats,
-      addThreat,
-      removeThreat,
-      updateScore,
-      neutralizeThreat: neutralizeAndLogThreat,
-      fireWeapon,
-      consumeEnergy,
-      consumeCooling,
-      checkAchievements,
-      updateGameTime,
-      updateWeaponCooldowns,
-      updatePowerUps,
-      updateResources,
-      updateMothershipResources,
-      updateDronePositions,
-      setFrameRate,
-      addTimeout,
-      clearTimeouts,
-      processFadeOut,
-    });
+    gameRef,
+    gameState,
+    updateThreats,
+    addThreat,
+    removeThreat,
+    updateScore,
+    neutralizeThreat: neutralizeAndLogThreat,
+    fireWeapon,
+    consumeEnergy,
+    consumeCooling,
+    checkAchievements,
+    updateGameTime,
+    updateWeaponCooldowns,
+    updatePowerUps,
+    updateResources,
+    updateMothershipResources,
+    updateDronePositions,
+    setFrameRate,
+    addTimeout,
+    clearTimeouts,
+    processFadeOut,
+  });
 
   const {
     handleMouseDown,

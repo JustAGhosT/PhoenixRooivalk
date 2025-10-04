@@ -1,14 +1,17 @@
 # LiDAR Mapper Icon
 
 ## Description
+
 3D mapping drone for scene reconstruction and laser scanning operations.
 
 ## Visual Elements
+
 - Triangle with scanning laser lines
 - 3D mapping representation
 - Laser scanning visualization
 
 ## Technical Specifications
+
 - **Size**: 24x24px viewBox
 - **Style**: Military, outline-based
 - **Stroke Width**: 2px
@@ -16,11 +19,13 @@
 - **Base Shape**: Triangle (70% of viewBox)
 
 ## AI Generation Prompt
+
 ```
 Create a LiDAR mapper drone icon: triangle with scanning laser lines pattern. Military style, outline-based, 24x24px. Color #3b82f6. 3D mapping, laser scanning, scene reconstruction aesthetic.
 ```
 
 ## SVG Structure
+
 ```svg
 <svg viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2">
   <!-- Triangle base -->
@@ -35,6 +40,7 @@ Create a LiDAR mapper drone icon: triangle with scanning laser lines pattern. Mi
 ```
 
 ## Usage Context
+
 - LiDAR mapper systems
 - 3D mapping platforms
 - Laser scanning operations

@@ -1,14 +1,17 @@
 # Swarm Coordinator Drone Icon
 
 ## Description
+
 Swarm coordination drone for managing multiple UAV operations.
 
 ## Visual Elements
+
 - Triangle with network nodes
 - Swarm management representation
 - Network coordination symbol
 
 ## Technical Specifications
+
 - **Size**: 24x24px viewBox
 - **Style**: Military, outline-based
 - **Stroke Width**: 2px
@@ -16,11 +19,13 @@ Swarm coordination drone for managing multiple UAV operations.
 - **Base Shape**: Triangle (70% of viewBox)
 
 ## AI Generation Prompt
+
 ```
 Create a swarm coordinator drone icon: triangle with network nodes pattern. Military style, outline-based, 24x24px. Color #f59e0b. Swarm management, coordination, network control aesthetic.
 ```
 
 ## SVG Structure
+
 ```svg
 <svg viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2">
   <!-- Triangle base -->
@@ -36,6 +41,7 @@ Create a swarm coordinator drone icon: triangle with network nodes pattern. Mili
 ```
 
 ## Usage Context
+
 - Swarm coordination systems
 - Multi-UAV management
 - Network control platforms

@@ -1,14 +1,17 @@
 # Shield Wall Icon
 
 ## Description
+
 Directional shield barrier for area protection and defensive wall operations.
 
 ## Visual Elements
+
 - Wall section with shield overlay
 - Directional protection representation
 - Barrier system visualization
 
 ## Technical Specifications
+
 - **Size**: 24x24px viewBox
 - **Style**: Military, outline-based
 - **Stroke Width**: 2px
@@ -16,11 +19,13 @@ Directional shield barrier for area protection and defensive wall operations.
 - **Base Shape**: Wall structure (not triangle-based)
 
 ## AI Generation Prompt
+
 ```
 Create a shield wall icon: wall section with shield overlay pattern. Military style, outline-based, 24x24px. Color #10b981. Directional protection, barrier, defensive wall aesthetic.
 ```
 
 ## SVG Structure
+
 ```svg
 <svg viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2">
   <!-- Wall structure -->
@@ -34,6 +39,7 @@ Create a shield wall icon: wall section with shield overlay pattern. Military st
 ```
 
 ## Usage Context
+
 - Shield wall systems
 - Directional protection platforms
 - Defensive barrier operations

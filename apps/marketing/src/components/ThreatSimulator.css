@@ -360,12 +360,12 @@
   .particle {
     animation: none;
   }
-  
+
   /* Disable sweep animation for reduced motion */
   .sweep-line {
     animation: none;
   }
-  
+
   /* Disable blinking animations */
   .blink {
     animation: none;
@@ -377,7 +377,7 @@
   .sweep-line {
     animation: sweep 2s linear infinite;
   }
-  
+
   @keyframes sweep {
     from {
       transform: rotate(0deg);
@@ -621,7 +621,7 @@
 
 .progress-fill {
   height: 100%;
-  background: linear-gradient(90deg, var(--sim-accent), #2ED573);
+  background: linear-gradient(90deg, var(--sim-accent), #2ed573);
   transition: width 0.3s ease;
 }
 
@@ -754,7 +754,7 @@
 }
 
 .unlock-button:hover:not(:disabled) {
-  background: #2ED573;
+  background: #2ed573;
 }
 
 .unlock-button:disabled {
@@ -767,7 +767,7 @@
   padding: 16px;
   background: var(--sim-panel);
   border-radius: 8px;
-  border-left: 4px solid #70A1FF;
+  border-left: 4px solid #70a1ff;
 }
 
 .research-help h4 {
@@ -935,7 +935,7 @@
 }
 
 .purchase-button:hover:not(:disabled) {
-  background: #2ED573;
+  background: #2ed573;
 }
 
 .purchase-button:disabled {
@@ -985,7 +985,7 @@
   padding: 16px;
   background: var(--sim-panel);
   border-radius: 8px;
-  border-left: 4px solid #FFA502;
+  border-left: 4px solid #ffa502;
 }
 
 .store-help h4 {
@@ -1153,12 +1153,12 @@
 
 .filter-chip:hover {
   border-color: var(--chip-color, var(--sim-accent));
-  background: var(--chip-color, var(--sim-accent))10;
+  background: var(--chip-color, var(--sim-accent)) 10;
 }
 
 .filter-chip--selected {
   border-color: var(--chip-color, var(--sim-accent));
-  background: var(--chip-color, var(--sim-accent))20;
+  background: var(--chip-color, var(--sim-accent)) 20;
   color: var(--chip-color, var(--sim-accent));
 }
 
@@ -1337,8 +1337,13 @@
 }
 
 @keyframes pulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.3; }
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.3;
+  }
 }
 
 .legal-badge-details {
@@ -1410,17 +1415,17 @@
 }
 
 .risk-level--low {
-  background: var(--sim-success)20;
+  background: var(--sim-success) 20;
   color: var(--sim-success);
 }
 
 .risk-level--medium {
-  background: var(--sim-warning)20;
+  background: var(--sim-warning) 20;
   color: var(--sim-warning);
 }
 
 .risk-level--high {
-  background: var(--sim-danger)20;
+  background: var(--sim-danger) 20;
   color: var(--sim-danger);
 }
 
@@ -1452,8 +1457,8 @@
 
 .legal-badge-note {
   padding: 8px;
-  background: var(--sim-warning)10;
-  border: 1px solid var(--sim-warning)30;
+  background: var(--sim-warning) 10;
+  border: 1px solid var(--sim-warning) 30;
   border-radius: 4px;
   font-size: 12px;
   color: var(--sim-text-muted);
@@ -1565,7 +1570,7 @@
   font-size: 10px;
   font-weight: 600;
   border: 1px solid var(--risk-color, var(--sim-border));
-  background: var(--risk-color, var(--sim-border))10;
+  background: var(--risk-color, var(--sim-border)) 10;
   color: var(--risk-color, var(--sim-text));
 }
 
@@ -1628,7 +1633,9 @@
 .energy-budget-fill {
   height: 100%;
   border-radius: 3px;
-  transition: width 0.3s ease, background-color 0.3s ease;
+  transition:
+    width 0.3s ease,
+    background-color 0.3s ease;
 }
 
 .energy-budget-details {
@@ -1656,8 +1663,8 @@
 .energy-budget-warning {
   margin-top: 8px;
   padding: 4px 6px;
-  background: var(--sim-warning)20;
-  border: 1px solid var(--sim-warning)40;
+  background: var(--sim-warning) 20;
+  border: 1px solid var(--sim-warning) 40;
   border-radius: 3px;
   font-size: 10px;
   color: var(--sim-warning);
@@ -1726,8 +1733,8 @@
 .research-option-warning {
   margin-top: 8px;
   padding: 6px 8px;
-  background: var(--sim-warning)20;
-  border: 1px solid var(--sim-warning)40;
+  background: var(--sim-warning) 20;
+  border: 1px solid var(--sim-warning) 40;
   border-radius: 4px;
   font-size: 11px;
   color: var(--sim-warning);
@@ -1743,7 +1750,7 @@
 }
 
 .weapon-item-container.selected {
-  background: var(--sim-accent)10;
+  background: var(--sim-accent) 10;
   border-radius: 6px;
   padding: 2px;
 }
@@ -1817,7 +1824,7 @@
 }
 
 .drone-item-container.selected {
-  background: var(--sim-accent)10;
+  background: var(--sim-accent) 10;
   border-radius: 6px;
   padding: 2px;
 }
@@ -2087,8 +2094,8 @@
 .energy-warning {
   margin-top: 12px;
   padding: 8px;
-  background: var(--sim-danger)20;
-  border: 1px solid var(--sim-danger)40;
+  background: var(--sim-danger) 20;
+  border: 1px solid var(--sim-danger) 40;
   border-radius: 4px;
   display: flex;
   gap: 8px;
@@ -2109,8 +2116,8 @@
 .energy-low-warning {
   margin-top: 12px;
   padding: 8px;
-  background: var(--sim-warning)20;
-  border: 1px solid var(--sim-warning)40;
+  background: var(--sim-warning) 20;
+  border: 1px solid var(--sim-warning) 40;
   border-radius: 4px;
   display: flex;
   gap: 8px;
@@ -2360,12 +2367,13 @@
 }
 
 @keyframes cooldown-pulse {
-  0%, 100% { 
-    stroke-opacity: 1; 
+  0%,
+  100% {
+    stroke-opacity: 1;
     filter: none;
   }
-  50% { 
-    stroke-opacity: 0.7; 
+  50% {
+    stroke-opacity: 0.7;
     filter: drop-shadow(0 0 3px var(--sim-accent));
   }
 }
@@ -2488,14 +2496,14 @@
 }
 
 .energy-indicator.sufficient {
-  background: var(--sim-success)20;
-  border: 1px solid var(--sim-success)40;
+  background: var(--sim-success) 20;
+  border: 1px solid var(--sim-success) 40;
   color: var(--sim-success);
 }
 
 .energy-indicator.insufficient {
-  background: var(--sim-danger)20;
-  border: 1px solid var(--sim-danger)40;
+  background: var(--sim-danger) 20;
+  border: 1px solid var(--sim-danger) 40;
   color: var(--sim-danger);
 }
 
@@ -2523,14 +2531,14 @@
 }
 
 .insufficient-energy-overlay {
-  background: var(--sim-danger)20;
-  border-color: var(--sim-danger)40;
+  background: var(--sim-danger) 20;
+  border-color: var(--sim-danger) 40;
   color: var(--sim-danger);
 }
 
 .ready-overlay {
-  background: var(--sim-success)20;
-  border-color: var(--sim-success)40;
+  background: var(--sim-success) 20;
+  border-color: var(--sim-success) 40;
   color: var(--sim-success);
 }
 
@@ -2648,7 +2656,7 @@
 }
 
 .roe-consideration::before {
-  content: '•';
+  content: "•";
   position: absolute;
   left: 0;
   color: var(--sim-accent);
@@ -2656,7 +2664,7 @@
 }
 
 .roe-mitigation::before {
-  content: '→';
+  content: "→";
   position: absolute;
   left: 0;
   color: var(--sim-success);
@@ -2671,8 +2679,8 @@
 
 .roe-legal-flag {
   padding: 2px 4px;
-  background: var(--sim-warning)20;
-  border: 1px solid var(--sim-warning)40;
+  background: var(--sim-warning) 20;
+  border: 1px solid var(--sim-warning) 40;
   border-radius: 3px;
   font-size: 7px;
   font-weight: 600;
@@ -2737,8 +2745,13 @@
 }
 
 @keyframes radar-pulse {
-  0%, 100% { opacity: 0.4; }
-  50% { opacity: 0.7; }
+  0%,
+  100% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 0.7;
+  }
 }
 
 .sentinel-core {
@@ -2746,10 +2759,11 @@
 }
 
 @keyframes core-pulse {
-  0%, 100% { 
+  0%,
+  100% {
     filter: drop-shadow(0 0 4px var(--sim-accent));
   }
-  50% { 
+  50% {
     filter: drop-shadow(0 0 8px var(--sim-accent));
   }
 }
@@ -2786,8 +2800,14 @@
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: scale(0.8); }
-  to { opacity: 1; transform: scale(1); }
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 .friendly-deployment {
@@ -2811,8 +2831,13 @@
 }
 
 @keyframes energy-pulse {
-  0%, 100% { opacity: 0.6; }
-  50% { opacity: 0.9; }
+  0%,
+  100% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 0.9;
+  }
 }
 
 .scan-sweep {
@@ -2825,8 +2850,12 @@
 }
 
 @keyframes sweep-rotate {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 /* Radar Legend Styles */
@@ -2957,7 +2986,11 @@
   height: 100vh;
   background: var(--sim-bg);
   color: var(--sim-text);
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family:
+    "Inter",
+    -apple-system,
+    BlinkMacSystemFont,
+    sans-serif;
 }
 
 .simulator-header {
@@ -2994,20 +3027,20 @@
 }
 
 .status-indicator.planning {
-  background: var(--sim-warning)20;
-  border: 1px solid var(--sim-warning)40;
+  background: var(--sim-warning) 20;
+  border: 1px solid var(--sim-warning) 40;
   color: var(--sim-warning);
 }
 
 .status-indicator.active {
-  background: var(--sim-success)20;
-  border: 1px solid var(--sim-success)40;
+  background: var(--sim-success) 20;
+  border: 1px solid var(--sim-success) 40;
   color: var(--sim-success);
 }
 
 .status-indicator.complete {
-  background: var(--sim-accent)20;
-  border: 1px solid var(--sim-accent)40;
+  background: var(--sim-accent) 20;
+  border: 1px solid var(--sim-accent) 40;
   color: var(--sim-accent);
 }
 
@@ -3126,7 +3159,7 @@
 
 .effector-card.selected {
   border-color: var(--sim-success);
-  background: var(--sim-success)10;
+  background: var(--sim-success) 10;
 }
 
 .effector-card.insufficient-energy {
@@ -3233,8 +3266,8 @@
 .legal-warning {
   margin-top: 6px;
   padding: 4px 8px;
-  background: var(--sim-warning)20;
-  border: 1px solid var(--sim-warning)40;
+  background: var(--sim-warning) 20;
+  border: 1px solid var(--sim-warning) 40;
   border-radius: 3px;
   font-size: 8px;
   color: var(--sim-warning);

@@ -1,14 +1,17 @@
 # Spotter UAV Icon
 
 ## Description
+
 Target designation drone for precision guidance and marking operations.
 
 ## Visual Elements
+
 - Triangle with crosshair symbol
 - Target designation representation
 - Precision guidance visualization
 
 ## Technical Specifications
+
 - **Size**: 24x24px viewBox
 - **Style**: Military, outline-based
 - **Stroke Width**: 2px
@@ -16,11 +19,13 @@ Target designation drone for precision guidance and marking operations.
 - **Base Shape**: Triangle (70% of viewBox)
 
 ## AI Generation Prompt
+
 ```
 Create a spotter drone icon: triangle with crosshair symbol inside. Military style, outline-based, 24x24px. Color #3b82f6. Target designation, precision guidance, marking aesthetic.
 ```
 
 ## SVG Structure
+
 ```svg
 <svg viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2">
   <!-- Triangle base -->
@@ -34,6 +39,7 @@ Create a spotter drone icon: triangle with crosshair symbol inside. Military sty
 ```
 
 ## Usage Context
+
 - Spotter UAV systems
 - Target designation platforms
 - Precision guidance operations

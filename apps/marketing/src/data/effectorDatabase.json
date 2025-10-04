@@ -2,11 +2,11 @@
   "schema_version": "1.4.0",
   "units": { "distance": "meters", "power": "kW", "currency": "USD" },
   "coreNames": [
-    {"short":"C2 Node", "long":"Command & Control Node"},
-    {"short":"Sentinel Core", "long":"Sentinel Core (EDN-1)"},
-    {"short":"Edge Defense Node", "long":"Edge Defense Node"},
-    {"short":"Guardian Node", "long":"Guardian Node"},
-    {"short":"Bastion Core", "long":"Bastion Core"}
+    { "short": "C2 Node", "long": "Command & Control Node" },
+    { "short": "Sentinel Core", "long": "Sentinel Core (EDN-1)" },
+    { "short": "Edge Defense Node", "long": "Edge Defense Node" },
+    { "short": "Guardian Node", "long": "Guardian Node" },
+    { "short": "Bastion Core", "long": "Bastion Core" }
   ],
   "ui_theme": {
     "palette": {
@@ -69,10 +69,7 @@
       "collateral_risk": "medium",
       "legal_flags": ["ITAR-likely", "Spectrum-clearance-required"],
       "swarm_effectiveness": "high",
-      "brands": [
-        "Epirus Leonidas",
-        "Raytheon PHASER"
-      ],
+      "brands": ["Epirus Leonidas", "Raytheon PHASER"],
       "sources": [
         "https://www.epirusinc.com/leonidas",
         "https://www.raytheon.com/news/feature/phasermicrowave"
@@ -89,12 +86,8 @@
       "collateral_risk": "low",
       "legal_flags": ["Spectrum-clearance-required"],
       "swarm_effectiveness": "low",
-      "brands": [
-        "D‑Fend Solutions EnforceAir"
-      ],
-      "sources": [
-        "https://d-fendsolutions.com/why-enforceair/"
-      ]
+      "brands": ["D‑Fend Solutions EnforceAir"],
+      "sources": ["https://d-fendsolutions.com/why-enforceair/"]
     },
     {
       "id": "RF_JAM",
@@ -107,10 +100,7 @@
       "collateral_risk": "medium",
       "legal_flags": ["Spectrum-clearance-required"],
       "swarm_effectiveness": "medium",
-      "brands": [
-        "DroneShield DroneCannon MkII",
-        "DedroneDefender 2"
-      ],
+      "brands": ["DroneShield DroneCannon MkII", "DedroneDefender 2"],
       "sources": [
         "https://www.droneshield.com/",
         "https://www.dedrone.com/solutions/dedrone-defender-2"
@@ -147,10 +137,7 @@
       "collateral_risk": "low",
       "legal_flags": [],
       "swarm_effectiveness": "low",
-      "brands": [
-        "OpenWorks SkyWall",
-        "Fortem DroneHunter (net gun)"
-      ],
+      "brands": ["OpenWorks SkyWall", "Fortem DroneHunter (net gun)"],
       "sources": [
         "https://openworksengineering.com/skywall/",
         "https://www.fortemtech.com/products/"
@@ -167,9 +154,7 @@
       "collateral_risk": "low",
       "legal_flags": ["Eye‑safety policies", "Protocol IV compliant"],
       "swarm_effectiveness": "low",
-      "brands": [
-        "B.E. Meyers GLARE (LA‑22/U, RECOIL)"
-      ],
+      "brands": ["B.E. Meyers GLARE (LA‑22/U, RECOIL)"],
       "sources": [
         "https://bemeyers.com/product/glare-recoil/",
         "https://www.dsiac.org/articles/this-is-the-laser-that-marines-have-chosen-to-dazzle-hail-and-warn/"
@@ -186,9 +171,7 @@
       "collateral_risk": "high",
       "legal_flags": ["ITAR/EU Export", "Range‑safety"],
       "swarm_effectiveness": "medium",
-      "brands": [
-        "Rheinmetall Oerlikon AHEAD / Skynex"
-      ],
+      "brands": ["Rheinmetall Oerlikon AHEAD / Skynex"],
       "sources": [
         "https://www.rheinmetall.com/en/media/news-watch/news/2022/2022-05-19_laser-weapons-against-drones"
       ]
@@ -204,9 +187,7 @@
       "collateral_risk": "low",
       "legal_flags": ["Environmental/area safety"],
       "swarm_effectiveness": "low",
-      "brands": [
-        "Rheinmetall ROSY"
-      ],
+      "brands": ["Rheinmetall ROSY"],
       "sources": [
         "https://www.rheinmetall.com/Rheinmetall%20Group/brochure-download/Protection-Systems/B180e0524-ROSY-Rapid-Obscuring-System-for-vehicle-protection.pdf"
       ]
@@ -222,10 +203,10 @@
       "collateral_risk": "medium",
       "legal_flags": ["Occupational noise limits"],
       "swarm_effectiveness": "low",
-      "brands": ["Genasys LRAD (hailer); no widely fielded anti‑UAS acoustic disruptor"],
-      "sources": [
-        "https://genasys.com/lrad-long-range-acoustic-devices/"
-      ]
+      "brands": [
+        "Genasys LRAD (hailer); no widely fielded anti‑UAS acoustic disruptor"
+      ],
+      "sources": ["https://genasys.com/lrad-long-range-acoustic-devices/"]
     },
     {
       "id": "AI_DECEPTION",
@@ -259,10 +240,7 @@
       "energy": 10,
       "cooldown": 6,
       "roe": "low",
-      "brands": [
-        "Fortem DroneHunter F700",
-        "Anduril Anvil (net capture)"
-      ],
+      "brands": ["Fortem DroneHunter F700", "Anduril Anvil (net capture)"],
       "sources": [
         "https://www.fortemtech.com/products/",
         "https://www.anduril.com/anvil/"
@@ -283,10 +261,7 @@
       "energy": 25,
       "cooldown": 10,
       "roe": "med",
-      "brands": [
-        "Boeing CHAMP",
-        "Raytheon High Power Microwave"
-      ],
+      "brands": ["Boeing CHAMP", "Raytheon High Power Microwave"],
       "sources": [
         "https://www.boeing.com/defense/champ/",
         "https://www.rtx.com/raytheon/what-we-do/integrated-air-and-missile-defense/lasers"
@@ -307,10 +282,7 @@
       "energy": 20,
       "cooldown": 12,
       "roe": "med",
-      "brands": [
-        "BAE Systems Electronic Warfare",
-        "Lockheed Martin DEWS"
-      ],
+      "brands": ["BAE Systems Electronic Warfare", "Lockheed Martin DEWS"],
       "sources": [
         "https://www.baesystems.com/en-us/product/electronic-warfare-systems",
         "https://www.lockheedmartin.com/en-us/products/dews.html"
@@ -331,10 +303,7 @@
       "energy": 12,
       "cooldown": 8,
       "roe": "low",
-      "brands": [
-        "Raytheon GPS Spoofing",
-        "BAE Systems Navigation Warfare"
-      ],
+      "brands": ["Raytheon GPS Spoofing", "BAE Systems Navigation Warfare"],
       "sources": [
         "https://www.rtx.com/raytheon/what-we-do/space/gps",
         "https://www.baesystems.com/en-us/product/navigation-warfare"
@@ -355,10 +324,7 @@
       "energy": 8,
       "cooldown": 5,
       "roe": "low",
-      "brands": [
-        "Leonardo Dazzler",
-        "Rheinmetall Laser Dazzler"
-      ],
+      "brands": ["Leonardo Dazzler", "Rheinmetall Laser Dazzler"],
       "sources": [
         "https://www.leonardocompany.com/en/products/land-electro-optics",
         "https://www.rheinmetall.com/en/media/news-watch/news/2022/2022-05-19_laser-weapons-against-drones"
@@ -379,14 +345,8 @@
       "energy": 6,
       "cooldown": 5,
       "roe": "low",
-      "brands": [
-        "LRAD Acoustic Hailing Device",
-        "American Technology Corp"
-      ],
-      "sources": [
-        "https://www.lradx.com/",
-        "https://www.atcsd.com/"
-      ]
+      "brands": ["LRAD Acoustic Hailing Device", "American Technology Corp"],
+      "sources": ["https://www.lradx.com/", "https://www.atcsd.com/"]
     },
     {
       "id": "decoy_beacon",
@@ -427,10 +387,7 @@
       "energy": 7,
       "cooldown": 8,
       "roe": "low",
-      "brands": [
-        "BAE Systems Chaff Systems",
-        "Rheinmetall Obscurants"
-      ],
+      "brands": ["BAE Systems Chaff Systems", "Rheinmetall Obscurants"],
       "sources": [
         "https://www.baesystems.com/en-us/product/chaff-systems",
         "https://www.rheinmetall.com/en/products/defence-and-security"
@@ -451,10 +408,7 @@
       "energy": 15,
       "cooldown": 7,
       "roe": "med",
-      "brands": [
-        "Raytheon C-RAM",
-        "Rheinmetall Oerlikon Skyguard"
-      ],
+      "brands": ["Raytheon C-RAM", "Rheinmetall Oerlikon Skyguard"],
       "sources": [
         "https://www.rtx.com/raytheon/what-we-do/integrated-air-and-missile-defense/c-ram",
         "https://www.rheinmetall.com/en/media/news-watch/news/2022/2022-05-19_laser-weapons-against-drones"
@@ -475,10 +429,7 @@
       "energy": 18,
       "cooldown": 12,
       "roe": "med",
-      "brands": [
-        "BAE Systems AI/ML EW",
-        "Lockheed Martin Cognitive EW"
-      ],
+      "brands": ["BAE Systems AI/ML EW", "Lockheed Martin Cognitive EW"],
       "sources": [
         "https://www.baesystems.com/en-us/product/electronic-warfare-systems",
         "https://www.lockheedmartin.com/en-us/products/electronic-warfare.html"
@@ -519,52 +470,32 @@
       "name": "Tethered Overwatch",
       "role": "ISR_persistent",
       "notes": "Persistent EO/IR + RF sensing; power/data over tether.",
-      "brands": [
-        "Elistair Orion/SAFE-T",
-        "Hoverfly LiveSky"
-      ],
-      "sources": [
-        "https://elistair.com/",
-        "https://hoverflytech.com/"
-      ]
+      "brands": ["Elistair Orion/SAFE-T", "Hoverfly LiveSky"],
+      "sources": ["https://elistair.com/", "https://hoverflytech.com/"]
     },
     {
       "id": "SPOTTER_UAV",
       "name": "Spotter/ISR UAV",
       "role": "detection_tracking",
       "notes": "Mobile visual identification and target handoff.",
-      "brands": [
-        "Teledyne FLIR SkyRanger/Unmanned systems",
-        "Skydio X10D/X2D"
-      ],
-      "sources": [
-        "https://www.flir.com/suas/",
-        "https://www.skydio.com/x10d"
-      ]
+      "brands": ["Teledyne FLIR SkyRanger/Unmanned systems", "Skydio X10D/X2D"],
+      "sources": ["https://www.flir.com/suas/", "https://www.skydio.com/x10d"]
     },
     {
       "id": "HPM_POD_UAV",
       "name": "HPM POD (UAV/vehicle mount)",
       "role": "soft_kill_area",
       "notes": "Podded HPM for close‑in area effects; power & safety constraints apply.",
-      "brands": [
-        "Epirus Leonidas (pod variants)"
-      ],
-      "sources": [
-        "https://www.epirusinc.com/leonidas"
-      ]
+      "brands": ["Epirus Leonidas (pod variants)"],
+      "sources": ["https://www.epirusinc.com/leonidas"]
     },
     {
       "id": "DECOY_SWARM",
       "name": "Decoy/Signature Drone(s)",
       "role": "deception",
       "notes": "Create false targets or distract defenses; most mature as air‑launched decoys (not sUAS).",
-      "brands": [
-        "Raytheon ADM‑160 MALD (air‑launched decoy; not sUAS)"
-      ],
-      "sources": [
-        "https://www.rtx.com/raytheon/what-we-do/air/mald-decoy"
-      ]
+      "brands": ["Raytheon ADM‑160 MALD (air‑launched decoy; not sUAS)"],
+      "sources": ["https://www.rtx.com/raytheon/what-we-do/air/mald-decoy"]
     },
     {
       "id": "decoy_uav",
@@ -574,10 +505,7 @@
       "energy": 10,
       "speed": "med",
       "endurance": "med",
-      "brands": [
-        "Raytheon ADM‑160 MALD",
-        "BAE Systems Electronic Decoys"
-      ],
+      "brands": ["Raytheon ADM‑160 MALD", "BAE Systems Electronic Decoys"],
       "sources": [
         "https://www.rtx.com/raytheon/what-we-do/air/mald-decoy",
         "https://www.baesystems.com/en-us/product/electronic-warfare-systems"
@@ -591,10 +519,7 @@
       "energy": 14,
       "speed": "med",
       "endurance": "low",
-      "brands": [
-        "Fortem DroneHunter F700",
-        "Anduril Anvil (net capture)"
-      ],
+      "brands": ["Fortem DroneHunter F700", "Anduril Anvil (net capture)"],
       "sources": [
         "https://www.fortemtech.com/products/",
         "https://www.anduril.com/anvil/"
@@ -608,10 +533,7 @@
       "energy": 8,
       "speed": "slow",
       "endurance": "high",
-      "brands": [
-        "Lockheed Martin DEWS Relay",
-        "BAE Systems EW Relay"
-      ],
+      "brands": ["Lockheed Martin DEWS Relay", "BAE Systems EW Relay"],
       "sources": [
         "https://www.lockheedmartin.com/en-us/products/dews.html",
         "https://www.baesystems.com/en-us/product/electronic-warfare-systems"
@@ -625,14 +547,8 @@
       "energy": 12,
       "speed": "-",
       "endurance": "very_high",
-      "brands": [
-        "Elistair Orion/SAFE-T",
-        "Hoverfly LiveSky"
-      ],
-      "sources": [
-        "https://elistair.com/",
-        "https://hoverflytech.com/"
-      ]
+      "brands": ["Elistair Orion/SAFE-T", "Hoverfly LiveSky"],
+      "sources": ["https://elistair.com/", "https://hoverflytech.com/"]
     },
     {
       "id": "recovery_uav",
@@ -659,10 +575,7 @@
       "energy": 15,
       "speed": "fast",
       "endurance": "low",
-      "brands": [
-        "Raytheon Coyote",
-        "BAE Systems Swarm Decoys"
-      ],
+      "brands": ["Raytheon Coyote", "BAE Systems Swarm Decoys"],
       "sources": [
         "https://www.rtx.com/raytheon/what-we-do/air/coyote",
         "https://www.baesystems.com/en-us/product/electronic-warfare-systems"
@@ -676,10 +589,7 @@
       "energy": 12,
       "speed": "med",
       "endurance": "med",
-      "brands": [
-        "Skydio X10D",
-        "DJI Matrice 30T"
-      ],
+      "brands": ["Skydio X10D", "DJI Matrice 30T"],
       "sources": [
         "https://www.skydio.com/x10d",
         "https://www.dji.com/matrice-30-series"
@@ -693,14 +603,8 @@
       "energy": 9,
       "speed": "fast",
       "endurance": "med",
-      "brands": [
-        "Teledyne FLIR SkyRanger",
-        "Skydio X10D"
-      ],
-      "sources": [
-        "https://www.flir.com/suas/",
-        "https://www.skydio.com/x10d"
-      ]
+      "brands": ["Teledyne FLIR SkyRanger", "Skydio X10D"],
+      "sources": ["https://www.flir.com/suas/", "https://www.skydio.com/x10d"]
     },
     {
       "id": "hpm_uav",
@@ -710,10 +614,7 @@
       "energy": 20,
       "speed": "slow",
       "endurance": "low",
-      "brands": [
-        "Epirus Leonidas (pod variants)",
-        "Boeing CHAMP"
-      ],
+      "brands": ["Epirus Leonidas (pod variants)", "Boeing CHAMP"],
       "sources": [
         "https://www.epirusinc.com/leonidas",
         "https://www.boeing.com/defense/champ/"
@@ -727,10 +628,7 @@
       "energy": 16,
       "speed": "-",
       "endurance": "high",
-      "brands": [
-        "Rheinmetall ROSY",
-        "BAE Systems Active Protection"
-      ],
+      "brands": ["Rheinmetall ROSY", "BAE Systems Active Protection"],
       "sources": [
         "https://www.rheinmetall.com/Rheinmetall%20Group/brochure-download/Protection-Systems/B180e0524-ROSY-Rapid-Obscuring-System-for-vehicle-protection.pdf",
         "https://www.baesystems.com/en-us/product/active-protection-systems"
@@ -744,14 +642,8 @@
       "energy": 10,
       "speed": "med",
       "endurance": "med",
-      "brands": [
-        "Velodyne LiDAR",
-        "Luminar Technologies"
-      ],
-      "sources": [
-        "https://velodynelidar.com/",
-        "https://luminartech.com/"
-      ]
+      "brands": ["Velodyne LiDAR", "Luminar Technologies"],
+      "sources": ["https://velodynelidar.com/", "https://luminartech.com/"]
     },
     {
       "id": "relay_optical",
@@ -761,10 +653,7 @@
       "energy": 8,
       "speed": "med",
       "endurance": "med",
-      "brands": [
-        "Lockheed Martin Optical Mesh",
-        "BAE Systems Optical Relay"
-      ],
+      "brands": ["Lockheed Martin Optical Mesh", "BAE Systems Optical Relay"],
       "sources": [
         "https://www.lockheedmartin.com/en-us/products/optical-systems.html",
         "https://www.baesystems.com/en-us/product/optical-systems"
@@ -776,7 +665,15 @@
     "planning_phase": true,
     "financed": false,
     "export_control_review_required": true,
-    "spectrum_authorizations_required": ["RF_JAM", "RF_TAKEOVER", "GNSS_DENIAL", "HPM"],
-    "safety_gate": ["Eye-safety for OPT_DAZZLER", "Range safety for AHEAD_AIRBURST / HEL"]
+    "spectrum_authorizations_required": [
+      "RF_JAM",
+      "RF_TAKEOVER",
+      "GNSS_DENIAL",
+      "HPM"
+    ],
+    "safety_gate": [
+      "Eye-safety for OPT_DAZZLER",
+      "Range safety for AHEAD_AIRBURST / HEL"
+    ]
   }
 }
