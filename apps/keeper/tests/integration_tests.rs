@@ -41,9 +41,6 @@ impl MockAnchorProvider {
         *self.should_fail.lock().unwrap() = fail;
     }
 
-    fn set_should_confirm(&self, confirm: bool) {
-        *self.should_confirm.lock().unwrap() = confirm;
-    }
 
     fn get_anchored_count(&self) -> usize {
         self.anchored_tx_refs.lock().unwrap().len()

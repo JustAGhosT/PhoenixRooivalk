@@ -33,7 +33,8 @@ async fn example_connection_management() {
     // Get connection statistics
     let stats = manager.get_stats().await.unwrap();
     assert!(stats.size >= 1);
-    assert!(stats.active >= 0); // Always true for u32, but kept for documentation
+    // Verify stats are valid (active is always >= 0 for u32)
+    assert!(stats.active <= stats.size);
     
     // Perform health check
     let health = HealthChecker::check_health(manager.pool()).await.unwrap();

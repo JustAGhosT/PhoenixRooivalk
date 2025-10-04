@@ -196,7 +196,8 @@ mod tests {
         // Get stats
         let stats = manager.get_stats().await.unwrap();
         assert!(stats.size >= 1);
-        assert!(stats.idle >= 0); // Always true for u32, but kept for documentation
+        // Verify stats are valid (idle is always >= 0 for u32)
+        assert!(stats.idle <= stats.size);
     }
 
     #[tokio::test]
