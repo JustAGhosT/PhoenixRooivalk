@@ -304,7 +304,7 @@ export const RadarSystem: React.FC<RadarSystemProps> = ({
                       x={scaledPos.x + 15}
                       y={scaledPos.y + 22}
                       fontSize="8"
-                      fill="var(--sim-text)}"
+                      fill="var(--sim-text)"
                     >
                       Alt: {Math.round(target.altitude)}m
                     </text>
