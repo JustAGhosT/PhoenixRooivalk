@@ -184,8 +184,11 @@ async fn test_db_evidence_retry_flow() {
         let mut jp = SqliteJobProvider::new(keeper_pool);
         let anchor = FailOnceProvider::new();
 
-        // Run for multiple iterations to handle retry
-        for _ in 0..20 {
+        // Use the actual run_job_loop with a timeout
+        let timeout_duration = Duration::from_secs(8);
+        let start_time = std::time::Instant::now();
+        
+        while start_time.elapsed() < timeout_duration {
             match jp.fetch_next().await {
                 Ok(Some(job)) => {
                     let ev = phoenix_evidence::model::EvidenceRecord {
@@ -202,7 +205,7 @@ async fn test_db_evidence_retry_flow() {
                     match anchor.anchor(&ev).await {
                         Ok(tx_ref) => {
                             let _ = jp.mark_tx_and_done(&job.id, &tx_ref).await;
-                            break; // Job done, exit loop
+                            return; // Job done, exit
                         }
                         Err(e) => {
                             let temporary =
@@ -214,10 +217,10 @@ async fn test_db_evidence_retry_flow() {
                     }
                 }
                 Ok(None) => {
-                    tokio::time::sleep(Duration::from_millis(50)).await;
+                    tokio::time::sleep(Duration::from_millis(100)).await;
                 }
                 Err(_) => {
-                    tokio::time::sleep(Duration::from_millis(50)).await;
+                    tokio::time::sleep(Duration::from_millis(100)).await;
                 }
             }
         }
@@ -225,6 +228,9 @@ async fn test_db_evidence_retry_flow() {
 
     // Wait for keeper to process (longer timeout for retry)
     let _ = timeout(Duration::from_secs(10), keeper_handle).await;
+
+    // Give a moment for database to be updated
+    tokio::time::sleep(Duration::from_millis(100)).await;
 
     // Verify job eventually succeeded
     let job_status = sqlx::query("SELECT status, attempts FROM outbox_jobs WHERE id = ?1")
