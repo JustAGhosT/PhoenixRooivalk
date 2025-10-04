@@ -10,6 +10,7 @@ import { ResearchPanel } from "./ResearchPanel";
 import "./ThreatSimulator.css";
 import { ThreatSimulatorComponents } from "./ThreatSimulatorComponents";
 import { ThreatSimulatorOverlays } from "./ThreatSimulatorOverlays";
+import ThreatSimulatorGame from "./ThreatSimulatorGame";
 import { TokenStore } from "./TokenStore";
 import { WeaponStatus } from "./WeaponStatus";
 import { useEventFeed } from "./hooks/useEventFeed";
