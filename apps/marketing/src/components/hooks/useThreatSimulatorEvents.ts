@@ -1,9 +1,9 @@
 import { useCallback, useState } from "react";
 import type {
-  GameState,
-  PowerUp,
-  SelectionBox,
-  Threat,
+    GameState,
+    PowerUp,
+    SelectionBox,
+    Threat,
 } from "../../types/game";
 
 interface UseThreatSimulatorEventsProps {
@@ -26,7 +26,21 @@ interface UseThreatSimulatorEventsProps {
       | "jammer"
       | "surveillance"
       | "shield"
-      | "swarm-coordinator",
+      | "swarm-coordinator"
+      | "decoy_uav"
+      | "net_uav"
+      | "relay_uav"
+      | "overwatch_tether"
+      | "recovery_uav"
+      | "lure_swarm"
+      | "perimeter_sentry"
+      | "hpm_pod_uav"
+      | "lidar_mapper"
+      | "micro_decoy_swarm"
+      | "optical_mesh_drone"
+      | "spotter_uav"
+      | "tethered_overwatch"
+      | "relay_optical",
     targetX: number,
     targetY: number,
   ) => void;
@@ -37,6 +51,20 @@ interface UseThreatSimulatorEventsProps {
       | "surveillance"
       | "shield"
       | "swarm-coordinator"
+      | "decoy_uav"
+      | "net_uav"
+      | "relay_uav"
+      | "overwatch_tether"
+      | "recovery_uav"
+      | "lure_swarm"
+      | "perimeter_sentry"
+      | "hpm_pod_uav"
+      | "lidar_mapper"
+      | "micro_decoy_swarm"
+      | "optical_mesh_drone"
+      | "spotter_uav"
+      | "tethered_overwatch"
+      | "relay_optical"
       | null,
   ) => void;
   returnDroneToBase: (droneId: string) => void;

@@ -361,6 +361,7 @@ export const ThreatSimulator: React.FC<ThreatSimulatorProps> = ({
         setAutomationMode={setAutomationMode}
         showDeploymentZones={gameState.showDeploymentZones}
         setShowDeploymentZones={setShowDeploymentZones}
+        showStats={showDetailedStats}
         onShowStats={() => setShowDetailedStats(true)}
         onShowHelp={() => setShowHelp(true)}
         onShowResearch={() => setShowResearch(true)}

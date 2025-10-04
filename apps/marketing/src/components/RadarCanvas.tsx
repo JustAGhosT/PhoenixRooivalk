@@ -76,8 +76,8 @@ const RadarCanvas: React.FC<RadarCanvasProps> = ({
 
             // Determine threat type and corresponding shape
             const isHostile =
-              threat.status === "hostile" || threat.status === "unknown";
-            const isFriendly = threat.status === "friendly";
+              threat.allegiance === "hostile" || threat.allegiance === "unknown";
+            const isFriendly = threat.allegiance === "friendly";
 
             const handleThreatClick = (event: React.MouseEvent) => {
               onThreatClick?.(event, threat.id);
