@@ -68,7 +68,7 @@ generation prompts for all effector and drone icons.
 --directed: #ffa502; /* Directed orange - Mobile platforms */
 ```text
 
-## Effector Icons (15 Total)
+## Effector Icons (14 Total)
 
 ### Hard Kill Systems
 

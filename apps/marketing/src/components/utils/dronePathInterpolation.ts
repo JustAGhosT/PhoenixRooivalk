@@ -25,7 +25,6 @@ export interface MovementConfig {
   maxSpeed: number;
   acceleration: number;
   deceleration: number;
-  turnRate: number; // degrees per frame
   smoothing: number; // 0-1, higher = smoother
   easing?: (t: number) => number; // optional easing function
 }
@@ -94,7 +93,6 @@ export class DronePathInterpolator {
       maxSpeed: 5,
       acceleration: 0.1,
       deceleration: 0.15,
-      turnRate: 5,
       smoothing: 0.8,
       easing: easingFunctions.easeInOut,
       ...config,
@@ -238,13 +236,16 @@ export class DronePathInterpolator {
  */
 export function createWaypointPath(
   waypoints: Array<{ x: number; y: number; duration?: number }>,
+  currentX: number,
+  currentY: number,
   config: Partial<MovementConfig> = {},
 ): DronePathInterpolator {
   const interpolator = new DronePathInterpolator(config);
 
   if (waypoints.length > 0) {
+    // Set the first waypoint as the target, using current position as start
     const first = waypoints[0];
-    interpolator.setTarget(first.x, first.y, first.x, first.y);
+    interpolator.setTarget(first.x, first.y, currentX, currentY);
   }
 
   return interpolator;
