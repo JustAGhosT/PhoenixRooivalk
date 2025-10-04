@@ -150,7 +150,7 @@ impl MigrationManager {
     pub async fn is_up_to_date(&self) -> Result<bool> {
         self.init_migration_table().await?;
         let current_version = self.get_current_version().await?;
-        let latest_version = 4; // Update this when adding new migrations
+        let latest_version = self.migrations.len() as i32;
         Ok(current_version >= latest_version)
     }
 
@@ -158,7 +158,7 @@ impl MigrationManager {
     pub async fn get_status(&self) -> Result<MigrationStatus> {
         self.init_migration_table().await?;
         let current_version = self.get_current_version().await?;
-        let latest_version = 4;
+        let latest_version = self.migrations.len() as i32;
 
         let migrations = sqlx::query(
             "SELECT version, name, applied_at FROM schema_migrations ORDER BY version"

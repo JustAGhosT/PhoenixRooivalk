@@ -299,7 +299,7 @@ async fn test_anchor_providers() {
         "https://testnet.etherlink.com".to_string(),
         "testnet".to_string(),
         Some("test-key".to_string()),
-    );
+    ).unwrap();
     
     assert_eq!(etherlink_provider.endpoint, "https://testnet.etherlink.com");
     assert_eq!(etherlink_provider.network, "testnet");

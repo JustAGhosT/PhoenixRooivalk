@@ -31,13 +31,25 @@ fn create_etherlink_provider() -> Box<dyn AnchorProvider + Send + Sync> {
         let network = std::env::var("ETHERLINK_NETWORK").unwrap_or_else(|_| "mainnet".to_string());
         let private_key = std::env::var("ETHERLINK_PRIVATE_KEY").ok();
 
-        let provider = EtherlinkProvider::new(endpoint.clone(), network.clone(), private_key);
-        tracing::info!(
-            endpoint = %endpoint,
-            network = %network,
-            "Successfully created EtherlinkProvider"
-        );
-        Box::new(provider)
+        let provider = match EtherlinkProvider::new(endpoint.clone(), network.clone(), private_key) {
+            Ok(provider) => {
+                tracing::info!(
+                    endpoint = %endpoint,
+                    network = %network,
+                    "Successfully created EtherlinkProvider"
+                );
+                Box::new(provider)
+            }
+            Err(e) => {
+                tracing::error!(
+                    endpoint = %endpoint,
+                    network = %network,
+                    error = %e,
+                    "Failed to create EtherlinkProvider"
+                );
+                std::process::exit(1);
+            }
+        }
     }
 }
 
@@ -55,10 +67,19 @@ async fn main() {
     let http = tokio::spawn(async move {
         let addr = "0.0.0.0:8081";
         tracing::info!(%addr, "keeper http starting");
-        let listener = tokio::net::TcpListener::bind(addr).await.unwrap();
-        axum::serve(listener, app.into_make_service())
-            .await
-            .unwrap();
+        
+        let listener = match tokio::net::TcpListener::bind(addr).await {
+            Ok(listener) => listener,
+            Err(e) => {
+                tracing::error!(address=%addr, error=%e, "Failed to bind HTTP server");
+                std::process::exit(1);
+            }
+        };
+        
+        if let Err(e) = axum::serve(listener, app.into_make_service()).await {
+            tracing::error!(error=%e, "HTTP server runtime error");
+            std::process::exit(1);
+        }
     });
 
     // Job runner

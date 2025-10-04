@@ -77,18 +77,18 @@ struct TransactionReceipt {
 }
 
 impl EtherlinkProvider {
-    pub fn new(endpoint: String, network: String, private_key: Option<String>) -> Self {
+    pub fn new(endpoint: String, network: String, private_key: Option<String>) -> Result<Self, String> {
         let client = Client::builder()
             .timeout(Duration::from_secs(30))
             .build()
-            .expect("Failed to create HTTP client");
+            .map_err(|e| format!("Failed to create HTTP client: {}", e))?;
 
-        Self {
+        Ok(Self {
             client,
             endpoint,
             network,
             private_key,
-        }
+        })
     }
 
     async fn rpc_call(&self, method: &str, params: Value) -> Result<Value, AnchorError> {
