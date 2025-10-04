@@ -102,9 +102,11 @@ export const InfoPopover: React.FC<InfoPopoverProps> = ({
       ref={triggerRef}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
+      onKeyDown={handleKeyDown}
       role="button"
       tabIndex={0}
-      aria-describedby={isOpen ? "popover-content" : undefined}
+      aria-expanded={isOpen}
+      aria-describedby={isOpen ? uniqueId : undefined}
     >
       {children}
 
@@ -118,7 +120,7 @@ export const InfoPopover: React.FC<InfoPopoverProps> = ({
             top: position.y,
             zIndex: 1000,
           }}
-          id="popover-content"
+          id={uniqueId}
           role="tooltip"
           aria-hidden={false}
         >
@@ -153,19 +155,23 @@ export const InfoPopover: React.FC<InfoPopoverProps> = ({
               <div className="info-popover-section">
                 <h5 className="info-popover-section-title">Sources:</h5>
                 <ul className="info-popover-list">
-                  {sources.map((source, index) => (
-                    <li key={index} className="info-popover-item">
-                      <a
-                        href={source}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="info-popover-link"
-                        onClick={(e) => e.stopPropagation()}
-                      >
-                        {new URL(source).hostname}
-                      </a>
-                    </li>
-                  ))}
+                  {sources.map((source, index) => {
+                    const urlInfo = getSafeUrlInfo(source);
+                    return (
+                      <li key={index} className="info-popover-item">
+                        <a
+                          href={urlInfo.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="info-popover-link"
+                          onClick={(e) => e.stopPropagation()}
+                          title={urlInfo.isValid ? source : "Invalid URL"}
+                        >
+                          {urlInfo.displayText}
+                        </a>
+                      </li>
+                    );
+                  })}
                 </ul>
               </div>
             )}
