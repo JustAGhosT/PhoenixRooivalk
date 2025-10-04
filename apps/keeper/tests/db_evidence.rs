@@ -3,7 +3,7 @@ use async_trait::async_trait;
 use phoenix_evidence::anchor::{AnchorError, AnchorProvider};
 use phoenix_evidence::model::{ChainTxRef, EvidenceRecord};
 use phoenix_keeper::{ensure_schema, run_job_loop, JobProvider, JobProviderExt, SqliteJobProvider};
-use sqlx::{sqlite::SqlitePoolOptions, Pool, Sqlite};
+use sqlx::{sqlite::SqlitePoolOptions, Pool, Sqlite, Row};
 use std::sync::atomic::{AtomicBool, Ordering};
 use std::sync::Arc;
 use std::time::Duration;

@@ -15,8 +15,8 @@ tracing-subscriber = { version = "0.3", features = ["fmt", "env-filter"] }
 async-trait = "0.1"
 sqlx = { version = "0.7", features = ["runtime-tokio-rustls", "sqlite", "macros"] }
 phoenix-evidence = { path = "../../crates/evidence" }
+anchor-etherlink = { path = "../../crates/anchor-etherlink" }
 rand = "0.8"
 
 [dev-dependencies]
 tempfile = "3"
-anchor-etherlink = { path = "../../crates/anchor-etherlink" }

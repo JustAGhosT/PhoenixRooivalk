@@ -2,14 +2,15 @@ use axum::{
     extract::{Path, State},
     routing::{get, post},
     serve,
-    serve::Serve,
     Json, Router,
 };
 use serde::{Deserialize, Serialize};
 use sqlx::sqlite::SqlitePoolOptions;
-use sqlx::{Pool, Sqlite, SqlitePool};
+use sqlx::{Pool, Sqlite, Row};
 use std::net::SocketAddr;
 use tokio::net::TcpListener;
+use tokio::signal;
+use tracing_subscriber::prelude::*;
 
 async fn health() -> &'static str {
     "OK"
@@ -69,7 +70,7 @@ async fn main() {
         .with(tracing_subscriber::fmt::layer())
         .init();
 
-    let (app, _pool) = build_app().await.expect("Failed to build app");
+    let (app, _pool) = build_app().await;
 
     let port: u16 = std::env::var("PORT")
         .ok()
@@ -151,13 +152,8 @@ async fn post_evidence(
     .execute(&state.pool)
     .await;
 
-    #[cfg(unix)]
-    let terminate = async {
-        signal::unix::signal(signal::unix::SignalKind::terminate())
-            .expect("failed to install signal handler")
-            .recv()
-            .await;
-    };
+    Json(serde_json::json!({ "id": id, "status": "queued" }))
+}
 
 async fn get_evidence(
     State(state): State<AppState>,
@@ -169,13 +165,45 @@ async fn get_evidence(
     .bind(&id)
     .fetch_optional(&state.pool)
     .await
-    .ok()
-    .flatten();
+    .unwrap();
 
+    if let Some(row) = row {
+        Json(serde_json::json!({
+            "id": row.get::<String, _>("id"),
+            "status": row.get::<String, _>("status"),
+            "attempts": row.get::<i64, _>("attempts"),
+            "last_error": row.get::<Option<String>, _>("last_error"),
+            "created_ms": row.get::<i64, _>("created_ms"),
+            "updated_ms": row.get::<i64, _>("updated_ms")
+        }))
+    } else {
+        Json(serde_json::json!({ "error": "Job not found" }))
+    }
+}
+
+async fn shutdown_signal() {
+    let ctrl_c = async {
+        signal::ctrl_c()
+            .await
+            .expect("failed to install Ctrl+C handler");
+    };
+
+    #[cfg(unix)]
+    let terminate = async {
+        signal::unix::signal(signal::unix::SignalKind::terminate())
+            .expect("failed to install signal handler")
+            .recv()
+            .await;
+    };
+
+    #[cfg(unix)]
     tokio::select! {
         _ = ctrl_c => {},
         _ = terminate => {},
     }
+
+    #[cfg(not(unix))]
+    ctrl_c.await;
 
     tracing::info!("signal received, starting graceful shutdown");
 }

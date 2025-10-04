@@ -46,7 +46,7 @@ pub trait JobProviderExt: JobProvider {
     ) -> Result<(), JobError>;
 }
 
-pub async fn run_job_loop<J: JobProvider + JobProviderExt, A: AnchorProvider>(
+pub async fn run_job_loop<J: JobProvider + JobProviderExt, A: AnchorProvider + ?Sized>(
     provider: &mut J,
     anchor: &A,
     poll: std::time::Duration,
@@ -88,7 +88,7 @@ pub async fn run_job_loop<J: JobProvider + JobProviderExt, A: AnchorProvider>(
     }
 }
 
-pub async fn run_confirmation_loop<A: AnchorProvider>(
+pub async fn run_confirmation_loop<A: AnchorProvider + ?Sized>(
     pool: &Pool<Sqlite>,
     anchor: &A,
     poll: std::time::Duration,

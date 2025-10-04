@@ -53,8 +53,8 @@ async fn main() {
     let http = tokio::spawn(async move {
         let addr = "0.0.0.0:8081";
         tracing::info!(%addr, "keeper http starting");
-        axum::Server::bind(&addr.parse().unwrap())
-            .serve(app.into_make_service())
+        let listener = tokio::net::TcpListener::bind(addr).await.unwrap();
+        axum::serve(listener, app.into_make_service())
             .await
             .unwrap();
     });
@@ -88,14 +88,14 @@ async fn main() {
                 let job_pool = pool.clone();
                 let job_anchor = anchor;
                 let job_handle = tokio::spawn(async move {
-                    run_job_loop(&mut jp, &*job_anchor, poll_interval).await;
+                    run_job_loop(&mut jp, job_anchor.as_ref(), poll_interval).await;
                 });
 
                 // Start confirmation polling loop
                 let confirm_interval = Duration::from_secs(30); // Check confirmations every 30s
                 let confirm_anchor = create_etherlink_provider();
                 let confirm_handle = tokio::spawn(async move {
-                    run_confirmation_loop(&pool, &*confirm_anchor, confirm_interval).await;
+                    run_confirmation_loop(&pool, confirm_anchor.as_ref(), confirm_interval).await;
                 });
 
                 // Wait for either loop to complete (they shouldn't)
