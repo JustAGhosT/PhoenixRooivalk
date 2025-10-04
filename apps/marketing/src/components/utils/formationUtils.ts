@@ -115,7 +115,7 @@ const calculateDiamondFormation = (
 
     drones.slice(0, 4).forEach((drone, index) => {
       positions.push({
-        // eslint-disable-next-line security/detect-object-injection
+         
         ...diamondPositions[index],
         droneId: drone.id,
       });

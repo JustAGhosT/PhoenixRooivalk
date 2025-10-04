@@ -591,7 +591,7 @@ export class ResponseProtocolEngine {
     protocol.successRate = successfulExecutions / protocolExecutions.length;
 
     // Log execution details
-    // eslint-disable-next-line no-console
+     
     console.log(`Response executed: ${response.actionType}`, {
       protocol: protocol.name,
       success,

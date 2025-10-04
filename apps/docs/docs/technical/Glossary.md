@@ -508,7 +508,7 @@ Key areas covered include:
 - **Operations and Concepts**: Core operational terminology and concepts
 - **Messaging and Observability**: Communication and monitoring technologies
 - **Communications and EW**: Electronic warfare and communication systems
-- **Navigation and PNT**: Positioning, navigation , and timing systems
+- **Navigation and PNT**: Positioning, navigation, and timing systems
 - **System Components**: Hardware and software components
 - **Neutralization and Countermeasures**: Threat neutralization technologies
 - **Blockchain and Evidence**: Evidence anchoring and legal compliance

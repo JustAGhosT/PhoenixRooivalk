@@ -95,7 +95,7 @@ Rep**: \***\*\*\*\*\*\*\***\_\***\*\*\*\*\*\*\***
 
 ### **Payback Period**: 18 months
 
-### **5-Year ROI**: 580%
+### **5-Year ROI**: ~84%
 
 ### **Net Present Value**: $456,000
 

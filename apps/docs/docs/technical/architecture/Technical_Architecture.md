@@ -45,7 +45,7 @@ processing of multiple concurrent streams
 ### Hardware Specifications per Node
 
 - **Compute**: 12-core ARM CPU + 2048-core GPU + dual NVDLA v2.0 accelerators
-- **Memory**: 32GB LPDDR5 unified memory (204.8 GB/s bandwidth)
+- **Memory**: 64GB LPDDR5 unified memory (204.8 GB/s bandwidth)
 - **Storage**: 512GB NVMe SSD for evidence caching
 - **Network**: Dual 10GbE for redundant connectivity
 - **Power**: 60W typical, 100W peak consumption

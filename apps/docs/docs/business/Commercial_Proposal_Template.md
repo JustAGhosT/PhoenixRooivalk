@@ -246,8 +246,8 @@ superior performance at a fraction of the cost of traditional solutions.
 - **Total Investment**: $228,000 (hardware) + $295,000 (5-year software) =
   $523,000
 - **Annual Savings**: $205,000
-- **Payback Period**: 18 months
-- **5-Year ROI**: 580%
+- **Payback Period**: ≈31 months
+- **5-Year ROI**: ≈96%
 - **Net Present Value**: $456,000
 
 ---

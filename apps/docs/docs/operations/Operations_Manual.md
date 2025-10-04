@@ -47,7 +47,7 @@ troubleshooting, and maintenance procedures.
 - **Detection Accuracy**: Target 99.5% accuracy
 - **Response Time**: Target 50-195ms response time
 - **System Uptime**: Target 99.9% uptime
-- **False Positive Rate**: Target <1-3% false positive rate
+- **False Positive Rate**: Target <1% false positive rate
 - **Sensor Health**: All sensors operational and calibrated
 
 **Performance Metrics**

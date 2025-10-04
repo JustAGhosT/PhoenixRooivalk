@@ -346,18 +346,18 @@ critical infrastructure, and commercial market segments.
 
 #### Phase 1
 
-DoD validation through SBIR/STTR and OTA contracts targeting $2-5M
-in development funding
+DoD validation through SBIR/STTR and OTA contracts targeting $2-5M in
+development funding
 
 #### Phase 2
 
-Production scale with IDIQ contracts and FMS
-targeting $50M+ annual revenue through partnerships with prime integrators
+Production scale with IDIQ contracts and FMS targeting $50M+ annual revenue
+through partnerships with prime integrators
 
 #### Phase 3
 
-Commercial expansion post-regulatory changes targeting $100M+
-pipeline with airport, critical infrastructure, and event security customers
+Commercial expansion post-regulatory changes targeting $100M+ pipeline with
+airport, critical infrastructure, and event security customers
 
 ### Strategic Partnership Implementation
 

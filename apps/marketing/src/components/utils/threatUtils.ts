@@ -48,7 +48,13 @@ export function spawnThreat(
   const finalAngle = angleToCenter + angleVariation;
 
   const baseSpeed =
-    threatType === "stealth" ? 0.3 : threatType === "swarm" ? 0.8 : 0.5;
+    threatType === "stealth"
+      ? 0.3
+      : threatType === "swarm"
+        ? 0.8
+        : threatType === "kamikaze"
+          ? 0.9
+          : 0.5;
   const speedMultiplier = 1 + (level - 1) * 0.1; // Speed increases with level
   const speed = baseSpeed * speedMultiplier;
 
@@ -60,9 +66,22 @@ export function spawnThreat(
     speed,
     vx: Math.cos(finalAngle) * speed,
     vy: Math.sin(finalAngle) * speed,
-    health: threatType === "stealth" ? 50 : threatType === "swarm" ? 30 : 100,
+    health:
+      threatType === "stealth"
+        ? 50
+        : threatType === "swarm"
+          ? 30
+          : threatType === "kamikaze"
+            ? 40
+            : 100,
     maxHealth:
-      threatType === "stealth" ? 50 : threatType === "swarm" ? 30 : 100,
+      threatType === "stealth"
+        ? 50
+        : threatType === "swarm"
+          ? 30
+          : threatType === "kamikaze"
+            ? 40
+            : 100,
     trail: [{ x, y, timestamp: Date.now() }],
     createdAt: Date.now(),
     lastUpdate: Date.now(),

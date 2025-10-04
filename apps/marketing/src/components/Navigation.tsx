@@ -4,10 +4,29 @@ import Link from "next/link";
 import * as React from "react";
 import { useTheme } from "../contexts/ThemeContext";
 
+// Type definitions for discriminated union
+type LinkItem = {
+  type: "link";
+  href: string;
+  label: string;
+};
+
+type DropdownItem = {
+  type: "dropdown";
+  label: string;
+  items: Array<{
+    href: string;
+    label: string;
+    description: string;
+  }>;
+};
+
+type NavigationItem = LinkItem | DropdownItem;
+
 export const Navigation: React.FC = () => {
   const { theme, toggleTheme } = useTheme();
 
-  const navigationItems = [
+  const navigationItems: NavigationItem[] = [
     {
       type: "dropdown",
       label: "Technology",
@@ -61,10 +80,12 @@ export const Navigation: React.FC = () => {
       ],
     },
     {
+      type: "link",
       href: "/about",
       label: "About",
     },
     {
+      type: "link",
       href: "/contact",
       label: "Contact",
     },
@@ -97,7 +118,10 @@ export const Navigation: React.FC = () => {
         <div className="hidden lg:flex items-center space-x-8">
           <ul className="flex gap-6 text-[var(--text-secondary)]">
             {navigationItems.map((item) => (
-              <li key={item.href || item.label} className="relative group">
+              <li
+                key={item.type === "link" ? item.href : item.label}
+                className="relative group"
+              >
                 {item.type === "dropdown" ? (
                   <>
                     <button className="hover:text-[var(--text-primary)] focus:text-[var(--text-primary)] transition-colors font-medium flex items-center gap-1">
@@ -134,14 +158,14 @@ export const Navigation: React.FC = () => {
                       </div>
                     </div>
                   </>
-                ) : (
+                ) : item.type === "link" ? (
                   <Link
-                    href={item.href!}
+                    href={item.href}
                     className="hover:text-[var(--text-primary)] transition-colors font-medium"
                   >
                     {item.label}
                   </Link>
-                )}
+                ) : null}
               </li>
             ))}
           </ul>

@@ -386,16 +386,14 @@ if (threat) {
 
 The implemented reusable systems architecture provides:
 
-✅ **Language-Agnostic Design**: Easy porting to Rust ✅ **Performance
-Optimization**: Efficient resource management ✅ **Modular Architecture**: ```
-Independent, testable
-
-```components
-✅ **Event-Driven Communication**: Loose coupling between systems
-✅ **Memory Efficiency**: Object pooling and resource management
-✅ **Deterministic Behavior**: State machine-based logic
-✅ **Real-time Monitoring**: Performance tracking and optimization
+✅ **Language-Agnostic Design**: Easy porting to Rust  
+✅ **Performance Optimization**: Efficient resource management  
+✅ **Modular Architecture**: Independent, testable components ✅ **Event-Driven
+Communication**: Loose coupling between systems ✅ **Memory Efficiency**: Object
+pooling and resource management ✅ **Deterministic Behavior**: State
+machine-based logic ✅ **Real-time Monitoring**: Performance tracking and
+optimization
 
 This architecture serves as a solid foundation for the main Phoenix Rooivalk
-counter-drone defense system, ensuring seamless transition from TypeScript to Rust while maintaining high performance and reliability.
-```
+counter-drone defense system, ensuring seamless transition from TypeScript to
+Rust while maintaining high performance and reliability.

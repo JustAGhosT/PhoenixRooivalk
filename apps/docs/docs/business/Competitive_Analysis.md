@@ -194,16 +194,16 @@ substantial market share by addressing critical gaps in current solutions.
 
 ### Performance Comparison
 
-| Capability               | Phoenix Rooivalk | Anduril   | Fortem       | DroneShield | Aaronia |
-| ------------------------ | ---------------- | --------- | ------------ | ----------- | ------- |
-| **Response Time**        | 120-195ms        | 2-5s      | 2-5s         | 2-5s        | 1-3s    |
-| **Detection Accuracy**   | 99.7%            | 95%       | 90%          | 85%         | 80%     |
-| **RF-Silent Detection**  | ✅ Yes            | ❌ No      | ❌ No         | ❌ No        | ❌ No    |
-| **Autonomous Operation** | ✅ SAE Level 4    | ⚠️ Partial | ❌ No         | ❌ No        | ❌ No    |
-| **Swarm Handling**       | ✅ 100+           | ⚠️ Limited | ❌ Sequential | ⚠️ Limited   | ❌ No    |
-| **Blockchain Evidence**  | ✅ Yes            | ❌ No      | ❌ No         | ❌ No        | ❌ No    |
-| **EW Resilience**        | ✅ Yes            | ❌ No      | ❌ No         | ❌ No        | ❌ No    |
-| **Kinetic Capability**   | ✅ Yes            | ✅ Yes     | ✅ Yes        | ❌ No        | ❌ No    |
+| Capability               | Phoenix Rooivalk | Anduril    | Fortem        | DroneShield | Aaronia |
+| ------------------------ | ---------------- | ---------- | ------------- | ----------- | ------- |
+| **Response Time**        | 120-195ms        | 2-5s       | 2-5s          | 2-5s        | 1-3s    |
+| **Detection Accuracy**   | 99.7%            | 95%        | 90%           | 85%         | 80%     |
+| **RF-Silent Detection**  | ✅ Yes           | ❌ No      | ❌ No         | ❌ No       | ❌ No   |
+| **Autonomous Operation** | ✅ SAE Level 4   | ⚠️ Partial | ❌ No         | ❌ No       | ❌ No   |
+| **Swarm Handling**       | ✅ 100+          | ⚠️ Limited | ❌ Sequential | ⚠️ Limited  | ❌ No   |
+| **Blockchain Evidence**  | ✅ Yes           | ❌ No      | ❌ No         | ❌ No       | ❌ No   |
+| **EW Resilience**        | ✅ Yes           | ❌ No      | ❌ No         | ❌ No       | ❌ No   |
+| **Kinetic Capability**   | ✅ Yes           | ✅ Yes     | ✅ Yes        | ❌ No       | ❌ No   |
 
 ### Market Segment Positioning
 

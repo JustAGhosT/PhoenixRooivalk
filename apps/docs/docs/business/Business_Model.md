@@ -303,7 +303,7 @@ and DoD contractor eligibility development
 
 **Year 4 (2029)**
 
-- **Units Sold**: 300, 50
+- **Units Sold**: Hardware: 300; Software Licenses: 50
 - **Hardware Revenue**: $50M
 - **Software Revenue**: $30M
 - **Service Revenue**: $20M
@@ -312,7 +312,7 @@ and DoD contractor eligibility development
 
 **Year 5 (2030)**
 
-- **Units Sold**: 500, 100
+- **Units Sold**: Hardware: 500; Software Licenses: 100
 - **Hardware Revenue**: $75M
 - **Software Revenue**: $50M
 - **Service Revenue**: $35M
@@ -358,7 +358,7 @@ and DoD contractor eligibility development
 - Real-time learning systems and explainable AI for regulatory compliance
 - Hybrid soft-kill/hard-kill with layered response optimizing effector selection
 - Performance advantages: detection range over 5km, response time under 200
-  seconds
+  milliseconds
 - Success rate over 95%, multi-target capacity handling 10+ simultaneous threats
 - Autonomous operation with minimal operator intervention through pre-authorized
   engagement protocols

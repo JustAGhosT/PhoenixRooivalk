@@ -137,7 +137,7 @@ providing enterprise-grade security and performance for military applications.
 
 | Protocol               | Throughput (TPS) | Latency    | Finality   | Energy Efficiency |
 | ---------------------- | ---------------- | ---------- | ---------- | ----------------- |
-| **Hyperledger Fabric** | 65,000+          | <1s        | Immediate  | High              |
+| **Hyperledger Fabric** | 10,000+          | <1s        | Sub-second | High              |
 | **Solana**             | 50,000+          | 400ms      | 400ms      | Medium            |
 | **Ethereum**           | 15-30            | 15s        | 2 minutes  | Low               |
 | **Bitcoin**            | 7                | 10 minutes | 10 minutes | Very Low          |
@@ -170,7 +170,7 @@ providing enterprise-grade security and performance for military applications.
 
 - **Purpose**: Enterprise-grade permissioned operations
 - **Use Cases**: Sensitive military operations, classified data
-- **Performance**: 65,000+ TPS, sub-second latency
+- **Performance**: 10,000+ TPS, sub-second finality
 - **Security**: Highest security and privacy
 
 **Layer 2: Solana (High-Performance POC)**

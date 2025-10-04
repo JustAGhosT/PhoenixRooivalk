@@ -110,7 +110,7 @@ metrics across all system components.
 **YOLOv9 Performance**
 
 - **mAP**: 99.7% mean Average Precision
-- **Precision**: 99.5$ precision
+- **Precision**: 99.5% precision
 - **Recall**: 99.2% recall
 - **Frame Rate**: 30+ FPS on Jetson Nano, 60+ FPS on Orin platforms
 - **Detection Range**: 100-1000 feet altitude with real-time processing

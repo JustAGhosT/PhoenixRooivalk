@@ -17,7 +17,8 @@ propositions.
 
 ### Major Competitors
 
-1. **Anduril Industries** - $8.5B valuation, AI-powered defense
+1. **Anduril Industries** - $28B valuation (Series G, June 2025), AI-powered
+   defense
 2. **Fortem Technologies** - $1.2B valuation, radar-based detection
 3. **DroneShield** - $200M market cap, portable counter-drone systems
 4. **Raytheon** - $5.04B Coyote interceptor contract

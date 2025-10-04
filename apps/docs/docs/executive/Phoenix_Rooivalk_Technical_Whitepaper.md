@@ -22,24 +22,24 @@ modular architecture designed for global deployment. Phoenix Rooivalk achieves
 sub-200ms response times with 95%+ detection accuracy while maintaining complete
 operational autonomy in GPS-denied and electronically contested environments.
 The platform leverages advanced AI integration (Morpheus Network, Cognitive
-Mesh) and dual-chain blockchain evidence (Solana + EtherLink) to deliver
-cost-competitive solutions to the rapidly growing $2.45-3.0 billion global
-counter-drone market.
+Mesh) and dual-chain blockchain evidence (Hedera + Private Chain + Solana) to
+deliver cost-competitive solutions to the rapidly growing $2.45-3.0 billion
+global counter-drone market.
 
 ---
 
 ## Table of Contents
 
-1. [Executive Summary](#executive-summary)
-2. [System Architecture](#system-architecture)
-3. [Technology Components](#technology-components)
-4. [Performance Specifications](#performance-specifications)
-5. [Market Analysis](#market-analysis)
-6. [Implementation Roadmap](#implementation-roadmap)
-7. [Financial Model](#financial-model)
-8. [Risk Assessment](#risk-assessment)
-9. [Conclusion](#conclusion)
-10. [References](#references)
+1. [Executive Summary](#1-executive-summary)
+2. [System Architecture](#2-system-architecture)
+3. [Technology Components](#3-technology-components)
+4. [Performance Specifications](#4-performance-specifications)
+5. [Market Analysis](#5-market-analysis)
+6. [Implementation Roadmap](#6-implementation-roadmap)
+7. [Financial Model](#7-financial-model)
+8. [Risk Assessment](#8-risk-assessment)
+9. [Conclusion](#9-conclusion)
+10. [References](#10-references)
 
 ---
 
@@ -74,8 +74,8 @@ dependency or human intervention.
 
 1. **Edge-First Architecture**: Sub-2ms authentication and 120-195ms end-to-end
    decision latency
-2. **Dual-Chain Blockchain Evidence**: Immutable audit trails on Solana +
-   EtherLink blockchains
+2. **Dual-Chain Blockchain Evidence**: Immutable audit trails on Solana + Hedera
+   and Private Chain blockchains
 3. **Multi-Sensor Fusion**: RF, radar, EO/IR, acoustic, and LiDAR integration
 4. **Modular Design**: Scalable and customizable threat-specific configurations
 5. **Advanced AI Integration**: Morpheus Network + Cognitive Mesh orchestration
@@ -160,10 +160,11 @@ dependency or human intervention.
 - **Zero-Trust Security**: Distributed security architecture
 - **Continuous Learning**: Adaptive behavior and optimization
 
-#### Dual-Chain Blockchain Evidence
+#### Dual-Chain Blockchain Evidence (Extensible to Multi-Chain)
 
-- **Solana Primary**: High-performance evidence anchoring (65,000+ TPS)
-- **EtherLink Secondary**: Cross-chain redundancy and compliance
+- **Hedera Primary**: Public evidence anchoring (10,000+ TPS, $0.0001/tx)
+- **Private Chain**: Classified operations and sensitive data
+- **Solana Secondary**: US market compliance where required
 - **Tamper-Proof Audit Trails**: Cryptographic proof of actions
 - **Court-Admissible Evidence**: Legal defensibility and compliance
 
@@ -178,7 +179,7 @@ dependency or human intervention.
 - **AGX Orin 64GB**: 275 TOPS AI performance
 - **CUDA Cores**: 2,048 CUDA cores
 - **Tensor Cores**: 64 Tensor cores
-- **Memory**: 32GB LPDDR5 unified memory
+- **Memory**: 64GB LPDDR5 unified memory
 - **Power Consumption**: 60W typical, 100W peak
 
 #### Sensor Integration
@@ -208,19 +209,27 @@ dependency or human intervention.
 
 ### 3.3 Blockchain Integration
 
-#### Solana Primary Chain
+#### Hedera Primary Chain
+
+- **Performance**: 10,000+ TPS with 3-5 second finality
+- **Cost**: $0.0001 per transaction (lowest cost)
+- **Security**: Hashgraph consensus with enterprise governance
+- **Credibility**: Boeing, IBM, Google governance council
+- **Jurisdiction**: Non-US jurisdiction for South African operations
+
+#### Private Chain
+
+- **Performance**: Unlimited TPS with instant finality
+- **Cost**: No transaction fees
+- **Security**: Classified operations and sensitive data
+- **Compliance**: Military-grade data protection
+
+#### Solana Secondary Chain
 
 - **Performance**: 65,000+ TPS with sub-second finality
 - **Cost**: $0.00025 per transaction
-- **Security**: Proof of History consensus
-- **Scalability**: Horizontal scaling capabilities
-
-#### EtherLink Secondary Chain
-
-- **Cross-Chain Bridge**: Solana-EtherLink interoperability
-- **Compliance**: Multi-jurisdiction legal requirements
-- **Redundancy**: Backup evidence storage
-- **Integration**: Enterprise system compatibility
+- **Compliance**: US market requirements where needed
+- **Integration**: Cross-chain bridge for multi-jurisdiction coverage
 
 ---
 
@@ -464,8 +473,8 @@ dependency or human intervention.
 2. **Blockchain Scalability**: Evidence anchoring may face throughput
    limitations
 
-   - **Mitigation**: Solana's 65,000+ TPS capability
-   - **Contingency**: Dual-chain architecture with EtherLink
+   - **Mitigation**: Hedera's 10,000+ TPS with private chain backup
+   - **Contingency**: Multi-chain architecture with Solana fallback
 
 3. **Sensor Integration**: Multi-sensor fusion complexity
    - **Mitigation**: Proven sensor fusion algorithms

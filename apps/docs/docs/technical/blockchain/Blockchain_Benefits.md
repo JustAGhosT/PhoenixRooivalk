@@ -355,7 +355,7 @@ Key blockchain benefits include:
 
 - **Data Security**: 99.9% data integrity protection with tamper-proof audit
   trails
-- **Decentralized Coordination**: Byzantine fault tolerance with 80% reduction
+- **Decentralized Coordination**: Byzantine fault tolerance with 90% reduction
   in single points of failure
 - **Swarm Coordination**: Advanced coordination of 5-50 drone swarms
 - **Legal Admissibility**: Court-admissible evidence with international

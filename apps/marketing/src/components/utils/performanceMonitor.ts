@@ -196,7 +196,7 @@ export class PerformanceMonitor {
       this.metrics.memoryUsage = performanceWithMemory.memory.usedJSHeapSize;
       this.metrics.memoryPeak = Math.max(
         this.metrics.memoryPeak,
-        performanceWithMemory.memory.totalJSHeapSize,
+        performanceWithMemory.memory.usedJSHeapSize,
       );
     }
   }
@@ -395,19 +395,19 @@ export class PerformanceMonitor {
 
   // Performance optimization methods
   private optimizeFrameRate(): void {
-    // eslint-disable-next-line no-console
+     
     console.log("Optimizing frame rate...");
     // Implementation would reduce visual complexity
   }
 
   private triggerGarbageCollection(): void {
-    // eslint-disable-next-line no-console
+     
     console.log("Triggering garbage collection...");
     // Implementation would force GC if available
   }
 
   private optimizeEntities(): void {
-    // eslint-disable-next-line no-console
+     
     console.log("Optimizing entities...");
     // Implementation would reduce entity count or complexity
   }
@@ -452,7 +452,7 @@ export class PerformanceUtils {
     const end = performance.now();
 
     if (name) {
-      // eslint-disable-next-line no-console
+       
       console.log(`${name} took ${end - start} milliseconds`);
     }
 
@@ -469,7 +469,7 @@ export class PerformanceUtils {
     const end = performance.now();
 
     if (name) {
-      // eslint-disable-next-line no-console
+       
       console.log(`${name} took ${end - start} milliseconds`);
     }
 
@@ -490,7 +490,7 @@ export class PerformanceUtils {
         const result = originalMethod.apply(this, args);
         const end = performance.now();
 
-        // eslint-disable-next-line no-console
+         
         console.log(`${name} took ${end - start} milliseconds`);
 
         return result;
