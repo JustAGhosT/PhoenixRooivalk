@@ -74,9 +74,10 @@ const RadarCanvas: React.FC<RadarCanvasProps> = ({
               radarCenterY +
               Math.sin(angle) * normalizedDistance * radarMaxRadius;
 
-            // For now, all threats are considered hostile. This can be expanded later.
-            const blipClass = `blip blip--hostile`;
-
+            // Determine threat type and corresponding shape
+            const isHostile = threat.status === "hostile" || threat.status === "unknown";
+            const isFriendly = threat.status === "friendly";
+            
             const handleThreatClick = (event: React.MouseEvent) => {
               onThreatClick?.(event, threat.id);
             };
@@ -88,21 +89,69 @@ const RadarCanvas: React.FC<RadarCanvasProps> = ({
               }
             };
 
-            return (
-              <circle
-                key={threat.id}
-                cx={radarX}
-                cy={radarY}
-                r="4"
-                className={`${blipClass} cursor-pointer`}
-                role="button"
-                tabIndex={0}
-                onClick={handleThreatClick}
-                onKeyDown={handleKeyDown}
-                aria-label={`Threat ${threat.id}`}
-                style={{ cursor: "pointer" }}
-              />
-            );
+            // Shape-code for color-blind resilience
+            if (isFriendly) {
+              // Triangle for friendly units
+              const size = 4;
+              const points = [
+                `${radarX},${radarY - size}`,
+                `${radarX - size},${radarY + size}`,
+                `${radarX + size},${radarY + size}`
+              ].join(' ');
+              
+              return (
+                <polygon
+                  key={threat.id}
+                  points={points}
+                  className="blip-friendly cursor-pointer"
+                  role="button"
+                  tabIndex={0}
+                  onClick={handleThreatClick}
+                  onKeyDown={handleKeyDown}
+                  aria-label={`Friendly unit ${threat.id}`}
+                  style={{ cursor: "pointer", fill: "#4ade80" }}
+                />
+              );
+            } else if (isHostile) {
+              // Circle for hostile units
+              return (
+                <circle
+                  key={threat.id}
+                  cx={radarX}
+                  cy={radarY}
+                  r="4"
+                  className="blip-hostile cursor-pointer"
+                  role="button"
+                  tabIndex={0}
+                  onClick={handleThreatClick}
+                  onKeyDown={handleKeyDown}
+                  aria-label={`Hostile threat ${threat.id}`}
+                  style={{ cursor: "pointer", fill: "#ff5d5d" }}
+                />
+              );
+            } else {
+              // Ring for unknown units
+              return (
+                <circle
+                  key={threat.id}
+                  cx={radarX}
+                  cy={radarY}
+                  r="6"
+                  className="blip-unknown cursor-pointer"
+                  role="button"
+                  tabIndex={0}
+                  onClick={handleThreatClick}
+                  onKeyDown={handleKeyDown}
+                  aria-label={`Unknown unit ${threat.id}`}
+                  style={{ 
+                    cursor: "pointer", 
+                    fill: "none", 
+                    stroke: "#ffd166", 
+                    strokeWidth: 2 
+                  }}
+                />
+              );
+            }
           })}
         </g>
       </svg>

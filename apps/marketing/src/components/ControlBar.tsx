@@ -94,37 +94,46 @@ const ControlBar: React.FC<ControlBarProps> = ({
         </div>
       </div>
 
-      <select
-        className="chip"
-        value={weatherMode}
-        onChange={(e) => setWeatherMode(e.target.value as WeatherMode)}
-      >
-        <option value="none">☀️ Clear</option>
-        <option value="rain">🌧️ Rain</option>
-        <option value="fog">🌫️ Fog</option>
-        <option value="night">🌙 Night</option>
-      </select>
+      <div className="environment-group">
+        <label className="environment-label">Weather:</label>
+        <select
+          className="chip"
+          value={weatherMode}
+          onChange={(e) => setWeatherMode(e.target.value as WeatherMode)}
+        >
+          <option value="none">☀️ Clear</option>
+          <option value="rain">🌧️ Rain</option>
+          <option value="fog">🌫️ Fog</option>
+          <option value="night">🌙 Night</option>
+        </select>
+      </div>
 
-      <select
-        className="chip"
-        value={missionType}
-        onChange={(e) => setMissionType(e.target.value as MissionType)}
-      >
-        <option value="airport">✈️ Airport</option>
-        <option value="military-base">🏭 Military Base</option>
-        <option value="vip-protection">👤 VIP Protection</option>
-        <option value="border-patrol">🛡️ Border Patrol</option>
-      </select>
+      <div className="environment-group">
+        <label className="environment-label">Terrain:</label>
+        <select
+          className="chip"
+          value={missionType}
+          onChange={(e) => setMissionType(e.target.value as MissionType)}
+        >
+          <option value="airport">✈️ Airport</option>
+          <option value="military-base">🏭 Military Base</option>
+          <option value="vip-protection">👤 VIP Protection</option>
+          <option value="border-patrol">🛡️ Border Patrol</option>
+        </select>
+      </div>
 
-      <select
-        className="chip"
-        value={automationMode}
-        onChange={(e) => setAutomationMode(e.target.value as AutomationMode)}
-      >
-        <option value="manual">Manual</option>
-        <option value="automated">Automated</option>
-        <option value="hybrid">Hybrid</option>
-      </select>
+      <div className="environment-group">
+        <label className="environment-label">Rules:</label>
+        <select
+          className="chip"
+          value={automationMode}
+          onChange={(e) => setAutomationMode(e.target.value as AutomationMode)}
+        >
+          <option value="manual">Conservative</option>
+          <option value="automated">Aggressive</option>
+          <option value="hybrid">Hybrid</option>
+        </select>
+      </div>
 
       <button
         className="btn btn--ghost"
@@ -136,13 +145,20 @@ const ControlBar: React.FC<ControlBarProps> = ({
       </button>
 
       <button
-        className="btn btn--secondary"
+        role="switch"
+        aria-checked={showDeploymentZones}
+        className={`switch ${showDeploymentZones ? "switch--on" : ""}`}
         onClick={() => setShowDeploymentZones(!showDeploymentZones)}
       >
-        {showDeploymentZones ? "Hide Zones" : "Show Zones"}
+        Show Zones
       </button>
 
-      <button className="btn btn--ghost" onClick={onShowStats}>
+      <button 
+        role="switch"
+        aria-checked={showStats}
+        className={`switch ${showStats ? "switch--on" : ""}`}
+        onClick={onShowStats}
+      >
         Show Stats
       </button>
 

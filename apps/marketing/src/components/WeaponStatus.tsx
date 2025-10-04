@@ -21,7 +21,7 @@ export const WeaponStatus: React.FC<WeaponStatusProps> = ({
   return (
     <div className="weapon-status-panel">
       <h3 className="weapon-status-title">WEAPON SYSTEMS</h3>
-      <div className="weapon-list">
+      <nav aria-label="Weapon Systems" role="radiogroup" className="weapon-list">
         {Object.entries(weapons).map(([id, weaponState]) => {
           const wData = weaponData[id as keyof typeof weaponData];
 
@@ -78,6 +78,8 @@ export const WeaponStatus: React.FC<WeaponStatusProps> = ({
           return (
             <button
               key={id}
+              role="radio"
+              aria-checked={isSelected}
               className={`weapon-item ${isSelected ? "selected" : ""}`}
               onClick={handleWeaponClick}
               onKeyDown={handleKeyDown}
@@ -102,7 +104,7 @@ export const WeaponStatus: React.FC<WeaponStatusProps> = ({
             </button>
           );
         })}
-      </div>
+      </nav>
     </div>
   );
 };

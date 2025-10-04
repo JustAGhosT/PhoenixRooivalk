@@ -146,6 +146,10 @@ export const ThreatSimulator: React.FC<ThreatSimulatorProps> = ({
     consumeEnergy,
     consumeCooling,
     particleSystem,
+    // Wave management
+    startWave,
+    getWaveProgress,
+    isWaveRunning,
   });
 
   const { isFullscreen, enterFullscreen, exitFullscreen } = useFullscreen({
@@ -162,8 +166,13 @@ export const ThreatSimulator: React.FC<ThreatSimulatorProps> = ({
   }, [resetGameState, addFeed]);
 
   const handleSwarm = useCallback(() => {
-    generateSwarm();
-    addFeed("Spawning hostile swarm.");
+    if (isWaveRunning()) {
+      generateSwarm();
+      addFeed("Spawning hostile swarm.");
+    } else {
+      startWave(1);
+      addFeed("Starting Wave 1 - Tutorial.");
+    }
   }, [generateSwarm, addFeed]);
 
   const handlePlus5 = useCallback(() => {

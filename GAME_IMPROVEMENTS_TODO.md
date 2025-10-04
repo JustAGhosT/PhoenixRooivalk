@@ -216,16 +216,16 @@ This document outlines prioritized improvements for the Threat Simulator based o
 
 ## 📋 **Implementation Priority Matrix**
 
-| Priority | Category | Effort | Impact | Timeline |
-|----------|----------|--------|--------|----------|
-| P0 | Drone Path Fix | High | Critical | Week 1-2 |
-| P0 | Collision System | High | Critical | Week 2-3 |
-| P0 | Gradual Spawning | Medium | High | Week 3-4 |
-| P0 | HUD Integration | Low | High | Week 1 |
-| P1 | Event Feed | Medium | Medium | Week 4-5 |
-| P1 | Dynamic Scaling | High | Medium | Week 5-6 |
-| P2 | Visual Polish | Low | Low | Week 6-7 |
-| P3 | Advanced Features | Very High | Low | Week 8+ |
+| Priority | Category          | Effort    | Impact   | Timeline |
+| -------- | ----------------- | --------- | -------- | -------- |
+| P0       | Drone Path Fix    | High      | Critical | Week 1-2 |
+| P0       | Collision System  | High      | Critical | Week 2-3 |
+| P0       | Gradual Spawning  | Medium    | High     | Week 3-4 |
+| P0       | HUD Integration   | Low       | High     | Week 1   |
+| P1       | Event Feed        | Medium    | Medium   | Week 4-5 |
+| P1       | Dynamic Scaling   | High      | Medium   | Week 5-6 |
+| P2       | Visual Polish     | Low       | Low      | Week 6-7 |
+| P3       | Advanced Features | Very High | Low      | Week 8+  |
 
 ## 🛠️ **Technical Architecture**
 

@@ -28,7 +28,7 @@ export const DroneDeployment: React.FC<DroneDeploymentProps> = ({
   return (
     <div className="drone-deployment-panel">
       <h3 className="drone-deployment-title">DRONE DEPLOYMENT</h3>
-      <div className="drone-list">
+      <nav aria-label="Drone Deployment" role="checkboxgroup" className="drone-list">
         {deploymentBays.map((bay) => {
           const data = DRONE_DATA[bay.droneType as keyof typeof DRONE_DATA];
 
@@ -59,8 +59,11 @@ export const DroneDeployment: React.FC<DroneDeploymentProps> = ({
             bay.currentDrones === 0 || energy < DEPLOYMENT_COST;
 
           return (
-            <div
+            <button
               key={bay.id}
+              role="checkbox"
+              aria-checked={isSelected}
+              disabled={isDisabled}
               className={`drone-item ${isSelected ? "selected" : ""} ${isDisabled ? "disabled" : ""}`}
               onClick={() => !isDisabled && onSelectDroneType(bay.droneType)}
               title={
@@ -77,11 +80,15 @@ export const DroneDeployment: React.FC<DroneDeploymentProps> = ({
                 </div>
               </div>
               {!bay.isReady && <div className="drone-cooldown">RECHARGING</div>}
-            </div>
+            </button>
           );
         })}
-      </div>
+      </nav>
       <div className="drone-deployment-info">
+        <div className="budget">
+          <span>Energy</span>
+          <strong id="budget">{energy} / 100</strong>
+        </div>
         <p>Energy Cost: {DEPLOYMENT_COST}</p>
         {selectedDroneType && (
           <p>

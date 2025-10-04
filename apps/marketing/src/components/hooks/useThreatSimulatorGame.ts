@@ -4,11 +4,14 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { GameState, Threat } from "../../types/game";
 import { AutoTargetingSystem } from "../utils/autoTargeting";
+import { CollisionSystem, createPhysicsObject } from "../utils/collisionSystem";
+import { DronePathInterpolator } from "../utils/dronePathInterpolation";
 import { FormationManager } from "../utils/formationManager";
 import { ParticleSystem } from "../utils/particleSystem";
 import { ResponseProtocolEngine } from "../utils/responseProtocols";
 import { StrategicDeploymentEngine } from "../utils/strategicDeployment";
 import { spawnThreat } from "../utils/threatUtils";
+import { WaveManager } from "../utils/waveManager";
 
 interface UseThreatSimulatorGameProps {
   gameRef: React.RefObject<HTMLElement>;
@@ -67,6 +70,29 @@ export const useThreatSimulatorGame = ({
   const [strategicEngine] = useState(() => new StrategicDeploymentEngine());
   const [responseEngine] = useState(() => new ResponseProtocolEngine());
   const [formationManager] = useState(() => new FormationManager());
+  
+  // New P0 systems
+  const [collisionSystem] = useState(() => new CollisionSystem());
+  const [pathInterpolators] = useState<Map<string, DronePathInterpolator>>(() => new Map());
+  
+  // Wave manager
+  const [waveManager] = useState(() => new WaveManager(
+    (spawnEvent) => {
+      const threat = spawnThreat(
+        spawnEvent.threatType as "drone" | "swarm" | "stealth" | "kamikaze" | "decoy" | "shielded" | "boss",
+        spawnEvent.x,
+        spawnEvent.y
+      );
+      threat.id = spawnEvent.id;
+      addThreat(threat);
+    },
+    (waveNumber) => {
+      console.log(`Wave ${waveNumber} completed!`);
+    },
+    () => {
+      console.log('Game completed!');
+    }
+  ));
 
   // Game state
   const [gameDimensions, setGameDimensions] = useState({
@@ -118,25 +144,47 @@ export const useThreatSimulatorGame = ({
         return { ...threat, isMoving: false };
       }
 
-      // Calculate smooth movement
-      const baseSpeed = threat.speed || 1;
-      const speedMultiplier = 1 + (gameState.level - 1) * 0.1; // Speed increases with level
-      const actualSpeed = baseSpeed * speedMultiplier;
+      // Use smooth path interpolation
+      let interpolator = pathInterpolators.get(threat.id);
+      if (!interpolator) {
+        interpolator = new DronePathInterpolator({
+          speed: threat.speed || 2,
+          maxSpeed: 5,
+          acceleration: 0.1,
+          smoothing: 0.8
+        });
+        pathInterpolators.set(threat.id, interpolator);
+        interpolator.setTarget(centerPoint.x, centerPoint.y, threat.x, threat.y);
+      }
 
-      // Normalize direction and apply speed
-      const moveX = (dx / distance) * actualSpeed;
-      const moveY = (dy / distance) * actualSpeed;
+      // Update position using smooth interpolation
+      const movementResult = interpolator.updatePosition(threat.x, threat.y);
+      let finalX = movementResult.x;
+      let finalY = movementResult.y;
+
+      // Add physics object to collision system
+      const physicsObj = createPhysicsObject(
+        threat.id,
+        finalX,
+        finalY,
+        'circle',
+        {
+          radius: 8,
+          mass: threat.type === 'boss' ? 5 : 1,
+          restitution: 0.3,
+          velocity: movementResult.velocity
+        }
+      );
+      
+      collisionSystem.addObject(physicsObj);
 
       // Special movement patterns
-      let finalX = threat.x + moveX;
-      let finalY = threat.y + moveY;
-
       if (threat.type === "swarm") {
         // Swarm zigzag pattern
         const time = Date.now() / 1000;
         const zigzag = Math.sin(time * 5 + threat.createdAt) * 5;
-        finalX += zigzag * (-moveY / actualSpeed);
-        finalY += zigzag * (moveX / actualSpeed);
+        finalX += zigzag * (-movementResult.velocity.y / 10);
+        finalY += zigzag * (movementResult.velocity.x / 10);
       } else if (threat.type === "stealth") {
         // Stealth opacity pulsing
         const time = Date.now() / 2000;
@@ -162,7 +210,39 @@ export const useThreatSimulatorGame = ({
     });
 
     updateThreats(movedThreats);
-  }, [gameState.threats, gameState.level, updateThreats, gameRef]);
+    
+    // Check for collisions
+    const collisions = collisionSystem.checkCollisions();
+    collisions.forEach(({ obj1, obj2, result }) => {
+      if (result.hasCollision && result.collisionPoint) {
+        // Create debris at collision point
+        collisionSystem.createDebris(
+          result.collisionPoint.x,
+          result.collisionPoint.y,
+          result.impactForce || 10,
+          Math.floor((result.impactForce || 10) / 5)
+        );
+        
+        // Remove colliding threats
+        removeThreat(obj1.id);
+        removeThreat(obj2.id);
+        
+        // Add explosion effect
+        particleSystem.createExplosion(
+          result.collisionPoint.x,
+          result.collisionPoint.y,
+          1.0
+        );
+        
+        // Award points for collision
+        updateScore(25);
+      }
+    });
+    
+    // Update debris
+    collisionSystem.updateDebris(16); // 16ms delta time approximation
+    
+  }, [gameState.threats, gameState.level, updateThreats, gameRef, collisionSystem, removeThreat, updateScore, particleSystem]);
 
   // Enhanced neutralization with effects
   const neutralizeThreatWithEffects = useCallback(
@@ -283,6 +363,9 @@ export const useThreatSimulatorGame = ({
       updateDronePositions(deltaTime);
       processFadeOut();
 
+      // Update wave manager
+      waveManager.update();
+
       // Move threats smoothly
       moveAllThreats();
 
@@ -388,8 +471,22 @@ export const useThreatSimulatorGame = ({
     return () => window.removeEventListener("resize", updateDimensions);
   }, [gameRef]);
 
+  // Wave management functions
+  const startWave = useCallback((waveNumber?: number) => {
+    waveManager.startWave(waveNumber);
+  }, [waveManager]);
+
+  const getWaveProgress = useCallback(() => {
+    return waveManager.getWaveProgress();
+  }, [waveManager]);
+
+  const isWaveRunning = useCallback(() => {
+    return waveManager.isWaveRunning();
+  }, [waveManager]);
+
   return {
     particleSystem,
+    collisionSystem,
     gameDimensions,
     weatherMode,
     setWeatherMode,
@@ -407,5 +504,10 @@ export const useThreatSimulatorGame = ({
     neutralizeThreatWithEffects,
     generateSwarm,
     spawnMultipleDrones,
+    // Wave management
+    waveManager,
+    startWave,
+    getWaveProgress,
+    isWaveRunning,
   };
 };
