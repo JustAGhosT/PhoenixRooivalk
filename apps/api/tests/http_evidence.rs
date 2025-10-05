@@ -88,7 +88,7 @@ async fn test_http_evidence_flow() {
         .json(&evidence_payload)
         .send()
         .await
-                .unwrap();
+        .unwrap();
 
     assert_eq!(submit_resp.status(), 200);
     let submit_json: serde_json::Value = submit_resp.json().await.unwrap();
@@ -101,7 +101,7 @@ async fn test_http_evidence_flow() {
                 .get(format!("{}/evidence/{}", base_url, job_id))
                 .send()
                 .await
-            .unwrap();
+                .unwrap();
 
             let status_json: serde_json::Value = status_resp.json().await.unwrap();
             let status = status_json["status"].as_str().unwrap();
