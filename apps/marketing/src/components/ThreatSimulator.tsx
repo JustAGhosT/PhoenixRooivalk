@@ -68,7 +68,6 @@ export const ThreatSimulator: React.FC<ThreatSimulatorProps> = ({
     activatePowerUp,
     updatePowerUps,
     checkAchievements,
-    addToLeaderboard,
     updateResources,
     consumeEnergy,
     consumeCooling,
