@@ -73,6 +73,74 @@ impl MigrationManager {
                 CREATE INDEX IF NOT EXISTS idx_outbox_tx_refs_confirmed ON outbox_tx_refs(confirmed);
                 "#,
             },
+            Migration {
+                version: 5,
+                name: "add_countermeasure_deployments_table",
+                sql: r#"
+                CREATE TABLE IF NOT EXISTS countermeasure_deployments (
+                    id TEXT PRIMARY KEY,
+                    job_id TEXT NOT NULL,
+                    deployed_at INTEGER NOT NULL,
+                    deployed_by TEXT NOT NULL,
+                    countermeasure_type TEXT NOT NULL,
+                    effectiveness_score REAL,
+                    notes TEXT,
+                    created_ms INTEGER NOT NULL,
+                    updated_ms INTEGER NOT NULL,
+                    FOREIGN KEY (job_id) REFERENCES outbox_jobs(id) ON DELETE CASCADE
+                );
+                CREATE INDEX IF NOT EXISTS idx_countermeasure_deployments_job_id ON countermeasure_deployments(job_id);
+                CREATE INDEX IF NOT EXISTS idx_countermeasure_deployments_deployed_at ON countermeasure_deployments(deployed_at);
+                CREATE INDEX IF NOT EXISTS idx_countermeasure_deployments_type ON countermeasure_deployments(countermeasure_type);
+                "#,
+            },
+            Migration {
+                version: 6,
+                name: "add_signal_disruption_audit_table",
+                sql: r#"
+                CREATE TABLE IF NOT EXISTS signal_disruption_audit (
+                    id TEXT PRIMARY KEY,
+                    target_id TEXT NOT NULL,
+                    event_type TEXT NOT NULL,
+                    event_timestamp INTEGER NOT NULL,
+                    detected_by TEXT NOT NULL,
+                    severity TEXT NOT NULL,
+                    outcome TEXT NOT NULL,
+                    evidence_blob TEXT,
+                    created_ms INTEGER NOT NULL,
+                    updated_ms INTEGER NOT NULL
+                );
+                CREATE INDEX IF NOT EXISTS idx_signal_disruption_audit_target_id ON signal_disruption_audit(target_id);
+                CREATE INDEX IF NOT EXISTS idx_signal_disruption_audit_event_timestamp ON signal_disruption_audit(event_timestamp);
+                CREATE INDEX IF NOT EXISTS idx_signal_disruption_audit_event_type ON signal_disruption_audit(event_type);
+                CREATE INDEX IF NOT EXISTS idx_signal_disruption_audit_severity ON signal_disruption_audit(severity);
+                "#,
+            },
+            Migration {
+                version: 7,
+                name: "add_jamming_operations_table",
+                sql: r#"
+                CREATE TABLE IF NOT EXISTS jamming_operations (
+                    id TEXT PRIMARY KEY,
+                    operation_id TEXT NOT NULL UNIQUE,
+                    job_id TEXT NOT NULL,
+                    started_ms INTEGER NOT NULL,
+                    ended_ms INTEGER,
+                    target_frequency_range TEXT NOT NULL,
+                    power_level REAL NOT NULL,
+                    success_metric REAL,
+                    attempts INTEGER NOT NULL DEFAULT 0,
+                    last_error TEXT,
+                    created_ms INTEGER NOT NULL,
+                    updated_ms INTEGER NOT NULL,
+                    FOREIGN KEY (job_id) REFERENCES outbox_jobs(id) ON DELETE CASCADE
+                );
+                CREATE INDEX IF NOT EXISTS idx_jamming_operations_job_id ON jamming_operations(job_id);
+                CREATE INDEX IF NOT EXISTS idx_jamming_operations_started_ms ON jamming_operations(started_ms);
+                CREATE INDEX IF NOT EXISTS idx_jamming_operations_operation_id ON jamming_operations(operation_id);
+                CREATE INDEX IF NOT EXISTS idx_jamming_operations_target_frequency ON jamming_operations(target_frequency_range);
+                "#,
+            },
         ]
     }
 
@@ -243,8 +311,8 @@ mod tests {
         // Check status
         let status = migration_manager.get_status().await.unwrap();
         assert!(status.is_up_to_date);
-        assert_eq!(status.current_version, 4);
-        assert_eq!(status.applied_migrations.len(), 4);
+        assert_eq!(status.current_version, 7);
+        assert_eq!(status.applied_migrations.len(), 7);
 
         // Verify tables exist
         let tables = sqlx::query("SELECT name FROM sqlite_master WHERE type='table'")
