@@ -26,7 +26,11 @@ interface ThreatSimulatorProps {
 }
 
 // Define power-up types as a union type to avoid string errors
-type PowerUpType = "rapid-fire" | "damage-boost" | "area-effect" | "range-boost";
+type PowerUpType =
+  | "rapid-fire"
+  | "damage-boost"
+  | "area-effect"
+  | "range-boost";
 
 export const ThreatSimulator: React.FC<ThreatSimulatorProps> = ({
   isTeaser = false,
@@ -75,7 +79,6 @@ export const ThreatSimulator: React.FC<ThreatSimulatorProps> = ({
     clearSelection,
     setSelectionBox,
     setThreatPriority,
-    removeThreatPriority,
     deployDrone,
     updateDrones,
     selectDroneType,
@@ -87,7 +90,7 @@ export const ThreatSimulator: React.FC<ThreatSimulatorProps> = ({
     setLevel,
     setWeatherMode,
     setMissionType,
-    setAutomationMode
+    setAutomationMode,
   } = useGameState();
 
   // Create a startResearch function since it's not part of useGameState
@@ -129,11 +132,13 @@ export const ThreatSimulator: React.FC<ThreatSimulatorProps> = ({
   });
 
   // Pass correct props structure to useFullscreen hook
-  const { isFullscreen, enterFullscreen, exitFullscreen } = useFullscreen({ gameRef });
+  const { isFullscreen, enterFullscreen, exitFullscreen } = useFullscreen({
+    gameRef,
+  });
 
   const { addFeed } = useEventFeed();
 
-const {
+  const {
     isDragging: _isDragging,
     dragMode: _dragMode,
     handleMouseDown,
@@ -175,19 +180,26 @@ const {
       // Implementation for spawning a new threat
       const newThreat = {
         id: `threat-${Date.now()}`,
-        type: threatType || "drone",
+        type: threatType as "drone" | "swarm" | "stealth",
         x: Math.random() * 800,
         y: Math.random() * 600,
+        vx: Math.random() * 4 - 2,
+        vy: Math.random() * 4 - 2,
         health: 100,
+        maxHealth: 100,
         speed: 2,
-        detected: true,
-        tracked: false,
+        trail: [],
+        createdAt: Date.now(),
+        lastUpdate: Date.now(),
+        isMoving: true,
+        status: "active" as const,
+        allegiance: "hostile" as const,
       };
       addThreat(newThreat);
     },
     moveAllThreats: () => {
       // Implementation for moving all threats
-      const updatedThreats = gameState.threats.map(threat => ({
+      const updatedThreats = gameState.threats.map((threat) => ({
         ...threat,
         x: threat.x + (Math.random() * 10 - 5),
         y: threat.y + (Math.random() * 10 - 5),
@@ -199,13 +211,20 @@ const {
       for (let i = 0; i < 5; i++) {
         const newThreat = {
           id: `swarm-${Date.now()}-${i}`,
-          type: "swarm",
+          type: "swarm" as const,
           x: Math.random() * 800,
           y: Math.random() * 600,
+          vx: Math.random() * 4 - 2,
+          vy: Math.random() * 4 - 2,
           health: 50,
+          maxHealth: 50,
           speed: 3,
-          detected: true,
-          tracked: false,
+          trail: [],
+          createdAt: Date.now(),
+          lastUpdate: Date.now(),
+          isMoving: true,
+          status: "active" as const,
+          allegiance: "hostile" as const,
         };
         addThreat(newThreat);
       }
@@ -215,13 +234,20 @@ const {
       for (let i = 0; i < count; i++) {
         const newThreat = {
           id: `drone-${Date.now()}-${i}`,
-          type: "drone",
+          type: "drone" as const,
           x: Math.random() * 800,
           y: Math.random() * 600,
+          vx: Math.random() * 4 - 2,
+          vy: Math.random() * 4 - 2,
           health: 100,
+          maxHealth: 100,
           speed: 2,
-          detected: true,
-          tracked: false,
+          trail: [],
+          createdAt: Date.now(),
+          lastUpdate: Date.now(),
+          isMoving: true,
+          status: "active" as const,
+          allegiance: "hostile" as const,
         };
         addThreat(newThreat);
       }
@@ -235,8 +261,8 @@ const {
         // Implementation for creating explosions
         // This would typically trigger visual effects
         console.log(`Explosion at (${x},${y}) with intensity ${intensity}`);
-      }
-    }
+      },
+    },
   });
 
   // Handle threat hover events
@@ -260,10 +286,17 @@ const {
 
   // Create getThreatAppearance function with proper return type
   const getThreatAppearance = (type: string) => {
-    const appearances: Record<string, { emoji: string; color: string; cssClass: string }> = {
+    const appearances: Record<
+      string,
+      { emoji: string; color: string; cssClass: string }
+    > = {
       drone: { emoji: "🚁", color: "bg-red-500", cssClass: "threat-drone" },
       swarm: { emoji: "👾", color: "bg-yellow-500", cssClass: "threat-swarm" },
-      stealth: { emoji: "🥷", color: "bg-gray-700", cssClass: "threat-stealth" },
+      stealth: {
+        emoji: "🥷",
+        color: "bg-gray-700",
+        cssClass: "threat-stealth",
+      },
       // Add more threat types as needed
     };
     return appearances[type] || appearances.drone;
@@ -461,54 +494,27 @@ const {
 
       {showResearch && (
         <ResearchPanel
-          data={(gameState as { research?: Record<string, unknown> }).research || {}}
-          onStartResearch={(type: string) => {
-            try {
-              const success = startResearch(type);
-              if (success) {
-                addFeed(`Started research: ${type}`);
-                setShowResearch(false);
-              } else {
-                addFeed(`Failed to start research: ${type}`);
-              }
-            } catch (error) {
-              console.error("Failed to start research:", error);
-              addFeed(`Failed to start research: ${type}`);
-            }
-          }}
+          resourceManager={resourceManager}
+          onClose={() => setShowResearch(false)}
         />
       )}
 
       {showTokenStore && (
         <TokenStore
-          data={(gameState as { tokens?: Record<string, unknown> }).tokens || {}}
-          onPurchase={(type: string) => {
-            try {
-              // Call the actual purchase API
-              const success = resourceManager.purchaseDrone(type);
+          resourceManager={resourceManager}
+          onClose={() => setShowTokenStore(false)}
+          onPurchaseDrone={(type: string) => {
+            // Dispatch the existing "drone-purchase" event
+            const purchaseEvent = new CustomEvent("drone-purchase", {
+              detail: { type, timestamp: Date.now() },
+            });
+            window.dispatchEvent(purchaseEvent);
 
-              if (success) {
-                // Dispatch the existing "drone-purchase" event
-                const purchaseEvent = new CustomEvent("drone-purchase", {
-                  detail: { type, timestamp: Date.now() },
-                });
-                window.dispatchEvent(purchaseEvent);
+            // Close the token store modal after successful purchase
+            setShowTokenStore(false);
 
-                // Close the token store modal after successful purchase
-                setShowTokenStore(false);
-
-                // Add success feedback to the game feed
-                addFeed(`Drone ${type} purchased successfully!`);
-              } else {
-                // Purchase failed - don't close modal, show error
-                addFeed(
-                  `Failed to purchase drone ${type}. Insufficient tokens or drone not unlocked.`,
-                );
-              }
-            } catch (error) {
-              console.error("Failed to process drone purchase:", error);
-              addFeed(`Failed to purchase drone ${type}.`);
-            }
+            // Add success feedback to the game feed
+            addFeed(`Drone ${type} purchased successfully!`);
           }}
         />
       )}

@@ -185,6 +185,7 @@ const ThreatSimulatorGame: React.FC<ThreatSimulatorGameProps> = ({
             onThreatClick={handleThreatClick}
             onThreatHover={() => {}}
             getThreatAppearance={getThreatAppearance}
+            onActivateWeapon={() => {}}
           />
         </div>
 

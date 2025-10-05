@@ -15,7 +15,13 @@ interface ThreatSimulatorComponentsProps {
 
 export const ThreatSimulatorComponents: React.FC<
   ThreatSimulatorComponentsProps
-> = ({ gameState, onThreatClick, onActivateWeapon, onThreatHover, getThreatAppearance }) => {
+> = ({
+  gameState,
+  onThreatClick,
+  onActivateWeapon,
+  onThreatHover,
+  getThreatAppearance,
+}) => {
   const [hoveredThreat, setHoveredThreat] = React.useState<string | null>(null);
 
   return (
