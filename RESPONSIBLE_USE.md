@@ -30,4 +30,5 @@
     mandatory in deployments.
 
 - **Violations**
-  - Access may be revoked. Report suspected misuse to compliance@phoenixvc.tech.
+  - Access may be revoked. Report suspected misuse to
+    <compliance@phoenixvc.tech>.

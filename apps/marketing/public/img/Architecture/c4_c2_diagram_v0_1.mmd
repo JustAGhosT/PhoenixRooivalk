@@ -1,0 +1,51 @@
+```mermaid
+flowchart LR
+  subgraph UI[User Interfaces]
+    UIC2[C2 Desktop (Leptos+Tauri)]
+    UIWEB[Web (Next.js)]
+    UIDOCS[Docs (Docusaurus)]
+  end
+
+  subgraph CORE[Core Services]
+    API[C2 API (Axum)]
+    DB[(PostgreSQL Primary + Replicas)]
+    OUTBOX[Outbox Worker]
+    NATS[NATS Cluster (JetStream)]
+    NK[S‑N2K Bridge]
+    KAFKA[Kafka Cluster]
+    EVID[Evidence Keeper]
+    CHAIN[[Solana / EtherLink]]
+    MESH[S‑Mesh‑Gateway]
+    OBS[OTEL + Prometheus/Grafana/Loki/Tempo]
+  end
+
+  subgraph EDGE[Edge Nodes]
+    RKV[RKV‑M/I/G (Jetson + Morpheus)]
+  end
+
+  UIC2 -- pub/sub --> NATS
+  UIC2 -- REST/gRPC --> API
+  UIWEB -.-> API
+  UIDOCS -.-> OBS
+
+  API -->|SQL| DB
+  DB --> OUTBOX
+  OUTBOX -->|produce| KAFKA
+
+  NATS --> NK
+  NK -->|mirror| KAFKA
+
+  RKV -->|telemetry/alerts| NATS
+  NATS -->|commands| RKV
+
+  EVID --> CHAIN
+  NATS -->|evidence.log| EVID
+
+  API -->|policy/plan| MESH
+
+  UIC2 -->|OTLP| OBS
+  API -->|OTLP| OBS
+  OUTBOX -->|OTLP| OBS
+  NK -->|OTLP| OBS
+  EVID -->|OTLP| OBS
+```

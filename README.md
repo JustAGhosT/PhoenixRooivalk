@@ -149,6 +149,7 @@ Deployments are performed by GitHub Actions to two separate Netlify sites:
   - Triggers: Push to `main` branch, changes to `apps/marketing/**`
 
 Additional workflows:
+
 - **CI/CD**: `.github/workflows/ci-marketing.yml`, `.github/workflows/ci-rust.yml`
 - **Security**: `.github/workflows/codeql.yml` for vulnerability scanning
 

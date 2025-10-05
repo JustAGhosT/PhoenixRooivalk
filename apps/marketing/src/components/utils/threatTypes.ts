@@ -6,7 +6,14 @@ export interface Threat {
   y: number;
   vx: number;
   vy: number;
-  type: "drone" | "swarm" | "stealth" | "kamikaze" | "decoy" | "shielded";
+  type:
+    | "drone"
+    | "swarm"
+    | "stealth"
+    | "kamikaze"
+    | "decoy"
+    | "shielded"
+    | "boss";
   speed: number;
   health: number;
   maxHealth: number;
@@ -15,6 +22,7 @@ export interface Threat {
   lastUpdate: number;
   isMoving: boolean;
   status: "active" | "neutralized" | "crater";
+  allegiance: "hostile" | "friendly" | "unknown";
   neutralizedAt?: number;
   fadeStartTime?: number;
   specialProperties?: {

@@ -1,0 +1,38 @@
+@startuml
+!include <C4/C4_Container>
+
+Person(operator, "Operator", "Uses the C2 Desktop")
+System_Boundary(core, "PhoenixRooivalk Core") {
+  Container(uic2, "C2 Desktop", "Leptos+Tauri", "Operator HMI; pub/sub; queries")
+  Container(api, "C2 API", "Axum", "AuthN/Z; command handlers; queries; outbox")
+  ContainerDb(db, "PostgreSQL", "Write model + read replicas")
+  Container(outbox, "Outbox Worker", "Rust", "domain_outbox -> Kafka")
+  Container(nats, "NATS", "JetStream", "Tactical subjects")
+  Container(nk, "NATS↔Kafka Bridge", "Rust", "Mirror subjects to topics")
+  Container(kafka, "Kafka", "Apache Kafka", "Durable events + replay")
+  Container(evid, "Evidence Keeper", "Rust", "Anchor to Solana/EtherLink")
+  Container(block, "Blockchains", "Solana/EtherLink", "Tamper-evident anchors")
+  Container(mesh, "Mesh Gateway", "Rust", "Policy/ethics checks; task planning")
+  Container(obs, "Observability", "OTEL/Prom/Graf/Loki/Tempo", "Traces/metrics/logs")
+}
+
+System_Ext(edge, "Edge Nodes (RKV-M/I/G)", "Jetson + Morpheus")
+Rel(operator, uic2, "Uses")
+Rel(uic2, nats, "pub/sub")
+Rel(uic2, api, "REST/gRPC")
+Rel(api, db, "SQL")
+Rel(db, outbox, "domain_outbox")
+Rel(outbox, kafka, "produce")
+Rel(nats, nk, "mirror")
+Rel(nk, kafka, "produce")
+Rel(edge, nats, "telemetry/alerts")
+Rel(nats, edge, "commands")
+Rel(nats, evid, "evidence.log")
+Rel(evid, block, "anchors")
+Rel(api, mesh, "policy/plan (gRPC/HTTP)")
+Rel(uic2, obs, "OTLP")
+Rel(api, obs, "OTLP")
+Rel(outbox, obs, "OTLP")
+Rel(nk, obs, "OTLP")
+Rel(evid, obs, "OTLP")
+@enduml

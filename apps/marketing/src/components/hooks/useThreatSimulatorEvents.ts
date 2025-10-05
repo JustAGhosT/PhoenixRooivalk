@@ -1,8 +1,13 @@
 import { useCallback, useState } from "react";
-import type { GameState, SelectionBox, Threat } from "../../types/game";
+import type {
+  GameState,
+  PowerUp,
+  SelectionBox,
+  Threat,
+} from "../../types/game";
 
 interface UseThreatSimulatorEventsProps {
-  gameRef: React.RefObject<HTMLButtonElement>;
+  gameRef: React.RefObject<HTMLElement>;
   gameState: GameState;
   updateThreats: (threats: Threat[]) => void;
   addThreat: (threat: Threat) => void;
@@ -17,21 +22,45 @@ interface UseThreatSimulatorEventsProps {
   switchWeapon: (weaponId: string) => void;
   deployDrone: (
     droneType:
-      | "interceptor"
+      | "effector"
       | "jammer"
       | "surveillance"
       | "shield"
-      | "swarm-coordinator",
+      | "swarm-coordinator"
+      | "decoy_uav"
+      | "net_uav"
+      | "relay_uav"
+      | "overwatch_tether"
+      | "recovery_uav"
+      | "lure_swarm"
+      | "perimeter_sentry"
+      | "spotter"
+      | "hpm_uav"
+      | "shield_wall"
+      | "mapper_lidar"
+      | "relay_optical",
     targetX: number,
     targetY: number,
   ) => void;
   selectDroneType: (
     droneType:
-      | "interceptor"
+      | "effector"
       | "jammer"
       | "surveillance"
       | "shield"
       | "swarm-coordinator"
+      | "decoy_uav"
+      | "net_uav"
+      | "relay_uav"
+      | "overwatch_tether"
+      | "recovery_uav"
+      | "lure_swarm"
+      | "perimeter_sentry"
+      | "spotter"
+      | "hpm_uav"
+      | "shield_wall"
+      | "mapper_lidar"
+      | "relay_optical"
       | null,
   ) => void;
   returnDroneToBase: (droneId: string) => void;
@@ -41,14 +70,16 @@ interface UseThreatSimulatorEventsProps {
   moveAllThreats: () => void;
   generateSwarm: () => void;
   spawnMultipleDrones: (count: number) => void;
-  activatePowerUp: (powerUpId: string) => void;
+  activatePowerUp: (powerUpType: PowerUp["type"]) => void;
   clearTimeouts: () => void;
   resetGameState: () => void;
   toggleRunningState: () => void;
   setFrameRate: (rate: number) => void;
   consumeEnergy: (amount: number) => void;
   consumeCooling: (amount: number) => void;
-  particleSystem: any;
+  particleSystem: {
+    createExplosion: (x: number, y: number, intensity: number) => void;
+  };
 }
 
 export const useThreatSimulatorEvents = ({
@@ -112,7 +143,7 @@ export const useThreatSimulatorEvents = ({
         }
       }
     },
-    [gameState.selectedWeapon, setSelectionBox],
+    [gameState.selectedWeapon, setSelectionBox, gameRef],
   );
 
   const handleMouseMove = useCallback(
@@ -158,7 +189,7 @@ export const useThreatSimulatorEvents = ({
             gameState.selectionBox.endY,
           );
 
-          const selectedThreats = gameState.threats.filter((threat: any) => {
+          const selectedThreats = gameState.threats.filter((threat: Threat) => {
             return (
               threat.x >= minX &&
               threat.x <= maxX &&
@@ -169,7 +200,7 @@ export const useThreatSimulatorEvents = ({
 
           if (dragMode === "area-weapon") {
             // Area effect weapon - neutralize all threats in selection
-            selectedThreats.forEach((threat: any) => {
+            selectedThreats.forEach((threat: Threat) => {
               neutralizeThreat(threat.id);
               // Create area effect explosion
               particleSystem.createExplosion(threat.x, threat.y, 1.2);
@@ -179,7 +210,7 @@ export const useThreatSimulatorEvents = ({
             consumeEnergy(selectedThreats.length * 10);
           } else {
             // Normal selection mode
-            selectedThreats.forEach((threat: any) => {
+            selectedThreats.forEach((threat: Threat) => {
               selectThreat(threat.id);
             });
           }
@@ -196,38 +227,42 @@ export const useThreatSimulatorEvents = ({
       particleSystem,
       consumeEnergy,
       setSelectionBox,
-      gameRef,
     ],
   );
 
   const handleThreatClick = useCallback(
-    (e: React.MouseEvent, threatId: string) => {
+    (e: React.MouseEvent | React.KeyboardEvent, threatId: string) => {
       e.stopPropagation();
 
       // Only prevent default for non-primary buttons to avoid interfering with normal selection
-      if (e.button !== 0) {
+      if ("button" in e && e.button !== 0) {
         e.preventDefault();
       }
 
-      if (e.button === 0) {
-        // Left click - select threat
-        selectThreat(threatId);
-      } else if (e.button === 1) {
-        // Middle click - set priority
-        // Use safer object property access with optional chaining
-        const currentPriority = gameState.priorityThreats?.[threatId] as
-          | string
-          | undefined;
-        if (currentPriority === "high") {
-          setThreatPriority(threatId, "medium");
-        } else if (currentPriority === "medium") {
-          setThreatPriority(threatId, "low");
-        } else {
-          setThreatPriority(threatId, "high");
+      if ("button" in e) {
+        if (e.button === 0) {
+          // Left click - select threat
+          selectThreat(threatId);
+        } else if (e.button === 1) {
+          // Middle click - set priority
+          // Use safer object property access with optional chaining
+          const currentPriority = gameState.priorityThreats?.[threatId] as
+            | string
+            | undefined;
+          if (currentPriority === "high") {
+            setThreatPriority(threatId, "medium");
+          } else if (currentPriority === "medium") {
+            setThreatPriority(threatId, "low");
+          } else {
+            setThreatPriority(threatId, "high");
+          }
+        } else if (e.button === 2) {
+          // Right click - neutralize
+          neutralizeThreat(threatId);
         }
-      } else if (e.button === 2) {
-        // Right click - neutralize
-        neutralizeThreat(threatId);
+      } else {
+        // Keyboard event - select threat
+        selectThreat(threatId);
       }
     },
     [
@@ -265,7 +300,13 @@ export const useThreatSimulatorEvents = ({
         deployDrone("surveillance", x, y);
       }
     },
-    [gameState.selectedDroneType, deployDrone, switchWeapon, isDragging],
+    [
+      gameState.selectedDroneType,
+      deployDrone,
+      switchWeapon,
+      isDragging,
+      gameRef,
+    ],
   );
 
   // Keyboard activation handler (no mouse coordinates needed)
@@ -314,7 +355,7 @@ export const useThreatSimulatorEvents = ({
         }
       }
     },
-    [gameState.selectedWeapon, switchWeapon, gameRef],
+    [gameState.selectedWeapon, switchWeapon],
   );
 
   // Context menu handler to prevent right-click menu

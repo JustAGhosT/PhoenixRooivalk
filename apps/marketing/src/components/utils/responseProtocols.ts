@@ -107,7 +107,7 @@ export class ResponseProtocolEngine {
       actions: [
         {
           type: "deploy-drone",
-          parameters: { droneType: "interceptor", count: 2 },
+          parameters: { droneType: "effector", count: 2 },
           priority: 1,
           delay: 0,
         },

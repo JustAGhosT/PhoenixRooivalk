@@ -1,18 +1,20 @@
 use axum::{
-    routing::{get, post},
-    Router,
     extract::{Path, State},
-    Json,
-    serve::Serve,
-    serve,
+    http::StatusCode,
+    routing::{get, post},
+    Json, Router,
 };
-use tokio::net::TcpListener;
 use serde::{Deserialize, Serialize};
-use sqlx::{Pool, Sqlite, SqlitePool};
 use sqlx::sqlite::SqlitePoolOptions;
+use sqlx::{Pool, Row, Sqlite};
 use std::net::SocketAddr;
+use tokio::net::TcpListener;
+use tokio::signal;
+use tracing_subscriber::prelude::*;
 
-async fn health() -> &'static str { "OK" }
+async fn health() -> &'static str {
+    "OK"
+}
 
 #[derive(Clone)]
 struct AppState {
@@ -23,11 +25,14 @@ struct AppState {
 struct EvidenceIn {
     id: Option<String>,
     digest_hex: String,
+    #[allow(dead_code)]
     payload_mime: Option<String>,
+    #[allow(dead_code)]
     metadata: Option<serde_json::Value>,
 }
 
 #[derive(Debug, Serialize)]
+#[allow(dead_code)]
 struct EvidenceOut {
     id: String,
     status: String,
@@ -70,7 +75,10 @@ async fn main() {
 
     let (app, _pool) = build_app().await;
 
-    let port: u16 = std::env::var("PORT").ok().and_then(|s| s.parse().ok()).unwrap_or(8080);
+    let port: u16 = std::env::var("PORT")
+        .ok()
+        .and_then(|s| s.parse().ok())
+        .unwrap_or(8080);
     let addr: SocketAddr = ([0, 0, 0, 0], port).into();
     let listener = match TcpListener::bind(addr).await {
         Ok(l) => l,
@@ -81,7 +89,10 @@ async fn main() {
     };
     let bound = listener.local_addr().unwrap_or(addr);
     tracing::info!(%bound, "starting phoenix-api");
-    if let Err(err) = serve(listener, app.into_make_service()).await {
+    if let Err(err) = axum::serve(listener, app.into_make_service())
+        .with_graceful_shutdown(shutdown_signal())
+        .await
+    {
         tracing::error!(%err, "server error");
     }
 }
@@ -120,13 +131,18 @@ async fn ensure_schema(pool: &Pool<Sqlite>) -> Result<(), sqlx::Error> {
     .execute(pool)
     .await?;
     // Try to add next_attempt_ms if missing (best-effort)
-    let _ = sqlx::query("ALTER TABLE outbox_jobs ADD COLUMN next_attempt_ms INTEGER NOT NULL DEFAULT 0")
-        .execute(pool)
-        .await;
+    let _ = sqlx::query(
+        "ALTER TABLE outbox_jobs ADD COLUMN next_attempt_ms INTEGER NOT NULL DEFAULT 0",
+    )
+    .execute(pool)
+    .await;
     Ok(())
 }
 
-async fn post_evidence(State(state): State<AppState>, Json(body): Json<EvidenceIn>) -> Json<serde_json::Value> {
+async fn post_evidence(
+    State(state): State<AppState>,
+    Json(body): Json<EvidenceIn>,
+) -> Json<serde_json::Value> {
     let id = body.id.unwrap_or_else(|| uuid::Uuid::new_v4().to_string());
     let now = chrono::Utc::now().timestamp_millis();
     // Insert into outbox
@@ -142,27 +158,67 @@ async fn post_evidence(State(state): State<AppState>, Json(body): Json<EvidenceI
     Json(serde_json::json!({ "id": id, "status": "queued" }))
 }
 
-async fn get_evidence(State(state): State<AppState>, Path(id): Path<String>) -> Json<serde_json::Value> {
-    let row = sqlx::query(
+async fn get_evidence(
+    State(state): State<AppState>,
+    Path(id): Path<String>,
+) -> Result<Json<serde_json::Value>, (StatusCode, Json<serde_json::Value>)> {
+    let row = match sqlx::query(
         "SELECT id, status, attempts, last_error, created_ms, updated_ms FROM outbox_jobs WHERE id=?1"
     )
     .bind(&id)
     .fetch_optional(&state.pool)
     .await
-    .ok()
-    .flatten();
+    {
+        Ok(row) => row,
+        Err(e) => {
+            tracing::error!("Database error in get_evidence: {}", e);
+            return Err((
+                StatusCode::INTERNAL_SERVER_ERROR,
+                Json(serde_json::json!({ "error": "Database error" }))
+            ));
+        }
+    };
 
     if let Some(row) = row {
-        let out = EvidenceOut {
-            id: row.get::<String, _>(0),
-            status: row.get::<String, _>(1),
-            attempts: row.get::<i64, _>(2),
-            last_error: row.get::<Option<String>, _>(3),
-            created_ms: row.get::<i64, _>(4),
-            updated_ms: row.get::<i64, _>(5),
-        };
-        return Json(serde_json::to_value(out).unwrap());
+        Ok(Json(serde_json::json!({
+            "id": row.get::<String, _>("id"),
+            "status": row.get::<String, _>("status"),
+            "attempts": row.get::<i64, _>("attempts"),
+            "last_error": row.get::<Option<String>, _>("last_error"),
+            "created_ms": row.get::<i64, _>("created_ms"),
+            "updated_ms": row.get::<i64, _>("updated_ms")
+        })))
+    } else {
+        Err((
+            StatusCode::NOT_FOUND,
+            Json(serde_json::json!({ "error": "Job not found" })),
+        ))
+    }
+}
+
+async fn shutdown_signal() {
+    let ctrl_c = async {
+        signal::ctrl_c()
+            .await
+            .expect("failed to install Ctrl+C handler");
+    };
+
+    #[cfg(unix)]
+    let terminate = async {
+        signal::unix::signal(signal::unix::SignalKind::terminate())
+            .expect("failed to install signal handler")
+            .recv()
+            .await;
+    };
+
+    #[cfg(unix)]
+    tokio::select! {
+        _ = ctrl_c => {},
+        _ = terminate => {},
     }
 
-    Json(serde_json::json!({ "id": id, "status": "not_found" }))
+    #[cfg(not(unix))]
+    ctrl_c.await;
+
+    tracing::info!("signal received, starting graceful shutdown");
 }

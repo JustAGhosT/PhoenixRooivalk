@@ -1,0 +1,10 @@
+<svg viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2">
+  <!-- Shield -->
+  <path d="M12 2L8 6L8 12L12 18L16 12L16 6Z" />
+  <!-- Legal scales -->
+  <path d="M10 8L10 10" stroke-width="2" />
+  <path d="M14 8L14 10" stroke-width="2" />
+  <path d="M8 10L16 10" stroke-width="1" />
+  <circle cx="10" cy="12" r="1" fill="#f59e0b" />
+  <circle cx="14" cy="12" r="1" fill="#f59e0b" />
+</svg>

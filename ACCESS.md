@@ -14,7 +14,7 @@
 
 - **Process**
 
-  1. Email access@phoenixvc.tech with the above details.
+  1. Email <access@phoenixvc.tech> with the above details.
   2. We conduct due diligence and export control checks.
   3. If approved, you will receive encrypted delivery instructions for artifacts
      and extended documentation.

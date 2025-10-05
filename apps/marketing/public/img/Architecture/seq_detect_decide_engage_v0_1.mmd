@@ -1,0 +1,27 @@
+```mermaid
+sequenceDiagram
+  autonumber
+  participant Op as Operator (UI-C2)
+  participant API as C2 API (Axum)
+  participant DB as PostgreSQL (Write Model)
+  participant OUT as Outbox Worker
+  participant NATS as NATS
+  participant EDGE as RKV Unit
+  participant KAFKA as Kafka
+  participant OBS as OTEL/Observability
+
+  Op->>API: POST /v1/commands (ENGAGE)\n(Idempotency-Key)
+  API->>DB: Begin TX; insert command + outbox
+  DB-->>API: Commit OK
+  API->>NATS: emit c2.cmd.<unit>\n(idempotent command_id)
+  NATS-->>EDGE: command delivery
+  EDGE-->>NATS: telemetry + alerts
+  NATS-->>Op: telemetry/alerts (subscribe)
+  OUT->>DB: pull domain_outbox (new events)
+  OUT->>KAFKA: produce CommandV1
+  API-->>Op: 202 Accepted {command_id}
+  Note over API,DB: end-to-end traced (command_id + trace_id)
+  API-->>OBS: OTLP spans
+  OUT-->>OBS: OTLP spans
+  Op-->>OBS: OTLP spans
+```

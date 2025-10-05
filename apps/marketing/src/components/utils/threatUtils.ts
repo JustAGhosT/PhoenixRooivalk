@@ -5,7 +5,14 @@ import { Threat } from "./threatTypes";
  * Spawns a new threat at the edge of the game area
  */
 export function spawnThreat(
-  type?: "drone" | "swarm" | "stealth" | "kamikaze",
+  type?:
+    | "drone"
+    | "swarm"
+    | "stealth"
+    | "kamikaze"
+    | "decoy"
+    | "shielded"
+    | "boss",
   boundingRect?: DOMRect,
   level: number = 1,
 ): Threat {
@@ -73,7 +80,9 @@ export function spawnThreat(
           ? 30
           : threatType === "kamikaze"
             ? 40
-            : 100,
+            : threatType === "boss"
+              ? 200
+              : 100,
     maxHealth:
       threatType === "stealth"
         ? 50
@@ -81,12 +90,15 @@ export function spawnThreat(
           ? 30
           : threatType === "kamikaze"
             ? 40
-            : 100,
+            : threatType === "boss"
+              ? 200
+              : 100,
     trail: [{ x, y, timestamp: Date.now() }],
     createdAt: Date.now(),
     lastUpdate: Date.now(),
     isMoving: true,
     status: "active",
+    allegiance: "hostile", // Default to hostile for enemy threats
     specialProperties: {
       stealthMode: threatType === "stealth",
       swarmBehavior: threatType === "swarm",

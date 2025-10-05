@@ -86,10 +86,10 @@ impl KeeperConfig {
             Ok("etherlink") => {
                 let endpoint = std::env::var("ETHERLINK_ENDPOINT")
                     .unwrap_or_else(|_| "https://node.ghostnet.etherlink.com".to_string());
-                let network = std::env::var("ETHERLINK_NETWORK")
-                    .unwrap_or_else(|_| "ghostnet".to_string());
+                let network =
+                    std::env::var("ETHERLINK_NETWORK").unwrap_or_else(|_| "ghostnet".to_string());
                 let private_key = std::env::var("ETHERLINK_PRIVATE_KEY").ok();
-                
+
                 ProviderConfig::Etherlink {
                     endpoint,
                     network,
@@ -99,9 +99,9 @@ impl KeeperConfig {
             Ok("solana") => {
                 let endpoint = std::env::var("SOLANA_ENDPOINT")
                     .unwrap_or_else(|_| "https://api.devnet.solana.com".to_string());
-                let network = std::env::var("SOLANA_NETWORK")
-                    .unwrap_or_else(|_| "devnet".to_string());
-                
+                let network =
+                    std::env::var("SOLANA_NETWORK").unwrap_or_else(|_| "devnet".to_string());
+
                 ProviderConfig::Solana { endpoint, network }
             }
             Ok("multi") => {
@@ -135,6 +135,7 @@ impl KeeperConfig {
     }
 
     pub fn is_postgres(&self) -> bool {
-        self.database_url.starts_with("postgres://") || self.database_url.starts_with("postgresql://")
+        self.database_url.starts_with("postgres://")
+            || self.database_url.starts_with("postgresql://")
     }
 }

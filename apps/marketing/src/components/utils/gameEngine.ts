@@ -110,7 +110,7 @@ export class GameEngine {
   private config: GameConfig;
   private state: GameState;
   private systems: Map<string, GameSystem> = new Map();
-  private eventQueue: GameEvent<any>[] = [];
+  private eventQueue: GameEvent<unknown>[] = [];
 
   constructor(config: GameConfig) {
     this.config = config;
@@ -159,7 +159,7 @@ export class GameEngine {
   }
 
   // Handle individual game event
-  private handleEvent(event: GameEvent<any>): void {
+  private handleEvent(event: GameEvent<unknown>): void {
     switch (event.type) {
       case "spawn-threat":
         this.spawnThreat(event.data as ThreatSpawnEvent);
@@ -467,7 +467,7 @@ export class GameEngine {
   }
 
   // Queue game event
-  queueEvent(event: GameEvent<any>): void {
+  queueEvent(event: GameEvent<unknown>): void {
     this.eventQueue.push(event);
   }
 

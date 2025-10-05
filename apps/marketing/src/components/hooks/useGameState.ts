@@ -19,7 +19,20 @@ export interface GameState {
   neutralized: number;
   level: number;
   isRunning: boolean;
-  selectedWeapon: "kinetic" | "electronic" | "laser";
+  selectedWeapon:
+    | "kinetic"
+    | "electronic"
+    | "laser"
+    | "net"
+    | "hpm"
+    | "rf_take"
+    | "gnss_deny"
+    | "optic_dazzle"
+    | "acoustic"
+    | "decoy_beacon"
+    | "chaff"
+    | "smart_slug"
+    | "ai_deception";
   weapons: Record<string, Weapon>;
   activePowerUps: PowerUp[];
   gameTime: number;
@@ -136,8 +149,8 @@ export const useGameState = () => {
     drones: [],
     deploymentBays: [
       {
-        id: "bay-interceptor",
-        droneType: "interceptor",
+        id: "bay-effector",
+        droneType: "effector",
         x: 350,
         y: 280,
         isReady: true,
@@ -327,29 +340,42 @@ export const useGameState = () => {
   }, []);
 
   const setLevel = useCallback((level: number) => {
-    setGameState(prev => ({ ...prev, level }));
+    setGameState((prev) => ({ ...prev, level }));
   }, []);
 
-  const setWeatherMode = useCallback((mode: GameState['weatherMode']) => {
-    setGameState(prev => ({ ...prev, weatherMode: mode }));
+  const setWeatherMode = useCallback((mode: GameState["weatherMode"]) => {
+    setGameState((prev) => ({ ...prev, weatherMode: mode }));
   }, []);
 
-  const setMissionType = useCallback((type: GameState['missionType']) => {
-    setGameState(prev => ({ ...prev, missionType: type }));
+  const setMissionType = useCallback((type: GameState["missionType"]) => {
+    setGameState((prev) => ({ ...prev, missionType: type }));
   }, []);
 
-  const setAutomationMode = useCallback((mode: GameState['automationMode']) => {
-    setGameState(prev => ({ ...prev, automationMode: mode }));
+  const setAutomationMode = useCallback((mode: GameState["automationMode"]) => {
+    setGameState((prev) => ({ ...prev, automationMode: mode }));
   }, []);
 
   const setShowDeploymentZones = useCallback((show: boolean) => {
-    setGameState(prev => ({ ...prev, showDeploymentZones: show }));
+    setGameState((prev) => ({ ...prev, showDeploymentZones: show }));
   }, []);
 
   const switchWeapon = useCallback((weaponId: string) => {
     setGameState((prev) => ({
       ...prev,
-      selectedWeapon: weaponId as "kinetic" | "electronic" | "laser",
+      selectedWeapon: weaponId as
+        | "kinetic"
+        | "electronic"
+        | "laser"
+        | "net"
+        | "hpm"
+        | "rf_take"
+        | "gnss_deny"
+        | "optic_dazzle"
+        | "acoustic"
+        | "decoy_beacon"
+        | "chaff"
+        | "smart_slug"
+        | "ai_deception",
     }));
   }, []);
 

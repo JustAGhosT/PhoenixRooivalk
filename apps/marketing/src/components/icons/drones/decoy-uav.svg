@@ -1,0 +1,8 @@
+<svg viewBox="0 0 24 24" fill="none" stroke="#70A1FF" stroke-width="2">
+  <!-- Triangle base -->
+  <path d="M12 4L20 18L4 18Z" />
+  <!-- Beacon/flare inside -->
+  <circle cx="12" cy="12" r="3" fill="#70A1FF" />
+  <path d="M12 6L12 18" stroke-width="1" />
+  <path d="M6 12L18 12" stroke-width="1" />
+</svg>

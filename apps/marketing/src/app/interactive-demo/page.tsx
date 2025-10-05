@@ -51,7 +51,7 @@ export default function InteractiveDemoPage() {
                   🚀 Kinetic Interceptors
                 </h3>
                 <p className="text-gray-300 text-sm">
-                  Precision-guided interceptors neutralize threats with minimal
+                  Precision-guided effectors neutralize threats with minimal
                   collateral damage using advanced targeting algorithms.
                 </p>
               </div>

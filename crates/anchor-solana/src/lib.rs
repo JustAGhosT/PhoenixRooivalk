@@ -7,6 +7,7 @@ use serde::{Deserialize, Serialize};
 use serde_json::{json, Value};
 use std::time::Duration;
 
+#[derive(Clone)]
 pub struct SolanaProviderStub;
 
 #[async_trait]
@@ -30,37 +31,41 @@ impl AnchorProvider for SolanaProviderStub {
 
 #[derive(Debug, Clone)]
 pub struct SolanaProvider {
-    client: Client,
-    endpoint: String,
-    network: String,
+    pub client: Client,
+    pub endpoint: String,
+    pub network: String,
 }
 
 #[derive(Debug, Serialize)]
-struct SolanaRpcRequest {
-    jsonrpc: String,
-    id: u64,
-    method: String,
-    params: Value,
+pub struct SolanaRpcRequest {
+    pub jsonrpc: String,
+    pub id: u64,
+    pub method: String,
+    pub params: Value,
 }
 
 #[derive(Debug, Deserialize)]
-struct SolanaRpcResponse {
-    jsonrpc: String,
-    id: u64,
-    result: Option<Value>,
-    error: Option<SolanaRpcError>,
+pub struct SolanaRpcResponse {
+    #[allow(dead_code)]
+    pub jsonrpc: String,
+    #[allow(dead_code)]
+    pub id: u64,
+    pub result: Option<Value>,
+    pub error: Option<SolanaRpcError>,
 }
 
 #[derive(Debug, Deserialize)]
-struct SolanaRpcError {
-    code: i32,
-    message: String,
-    data: Option<Value>,
+pub struct SolanaRpcError {
+    pub code: i32,
+    pub message: String,
+    #[allow(dead_code)]
+    pub data: Option<Value>,
 }
 
 #[derive(Debug, Deserialize)]
 struct TransactionStatus {
     slot: u64,
+    #[allow(dead_code)]
     confirmations: Option<u64>,
     err: Option<Value>,
     confirmation_status: Option<String>,
@@ -72,7 +77,7 @@ impl SolanaProvider {
             .timeout(Duration::from_secs(30))
             .build()
             .expect("Failed to create HTTP client");
-        
+
         Self {
             client,
             endpoint,
@@ -115,9 +120,9 @@ impl SolanaProvider {
             )));
         }
 
-        rpc_response.result.ok_or_else(|| {
-            AnchorError::Provider("RPC response missing result field".to_string())
-        })
+        rpc_response
+            .result
+            .ok_or_else(|| AnchorError::Provider("RPC response missing result field".to_string()))
     }
 
     async fn send_memo_transaction(&self, memo_data: &str) -> Result<String, AnchorError> {
@@ -126,7 +131,7 @@ impl SolanaProvider {
         // For now, return a deterministic fake signature
         // sha256_hex already returns a hex string, so we use it directly as the signature
         let signature = phoenix_evidence::hash::sha256_hex(memo_data.as_bytes());
-        
+
         tracing::info!(
             signature = %signature,
             memo_data = %memo_data,
@@ -136,11 +141,14 @@ impl SolanaProvider {
         Ok(signature)
     }
 
-    async fn get_signature_status(&self, signature: &str) -> Result<Option<TransactionStatus>, AnchorError> {
+    async fn get_signature_status(
+        &self,
+        signature: &str,
+    ) -> Result<Option<TransactionStatus>, AnchorError> {
         let result = self
             .rpc_call(
                 "getSignatureStatuses",
-                json!([[signature], {"searchTransactionHistory": true}])
+                json!([[signature], {"searchTransactionHistory": true}]),
             )
             .await?;
 
@@ -170,7 +178,7 @@ impl AnchorProvider for SolanaProvider {
     async fn anchor(&self, evidence: &EvidenceRecord) -> Result<ChainTxRef, AnchorError> {
         // Create memo with evidence digest
         let memo = format!("evidence:{}", evidence.digest.hex);
-        
+
         let signature = self.send_memo_transaction(&memo).await?;
 
         Ok(ChainTxRef {
@@ -186,12 +194,12 @@ impl AnchorProvider for SolanaProvider {
         let status = self.get_signature_status(&tx.tx_id).await?;
 
         let mut confirmed_tx = tx.clone();
-        
+
         if let Some(status) = status {
             // Transaction is confirmed if it has no error and is finalized
-            let is_confirmed = status.err.is_none() 
-                && status.confirmation_status.as_deref() == Some("finalized");
-            
+            let is_confirmed =
+                status.err.is_none() && status.confirmation_status.as_deref() == Some("finalized");
+
             confirmed_tx.confirmed = is_confirmed;
             if is_confirmed {
                 tracing::info!(

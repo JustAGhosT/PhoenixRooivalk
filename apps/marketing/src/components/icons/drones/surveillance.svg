@@ -1,0 +1,7 @@
+<svg viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2">
+  <!-- Triangle base -->
+  <path d="M12 4L20 18L4 18Z" />
+  <!-- Eye symbol inside -->
+  <ellipse cx="12" cy="12" rx="6" ry="4" />
+  <circle cx="12" cy="12" r="2" fill="#3b82f6" />
+</svg>

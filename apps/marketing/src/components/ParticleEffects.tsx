@@ -1,5 +1,5 @@
-import * as React from 'react';
-import type { PowerUp } from '../types/game';
+import * as React from "react";
+import type { PowerUp } from "../types/game";
 
 interface ParticleEffectsProps {
   activePowerUps: PowerUp[];
@@ -7,13 +7,16 @@ interface ParticleEffectsProps {
 }
 
 const POWER_UP_VISUALS = {
-  'multi-shot': { color: 'bg-yellow-500', count: 5 },
-  'rapid-fire': { color: 'bg-blue-500', count: 7 },
-  'area-effect': { color: 'bg-purple-500', count: 10 },
-  'shield-penetration': { color: 'bg-green-500', count: 6 },
+  "multi-shot": { color: "bg-yellow-500", count: 5 },
+  "rapid-fire": { color: "bg-blue-500", count: 7 },
+  "area-effect": { color: "bg-purple-500", count: 10 },
+  "shield-penetration": { color: "bg-green-500", count: 6 },
 };
 
-export const ParticleEffects: React.FC<ParticleEffectsProps> = ({ activePowerUps, gameArea }) => {
+export const ParticleEffects: React.FC<ParticleEffectsProps> = ({
+  activePowerUps,
+  gameArea,
+}) => {
   if (activePowerUps.length === 0) {
     return null;
   }
@@ -21,7 +24,8 @@ export const ParticleEffects: React.FC<ParticleEffectsProps> = ({ activePowerUps
   return (
     <div className="absolute inset-0 pointer-events-none z-40 overflow-hidden">
       {activePowerUps.map((powerUp) => {
-        const visual = POWER_UP_VISUALS[powerUp.type as keyof typeof POWER_UP_VISUALS];
+        const visual =
+          POWER_UP_VISUALS[powerUp.type as keyof typeof POWER_UP_VISUALS];
         if (!visual) return null;
 
         return Array.from({ length: visual.count }).map((_, i) => (

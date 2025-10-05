@@ -1,5 +1,5 @@
-import React from 'react';
-import './HelpOverlay.css';
+import React from "react";
+import "./HelpOverlay.css";
 
 interface HelpOverlayProps {
   onClose: () => void;
@@ -43,7 +43,9 @@ const HelpOverlay: React.FC<HelpOverlayProps> = ({ onClose }) => {
           <kbd className="help-overlay__key-shortcut">?</kbd>
         </li>
       </ul>
-      <button onClick={onClose} className="btn help-overlay__close-button">Close</button>
+      <button onClick={onClose} className="btn help-overlay__close-button">
+        Close
+      </button>
     </div>
   );
 };

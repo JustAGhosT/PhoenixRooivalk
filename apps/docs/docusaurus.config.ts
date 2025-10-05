@@ -76,7 +76,7 @@ const config: Config = {
       items: [
         {
           type: "doc",
-          docId: "README",
+          docId: "phoenix-rooivalk-documentation",
           position: "left",
           label: "Documentation",
         },

@@ -8,10 +8,10 @@ disable-default-queries: false
 
 # Specify the queries to run by their language and query name.
 queries:
-  # Use the default CodeQL queries for JavaScript/TypeScript
+  # Use the default CodeQL queries for JavaScript/TypeScript and Rust
   - uses: security-and-quality
-  # Use the default CodeQL queries for Rust
-  - uses: security-and-quality
+  # Additional Rust-specific queries
+  - uses: security-extended
 
 # Specify the paths to exclude from analysis
 paths-ignore:

@@ -64,7 +64,20 @@ export interface GameState {
   isRunning: boolean;
 
   // Weapons
-  selectedWeapon: "kinetic" | "electronic" | "laser";
+  selectedWeapon:
+    | "kinetic"
+    | "electronic"
+    | "laser"
+    | "net"
+    | "hpm"
+    | "rf_take"
+    | "gnss_deny"
+    | "optic_dazzle"
+    | "acoustic"
+    | "decoy_beacon"
+    | "chaff"
+    | "smart_slug"
+    | "ai_deception";
   weapons: Record<string, Weapon>;
 
   // Power-ups and timing
