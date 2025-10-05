@@ -144,7 +144,7 @@ async fn test_run_job_loop_success() {
     });
 
     let mut provider = provider;
-    let anchor = anchor;
+    // Removed redundant: let anchor = anchor;
 
     // Run for a short duration to test one iteration
     let result = timeout(
@@ -173,7 +173,7 @@ async fn test_run_job_loop_anchor_failure() {
     });
 
     let mut provider = provider;
-    let anchor = anchor;
+    // Removed redundant: let anchor = anchor;
 
     // Run for a short duration
     let result = timeout(
@@ -195,7 +195,7 @@ async fn test_run_job_loop_provider_failure() {
     provider.set_should_fail(true);
 
     let mut provider = provider;
-    let anchor = anchor;
+    // Removed redundant: let anchor = anchor;
 
     // Run for a short duration
     let result = timeout(
@@ -242,7 +242,7 @@ async fn test_run_confirmation_loop_success() {
 
     // Insert a test unconfirmed transaction
     sqlx::query(
-        "INSERT INTO outbox_tx_refs (job_id, network, chain, tx_id, confirmed, timestamp) 
+        "INSERT INTO outbox_tx_refs (job_id, network, chain, tx_id, confirmed, timestamp)
          VALUES (?, ?, ?, ?, ?, ?)",
     )
     .bind("test-job-1")
@@ -302,7 +302,7 @@ async fn test_run_confirmation_loop_anchor_failure() {
 
     // Insert a test unconfirmed transaction
     sqlx::query(
-        "INSERT INTO outbox_tx_refs (job_id, network, chain, tx_id, confirmed, timestamp) 
+        "INSERT INTO outbox_tx_refs (job_id, network, chain, tx_id, confirmed, timestamp)
          VALUES (?, ?, ?, ?, ?, ?)",
     )
     .bind("test-job-1")
@@ -382,7 +382,7 @@ async fn test_sqlite_job_provider() {
     // Insert a test job
     let now = Utc::now().timestamp_millis();
     sqlx::query(
-        "INSERT INTO outbox_jobs (id, payload_sha256, status, attempts, created_ms, updated_ms, next_attempt_ms) 
+        "INSERT INTO outbox_jobs (id, payload_sha256, status, attempts, created_ms, updated_ms, next_attempt_ms)
          VALUES (?, ?, ?, ?, ?, ?, ?)"
     )
     .bind("test-job-1")
