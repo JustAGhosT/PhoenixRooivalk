@@ -12,8 +12,8 @@ fn create_etherlink_provider() -> Box<dyn AnchorProvider + Send + Sync> {
     let use_stub = match std::env::var("KEEPER_USE_STUB") {
         Ok(val) => {
             match val.trim().to_lowercase().as_str() {
-        "true" | "1" | "yes" | "on" => true,
-        "false" | "0" | "no" | "off" => false,
+                "true" | "1" | "yes" | "on" => true,
+                "false" | "0" | "no" | "off" => false,
                 other => {
                     // Emit warning for unrecognized values
                     tracing::warn!("Invalid KEEPER_USE_STUB value '{}'. Expected true/false/1/0/yes/no/on/off. Using real provider for safety.", other);

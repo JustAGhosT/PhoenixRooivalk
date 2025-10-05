@@ -463,7 +463,6 @@ const {
 
       {showResearch && (
         <ResearchPanel
-          // Try different prop name - data is a common fallback
           data={(gameState as { research?: Record<string, unknown> }).research || {}}
           onStartResearch={(type: string) => {
             try {
@@ -484,7 +483,6 @@ const {
 
       {showTokenStore && (
         <TokenStore
-          // Try different prop name - data is a common fallback
           data={(gameState as { tokens?: Record<string, unknown> }).tokens || {}}
           onPurchase={(type: string) => {
             try {
