@@ -191,7 +191,7 @@ async fn get_evidence(
     } else {
         Err((
             StatusCode::NOT_FOUND,
-            Json(serde_json::json!({ "error": "Job not found" }))
+            Json(serde_json::json!({ "error": "Job not found" })),
         ))
     }
 }

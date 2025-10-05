@@ -84,9 +84,7 @@ impl ConnectionManager {
 
     /// Test the database connection
     pub async fn test_connection(&self) -> Result<()> {
-        sqlx::query("SELECT 1")
-            .fetch_one(&self.pool)
-            .await?;
+        sqlx::query("SELECT 1").fetch_one(&self.pool).await?;
         Ok(())
     }
 
@@ -113,9 +111,11 @@ impl DatabaseUrlBuilder {
     pub fn from_env() -> Result<String> {
         let db_url = std::env::var("API_DB_URL")
             .or_else(|_| std::env::var("DATABASE_URL"))
-            .map_err(|_| ConnectionError::Configuration(
-                "Neither API_DB_URL nor DATABASE_URL environment variable is set".to_string()
-            ))?;
+            .map_err(|_| {
+                ConnectionError::Configuration(
+                    "Neither API_DB_URL nor DATABASE_URL environment variable is set".to_string(),
+                )
+            })?;
 
         Ok(db_url)
     }
@@ -145,11 +145,9 @@ impl HealthChecker {
     /// Perform a comprehensive health check
     pub async fn check_health(pool: &Pool<Sqlite>) -> Result<HealthStatus> {
         let start = std::time::Instant::now();
-        
+
         // Test basic connectivity
-        sqlx::query("SELECT 1")
-            .fetch_one(pool)
-            .await?;
+        sqlx::query("SELECT 1").fetch_one(pool).await?;
 
         let response_time = start.elapsed();
 
@@ -189,10 +187,10 @@ mod tests {
         let db_url = DatabaseUrlBuilder::sqlite(db_path);
 
         let manager = ConnectionManager::new(&db_url).await.unwrap();
-        
+
         // Test connection
         manager.test_connection().await.unwrap();
-        
+
         // Get stats
         let stats = manager.get_stats().await.unwrap();
         assert!(stats.size >= 1);
@@ -215,7 +213,9 @@ mod tests {
             test_before_acquire: true,
         };
 
-        let manager = ConnectionManager::with_config(&db_url, config).await.unwrap();
+        let manager = ConnectionManager::with_config(&db_url, config)
+            .await
+            .unwrap();
         let stats = manager.get_stats().await.unwrap();
         assert_eq!(stats.max_connections, 5);
     }
@@ -228,7 +228,7 @@ mod tests {
 
         let manager = ConnectionManager::new(&db_url).await.unwrap();
         let health = HealthChecker::check_health(manager.pool()).await.unwrap();
-        
+
         assert!(health.is_healthy);
         assert!(health.response_time < Duration::from_secs(1));
     }
@@ -237,7 +237,7 @@ mod tests {
     fn test_database_url_builder() {
         assert_eq!(DatabaseUrlBuilder::sqlite("test.db"), "sqlite://test.db");
         assert_eq!(DatabaseUrlBuilder::sqlite_memory(), "sqlite://:memory:");
-        
+
         let temp_url = DatabaseUrlBuilder::sqlite_temp().unwrap();
         assert!(temp_url.starts_with("sqlite://"));
         assert!(temp_url.contains("phoenix_evidence.db"));

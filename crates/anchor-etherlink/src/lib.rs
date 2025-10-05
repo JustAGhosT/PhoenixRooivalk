@@ -77,7 +77,11 @@ struct TransactionReceipt {
 }
 
 impl EtherlinkProvider {
-    pub fn new(endpoint: String, network: String, private_key: Option<String>) -> Result<Self, String> {
+    pub fn new(
+        endpoint: String,
+        network: String,
+        private_key: Option<String>,
+    ) -> Result<Self, String> {
         let client = Client::builder()
             .timeout(Duration::from_secs(30))
             .build()

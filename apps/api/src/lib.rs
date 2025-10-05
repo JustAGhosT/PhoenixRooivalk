@@ -7,8 +7,8 @@ use sqlx::{sqlite::SqlitePoolOptions, Pool, Sqlite};
 pub mod connection;
 pub mod db;
 pub mod handlers;
-pub mod models;
 pub mod migrations;
+pub mod models;
 pub mod repository;
 
 #[derive(Clone)]
@@ -31,7 +31,10 @@ pub async fn build_app() -> anyhow::Result<(Router, Pool<Sqlite>)> {
     let state = AppState { pool: pool.clone() };
     let app = Router::new()
         .route("/health", get(handlers::health))
-        .route("/evidence", post(handlers::post_evidence).get(handlers::list_evidence))
+        .route(
+            "/evidence",
+            post(handlers::post_evidence).get(handlers::list_evidence),
+        )
         .route("/evidence/:id", get(handlers::get_evidence))
         .with_state(state);
     Ok((app, pool))

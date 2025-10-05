@@ -59,7 +59,8 @@ async fn test_etherlink_provider_new() {
         "https://testnet.etherlink.com".to_string(),
         "testnet".to_string(),
         Some("test-private-key".to_string()),
-    ).unwrap();
+    )
+    .unwrap();
 
     // Provider should be created successfully
     assert_eq!(provider.endpoint, "https://testnet.etherlink.com");
@@ -73,7 +74,8 @@ async fn test_etherlink_provider_new_without_private_key() {
         "https://testnet.etherlink.com".to_string(),
         "testnet".to_string(),
         None,
-    ).unwrap();
+    )
+    .unwrap();
 
     // Provider should be created successfully without private key
     assert_eq!(provider.endpoint, "https://testnet.etherlink.com");
@@ -132,7 +134,8 @@ fn test_etherlink_provider_clone() {
         "https://testnet.etherlink.com".to_string(),
         "testnet".to_string(),
         Some("test-private-key".to_string()),
-    ).unwrap();
+    )
+    .unwrap();
 
     let cloned_provider = provider.clone();
     assert_eq!(cloned_provider.endpoint, provider.endpoint);

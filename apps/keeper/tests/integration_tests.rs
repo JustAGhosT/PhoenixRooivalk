@@ -1,22 +1,21 @@
 //! Integration tests for the Phoenix Keeper
-//! 
+//!
 //! This module contains comprehensive integration tests that verify
 //! the keeper's job processing, database operations, and error handling.
 
-use phoenix_keeper::{
-    JobProvider, JobProviderExt, SqliteJobProvider,
-    run_job_loop, run_confirmation_loop,
-};
+use chrono::Utc;
 use phoenix_evidence::{
-    model::{ChainTxRef, EvidenceRecord, EvidenceDigest, DigestAlgo},
-    anchor::{AnchorProvider, AnchorError},
+    anchor::{AnchorError, AnchorProvider},
+    model::{ChainTxRef, DigestAlgo, EvidenceDigest, EvidenceRecord},
 };
+use phoenix_keeper::{
+    run_confirmation_loop, run_job_loop, JobProvider, JobProviderExt, SqliteJobProvider,
+};
+use serde_json::json;
 use sqlx::{sqlite::SqlitePoolOptions, Row};
+use std::collections::HashSet;
 use std::sync::{Arc, Mutex};
 use std::time::Duration;
-use std::collections::HashSet;
-use chrono::Utc;
-use serde_json::json;
 
 /// Mock anchor provider for testing
 #[derive(Clone)]
@@ -41,7 +40,6 @@ impl MockAnchorProvider {
         *self.should_fail.lock().unwrap() = fail;
     }
 
-
     fn get_anchored_count(&self) -> usize {
         self.anchored_tx_refs.lock().unwrap().len()
     }
@@ -53,7 +51,7 @@ impl AnchorProvider for MockAnchorProvider {
         if *self.should_fail.lock().unwrap() {
             return Err(AnchorError::Network("mock network error".to_string()));
         }
-        
+
         let tx_ref = ChainTxRef {
             network: "mocknet".to_string(),
             chain: "mockchain".to_string(),
@@ -61,7 +59,7 @@ impl AnchorProvider for MockAnchorProvider {
             confirmed: false,
             timestamp: Some(Utc::now()),
         };
-        
+
         self.anchored_tx_refs.lock().unwrap().push(tx_ref.clone());
         Ok(tx_ref)
     }
@@ -70,7 +68,7 @@ impl AnchorProvider for MockAnchorProvider {
         if *self.should_fail.lock().unwrap() {
             return Err(AnchorError::Network("mock confirmation error".to_string()));
         }
-        
+
         let mut confirmed_tx = tx.clone();
         confirmed_tx.confirmed = *self.should_confirm.lock().unwrap();
         Ok(confirmed_tx)
@@ -79,18 +77,20 @@ impl AnchorProvider for MockAnchorProvider {
 
 async fn setup_test_db() -> sqlx::Pool<sqlx::Sqlite> {
     // Use a named in-memory database with shared cache to ensure persistence
-    let db_url = format!("sqlite:file:memdb_{}?mode=memory&cache=shared", 
+    let db_url = format!(
+        "sqlite:file:memdb_{}?mode=memory&cache=shared",
         std::time::SystemTime::now()
             .duration_since(std::time::UNIX_EPOCH)
             .unwrap()
-            .as_nanos());
-    
+            .as_nanos()
+    );
+
     let pool = SqlitePoolOptions::new()
         .max_connections(2)
         .connect(&db_url)
         .await
         .unwrap();
-    
+
     // Create schema manually to ensure it's created
     sqlx::query(
         r#"
@@ -126,7 +126,7 @@ async fn setup_test_db() -> sqlx::Pool<sqlx::Sqlite> {
     .execute(&pool)
     .await
     .unwrap();
-    
+
     pool
 }
 
@@ -152,18 +152,19 @@ async fn test_complete_job_processing_workflow() {
 
     // Process jobs (order-agnostic)
     let mut processed_job_ids = HashSet::new();
-    let expected_job_ids: HashSet<String> = ["workflow-test-0", "workflow-test-1", "workflow-test-2"]
-        .iter()
-        .map(|s| s.to_string())
-        .collect();
-    
+    let expected_job_ids: HashSet<String> =
+        ["workflow-test-0", "workflow-test-1", "workflow-test-2"]
+            .iter()
+            .map(|s| s.to_string())
+            .collect();
+
     for _ in 0..3 {
         let job = provider.fetch_next().await.unwrap().unwrap();
-        
+
         // Verify job ID is in expected set
         assert!(expected_job_ids.contains(&job.id));
         processed_job_ids.insert(job.id.clone());
-        
+
         // Create evidence record
         let evidence = EvidenceRecord {
             id: job.id.clone(),
@@ -175,11 +176,11 @@ async fn test_complete_job_processing_workflow() {
             payload_mime: None,
             metadata: json!({}),
         };
-        
+
         // Anchor evidence
         let tx_ref = anchor.anchor(&evidence).await.unwrap();
         assert_eq!(tx_ref.network, "mocknet");
-        
+
         // Mark job as done
         provider.mark_done(&job.id).await.unwrap();
     }
@@ -187,7 +188,7 @@ async fn test_complete_job_processing_workflow() {
     // Verify all expected jobs were processed
     assert_eq!(processed_job_ids, expected_job_ids);
     assert_eq!(anchor.get_anchored_count(), 3);
-    
+
     // Check job statuses
     for i in 0..3 {
         let status: String = sqlx::query_scalar("SELECT status FROM outbox_jobs WHERE id = ?1")
@@ -235,17 +236,24 @@ async fn test_job_processing_with_failures() {
         payload_mime: None,
         metadata: json!({}),
     };
-    
+
     // Attempt to anchor (should fail)
     let anchor_result = anchor.anchor(&evidence).await;
     assert!(anchor_result.is_err());
-    
+
     // Mark as failed with backoff (as run_job_loop would do)
-    provider.mark_failed_or_backoff("failure-test", &anchor_result.unwrap_err().to_string(), true).await.unwrap();
+    provider
+        .mark_failed_or_backoff(
+            "failure-test",
+            &anchor_result.unwrap_err().to_string(),
+            true,
+        )
+        .await
+        .unwrap();
 
     // Check job status
     let (status, attempts, last_error): (String, i64, Option<String>) = sqlx::query_as(
-        "SELECT status, attempts, last_error FROM outbox_jobs WHERE id = 'failure-test'"
+        "SELECT status, attempts, last_error FROM outbox_jobs WHERE id = 'failure-test'",
     )
     .fetch_one(&pool)
     .await
@@ -282,7 +290,7 @@ async fn test_confirmation_loop() {
         confirmed: false,
         timestamp: Some(Utc::now()),
     };
-    
+
     sqlx::query(
         "INSERT INTO outbox_tx_refs (job_id, network, chain, tx_id, confirmed, timestamp) VALUES (?1, ?2, ?3, ?4, ?5, ?6)"
     )
@@ -299,17 +307,20 @@ async fn test_confirmation_loop() {
     // Run confirmation loop
     let result = tokio::time::timeout(
         Duration::from_millis(100),
-        run_confirmation_loop(&pool, &anchor, Duration::from_millis(10))
-    ).await;
+        run_confirmation_loop(&pool, &anchor, Duration::from_millis(10)),
+    )
+    .await;
 
     // Should timeout (loop continues), which is expected behavior
     assert!(result.is_err()); // timeout is expected
 
     // Check if transaction was confirmed
-    let confirmed: bool = sqlx::query_scalar("SELECT confirmed FROM outbox_tx_refs WHERE job_id = 'confirmation-test'")
-        .fetch_one(&pool)
-        .await
-        .unwrap();
+    let confirmed: bool = sqlx::query_scalar(
+        "SELECT confirmed FROM outbox_tx_refs WHERE job_id = 'confirmation-test'",
+    )
+    .fetch_one(&pool)
+    .await
+    .unwrap();
     assert!(confirmed);
 }
 
@@ -333,7 +344,7 @@ async fn test_job_processing_with_different_anchor_behaviors() {
 
     let job = provider.fetch_next().await.unwrap().unwrap();
     assert_eq!(job.id, "success-test");
-    
+
     // Create evidence and anchor
     let evidence = EvidenceRecord {
         id: job.id.clone(),
@@ -345,22 +356,23 @@ async fn test_job_processing_with_different_anchor_behaviors() {
         payload_mime: None,
         metadata: json!({}),
     };
-    
+
     let tx_ref = anchor.anchor(&evidence).await.unwrap();
     assert_eq!(tx_ref.network, "mocknet");
-    
+
     // Test confirmation
     let confirmed_tx = anchor.confirm(&tx_ref).await.unwrap();
     assert!(confirmed_tx.confirmed);
-    
+
     // Mark job as done
     provider.mark_done(&job.id).await.unwrap();
-    
+
     // Verify job completion
-    let status: String = sqlx::query_scalar("SELECT status FROM outbox_jobs WHERE id = 'success-test'")
-        .fetch_one(&pool)
-        .await
-        .unwrap();
+    let status: String =
+        sqlx::query_scalar("SELECT status FROM outbox_jobs WHERE id = 'success-test'")
+            .fetch_one(&pool)
+            .await
+            .unwrap();
     assert_eq!(status, "done");
 }
 
@@ -400,11 +412,14 @@ async fn test_error_handling_and_recovery() {
         metadata: json!({}),
     };
     let err = anchor.anchor(&evidence).await.unwrap_err();
-    provider.mark_failed_or_backoff("error-recovery-test", &err.to_string(), true).await.unwrap();
+    provider
+        .mark_failed_or_backoff("error-recovery-test", &err.to_string(), true)
+        .await
+        .unwrap();
 
     // Check job status
     let (status, attempts, last_error): (String, i64, Option<String>) = sqlx::query_as(
-        "SELECT status, attempts, last_error FROM outbox_jobs WHERE id = 'error-recovery-test'"
+        "SELECT status, attempts, last_error FROM outbox_jobs WHERE id = 'error-recovery-test'",
     )
     .fetch_one(&pool)
     .await
@@ -417,10 +432,13 @@ async fn test_error_handling_and_recovery() {
     // Test permanent failure
     // Fetch again after backoff period
     // (In reality, need to wait or reset next_attempt_ms)
-    provider.mark_failed_or_backoff("error-recovery-test", "permanent failure", false).await.unwrap();
+    provider
+        .mark_failed_or_backoff("error-recovery-test", "permanent failure", false)
+        .await
+        .unwrap();
 
     let (status, attempts, last_error): (String, i64, Option<String>) = sqlx::query_as(
-        "SELECT status, attempts, last_error FROM outbox_jobs WHERE id = 'error-recovery-test'"
+        "SELECT status, attempts, last_error FROM outbox_jobs WHERE id = 'error-recovery-test'",
     )
     .fetch_one(&pool)
     .await
@@ -468,7 +486,7 @@ async fn test_job_statistics_and_monitoring() {
             SUM(CASE WHEN status = 'in_progress' THEN 1 ELSE 0 END) as in_progress,
             SUM(CASE WHEN status = 'done' THEN 1 ELSE 0 END) as done,
             SUM(CASE WHEN status = 'failed' THEN 1 ELSE 0 END) as failed
-        FROM outbox_jobs"
+        FROM outbox_jobs",
     )
     .fetch_one(&pool)
     .await
@@ -506,7 +524,7 @@ async fn test_transaction_management() {
 
     let job = provider.fetch_next().await.unwrap().unwrap();
     assert_eq!(job.id, "transaction-test");
-    
+
     // Test transaction reference creation
     let tx_ref = ChainTxRef {
         network: "testnet".to_string(),
@@ -515,24 +533,29 @@ async fn test_transaction_management() {
         confirmed: false,
         timestamp: Some(Utc::now()),
     };
-    
+
     // Mark job as done with transaction reference
-    provider.mark_tx_and_done("transaction-test", &tx_ref).await.unwrap();
-    
+    provider
+        .mark_tx_and_done("transaction-test", &tx_ref)
+        .await
+        .unwrap();
+
     // Verify job status
-    let status: String = sqlx::query_scalar("SELECT status FROM outbox_jobs WHERE id = 'transaction-test'")
-        .fetch_one(&pool)
-        .await
-        .unwrap();
+    let status: String =
+        sqlx::query_scalar("SELECT status FROM outbox_jobs WHERE id = 'transaction-test'")
+            .fetch_one(&pool)
+            .await
+            .unwrap();
     assert_eq!(status, "done");
-    
+
     // Verify transaction reference was stored
-    let tx_count: i64 = sqlx::query_scalar("SELECT COUNT(*) FROM outbox_tx_refs WHERE job_id = 'transaction-test'")
-        .fetch_one(&pool)
-        .await
-        .unwrap();
+    let tx_count: i64 =
+        sqlx::query_scalar("SELECT COUNT(*) FROM outbox_tx_refs WHERE job_id = 'transaction-test'")
+            .fetch_one(&pool)
+            .await
+            .unwrap();
     assert_eq!(tx_count, 1);
-    
+
     // Verify transaction reference details
     let stored_tx: (String, String, String, String, bool) = sqlx::query_as(
         "SELECT job_id, network, chain, tx_id, confirmed FROM outbox_tx_refs WHERE job_id = 'transaction-test'"
@@ -540,7 +563,7 @@ async fn test_transaction_management() {
     .fetch_one(&pool)
     .await
     .unwrap();
-    
+
     assert_eq!(stored_tx.0, "transaction-test");
     assert_eq!(stored_tx.1, "testnet");
     assert_eq!(stored_tx.2, "testchain");
@@ -569,17 +592,19 @@ async fn test_job_processing_with_timeout() {
     // Test job processing with timeout
     let result = tokio::time::timeout(
         Duration::from_millis(100),
-        run_job_loop(&mut provider, &anchor, Duration::from_millis(10))
-    ).await;
+        run_job_loop(&mut provider, &anchor, Duration::from_millis(10)),
+    )
+    .await;
 
     // Should timeout (loop continues), which is expected behavior
     assert!(result.is_err()); // timeout is expected
 
     // Verify job was processed
-    let status: String = sqlx::query_scalar("SELECT status FROM outbox_jobs WHERE id = 'timeout-test'")
-        .fetch_one(&pool)
-        .await
-        .unwrap();
+    let status: String =
+        sqlx::query_scalar("SELECT status FROM outbox_jobs WHERE id = 'timeout-test'")
+            .fetch_one(&pool)
+            .await
+            .unwrap();
     assert_eq!(status, "done");
 }
 
@@ -604,16 +629,18 @@ async fn test_job_processing_with_provider_failures() {
     // Test job processing with provider failure
     let result = tokio::time::timeout(
         Duration::from_millis(100),
-        run_job_loop(&mut provider, &anchor, Duration::from_millis(10))
-    ).await;
+        run_job_loop(&mut provider, &anchor, Duration::from_millis(10)),
+    )
+    .await;
 
     // Should timeout (loop continues), which is expected behavior
     assert!(result.is_err()); // timeout is expected
 
     // Verify job was processed despite potential provider issues
-    let status: String = sqlx::query_scalar("SELECT status FROM outbox_jobs WHERE id = 'provider-failure-test'")
-        .fetch_one(&pool)
-        .await
-        .unwrap();
+    let status: String =
+        sqlx::query_scalar("SELECT status FROM outbox_jobs WHERE id = 'provider-failure-test'")
+            .fetch_one(&pool)
+            .await
+            .unwrap();
     assert_eq!(status, "done");
 }

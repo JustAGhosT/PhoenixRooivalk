@@ -67,7 +67,7 @@ async fn main() {
     let http = tokio::spawn(async move {
         let addr = "0.0.0.0:8081";
         tracing::info!(%addr, "keeper http starting");
-        
+
         let listener = match tokio::net::TcpListener::bind(addr).await {
             Ok(listener) => listener,
             Err(_e) => {
@@ -75,7 +75,7 @@ async fn main() {
                 std::process::exit(1);
             }
         };
-        
+
         if let Err(_e) = axum::serve(listener, app.into_make_service()).await {
             tracing::error!(error=%_e, "HTTP server runtime error");
             std::process::exit(1);

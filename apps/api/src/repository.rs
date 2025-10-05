@@ -80,9 +80,9 @@ impl EvidenceRepository {
             .id
             .clone()
             .unwrap_or_else(|| uuid::Uuid::new_v4().to_string());
-        
+
         let now = chrono::Utc::now().timestamp_millis();
-        
+
         let result = sqlx::query(
             "INSERT OR IGNORE INTO outbox_jobs (id, payload_sha256, status, attempts, created_ms, updated_ms, next_attempt_ms) VALUES (?1, ?2, 'queued', 0, ?3, ?3, 0)"
         )
@@ -165,9 +165,9 @@ impl EvidenceRepository {
         error: Option<&str>,
     ) -> Result<()> {
         let now = chrono::Utc::now().timestamp_millis();
-        
+
         let result = sqlx::query(
-            "UPDATE outbox_jobs SET status = ?1, last_error = ?2, updated_ms = ?3 WHERE id = ?4"
+            "UPDATE outbox_jobs SET status = ?1, last_error = ?2, updated_ms = ?3 WHERE id = ?4",
         )
         .bind(status)
         .bind(error)
@@ -189,9 +189,9 @@ impl EvidenceRepository {
     /// Increment job attempts
     pub async fn increment_attempts(&self, id: &str) -> Result<()> {
         let now = chrono::Utc::now().timestamp_millis();
-        
+
         let result = sqlx::query(
-            "UPDATE outbox_jobs SET attempts = attempts + 1, updated_ms = ?1 WHERE id = ?2"
+            "UPDATE outbox_jobs SET attempts = attempts + 1, updated_ms = ?1 WHERE id = ?2",
         )
         .bind(now)
         .bind(id)
@@ -211,9 +211,9 @@ impl EvidenceRepository {
     /// Set next attempt time (for retry logic)
     pub async fn set_next_attempt(&self, id: &str, next_attempt_ms: i64) -> Result<()> {
         let now = chrono::Utc::now().timestamp_millis();
-        
+
         let result = sqlx::query(
-            "UPDATE outbox_jobs SET next_attempt_ms = ?1, updated_ms = ?2 WHERE id = ?3"
+            "UPDATE outbox_jobs SET next_attempt_ms = ?1, updated_ms = ?2 WHERE id = ?3",
         )
         .bind(next_attempt_ms)
         .bind(now)
@@ -234,7 +234,7 @@ impl EvidenceRepository {
     /// Get jobs ready for processing
     pub async fn get_ready_jobs(&self, limit: i64) -> Result<Vec<EvidenceOut>> {
         let now = chrono::Utc::now().timestamp_millis();
-        
+
         let rows = sqlx::query(
             "SELECT id, status, attempts, last_error, created_ms, updated_ms FROM outbox_jobs WHERE status = 'queued' AND next_attempt_ms <= ?1 ORDER BY created_ms ASC LIMIT ?2"
         )
@@ -261,9 +261,9 @@ impl EvidenceRepository {
     /// Mark job as in progress
     pub async fn mark_in_progress(&self, id: &str) -> Result<()> {
         let now = chrono::Utc::now().timestamp_millis();
-        
+
         let result = sqlx::query(
-            "UPDATE outbox_jobs SET status = 'in_progress', updated_ms = ?1 WHERE id = ?2"
+            "UPDATE outbox_jobs SET status = 'in_progress', updated_ms = ?1 WHERE id = ?2",
         )
         .bind(now)
         .bind(id)
@@ -299,7 +299,7 @@ impl EvidenceRepository {
                 COALESCE(SUM(CASE WHEN status = 'in_progress' THEN 1 ELSE 0 END), 0) as in_progress,
                 COALESCE(SUM(CASE WHEN status = 'done' THEN 1 ELSE 0 END), 0) as done,
                 COALESCE(SUM(CASE WHEN status = 'failed' THEN 1 ELSE 0 END), 0) as failed
-            FROM outbox_jobs"
+            FROM outbox_jobs",
         )
         .fetch_one(&self.pool)
         .await?;
@@ -332,14 +332,14 @@ impl EvidenceRepository {
         evidence: &EvidenceIn,
     ) -> Result<(Transaction<'_, Sqlite>, String)> {
         let mut tx = self.pool.begin().await?;
-        
+
         let id = evidence
             .id
             .clone()
             .unwrap_or_else(|| uuid::Uuid::new_v4().to_string());
-        
+
         let now = chrono::Utc::now().timestamp_millis();
-        
+
         let result = sqlx::query(
             "INSERT OR IGNORE INTO outbox_jobs (id, payload_sha256, status, attempts, created_ms, updated_ms, next_attempt_ms) VALUES (?1, ?2, 'queued', 0, ?3, ?3, 0)"
         )
@@ -364,20 +364,20 @@ impl EvidenceRepository {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use tempfile::NamedTempFile;
     use sqlx::sqlite::SqlitePoolOptions;
+    use tempfile::NamedTempFile;
 
     async fn create_test_repo() -> EvidenceRepository {
         let temp_db = NamedTempFile::new().unwrap();
         let db_path = temp_db.path().to_str().unwrap();
         let db_url = format!("sqlite://{}", db_path);
-        
+
         let pool = SqlitePoolOptions::new()
             .max_connections(1)
             .connect(&db_url)
             .await
             .unwrap();
-        
+
         let repo = EvidenceRepository::new(pool);
         repo.ensure_schema().await.unwrap();
         repo
@@ -386,17 +386,17 @@ mod tests {
     #[tokio::test]
     async fn test_create_evidence_job() {
         let repo = create_test_repo().await;
-        
+
         let evidence = EvidenceIn {
             id: Some("test-123".to_string()),
             digest_hex: "abcd1234".to_string(),
             payload_mime: Some("application/json".to_string()),
             metadata: Some(serde_json::json!({"key": "value"})),
         };
-        
+
         let id = repo.create_evidence_job(&evidence).await.unwrap();
         assert_eq!(id, "test-123");
-        
+
         let retrieved = repo.get_evidence_by_id(&id).await.unwrap().unwrap();
         assert_eq!(retrieved.id, "test-123");
         assert_eq!(retrieved.status, "queued");
@@ -405,18 +405,18 @@ mod tests {
     #[tokio::test]
     async fn test_duplicate_evidence_job() {
         let repo = create_test_repo().await;
-        
+
         let evidence = EvidenceIn {
             id: Some("test-123".to_string()),
             digest_hex: "abcd1234".to_string(),
             payload_mime: None,
             metadata: None,
         };
-        
+
         // First creation should succeed
         let id = repo.create_evidence_job(&evidence).await.unwrap();
         assert_eq!(id, "test-123");
-        
+
         // Second creation should fail
         let result = repo.create_evidence_job(&evidence).await;
         assert!(matches!(result, Err(RepositoryError::Conflict(_))));
@@ -425,26 +425,26 @@ mod tests {
     #[tokio::test]
     async fn test_job_lifecycle() {
         let repo = create_test_repo().await;
-        
+
         let evidence = EvidenceIn {
             id: Some("test-lifecycle".to_string()),
             digest_hex: "abcd1234".to_string(),
             payload_mime: None,
             metadata: None,
         };
-        
+
         // Create job
         let id = repo.create_evidence_job(&evidence).await.unwrap();
-        
+
         // Mark as in progress
         repo.mark_in_progress(&id).await.unwrap();
-        
+
         let job = repo.get_evidence_by_id(&id).await.unwrap().unwrap();
         assert_eq!(job.status, "in_progress");
-        
+
         // Mark as completed
         repo.mark_completed(&id).await.unwrap();
-        
+
         let job = repo.get_evidence_by_id(&id).await.unwrap().unwrap();
         assert_eq!(job.status, "done");
     }
@@ -452,7 +452,7 @@ mod tests {
     #[tokio::test]
     async fn test_job_stats() {
         let repo = create_test_repo().await;
-        
+
         // Create some test jobs
         for i in 0..5 {
             let evidence = EvidenceIn {
@@ -463,7 +463,7 @@ mod tests {
             };
             repo.create_evidence_job(&evidence).await.unwrap();
         }
-        
+
         let stats = repo.get_job_stats().await.unwrap();
         assert_eq!(stats.total, 5);
         assert_eq!(stats.queued, 5);

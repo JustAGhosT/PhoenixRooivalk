@@ -143,8 +143,13 @@ impl MigrationManager {
         // Apply pending migrations
         for migration in migrations {
             if migration.version > current_version {
-                tracing::info!("Applying migration {}: {}", migration.version, migration.name);
-                self.apply_migration(migration.version, migration.name, migration.sql).await?;
+                tracing::info!(
+                    "Applying migration {}: {}",
+                    migration.version,
+                    migration.name
+                );
+                self.apply_migration(migration.version, migration.name, migration.sql)
+                    .await?;
             }
         }
 
@@ -165,11 +170,10 @@ impl MigrationManager {
         let current_version = self.get_current_version().await?;
         let latest_version = Self::get_migrations().len() as i32;
 
-        let migrations = sqlx::query(
-            "SELECT version, name, applied_at FROM schema_migrations ORDER BY version"
-        )
-        .fetch_all(&self.pool)
-        .await?;
+        let migrations =
+            sqlx::query("SELECT version, name, applied_at FROM schema_migrations ORDER BY version")
+                .fetch_all(&self.pool)
+                .await?;
 
         let applied_migrations = migrations
             .into_iter()
@@ -213,14 +217,14 @@ pub struct MigrationStatus {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use tempfile::NamedTempFile;
     use sqlx::sqlite::SqlitePoolOptions;
+    use tempfile::NamedTempFile;
 
     async fn create_test_pool() -> Pool<Sqlite> {
         let temp_db = NamedTempFile::new().unwrap();
         let db_path = temp_db.path().to_str().unwrap();
         let db_url = format!("sqlite://{}", db_path);
-        
+
         SqlitePoolOptions::new()
             .max_connections(1)
             .connect(&db_url)

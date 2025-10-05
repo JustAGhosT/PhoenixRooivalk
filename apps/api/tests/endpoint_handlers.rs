@@ -16,16 +16,15 @@ where
 {
     let original_value = std::env::var(key).ok();
     std::env::set_var(key, value);
-    
+
     f().await;
-    
+
     // Restore original value
     match original_value {
         Some(val) => std::env::set_var(key, val),
         None => std::env::remove_var(key),
     }
 }
-
 
 #[tokio::test]
 async fn test_build_app() {
@@ -44,7 +43,8 @@ async fn test_build_app() {
         // Pool should be connected
         let result = sqlx::query("SELECT 1").fetch_one(&pool).await;
         assert!(result.is_ok());
-    }).await;
+    })
+    .await;
 }
 
 #[tokio::test]
@@ -57,7 +57,7 @@ async fn test_build_app_with_fallback_url() {
     // Save original values
     let original_api_url = std::env::var("API_DB_URL").ok();
     let original_keeper_url = std::env::var("KEEPER_DB_URL").ok();
-    
+
     std::env::set_var("KEEPER_DB_URL", &db_url);
     std::env::remove_var("API_DB_URL");
 
@@ -88,7 +88,7 @@ async fn test_build_app_with_default_url() {
     // Save original values
     let original_api_url = std::env::var("API_DB_URL").ok();
     let original_keeper_url = std::env::var("KEEPER_DB_URL").ok();
-    
+
     std::env::remove_var("API_DB_URL");
     std::env::remove_var("KEEPER_DB_URL");
 
@@ -154,7 +154,8 @@ async fn test_health_endpoint() {
         assert_eq!(body, "OK");
 
         server.abort();
-    }).await;
+    })
+    .await;
 }
 
 #[tokio::test]
@@ -483,4 +484,3 @@ fn test_evidence_out_serialization() {
     assert!(json_str.contains("test error"));
     assert!(json_str.contains("1234567890"));
 }
-
