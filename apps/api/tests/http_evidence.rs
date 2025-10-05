@@ -53,7 +53,7 @@ async fn test_http_evidence_flow() {
 
     // Test health endpoint
     let health_resp = client
-        .get(&format!("{}/health", base_url))
+        .get(format!("{}/health", base_url))
         .send()
         .await
         .unwrap();
@@ -65,7 +65,7 @@ async fn test_http_evidence_flow() {
     });
 
     let submit_resp = client
-        .post(&format!("{}/evidence", base_url))
+        .post(format!("{}/evidence", base_url))
         .json(&evidence_payload)
         .send()
         .await
@@ -79,7 +79,7 @@ async fn test_http_evidence_flow() {
     let result = timeout(Duration::from_secs(10), async {
         loop {
             let status_resp = client
-                .get(&format!("{}/evidence/{}", base_url, job_id))
+                .get(format!("{}/evidence/{}", base_url, job_id))
                 .send()
                 .await
                 .unwrap();
