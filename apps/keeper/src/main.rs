@@ -31,7 +31,7 @@ fn create_etherlink_provider() -> Box<dyn AnchorProvider + Send + Sync> {
         let network = std::env::var("ETHERLINK_NETWORK").unwrap_or_else(|_| "mainnet".to_string());
         let private_key = std::env::var("ETHERLINK_PRIVATE_KEY").ok();
 
-        let provider = match EtherlinkProvider::new(endpoint.clone(), network.clone(), private_key) {
+        match EtherlinkProvider::new(endpoint.clone(), network.clone(), private_key) {
             Ok(provider) => {
                 tracing::info!(
                     endpoint = %endpoint,
@@ -49,8 +49,7 @@ fn create_etherlink_provider() -> Box<dyn AnchorProvider + Send + Sync> {
                 );
                 std::process::exit(1);
             }
-        };
-        provider
+        }
     }
 }
 
@@ -71,14 +70,14 @@ async fn main() {
         
         let listener = match tokio::net::TcpListener::bind(addr).await {
             Ok(listener) => listener,
-            Err(e) => {
-                tracing::error!(address=%addr, error=%e, "Failed to bind HTTP server");
+            Err(_e) => {
+                tracing::error!(address=%addr, error=%_e, "Failed to bind HTTP server");
                 std::process::exit(1);
             }
         };
         
-        if let Err(e) = axum::serve(listener, app.into_make_service()).await {
-            tracing::error!(error=%e, "HTTP server runtime error");
+        if let Err(_e) = axum::serve(listener, app.into_make_service()).await {
+            tracing::error!(error=%_e, "HTTP server runtime error");
             std::process::exit(1);
         }
     });
@@ -99,8 +98,8 @@ async fn main() {
             .await
         {
             Ok(pool) => {
-                if let Err(e) = ensure_schema(&pool).await {
-                    tracing::error!(error=%e, "schema init failed");
+                if let Err(_e) = ensure_schema(&pool).await {
+                    tracing::error!(error=%_e, "schema init failed");
                     tracing::error!("Exiting due to schema initialization failure");
                     std::process::exit(1);
                 }
