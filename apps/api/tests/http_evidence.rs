@@ -49,13 +49,13 @@ async fn test_http_evidence_flow() {
     let base_url = format!("http://127.0.0.1:{}", port);
 
     // Wait for server to start with retry loop instead of fixed sleep
-    let server_ready = timeout(Duration::from_secs(5), async {
         let mut last_err = None;
+    let server_ready = timeout(Duration::from_secs(5), async {
         loop {
             match client.get(format!("{}/health", base_url)).send().await {
                 Ok(resp) if resp.status().is_success() => {
-                    // Server is ready
-                    return Ok(());
+                    // Server is ready, break out of the loop
+                    break;
                 }
                 Ok(resp) => {
                     // Got a response but not 200
@@ -75,7 +75,10 @@ async fn test_http_evidence_flow() {
 
     // Check if we hit the timeout and failed to connect
     if let Err(elapsed) = server_ready {
-        panic!("Server failed to start within timeout period: {}", elapsed);
+        panic!(
+            "Server failed to start within timeout period: {}. Last error: {:?}",
+            elapsed, last_err
+        );
     }
 
     // Submit evidence
