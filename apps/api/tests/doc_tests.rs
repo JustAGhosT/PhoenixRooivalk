@@ -96,8 +96,8 @@ async fn example_database_migrations() {
     // Get migration status
     let status = migration_manager.get_status().await.unwrap();
     assert!(status.is_up_to_date);
-    assert_eq!(status.current_version, 4);
-    assert_eq!(status.applied_migrations.len(), 4);
+    assert_eq!(status.current_version, status.latest_version);
+    assert_eq!(status.applied_migrations.len(), status.latest_version as usize);
 }
 
 /// Example: Evidence repository operations
@@ -365,11 +365,9 @@ async fn example_migration_status_checking() {
     // Get detailed migration status
     let status = migration_manager.get_status().await.unwrap();
     assert!(status.is_up_to_date);
-    assert_eq!(status.current_version, 4);
-    assert_eq!(status.latest_version, 4);
-
-    // Verify all migrations are recorded
-    assert_eq!(status.applied_migrations.len(), 4);
+    assert_eq!(status.current_version, status.latest_version);
+    assert_eq!(status.applied_migrations.len(), status.latest_version as usize);
+    // Verify base migrations are recorded
     assert!(status
         .applied_migrations
         .iter()
@@ -386,4 +384,18 @@ async fn example_migration_status_checking() {
         .applied_migrations
         .iter()
         .any(|m| m.name == "add_tx_refs_indexes"));
+        
+    // Verify new migrations are present
+    assert!(status
+        .applied_migrations
+        .iter()
+        .any(|m| m.name == "add_countermeasure_deployments_table"));
+    assert!(status
+        .applied_migrations
+        .iter()
+        .any(|m| m.name == "add_signal_disruption_audit_table"));
+    assert!(status
+        .applied_migrations
+        .iter()
+        .any(|m| m.name == "add_jamming_operations_table"));
 }

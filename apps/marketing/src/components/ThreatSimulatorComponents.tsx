@@ -5,6 +5,7 @@ interface ThreatSimulatorComponentsProps {
   gameState: GameState;
   onThreatClick: (e: React.MouseEvent, threatId: string) => void;
   onThreatHover: (threatId: string | null) => void;
+  onActivateWeapon: (threatId: string | null) => void;
   getThreatAppearance: (type: string) => {
     emoji: string;
     color: string;
@@ -14,7 +15,7 @@ interface ThreatSimulatorComponentsProps {
 
 export const ThreatSimulatorComponents: React.FC<
   ThreatSimulatorComponentsProps
-> = ({ gameState, onThreatClick, onThreatHover, getThreatAppearance }) => {
+> = ({ gameState, onThreatClick, onActivateWeapon, onThreatHover, getThreatAppearance }) => {
   const [hoveredThreat, setHoveredThreat] = React.useState<string | null>(null);
 
   return (
