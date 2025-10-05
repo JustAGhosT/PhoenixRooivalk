@@ -68,7 +68,6 @@ export const ThreatSimulator: React.FC<ThreatSimulatorProps> = ({
     activatePowerUp,
     updatePowerUps,
     checkAchievements,
-    addToLeaderboard,
     updateResources,
     consumeEnergy,
     consumeCooling,
@@ -88,8 +87,7 @@ export const ThreatSimulator: React.FC<ThreatSimulatorProps> = ({
     setLevel,
     setWeatherMode,
     setMissionType,
-    setAutomationMode,
-    setShowDeploymentZones
+    setAutomationMode
   } = useGameState();
 
   // Create a startResearch function since it's not part of useGameState
