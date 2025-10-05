@@ -45,19 +45,38 @@ async fn test_http_evidence_flow() {
         run_job_loop(&mut jp, &anchor, Duration::from_millis(100)).await;
     });
 
-    // Wait for server to start
-    tokio::time::sleep(Duration::from_millis(100)).await;
-
     let client = Client::new();
     let base_url = format!("http://127.0.0.1:{}", port);
 
-    // Test health endpoint
-    let health_resp = client
-        .get(format!("{}/health", base_url))
-        .send()
-        .await
-        .unwrap();
-    assert_eq!(health_resp.status(), 200);
+    // Wait for server to start with retry loop instead of fixed sleep
+    let server_ready = timeout(Duration::from_secs(5), async {
+        let mut last_err = None;
+        loop {
+            match client.get(format!("{}/health", base_url)).send().await {
+                Ok(resp) if resp.status().is_success() => {
+                    // Server is ready
+                    return Ok(());
+                }
+                Ok(resp) => {
+                    // Got a response but not 200
+                    last_err = Some(format!("Server returned status: {}", resp.status()));
+                }
+                Err(e) => {
+                    // Connection failed
+                    last_err = Some(format!("Connection error: {}", e));
+                }
+            }
+
+            // Short backoff before retry
+            tokio::time::sleep(Duration::from_millis(100)).await;
+        }
+    })
+    .await;
+
+    // Check if we hit the timeout and failed to connect
+    if let Err(elapsed) = server_ready {
+        panic!("Server failed to start within timeout period: {}", elapsed);
+    }
 
     // Submit evidence
     let evidence_payload = json!({
@@ -69,7 +88,7 @@ async fn test_http_evidence_flow() {
         .json(&evidence_payload)
         .send()
         .await
-        .unwrap();
+                .unwrap();
 
     assert_eq!(submit_resp.status(), 200);
     let submit_json: serde_json::Value = submit_resp.json().await.unwrap();
@@ -82,7 +101,7 @@ async fn test_http_evidence_flow() {
                 .get(format!("{}/evidence/{}", base_url, job_id))
                 .send()
                 .await
-                .unwrap();
+            .unwrap();
 
             let status_json: serde_json::Value = status_resp.json().await.unwrap();
             let status = status_json["status"].as_str().unwrap();
