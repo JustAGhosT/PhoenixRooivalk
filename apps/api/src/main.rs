@@ -1,8 +1,8 @@
 use axum::{
-    extract::{Path, State},
-    http::StatusCode,
-    routing::{get, post},
-    Json, Router,
+  extract::{Path, State},
+  http::StatusCode,
+  routing::{get, post},
+  Json, Router,
 };
 use serde::{Deserialize, Serialize};
 use sqlx::sqlite::SqlitePoolOptions;
@@ -12,56 +12,54 @@ use tokio::net::TcpListener;
 use tokio::signal;
 use tracing_subscriber::prelude::*;
 
-async fn health() -> &'static str {
-    "OK"
-}
+use crate::handlers::health;  // Added import for the health handler
 
 #[derive(Clone)]
 struct AppState {
-    pool: Pool<Sqlite>,
+  pool: Pool<Sqlite>,
 }
 
 #[derive(Debug, Deserialize)]
 struct EvidenceIn {
-    id: Option<String>,
-    digest_hex: String,
-    #[allow(dead_code)]
-    payload_mime: Option<String>,
-    #[allow(dead_code)]
-    metadata: Option<serde_json::Value>,
+  id: Option<String>,
+  digest_hex: String,
+  #[allow(dead_code)]
+  payload_mime: Option<String>,
+  #[allow(dead_code)]
+  metadata: Option<serde_json::Value>,
 }
 
 #[derive(Debug, Serialize)]
 #[allow(dead_code)]
 struct EvidenceOut {
-    id: String,
-    status: String,
-    attempts: i64,
-    last_error: Option<String>,
-    created_ms: i64,
-    updated_ms: i64,
+  id: String,
+  status: String,
+  attempts: i64,
+  last_error: Option<String>,
+  created_ms: i64,
+  updated_ms: i64,
 }
 
 pub async fn build_app() -> (Router, Pool<Sqlite>) {
-    // DB pool (use API_DB_URL, fallback to KEEPER_DB_URL, then sqlite file)
-    let db_url = std::env::var("API_DB_URL")
-        .ok()
-        .or_else(|| std::env::var("KEEPER_DB_URL").ok())
-        .unwrap_or_else(|| "sqlite://blockchain_outbox.sqlite3".to_string());
-    let pool = SqlitePoolOptions::new()
-        .max_connections(5)
-        .connect(&db_url)
-        .await
-        .expect("failed to connect db");
-    ensure_schema(&pool).await.expect("schema init failed");
+  // DB pool (use API_DB_URL, fallback to KEEPER_DB_URL, then sqlite file)
+  let db_url = std::env::var("API_DB_URL")
+      .ok()
+      .or_else(|| std::env::var("KEEPER_DB_URL").ok())
+      .unwrap_or_else(|| "sqlite://blockchain_outbox.sqlite3".to_string());
+  let pool = SqlitePoolOptions::new()
+      .max_connections(5)
+      .connect(&db_url)
+      .await
+      .expect("failed to connect db");
+  ensure_schema(&pool).await.expect("schema init failed");
 
-    let state = AppState { pool: pool.clone() };
-    let app = Router::new()
-        .route("/health", get(health))
-        .route("/evidence", post(post_evidence))
-        .route("/evidence/{id}", get(get_evidence))
-        .with_state(state);
-    (app, pool)
+  let state = AppState { pool: pool.clone() };
+  let app = Router::new()
+      .route("/health", get(health))  // Using the imported health handler
+      .route("/evidence", post(post_evidence))
+      .route("/evidence/{id}", get(get_evidence))
+      .with_state(state);
+  (app, pool)
 }
 
 #[tokio::main]

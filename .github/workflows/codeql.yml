@@ -127,14 +127,14 @@ jobs:
 
           # Build each Rust project with debug information
           echo "Building apps/keeper..."
-          cd apps/keeper && cargo build --verbose --release
+          cd apps/keeper && cargo build --verbose
 
           echo "Building crates..."
           cd ../../crates
           for crate in */; do
             if [ -f "$crate/Cargo.toml" ]; then
               echo "Building $crate..."
-              cd "$crate" && cargo build --verbose --release && cd ..
+              cd "$crate" && cargo build --verbose && cd ..
             fi
           done
 

@@ -2,7 +2,7 @@
 # Main Overview - Simulation/Gameplay System
 **This document describes a simulation/threat-model for testing and gameplay purposes only. The PhoenixRooivalk is a counter-drone defense system simulator, not an actual military platform.**
 
-The PhoenixRooivalk counter-drone defense system simulator consists of four major business components. Numbers in parentheses indicate relative importance scores (1-100) for gameplay balance and simulation priority, where higher numbers indicate more critical components for core gameplay functionality.
+The PhoenixRooivalk counter-drone defense system simulator consists of four major business components for gameplay balance and simulation priority.
 
 ## Simulation Components
 - Multi-layered threat detection using simulated RF, acoustic and optical signatures
@@ -10,19 +10,16 @@ The PhoenixRooivalk counter-drone defense system simulator consists of four majo
 - Edge-based decision making for simulated GPS-denied environments
 - Simulated drone swarm coordination protocols
 - Representative rules of engagement for gameplay purposes
-*(Importance scores indicate relative priority for simulation accuracy and gameplay impact, where higher numbers denote more critical components)*
 - Simulated dual-chain (Solana + EtherLink) evidence anchoring
 - Cryptographic proof generation for simulated threat engagements
 - Representative audit trail for accountability in gameplay scenarios
 - Chain-agnostic transaction verification simulation
 - Evidence job lifecycle management for gameplay and demonstration
-*(Importance scores indicate relative priority for simulation accuracy and gameplay impact, where higher numbers denote more critical components)*
 - Simulated energy budgeting across weapon systems
 - Formation control for simulated defensive drone swarms
 - Specialized drone type coordination in gameplay scenarios
 - Mission-specific deployment zone generation for simulation purposes
 - Progressive research and technology unlock system for player progression
-*(Importance scores indicate relative priority for simulation accuracy and gameplay impact, where higher numbers denote more critical components)*
 - Zone-based threat prioritization algorithms for gameplay balance
 - Multi-factor effectiveness calculation in simulated environments
 - Resource-aware deployment decisions for gameplay strategy
@@ -42,7 +39,6 @@ Simulated compliance features include geofencing, fail-safe return-to-launch (RT
 
 **Verification Expectations:** 
 - Performance claims represent simulated targets within the game environment
-- Numbers in parentheses are relative importance scores (1-100) for gameplay balance
 - Response times and system capabilities are not validated hardware benchmarks
 - Reviewers should evaluate features based on gameplay experience and simulation fidelity
 - No real-world defense system capabilities are implied or represented
