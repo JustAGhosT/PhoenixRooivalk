@@ -93,14 +93,6 @@ export const ThreatSimulator: React.FC<ThreatSimulatorProps> = ({
     setAutomationMode,
   } = useGameState();
 
-  // Create a startResearch function since it's not part of useGameState
-  const startResearch = (type: string): boolean => {
-    // Implement research logic here
-    console.log(`Starting research: ${type}`);
-    // For now, just return true to indicate success
-    return true;
-  };
-
   const { resourceManager } = useThreatSimulatorGame({
     gameRef,
     gameState,
@@ -452,6 +444,7 @@ export const ThreatSimulator: React.FC<ThreatSimulatorProps> = ({
         threats={gameState.threats.length}
         neutralized={gameState.neutralized}
         level={gameState.level}
+        onToggleResearch={() => setShowResearch(true)}
       />
 
       <div className="flex flex-row flex-grow overflow-hidden">
