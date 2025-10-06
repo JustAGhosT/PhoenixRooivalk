@@ -148,7 +148,7 @@ jobs:
             github.event.pull_request.number }}"
           enable-commit-comment: true
           enable-commit-status: true
-          alias: ${{ github.head_ref }}
+          alias: pr-${{ github.event.pull_request.number }}
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_MARKETING_SITE_ID }}
