@@ -53,6 +53,7 @@ pub async fn build_app() -> (Router, Pool<Sqlite>) {
       .route("/jamming-operations/{id}", get(get_jamming_operation))
       .with_state(state);
   (app, pool)
+}
 
 #[tokio::main]
 async fn main() {
