@@ -45,7 +45,6 @@ impl Default for ConnectionConfig {
 /// Database connection manager
 pub struct ConnectionManager {
     pool: Pool<Sqlite>,
-    config: ConnectionConfig,
     effective_config: ConnectionConfig,
 }
 
@@ -84,7 +83,6 @@ impl ConnectionManager {
 
         Ok(Self {
             pool,
-            config,
             effective_config,
         })
     }
