@@ -56,9 +56,9 @@ impl MigrationManager {
                     network TEXT NOT NULL,
                     chain TEXT NOT NULL,
                     tx_id TEXT NOT NULL,
-                    confirmed INTEGER NOT NULL,
+                    confirmed INTEGER NOT NULL DEFAULT 0,
                     timestamp INTEGER,
-                    PRIMARY KEY (job_id, network, chain)
+                    PRIMARY KEY (job_id, network, chain, tx_id)
                 );
                 "#,
             },
@@ -145,6 +145,27 @@ impl MigrationManager {
                 CREATE INDEX IF NOT EXISTS idx_jamming_operations_started_ms ON jamming_operations(started_ms);
                 CREATE INDEX IF NOT EXISTS idx_jamming_operations_operation_id ON jamming_operations(operation_id);
                 CREATE INDEX IF NOT EXISTS idx_jamming_operations_target_frequency ON jamming_operations(target_frequency_range);
+                "#,
+            },
+            Migration {
+                version: 8,
+                name: "update_tx_refs_primary_key",
+                sql: r#"
+                -- Drop existing table and recreate with correct primary key
+                -- This handles the schema inconsistency between keeper and API
+                DROP TABLE IF EXISTS outbox_tx_refs;
+                CREATE TABLE outbox_tx_refs (
+                    job_id TEXT NOT NULL,
+                    network TEXT NOT NULL,
+                    chain TEXT NOT NULL,
+                    tx_id TEXT NOT NULL,
+                    confirmed INTEGER NOT NULL DEFAULT 0,
+                    timestamp INTEGER,
+                    PRIMARY KEY (job_id, network, chain, tx_id)
+                );
+                -- Recreate indexes
+                CREATE INDEX IF NOT EXISTS idx_outbox_tx_refs_job_id ON outbox_tx_refs(job_id);
+                CREATE INDEX IF NOT EXISTS idx_outbox_tx_refs_confirmed ON outbox_tx_refs(confirmed);
                 "#,
             },
         ]
@@ -323,8 +344,8 @@ mod tests {
         // Check status
         let status = migration_manager.get_status().await.unwrap();
         assert!(status.is_up_to_date);
-        assert_eq!(status.current_version, 7);
-        assert_eq!(status.applied_migrations.len(), 7);
+        assert_eq!(status.current_version, 8);
+        assert_eq!(status.applied_migrations.len(), 8);
 
         // Verify tables exist
         let tables = sqlx::query("SELECT name FROM sqlite_master WHERE type='table'")

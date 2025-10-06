@@ -61,9 +61,9 @@ impl EvidenceRepository {
                 network TEXT NOT NULL,
                 chain TEXT NOT NULL,
                 tx_id TEXT NOT NULL,
-                confirmed INTEGER NOT NULL,
+                confirmed INTEGER NOT NULL DEFAULT 0,
                 timestamp INTEGER,
-                PRIMARY KEY (job_id, network, chain)
+                PRIMARY KEY (job_id, network, chain, tx_id)
             );
             "#,
         )
