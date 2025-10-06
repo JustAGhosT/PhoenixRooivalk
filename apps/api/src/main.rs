@@ -44,10 +44,7 @@ pub async fn build_app() -> (Router, Pool<Sqlite>) {
             post(post_countermeasure).get(list_countermeasures),
         )
         .route("/countermeasures/{id}", get(get_countermeasure))
-        .route(
-            "/evidence",
-            post(post_evidence).get(list_evidence),
-        )
+        .route("/evidence", post(post_evidence).get(list_evidence))
         .route("/evidence/{id}", get(get_evidence))
         .route(
             "/signal-disruptions",

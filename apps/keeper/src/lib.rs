@@ -3,9 +3,49 @@ use chrono::{TimeZone, Utc};
 use phoenix_evidence::anchor::{AnchorError, AnchorProvider};
 use phoenix_evidence::model::{ChainTxRef, DigestAlgo, EvidenceDigest, EvidenceRecord};
 use rand::Rng;
-use sqlx::{Pool, Sqlite};
+use sqlx::{Pool, Row, Sqlite};
 
 pub mod config;
+
+/// Initialize database schema for the keeper
+pub async fn ensure_schema(pool: &Pool<Sqlite>) -> Result<(), sqlx::Error> {
+    // Create outbox_jobs table
+    sqlx::query(
+        r#"
+        CREATE TABLE IF NOT EXISTS outbox_jobs (
+            id TEXT PRIMARY KEY,
+            payload_sha256 TEXT NOT NULL,
+            status TEXT NOT NULL DEFAULT 'queued',
+            attempts INTEGER NOT NULL DEFAULT 0,
+            last_error TEXT,
+            created_ms INTEGER NOT NULL,
+            updated_ms INTEGER NOT NULL,
+            next_attempt_ms INTEGER NOT NULL DEFAULT 0
+        )
+        "#,
+    )
+    .execute(pool)
+    .await?;
+
+    // Create outbox_tx_refs table
+    sqlx::query(
+        r#"
+        CREATE TABLE IF NOT EXISTS outbox_tx_refs (
+            job_id TEXT NOT NULL,
+            network TEXT NOT NULL,
+            chain TEXT NOT NULL,
+            tx_id TEXT NOT NULL,
+            confirmed INTEGER NOT NULL DEFAULT 0,
+            timestamp INTEGER,
+            PRIMARY KEY (job_id, network, chain, tx_id)
+        )
+        "#,
+    )
+    .execute(pool)
+    .await?;
+
+    Ok(())
+}
 
 #[derive(Debug, Clone)]
 pub struct EvidenceJob {
@@ -137,7 +177,10 @@ async fn fetch_unconfirmed_tx_refs(pool: &Pool<Sqlite>) -> Result<Vec<ChainTxRef
     let mut tx_refs = Vec::new();
     for row in rows {
         let timestamp_opt: Option<i64> = row.get("timestamp");
-        let timestamp = timestamp_opt.and_then(|ts| Utc.timestamp_opt(ts, 0).single());
+        let timestamp = timestamp_opt.and_then(|ts| {
+            // Convert seconds to milliseconds and use the non-deprecated API
+            Utc.timestamp_millis_opt(ts * 1000).single()
+        });
 
         tx_refs.push(ChainTxRef {
             network: row.get("network"),

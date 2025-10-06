@@ -1483,6 +1483,7 @@ name = "phoenix-api"
 version = "0.1.0"
 dependencies = [
  "anchor-etherlink",
+ "anyhow",
  "axum",
  "chrono",
  "phoenix-common",
@@ -1492,6 +1493,7 @@ dependencies = [
  "serde_json",
  "sqlx",
  "tempfile",
+ "thiserror 2.0.17",
  "tokio",
  "tracing",
  "tracing-subscriber",
@@ -1524,10 +1526,12 @@ dependencies = [
 name = "phoenix-keeper"
 version = "0.1.0"
 dependencies = [
+ "anchor-etherlink",
  "async-trait",
  "axum",
  "chrono",
  "phoenix-common",
+ "phoenix-evidence",
  "rand",
  "serde",
  "serde_json",

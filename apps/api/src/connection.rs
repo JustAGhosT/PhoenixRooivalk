@@ -56,9 +56,14 @@ impl ConnectionManager {
 
     /// Create a new connection manager with custom configuration
     pub async fn with_config(database_url: &str, config: ConnectionConfig) -> Result<Self> {
+        // Detect in-memory SQLite databases and adjust connection limits
+        let is_memory = database_url.ends_with(":memory:") || database_url.contains("mode=memory");
+        let max_connections = if is_memory { 1 } else { config.max_connections };
+        let min_connections = if is_memory { 1 } else { config.min_connections };
+
         let pool = SqlitePoolOptions::new()
-            .max_connections(config.max_connections)
-            .min_connections(config.min_connections)
+            .max_connections(max_connections)
+            .min_connections(min_connections)
             .acquire_timeout(config.acquire_timeout)
             .idle_timeout(config.idle_timeout)
             .max_lifetime(config.max_lifetime)
