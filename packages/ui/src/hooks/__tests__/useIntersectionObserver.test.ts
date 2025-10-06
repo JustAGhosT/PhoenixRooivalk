@@ -141,7 +141,7 @@ describe("useIntersectionObserver", () => {
   });
 
   it("resets state when element changes", () => {
-    const { result, rerender } = renderHook(() => useIntersectionObserver());
+    const { result } = renderHook(() => useIntersectionObserver());
 
     const element1 = document.createElement("div");
     const element2 = document.createElement("div");
