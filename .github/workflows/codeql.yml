@@ -93,17 +93,26 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "20"
-          cache: 'npm'
 
-      - name: Install pnpm
+      - name: Install and verify pnpm
         if: matrix.language == 'javascript-typescript'
         run: |
-          npm install -g pnpm@9
-          echo "pnpm version: $(pnpm --version)"
+          # Install pnpm using corepack (built into Node.js 16.17+)
+          corepack enable
+          corepack prepare pnpm@9 --activate
+
+          # Verify pnpm is available
+          pnpm --version
+
+          # Set up npm cache for faster installs
+          npm config set cache .npm-cache
 
       - name: Install dependencies
         if: matrix.language == 'javascript-typescript'
-        run: pnpm install --frozen-lockfile
+        run: |
+          # Change to UI package directory and install
+          cd packages/ui
+          pnpm install --frozen-lockfile
 
       - name: Initialize CodeQL
         if: steps.codeql-check.outputs.enabled == 'true'
