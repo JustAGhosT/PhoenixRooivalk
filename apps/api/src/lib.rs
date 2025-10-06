@@ -35,7 +35,7 @@ pub async fn build_app() -> anyhow::Result<(Router, Pool<Sqlite>)> {
             "/evidence",
             post(handlers::post_evidence).get(handlers::list_evidence),
         )
-        .route("/evidence/:id", get(handlers::get_evidence))
+        .route("/evidence/{id}", get(handlers::get_evidence))
         .with_state(state);
     Ok((app, pool))
 }

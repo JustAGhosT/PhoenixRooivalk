@@ -59,7 +59,7 @@ pub async fn build_app() -> (Router, Pool<Sqlite>) {
     let app = Router::new()
         .route("/health", get(health))
         .route("/evidence", post(post_evidence))
-        .route("/evidence/:id", get(get_evidence))
+        .route("/evidence/{id}", get(get_evidence))
         .with_state(state);
     (app, pool)
 }

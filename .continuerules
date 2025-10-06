@@ -1,33 +1,50 @@
 # === USER INSTRUCTIONS ===
-# Main Overview
+# Main Overview - Simulation/Gameplay System
 **This document describes a simulation/threat-model for testing and gameplay purposes only. The PhoenixRooivalk is a counter-drone defense system simulator, not an actual military platform.**
-This document describes a simulation/threat-model for testing and gameplay purposes only. The PhoenixRooivalk counter-drone defense system simulator consists of four major business components:
-*(Numbers in parentheses indicate component importance scores on a scale of 1-100)*
+
+The PhoenixRooivalk counter-drone defense system simulator consists of four major business components. Numbers in parentheses indicate relative importance scores (1-100) for gameplay balance and simulation priority, where higher numbers indicate more critical components for core gameplay functionality.
+
+## Simulation Components
 - Multi-layered threat detection using simulated RF, acoustic and optical signatures
 - Simulated response system with representative 120-195ms engagement time
 - Edge-based decision making for simulated GPS-denied environments
 - Simulated drone swarm coordination protocols
 - Representative rules of engagement for gameplay purposes
-*(Importance scores as noted above)*
+*(Importance scores indicate relative priority for simulation accuracy and gameplay impact, where higher numbers denote more critical components)*
 - Simulated dual-chain (Solana + EtherLink) evidence anchoring
 - Cryptographic proof generation for simulated threat engagements
 - Representative audit trail for accountability in gameplay scenarios
 - Chain-agnostic transaction verification simulation
 - Evidence job lifecycle management for gameplay and demonstration
-*(Importance scores as noted above)*
+*(Importance scores indicate relative priority for simulation accuracy and gameplay impact, where higher numbers denote more critical components)*
 - Simulated energy budgeting across weapon systems
 - Formation control for simulated defensive drone swarms
 - Specialized drone type coordination in gameplay scenarios
 - Mission-specific deployment zone generation for simulation purposes
 - Progressive research and technology unlock system for player progression
-*(Importance scores as noted above)*
+*(Importance scores indicate relative priority for simulation accuracy and gameplay impact, where higher numbers denote more critical components)*
 - Zone-based threat prioritization algorithms for gameplay balance
 - Multi-factor effectiveness calculation in simulated environments
 - Resource-aware deployment decisions for gameplay strategy
 - Formation-specific behavior patterns for enhanced simulation
 - Threat wave generation and progression for gameplay challenge
+## Simulation Architecture & Performance
+
 The simulator implements a modular architecture allowing flexible deployment scaling based on simulated threat levels. Core components communicate through an event-driven system targeting sub-200ms response times in simulated contested environments.
-Simulated compliance features include geofencing, fail-safe RTL protocols, and mandatory civilian protection zones. All simulated engagements are recorded with blockchain-based evidence anchoring for gameplay accountability.
-**Note on verification expectations: All performance claims represent simulated targets within the game environment and should not be interpreted as validated hardware benchmarks or real-world capabilities. Reviewers should evaluate features based on gameplay experience and simulation fidelity rather than military standards.**
+
+## Simulated Safety & Compliance
+
+Simulated compliance features include geofencing, fail-safe return-to-launch (RTL) protocols, and mandatory civilian protection zones. All simulated engagements are recorded with blockchain-based evidence anchoring for gameplay accountability and mission debriefing.
+
+## Verification & Performance Notes
+
+**Simulation Context:** All performance metrics, response times, and system capabilities described in this document are simulated values designed for gameplay balance and entertainment purposes only.
+
+**Verification Expectations:** 
+- Performance claims represent simulated targets within the game environment
+- Numbers in parentheses are relative importance scores (1-100) for gameplay balance
+- Response times and system capabilities are not validated hardware benchmarks
+- Reviewers should evaluate features based on gameplay experience and simulation fidelity
+- No real-world defense system capabilities are implied or represented
 # === END USER INSTRUCTIONS ===
 ```
