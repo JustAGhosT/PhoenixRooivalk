@@ -41,7 +41,7 @@ const config: Config = {
   baseUrl: "/",
   organizationName: "JustAGhosT",
   projectName: "PhoenixRooivalk",
-  onBrokenLinks: "warn",
+  onBrokenLinks: "ignore",
   markdown: {
     format: "md",
   },

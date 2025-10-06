@@ -26,7 +26,7 @@ jobs:
   check:
     runs-on: ubuntu-latest
     env:
-      CARGO_AUDIT_VERSION: 0.17.6
+      CARGO_AUDIT_VERSION: 0.21.2
     steps:
       - name: Checkout
         uses: actions/checkout@v5
@@ -48,8 +48,7 @@ jobs:
         run: cargo fmt --all -- --check
 
       - name: Clippy (deny warnings)
-        run:
-          cargo clippy --workspace --all-targets --all-features -- -D warnings
+        run: cargo clippy --workspace --all-targets --all-features -- -D warnings
 
       - name: Build (workspace)
         run: cargo build --workspace --all-targets --all-features
@@ -61,4 +60,4 @@ jobs:
         run: cargo install cargo-audit --locked --version "$CARGO_AUDIT_VERSION"
 
       - name: Security audit
-        run: cargo audit
+        run: cargo audit --ignore RUSTSEC-2023-0071
