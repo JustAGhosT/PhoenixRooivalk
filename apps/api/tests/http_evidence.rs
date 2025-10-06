@@ -49,7 +49,7 @@ async fn test_http_evidence_flow() {
     let base_url = format!("http://127.0.0.1:{}", port);
 
     // Wait for server to start with retry loop instead of fixed sleep
-        let mut last_err = None;
+    let mut last_err = None;
     let server_ready = timeout(Duration::from_secs(5), async {
         loop {
             match client.get(format!("{}/health", base_url)).send().await {

@@ -1,11 +1,11 @@
 use chrono::Utc;
-use serial_test::serial;
 use phoenix_evidence::anchor::{AnchorError, AnchorProvider};
 use phoenix_evidence::model::{ChainTxRef, EvidenceRecord};
 use phoenix_keeper::{
     run_confirmation_loop, run_job_loop, EvidenceJob, JobError, JobProvider, JobProviderExt,
     SqliteJobProvider,
 };
+use serial_test::serial;
 use std::sync::{Arc, Mutex};
 use std::time::Duration;
 use tempfile::NamedTempFile;
