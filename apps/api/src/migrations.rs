@@ -151,10 +151,8 @@ impl MigrationManager {
                 version: 8,
                 name: "update_tx_refs_primary_key",
                 sql: r#"
-                -- Drop existing table and recreate with correct primary key
-                -- This handles the schema inconsistency between keeper and API
-                DROP TABLE IF EXISTS outbox_tx_refs;
-                CREATE TABLE outbox_tx_refs (
+                -- Migrate data to new schema with correct primary key
+                CREATE TABLE outbox_tx_refs_new (
                     job_id TEXT NOT NULL,
                     network TEXT NOT NULL,
                     chain TEXT NOT NULL,
@@ -163,6 +161,13 @@ impl MigrationManager {
                     timestamp INTEGER,
                     PRIMARY KEY (job_id, network, chain, tx_id)
                 );
+                -- Copy existing data, deduplicating on the new primary key
+                INSERT OR IGNORE INTO outbox_tx_refs_new
+                SELECT job_id, network, chain, tx_id, confirmed, timestamp
+                FROM outbox_tx_refs;
+                -- Replace old table
+                DROP TABLE outbox_tx_refs;
+                ALTER TABLE outbox_tx_refs_new RENAME TO outbox_tx_refs;
                 -- Recreate indexes
                 CREATE INDEX IF NOT EXISTS idx_outbox_tx_refs_job_id ON outbox_tx_refs(job_id);
                 CREATE INDEX IF NOT EXISTS idx_outbox_tx_refs_confirmed ON outbox_tx_refs(confirmed);
