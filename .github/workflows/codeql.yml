@@ -90,42 +90,21 @@ jobs:
 
       - name: Setup Node.js and pnpm
         if: matrix.language == 'javascript-typescript'
+        uses: actions/setup-node@v5
+        with:
+          node-version: "20"
+
+      - name: Enable Corepack and setup pnpm
+        if: matrix.language == 'javascript-typescript'
         run: |
-          # Download and install Node.js 20.x
-          curl -fsSL https://deb.nodesource.com/setup_20.x | sudo bash -
-          sudo apt-get install -y nodejs
-
-          # Verify Node.js installation
-          echo "Node.js version: $(node --version)"
-          echo "npm version: $(npm --version)"
-
-          # Install pnpm using npm (most reliable method for CI)
-          sudo npm install -g pnpm@9
-
-          # Add pnpm to PATH explicitly
-          export PATH="$HOME/.npm-global/bin:$PATH"
-          echo "PATH: $PATH"
-
-          # Verify pnpm installation and location
-          which pnpm
-          pnpm --version
-
-          # Ensure pnpm is in PATH for future steps
-          echo "PNPM_PATH=$(which pnpm)" >> $GITHUB_ENV
+          corepack enable
+          corepack use pnpm@9.6.0
 
       - name: Install dependencies
         if: matrix.language == 'javascript-typescript'
         run: |
-          # Use the pnpm path we saved
-          export PATH="$HOME/.npm-global/bin:$PATH"
           cd packages/ui
-
-          # Install dependencies
-          $PNPM_PATH install --frozen-lockfile
-
-          # Verify installation worked
-          echo "Dependencies installed successfully"
-          ls -la node_modules | head -5
+          pnpm install --frozen-lockfile
 
       - name: Initialize CodeQL
         if: steps.codeql-check.outputs.enabled == 'true'
