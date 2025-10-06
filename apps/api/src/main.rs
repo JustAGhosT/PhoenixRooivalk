@@ -1,6 +1,6 @@
 use axum::{
-  routing::{get, post},
-  Router,
+    routing::{get, post},
+    Router,
 };
 use sqlx::sqlite::SqlitePoolOptions;
 use sqlx::{Pool, Sqlite};
@@ -10,46 +10,53 @@ use tokio::signal::ctrl_c;
 use tracing_subscriber::prelude::*;
 
 use phoenix_api::handlers::{
-    health, post_countermeasure, get_countermeasure, list_countermeasures,
-    post_signal_disruption, get_signal_disruption, list_signal_disruptions,
-    post_jamming_operation, get_jamming_operation, list_jamming_operations,
+    get_countermeasure, get_jamming_operation, get_signal_disruption, health, list_countermeasures,
+    list_jamming_operations, list_signal_disruptions, post_countermeasure, post_jamming_operation,
+    post_signal_disruption,
 };
 use phoenix_api::migrations::MigrationManager;
 use phoenix_api::AppState;
 
-
 pub async fn build_app() -> (Router, Pool<Sqlite>) {
-  // DB pool (use API_DB_URL, fallback to KEEPER_DB_URL, then sqlite file)
-  let db_url = std::env::var("API_DB_URL")
-      .ok()
-      .or_else(|| std::env::var("KEEPER_DB_URL").ok())
-      .unwrap_or_else(|| {
-          eprintln!("API_DB_URL or KEEPER_DB_URL must be set");
-          std::process::exit(1)
-      });
-  let pool = SqlitePoolOptions::new()
-      .max_connections(5)
-      .connect(&db_url)
-      .await
-      .expect("failed to connect db");
+    // DB pool (use API_DB_URL, fallback to KEEPER_DB_URL, then sqlite file)
+    let db_url = std::env::var("API_DB_URL")
+        .ok()
+        .or_else(|| std::env::var("KEEPER_DB_URL").ok())
+        .unwrap_or_else(|| {
+            eprintln!("API_DB_URL or KEEPER_DB_URL must be set");
+            std::process::exit(1)
+        });
+    let pool = SqlitePoolOptions::new()
+        .max_connections(5)
+        .connect(&db_url)
+        .await
+        .expect("failed to connect db");
 
-  // Run migrations instead of manual schema initialization
-  let migration_manager = MigrationManager::new(pool.clone());
-  migration_manager.migrate().await.expect("migration failed");
+    // Run migrations instead of manual schema initialization
+    let migration_manager = MigrationManager::new(pool.clone());
+    migration_manager.migrate().await.expect("migration failed");
 
-  let state = AppState { pool: pool.clone() };
-  let app = Router::new()
-      .route("/health", get(health))  // Using the imported health handler
-      .route("/countermeasures", post(post_countermeasure).get(list_countermeasures))
-      .route("/countermeasures/{id}", get(get_countermeasure))
-      .route("/signal-disruptions", post(post_signal_disruption).get(list_signal_disruptions))
-      .route("/signal-disruptions/{id}", get(get_signal_disruption))
-      .route("/jamming-operations", post(post_jamming_operation).get(list_jamming_operations))
-      .route("/jamming-operations/{id}", get(get_jamming_operation))
-      .with_state(state);
-  (app, pool)
+    let state = AppState { pool: pool.clone() };
+    let app = Router::new()
+        .route("/health", get(health)) // Using the imported health handler
+        .route(
+            "/countermeasures",
+            post(post_countermeasure).get(list_countermeasures),
+        )
+        .route("/countermeasures/{id}", get(get_countermeasure))
+        .route(
+            "/signal-disruptions",
+            post(post_signal_disruption).get(list_signal_disruptions),
+        )
+        .route("/signal-disruptions/{id}", get(get_signal_disruption))
+        .route(
+            "/jamming-operations",
+            post(post_jamming_operation).get(list_jamming_operations),
+        )
+        .route("/jamming-operations/{id}", get(get_jamming_operation))
+        .with_state(state);
+    (app, pool)
 }
-
 
 #[tokio::main]
 async fn main() {
@@ -84,12 +91,9 @@ async fn main() {
     }
 }
 
-
 async fn shutdown_signal() {
     let ctrl_c = async {
-        ctrl_c()
-            .await
-            .expect("failed to install Ctrl+C handler");
+        ctrl_c().await.expect("failed to install Ctrl+C handler");
     };
 
     #[cfg(unix)]

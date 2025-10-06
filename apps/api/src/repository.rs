@@ -369,13 +369,13 @@ mod tests {
     async fn create_test_repo() -> EvidenceRepository {
         // Use in-memory database with shared cache
         let db_url = "sqlite::memory:";
-        
+
         let pool = SqlitePoolOptions::new()
             .max_connections(1)
             .connect(db_url)
             .await
             .unwrap();
-            
+
         // Enable foreign key support
         sqlx::query("PRAGMA foreign_keys = ON")
             .execute(&pool)

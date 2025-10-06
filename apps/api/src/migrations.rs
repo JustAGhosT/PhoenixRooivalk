@@ -290,19 +290,19 @@ mod tests {
     async fn create_test_pool() -> Pool<Sqlite> {
         // Use in-memory database with shared cache for the connection pool
         let db_url = "sqlite::memory:";
-        
+
         let pool = SqlitePoolOptions::new()
             .max_connections(1)
             .connect(db_url)
             .await
             .unwrap();
-            
+
         // Enable foreign key support
         sqlx::query("PRAGMA foreign_keys = ON")
             .execute(&pool)
             .await
             .unwrap();
-            
+
         pool
     }
 

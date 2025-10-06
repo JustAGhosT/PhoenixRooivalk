@@ -9,7 +9,6 @@ pub mod config;
 
 #[derive(Debug, Clone)]
 pub struct EvidenceJob {
-{{ ... }}
     pub id: String,
     pub payload_sha256: String,
     pub created_ms: i64,
