@@ -1,14 +1,15 @@
 use async_trait::async_trait;
 use chrono::{TimeZone, Utc};
+use phoenix_common::schema::ensure_schema;
 use phoenix_evidence::anchor::{AnchorError, AnchorProvider};
 use phoenix_evidence::model::{ChainTxRef, DigestAlgo, EvidenceDigest, EvidenceRecord};
 use rand::Rng;
-use sqlx::{Pool, Row, Sqlite};
 
 pub mod config;
 
 #[derive(Debug, Clone)]
 pub struct EvidenceJob {
+{{ ... }}
     pub id: String,
     pub payload_sha256: String,
     pub created_ms: i64,
@@ -176,52 +177,6 @@ impl SqliteJobProvider {
     pub fn new(pool: Pool<Sqlite>) -> Self {
         Self { pool }
     }
-}
-
-pub async fn ensure_schema(pool: &Pool<Sqlite>) -> Result<(), sqlx::Error> {
-    // Jobs table
-    sqlx::query(
-        r#"
-        CREATE TABLE IF NOT EXISTS outbox_jobs (
-            id TEXT PRIMARY KEY,
-            payload_sha256 TEXT NOT NULL,
-            status TEXT NOT NULL DEFAULT 'queued',
-            attempts INTEGER NOT NULL DEFAULT 0,
-            last_error TEXT,
-            created_ms INTEGER NOT NULL,
-            updated_ms INTEGER NOT NULL,
-            next_attempt_ms INTEGER NOT NULL DEFAULT 0
-        );
-        "#,
-    )
-    .execute(pool)
-    .await?;
-
-    // Tx refs
-    sqlx::query(
-        r#"
-        CREATE TABLE IF NOT EXISTS outbox_tx_refs (
-            job_id TEXT NOT NULL,
-            network TEXT NOT NULL,
-            chain TEXT NOT NULL,
-            tx_id TEXT NOT NULL,
-            confirmed INTEGER NOT NULL,
-            timestamp INTEGER,
-            PRIMARY KEY (job_id, network, chain)
-        );
-        "#,
-    )
-    .execute(pool)
-    .await?;
-
-    // Best-effort migration if column missing
-    let _ = sqlx::query(
-        "ALTER TABLE outbox_jobs ADD COLUMN next_attempt_ms INTEGER NOT NULL DEFAULT 0",
-    )
-    .execute(pool)
-    .await;
-
-    Ok(())
 }
 
 #[async_trait]
