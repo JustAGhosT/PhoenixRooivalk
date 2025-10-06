@@ -4,9 +4,15 @@ use thiserror::Error;
 #[derive(Error, Debug)]
 pub enum MigrationError {
     #[error("Database error: {0}")]
-    Database(#[from] sqlx::Error),
+    Database(sqlx::Error),
     #[error("Migration error: {0}")]
     Migration(String),
+}
+
+impl From<sqlx::Error> for MigrationError {
+    fn from(error: sqlx::Error) -> Self {
+        MigrationError::Database(error)
+    }
 }
 
 pub type Result<T> = std::result::Result<T, MigrationError>;

@@ -5,9 +5,15 @@ use thiserror::Error;
 #[derive(Error, Debug)]
 pub enum ConnectionError {
     #[error("Database connection error: {0}")]
-    Database(#[from] sqlx::Error),
+    Database(sqlx::Error),
     #[error("Configuration error: {0}")]
     Configuration(String),
+}
+
+impl From<sqlx::Error> for ConnectionError {
+    fn from(error: sqlx::Error) -> Self {
+        ConnectionError::Database(error)
+    }
 }
 
 pub type Result<T> = std::result::Result<T, ConnectionError>;
