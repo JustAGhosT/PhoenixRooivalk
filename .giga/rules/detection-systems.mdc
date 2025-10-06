@@ -1,5 +1,5 @@
 ---
-description: Technical specification for autonomous drone detection and threat analysis systems including sensor fusion, classification, and response protocols
+description: Technical specifications for drone detection systems, sensor fusion, and threat analysis components
 ---
 
 
@@ -7,57 +7,73 @@ description: Technical specification for autonomous drone detection and threat a
 
 ## Core Detection Components
 
-### Threat Detection Engine
-`apps/marketing/src/components/utils/threatUtils.ts`
-- Multi-sensor fusion combining RF, optical, and acoustic signatures
-- Real-time threat classification with 95% accuracy
-- Progressive difficulty scaling for different threat types
-- Dynamic threat assessment algorithms
-Importance Score: 95
-
-### Sensor Integration System
-`apps/marketing/src/components/utils/autoTargeting.ts`
-- Autonomous sensor data correlation
-- Signal processing for noise reduction
-- Target acquisition and tracking
-- Sensor health monitoring and calibration
+### Threat Analysis Engine
+Path: `apps/marketing/src/components/utils/threatUtils.ts`
 Importance Score: 90
 
-### Response Protocol Manager
-`apps/marketing/src/components/utils/responseProtocols.ts`
-- Threat-specific countermeasure selection
-- Multi-stage response escalation
-- Rules of engagement enforcement
-- Automated deployment decisions
+Implements multi-layered threat detection:
+- Pattern recognition for swarm behavior identification 
+- Stealth drone detection using sensor fusion
+- Kamikaze threat trajectory analysis
+- Threat classification and prioritization system
+- Real-time threat behavior modeling
+
+### Radar Integration System
+Path: `apps/marketing/src/components/RadarSystem.tsx`
 Importance Score: 85
 
-## Detection Workflows
+Manages sensor data processing:
+- Multi-spectrum sensor fusion
+- Signal processing for drone signature identification
+- Friend/foe identification protocols
+- Range and bearing calculations
+- False positive filtering
 
-### Formation Detection
-`apps/marketing/src/components/utils/formationManager.ts`
-- Swarm pattern recognition
-- Leader-follower relationship identification
-- Formation threat level assessment
-- Coordinated response calculation
+### Strategic Detection Manager
+Path: `apps/marketing/src/components/utils/strategicDeployment.ts`
+Importance Score: 85
+
+Handles detection zone configuration:
+- Dynamic coverage area optimization
+- Mission-specific detection parameters
+- Sensor placement algorithms
+- Detection threshold management
+- Environmental factor compensation
+
+### Detection Event System
+Path: `apps/marketing/src/components/utils/eventSystem.ts`
 Importance Score: 80
 
-### Strategic Detection Zones
-`apps/marketing/src/components/utils/strategicDeployment.ts`
-- Zone-based threat prioritization
-- Mission-specific coverage optimization
-- Dynamic sensor allocation
-- Overlapping detection field management
+Manages detection events:
+- Threat alert prioritization
+- Detection confidence scoring
+- Multi-sensor correlation
+- Detection history tracking
+- Alert propagation rules
+
+### Performance Monitoring
+Path: `apps/marketing/src/components/utils/performanceMonitor.ts`
 Importance Score: 75
 
-## Detection Data Flow
+Monitors detection system effectiveness:
+- Detection rate tracking
+- False alarm analysis
+- System response time measurement
+- Coverage gap identification
+- Sensor health monitoring
 
-### Event Processing Pipeline
-`apps/marketing/src/components/utils/eventSystem.ts`
-- Real-time threat event correlation
-- Multi-source data fusion
-- Threat confidence scoring
-- Alert generation and prioritization
-Importance Score: 70
+## Integration Components
+
+### Auto-Targeting System
+Path: `apps/marketing/src/components/utils/autoTargeting.ts`
+Importance Score: 85
+
+Links detection to response:
+- Target acquisition logic
+- Threat tracking algorithms
+- Target prioritization rules
+- Engagement zone management
+- Multiple target handling
 
 $END$
 

@@ -86,10 +86,10 @@ export const ThreatSimulator: React.FC<ThreatSimulatorProps> = ({
     updateDronePositions,
     resetGameState,
     processFadeOut,
-    setLevel,
-    setWeatherMode,
-    setMissionType,
-    setAutomationMode,
+    setLevel: _setLevel,
+    setWeatherMode: _setWeatherMode,
+    setMissionType: _setMissionType,
+    setAutomationMode: _setAutomationMode,
   } = useGameState();
 
   const { resourceManager } = useThreatSimulatorGame({

@@ -1,54 +1,33 @@
+# === USER INSTRUCTIONS ===
 # Main Overview
-
-> **Giga Operational Instructions**
-> Read the relevant Markdown inside `.giga/rules` before citing project context. Reference the exact file you used in your response.
-
-## Development Guidelines
-
-- Only modify code directly relevant to the specific request. Avoid changing unrelated functionality.
-- Never replace code with placeholders like `# ... rest of the processing ...`. Always include complete code.
-- Break problems into smaller steps. Think through each step separately before implementing.
-- Always provide a complete PLAN with REASONING based on evidence from code and logs before making changes.
-- Explain your OBSERVATIONS clearly, then provide REASONING to identify the exact issue. Add console logs when needed to gather more information.
-
 **This document describes a simulation/threat-model for testing and gameplay purposes only. The PhoenixRooivalk is a counter-drone defense system simulator, not an actual military platform.**
-
 This document describes a simulation/threat-model for testing and gameplay purposes only. The PhoenixRooivalk counter-drone defense system simulator consists of four major business components:
 *(Numbers in parentheses indicate component importance scores on a scale of 1-100)*
-1. Autonomous Defense Core (95)
 - Multi-layered threat detection using simulated RF, acoustic and optical signatures
 - Simulated response system with representative 120-195ms engagement time
 - Edge-based decision making for simulated GPS-denied environments
 - Simulated drone swarm coordination protocols
 - Representative rules of engagement for gameplay purposes
-2. Evidence Management System (90)
 *(Importance scores as noted above)*
 - Simulated dual-chain (Solana + EtherLink) evidence anchoring
 - Cryptographic proof generation for simulated threat engagements
 - Representative audit trail for accountability in gameplay scenarios
 - Chain-agnostic transaction verification simulation
 - Evidence job lifecycle management for gameplay and demonstration
-
-3. Tactical Resource Management (85)
 *(Importance scores as noted above)*
 - Simulated energy budgeting across weapon systems
 - Formation control for simulated defensive drone swarms
 - Specialized drone type coordination in gameplay scenarios
 - Mission-specific deployment zone generation for simulation purposes
 - Progressive research and technology unlock system for player progression
-
-4. Threat Response Engine (80)
 *(Importance scores as noted above)*
 - Zone-based threat prioritization algorithms for gameplay balance
 - Multi-factor effectiveness calculation in simulated environments
 - Resource-aware deployment decisions for gameplay strategy
 - Formation-specific behavior patterns for enhanced simulation
 - Threat wave generation and progression for gameplay challenge
-
 The simulator implements a modular architecture allowing flexible deployment scaling based on simulated threat levels. Core components communicate through an event-driven system targeting sub-200ms response times in simulated contested environments.
-
 Simulated compliance features include geofencing, fail-safe RTL protocols, and mandatory civilian protection zones. All simulated engagements are recorded with blockchain-based evidence anchoring for gameplay accountability.
-
 **Note on verification expectations: All performance claims represent simulated targets within the game environment and should not be interpreted as validated hardware benchmarks or real-world capabilities. Reviewers should evaluate features based on gameplay experience and simulation fidelity rather than military standards.**
-
-$END$
+# === END USER INSTRUCTIONS ===
+```

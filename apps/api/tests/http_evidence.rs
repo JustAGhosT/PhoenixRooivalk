@@ -54,7 +54,7 @@ async fn test_http_evidence_flow() {
         loop {
             match client.get(format!("{}/health", base_url)).send().await {
                 Ok(resp) if resp.status().is_success() => {
-                    // Server is ready, break out of the loop
+                    // Server is ready, break out of the loop instead of returning Ok(())
                     break;
                 }
                 Ok(resp) => {
