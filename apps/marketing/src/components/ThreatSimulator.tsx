@@ -80,7 +80,6 @@ export const ThreatSimulator: React.FC<ThreatSimulatorProps> = ({
     setSelectionBox,
     setThreatPriority,
     deployDrone,
-    updateDrones,
     selectDroneType,
     updateMothershipResources,
     returnDroneToBase,
