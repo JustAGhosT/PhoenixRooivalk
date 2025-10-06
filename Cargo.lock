@@ -1501,6 +1501,14 @@ dependencies = [
 ]
 
 [[package]]
+name = "phoenix-common"
+version = "0.1.0"
+dependencies = [
+ "chrono",
+ "sqlx",
+]
+
+[[package]]
 name = "phoenix-evidence"
 version = "0.1.0"
 dependencies = [
@@ -2086,6 +2094,7 @@ checksum = "ee6798b1838b6a0f69c007c133b8df5866302197e404e8b6ee8ed3e3a5e68dc6"
 dependencies = [
  "base64",
  "bytes",
+ "chrono",
  "crc",
  "crossbeam-queue",
  "either",
@@ -2163,6 +2172,7 @@ dependencies = [
  "bitflags",
  "byteorder",
  "bytes",
+ "chrono",
  "crc",
  "digest",
  "dotenvy",
@@ -2204,6 +2214,7 @@ dependencies = [
  "base64",
  "bitflags",
  "byteorder",
+ "chrono",
  "crc",
  "dotenvy",
  "etcetera",
@@ -2238,6 +2249,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "c2d12fe70b2c1b4401038055f90f151b78208de1f9f89a7dbfd41587a10c3eea"
 dependencies = [
  "atoi",
+ "chrono",
  "flume",
  "futures-channel",
  "futures-core",

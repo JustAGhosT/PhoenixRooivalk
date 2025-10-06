@@ -17,31 +17,12 @@ use phoenix_api::handlers::{
     post_signal_disruption, get_signal_disruption, list_signal_disruptions,
     post_jamming_operation, get_jamming_operation, list_jamming_operations,
 };
+use phoenix_api::migrations::MigrationManager;
+use phoenix_api::models::EvidenceIn;
 
 #[derive(Clone)]
 struct AppState {
   pool: Pool<Sqlite>,
-}
-
-#[derive(Debug, Deserialize)]
-struct EvidenceIn {
-  id: Option<String>,
-  digest_hex: String,
-  #[allow(dead_code)]
-  payload_mime: Option<String>,
-  #[allow(dead_code)]
-  metadata: Option<serde_json::Value>,
-}
-
-#[derive(Debug, Serialize)]
-#[allow(dead_code)]
-struct EvidenceOut {
-  id: String,
-  status: String,
-  attempts: i64,
-  last_error: Option<String>,
-  created_ms: i64,
-  updated_ms: i64,
 }
 
 pub async fn build_app() -> (Router, Pool<Sqlite>) {
