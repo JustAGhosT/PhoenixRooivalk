@@ -289,15 +289,22 @@ mod tests {
     use tempfile::NamedTempFile;
 
     async fn create_test_pool() -> Pool<Sqlite> {
-        let temp_db = NamedTempFile::new().unwrap();
-        let db_path = temp_db.path().to_str().unwrap();
-        let db_url = format!("sqlite://{}", db_path);
-
-        SqlitePoolOptions::new()
+        // Use in-memory database with shared cache for the connection pool
+        let db_url = "sqlite::memory:";
+        
+        let pool = SqlitePoolOptions::new()
             .max_connections(1)
-            .connect(&db_url)
+            .connect(db_url)
             .await
-            .unwrap()
+            .unwrap();
+            
+        // Enable foreign key support
+        sqlx::query("PRAGMA foreign_keys = ON")
+            .execute(&pool)
+            .await
+            .unwrap();
+            
+        pool
     }
 
     #[tokio::test]
