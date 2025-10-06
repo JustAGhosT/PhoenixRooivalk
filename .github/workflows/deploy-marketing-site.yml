@@ -41,14 +41,12 @@ jobs:
 
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
-        with:
-          version: 9.6.0
 
       - name: Setup Node.js
         uses: actions/setup-node@v5
         with:
           node-version: "20"
-          cache: 'pnpm'
+          cache: "pnpm"
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
@@ -104,14 +102,12 @@ jobs:
 
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
-        with:
-          version: 9.6.0
 
       - name: Setup Node.js
         uses: actions/setup-node@v5
         with:
           node-version: "20"
-          cache: 'pnpm'
+          cache: "pnpm"
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
@@ -152,8 +148,7 @@ jobs:
           publish-dir: "apps/marketing/out"
           production-deploy: false
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          deploy-message:
-            "Deploy Preview (marketing) from PR #${{
+          deploy-message: "Deploy Preview (marketing) from PR #${{
             github.event.pull_request.number }}"
           enable-commit-comment: true
           enable-commit-status: true
