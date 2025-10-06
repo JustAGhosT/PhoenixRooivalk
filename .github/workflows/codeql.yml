@@ -94,6 +94,7 @@ jobs:
         uses: pnpm/action-setup@v4
         with:
           version: 9
+          run_install: false
 
       - name: Setup Node.js
         if: matrix.language == 'javascript-typescript'
@@ -101,6 +102,16 @@ jobs:
         with:
           node-version: "20"
           cache: 'pnpm'
+
+      - name: Install pnpm
+        if: matrix.language == 'javascript-typescript'
+        run: |
+          if ! command -v pnpm &> /dev/null; then
+            echo "pnpm not found, installing globally..."
+            npm install -g pnpm@9
+          else
+            echo "pnpm already available: $(pnpm --version)"
+          fi
 
       - name: Install dependencies
         if: matrix.language == 'javascript-typescript'
