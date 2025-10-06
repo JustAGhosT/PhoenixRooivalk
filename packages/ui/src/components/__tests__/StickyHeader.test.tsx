@@ -1,6 +1,6 @@
 import React from "react";
-import { render, screen } from "../utils/test-utils";
-import { StickyHeader } from "../components/StickyHeader";
+import { render, screen } from "../../__tests__/utils/test-utils";
+import { StickyHeader } from "../StickyHeader";
 
 // Mock createPortal for testing
 jest.mock("react-dom", () => ({

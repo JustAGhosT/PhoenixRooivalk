@@ -1,12 +1,11 @@
-import React from "react";
-import { render, screen } from "../utils/test-utils";
-import { RevealSection } from "../components/RevealSection";
+import { render, screen } from "../../__tests__/utils/test-utils";
+import { RevealSection } from "../RevealSection";
 
 // Mock the useIntersectionObserver hook
-jest.mock("../hooks/useIntersectionObserver");
+jest.mock("../../hooks/useIntersectionObserver");
 
 const mockUseIntersectionObserver =
-  require("../hooks/useIntersectionObserver").useIntersectionObserver;
+  require("../../hooks/useIntersectionObserver").useIntersectionObserver;
 
 describe("RevealSection", () => {
   const defaultProps = {

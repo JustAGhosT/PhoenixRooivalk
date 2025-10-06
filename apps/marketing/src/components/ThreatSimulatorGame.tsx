@@ -148,6 +148,10 @@ const ThreatSimulatorGame: React.FC<ThreatSimulatorGameProps> = ({
         threats={gameState.threats.length}
         neutralized={gameState.neutralized}
         level={gameState.level}
+        onToggleResearch={() => {
+          // Research functionality not implemented in this component
+          console.log("Research toggle requested");
+        }}
       />
 
       <div className="flex flex-row flex-grow overflow-hidden">

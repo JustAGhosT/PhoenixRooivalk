@@ -1,11 +1,11 @@
 import React, { ReactElement } from "react";
-import { render, RenderOptions } from "@testing-library/react";
+import { render, RenderOptions, RenderResult } from "@testing-library/react";
 
 // Custom render function that includes providers if needed
 const customRender = (
   ui: ReactElement,
   options?: Omit<RenderOptions, "wrapper">,
-) => render(ui, { ...options });
+): RenderResult => render(ui, { ...options });
 
 // Re-export everything from React Testing Library
 export * from "@testing-library/react";

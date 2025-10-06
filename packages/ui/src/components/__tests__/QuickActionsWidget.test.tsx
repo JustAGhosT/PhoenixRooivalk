@@ -1,6 +1,5 @@
-import React from "react";
-import { render, screen, fireEvent } from "../utils/test-utils";
-import { QuickActionsWidget } from "../components/QuickActionsWidget";
+import { fireEvent, render, screen, waitFor } from "../../__tests__/utils/test-utils";
+import { QuickActionsWidget } from "../QuickActionsWidget";
 
 const mockActions = [
   {
@@ -107,7 +106,7 @@ describe("QuickActionsWidget", () => {
     const buttons = screen.getAllByRole("button");
     expect(buttons).toHaveLength(3);
 
-    buttons.forEach((button) => {
+    buttons.forEach((button: HTMLElement) => {
       expect(button).toHaveAttribute("type", "button");
     });
   });

@@ -1,6 +1,5 @@
-import React from "react";
-import { render, screen, fireEvent } from "../utils/test-utils";
-import { Button, ButtonProps } from "../components/Button";
+import { fireEvent, render, screen } from "../../__tests__/utils/test-utils";
+import { Button, ButtonProps } from "../Button";
 
 describe("Button", () => {
   const defaultProps: ButtonProps = {
