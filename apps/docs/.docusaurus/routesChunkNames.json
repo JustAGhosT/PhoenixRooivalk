@@ -13,17 +13,17 @@
     },
     "config": "5e9f5e1a"
   },
-  "/docs-cd7": {
+  "/docs-932": {
     "__comp": "5e95c892",
     "__context": {
       "plugin": "aba21aa0"
     }
   },
-  "/docs-475": {
+  "/docs-7aa": {
     "__comp": "a7bd4aaa",
     "__props": "0058b4c6"
   },
-  "/docs-b9c": {
+  "/docs-6df": {
     "__comp": "a94703ab"
   },
   "/docs/-e35": {
@@ -61,6 +61,10 @@
   "/docs/business/emerging-trends-f95": {
     "__comp": "17896441",
     "content": "e64c6575"
+  },
+  "/docs/business/investment-teaser-d89": {
+    "__comp": "17896441",
+    "content": "a909b1f1"
   },
   "/docs/business/market-analysis-414": {
     "__comp": "17896441",
@@ -190,9 +194,61 @@
     "__comp": "17896441",
     "content": "23d3a764"
   },
-  "/docs/research/power-storage-and-management-be6": {
+  "/docs/research/inst-airframe-design-and-aerodynamics-modified-384": {
     "__comp": "17896441",
-    "content": "a881cfa2"
+    "content": "7d5eec97"
+  },
+  "/docs/research/inst-avionics-autonomy-and-navigation-modified-3d4": {
+    "__comp": "17896441",
+    "content": "9b57f8b6"
+  },
+  "/docs/research/inst-business-and-economics-modified-cdd": {
+    "__comp": "17896441",
+    "content": "ffc9a25b"
+  },
+  "/docs/research/inst-combined-prompt-modified-bd0": {
+    "__comp": "17896441",
+    "content": "46f4b103"
+  },
+  "/docs/research/inst-communications-and-ground-segment-9e2": {
+    "__comp": "17896441",
+    "content": "de446305"
+  },
+  "/docs/research/inst-cross-cutting-concerns-modified-679": {
+    "__comp": "17896441",
+    "content": "3caf3e76"
+  },
+  "/docs/research/inst-forward-looking-modified-0c8": {
+    "__comp": "17896441",
+    "content": "64adf5af"
+  },
+  "/docs/research/inst-maintenance-sustainment-manufacturing-payload-environment-and-operations-modified-214": {
+    "__comp": "17896441",
+    "content": "e09e1e30"
+  },
+  "/docs/research/inst-motor-specification-and-performance-modified-1e0": {
+    "__comp": "17896441",
+    "content": "cb049c36"
+  },
+  "/docs/research/inst-power-electronics-and-esc-caa": {
+    "__comp": "17896441",
+    "content": "3e1445fa"
+  },
+  "/docs/research/inst-power-storage-and-management-6a3": {
+    "__comp": "17896441",
+    "content": "94a0438b"
+  },
+  "/docs/research/inst-propulsion-systems-complete-f74": {
+    "__comp": "17896441",
+    "content": "9a85f9a9"
+  },
+  "/docs/research/inst-safety-reliability-certification-regulatory-standards-modified-844": {
+    "__comp": "17896441",
+    "content": "d84dc591"
+  },
+  "/docs/research/resp-airframe-design-and-aerodynamics-claude-af0": {
+    "__comp": "17896441",
+    "content": "08c01e96"
   },
   "/docs/research/sensor-technologies-comprehensive-analysis-977": {
     "__comp": "17896441",

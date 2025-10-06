@@ -51,6 +51,10 @@
               "sidebar": "docs"
             },
             {
+              "id": "business/investment-teaser",
+              "path": "/docs/business/investment-teaser"
+            },
+            {
               "id": "business/market-analysis",
               "path": "/docs/business/market-analysis",
               "sidebar": "docs"
@@ -215,8 +219,60 @@
               "sidebar": "docs"
             },
             {
-              "id": "research/power-storage-and-management",
-              "path": "/docs/research/power-storage-and-management"
+              "id": "research/inst-airframe-design-and-aerodynamics-modified",
+              "path": "/docs/research/inst-airframe-design-and-aerodynamics-modified"
+            },
+            {
+              "id": "research/inst-avionics-autonomy-and-navigation-modified",
+              "path": "/docs/research/inst-avionics-autonomy-and-navigation-modified"
+            },
+            {
+              "id": "research/inst-business-and-economics-modified",
+              "path": "/docs/research/inst-business-and-economics-modified"
+            },
+            {
+              "id": "research/inst-combined-prompt-modified",
+              "path": "/docs/research/inst-combined-prompt-modified"
+            },
+            {
+              "id": "research/inst-communications-and-ground-segment",
+              "path": "/docs/research/inst-communications-and-ground-segment"
+            },
+            {
+              "id": "research/inst-cross-cutting-concerns-modified",
+              "path": "/docs/research/inst-cross-cutting-concerns-modified"
+            },
+            {
+              "id": "research/inst-forward-looking-modified",
+              "path": "/docs/research/inst-forward-looking-modified"
+            },
+            {
+              "id": "research/inst-maintenance-sustainment-manufacturing-payload-environment-and-operations-modified",
+              "path": "/docs/research/inst-maintenance-sustainment-manufacturing-payload-environment-and-operations-modified"
+            },
+            {
+              "id": "research/inst-motor-specification-and-performance-modified",
+              "path": "/docs/research/inst-motor-specification-and-performance-modified"
+            },
+            {
+              "id": "research/inst-power-electronics-and-esc",
+              "path": "/docs/research/inst-power-electronics-and-esc"
+            },
+            {
+              "id": "research/inst-power-storage-and-management",
+              "path": "/docs/research/inst-power-storage-and-management"
+            },
+            {
+              "id": "research/inst-propulsion-systems-complete",
+              "path": "/docs/research/inst-propulsion-systems-complete"
+            },
+            {
+              "id": "research/inst-safety-reliability-certification-regulatory-standards-modified",
+              "path": "/docs/research/inst-safety-reliability-certification-regulatory-standards-modified"
+            },
+            {
+              "id": "research/resp-airframe-design-and-aerodynamics-claude",
+              "path": "/docs/research/resp-airframe-design-and-aerodynamics-claude"
             },
             {
               "id": "research/sensor-technologies-comprehensive-analysis",

@@ -14,15 +14,15 @@ export default [
   },
   {
     path: '/docs',
-    component: ComponentCreator('/docs', 'cd7'),
+    component: ComponentCreator('/docs', '932'),
     routes: [
       {
         path: '/docs',
-        component: ComponentCreator('/docs', '475'),
+        component: ComponentCreator('/docs', '7aa'),
         routes: [
           {
             path: '/docs',
-            component: ComponentCreator('/docs', 'b9c'),
+            component: ComponentCreator('/docs', '6df'),
             routes: [
               {
                 path: '/docs/',
@@ -76,6 +76,11 @@ export default [
                 component: ComponentCreator('/docs/business/emerging-trends', 'f95'),
                 exact: true,
                 sidebar: "docs"
+              },
+              {
+                path: '/docs/business/investment-teaser',
+                component: ComponentCreator('/docs/business/investment-teaser', 'd89'),
+                exact: true
               },
               {
                 path: '/docs/business/market-analysis',
@@ -270,8 +275,73 @@ export default [
                 sidebar: "docs"
               },
               {
-                path: '/docs/research/power-storage-and-management',
-                component: ComponentCreator('/docs/research/power-storage-and-management', 'be6'),
+                path: '/docs/research/inst-airframe-design-and-aerodynamics-modified',
+                component: ComponentCreator('/docs/research/inst-airframe-design-and-aerodynamics-modified', '384'),
+                exact: true
+              },
+              {
+                path: '/docs/research/inst-avionics-autonomy-and-navigation-modified',
+                component: ComponentCreator('/docs/research/inst-avionics-autonomy-and-navigation-modified', '3d4'),
+                exact: true
+              },
+              {
+                path: '/docs/research/inst-business-and-economics-modified',
+                component: ComponentCreator('/docs/research/inst-business-and-economics-modified', 'cdd'),
+                exact: true
+              },
+              {
+                path: '/docs/research/inst-combined-prompt-modified',
+                component: ComponentCreator('/docs/research/inst-combined-prompt-modified', 'bd0'),
+                exact: true
+              },
+              {
+                path: '/docs/research/inst-communications-and-ground-segment',
+                component: ComponentCreator('/docs/research/inst-communications-and-ground-segment', '9e2'),
+                exact: true
+              },
+              {
+                path: '/docs/research/inst-cross-cutting-concerns-modified',
+                component: ComponentCreator('/docs/research/inst-cross-cutting-concerns-modified', '679'),
+                exact: true
+              },
+              {
+                path: '/docs/research/inst-forward-looking-modified',
+                component: ComponentCreator('/docs/research/inst-forward-looking-modified', '0c8'),
+                exact: true
+              },
+              {
+                path: '/docs/research/inst-maintenance-sustainment-manufacturing-payload-environment-and-operations-modified',
+                component: ComponentCreator('/docs/research/inst-maintenance-sustainment-manufacturing-payload-environment-and-operations-modified', '214'),
+                exact: true
+              },
+              {
+                path: '/docs/research/inst-motor-specification-and-performance-modified',
+                component: ComponentCreator('/docs/research/inst-motor-specification-and-performance-modified', '1e0'),
+                exact: true
+              },
+              {
+                path: '/docs/research/inst-power-electronics-and-esc',
+                component: ComponentCreator('/docs/research/inst-power-electronics-and-esc', 'caa'),
+                exact: true
+              },
+              {
+                path: '/docs/research/inst-power-storage-and-management',
+                component: ComponentCreator('/docs/research/inst-power-storage-and-management', '6a3'),
+                exact: true
+              },
+              {
+                path: '/docs/research/inst-propulsion-systems-complete',
+                component: ComponentCreator('/docs/research/inst-propulsion-systems-complete', 'f74'),
+                exact: true
+              },
+              {
+                path: '/docs/research/inst-safety-reliability-certification-regulatory-standards-modified',
+                component: ComponentCreator('/docs/research/inst-safety-reliability-certification-regulatory-standards-modified', '844'),
+                exact: true
+              },
+              {
+                path: '/docs/research/resp-airframe-design-and-aerodynamics-claude',
+                component: ComponentCreator('/docs/research/resp-airframe-design-and-aerodynamics-claude', 'af0'),
                 exact: true
               },
               {
