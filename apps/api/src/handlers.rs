@@ -7,8 +7,8 @@ use crate::{
         list_jamming_operations, list_signal_disruption_audits,
     },
     models::{
-        CountermeasureDeploymentIn, CountermeasureDeploymentOut, JammingOperationIn,
-        JammingOperationOut, SignalDisruptionAuditIn, SignalDisruptionAuditOut, EvidenceIn, Pagination,
+        CountermeasureDeploymentIn, JammingOperationIn,
+        SignalDisruptionAuditIn, EvidenceIn, Pagination,
     },
     AppState,
 };
@@ -294,7 +294,7 @@ pub async fn list_jamming_operations(
     let per_page = pagination.per_page.unwrap_or(10).max(1);
     let offset = (page - 1) * per_page;
 
-    match list_jamming_operations(&state.pool, per_page, offset).await {
+    match crate::db::list_jamming_operations(&state.pool, per_page, offset).await {
         Ok((operations, total_count)) => {
             let response = serde_json::json!({
                 "data": operations,
