@@ -46,6 +46,7 @@ impl Default for ConnectionConfig {
 pub struct ConnectionManager {
     pool: Pool<Sqlite>,
     config: ConnectionConfig,
+    effective_config: ConnectionConfig,
 }
 
 impl ConnectionManager {
@@ -71,7 +72,21 @@ impl ConnectionManager {
             .connect(database_url)
             .await?;
 
-        Ok(Self { pool, config })
+        // Store the effective configuration that was actually applied
+        let effective_config = ConnectionConfig {
+            max_connections,
+            min_connections,
+            acquire_timeout: config.acquire_timeout,
+            idle_timeout: config.idle_timeout,
+            max_lifetime: config.max_lifetime,
+            test_before_acquire: config.test_before_acquire,
+        };
+
+        Ok(Self {
+            pool,
+            config,
+            effective_config,
+        })
     }
 
     /// Get the connection pool
@@ -89,7 +104,7 @@ impl ConnectionManager {
             size,
             idle: idle as u32,
             active,
-            max_connections: self.config.max_connections,
+            max_connections: self.effective_config.max_connections,
         })
     }
 
@@ -252,5 +267,62 @@ mod tests {
         let temp_url = DatabaseUrlBuilder::sqlite_temp().unwrap();
         assert!(temp_url.starts_with("sqlite://"));
         assert!(temp_url.contains("phoenix_evidence.db"));
+    }
+
+    #[tokio::test]
+    async fn test_in_memory_connection_limits() {
+        // Test with :memory: URL
+        let memory_url = DatabaseUrlBuilder::sqlite_memory();
+        let config = ConnectionConfig {
+            max_connections: 10,
+            min_connections: 5,
+            acquire_timeout: Duration::from_secs(10),
+            idle_timeout: Duration::from_secs(300),
+            max_lifetime: Duration::from_secs(900),
+            test_before_acquire: true,
+        };
+
+        let manager = ConnectionManager::with_config(&memory_url, config.clone())
+            .await
+            .unwrap();
+        let stats = manager.get_stats().await.unwrap();
+
+        // Should be limited to 1 connection for in-memory database
+        assert_eq!(stats.max_connections, 1);
+
+        // Test with mode=memory URL
+        let mode_memory_url = "sqlite://test.db?mode=memory";
+        let manager2 = ConnectionManager::with_config(mode_memory_url, config.clone())
+            .await
+            .unwrap();
+        let stats2 = manager2.get_stats().await.unwrap();
+
+        // Should also be limited to 1 connection
+        assert_eq!(stats2.max_connections, 1);
+    }
+
+    #[tokio::test]
+    async fn test_file_database_connection_limits() {
+        // Test with regular file database - should use original config
+        let temp_db = NamedTempFile::new().unwrap();
+        let db_path = temp_db.path().to_str().unwrap();
+        let file_url = DatabaseUrlBuilder::sqlite(db_path);
+
+        let config = ConnectionConfig {
+            max_connections: 10,
+            min_connections: 5,
+            acquire_timeout: Duration::from_secs(10),
+            idle_timeout: Duration::from_secs(300),
+            max_lifetime: Duration::from_secs(900),
+            test_before_acquire: true,
+        };
+
+        let manager = ConnectionManager::with_config(&file_url, config)
+            .await
+            .unwrap();
+        let stats = manager.get_stats().await.unwrap();
+
+        // Should use original config values for file database
+        assert_eq!(stats.max_connections, 10);
     }
 }

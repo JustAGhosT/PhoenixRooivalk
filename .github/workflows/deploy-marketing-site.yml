@@ -136,6 +136,15 @@ jobs:
             [ -z "${{ secrets.NETLIFY_MARKETING_SITE_ID }}" ] && echo "  - NETLIFY_MARKETING_SITE_ID"
           fi
 
+      - name: Sanitize branch name for Netlify alias
+        if: steps.check_secrets_preview.outputs.secrets_available == 'true'
+        run: |
+          # Sanitize branch name for Netlify alias (lowercase, replace / with -, remove invalid chars)
+          SAFE_ALIAS=$(echo "${{ github.head_ref }}" | tr '[:upper:]' '[:lower:]' | sed 's/[^a-z0-9-]/-/g' | sed 's/--*/-/g' | sed 's/^-\|-$//g')
+          echo "safe_alias=$SAFE_ALIAS" >> $GITHUB_OUTPUT
+          echo "Original branch: ${{ github.head_ref }}"
+          echo "Safe alias: $SAFE_ALIAS"
+
       - name: Deploy Preview to Netlify (Marketing)
         if: steps.check_secrets_preview.outputs.secrets_available == 'true'
         uses: nwtgck/actions-netlify@v3
@@ -148,7 +157,7 @@ jobs:
             github.event.pull_request.number }}"
           enable-commit-comment: true
           enable-commit-status: true
-          alias: ${{ github.head_ref }}
+          alias: ${{ steps.sanitize_branch_name.outputs.safe_alias }}
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_MARKETING_SITE_ID }}
