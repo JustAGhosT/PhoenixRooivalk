@@ -81,7 +81,6 @@ jobs:
         with:
           toolchain: stable
           components: rustfmt, clippy
-          override: true
 
       - name: Clean previous builds
         if: ${{ steps.codeql-check.outputs.enabled == 'true' && matrix.language == 'rust' }}
