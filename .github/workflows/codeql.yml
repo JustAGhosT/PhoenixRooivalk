@@ -76,9 +76,7 @@ jobs:
           fi
 
       - name: Setup Rust toolchain
-        if:
-          steps.codeql-check.outputs.enabled == 'true' && matrix.language ==
-          'rust'
+        if: ${{ steps.codeql-check.outputs.enabled == 'true' && matrix.language == 'rust' }}
         uses: actions-rust-lang/setup-rust-toolchain@v1
         with:
           toolchain: stable
@@ -86,9 +84,7 @@ jobs:
           override: true
 
       - name: Clean previous builds
-        if:
-          steps.codeql-check.outputs.enabled == 'true' && matrix.language ==
-          'rust'
+        if: ${{ steps.codeql-check.outputs.enabled == 'true' && matrix.language == 'rust' }}
         run: |
           # Clean any previous build artifacts that might cause issues
           find . -name "target" -type d -exec rm -rf {} + 2>/dev/null || true
@@ -120,9 +116,7 @@ jobs:
           debug: true
 
       - name: Build Rust project for CodeQL
-        if:
-          steps.codeql-check.outputs.enabled == 'true' && matrix.language ==
-          'rust'
+        if: ${{ steps.codeql-check.outputs.enabled == 'true' && matrix.language == 'rust' }}
         run: |
           # Set environment variables for better Rust compilation
           export RUST_BACKTRACE=1
