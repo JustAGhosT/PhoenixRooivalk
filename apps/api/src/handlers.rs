@@ -8,7 +8,7 @@ use crate::{
     },
     models::{
         CountermeasureDeploymentIn, JammingOperationIn,
-        SignalDisruptionAuditIn, EvidenceIn, Pagination,
+        SignalDisruptionAuditIn, EvidenceIn, EvidenceOut, Pagination,
     },
     AppState,
 };
