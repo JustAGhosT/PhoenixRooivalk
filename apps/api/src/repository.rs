@@ -365,7 +365,6 @@ impl EvidenceRepository {
 mod tests {
     use super::*;
     use sqlx::sqlite::SqlitePoolOptions;
-    use tempfile::NamedTempFile;
 
     async fn create_test_repo() -> EvidenceRepository {
         // Use in-memory database with shared cache

@@ -286,7 +286,6 @@ pub struct MigrationStatus {
 mod tests {
     use super::*;
     use sqlx::sqlite::SqlitePoolOptions;
-    use tempfile::NamedTempFile;
 
     async fn create_test_pool() -> Pool<Sqlite> {
         // Use in-memory database with shared cache for the connection pool

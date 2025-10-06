@@ -12,7 +12,7 @@ use tokio::net::TcpListener;
 use tokio::signal;
 use tracing_subscriber::prelude::*;
 
-use crate::handlers::health;  // Added import for the health handler
+use phoenix_api::handlers::health;
 
 #[derive(Clone)]
 struct AppState {
