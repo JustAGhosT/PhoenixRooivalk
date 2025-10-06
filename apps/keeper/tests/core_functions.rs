@@ -1,4 +1,5 @@
 use chrono::Utc;
+use serial_test::serial;
 use phoenix_evidence::anchor::{AnchorError, AnchorProvider};
 use phoenix_evidence::model::{ChainTxRef, EvidenceRecord};
 use phoenix_keeper::{
@@ -209,6 +210,7 @@ async fn test_run_job_loop_provider_failure() {
 }
 
 #[tokio::test]
+#[serial]
 async fn test_run_confirmation_loop_success() {
     // Create temp DB
     let temp_db = NamedTempFile::new().unwrap();
@@ -269,6 +271,7 @@ async fn test_run_confirmation_loop_success() {
 }
 
 #[tokio::test]
+#[serial]
 async fn test_run_confirmation_loop_anchor_failure() {
     // Create temp DB
     let temp_db = NamedTempFile::new().unwrap();
@@ -330,6 +333,7 @@ async fn test_run_confirmation_loop_anchor_failure() {
 }
 
 #[tokio::test]
+#[serial]
 async fn test_sqlite_job_provider() {
     // Create temp DB
     let temp_db = NamedTempFile::new().unwrap();
