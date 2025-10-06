@@ -88,29 +88,18 @@ jobs:
           # Clean any previous build artifacts that might cause issues
           find . -name "target" -type d -exec rm -rf {} + 2>/dev/null || true
 
-      - name: Setup pnpm
-        if: matrix.language == 'javascript-typescript'
-        uses: pnpm/action-setup@v4
-        with:
-          version: 9
-          run_install: false
-
-      - name: Setup Node.js
+      - name: Setup Node.js and pnpm
         if: matrix.language == 'javascript-typescript'
         uses: actions/setup-node@v4
         with:
           node-version: "20"
-          cache: 'pnpm'
+          cache: 'npm'
 
       - name: Install pnpm
         if: matrix.language == 'javascript-typescript'
         run: |
-          if ! command -v pnpm &> /dev/null; then
-            echo "pnpm not found, installing globally..."
-            npm install -g pnpm@9
-          else
-            echo "pnpm already available: $(pnpm --version)"
-          fi
+          npm install -g pnpm@9
+          echo "pnpm version: $(pnpm --version)"
 
       - name: Install dependencies
         if: matrix.language == 'javascript-typescript'
