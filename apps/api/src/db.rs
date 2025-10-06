@@ -1,5 +1,5 @@
 use crate::models::{EvidenceIn, EvidenceOut};
-use sqlx::{Pool, Row, Sqlite};
+use phoenix_common::schema::ensure_schema;
 
 pub async fn ensure_schema(pool: &Pool<Sqlite>) -> Result<(), sqlx::Error> {
     sqlx::query(

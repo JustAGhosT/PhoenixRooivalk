@@ -1,5 +1,6 @@
 use crate::{
     db::{
+        create_evidence_job, get_evidence_by_id, list_evidence_jobs,
         create_countermeasure_deployment, create_jamming_operation, create_signal_disruption_audit,
         get_countermeasure_deployment_by_id, get_jamming_operation_by_id,
         get_signal_disruption_audit_by_id, list_countermeasure_deployments,
@@ -7,7 +8,7 @@ use crate::{
     },
     models::{
         CountermeasureDeploymentIn, CountermeasureDeploymentOut, JammingOperationIn,
-        JammingOperationOut, SignalDisruptionAuditIn, SignalDisruptionAuditOut, Pagination,
+        JammingOperationOut, SignalDisruptionAuditIn, SignalDisruptionAuditOut, EvidenceIn, Pagination,
     },
     AppState,
 };
