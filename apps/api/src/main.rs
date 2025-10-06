@@ -12,7 +12,11 @@ use tokio::net::TcpListener;
 use tokio::signal;
 use tracing_subscriber::prelude::*;
 
-use phoenix_api::handlers::health;
+use phoenix_api::handlers::{
+    health, post_evidence, get_evidence, post_countermeasure, get_countermeasure, list_countermeasures,
+    post_signal_disruption, get_signal_disruption, list_signal_disruptions,
+    post_jamming_operation, get_jamming_operation, list_jamming_operations,
+};
 
 #[derive(Clone)]
 struct AppState {
@@ -45,22 +49,29 @@ pub async fn build_app() -> (Router, Pool<Sqlite>) {
   let db_url = std::env::var("API_DB_URL")
       .ok()
       .or_else(|| std::env::var("KEEPER_DB_URL").ok())
-      .unwrap_or_else(|| "sqlite://blockchain_outbox.sqlite3".to_string());
   let pool = SqlitePoolOptions::new()
       .max_connections(5)
       .connect(&db_url)
       .await
       .expect("failed to connect db");
-  ensure_schema(&pool).await.expect("schema init failed");
+
+  // Run migrations instead of manual schema initialization
+  let migration_manager = MigrationManager::new(pool.clone());
+  migration_manager.migrate().await.expect("migration failed");
 
   let state = AppState { pool: pool.clone() };
   let app = Router::new()
       .route("/health", get(health))  // Using the imported health handler
       .route("/evidence", post(post_evidence))
       .route("/evidence/{id}", get(get_evidence))
+      .route("/countermeasures", post(post_countermeasure).get(list_countermeasures))
+      .route("/countermeasures/{id}", get(get_countermeasure))
+      .route("/signal-disruptions", post(post_signal_disruption).get(list_signal_disruptions))
+      .route("/signal-disruptions/{id}", get(get_signal_disruption))
+      .route("/jamming-operations", post(post_jamming_operation).get(list_jamming_operations))
+      .route("/jamming-operations/{id}", get(get_jamming_operation))
       .with_state(state);
   (app, pool)
-}
 
 #[tokio::main]
 async fn main() {
@@ -93,48 +104,6 @@ async fn main() {
     {
         tracing::error!(%err, "server error");
     }
-}
-
-async fn ensure_schema(pool: &Pool<Sqlite>) -> Result<(), sqlx::Error> {
-    sqlx::query(
-        r#"
-        CREATE TABLE IF NOT EXISTS outbox_jobs (
-            id TEXT PRIMARY KEY,
-            payload_sha256 TEXT NOT NULL,
-            status TEXT NOT NULL DEFAULT 'queued',
-            attempts INTEGER NOT NULL DEFAULT 0,
-            last_error TEXT,
-            created_ms INTEGER NOT NULL,
-            updated_ms INTEGER NOT NULL,
-            next_attempt_ms INTEGER NOT NULL DEFAULT 0
-        );
-        "#,
-    )
-    .execute(pool)
-    .await?;
-    // Create tx refs table (if not exists)
-    sqlx::query(
-        r#"
-        CREATE TABLE IF NOT EXISTS outbox_tx_refs (
-            job_id TEXT NOT NULL,
-            network TEXT NOT NULL,
-            chain TEXT NOT NULL,
-            tx_id TEXT NOT NULL,
-            confirmed INTEGER NOT NULL,
-            timestamp INTEGER,
-            PRIMARY KEY (job_id, network, chain)
-        );
-        "#,
-    )
-    .execute(pool)
-    .await?;
-    // Try to add next_attempt_ms if missing (best-effort)
-    let _ = sqlx::query(
-        "ALTER TABLE outbox_jobs ADD COLUMN next_attempt_ms INTEGER NOT NULL DEFAULT 0",
-    )
-    .execute(pool)
-    .await;
-    Ok(())
 }
 
 async fn post_evidence(
