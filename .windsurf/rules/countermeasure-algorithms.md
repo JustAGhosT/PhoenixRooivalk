@@ -1,5 +1,7 @@
 ---
-description: Documents core algorithms and mechanisms for RF jamming, GPS spoofing, and signal disruption used in counter-drone operations
+description:
+  Documents core algorithms and mechanisms for RF jamming, GPS spoofing, and
+  signal disruption used in counter-drone operations
 trigger: model_decision
 ---
 
@@ -25,10 +27,12 @@ trigger: model_decision
 
 ## Signal Disruption Coordination
 
-- Orchestrates multi-modal signal disruption across RF, GPS, and control channels
+- Orchestrates multi-modal signal disruption across RF, GPS, and control
+  channels
 - Automatic escalation of countermeasures based on threat response
 - Coordinates timing between different disruption mechanisms
-- Integrated via `SignalDisruptionOrchestrator` interface (external secured module)
+- Integrated via `SignalDisruptionOrchestrator` interface (external secured
+  module)
 
 **Importance Score:** 85
 

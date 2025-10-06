@@ -1,5 +1,7 @@
 ---
-description: Specifications for module integration patterns, component interfaces and deployment configurations in counter-drone defense systems
+description:
+  Specifications for module integration patterns, component interfaces and
+  deployment configurations in counter-drone defense systems
 trigger: model_decision
 ---
 
@@ -11,9 +13,13 @@ The module integration architecture centers around several core systems:
 
 ### Evidence Anchoring System
 
-Files: [crates/evidence/src/lib.rs](cci:7://file:///c:/Users/smitj/repos/PhoenixRooivalk/crates/evidence/src/lib.rs:0:0-0:0), [crates/anchor-etherlink/src/lib.rs](cci:7://file:///c:/Users/smitj/repos/PhoenixRooivalk/crates/anchor-etherlink/src/lib.rs:0:0-0:0), [crates/anchor-solana/src/lib.rs](cci:7://file:///c:/Users/smitj/repos/PhoenixRooivalk/crates/anchor-solana/src/lib.rs:0:0-0:0)
+Files:
+[crates/evidence/src/lib.rs](cci:7://file:///c:/Users/smitj/repos/PhoenixRooivalk/crates/evidence/src/lib.rs:0:0-0:0),
+[crates/anchor-etherlink/src/lib.rs](cci:7://file:///c:/Users/smitj/repos/PhoenixRooivalk/crates/anchor-etherlink/src/lib.rs:0:0-0:0),
+[crates/anchor-solana/src/lib.rs](cci:7://file:///c:/Users/smitj/repos/PhoenixRooivalk/crates/anchor-solana/src/lib.rs:0:0-0:0)
 
 Implements dual-chain evidence anchoring through:
+
 - Evidence record generation and validation
 - Parallel anchoring to Solana and EtherLink chains
 - Transaction confirmation monitoring
@@ -23,9 +29,11 @@ Implements dual-chain evidence anchoring through:
 
 ### Threat Response Integration
 
-Files: [apps/marketing/src/components/utils/responseProtocols.ts](cci:7://file:///c:/Users/smitj/repos/PhoenixRooivalk/apps/marketing/src/components/utils/responseProtocols.ts:0:0-0:0)
+Files:
+[apps/marketing/src/components/utils/responseProtocols.ts](cci:7://file:///c:/Users/smitj/repos/PhoenixRooivalk/apps/marketing/src/components/utils/responseProtocols.ts:0:0-0:0)
 
 Coordinates system responses through:
+
 - Protocol-based threat evaluation pipeline
 - Dynamic deployment zone allocation
 - Resource management across subsystems
@@ -35,9 +43,12 @@ Coordinates system responses through:
 
 ### Formation Management
 
-Files: [apps/marketing/src/components/utils/formationManager.ts](cci:7://file:///c:/Users/smitj/repos/PhoenixRooivalk/apps/marketing/src/components/utils/formationManager.ts:0:0-0:0), [apps/marketing/src/components/utils/formationUtils.ts](cci:7://file:///c:/Users/smitj/repos/PhoenixRooivalk/apps/marketing/src/components/utils/formationUtils.ts:0:0-0:0)
+Files:
+[apps/marketing/src/components/utils/formationManager.ts](cci:7://file:///c:/Users/smitj/repos/PhoenixRooivalk/apps/marketing/src/components/utils/formationManager.ts:0:0-0:0),
+[apps/marketing/src/components/utils/formationUtils.ts](cci:7://file:///c:/Users/smitj/repos/PhoenixRooivalk/apps/marketing/src/components/utils/formationUtils.ts:0:0-0:0)
 
 Handles drone formation coordination:
+
 - Dynamic formation adaptation
 - Inter-drone communication protocols
 - Position optimization algorithms
@@ -49,9 +60,11 @@ Handles drone formation coordination:
 
 ### Core Event System
 
-Files: [apps/marketing/src/components/utils/eventSystem.ts](cci:7://file:///c:/Users/smitj/repos/PhoenixRooivalk/apps/marketing/src/components/utils/eventSystem.ts:0:0-0:0)
+Files:
+[apps/marketing/src/components/utils/eventSystem.ts](cci:7://file:///c:/Users/smitj/repos/PhoenixRooivalk/apps/marketing/src/components/utils/eventSystem.ts:0:0-0:0)
 
 Manages system-wide event communication:
+
 - Pub/sub event distribution
 - Priority-based event handling
 - Cross-module synchronization
@@ -61,9 +74,11 @@ Manages system-wide event communication:
 
 ### Resource Management Interface
 
-Files: [apps/marketing/src/components/utils/resourceManager.ts](cci:7://file:///c:/Users/smitj/repos/PhoenixRooivalk/apps/marketing/src/components/utils/resourceManager.ts:0:0-0:0)
+Files:
+[apps/marketing/src/components/utils/resourceManager.ts](cci:7://file:///c:/Users/smitj/repos/PhoenixRooivalk/apps/marketing/src/components/utils/resourceManager.ts:0:0-0:0)
 
 Coordinates resource allocation:
+
 - Dynamic resource pooling
 - Load balancing across modules
 - Resource reservation protocols
@@ -75,9 +90,11 @@ Coordinates resource allocation:
 
 ### Strategic Deployment System
 
-Files: [apps/marketing/src/components/utils/strategicDeployment.ts](cci:7://file:///c:/Users/smitj/repos/PhoenixRooivalk/apps/marketing/src/components/utils/strategicDeployment.ts:0:0-0:0)
+Files:
+[apps/marketing/src/components/utils/strategicDeployment.ts](cci:7://file:///c:/Users/smitj/repos/PhoenixRooivalk/apps/marketing/src/components/utils/strategicDeployment.ts:0:0-0:0)
 
 Manages deployment configurations:
+
 - Zone-based deployment optimization
 - Mission-specific configuration generation
 - Environmental adaptation
@@ -87,9 +104,11 @@ Manages deployment configurations:
 
 ### Performance Monitoring
 
-Files: [apps/marketing/src/components/utils/performanceMonitor.ts](cci:7://file:///c:/Users/smitj/repos/PhoenixRooivalk/apps/marketing/src/components/utils/performanceMonitor.ts:0:0-0:0)
+Files:
+[apps/marketing/src/components/utils/performanceMonitor.ts](cci:7://file:///c:/Users/smitj/repos/PhoenixRooivalk/apps/marketing/src/components/utils/performanceMonitor.ts:0:0-0:0)
 
 Tracks system performance:
+
 - Cross-module metrics collection
 - Performance threshold monitoring
 - Module health checking

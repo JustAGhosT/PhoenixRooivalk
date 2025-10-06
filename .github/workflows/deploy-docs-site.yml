@@ -96,7 +96,9 @@ jobs:
           fi
 
       - name: Deploy to Netlify
-        if: ${{ steps.check_build.outputs.exists == 'true' && steps.check_secrets.outputs.secrets_available == 'true' }}
+        if:
+          ${{ steps.check_build.outputs.exists == 'true' &&
+          steps.check_secrets.outputs.secrets_available == 'true' }}
         uses: nwtgck/actions-netlify@v3
         with:
           publish-dir: "build"
@@ -187,7 +189,9 @@ jobs:
           fi
 
       - name: Sanitize branch name for Netlify alias
-        if: ${{ steps.check_build_preview.outputs.exists == 'true' && steps.check_secrets_preview.outputs.secrets_available == 'true' }}
+        if:
+          ${{ steps.check_build_preview.outputs.exists == 'true' &&
+          steps.check_secrets_preview.outputs.secrets_available == 'true' }}
         run: |
           # Sanitize branch name for Netlify alias (lowercase, replace / with -, remove invalid chars)
           SAFE_ALIAS=$(echo "${{ github.head_ref }}" | tr '[:upper:]' '[:lower:]' | sed 's/[^a-z0-9-]/-/g' | sed 's/--*/-/g' | sed 's/^-\|-$//g')
@@ -196,13 +200,16 @@ jobs:
           echo "Safe alias: $SAFE_ALIAS"
 
       - name: Deploy Preview to Netlify
-        if: ${{ steps.check_build_preview.outputs.exists == 'true' && steps.check_secrets_preview.outputs.secrets_available == 'true' }}
+        if:
+          ${{ steps.check_build_preview.outputs.exists == 'true' &&
+          steps.check_secrets_preview.outputs.secrets_available == 'true' }}
         uses: nwtgck/actions-netlify@v3
         with:
           publish-dir: "build"
           production-deploy: false
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          deploy-message: "Deploy Preview from PR #${{ github.event.pull_request.number }}"
+          deploy-message:
+            "Deploy Preview from PR #${{ github.event.pull_request.number }}"
           enable-commit-comment: true
           enable-commit-status: true
           enable-pull-request-comment: true

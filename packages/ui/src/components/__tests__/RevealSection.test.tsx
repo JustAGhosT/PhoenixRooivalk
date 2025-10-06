@@ -1,13 +1,14 @@
-import React from 'react';
-import { render, screen } from '../utils/test-utils';
-import { RevealSection } from '../components/RevealSection';
+import React from "react";
+import { render, screen } from "../utils/test-utils";
+import { RevealSection } from "../components/RevealSection";
 
 // Mock the useIntersectionObserver hook
-jest.mock('../hooks/useIntersectionObserver');
+jest.mock("../hooks/useIntersectionObserver");
 
-const mockUseIntersectionObserver = require('../hooks/useIntersectionObserver').useIntersectionObserver;
+const mockUseIntersectionObserver =
+  require("../hooks/useIntersectionObserver").useIntersectionObserver;
 
-describe('RevealSection', () => {
+describe("RevealSection", () => {
   const defaultProps = {
     children: <div>Revealed content</div>,
   };
@@ -23,20 +24,25 @@ describe('RevealSection', () => {
     jest.clearAllMocks();
   });
 
-  it('renders children correctly', () => {
+  it("renders children correctly", () => {
     render(<RevealSection {...defaultProps} />);
 
-    expect(screen.getByText('Revealed content')).toBeInTheDocument();
+    expect(screen.getByText("Revealed content")).toBeInTheDocument();
   });
 
-  it('applies default classes when not intersecting', () => {
+  it("applies default classes when not intersecting", () => {
     render(<RevealSection {...defaultProps} />);
 
-    const container = screen.getByText('Revealed content').parentElement;
-    expect(container).toHaveClass('opacity-0', 'translate-y-8', 'transition-all', 'duration-700');
+    const container = screen.getByText("Revealed content").parentElement;
+    expect(container).toHaveClass(
+      "opacity-0",
+      "translate-y-8",
+      "transition-all",
+      "duration-700",
+    );
   });
 
-  it('applies revealed classes when intersecting', () => {
+  it("applies revealed classes when intersecting", () => {
     mockUseIntersectionObserver.mockReturnValue({
       ref: jest.fn(),
       isIntersecting: true,
@@ -44,11 +50,11 @@ describe('RevealSection', () => {
 
     render(<RevealSection {...defaultProps} />);
 
-    const container = screen.getByText('Revealed content').parentElement;
-    expect(container).toHaveClass('opacity-100', 'translate-y-0');
+    const container = screen.getByText("Revealed content").parentElement;
+    expect(container).toHaveClass("opacity-100", "translate-y-0");
   });
 
-  it('passes threshold to useIntersectionObserver', () => {
+  it("passes threshold to useIntersectionObserver", () => {
     const threshold = 0.5;
     render(<RevealSection {...defaultProps} threshold={threshold} />);
 
@@ -58,7 +64,7 @@ describe('RevealSection', () => {
     });
   });
 
-  it('passes triggerOnce to useIntersectionObserver', () => {
+  it("passes triggerOnce to useIntersectionObserver", () => {
     const triggerOnce = false;
     render(<RevealSection {...defaultProps} triggerOnce={triggerOnce} />);
 
@@ -68,11 +74,17 @@ describe('RevealSection', () => {
     });
   });
 
-  it('passes both threshold and triggerOnce to useIntersectionObserver', () => {
+  it("passes both threshold and triggerOnce to useIntersectionObserver", () => {
     const threshold = 0.3;
     const triggerOnce = false;
 
-    render(<RevealSection {...defaultProps} threshold={threshold} triggerOnce={triggerOnce} />);
+    render(
+      <RevealSection
+        {...defaultProps}
+        threshold={threshold}
+        triggerOnce={triggerOnce}
+      />,
+    );
 
     expect(mockUseIntersectionObserver).toHaveBeenCalledWith({
       threshold,
@@ -80,23 +92,23 @@ describe('RevealSection', () => {
     });
   });
 
-  it('applies custom className', () => {
-    const customClass = 'custom-reveal-class';
+  it("applies custom className", () => {
+    const customClass = "custom-reveal-class";
     render(<RevealSection {...defaultProps} className={customClass} />);
 
-    const container = screen.getByText('Revealed content').parentElement;
+    const container = screen.getByText("Revealed content").parentElement;
     expect(container).toHaveClass(customClass);
   });
 
-  it('combines default and custom classes', () => {
-    const customClass = 'custom-class';
+  it("combines default and custom classes", () => {
+    const customClass = "custom-class";
     render(<RevealSection {...defaultProps} className={customClass} />);
 
-    const container = screen.getByText('Revealed content').parentElement;
-    expect(container).toHaveClass('opacity-0', 'translate-y-8', 'custom-class');
+    const container = screen.getByText("Revealed content").parentElement;
+    expect(container).toHaveClass("opacity-0", "translate-y-8", "custom-class");
   });
 
-  it('uses default threshold when not specified', () => {
+  it("uses default threshold when not specified", () => {
     render(<RevealSection {...defaultProps} />);
 
     expect(mockUseIntersectionObserver).toHaveBeenCalledWith({
@@ -105,7 +117,7 @@ describe('RevealSection', () => {
     });
   });
 
-  it('uses default triggerOnce when not specified', () => {
+  it("uses default triggerOnce when not specified", () => {
     render(<RevealSection {...defaultProps} />);
 
     expect(mockUseIntersectionObserver).toHaveBeenCalledWith({
@@ -114,7 +126,7 @@ describe('RevealSection', () => {
     });
   });
 
-  it('handles complex children', () => {
+  it("handles complex children", () => {
     const complexChildren = (
       <div>
         <h2>Title</h2>
@@ -125,12 +137,12 @@ describe('RevealSection', () => {
 
     render(<RevealSection>{complexChildren}</RevealSection>);
 
-    expect(screen.getByText('Title')).toBeInTheDocument();
-    expect(screen.getByText('Paragraph content')).toBeInTheDocument();
-    expect(screen.getByText('Action button')).toBeInTheDocument();
+    expect(screen.getByText("Title")).toBeInTheDocument();
+    expect(screen.getByText("Paragraph content")).toBeInTheDocument();
+    expect(screen.getByText("Action button")).toBeInTheDocument();
   });
 
-  it('maintains ref callback from useIntersectionObserver', () => {
+  it("maintains ref callback from useIntersectionObserver", () => {
     const mockRef = jest.fn();
     mockUseIntersectionObserver.mockReturnValue({
       ref: mockRef,
@@ -139,30 +151,30 @@ describe('RevealSection', () => {
 
     render(<RevealSection {...defaultProps} />);
 
-    const container = screen.getByText('Revealed content').parentElement;
-    expect(container).toHaveAttribute('ref');
+    const container = screen.getByText("Revealed content").parentElement;
+    expect(container).toHaveAttribute("ref");
   });
 
-  it('applies smooth transition duration', () => {
+  it("applies smooth transition duration", () => {
     render(<RevealSection {...defaultProps} />);
 
-    const container = screen.getByText('Revealed content').parentElement;
-    expect(container).toHaveClass('duration-700');
+    const container = screen.getByText("Revealed content").parentElement;
+    expect(container).toHaveClass("duration-700");
   });
 
-  it('handles empty children gracefully', () => {
+  it("handles empty children gracefully", () => {
     render(<RevealSection>{null}</RevealSection>);
 
     // Should not crash and should still render the container div
-    const container = document.querySelector('.transition-all');
+    const container = document.querySelector(".transition-all");
     expect(container).toBeInTheDocument();
   });
 
-  it('applies correct transform classes for animation', () => {
+  it("applies correct transform classes for animation", () => {
     // Test non-intersecting state
     render(<RevealSection {...defaultProps} />);
-    let container = screen.getByText('Revealed content').parentElement;
-    expect(container).toHaveClass('translate-y-8');
+    let container = screen.getByText("Revealed content").parentElement;
+    expect(container).toHaveClass("translate-y-8");
 
     // Test intersecting state
     mockUseIntersectionObserver.mockReturnValue({
@@ -171,11 +183,11 @@ describe('RevealSection', () => {
     });
 
     render(<RevealSection {...defaultProps} />);
-    container = screen.getByText('Revealed content').parentElement;
-    expect(container).toHaveClass('translate-y-0');
+    container = screen.getByText("Revealed content").parentElement;
+    expect(container).toHaveClass("translate-y-0");
   });
 
-  it('maintains accessibility when children have interactive elements', () => {
+  it("maintains accessibility when children have interactive elements", () => {
     const accessibleChildren = (
       <div>
         <button aria-label="Test button">Click me</button>
@@ -188,8 +200,8 @@ describe('RevealSection', () => {
 
     render(<RevealSection>{accessibleChildren}</RevealSection>);
 
-    expect(screen.getByLabelText('Test button')).toBeInTheDocument();
-    expect(screen.getByRole('link')).toBeInTheDocument();
-    expect(screen.getByText('This is a test link')).toBeInTheDocument();
+    expect(screen.getByLabelText("Test button")).toBeInTheDocument();
+    expect(screen.getByRole("link")).toBeInTheDocument();
+    expect(screen.getByText("This is a test link")).toBeInTheDocument();
   });
 });
