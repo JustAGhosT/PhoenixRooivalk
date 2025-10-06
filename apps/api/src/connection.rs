@@ -160,7 +160,12 @@ impl DatabaseUrlBuilder {
         let temp_file = temp_dir.join("phoenix_evidence.db");
         let path_str = temp_file
             .to_str()
-            .ok_or_else(|| anyhow!("temporary path contains invalid UTF-8: {:?}", temp_file))?;
+            .ok_or_else(|| {
+                ConnectionError::Configuration(format!(
+                    "temporary path contains invalid UTF-8: {:?}",
+                    temp_file
+                ))
+            })?;
         Ok(Self::sqlite(path_str))
     }
 }
@@ -325,5 +330,13 @@ mod tests {
 
         // Should use original config values for file database
         assert_eq!(stats.max_connections, 10);
+    }
+
+    #[test]
+    fn test_sqlite_temp_url_generation() {
+        // Test that sqlite_temp generates a valid URL
+        let url = DatabaseUrlBuilder::sqlite_temp().expect("Should generate valid temp URL");
+        assert!(url.starts_with("sqlite://"));
+        assert!(url.contains("phoenix_evidence.db"));
     }
 }
