@@ -1,5 +1,10 @@
 import React from "react";
-import { fireEvent, render, screen, waitFor } from "../../__tests__/utils/test-utils";
+import {
+  fireEvent,
+  render,
+  screen,
+  waitFor,
+} from "../../__tests__/utils/test-utils";
 import { ExitIntentModal } from "../ExitIntentModal";
 
 // Mock createPortal for testing

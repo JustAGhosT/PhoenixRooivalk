@@ -1,4 +1,9 @@
-import { fireEvent, render, screen, waitFor } from "../../__tests__/utils/test-utils";
+import {
+  fireEvent,
+  render,
+  screen,
+  waitFor,
+} from "../../__tests__/utils/test-utils";
 import { QuickActionsWidget } from "../QuickActionsWidget";
 
 const mockActions = [
