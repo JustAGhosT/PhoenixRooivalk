@@ -1,10 +1,12 @@
 import React from "react";
+import { Button } from "./ui/button";
 
 interface HUDBarProps {
   score: number;
   threats: number;
   neutralized: number;
   level: number;
+  onToggleResearch: () => void;
 }
 
 const HUDBar: React.FC<HUDBarProps> = ({
@@ -12,6 +14,7 @@ const HUDBar: React.FC<HUDBarProps> = ({
   threats,
   neutralized,
   level,
+  onToggleResearch,
 }) => {
   return (
     <header
@@ -45,6 +48,11 @@ const HUDBar: React.FC<HUDBarProps> = ({
         <span className="hud-value" id="sim-level">
           {level}
         </span>
+      </div>
+      <div className="hud-stat">
+        <Button onClick={onToggleResearch} variant="ghost" size="sm">
+          Research
+        </Button>
       </div>
     </header>
   );
