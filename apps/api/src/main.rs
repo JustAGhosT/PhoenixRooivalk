@@ -10,9 +10,9 @@ use tokio::signal::ctrl_c;
 use tracing_subscriber::prelude::*;
 
 use phoenix_api::handlers::{
-    get_countermeasure, get_jamming_operation, get_signal_disruption, health, list_countermeasures,
-    list_jamming_operations, list_signal_disruptions, post_countermeasure, post_jamming_operation,
-    post_signal_disruption,
+    get_countermeasure, get_evidence, get_jamming_operation, get_signal_disruption, health,
+    list_countermeasures, list_evidence, list_jamming_operations, list_signal_disruptions,
+    post_countermeasure, post_evidence, post_jamming_operation, post_signal_disruption,
 };
 use phoenix_api::migrations::MigrationManager;
 use phoenix_api::AppState;
@@ -44,6 +44,11 @@ pub async fn build_app() -> (Router, Pool<Sqlite>) {
             post(post_countermeasure).get(list_countermeasures),
         )
         .route("/countermeasures/{id}", get(get_countermeasure))
+        .route(
+            "/evidence",
+            post(post_evidence).get(list_evidence),
+        )
+        .route("/evidence/{id}", get(get_evidence))
         .route(
             "/signal-disruptions",
             post(post_signal_disruption).get(list_signal_disruptions),

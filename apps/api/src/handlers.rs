@@ -6,7 +6,7 @@ use crate::{
         list_countermeasure_deployments, list_evidence_jobs, list_signal_disruption_audits,
     },
     models::{
-        CountermeasureDeploymentIn, EvidenceIn, EvidenceOut, JammingOperationIn, Pagination,
+        CountermeasureDeploymentIn, EvidenceIn, JammingOperationIn, Pagination,
         SignalDisruptionAuditIn,
     },
     AppState,

@@ -5,13 +5,19 @@ use thiserror::Error;
 #[derive(Error, Debug)]
 pub enum RepositoryError {
     #[error("Database error: {0}")]
-    Database(#[from] sqlx::Error),
+    Database(sqlx::Error),
     #[error("Validation error: {0}")]
     Validation(String),
     #[error("Not found: {0}")]
     NotFound(String),
     #[error("Conflict: {0}")]
     Conflict(String),
+}
+
+impl From<sqlx::Error> for RepositoryError {
+    fn from(error: sqlx::Error) -> Self {
+        RepositoryError::Database(error)
+    }
 }
 
 pub type Result<T> = std::result::Result<T, RepositoryError>;
