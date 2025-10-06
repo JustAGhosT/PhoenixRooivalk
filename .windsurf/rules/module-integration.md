@@ -1,12 +1,9 @@
 ---
-description:
-  Integration patterns and component interfaces for customizable defense system
-  deployment configurations
+description: Specifications for module integration patterns, component interfaces and deployment configurations in counter-drone defense systems
 trigger: model_decision
 ---
 
 # === USER INSTRUCTIONS ===
-
 ---
 
 description: Documents modular system architecture, component interfaces, and
@@ -76,86 +73,102 @@ modular integration architecture across several key components:
   information was used from this file in a human-friendly way, instead of using
   kebab-case use normal sentence case.
 
-# === END USER INSTRUCTIONS ===
-
-# module-integration
-
-### Core Integration Components
-
-1. Cross-Chain Evidence Anchoring (85/100)
-
-```
-apps/keeper/
-crates/anchor-etherlink/
-crates/anchor-solana/
-```
-
-- Military evidence record distribution across multiple blockchains
-- Chain-specific provider interfaces for Solana and EtherLink networks
-- Synchronized transaction confirmation protocols
-- Evidence integrity verification across chains
-
-2. Modular Defense System Components (80/100)
-
-```
-apps/api/
-crates/evidence/
-```
-
-- RKV component integration interfaces (VTOL, Mini, Ground, C2)
-- Cross-component command & control protocols
-- Unified threat detection and response coordination
-- Component-specific evidence collection and validation
-
-3. Shared Type System (75/100)
-
-```
-packages/types/
-```
-
-- Military-grade evidence record schemas
-- Cross-component threat classification types
-- Chain-agnostic transaction reference formats
-- Unified validation interfaces
-
-4. Countermeasure Integration Layer (70/100)
-
-```
-crates/address-validation/
-packages/utils/
-```
-
-- Standardized countermeasure deployment interfaces
-- Cross-platform address validation
-- Unified evidence collection protocols
-- Component-specific deployment configurations
-
-### Integration Patterns
-
-1. Evidence Collection Flow
-
-- Component-level evidence generation
-- Local validation and formatting
-- Multi-chain distribution
-- Cross-chain confirmation
-
-2. Threat Response Coordination
-
-- Distributed threat detection
-- Component capability matching
-- Coordinated response deployment
-- Evidence capture and anchoring
-
-3. Component Communication
-
-- Standardized message formats
-- Cross-component authentication
-- Capability advertisement
-- Status synchronization
-
-$END$
-
+description:
+  Integration patterns and component interfaces for customizable defense system
+  deployment configurations
 If you're using this file in context, clearly say in italics in one small line
 that "Context added by Giga module-integration" along with specifying exactly
 what information was used from this file in a human-friendly way, instead of
 using kebab-case use normal sentence case.
+# === END USER INSTRUCTIONS ===
+
+# module-integration
+
+The module integration architecture centers around several core systems:
+
+## Core Integration Patterns
+
+### Evidence Anchoring System
+Files: `crates/evidence/src/lib.rs`, `crates/anchor-etherlink/src/lib.rs`, `crates/anchor-solana/src/lib.rs`
+
+Implements dual-chain evidence anchoring through:
+- Evidence record generation and validation
+- Parallel anchoring to Solana and EtherLink chains
+- Transaction confirmation monitoring
+- Retry handling with exponential backoff
+
+Importance Score: 85
+
+### Threat Response Integration 
+Files: `apps/marketing/src/components/utils/responseProtocols.ts`
+
+Coordinates system responses through:
+- Protocol-based threat evaluation pipeline
+- Dynamic deployment zone allocation
+- Resource management across subsystems
+- Multi-condition response orchestration
+
+Importance Score: 90
+
+### Formation Management
+Files: `apps/marketing/src/components/utils/formationManager.ts`, `apps/marketing/src/components/utils/formationUtils.ts`
+
+Handles drone formation coordination:
+- Dynamic formation adaptation
+- Inter-drone communication protocols
+- Position optimization algorithms
+- Formation effectiveness scoring
+
+Importance Score: 80
+
+## System Interfaces
+
+### Core Event System
+Files: `apps/marketing/src/components/utils/eventSystem.ts`
+
+Manages system-wide event communication:
+- Pub/sub event distribution
+- Priority-based event handling
+- Cross-module synchronization
+- Event replay capabilities
+
+Importance Score: 75
+
+### Resource Management Interface
+Files: `apps/marketing/src/components/utils/resourceManager.ts`
+
+Coordinates resource allocation:
+- Dynamic resource pooling
+- Load balancing across modules
+- Resource reservation protocols
+- Conflict resolution
+
+Importance Score: 80
+
+## Deployment Configurations
+
+### Strategic Deployment System
+Files: `apps/marketing/src/components/utils/strategicDeployment.ts`
+
+Manages deployment configurations:
+- Zone-based deployment optimization
+- Mission-specific configuration generation
+- Environmental adaptation
+- Resource distribution planning
+
+Importance Score: 85
+
+### Performance Monitoring
+Files: `apps/marketing/src/components/utils/performanceMonitor.ts`
+
+Tracks system performance:
+- Cross-module metrics collection
+- Performance threshold monitoring
+- Module health checking
+- Resource utilization tracking
+
+Importance Score: 75
+
+$END$
+
+ If you're using this file in context, clearly say in italics in one small line that "Context added by Giga module-integration" along with specifying exactly what information was used from this file in a human-friendly way, instead of using kebab-case use normal sentence case.
