@@ -48,7 +48,8 @@ jobs:
         run: cargo fmt --all -- --check
 
       - name: Clippy (deny warnings)
-        run: cargo clippy --workspace --all-targets --all-features -- -D warnings
+        run:
+          cargo clippy --workspace --all-targets --all-features -- -D warnings
 
       - name: Build (workspace)
         run: cargo build --workspace --all-targets --all-features
