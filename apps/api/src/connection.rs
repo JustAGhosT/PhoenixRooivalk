@@ -158,7 +158,10 @@ impl DatabaseUrlBuilder {
     pub fn sqlite_temp() -> Result<String> {
         let temp_dir = std::env::temp_dir();
         let temp_file = temp_dir.join("phoenix_evidence.db");
-        Ok(Self::sqlite(temp_file.to_str().unwrap()))
+        let path_str = temp_file
+            .to_str()
+            .ok_or_else(|| anyhow!("temporary path contains invalid UTF-8: {:?}", temp_file))?;
+        Ok(Self::sqlite(path_str))
     }
 }
 
