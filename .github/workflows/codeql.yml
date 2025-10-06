@@ -93,6 +93,19 @@ jobs:
           # Clean any previous build artifacts that might cause issues
           find . -name "target" -type d -exec rm -rf {} + 2>/dev/null || true
 
+      - name: Setup Node.js
+        if: matrix.language == 'javascript-typescript'
+        uses: actions/setup-node@v5
+        with:
+          node-version: "20"
+
+      - name: Install pnpm and dependencies
+        if: matrix.language == 'javascript-typescript'
+        run: |
+          corepack enable
+          corepack use pnpm@9.6.0
+          pnpm install --frozen-lockfile
+
       - name: Initialize CodeQL
         if: steps.codeql-check.outputs.enabled == 'true'
         uses: github/codeql-action/init@v3
