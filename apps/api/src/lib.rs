@@ -26,7 +26,8 @@ pub async fn build_app() -> anyhow::Result<(Router, Pool<Sqlite>)> {
         .max_connections(5)
         .connect(&db_url)
         .await?;
-    db::ensure_schema(&pool).await?;
+    let repo = repository::EvidenceRepository::new(pool.clone());
+    repo.ensure_schema().await?;
 
     let state = AppState { pool: pool.clone() };
     let app = Router::new()

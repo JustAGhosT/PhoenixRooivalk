@@ -1,4 +1,7 @@
 use crate::models::{EvidenceIn, EvidenceOut};
+use chrono::Utc;
+use sqlx::{Pool, Row, Sqlite};
+use uuid::Uuid;
 
 pub async fn create_evidence_job(
     pool: &Pool<Sqlite>,
@@ -7,8 +10,8 @@ pub async fn create_evidence_job(
     let id = body
         .id
         .clone()
-        .unwrap_or_else(|| uuid::Uuid::new_v4().to_string());
-    let now = chrono::Utc::now().timestamp_millis();
+        .unwrap_or_else(|| Uuid::new_v4().to_string());
+    let now = Utc::now().timestamp_millis();
     let result = sqlx::query(
         "INSERT OR IGNORE INTO outbox_jobs (id, payload_sha256, status, attempts, created_ms, updated_ms) VALUES (?1, ?2, 'queued', 0, ?3, ?3)"
     )
@@ -81,8 +84,8 @@ pub async fn create_countermeasure_deployment(
     pool: &Pool<Sqlite>,
     deployment: &crate::models::CountermeasureDeploymentIn,
 ) -> Result<String, sqlx::Error> {
-    let id = uuid::Uuid::new_v4().to_string();
-    let now = chrono::Utc::now().timestamp_millis();
+    let id = Uuid::new_v4().to_string();
+    let now = Utc::now().timestamp_millis();
 
     sqlx::query(
         "INSERT INTO countermeasure_deployments (id, job_id, deployed_at, deployed_by, countermeasure_type, effectiveness_score, notes, created_ms, updated_ms) VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9)"
@@ -167,8 +170,8 @@ pub async fn create_signal_disruption_audit(
     pool: &Pool<Sqlite>,
     audit: &crate::models::SignalDisruptionAuditIn,
 ) -> Result<String, sqlx::Error> {
-    let id = uuid::Uuid::new_v4().to_string();
-    let now = chrono::Utc::now().timestamp_millis();
+    let id = Uuid::new_v4().to_string();
+    let now = Utc::now().timestamp_millis();
 
     sqlx::query(
         "INSERT INTO signal_disruption_audit (id, target_id, event_type, event_timestamp, detected_by, severity, outcome, evidence_blob, created_ms, updated_ms) VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10)"
@@ -256,8 +259,8 @@ pub async fn create_jamming_operation(
     pool: &Pool<Sqlite>,
     operation: &crate::models::JammingOperationIn,
 ) -> Result<String, sqlx::Error> {
-    let id = uuid::Uuid::new_v4().to_string();
-    let now = chrono::Utc::now().timestamp_millis();
+    let id = Uuid::new_v4().to_string();
+    let now = Utc::now().timestamp_millis();
 
     sqlx::query(
         "INSERT INTO jamming_operations (id, operation_id, job_id, started_ms, target_frequency_range, power_level, success_metric, attempts, created_ms, updated_ms) VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10)"
