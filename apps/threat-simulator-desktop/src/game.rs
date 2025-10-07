@@ -1,12 +1,6 @@
 #[cfg(target_arch = "wasm32")]
 use leptos::*;
 
-#[cfg(target_arch = "wasm32")]
-use std::rc::Rc;
-
-#[cfg(target_arch = "wasm32")]
-use std::cell::RefCell;
-
 pub mod auto_targeting;
 pub mod engine;
 pub mod formations;

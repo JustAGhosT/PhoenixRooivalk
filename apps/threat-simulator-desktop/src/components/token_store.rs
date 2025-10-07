@@ -2,14 +2,13 @@ use crate::game::{DroneType, GameStateManager};
 use leptos::*;
 
 #[component]
-pub fn TokenStore(
-    game_state: GameStateManager,
-    show: ReadSignal<bool>,
-    on_close: impl Fn() + 'static,
-) -> impl IntoView {
+pub fn TokenStore<F>(game_state: GameStateManager, show: ReadSignal<bool>, on_close: F) -> impl IntoView
+where
+    F: Fn() + Copy + 'static,
+{
     let (tokens, set_tokens) = create_signal(1000_u32);
 
-    let drone_catalog = vec![
+    let drone_catalog = std::rc::Rc::new(vec![
         (
             DroneType::Interceptor,
             "Interceptor",
@@ -73,7 +72,8 @@ pub fn TokenStore(
             "Coordinate formations",
             250,
         ),
-    ];
+    ]);
+
 
     let purchase_drone = move |drone_type: DroneType, cost: u32| {
         if tokens.get() >= cost {
@@ -123,9 +123,14 @@ pub fn TokenStore(
                         </p>
 
                         <div class="drone-catalog">
-                            {drone_catalog
-                                .into_iter()
+                            {(*drone_catalog)
+                                .iter()
                                 .map(|(drone_type, name, role, desc, cost)| {
+                                    let drone_type = *drone_type;
+                                    let cost = *cost;
+                                    let name = *name;
+                                    let role = *role;
+                                    let desc = *desc;
                                     let can_afford = move || tokens.get() >= cost;
                                     view! {
                                         <div class="catalog-item">

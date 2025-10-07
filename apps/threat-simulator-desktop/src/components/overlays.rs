@@ -1,7 +1,10 @@
 use leptos::*;
 
 #[component]
-pub fn SimulationWarning(show: ReadSignal<bool>, on_close: impl Fn() + 'static) -> impl IntoView {
+pub fn SimulationWarning<F>(show: ReadSignal<bool>, on_close: F) -> impl IntoView
+where
+    F: Fn() + Copy + 'static,
+{
     view! {
         <Show when=move || show.get() fallback=|| view! { <div></div> }>
             <div class="warning-overlay">
@@ -24,10 +27,10 @@ pub fn SimulationWarning(show: ReadSignal<bool>, on_close: impl Fn() + 'static) 
 }
 
 #[component]
-pub fn AchievementNotification(
-    message: ReadSignal<Option<String>>,
-    on_dismiss: impl Fn() + 'static,
-) -> impl IntoView {
+pub fn AchievementNotification<F>(message: ReadSignal<Option<String>>, on_dismiss: F) -> impl IntoView
+where
+    F: Fn() + Copy + 'static,
+{
     view! {
         <Show when=move || message.get().is_some() fallback=|| view! { <div></div> }>
             <div class="achievement-notification">
@@ -47,13 +50,16 @@ pub fn AchievementNotification(
 }
 
 #[component]
-pub fn GameOverOverlay(
+pub fn GameOverOverlay<F>(
     show: ReadSignal<bool>,
     final_score: ReadSignal<u32>,
     waves_survived: ReadSignal<u8>,
     threats_neutralized: ReadSignal<u32>,
-    on_restart: impl Fn() + 'static,
-) -> impl IntoView {
+    on_restart: F,
+) -> impl IntoView
+where
+    F: Fn() + Copy + 'static,
+{
     view! {
         <Show when=move || show.get() fallback=|| view! { <div></div> }>
             <div class="modal-overlay">
@@ -87,11 +93,11 @@ pub fn GameOverOverlay(
 }
 
 #[component]
-pub fn FullscreenPrompt(
-    show: ReadSignal<bool>,
-    on_enter: impl Fn() + 'static,
-    on_skip: impl Fn() + 'static,
-) -> impl IntoView {
+pub fn FullscreenPrompt<F1, F2>(show: ReadSignal<bool>, on_enter: F1, on_skip: F2) -> impl IntoView
+where
+    F1: Fn() + Copy + 'static,
+    F2: Fn() + Copy + 'static,
+{
     view! {
         <Show when=move || show.get() fallback=|| view! { <div></div> }>
             <div class="modal-overlay">

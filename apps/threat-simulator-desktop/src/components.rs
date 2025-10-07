@@ -6,6 +6,7 @@ mod energy_management;
 mod event_feed;
 mod game_canvas;
 mod hud;
+mod loading;
 mod overlays;
 mod research_panel;
 mod stats_panel;
@@ -13,22 +14,21 @@ mod synergy_system;
 mod token_store;
 mod weapon_panel;
 
-pub use cooldown_meter::{CooldownMeter, WeaponCooldownGrid};
 pub use drone_deployment::DroneDeploymentPanel;
 pub use energy_management::EnergyManagement;
 pub use event_feed::{create_feed_item, EventFeed, FeedItem, FeedSeverity};
 pub use game_canvas::GameCanvas;
 pub use hud::Hud;
-pub use overlays::{AchievementNotification, FullscreenPrompt, GameOverOverlay, SimulationWarning};
-pub use research_panel::{ResearchCategory, ResearchItem, ResearchPanel};
+pub use overlays::{AchievementNotification, SimulationWarning};
+pub use research_panel::ResearchPanel;
 pub use stats_panel::StatsPanel;
-pub use synergy_system::{calculate_synergy_bonuses, SynergyEffect, SynergySystem};
+pub use synergy_system::SynergySystem;
 pub use token_store::TokenStore;
 pub use weapon_panel::WeaponPanel;
 
 use crate::game::{GameStateManager, WeaponType};
-use wasm_bindgen::JsCast;
-use web_sys::{window, KeyboardEvent};
+use wasm_bindgen::{closure::Closure, JsCast};
+use web_sys::KeyboardEvent;
 
 #[component]
 pub fn App() -> impl IntoView {
@@ -44,15 +44,23 @@ pub fn App() -> impl IntoView {
     let (show_events, set_show_events) = create_signal(false);
     let (show_research, set_show_research) = create_signal(false);
     let (show_token_store, set_show_token_store) = create_signal(false);
-    let (show_synergies, set_show_synergies) = create_signal(true); // Auto-show synergies
-    let (is_running, set_is_running) = create_signal(false);
+    let (show_synergies, set_show_synergies) = create_signal(false); // Hide by default
+    let (is_running, set_is_running) = create_signal(true); // Start running
     let (achievement_message, set_achievement_message) = create_signal(None::<String>);
     let (event_feed, set_event_feed) = create_signal(Vec::<FeedItem>::new());
+    
+    // Loading state
+    let (is_loading, set_is_loading) = create_signal(true);
+    let (loading_progress, set_loading_progress) = create_signal(0u8);
 
+    // Wrap game state in Rc to allow multiple references
+    let game_state_rc = std::rc::Rc::new(game_state.clone());
+    
     // Keyboard event handler
-    let game_state_kb = game_state.clone();
+    let game_state_kb = game_state_rc.clone();
     create_effect(move |_| {
-        let window = window().unwrap();
+        let window = web_sys::window().unwrap();
+        let game_state_inner = game_state_kb.clone();
         let closure = Closure::wrap(Box::new(move |event: KeyboardEvent| {
             let key = event.key();
 
@@ -62,45 +70,17 @@ pub fn App() -> impl IntoView {
                     set_is_running.update(|r| *r = !*r);
                     event.prevent_default();
                 }
-                "h" | "H" | "?" => {
-                    // Help toggle
-                    set_show_help.update(|h| *h = !*h);
-                }
-                "s" | "S" => {
-                    // Stats toggle
-                    set_show_stats.update(|s| *s = !*s);
-                }
-                "e" | "E" => {
-                    // Energy management toggle
-                    set_show_energy.update(|e| *e = !*e);
-                }
-                "d" | "D" => {
-                    // Drone deployment toggle
-                    set_show_drones.update(|d| *d = !*d);
-                }
-                "l" | "L" => {
-                    // Event log toggle
-                    set_show_events.update(|e| *e = !*e);
-                }
-                "t" | "T" => {
-                    // Token store toggle
-                    set_show_token_store.update(|t| *t = !*t);
-                }
-                "f" | "F" => {
-                    // Research panel toggle
-                    set_show_research.update(|r| *r = !*r);
-                }
-                "g" | "G" => {
-                    // Synergy toggle
-                    set_show_synergies.update(|s| *s = !*s);
-                }
-                "x" | "X" => {
-                    // Auto-targeting toggle
-                    game_state_kb.auto_targeting_enabled.update(|a| *a = !*a);
-                }
+                "h" | "H" | "?" => set_show_help.update(|h| *h = !*h),
+                "s" | "S" => set_show_stats.update(|s| *s = !*s),
+                "e" | "E" => set_show_energy.update(|e| *e = !*e),
+                "d" | "D" => set_show_drones.update(|d| *d = !*d),
+                "l" | "L" => set_show_events.update(|e| *e = !*e),
+                "t" | "T" => set_show_token_store.update(|t| *t = !*t),
+                "f" | "F" => set_show_research.update(|r| *r = !*r),
+                "g" | "G" => set_show_synergies.update(|s| *s = !*s),
+                "x" | "X" => game_state_inner.auto_targeting_enabled.update(|a| *a = !*a),
                 "r" | "R" => {
-                    // Reset game
-                    game_state_kb.reset();
+                    game_state_inner.reset();
                     set_is_running.set(false);
                     set_event_feed.set(vec![create_feed_item(
                         "Game reset".to_string(),
@@ -108,19 +88,18 @@ pub fn App() -> impl IntoView {
                     )]);
                 }
                 // Weapon selection (1-9, 0, C, S, A)
-                "1" => game_state_kb.selected_weapon.set(WeaponType::Kinetic),
-                "2" => game_state_kb.selected_weapon.set(WeaponType::Electronic),
-                "3" => game_state_kb.selected_weapon.set(WeaponType::Laser),
-                "4" => game_state_kb.selected_weapon.set(WeaponType::Net),
-                "5" => game_state_kb.selected_weapon.set(WeaponType::Hpm),
-                "6" => game_state_kb.selected_weapon.set(WeaponType::RfTakeover),
-                "7" => game_state_kb.selected_weapon.set(WeaponType::GnssDeny),
-                "8" => game_state_kb.selected_weapon.set(WeaponType::OpticalDazzle),
-                "9" => game_state_kb.selected_weapon.set(WeaponType::Acoustic),
-                "0" => game_state_kb.selected_weapon.set(WeaponType::DecoyBeacon),
-                "c" | "C" => game_state_kb.selected_weapon.set(WeaponType::Chaff),
-                "a" | "A" => game_state_kb.selected_weapon.set(WeaponType::SmartSlug),
-                "d" | "D" => game_state_kb.selected_weapon.set(WeaponType::AiDeception),
+                "1" => game_state_inner.selected_weapon.set(WeaponType::Kinetic),
+                "2" => game_state_inner.selected_weapon.set(WeaponType::Electronic),
+                "3" => game_state_inner.selected_weapon.set(WeaponType::Laser),
+                "4" => game_state_inner.selected_weapon.set(WeaponType::Net),
+                "5" => game_state_inner.selected_weapon.set(WeaponType::Hpm),
+                "6" => game_state_inner.selected_weapon.set(WeaponType::RfTakeover),
+                "7" => game_state_inner.selected_weapon.set(WeaponType::GnssDeny),
+                "8" => game_state_inner.selected_weapon.set(WeaponType::OpticalDazzle),
+                "9" => game_state_inner.selected_weapon.set(WeaponType::Acoustic),
+                "0" => game_state_inner.selected_weapon.set(WeaponType::DecoyBeacon),
+                "c" | "C" => game_state_inner.selected_weapon.set(WeaponType::Chaff),
+                "a" | "A" => game_state_inner.selected_weapon.set(WeaponType::AiDeception),
                 _ => {}
             }
         }) as Box<dyn FnMut(_)>);
@@ -133,8 +112,52 @@ pub fn App() -> impl IntoView {
         std::mem::forget(closure);
     });
 
+    // Clone game state for components
+    let game_state_hud = game_state_rc.clone();
+    let game_state_canvas = game_state_rc.clone();
+    let game_state_energy = game_state_rc.clone();
+    let game_state_drones = game_state_rc.clone();
+    let game_state_tokens = game_state_rc.clone();
+    let game_state_weapons = game_state_rc.clone();
+    
+    // Simulate loading progress
+    create_effect(move |_| {
+        if is_loading.get() {
+            let progress = loading_progress.get();
+            if progress < 100 {
+                set_loading_progress.set(progress + 10);
+                // Use request_animation_frame for smooth progress
+                let window = web_sys::window().unwrap();
+                let closure = Closure::wrap(Box::new(move || {
+                    if progress < 90 {
+                        set_loading_progress.update(|p| *p += 1);
+                    } else if progress >= 90 {
+                        set_loading_progress.set(100);
+                        // Complete loading after a short delay
+                        let window = web_sys::window().unwrap();
+                        let closure = Closure::wrap(Box::new(move || {
+                            set_is_loading.set(false);
+                        }) as Box<dyn FnMut()>);
+                        window.set_timeout_with_callback_and_timeout_and_arguments_0(
+                            closure.as_ref().unchecked_ref(),
+                            500,
+                        ).unwrap();
+                        std::mem::forget(closure);
+                    }
+                }) as Box<dyn FnMut()>);
+                window.request_animation_frame(closure.as_ref().unchecked_ref()).unwrap();
+                std::mem::forget(closure);
+            }
+        }
+    });
+    
     view! {
         <div class="app-container">
+            // Simple test to see if Leptos is working
+            <div style="position: fixed; top: 10px; left: 10px; background: red; color: white; padding: 10px; z-index: 9999;">
+                "Leptos App is working!"
+            </div>
+            
             // Simulation warning overlay
             <SimulationWarning show=show_warning on_close=move || set_show_warning.set(false)/>
 
@@ -144,9 +167,9 @@ pub fn App() -> impl IntoView {
                 on_dismiss=move || set_achievement_message.set(None)
             />
 
-            <Hud game_state=game_state.clone() is_running=is_running/>
+            <Hud game_state=(*game_state_hud).clone() is_running=is_running/>
 
-            <GameCanvas game_state=game_state.clone() is_running=is_running/>
+            <GameCanvas game_state=(*game_state_canvas).clone() is_running=is_running/>
 
             // Side panels
             <Show when=move || show_events.get() fallback=|| view! { <div></div> }>
@@ -157,13 +180,13 @@ pub fn App() -> impl IntoView {
 
             <Show when=move || show_energy.get() fallback=|| view! { <div></div> }>
                 <div class="side-panel right">
-                    <EnergyManagement game_state=game_state.clone()/>
+                    <EnergyManagement game_state=(*game_state_energy).clone()/>
                 </div>
             </Show>
 
             <Show when=move || show_drones.get() fallback=|| view! { <div></div> }>
                 <div class="side-panel right-lower">
-                    <DroneDeploymentPanel game_state=game_state.clone()/>
+                    <DroneDeploymentPanel game_state=(*game_state_drones).clone()/>
                 </div>
             </Show>
 
@@ -172,14 +195,14 @@ pub fn App() -> impl IntoView {
 
             // Token Store (full modal)
             <TokenStore
-                game_state=game_state.clone()
+                game_state=(*game_state_tokens).clone()
                 show=show_token_store
                 on_close=move || set_show_token_store.set(false)
             />
 
             // Synergy System (floating indicator)
             <SynergySystem
-                active_weapons=create_signal(vec![game_state.selected_weapon.get()]).0
+                active_weapons=create_signal(vec![game_state_rc.clone().selected_weapon.get()]).0
                 show=show_synergies
             />
 
@@ -205,13 +228,16 @@ pub fn App() -> impl IntoView {
 
                     <button
                         class="control-button"
-                        on:click=move |_| {
-                            game_state.reset();
-                            set_is_running.set(false);
-                            set_event_feed
-                                .set(vec![
-                                    create_feed_item("Game reset".to_string(), FeedSeverity::Info),
-                                ]);
+                        on:click={
+                            let game_state_reset = game_state.clone();
+                            move |_| {
+                                game_state_reset.reset();
+                                set_is_running.set(false);
+                                set_event_feed
+                                    .set(vec![
+                                        create_feed_item("Game reset".to_string(), FeedSeverity::Info),
+                                    ]);
+                            }
                         }
                     >
 
@@ -219,7 +245,7 @@ pub fn App() -> impl IntoView {
                     </button>
                 </div>
 
-                <WeaponPanel game_state=game_state.clone()/>
+                <WeaponPanel game_state=(*game_state_weapons).clone()/>
 
                 <div class="control-section">
                     <button

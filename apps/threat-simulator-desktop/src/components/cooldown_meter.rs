@@ -22,9 +22,16 @@ pub fn CooldownMeter(
         <div class="cooldown-meter">
             <div class="cooldown-header">
                 <span class="cooldown-label">{label}</span>
-                <span class="cooldown-value">
-                    {move || if is_ready() { "READY" } else { format!("{:.1}s", current.get()) }}
-                </span>
+                    <span class="cooldown-value">
+                        {move || {
+                            if is_ready() {
+                                "READY".to_string()
+                            } else {
+                                format!("{:.1}s", current.get())
+                            }
+                        }}
+
+                    </span>
             </div>
             <div class="cooldown-bar-container">
                 <div
@@ -43,37 +50,39 @@ pub fn CooldownMeter(
 pub fn WeaponCooldownGrid(weapons: ReadSignal<Vec<crate::game::Weapon>>) -> impl IntoView {
     view! {
         <div class="weapon-cooldown-grid">
-            <For
-                each=move || weapons.get().into_iter().enumerate().collect::<Vec<_>>()
-                key=|(i, _)| *i
-                children=move |(_, weapon): (usize, crate::game::Weapon)| {
-                    let cooldown_signal = create_rw_signal(weapon.cooldown);
-                    let max_signal = create_rw_signal(weapon.max_cooldown);
-                    let label = format!("{:?}", weapon.weapon_type);
-                    view! {
-                        <div class="weapon-cooldown-item">
-                            <div class="weapon-name-small">{label}</div>
-                            <div class="cooldown-progress">
-                                <div
-                                    class="cooldown-fill"
-                                    style:width=move || {
-                                        let pct = if weapon.max_cooldown > 0.0 {
-                                            ((weapon.cooldown / weapon.max_cooldown) * 100.0).min(100.0)
-                                        } else {
-                                            0.0
-                                        };
-                                        format!("{}%", pct)
-                                    }
+            {move || {
+                weapons
+                    .get()
+                    .into_iter()
+                    .map(|weapon| {
+                        let label = format!("{:?}", weapon.weapon_type);
+                        let cooldown = weapon.cooldown;
+                        let max_cooldown = weapon.max_cooldown;
+                        view! {
+                            <div class="weapon-cooldown-item">
+                                <div class="weapon-name-small">{label}</div>
+                                <div class="cooldown-progress">
+                                    <div
+                                        class="cooldown-fill"
+                                        style:width=move || {
+                                            let pct = if max_cooldown > 0.0 {
+                                                ((cooldown / max_cooldown) * 100.0).min(100.0)
+                                            } else {
+                                                0.0
+                                            };
+                                            format!("{}%", pct)
+                                        }
 
-                                    style:background-color=move || {
-                                        if weapon.cooldown == 0.0 { "#00ff00" } else { "#ff6600" }
-                                    }
-                                ></div>
+                                        style:background-color=move || {
+                                            if cooldown == 0.0 { "#00ff00" } else { "#ff6600" }
+                                        }
+                                    ></div>
+                                </div>
                             </div>
-                        </div>
-                    }
-                }
-            />
+                        }
+                    })
+                    .collect_view()
+            }}
 
         </div>
     }

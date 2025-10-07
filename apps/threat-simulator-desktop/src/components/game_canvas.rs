@@ -1,10 +1,9 @@
-use crate::game::{engine::GameEngine, GameStateManager, Vector2};
+use crate::game::{engine::GameEngine, GameStateManager};
 use leptos::*;
 use std::cell::RefCell;
 use std::rc::Rc;
-use wasm_bindgen::prelude::*;
-use wasm_bindgen::JsCast;
-use web_sys::{window, CanvasRenderingContext2d, HtmlCanvasElement, MouseEvent};
+use wasm_bindgen::{closure::Closure, JsCast, JsValue};
+use web_sys::{CanvasRenderingContext2d, HtmlCanvasElement};
 
 #[component]
 pub fn GameCanvas(game_state: GameStateManager, is_running: ReadSignal<bool>) -> impl IntoView {
@@ -12,34 +11,6 @@ pub fn GameCanvas(game_state: GameStateManager, is_running: ReadSignal<bool>) ->
 
     // Game engine - shared between animation loop and event handlers
     let engine = Rc::new(RefCell::new(GameEngine::new(1)));
-    let engine_clone = engine.clone();
-
-    // Mouse click handler for weapon firing
-    let on_canvas_click = move |event: MouseEvent| {
-        let canvas = canvas_ref.get().unwrap();
-        let canvas: HtmlCanvasElement = canvas.unchecked_into();
-        let rect = canvas.get_bounding_client_rect();
-
-        let x = (event.client_x() as f64 - rect.left()) * (1920.0 / rect.width());
-        let y = (event.client_y() as f64 - rect.top()) * (1080.0 / rect.height());
-
-        let click_pos = Vector2::new(x as f32, y as f32);
-
-        // Find and target nearest threat
-        let mut engine_ref = engine_clone.borrow_mut();
-        let threats = engine_ref.get_threats();
-
-        if let Some((threat_id, _)) = threats
-            .iter()
-            .map(|t| (t.id.clone(), t.position.distance(&click_pos)))
-            .min_by(|a, b| a.1.partial_cmp(&b.1).unwrap())
-        {
-            // Damage the clicked threat
-            engine_ref.damage_threat(&threat_id, 50.0);
-            game_state.update_score(10);
-            game_state.neutralized.update(|n| *n += 1);
-        }
-    };
 
     // Animation loop with game engine
     create_effect(move |_| {
@@ -47,21 +18,26 @@ pub fn GameCanvas(game_state: GameStateManager, is_running: ReadSignal<bool>) ->
             return;
         }
 
-        let Some(canvas) = canvas_ref.get() else {
+        let Some(canvas_elem) = canvas_ref.get() else {
+            web_sys::console::log_1(&"Canvas not ready yet".into());
             return;
         };
 
-        let canvas: HtmlCanvasElement = canvas.unchecked_into();
+        let canvas = canvas_elem.unchecked_ref::<HtmlCanvasElement>();
+        web_sys::console::log_1(&"Canvas element found!".into());
         let context = canvas
             .get_context("2d")
             .unwrap()
             .unwrap()
             .dyn_into::<CanvasRenderingContext2d>()
             .unwrap();
+        web_sys::console::log_1(&"Canvas context created!".into());
 
-        // Set canvas size
-        let width = 1920.0;
-        let height = 1080.0;
+        // Set canvas size to fill container
+        let rect = canvas.get_bounding_client_rect();
+        let width = if rect.width() > 0.0 { rect.width() } else { 1920.0 };
+        let height = if rect.height() > 0.0 { rect.height() } else { 1080.0 };
+        web_sys::console::log_3(&"Canvas size:".into(), &width.into(), &height.into());
         canvas.set_width(width as u32);
         canvas.set_height(height as u32);
 
@@ -70,7 +46,7 @@ pub fn GameCanvas(game_state: GameStateManager, is_running: ReadSignal<bool>) ->
         let game_state_loop = game_state.clone();
 
         // Use requestAnimationFrame for smoother animation
-        let window = window().unwrap();
+        let window = web_sys::window().unwrap();
         let performance = window.performance().unwrap();
         let mut last_time = performance.now();
 
@@ -118,9 +94,8 @@ pub fn GameCanvas(game_state: GameStateManager, is_running: ReadSignal<bool>) ->
             game_state_loop.frame_rate.set(fps);
 
             // Request next frame
-            let window = window().unwrap();
-            window
-                .request_animation_frame(
+            let win = web_sys::window().unwrap();
+            win.request_animation_frame(
                     closure_clone
                         .borrow()
                         .as_ref()
@@ -146,7 +121,6 @@ pub fn GameCanvas(game_state: GameStateManager, is_running: ReadSignal<bool>) ->
             class="game-canvas"
             width="1920"
             height="1080"
-            on:click=on_canvas_click
         />
     }
 }
@@ -158,11 +132,11 @@ fn render_frame(
     height: f64,
 ) {
     // Clear canvas with dark background
-    ctx.set_fill_style(&"#0a0e1a".into());
+    ctx.set_fill_style(&JsValue::from_str("#0a0e1a"));
     ctx.fill_rect(0.0, 0.0, width, height);
 
     // Draw tactical grid
-    ctx.set_stroke_style(&"rgba(0, 255, 255, 0.08)".into());
+    ctx.set_stroke_style(&JsValue::from_str("rgba(0, 255, 255, 0.08)"));
     ctx.set_line_width(1.0);
 
     // Vertical lines
@@ -187,7 +161,7 @@ fn render_frame(
     let center_x = width / 2.0;
     let center_y = height / 2.0;
 
-    ctx.set_stroke_style(&"rgba(0, 255, 255, 0.15)".into());
+    ctx.set_stroke_style(&JsValue::from_str("rgba(0, 255, 255, 0.15)"));
     ctx.set_line_width(2.0);
     for radius in [200.0, 400.0, 600.0] {
         ctx.begin_path();
@@ -199,14 +173,14 @@ fn render_frame(
     // Draw mothership (center) with glow effect
     ctx.set_shadow_blur(20.0);
     ctx.set_shadow_color("rgba(0, 255, 255, 0.8)");
-    ctx.set_fill_style(&"#00ffff".into());
+    ctx.set_fill_style(&JsValue::from_str("#00ffff"));
     ctx.begin_path();
     ctx.arc(center_x, center_y, 30.0, 0.0, 2.0 * std::f64::consts::PI)
         .unwrap();
     ctx.fill();
 
     // Inner core
-    ctx.set_fill_style(&"#ffffff".into());
+    ctx.set_fill_style(&JsValue::from_str("#ffffff"));
     ctx.begin_path();
     ctx.arc(center_x, center_y, 15.0, 0.0, 2.0 * std::f64::consts::PI)
         .unwrap();
@@ -231,7 +205,7 @@ fn render_frame(
         // Draw threat with glow
         ctx.set_shadow_blur(10.0);
         ctx.set_shadow_color(color);
-        ctx.set_fill_style(&color.into());
+        ctx.set_fill_style(&JsValue::from_str(color));
         ctx.begin_path();
         ctx.arc(
             threat.position.x as f64,
@@ -246,7 +220,7 @@ fn render_frame(
 
         // Threat ID label for targeted threats
         if threat.is_targeted {
-            ctx.set_fill_style(&"#ffff00".into());
+            ctx.set_fill_style(&JsValue::from_str("#ffff00"));
             ctx.set_font("10px monospace");
             let label = &threat.id[threat.id.len().saturating_sub(8)..];
             ctx.fill_text(
@@ -264,7 +238,7 @@ fn render_frame(
             let health_pct = threat.health / threat.max_health;
 
             // Background
-            ctx.set_fill_style(&"rgba(0, 0, 0, 0.7)".into());
+            ctx.set_fill_style(&JsValue::from_str("rgba(0, 0, 0, 0.7)"));
             ctx.fill_rect(
                 threat.position.x as f64 - bar_width / 2.0,
                 threat.position.y as f64 - threat.size as f64 - 12.0,
@@ -280,7 +254,7 @@ fn render_frame(
             } else {
                 "#ff3333"
             };
-            ctx.set_fill_style(&health_color.into());
+            ctx.set_fill_style(&JsValue::from_str(health_color));
             ctx.fill_rect(
                 threat.position.x as f64 - bar_width / 2.0,
                 threat.position.y as f64 - threat.size as f64 - 12.0,
@@ -305,7 +279,7 @@ fn render_frame(
 
         ctx.set_shadow_blur(8.0);
         ctx.set_shadow_color(drone_color);
-        ctx.set_fill_style(&drone_color.into());
+        ctx.set_fill_style(&JsValue::from_str(drone_color));
         ctx.begin_path();
         ctx.arc(
             drone.position.x as f64,
@@ -323,7 +297,7 @@ fn render_frame(
         let bar_width = 20.0;
         let bar_height = 3.0;
 
-        ctx.set_fill_style(&"rgba(0, 0, 0, 0.7)".into());
+        ctx.set_fill_style(&JsValue::from_str("rgba(0, 0, 0, 0.7)"));
         ctx.fill_rect(
             drone.position.x as f64 - bar_width / 2.0,
             drone.position.y as f64 + 15.0,
@@ -338,7 +312,7 @@ fn render_frame(
         } else {
             "#ff3333"
         };
-        ctx.set_fill_style(&battery_color.into());
+        ctx.set_fill_style(&JsValue::from_str(battery_color));
         ctx.fill_rect(
             drone.position.x as f64 - bar_width / 2.0,
             drone.position.y as f64 + 15.0,

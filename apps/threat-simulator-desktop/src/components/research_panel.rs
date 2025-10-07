@@ -23,22 +23,15 @@ pub enum ResearchCategory {
 }
 
 #[component]
-pub fn ResearchPanel(show: ReadSignal<bool>, on_close: impl Fn() + 'static) -> impl IntoView {
+pub fn ResearchPanel<F>(show: ReadSignal<bool>, on_close: F) -> impl IntoView
+where
+    F: Fn() + Copy + 'static,
+{
     let (selected_category, set_selected_category) = create_signal(ResearchCategory::Weapon);
     let (unlocked_items, set_unlocked_items) = create_signal(Vec::<String>::new());
     let (research_points, set_research_points) = create_signal(100_u32);
 
-    let research_catalog = get_research_catalog();
-
-    let available_research = move || {
-        research_catalog
-            .iter()
-            .filter(|item| {
-                item.category == selected_category.get() && !unlocked_items.get().contains(&item.id)
-            })
-            .cloned()
-            .collect::<Vec<_>>()
-    };
+    let research_catalog = std::rc::Rc::new(get_research_catalog());
 
     let start_research = move |item_id: String, cost: u32| {
         if research_points.get() >= cost {
@@ -120,7 +113,20 @@ pub fn ResearchPanel(show: ReadSignal<bool>, on_close: impl Fn() + 'static) -> i
 
                     <div class="research-catalog">
                         <For
-                            each=available_research
+                            each={
+                                let catalog = research_catalog.clone();
+                                move || {
+                                    catalog
+                                        .iter()
+                                        .filter(|item| {
+                                            item.category == selected_category.get()
+                                                && !unlocked_items.get().contains(&item.id)
+                                        })
+                                        .cloned()
+                                        .collect::<Vec<_>>()
+                                }
+                            }
+
                             key=|item| item.id.clone()
                             children=move |item: ResearchItem| {
                                 let can_afford = move || research_points.get() >= item.cost;
