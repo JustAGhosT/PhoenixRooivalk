@@ -1,11 +1,8 @@
-use leptos::*;
 use crate::game::GameStateManager;
+use leptos::*;
 
 #[component]
-pub fn Hud(
-    game_state: GameStateManager,
-    is_running: ReadSignal<bool>,
-) -> impl IntoView {
+pub fn Hud(game_state: GameStateManager, is_running: ReadSignal<bool>) -> impl IntoView {
     view! {
         <div class="hud-container">
             <div class="stats-panel">
@@ -34,11 +31,10 @@ pub fn Hud(
                     <span class="stat-value">{move || format!("{:.0}%", game_state.mothership_health.get())}</span>
                 </div>
             </div>
-            
+
             <div class="fps-counter">
                 {move || format!("FPS: {:.0}", game_state.frame_rate.get())}
             </div>
         </div>
     }
 }
-

@@ -1,14 +1,14 @@
 use leptos::*;
 
-mod hud;
 mod game_canvas;
-mod weapon_panel;
+mod hud;
 mod stats_panel;
+mod weapon_panel;
 
-pub use hud::Hud;
 pub use game_canvas::GameCanvas;
-pub use weapon_panel::WeaponPanel;
+pub use hud::Hud;
 pub use stats_panel::StatsPanel;
+pub use weapon_panel::WeaponPanel;
 
 use crate::game::GameStateManager;
 
@@ -16,25 +16,25 @@ use crate::game::GameStateManager;
 pub fn App() -> impl IntoView {
     // Initialize game state manager
     let game_state = GameStateManager::new();
-    
+
     // Reactive signals for UI state
     let (show_help, set_show_help) = create_signal(false);
     let (is_running, set_is_running) = create_signal(false);
-    
+
     view! {
         <div class="app-container">
-            <Hud 
+            <Hud
                 game_state=game_state.clone()
                 is_running=is_running
             />
-            
-            <GameCanvas 
+
+            <GameCanvas
                 game_state=game_state.clone()
                 is_running=is_running
             />
-            
+
             <div class="controls-footer">
-                <button 
+                <button
                     class="control-button"
                     on:click=move |_| {
                         let new_state = !is_running.get();
@@ -43,8 +43,8 @@ pub fn App() -> impl IntoView {
                 >
                     {move || if is_running.get() { "PAUSE" } else { "START" }}
                 </button>
-                
-                <button 
+
+                <button
                     class="control-button"
                     on:click=move |_| {
                         set_show_help.set(!show_help.get());
@@ -53,7 +53,7 @@ pub fn App() -> impl IntoView {
                     "HELP"
                 </button>
             </div>
-            
+
             {move || show_help.get().then(|| view! {
                 <div class="help-overlay">
                     <h2>"Phoenix Rooivalk Threat Simulator"</h2>
@@ -63,7 +63,7 @@ pub fn App() -> impl IntoView {
                         <li>"1-9 to switch weapons"</li>
                         <li>"Space to pause/resume"</li>
                     </ul>
-                    <button 
+                    <button
                         class="control-button"
                         on:click=move |_| set_show_help.set(false)
                     >
@@ -74,4 +74,3 @@ pub fn App() -> impl IntoView {
         </div>
     }
 }
-

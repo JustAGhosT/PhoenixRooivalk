@@ -198,15 +198,15 @@ let evidence_id = evidence_manager
 
 ### Metrics Comparison
 
-| Metric | React/Next.js | Leptos/Tauri | Improvement |
-|--------|---------------|--------------|-------------|
-| Initial Load | ~2s | ~200ms | 10x |
-| Memory Usage | ~150MB | ~30MB | 5x |
-| Frame Time | ~16ms (60 FPS) | ~8ms (120+ FPS) | 2x |
-| Binary Size | N/A (web) | ~12MB | Native |
-| Cold Start | ~3s | ~500ms | 6x |
-| Max Threats | ~100 | ~500+ | 5x+ |
-| Battery Life | Standard | 20% better | Better |
+| Metric       | React/Next.js  | Leptos/Tauri    | Improvement |
+| ------------ | -------------- | --------------- | ----------- |
+| Initial Load | ~2s            | ~200ms          | 10x         |
+| Memory Usage | ~150MB         | ~30MB           | 5x          |
+| Frame Time   | ~16ms (60 FPS) | ~8ms (120+ FPS) | 2x          |
+| Binary Size  | N/A (web)      | ~12MB           | Native      |
+| Cold Start   | ~3s            | ~500ms          | 6x          |
+| Max Threats  | ~100           | ~500+           | 5x+         |
+| Battery Life | Standard       | 20% better      | Better      |
 
 ### Why Tauri + Leptos is Faster
 

@@ -1,24 +1,24 @@
 // Weapon system logic
 
-use super::types::{Weapon, WeaponType, Threat, Vector2};
+use super::types::{Threat, Vector2, Weapon, WeaponType};
 
 pub fn fire_weapon(
     weapon: &mut Weapon,
     target_pos: Vector2,
     shooter_pos: Vector2,
-    threats: &mut Vec<Threat>,
+    threats: &mut [Threat],
 ) -> bool {
     // Check if weapon is ready
     if weapon.cooldown > 0.0 {
         return false;
     }
-    
+
     // Check range
     let distance = shooter_pos.distance(&target_pos);
     if distance > weapon.range {
         return false;
     }
-    
+
     // Find threats near target
     let mut hit = false;
     for threat in threats.iter_mut() {
@@ -28,12 +28,12 @@ pub fn fire_weapon(
             hit = true;
         }
     }
-    
+
     // Set cooldown
     if hit {
         weapon.cooldown = weapon.max_cooldown;
     }
-    
+
     hit
 }
 
@@ -54,4 +54,3 @@ pub fn get_weapon_info(weapon_type: WeaponType) -> &'static str {
         WeaponType::AiDeception => "AI Deception - Spoof drone AI",
     }
 }
-

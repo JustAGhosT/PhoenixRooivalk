@@ -8,4 +8,3 @@ pub fn StatsPanel() -> impl IntoView {
         </div>
     }
 }
-

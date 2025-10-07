@@ -1,6 +1,6 @@
-use wasm_bindgen::prelude::*;
 use serde::{Deserialize, Serialize};
 use serde_json::Value;
+use wasm_bindgen::prelude::*;
 
 #[wasm_bindgen]
 extern "C" {
@@ -26,8 +26,9 @@ pub async fn end_game_session(final_score: u32, threats_neutralized: u32) -> Res
     let args = serde_wasm_bindgen::to_value(&serde_json::json!({
         "finalScore": final_score,
         "threatsNeutralized": threats_neutralized,
-    })).map_err(|e| e.to_string())?;
-    
+    }))
+    .map_err(|e| e.to_string())?;
+
     let result = invoke("end_game_session", args).await;
     serde_wasm_bindgen::from_value(result).map_err(|e| e.to_string())
 }
@@ -41,8 +42,9 @@ pub async fn save_evidence(
         "sessionId": session_id,
         "eventType": event_type,
         "eventData": event_data,
-    })).map_err(|e| e.to_string())?;
-    
+    }))
+    .map_err(|e| e.to_string())?;
+
     let result = invoke("save_evidence", args).await;
     serde_wasm_bindgen::from_value(result).map_err(|e| e.to_string())
 }
@@ -51,4 +53,3 @@ pub async fn get_system_info() -> Result<Value, String> {
     let result = invoke("get_system_info", JsValue::NULL).await;
     serde_wasm_bindgen::from_value(result).map_err(|e| e.to_string())
 }
-
