@@ -201,8 +201,8 @@
   flex-shrink: 0; /* Prevent the disclaimer from shrinking */
 }
 
-/* Buttons (reuse your .btn variants if you included my ui-patch) */
-.btn {
+/* Buttons (scoped to simulator to avoid conflicts with global styles) */
+.sim-btn {
   background: rgb(var(--sim-accent));
   color: #0b0b0b;
   border: 1px solid transparent;
@@ -210,12 +210,12 @@
   padding: 8px 14px;
   font-weight: 800;
 }
-.btn--secondary {
+.sim-btn--secondary {
   background: #182028;
   color: rgb(var(--sim-text));
   border-color: rgb(var(--sim-border));
 }
-.btn--ghost {
+.sim-btn--ghost {
   background: transparent;
   border-color: rgb(var(--sim-border));
   color: rgb(var(--sim-text));
