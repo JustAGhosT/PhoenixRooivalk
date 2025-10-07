@@ -3,12 +3,15 @@
 ## Test Coverage Summary
 
 ### Overall Statistics
-- **Total Tests**: 29
+- **Total Tests**: 42
 - **Status**: ✅ All Passing
-- **Code Coverage**: ~85% (estimated)
+- **Code Coverage**: ~90% (estimated)
 - **Test Runtime**: <50ms
 
 ## Test Breakdown by Module
+
+**Total Modules Tested**: 10  
+**Total Tests**: 42
 
 ### 1. Core Types (`game/types.rs`) - 7 tests
 

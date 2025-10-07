@@ -117,6 +117,17 @@ body {
   color: #ff3333;
 }
 
+.stat-value.auto-on {
+  color: #00ff00;
+  font-weight: bold;
+  text-shadow: 0 0 10px rgba(0, 255, 0, 0.6);
+}
+
+.stat-value.auto-off {
+  color: #666;
+  font-weight: bold;
+}
+
 .stat-divider {
   height: 1px;
   background: rgba(0, 255, 255, 0.2);

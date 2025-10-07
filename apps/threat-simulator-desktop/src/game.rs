@@ -7,6 +7,7 @@ use std::rc::Rc;
 #[cfg(target_arch = "wasm32")]
 use std::cell::RefCell;
 
+pub mod auto_targeting;
 pub mod engine;
 pub mod formations;
 pub mod particles;
@@ -41,6 +42,9 @@ pub struct GameStateManager {
     // Resources
     pub mothership_health: RwSignal<f32>,
     pub power_ups: RwSignal<Vec<PowerUp>>,
+
+    // Auto-targeting
+    pub auto_targeting_enabled: RwSignal<bool>,
 }
 
 #[cfg(target_arch = "wasm32")]
@@ -63,6 +67,8 @@ impl GameStateManager {
 
             mothership_health: create_rw_signal(100.0),
             power_ups: create_rw_signal(Vec::new()),
+
+            auto_targeting_enabled: create_rw_signal(false),
         }
     }
 
@@ -111,6 +117,7 @@ impl GameStateManager {
         self.game_time.set(0.0);
         self.mothership_health.set(100.0);
         self.power_ups.set(Vec::new());
+        self.auto_targeting_enabled.set(false);
     }
 
     pub fn add_threat(&self, threat: Threat) {

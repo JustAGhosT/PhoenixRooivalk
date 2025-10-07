@@ -35,6 +35,25 @@ pub fn Hud(game_state: GameStateManager, is_running: ReadSignal<bool>) -> impl I
                     </span>
                 </div>
 
+                <div class="stat-item">
+                    <span class="stat-label">"Auto-Target:"</span>
+                    <span
+                        class=move || {
+                            if game_state.auto_targeting_enabled.get() {
+                                "stat-value auto-on"
+                            } else {
+                                "stat-value auto-off"
+                            }
+                        }
+                    >
+
+                        {move || {
+                            if game_state.auto_targeting_enabled.get() { "ON" } else { "OFF" }
+                        }}
+
+                    </span>
+                </div>
+
                 <div class="stat-divider"></div>
 
                 // Resource bars

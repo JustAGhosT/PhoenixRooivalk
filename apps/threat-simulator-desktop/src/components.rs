@@ -94,6 +94,10 @@ pub fn App() -> impl IntoView {
                     // Synergy toggle
                     set_show_synergies.update(|s| *s = !*s);
                 }
+                "x" | "X" => {
+                    // Auto-targeting toggle
+                    game_state_kb.auto_targeting_enabled.update(|a| *a = !*a);
+                }
                 "r" | "R" => {
                     // Reset game
                     game_state_kb.reset();
@@ -344,6 +348,10 @@ pub fn App() -> impl IntoView {
                                 <li>
                                     <kbd>"G"</kbd>
                                     " - Toggle synergy indicator"
+                                </li>
+                                <li>
+                                    <kbd>"X"</kbd>
+                                    " - Toggle auto-targeting"
                                 </li>
                                 <li>
                                     <kbd>"H"</kbd>
