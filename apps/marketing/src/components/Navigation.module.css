@@ -1,0 +1,403 @@
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: var(--bg-primary);
+  border-bottom: 1px solid var(--border);
+  padding: 1rem 1.5rem;
+}
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  text-decoration: none;
+}
+
+.logoWrapper {
+  position: relative;
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  box-shadow: 0 20px 25px -5px rgba(var(--primary), 0.3);
+  background: rgba(var(--logo-bg));
+  border: 1px solid rgba(var(--primary), 0.2);
+  transition: all 0.3s ease;
+}
+
+.logo:hover .logoWrapper {
+  box-shadow: 0 20px 25px -5px rgba(var(--primary), 0.5);
+  border-color: rgba(var(--primary), 0.4);
+}
+
+.logoImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.1);
+  transition: transform 0.3s ease;
+}
+
+.logo:hover .logoImage {
+  transform: scale(1.25);
+}
+
+.logoGlow {
+  position: absolute;
+  inset: 0;
+  border-radius: 0.75rem;
+  background: linear-gradient(to bottom right, rgba(var(--primary), 0.3), rgba(var(--accent), 0.3));
+  opacity: 0;
+  filter: blur(1rem);
+  transition: opacity 0.3s ease;
+}
+
+.logo:hover .logoGlow {
+  opacity: 0.3;
+}
+
+.logoGlowOuter {
+  position: absolute;
+  inset: -0.25rem;
+  border-radius: 0.75rem;
+  background: linear-gradient(to bottom right, rgba(var(--primary), 0.1), rgba(var(--accent), 0.1));
+  opacity: 0;
+  filter: blur(1.5rem);
+  transition: opacity 0.3s ease;
+}
+
+.logo:hover .logoGlowOuter {
+  opacity: 1;
+}
+
+.logoText {
+  font-size: 1.5rem;
+  font-weight: 700;
+  background: linear-gradient(to bottom right, rgb(var(--primary)), rgb(var(--accent)));
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: -0.025em;
+  transition: all 0.3s ease;
+}
+
+.logo:hover .logoText {
+  background: linear-gradient(to bottom right, rgb(var(--accent)), rgb(var(--primary)));
+  background-clip: text;
+  -webkit-background-clip: text;
+}
+
+.navMenu {
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  .navMenu {
+    display: block;
+  }
+}
+
+.navMenuInner {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.navList {
+  display: flex;
+  gap: 1.5rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  color: var(--text-secondary);
+}
+
+.navItem {
+  position: relative;
+}
+
+.navButton {
+  background: none;
+  border: none;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.navButton:hover,
+.navButton:focus {
+  color: var(--text-primary);
+}
+
+.navLink {
+  color: inherit;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.navLink:hover {
+  color: var(--text-primary);
+}
+
+.chevron {
+  width: 1rem;
+  height: 1rem;
+}
+
+.dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  margin-top: 0.5rem;
+  width: 16rem;
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: 0.5rem;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.2s ease;
+  z-index: 50;
+}
+
+.navItem:hover .dropdown,
+.navItem:focus-within .dropdown {
+  opacity: 1;
+  visibility: visible;
+}
+
+.dropdownInner {
+  padding: 0.5rem 0;
+}
+
+.dropdownLink {
+  display: flex;
+  flex-direction: column;
+  padding: 0.75rem 1rem;
+  font-size: 0.875rem;
+  color: var(--text-primary);
+  text-decoration: none;
+  transition: background-color 0.2s ease;
+}
+
+.dropdownLink:hover {
+  background: var(--bg-secondary);
+}
+
+.dropdownLabel {
+  font-weight: 500;
+}
+
+.dropdownDescription {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.mobileNav {
+  display: block;
+}
+
+@media (min-width: 1024px) {
+  .mobileNav {
+    display: none;
+  }
+}
+
+.mobileMenuButton {
+  background: none;
+  border: none;
+  color: rgb(var(--gray));
+  cursor: pointer;
+  padding: 0.5rem;
+  transition: color 0.2s ease;
+}
+
+.mobileMenuButton:hover {
+  color: rgb(var(--primary));
+}
+
+.mobileMenuIcon {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.githubDropdown {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .githubDropdown {
+    display: flex;
+    align-items: center;
+  }
+}
+
+.githubDropdownWrapper {
+  position: relative;
+}
+
+.githubButton {
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.githubButton:hover {
+  color: var(--text-primary);
+}
+
+.githubIcon {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.githubText {
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.githubChevron {
+  width: 1rem;
+  height: 1rem;
+}
+
+.githubDropdownMenu {
+  position: absolute;
+  right: 0;
+  margin-top: 0.5rem;
+  width: 14rem;
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: 0.5rem;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.2s ease;
+  z-index: 50;
+}
+
+.githubDropdownWrapper:hover .githubDropdownMenu {
+  opacity: 1;
+  visibility: visible;
+}
+
+.githubDropdownInner {
+  padding: 0.5rem 0;
+}
+
+.githubDropdownLink {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  color: var(--text-primary);
+  text-decoration: none;
+  transition: background-color 0.2s ease;
+}
+
+.githubDropdownLink:hover {
+  background: var(--bg-secondary);
+}
+
+.githubDropdownIcon {
+  width: 1rem;
+  height: 1rem;
+  margin-right: 0.75rem;
+}
+
+.githubDropdownContent {
+  flex: 1;
+}
+
+.githubDropdownTitle {
+  font-weight: 500;
+}
+
+.githubDropdownDesc {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.divider {
+  border-top: 1px solid var(--border);
+  margin: 0.25rem 0;
+}
+
+.themeToggle {
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  padding: 0.5rem;
+  transition: all 0.2s ease;
+}
+
+.themeToggle:hover {
+  color: var(--text-primary);
+}
+
+.themeIcon {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.themeIconPhoenix {
+  width: 100%;
+  height: 100%;
+  background: var(--action-primary);
+  border-radius: 9999px;
+}
+
+.themeIconBlue {
+  width: 100%;
+  height: 100%;
+  background: var(--action-secondary);
+  border-radius: 0.25rem;
+}
+
+.ctaButton {
+  background: linear-gradient(to bottom right, rgb(var(--primary)), rgb(var(--accent)));
+  color: var(--bg-primary);
+  font-weight: 600;
+  padding: 0.5rem 1.5rem;
+  border-radius: 0.5rem;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.ctaButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 15px -3px rgba(var(--primary), 0.5);
+}
