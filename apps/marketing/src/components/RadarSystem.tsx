@@ -246,7 +246,7 @@ export const RadarSystem: React.FC<RadarSystemProps> = ({
                 tabIndex={0}
                 role="button"
                 aria-label={`Target ${target.id} ${target.type}`}
-                aria-selected={isSelected}
+                aria-pressed={isSelected}
                 onKeyDown={(e) => {
                   if (e.key === "Enter" || e.key === " ") {
                     e.preventDefault();

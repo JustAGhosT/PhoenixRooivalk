@@ -18,7 +18,7 @@ export const ThreatSimulatorComponents: React.FC<
 > = ({
   gameState,
   onThreatClick,
-  onActivateWeapon,
+  onActivateWeapon: _onActivateWeapon,
   onThreatHover,
   getThreatAppearance,
 }) => {
