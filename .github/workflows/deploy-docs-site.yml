@@ -101,7 +101,7 @@ jobs:
           steps.check_secrets.outputs.secrets_available == 'true' }}
         uses: nwtgck/actions-netlify@v3
         with:
-          publish-dir: "build"
+          publish-dir: "apps/docs/build"
           production-deploy: true
           github-token: ${{ secrets.GITHUB_TOKEN }}
           deploy-message: "Automated deploy from GitHub Actions"
@@ -222,7 +222,7 @@ jobs:
           steps.check_secrets_preview.outputs.secrets_available == 'true' }}
         uses: nwtgck/actions-netlify@v3
         with:
-          publish-dir: "build"
+          publish-dir: "apps/docs/build"
           production-deploy: false
           github-token: ${{ secrets.GITHUB_TOKEN }}
           deploy-message:
