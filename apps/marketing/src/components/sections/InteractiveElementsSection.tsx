@@ -94,7 +94,7 @@ export const InteractiveElementsSection: React.FC = () => {
   const roi = calculateROI();
 
   return (
-    <section className="py-20 bg-gradient-to-br from-bg-primary to-darker relative overflow-hidden">
+    <section className="py-20 bg-gradient-to-br from-[rgb(var(--bg-primary))] to-[rgb(var(--darker))] relative overflow-hidden">
       {/* Background pattern */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute inset-0 bg-[linear-gradient(rgba(var(--primary),0.1)_1px,_transparent_1px),_linear-gradient(90deg,_rgba(var(--primary),0.1)_1px,_transparent_1px)] bg-[length:50px_50px]"></div>
@@ -104,10 +104,10 @@ export const InteractiveElementsSection: React.FC = () => {
         <div className="max-w-[1400px] mx-auto">
           {/* Section Header */}
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-br from-text-primary to-primary mb-6">
+            <h2 className="text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-br from-[rgb(var(--text-primary))] to-[rgb(var(--primary))] mb-6">
               Projected ROI Analysis
             </h2>
-            <p className="text-xl text-gray max-w-3xl mx-auto">
+            <p className="text-xl text-[rgb(var(--gray))] max-w-3xl mx-auto">
               Explore the potential return on investment for Phoenix
               Rooivalk&apos;s target 120ms response time based on current market
               analysis and projected performance.
@@ -118,7 +118,7 @@ export const InteractiveElementsSection: React.FC = () => {
           <div className="bg-[rgba(var(--tactical-charcoal),0.8)] backdrop-blur-sm border border-[rgba(var(--primary),0.2)] rounded-2xl p-8">
             {/* Hypothetical Disclaimer */}
             <div className="mb-6 p-4 bg-[rgba(var(--status-warning),0.1)] border border-[rgba(var(--status-warning),0.3)] rounded-lg">
-              <p className="text-sm text-status-warning text-center font-semibold">
+              <p className="text-sm text-[rgb(var(--status-warning))] text-center font-semibold">
                 ⚠️ HYPOTHETICAL ANALYSIS: All inputs/outputs are assumptions for
                 illustrative purposes only. No real-world performance data
                 available.
@@ -130,7 +130,7 @@ export const InteractiveElementsSection: React.FC = () => {
                 {/* Sensitivity Toggle */}
                 <div>
                   <fieldset>
-                    <legend className="block text-text-primary font-semibold mb-3">
+                    <legend className="block text-[var(--text-primary)] font-semibold mb-3">
                       Analysis Sensitivity (Default: Conservative)
                     </legend>
                     <div className="flex gap-2">
@@ -152,7 +152,7 @@ export const InteractiveElementsSection: React.FC = () => {
                       )}
                     </div>
                   </fieldset>
-                  <p className="text-xs text-text-muted mt-2">
+                  <p className="text-xs text-[var(--text-muted)] mt-2">
                     Conservative uses lower success rates and incident costs for
                     realistic projections.
                   </p>
@@ -160,7 +160,7 @@ export const InteractiveElementsSection: React.FC = () => {
                 <div>
                   <label
                     htmlFor="roi-threat-frequency"
-                    className="block text-text-primary font-semibold mb-2"
+                    className="block text-[rgb(var(--text-primary))] font-semibold mb-2"
                   >
                     Threat Frequency (per month)
                   </label>
@@ -178,9 +178,9 @@ export const InteractiveElementsSection: React.FC = () => {
                     }
                     className="range w-full"
                   />
-                  <div className="flex justify-between text-gray text-sm mt-1">
+                  <div className="flex justify-between text-[rgb(var(--gray))] text-sm mt-1">
                     <span>1</span>
-                    <span className="text-accent font-bold">
+                    <span className="text-[rgb(var(--accent))] font-bold">
                       {roiInputs.threatFrequency} threats/month
                     </span>
                     <span>20</span>
@@ -190,7 +190,7 @@ export const InteractiveElementsSection: React.FC = () => {
                 <div>
                   <label
                     htmlFor="roi-response-time"
-                    className="block text-text-primary font-semibold mb-2"
+                    className="block text-[rgb(var(--text-primary))] font-semibold mb-2"
                   >
                     Current Response Time (ms)
                   </label>
@@ -209,9 +209,9 @@ export const InteractiveElementsSection: React.FC = () => {
                     }
                     className="range w-full"
                   />
-                  <div className="flex justify-between text-gray text-sm mt-1">
+                  <div className="flex justify-between text-[rgb(var(--gray))] text-sm mt-1">
                     <span>1s</span>
-                    <span className="text-accent font-bold">
+                    <span className="text-[rgb(var(--accent))] font-bold">
                       {roiInputs.averageResponseTime}ms
                     </span>
                     <span>10s</span>
@@ -221,7 +221,7 @@ export const InteractiveElementsSection: React.FC = () => {
                 <div>
                   <label
                     htmlFor="roi-deployment-cost"
-                    className="block text-text-primary font-semibold mb-2"
+                    className="block text-[rgb(var(--text-primary))] font-semibold mb-2"
                   >
                     Deployment Cost (USD)
                   </label>
@@ -240,9 +240,9 @@ export const InteractiveElementsSection: React.FC = () => {
                     }
                     className="range w-full"
                   />
-                  <div className="flex justify-between text-gray text-sm mt-1">
+                  <div className="flex justify-between text-[rgb(var(--gray))] text-sm mt-1">
                     <span>$100K</span>
-                    <span className="text-accent font-bold">
+                    <span className="text-[rgb(var(--accent))] font-bold">
                       $
                       {isClient
                         ? roiInputs.deploymentCost.toLocaleString()
@@ -256,31 +256,31 @@ export const InteractiveElementsSection: React.FC = () => {
               {/* Results */}
               <div className="space-y-6">
                 <div className="bg-[rgba(var(--bg-secondary),0.6)] rounded-xl p-6 border border-[rgba(var(--primary),0.3)]">
-                  <h4 className="text-lg font-bold text-primary mb-4">
+                  <h4 className="text-lg font-bold text-[rgb(var(--primary))] mb-4">
                     Phoenix Rooivalk Results
                   </h4>
                   <div className="space-y-3">
                     <div className="flex justify-between">
-                      <span className="text-gray">
+                      <span className="text-[rgb(var(--gray))]">
                         Success Rate:
                       </span>
-                      <span className="text-status-active font-bold">
+                      <span className="text-[rgb(var(--status-active))] font-bold">
                         {(roi.phoenix.successRate * 100).toFixed(1)}%
                       </span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-gray">
+                      <span className="text-[rgb(var(--gray))]">
                         Threats Prevented/Year:
                       </span>
-                      <span className="text-phoenix-white font-bold">
+                      <span className="text-[rgb(var(--phoenix-white))] font-bold">
                         {roi.phoenix.prevented.toFixed(1)}
                       </span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-gray">
+                      <span className="text-[rgb(var(--gray))]">
                         Annual Savings:
                       </span>
-                      <span className="text-status-active font-bold">
+                      <span className="text-[rgb(var(--status-active))] font-bold">
                         $
                         {isClient
                           ? roi.phoenix.savings.toLocaleString()
@@ -288,8 +288,8 @@ export const InteractiveElementsSection: React.FC = () => {
                       </span>
                     </div>
                     <div className="flex justify-between border-t border-[rgba(var(--primary),0.2)] pt-3">
-                      <span className="text-gray">ROI:</span>
-                      <span className="text-accent font-bold text-xl">
+                      <span className="text-[rgb(var(--gray))]">ROI:</span>
+                      <span className="text-[rgb(var(--accent))] font-bold text-xl">
                         {roi.phoenix.roi.toFixed(0)}%
                       </span>
                     </div>
@@ -297,12 +297,12 @@ export const InteractiveElementsSection: React.FC = () => {
                 </div>
 
                 <div className="bg-[rgba(var(--bg-secondary),0.6)] rounded-xl p-6 border border-[rgba(var(--border),0.3)]">
-                  <h4 className="text-lg font-bold text-gray mb-4">
+                  <h4 className="text-lg font-bold text-[rgb(var(--gray))] mb-4">
                     Traditional Systems
                   </h4>
                   <div className="space-y-3">
                     <div className="flex justify-between">
-                      <span className="text-gray">
+                      <span className="text-[rgb(var(--gray))]">
                         Success Rate:
                       </span>
                       <span className="text-[rgb(var(--action-warning))] font-bold">
@@ -310,15 +310,15 @@ export const InteractiveElementsSection: React.FC = () => {
                       </span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-gray">
+                      <span className="text-[rgb(var(--gray))]">
                         Threats Prevented/Year:
                       </span>
-                      <span className="text-phoenix-white font-bold">
+                      <span className="text-[rgb(var(--phoenix-white))] font-bold">
                         {roi.traditional.prevented.toFixed(1)}
                       </span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-gray">
+                      <span className="text-[rgb(var(--gray))]">
                         Annual Savings:
                       </span>
                       <span className="text-[rgb(var(--action-warning))] font-bold">
@@ -329,8 +329,8 @@ export const InteractiveElementsSection: React.FC = () => {
                       </span>
                     </div>
                     <div className="flex justify-between border-t border-[rgba(var(--primary),0.2)] pt-3">
-                      <span className="text-gray">ROI:</span>
-                      <span className="text-gray font-bold text-xl">
+                      <span className="text-[rgb(var(--gray))]">ROI:</span>
+                      <span className="text-[rgb(var(--gray))] font-bold text-xl">
                         {roi.traditional.roi.toFixed(0)}%
                       </span>
                     </div>
@@ -343,10 +343,10 @@ export const InteractiveElementsSection: React.FC = () => {
           {/* Interactive Demo Teaser */}
           <div className="mt-16">
             <div className="text-center mb-8">
-              <h3 className="text-3xl font-bold text-text-primary mb-4">
+              <h3 className="text-3xl font-bold text-[var(--text-primary)] mb-4">
                 Experience the System
               </h3>
-              <p className="text-text-muted mb-6 max-w-2xl mx-auto">
+              <p className="text-[var(--text-muted)] mb-6 max-w-2xl mx-auto">
                 Try our interactive defense simulator to see Phoenix Rooivalk
                 technology in action. Experience real-time threat detection,
                 autonomous response, and tactical coordination.
@@ -369,7 +369,7 @@ export const InteractiveElementsSection: React.FC = () => {
           {/* Key Performance Metrics */}
           <div className="mt-20">
             <div className="bg-[rgba(var(--bg-surface),0.8)] backdrop-blur-sm border border-[rgba(var(--primary),0.2)] rounded-2xl p-8">
-              <h3 className="text-2xl font-bold text-primary mb-6 text-center">
+              <h3 className="text-2xl font-bold text-[rgb(var(--primary))] mb-6 text-center">
                 Performance Comparison
               </h3>
 
@@ -378,7 +378,7 @@ export const InteractiveElementsSection: React.FC = () => {
                   <div className="text-4xl font-bold text-[rgb(var(--action-danger))] mb-2">
                     3-10s
                   </div>
-                  <div className="text-gray font-semibold mb-2">
+                  <div className="text-[rgb(var(--gray))] font-semibold mb-2">
                     Traditional Systems
                   </div>
                   <div className="w-full bg-[rgba(var(--action-danger),0.2)] rounded-full h-4 border border-[rgba(var(--action-danger),0.3)]">
@@ -387,25 +387,25 @@ export const InteractiveElementsSection: React.FC = () => {
                       style={{ width: "100%" }}
                     ></div>
                   </div>
-                  <div className="text-xs text-gray mt-2">
+                  <div className="text-xs text-[rgb(var(--gray))] mt-2">
                     Network dependent
                   </div>
                 </div>
 
                 <div className="text-center">
-                  <div className="text-4xl font-bold text-primary mb-2">
+                  <div className="text-4xl font-bold text-[rgb(var(--primary))] mb-2">
                     1-3s
                   </div>
-                  <div className="text-gray font-semibold mb-2">
+                  <div className="text-[rgb(var(--gray))] font-semibold mb-2">
                     Current Best
                   </div>
                   <div className="w-full bg-[rgba(var(--primary),0.2)] rounded-full h-4 border border-[rgba(var(--primary),0.3)]">
                     <div
-                      className="bg-gradient-to-r from-primary to-accent h-4 rounded-full"
+                      className="bg-gradient-to-r from-[rgb(var(--primary))] to-[rgb(var(--accent))] h-4 rounded-full"
                       style={{ width: "30%" }}
                     ></div>
                   </div>
-                  <div className="text-xs text-gray mt-2">
+                  <div className="text-xs text-[rgb(var(--gray))] mt-2">
                     With network dependency
                   </div>
                 </div>
@@ -414,16 +414,16 @@ export const InteractiveElementsSection: React.FC = () => {
                   <div className="text-4xl font-bold text-[rgb(var(--action-success))] mb-2">
                     120ms
                   </div>
-                  <div className="text-gray font-semibold mb-2">
+                  <div className="text-[rgb(var(--gray))] font-semibold mb-2">
                     Phoenix Rooivalk
                   </div>
                   <div className="w-full bg-[rgba(var(--action-success),0.2)] rounded-full h-4 border border-[rgba(var(--action-success),0.3)]">
                     <div
-                      className="bg-gradient-to-r from-[rgb(var(--action-success))] to-accent h-4 rounded-full"
+                      className="bg-gradient-to-r from-[rgb(var(--action-success))] to-[rgb(var(--accent))] h-4 rounded-full"
                       style={{ width: "4%" }}
                     ></div>
                   </div>
-                  <div className="text-xs text-gray mt-2">
+                  <div className="text-xs text-[rgb(var(--gray))] mt-2">
                     Autonomous edge processing
                   </div>
                 </div>
@@ -433,10 +433,10 @@ export const InteractiveElementsSection: React.FC = () => {
 
           {/* Concept Adaptation Calculator */}
           <div className="mt-16">
-            <h3 className="text-3xl font-bold text-text-primary mb-8 text-center">
+            <h3 className="text-3xl font-bold text-[var(--text-primary)] mb-8 text-center">
               Concept Adaptation Explorer
             </h3>
-            <p className="text-text-muted mb-8 max-w-3xl mx-auto text-center">
+            <p className="text-[var(--text-muted)] mb-8 max-w-3xl mx-auto text-center">
               Explore how Phoenix Rooivalk&apos;s core technology could adapt to
               different operational environments and threat scenarios.
             </p>
@@ -446,32 +446,32 @@ export const InteractiveElementsSection: React.FC = () => {
               <div className="card">
                 <div className="text-center mb-4">
                   <div className="text-3xl mb-2">🏢</div>
-                  <h4 className="text-lg font-bold text-primary mb-2">
+                  <h4 className="text-lg font-bold text-[var(--action-primary)] mb-2">
                     Civilian Applications
                   </h4>
                 </div>
                 <div className="space-y-3">
                   <div className="text-sm">
-                    <div className="font-semibold text-text-primary mb-1">
+                    <div className="font-semibold text-[var(--text-primary)] mb-1">
                       Airport Security
                     </div>
-                    <div className="text-text-muted">
+                    <div className="text-[var(--text-muted)]">
                       Perimeter protection, runway monitoring
                     </div>
                   </div>
                   <div className="text-sm">
-                    <div className="font-semibold text-text-primary mb-1">
+                    <div className="font-semibold text-[var(--text-primary)] mb-1">
                       Critical Infrastructure
                     </div>
-                    <div className="text-text-muted">
+                    <div className="text-[var(--text-muted)]">
                       Power plants, water facilities, communication towers
                     </div>
                   </div>
                   <div className="text-sm">
-                    <div className="font-semibold text-text-primary mb-1">
+                    <div className="font-semibold text-[var(--text-primary)] mb-1">
                       Event Security
                     </div>
-                    <div className="text-text-muted">
+                    <div className="text-[var(--text-muted)]">
                       Stadiums, concerts, public gatherings
                     </div>
                   </div>
@@ -482,32 +482,32 @@ export const InteractiveElementsSection: React.FC = () => {
               <div className="card">
                 <div className="text-center mb-4">
                   <div className="text-3xl mb-2">🏭</div>
-                  <h4 className="text-lg font-bold text-primary mb-2">
+                  <h4 className="text-lg font-bold text-[var(--action-primary)] mb-2">
                     Commercial Security
                   </h4>
                 </div>
                 <div className="space-y-3">
                   <div className="text-sm">
-                    <div className="font-semibold text-text-primary mb-1">
+                    <div className="font-semibold text-[var(--text-primary)] mb-1">
                       Corporate Campus
                     </div>
-                    <div className="text-text-muted">
+                    <div className="text-[var(--text-muted)]">
                       Headquarters, R&D facilities
                     </div>
                   </div>
                   <div className="text-sm">
-                    <div className="font-semibold text-text-primary mb-1">
+                    <div className="font-semibold text-[var(--text-primary)] mb-1">
                       Data Center Security
                     </div>
-                    <div className="text-text-muted">
+                    <div className="text-[var(--text-muted)]">
                       Server farms, cloud infrastructure
                     </div>
                   </div>
                   <div className="text-sm">
-                    <div className="font-semibold text-text-primary mb-1">
+                    <div className="font-semibold text-[var(--text-primary)] mb-1">
                       Port Security
                     </div>
-                    <div className="text-text-muted">
+                    <div className="text-[var(--text-muted)]">
                       Shipping terminals, cargo facilities
                     </div>
                   </div>
@@ -518,32 +518,32 @@ export const InteractiveElementsSection: React.FC = () => {
               <div className="card">
                 <div className="text-center mb-4">
                   <div className="text-3xl mb-2">🔬</div>
-                  <h4 className="text-lg font-bold text-primary mb-2">
+                  <h4 className="text-lg font-bold text-[var(--action-primary)] mb-2">
                     Research & Development
                   </h4>
                 </div>
                 <div className="space-y-3">
                   <div className="text-sm">
-                    <div className="font-semibold text-text-primary mb-1">
+                    <div className="font-semibold text-[var(--text-primary)] mb-1">
                       University Partnerships
                     </div>
-                    <div className="text-text-muted">
+                    <div className="text-[var(--text-muted)]">
                       Academic research collaboration
                     </div>
                   </div>
                   <div className="text-sm">
-                    <div className="font-semibold text-text-primary mb-1">
+                    <div className="font-semibold text-[var(--text-primary)] mb-1">
                       Government Labs
                     </div>
-                    <div className="text-text-muted">
+                    <div className="text-[var(--text-muted)]">
                       DARPA, NSF, national laboratories
                     </div>
                   </div>
                   <div className="text-sm">
-                    <div className="font-semibold text-text-primary mb-1">
+                    <div className="font-semibold text-[var(--text-primary)] mb-1">
                       International Cooperation
                     </div>
-                    <div className="text-text-muted">
+                    <div className="text-[var(--text-muted)]">
                       NATO, allied defense research
                     </div>
                   </div>
@@ -554,32 +554,32 @@ export const InteractiveElementsSection: React.FC = () => {
               <div className="card">
                 <div className="text-center mb-4">
                   <div className="text-3xl mb-2">⚡</div>
-                  <h4 className="text-lg font-bold text-primary mb-2">
+                  <h4 className="text-lg font-bold text-[var(--action-primary)] mb-2">
                     Technology Licensing
                   </h4>
                 </div>
                 <div className="space-y-3">
                   <div className="text-sm">
-                    <div className="font-semibold text-text-primary mb-1">
+                    <div className="font-semibold text-[var(--text-primary)] mb-1">
                       Sensor Fusion
                     </div>
-                    <div className="text-text-muted">
+                    <div className="text-[var(--text-muted)]">
                       Core detection algorithms
                     </div>
                   </div>
                   <div className="text-sm">
-                    <div className="font-semibold text-text-primary mb-1">
+                    <div className="font-semibold text-[var(--text-primary)] mb-1">
                       Edge Processing
                     </div>
-                    <div className="text-text-muted">
+                    <div className="text-[var(--text-muted)]">
                       Autonomous decision-making
                     </div>
                   </div>
                   <div className="text-sm">
-                    <div className="font-semibold text-text-primary mb-1">
+                    <div className="font-semibold text-[var(--text-primary)] mb-1">
                       Blockchain Integration
                     </div>
-                    <div className="text-text-muted">
+                    <div className="text-[var(--text-muted)]">
                       Evidence management systems
                     </div>
                   </div>
@@ -587,8 +587,8 @@ export const InteractiveElementsSection: React.FC = () => {
               </div>
             </div>
 
-            <div className="mt-8 p-4 bg-[rgb(var(--action-warning))]/10 border border-[rgb(var(--action-warning))]/20 rounded-lg">
-              <p className="text-sm text-[rgb(var(--action-warning))] text-center font-semibold">
+            <div className="mt-8 p-4 bg-[var(--action-warning)]/10 border border-[var(--action-warning)]/20 rounded-lg">
+              <p className="text-sm text-[var(--action-warning)] text-center font-semibold">
                 💡 These are potential applications under exploration. Actual
                 deployment would require regulatory approval, market validation,
                 and technology adaptation for specific use cases.
@@ -598,10 +598,10 @@ export const InteractiveElementsSection: React.FC = () => {
 
           {/* CTA */}
           <div className="text-center mt-16">
-            <h3 className="text-3xl font-bold text-text-primary mb-4">
+            <h3 className="text-3xl font-bold text-[var(--text-primary)] mb-4">
               Interested in the Technology?
             </h3>
-            <p className="text-text-muted mb-6 max-w-2xl mx-auto">
+            <p className="text-[var(--text-muted)] mb-6 max-w-2xl mx-auto">
               Learn more about Phoenix Rooivalk&apos;s innovative approach to
               autonomous counter-drone defense and explore partnership
               opportunities.

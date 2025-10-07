@@ -4,7 +4,7 @@ import React from "react";
 
 export default function TechnicalPage(): React.ReactElement {
   return (
-    <main className="relative overflow-hidden bg-darker text-white">
+    <main className="relative overflow-hidden bg-[var(--darker)] text-white">
       {/* Background */}
       <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_bottom,_#1b2735_0%,_#090a0f_100%)]">
         <div className="absolute inset-0 bg-[linear-gradient(rgba(0,255,136,0.03)_1px,_transparent_1px),_linear-gradient(90deg,_rgba(0,255,136,0.03)_1px,_transparent_1px)] bg-[length:50px_50px] animate-gridMove" />
@@ -15,28 +15,28 @@ export default function TechnicalPage(): React.ReactElement {
         <div className="mx-auto max-w-[1400px] flex items-center justify-between">
           <Link
             href="/"
-            className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-br from-primary to-secondary"
+            className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-br from-[var(--primary)] to-[var(--secondary)]"
           >
             Phoenix Rooivalk
           </Link>
-          <ul className="hidden md:flex gap-6 text-gray">
+          <ul className="hidden md:flex gap-6 text-[var(--gray)]">
             <li>
-              <Link href="/" className="hover:text-primary">
+              <Link href="/" className="hover:text-[var(--primary)]">
                 Home
               </Link>
             </li>
             <li>
-              <Link href="/technical" className="text-primary">
+              <Link href="/technical" className="text-[var(--primary)]">
                 Technical
               </Link>
             </li>
             <li>
-              <Link href="/financial" className="hover:text-primary">
+              <Link href="/financial" className="hover:text-[var(--primary)]">
                 Financial
               </Link>
             </li>
             <li>
-              <Link href="/compliance" className="hover:text-primary">
+              <Link href="/compliance" className="hover:text-[var(--primary)]">
                 Compliance
               </Link>
             </li>
@@ -48,10 +48,10 @@ export default function TechnicalPage(): React.ReactElement {
       <section className="px-[5%] py-16">
         <div className="max-w-[1400px] mx-auto">
           <div className="text-center">
-            <h1 className="text-4xl md:text-5xl font-extrabold bg-clip-text text-transparent bg-gradient-to-br from-white to-primary">
+            <h1 className="text-4xl md:text-5xl font-extrabold bg-clip-text text-transparent bg-gradient-to-br from-white to-[var(--primary)]">
               AI + Blockchain Technical Specifications
             </h1>
-            <p className="text-gray mt-4 max-w-3xl mx-auto">
+            <p className="text-[var(--gray)] mt-4 max-w-3xl mx-auto">
               Revolutionary AI-blockchain counter-drone system with 99.7%
               accuracy, 99.3% data integrity, and autonomous swarm coordination
               capabilities.
@@ -63,15 +63,15 @@ export default function TechnicalPage(): React.ReactElement {
       {/* AI + Blockchain Capabilities */}
       <section className="px-[5%] py-16 bg-[linear-gradient(180deg,rgba(0,255,136,0.05),rgba(0,136,255,0.05))]">
         <div className="max-w-[1400px] mx-auto">
-          <h2 className="text-3xl font-bold mb-8 text-center text-primary">
+          <h2 className="text-3xl font-bold mb-8 text-center text-[var(--primary)]">
             AI + Blockchain Capabilities
           </h2>
           <div className="grid md:grid-cols-2 gap-8 mb-12">
             <div className="rounded-xl border border-[rgba(0,255,136,0.2)] bg-[rgba(15,23,42,0.8)] backdrop-blur p-6">
-              <h3 className="text-xl font-semibold mb-4 text-primary">
+              <h3 className="text-xl font-semibold mb-4 text-[var(--primary)]">
                 AI Performance
               </h3>
-              <ul className="space-y-2 text-gray text-sm">
+              <ul className="space-y-2 text-[var(--gray)] text-sm">
                 <li>
                   • 99.7% threat detection accuracy vs 60-70% industry standard
                 </li>
@@ -87,10 +87,10 @@ export default function TechnicalPage(): React.ReactElement {
               </ul>
             </div>
             <div className="rounded-xl border border-[rgba(0,136,255,0.2)] bg-[rgba(15,23,42,0.8)] backdrop-blur p-6">
-              <h3 className="text-xl font-semibold mb-4 text-primary">
+              <h3 className="text-xl font-semibold mb-4 text-[var(--primary)]">
                 Blockchain Security
               </h3>
-              <ul className="space-y-2 text-gray text-sm">
+              <ul className="space-y-2 text-[var(--gray)] text-sm">
                 <li>• 99.3% data integrity protection vs 85% traditional</li>
                 <li>• &lt; 2ms authentication latency vs 50-100ms standard</li>
                 <li>• Tamper-proof audit trails for military accountability</li>
@@ -106,15 +106,15 @@ export default function TechnicalPage(): React.ReactElement {
       {/* System Architecture */}
       <section className="px-[5%] py-16 bg-[linear-gradient(180deg,rgba(0,136,255,0.05),transparent)]">
         <div className="max-w-[1400px] mx-auto">
-          <h2 className="text-3xl font-bold mb-8 text-center text-primary">
+          <h2 className="text-3xl font-bold mb-8 text-center text-[var(--primary)]">
             System Architecture
           </h2>
           <div className="grid md:grid-cols-2 xl:grid-cols-4 gap-8">
             <div className="rounded-xl border border-[rgba(0,255,136,0.2)] bg-[rgba(15,23,42,0.8)] backdrop-blur p-6">
-              <h3 className="text-xl font-semibold mb-4 text-primary">
+              <h3 className="text-xl font-semibold mb-4 text-[var(--primary)]">
                 Detection Module
               </h3>
-              <ul className="space-y-2 text-gray text-sm">
+              <ul className="space-y-2 text-[var(--gray)] text-sm">
                 <li>• RF Scanning: Communication signal identification</li>
                 <li>• Radar Systems: 3D movement tracking</li>
                 <li>• Optical Cameras: AI-powered object recognition</li>
@@ -124,10 +124,10 @@ export default function TechnicalPage(): React.ReactElement {
               </ul>
             </div>
             <div className="rounded-xl border border-[rgba(0,255,136,0.2)] bg-[rgba(15,23,42,0.8)] backdrop-blur p-6">
-              <h3 className="text-xl font-semibold mb-4 text-primary">
+              <h3 className="text-xl font-semibold mb-4 text-[var(--primary)]">
                 AI Identification Module
               </h3>
-              <ul className="space-y-2 text-gray text-sm">
+              <ul className="space-y-2 text-[var(--gray)] text-sm">
                 <li>
                   • 99.7% AI Classification: Friendly/neutral/hostile
                   distinction
@@ -145,10 +145,10 @@ export default function TechnicalPage(): React.ReactElement {
               </ul>
             </div>
             <div className="rounded-xl border border-[rgba(0,255,136,0.2)] bg-[rgba(15,23,42,0.8)] backdrop-blur p-6">
-              <h3 className="text-xl font-semibold mb-4 text-primary">
+              <h3 className="text-xl font-semibold mb-4 text-[var(--primary)]">
                 Neutralization Module
               </h3>
-              <ul className="space-y-2 text-gray text-sm">
+              <ul className="space-y-2 text-[var(--gray)] text-sm">
                 <li>• RF Jamming: Communication disruption</li>
                 <li>• GPS Spoofing: Navigation system confusion</li>
                 <li>• Net Entanglement: Non-destructive capture</li>
@@ -158,10 +158,10 @@ export default function TechnicalPage(): React.ReactElement {
               </ul>
             </div>
             <div className="rounded-xl border border-[rgba(0,255,136,0.2)] bg-[rgba(15,23,42,0.8)] backdrop-blur p-6">
-              <h3 className="text-xl font-semibold mb-4 text-primary">
+              <h3 className="text-xl font-semibold mb-4 text-[var(--primary)]">
                 Blockchain C2 System
               </h3>
-              <ul className="space-y-2 text-gray text-sm">
+              <ul className="space-y-2 text-[var(--gray)] text-sm">
                 <li>• 99.3% Data Integrity: Tamper-proof audit trails</li>
                 <li>• &lt; 2ms Authentication: Blockchain-verified commands</li>
                 <li>• Decentralized Control: No single points of failure</li>
@@ -177,7 +177,7 @@ export default function TechnicalPage(): React.ReactElement {
       {/* Deployment Options */}
       <section className="px-[5%] py-16">
         <div className="max-w-[1400px] mx-auto">
-          <h2 className="text-3xl font-bold mb-8 text-center text-primary">
+          <h2 className="text-3xl font-bold mb-8 text-center text-[var(--primary)]">
             Deployment Configurations
           </h2>
           <div className="grid md:grid-cols-3 gap-8">
@@ -222,19 +222,19 @@ export default function TechnicalPage(): React.ReactElement {
                 key={config.title}
                 className="rounded-xl border border-[rgba(0,255,136,0.2)] bg-[rgba(15,23,42,0.8)] backdrop-blur p-6"
               >
-                <h3 className="text-xl font-semibold mb-2 text-primary">
+                <h3 className="text-xl font-semibold mb-2 text-[var(--primary)]">
                   {config.title}
                 </h3>
-                <p className="text-gray mb-4 text-sm">
+                <p className="text-[var(--gray)] mb-4 text-sm">
                   {config.description}
                 </p>
                 <ul className="space-y-2">
                   {config.features.map((feature) => (
                     <li
                       key={feature}
-                      className="text-gray text-sm flex items-center"
+                      className="text-[var(--gray)] text-sm flex items-center"
                     >
-                      <span className="text-primary mr-2">•</span>
+                      <span className="text-[var(--primary)] mr-2">•</span>
                       {feature}
                     </li>
                   ))}
@@ -248,7 +248,7 @@ export default function TechnicalPage(): React.ReactElement {
       {/* Coverage Map Simulator */}
       <section className="px-[5%] py-16 bg-[linear-gradient(180deg,transparent,rgba(0,136,255,0.05))]">
         <div className="max-w-[1400px] mx-auto">
-          <h2 className="text-3xl font-bold mb-8 text-center text-primary">
+          <h2 className="text-3xl font-bold mb-8 text-center text-[var(--primary)]">
             Detection Coverage Visualization
           </h2>
           <div className="rounded-xl border border-[rgba(0,255,136,0.2)] bg-[rgba(15,23,42,0.8)] backdrop-blur p-6 mb-8">
@@ -265,8 +265,8 @@ export default function TechnicalPage(): React.ReactElement {
               {/* Detection zones */}
               <div className="absolute inset-0 flex items-center justify-center">
                 {/* 5km detection radius */}
-                <div className="absolute w-80 h-80 border-2 border-primary rounded-full opacity-40 animate-pulse">
-                  <div className="absolute -top-6 left-1/2 transform -translate-x-1/2 text-xs text-primary font-semibold">
+                <div className="absolute w-80 h-80 border-2 border-[var(--primary)] rounded-full opacity-40 animate-pulse">
+                  <div className="absolute -top-6 left-1/2 transform -translate-x-1/2 text-xs text-[var(--primary)] font-semibold">
                     5km Detection
                   </div>
                 </div>
@@ -278,7 +278,7 @@ export default function TechnicalPage(): React.ReactElement {
                 </div>
 
                 {/* System location */}
-                <div className="absolute w-8 h-8 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center">
+                <div className="absolute w-8 h-8 bg-gradient-to-br from-[var(--primary)] to-[var(--secondary)] rounded-full flex items-center justify-center">
                   <span className="text-xs">🛡️</span>
                 </div>
 
@@ -297,7 +297,7 @@ export default function TechnicalPage(): React.ReactElement {
 
               {/* Coverage stats */}
               <div className="absolute bottom-4 left-4 bg-[rgba(0,0,0,0.7)] rounded-lg p-3 text-xs">
-                <div className="text-primary font-semibold mb-1">
+                <div className="text-[var(--primary)] font-semibold mb-1">
                   Coverage Analysis
                 </div>
                 <div className="text-white">Area Protected: 78.5 km²</div>
@@ -306,7 +306,7 @@ export default function TechnicalPage(): React.ReactElement {
               </div>
             </div>
             <div className="mt-4 text-center">
-              <p className="text-gray text-sm">
+              <p className="text-[var(--gray)] text-sm">
                 Interactive coverage map showing 5km detection radius and 2km
                 neutralization zone
               </p>
@@ -318,15 +318,15 @@ export default function TechnicalPage(): React.ReactElement {
       {/* Power and Portability */}
       <section className="px-[5%] py-16">
         <div className="max-w-[1400px] mx-auto">
-          <h2 className="text-3xl font-bold mb-8 text-center text-primary">
+          <h2 className="text-3xl font-bold mb-8 text-center text-[var(--primary)]">
             Power & Environmental Specifications
           </h2>
           <div className="grid md:grid-cols-2 gap-8">
             <div className="rounded-xl border border-[rgba(0,255,136,0.2)] bg-[rgba(15,23,42,0.8)] backdrop-blur p-6">
-              <h3 className="text-xl font-semibold mb-4 text-primary">
+              <h3 className="text-xl font-semibold mb-4 text-[var(--primary)]">
                 Power Requirements
               </h3>
-              <ul className="space-y-3 text-gray">
+              <ul className="space-y-3 text-[var(--gray)]">
                 <li>
                   <strong>Primary:</strong> 220V AC mains power
                 </li>
@@ -345,10 +345,10 @@ export default function TechnicalPage(): React.ReactElement {
               </ul>
             </div>
             <div className="rounded-xl border border-[rgba(0,255,136,0.2)] bg-[rgba(15,23,42,0.8)] backdrop-blur p-6">
-              <h3 className="text-xl font-semibold mb-4 text-primary">
+              <h3 className="text-xl font-semibold mb-4 text-[var(--primary)]">
                 Environmental Specifications
               </h3>
-              <ul className="space-y-3 text-gray">
+              <ul className="space-y-3 text-[var(--gray)]">
                 <li>
                   <strong>Operating Temperature:</strong> -20°C to +60°C
                 </li>
@@ -371,7 +371,7 @@ export default function TechnicalPage(): React.ReactElement {
       </section>
 
       {/* Footer */}
-      <footer className="px-[5%] py-8 text-center text-gray border-t border-[rgba(0,255,136,0.2)]">
+      <footer className="px-[5%] py-8 text-center text-[var(--gray)] border-t border-[rgba(0,255,136,0.2)]">
         <div className="max-w-[1400px] mx-auto">
           <p>
             © 2025 Phoenix Rooivalk. All rights reserved. | ITAR Compliance
@@ -380,19 +380,19 @@ export default function TechnicalPage(): React.ReactElement {
           <div className="mt-4">
             <Link
               href="/"
-              className="text-primary hover:underline mr-6"
+              className="text-[var(--primary)] hover:underline mr-6"
             >
               Home
             </Link>
             <Link
               href="/financial"
-              className="text-primary hover:underline mr-6"
+              className="text-[var(--primary)] hover:underline mr-6"
             >
               Financial
             </Link>
             <Link
               href="/compliance"
-              className="text-primary hover:underline"
+              className="text-[var(--primary)] hover:underline"
             >
               Compliance
             </Link>

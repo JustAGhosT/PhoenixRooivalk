@@ -5,18 +5,18 @@ import { Navigation } from "../../../components/Navigation";
 
 export default function SecurityClearancePage(): React.ReactElement {
   return (
-    <main className="relative overflow-hidden bg-darker text-white">
+    <main className="relative overflow-hidden bg-[var(--darker)] text-white">
       <Navigation />
 
       {/* Hero Section */}
-      <section className="px-[5%] py-20 bg-gradient-to-br from-darker via-[var(--dark)] to-darker">
+      <section className="px-[5%] py-20 bg-gradient-to-br from-[var(--darker)] via-[var(--dark)] to-[var(--darker)]">
         <div className="max-w-[1400px] mx-auto text-center">
           <h1 className="text-5xl md:text-7xl font-bold mb-6">
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[var(--primary)] to-[var(--accent)]">
               Security Clearance
             </span>
           </h1>
-          <p className="text-xl md:text-2xl text-gray max-w-4xl mx-auto">
+          <p className="text-xl md:text-2xl text-[var(--gray)] max-w-4xl mx-auto">
             Personnel security clearance framework for classified operations and
             sensitive defense technology
           </p>
@@ -28,56 +28,56 @@ export default function SecurityClearancePage(): React.ReactElement {
         <div className="max-w-[1400px] mx-auto">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
-              <h2 className="text-3xl font-bold mb-6 text-primary">
+              <h2 className="text-3xl font-bold mb-6 text-[var(--primary)]">
                 Personnel Security Framework
               </h2>
-              <p className="text-gray mb-6">
+              <p className="text-[var(--gray)] mb-6">
                 Phoenix Rooivalk maintains comprehensive security clearance
                 protocols for all personnel involved in classified operations.
                 Our security framework ensures:
               </p>
-              <ul className="space-y-3 text-gray">
+              <ul className="space-y-3 text-[var(--gray)]">
                 <li className="flex items-start">
-                  <span className="text-primary mr-3">✓</span>
+                  <span className="text-[var(--primary)] mr-3">✓</span>
                   Background investigation and vetting
                 </li>
                 <li className="flex items-start">
-                  <span className="text-primary mr-3">✓</span>
+                  <span className="text-[var(--primary)] mr-3">✓</span>
                   Continuous monitoring and evaluation
                 </li>
                 <li className="flex items-start">
-                  <span className="text-primary mr-3">✓</span>
+                  <span className="text-[var(--primary)] mr-3">✓</span>
                   Need-to-know access controls
                 </li>
                 <li className="flex items-start">
-                  <span className="text-primary mr-3">✓</span>
+                  <span className="text-[var(--primary)] mr-3">✓</span>
                   Security training and awareness
                 </li>
                 <li className="flex items-start">
-                  <span className="text-primary mr-3">✓</span>
+                  <span className="text-[var(--primary)] mr-3">✓</span>
                   Incident reporting and investigation
                 </li>
               </ul>
             </div>
-            <div className="bg-[rgba(var(--primary),0.1)] p-8 rounded-xl border border-primary/20">
-              <h3 className="text-xl font-semibold mb-4 text-primary">
+            <div className="bg-[rgba(var(--primary),0.1)] p-8 rounded-xl border border-[var(--primary)]/20">
+              <h3 className="text-xl font-semibold mb-4 text-[var(--primary)]">
                 Clearance Levels
               </h3>
               <div className="space-y-4">
                 <div className="flex justify-between items-center">
-                  <span className="text-gray">Confidential</span>
+                  <span className="text-[var(--gray)]">Confidential</span>
                   <span className="text-yellow-400 font-semibold">Planned</span>
                 </div>
                 <div className="flex justify-between items-center">
-                  <span className="text-gray">Secret</span>
+                  <span className="text-[var(--gray)]">Secret</span>
                   <span className="text-yellow-400 font-semibold">Planned</span>
                 </div>
                 <div className="flex justify-between items-center">
-                  <span className="text-gray">Top Secret</span>
+                  <span className="text-[var(--gray)]">Top Secret</span>
                   <span className="text-yellow-400 font-semibold">Planned</span>
                 </div>
                 <div className="flex justify-between items-center">
-                  <span className="text-gray">SCI</span>
+                  <span className="text-[var(--gray)]">SCI</span>
                   <span className="text-yellow-400 font-semibold">Planned</span>
                 </div>
               </div>
@@ -89,7 +89,7 @@ export default function SecurityClearancePage(): React.ReactElement {
       {/* Clearance Process */}
       <section className="px-[5%] py-16 bg-[linear-gradient(180deg,rgba(var(--primary),0.05),transparent)]">
         <div className="max-w-[1400px] mx-auto">
-          <h2 className="text-3xl font-bold mb-12 text-center text-primary">
+          <h2 className="text-3xl font-bold mb-12 text-center text-[var(--primary)]">
             Security Clearance Process
           </h2>
           <div className="grid md:grid-cols-4 gap-6">
@@ -121,22 +121,22 @@ export default function SecurityClearancePage(): React.ReactElement {
             ].map((step, index) => (
               <div
                 key={index}
-                className="bg-[rgba(15,23,42,0.8)] backdrop-blur p-6 rounded-xl border border-primary/20 hover:border-primary/30 transition-all duration-300"
+                className="bg-[rgba(15,23,42,0.8)] backdrop-blur p-6 rounded-xl border border-[var(--primary)]/20 hover:border-[var(--primary)]/30 transition-all duration-300"
               >
                 <div className="text-center mb-4">
-                  <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center text-white font-bold text-lg mx-auto mb-3">
+                  <div className="w-12 h-12 bg-[var(--primary)] rounded-full flex items-center justify-center text-white font-bold text-lg mx-auto mb-3">
                     {index + 1}
                   </div>
-                  <h3 className="text-lg font-semibold text-primary">
+                  <h3 className="text-lg font-semibold text-[var(--primary)]">
                     {step.title}
                   </h3>
                 </div>
-                <p className="text-gray text-sm mb-4 text-center">
+                <p className="text-[var(--gray)] text-sm mb-4 text-center">
                   {step.description}
                 </p>
                 <div className="text-center">
-                  <span className="text-xs text-gray">Duration</span>
-                  <div className="text-primary text-sm font-semibold">
+                  <span className="text-xs text-[var(--gray)]">Duration</span>
+                  <div className="text-[var(--primary)] text-sm font-semibold">
                     {step.duration}
                   </div>
                 </div>
@@ -149,12 +149,12 @@ export default function SecurityClearancePage(): React.ReactElement {
       {/* Security Measures */}
       <section className="px-[5%] py-16">
         <div className="max-w-[1400px] mx-auto">
-          <h2 className="text-3xl font-bold mb-12 text-center text-primary">
+          <h2 className="text-3xl font-bold mb-12 text-center text-[var(--primary)]">
             Security Measures & Controls
           </h2>
           <div className="grid md:grid-cols-2 gap-8">
             <div className="space-y-6">
-              <h3 className="text-xl font-semibold text-primary mb-4">
+              <h3 className="text-xl font-semibold text-[var(--primary)] mb-4">
                 Physical Security
               </h3>
               {[
@@ -165,13 +165,13 @@ export default function SecurityClearancePage(): React.ReactElement {
                 "Secure communication systems",
               ].map((measure, index) => (
                 <div key={index} className="flex items-start">
-                  <span className="text-primary mr-3 mt-1">🔒</span>
-                  <span className="text-gray">{measure}</span>
+                  <span className="text-[var(--primary)] mr-3 mt-1">🔒</span>
+                  <span className="text-[var(--gray)]">{measure}</span>
                 </div>
               ))}
             </div>
             <div className="space-y-6">
-              <h3 className="text-xl font-semibold text-primary mb-4">
+              <h3 className="text-xl font-semibold text-[var(--primary)] mb-4">
                 Information Security
               </h3>
               {[
@@ -182,8 +182,8 @@ export default function SecurityClearancePage(): React.ReactElement {
                 "Incident response procedures",
               ].map((measure, index) => (
                 <div key={index} className="flex items-start">
-                  <span className="text-primary mr-3 mt-1">🛡️</span>
-                  <span className="text-gray">{measure}</span>
+                  <span className="text-[var(--primary)] mr-3 mt-1">🛡️</span>
+                  <span className="text-[var(--gray)]">{measure}</span>
                 </div>
               ))}
             </div>
@@ -197,24 +197,24 @@ export default function SecurityClearancePage(): React.ReactElement {
           <div className="flex flex-wrap justify-center gap-6 mb-6">
             <Link
               href="/compliance"
-              className="text-primary hover:underline"
+              className="text-[var(--primary)] hover:underline"
             >
               Compliance Overview
             </Link>
             <Link
               href="/compliance/itar"
-              className="text-primary hover:underline"
+              className="text-[var(--primary)] hover:underline"
             >
               ITAR Compliance
             </Link>
             <Link
               href="/compliance/iso-27001"
-              className="text-primary hover:underline"
+              className="text-[var(--primary)] hover:underline"
             >
               ISO 27001
             </Link>
           </div>
-          <p className="text-gray text-sm">
+          <p className="text-[var(--gray)] text-sm">
             Security clearance protocols ensure personnel meet the highest
             standards for classified operations.
           </p>

@@ -20,7 +20,7 @@ export const MetricsSection: React.FC = () => {
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
             Technical Architecture
           </h2>
-          <p className="text-gray max-w-2xl mx-auto">
+          <p className="text-[var(--gray)] max-w-2xl mx-auto">
             Designed for contested environments with multi-layer resilience and
             evidence integrity.
           </p>

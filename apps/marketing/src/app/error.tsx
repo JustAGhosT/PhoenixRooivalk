@@ -17,16 +17,16 @@ export default function Error({
   }, [error]);
 
   return (
-    <div className="min-h-screen bg-darker text-white flex items-center justify-center px-6">
+    <div className="min-h-screen bg-[var(--darker)] text-white flex items-center justify-center px-6">
       <div className="max-w-md mx-auto text-center">
         <div className="mb-8">
-          <h1 className="text-6xl font-bold text-primary mb-4">
+          <h1 className="text-6xl font-bold text-[rgb(var(--primary))] mb-4">
             500
           </h1>
           <h2 className="text-2xl font-semibold text-white mb-4">
             Something went wrong!
           </h2>
-          <p className="text-gray mb-8">
+          <p className="text-[rgb(var(--gray))] mb-8">
             We encountered an unexpected error. Please try again or contact
             support if the problem persists.
           </p>
@@ -50,7 +50,7 @@ export default function Error({
 
         {process.env.NODE_ENV === "development" && (
           <details className="mt-8 text-left">
-            <summary className="cursor-pointer text-primary hover:text-accent">
+            <summary className="cursor-pointer text-[rgb(var(--primary))] hover:text-[rgb(var(--accent))]">
               Error Details (Development)
             </summary>
             <pre className="mt-4 p-4 bg-[rgba(var(--bg-surface),0.8)] rounded-lg text-xs overflow-auto">

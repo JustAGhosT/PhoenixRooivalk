@@ -15,7 +15,7 @@ export const ContactSection: React.FC = () => {
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
             Ready to Deploy SAE Level 4 Autonomous Defense?
           </h2>
-          <p className="text-gray max-w-2xl mx-auto">
+          <p className="text-[var(--gray)] max-w-2xl mx-auto">
             Join the next generation of counter-drone defense. Request
             capability demonstration or download technical whitepaper.
           </p>
@@ -84,7 +84,7 @@ export const ContactSection: React.FC = () => {
         </div>
 
         <div className="text-center mt-12">
-          <div className="bg-gradient-to-r from-primary/10 to-secondary/10 border border-primary/30 rounded-lg p-8">
+          <div className="bg-gradient-to-r from-[var(--primary)]/10 to-[var(--secondary)]/10 border border-[var(--primary)]/30 rounded-lg p-8">
             <h3 className="text-2xl font-bold text-white mb-4">
               SBIR & Government Opportunities
             </h3>

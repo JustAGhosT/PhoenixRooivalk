@@ -16,7 +16,7 @@ export const UkraineChallengeSection: React.FC = () => {
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
             The 2027 Autonomous Warfare Race
           </h2>
-          <p className="text-gray max-w-3xl mx-auto text-lg">
+          <p className="text-[var(--gray)] max-w-3xl mx-auto text-lg">
             Ukraine faces an existential challenge: outpace Russia in autonomous
             warfare by 2027 or lose their technological advantage. Current AI
             drones fail 30-40% of the time, confusing trees for tanks and
@@ -78,7 +78,7 @@ export const UkraineChallengeSection: React.FC = () => {
             style={{ borderColor: "rgba(0, 255, 136, 0.3)" }}
           >
             <h3 className="text-2xl font-bold text-white mb-4">The Stakes</h3>
-            <p className="text-gray text-lg mb-6">
+            <p className="text-[var(--gray)] text-lg mb-6">
               &quot;Ukraine&apos;s entire war strategy hinges on this race.
               They&apos;ve survived three years by being smarter, not stronger.
               If they lose the AI warfare competition, they lose their main
@@ -126,9 +126,9 @@ const SolutionCard: React.FC<{
     className="flex items-start gap-4 p-4 bg-[rgba(0,255,136,0.1)] border rounded-lg"
     style={{ borderColor: "rgba(0, 255, 136, 0.3)" }}
   >
-    <span className="text-primary text-2xl">{icon}</span>
+    <span className="text-[var(--primary)] text-2xl">{icon}</span>
     <div>
-      <div className="font-bold text-primary">{title}</div>
+      <div className="font-bold text-[var(--primary)]">{title}</div>
       <div className="text-sm text-gray-300">{description}</div>
     </div>
   </div>
