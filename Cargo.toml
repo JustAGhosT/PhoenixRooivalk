@@ -8,6 +8,7 @@ members = [
   "crates/anchor-etherlink",
   "crates/anchor-solana",
   "crates/address-validation",
+  "crates/phoenix-common",
 ]
 
 [workspace.package]

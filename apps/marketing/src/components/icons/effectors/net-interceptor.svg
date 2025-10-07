@@ -1,0 +1,10 @@
+<svg viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2">
+  <!-- Net mesh pattern -->
+  <path d="M4 4L20 4L20 20L4 20Z" />
+  <path d="M8 4L8 20" />
+  <path d="M12 4L12 20" />
+  <path d="M16 4L16 20" />
+  <path d="M4 8L20 8" />
+  <path d="M4 12L20 12" />
+  <path d="M4 16L20 16" />
+</svg>

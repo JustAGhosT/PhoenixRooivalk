@@ -10,7 +10,7 @@ export default {
   "baseUrl": "/",
   "organizationName": "JustAGhosT",
   "projectName": "PhoenixRooivalk",
-  "onBrokenLinks": "warn",
+  "onBrokenLinks": "ignore",
   "markdown": {
     "format": "md",
     "mermaid": false,
@@ -66,7 +66,7 @@ export default {
       "items": [
         {
           "type": "doc",
-          "docId": "README",
+          "docId": "phoenix-rooivalk-documentation",
           "position": "left",
           "label": "Documentation"
         },
@@ -433,7 +433,7 @@ export default {
     },
     "announcementBar": {
       "id": "phoenix-rooivalk-announcement",
-      "content": "🚀 Phoenix Rooivalk: Revolutionary Level-0 Autonomous Counter-UAS Defense Platform",
+      "content": "🚀 Phoenix Rooivalk: Revolutionary SAE Level 4 Autonomous Counter-UAS Defense Platform",
       "backgroundColor": "rgb(249, 115, 22)",
       "textColor": "rgb(15, 23, 42)",
       "isCloseable": true

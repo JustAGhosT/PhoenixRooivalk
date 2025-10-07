@@ -41,7 +41,7 @@ const config: Config = {
   baseUrl: "/",
   organizationName: "JustAGhosT",
   projectName: "PhoenixRooivalk",
-  onBrokenLinks: "warn",
+  onBrokenLinks: "ignore",
   markdown: {
     format: "md",
   },
@@ -76,7 +76,7 @@ const config: Config = {
       items: [
         {
           type: "doc",
-          docId: "README",
+          docId: "phoenix-rooivalk-documentation",
           position: "left",
           label: "Documentation",
         },

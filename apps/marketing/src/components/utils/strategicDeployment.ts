@@ -37,7 +37,7 @@ export interface DeploymentRecommendation {
 }
 
 export type DroneType =
-  | "interceptor"
+  | "effector"
   | "jammer"
   | "surveillance"
   | "shield"
@@ -103,7 +103,7 @@ export class StrategicDeploymentEngine {
             coverage: 0,
             assignedDrones: [],
             lastThreatDetected: 0,
-            recommendedDroneTypes: ["interceptor", "surveillance"],
+            recommendedDroneTypes: ["effector", "surveillance"],
           },
           {
             id: "terminal-perimeter",
@@ -147,7 +147,7 @@ export class StrategicDeploymentEngine {
             coverage: 0,
             assignedDrones: [],
             lastThreatDetected: 0,
-            recommendedDroneTypes: ["interceptor", "jammer"],
+            recommendedDroneTypes: ["effector", "jammer"],
           },
           {
             id: "perimeter-south",
@@ -160,7 +160,7 @@ export class StrategicDeploymentEngine {
             coverage: 0,
             assignedDrones: [],
             lastThreatDetected: 0,
-            recommendedDroneTypes: ["interceptor", "jammer"],
+            recommendedDroneTypes: ["effector", "jammer"],
           },
         );
         break;
@@ -178,7 +178,7 @@ export class StrategicDeploymentEngine {
             coverage: 0,
             assignedDrones: [],
             lastThreatDetected: 0,
-            recommendedDroneTypes: ["shield", "interceptor"],
+            recommendedDroneTypes: ["shield", "effector"],
           },
           {
             id: "approach-vectors",
@@ -208,7 +208,7 @@ export class StrategicDeploymentEngine {
           coverage: 0,
           assignedDrones: [],
           lastThreatDetected: 0,
-          recommendedDroneTypes: ["surveillance", "interceptor"],
+          recommendedDroneTypes: ["surveillance", "effector"],
         });
         break;
     }
@@ -430,7 +430,7 @@ export class StrategicDeploymentEngine {
     }
 
     if (zone.threatLevel > 0.7) {
-      droneTypes.push("interceptor", "jammer");
+      droneTypes.push("effector", "jammer");
     } else {
       droneTypes.push("surveillance");
     }
@@ -445,7 +445,7 @@ export class StrategicDeploymentEngine {
   ): { x: number; y: number } {
     // For now, deploy at zone center with slight offset based on drone type
     const offsets = {
-      interceptor: { x: 0, y: -20 },
+      effector: { x: 0, y: -20 },
       jammer: { x: 20, y: 0 },
       surveillance: { x: -20, y: 20 },
       shield: { x: 0, y: 0 },
@@ -467,7 +467,7 @@ export class StrategicDeploymentEngine {
     _position: { x: number; y: number },
   ): number {
     const baseEffectiveness = {
-      interceptor: 0.8,
+      effector: 0.8,
       jammer: 0.7,
       surveillance: 0.6,
       shield: 0.9,

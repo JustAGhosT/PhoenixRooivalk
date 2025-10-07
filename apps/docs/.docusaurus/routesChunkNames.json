@@ -13,250 +13,362 @@
     },
     "config": "5e9f5e1a"
   },
-  "/docs-c8f": {
+  "/docs-932": {
     "__comp": "5e95c892",
     "__context": {
       "plugin": "aba21aa0"
     }
   },
-  "/docs-b51": {
+  "/docs-7aa": {
     "__comp": "a7bd4aaa",
     "__props": "0058b4c6"
   },
-  "/docs-d9f": {
+  "/docs-6df": {
     "__comp": "a94703ab"
   },
   "/docs/-e35": {
     "__comp": "17896441",
     "content": "23374ca6"
   },
-  "/docs/business/business-model-fc2": {
+  "/docs/business/budget-timeline-templates-9d7": {
     "__comp": "17896441",
-    "content": "649e8ab2"
+    "content": "670d5cf7"
   },
-  "/docs/business/Competitive_Analysis-a6c": {
+  "/docs/business/business-model-113": {
     "__comp": "17896441",
-    "content": "9a732008"
+    "content": "47307d0f"
   },
-  "/docs/business/Emerging_Trends-511": {
+  "/docs/business/commercial-proposal-template-576": {
     "__comp": "17896441",
-    "content": "99f2cf14"
+    "content": "f6fe8423"
   },
-  "/docs/business/Market_Analysis-484": {
+  "/docs/business/competitive-analysis-b17": {
     "__comp": "17896441",
-    "content": "9c4c1f3d"
+    "content": "c6f401cf"
   },
-  "/docs/business/ROI_Analysis-636": {
+  "/docs/business/competitive-differentiation-guide-3f8": {
     "__comp": "17896441",
-    "content": "e542afd5"
+    "content": "2285715b"
   },
-  "/docs/business/Use_Cases-956": {
+  "/docs/business/discovery-questionnaire-d0e": {
     "__comp": "17896441",
-    "content": "06fb56e8"
+    "content": "78631c75"
   },
-  "/docs/executive/executive-summary-41b": {
+  "/docs/business/dod-proposal-template-3de": {
     "__comp": "17896441",
-    "content": "5347ec1a"
+    "content": "e57a7563"
   },
-  "/docs/executive/Global_Strategy-05f": {
+  "/docs/business/emerging-trends-f95": {
     "__comp": "17896441",
-    "content": "1cad8231"
+    "content": "e64c6575"
   },
-  "/docs/executive/key-questions-cheatsheet-888": {
+  "/docs/business/investment-teaser-d89": {
     "__comp": "17896441",
-    "content": "1d69d61e"
+    "content": "a909b1f1"
   },
-  "/docs/executive/phoenix-rooivalk-pitch-deck-33d": {
+  "/docs/business/market-analysis-414": {
     "__comp": "17896441",
-    "content": "98d15428"
+    "content": "5d3c12f0"
   },
-  "/docs/executive/phoenix-rooivalk-technical-whitepaper-1e6": {
+  "/docs/business/presentation-video-script-2c0": {
     "__comp": "17896441",
-    "content": "010e8a4b"
+    "content": "e8d65f4e"
   },
-  "/docs/executive/Presentation_Materials-548": {
+  "/docs/business/roi-analysis-cb3": {
     "__comp": "17896441",
-    "content": "65fe5c38"
+    "content": "a284c843"
   },
-  "/docs/executive/Strategic_Recommendations-db1": {
+  "/docs/business/technical-requirements-checklist-de0": {
     "__comp": "17896441",
-    "content": "dd2ff445"
+    "content": "8552eb8e"
   },
-  "/docs/executive/system-overview-b1b": {
+  "/docs/business/traction-metrics-ab5": {
     "__comp": "17896441",
-    "content": "a0bd3604"
+    "content": "795d5a07"
   },
-  "/docs/executive/system-overview-detailed-a78": {
+  "/docs/business/use-cases-0c7": {
     "__comp": "17896441",
-    "content": "ab45e36a"
+    "content": "ff649048"
   },
-  "/docs/executive/Team_Status-d97": {
+  "/docs/design/icon-requirements-fc9": {
     "__comp": "17896441",
-    "content": "e43146b3"
+    "content": "e6019612"
   },
-  "/docs/legal/Compliance_Framework-158": {
+  "/docs/executive/executive-summary-2f6": {
     "__comp": "17896441",
-    "content": "c6506ae2"
+    "content": "62546a0e"
   },
-  "/docs/legal/Legal_Framework-a8d": {
+  "/docs/executive/global-strategy-e2c": {
     "__comp": "17896441",
-    "content": "540ea4d5"
+    "content": "d41d8f28"
   },
-  "/docs/operations/deployment/Deployment_Guide-4f3": {
+  "/docs/executive/key-questions-cheatsheet-283": {
     "__comp": "17896441",
-    "content": "a36964ad"
+    "content": "9f14b8b1"
   },
-  "/docs/operations/implementation-plan-3da": {
+  "/docs/executive/phoenix-rooivalk-litepaper-9bb": {
     "__comp": "17896441",
-    "content": "9b8aea46"
+    "content": "012665ac"
   },
-  "/docs/operations/maintenance/Maintenance_Procedures-499": {
+  "/docs/executive/phoenix-rooivalk-pitch-deck-418": {
     "__comp": "17896441",
-    "content": "aff75fca"
+    "content": "c94f1efd"
   },
-  "/docs/operations/Manufacturing_Strategy-e46": {
+  "/docs/executive/phoenix-rooivalk-technical-whitepaper-e3c": {
     "__comp": "17896441",
-    "content": "d3467396"
+    "content": "92f75c90"
   },
-  "/docs/operations/monitoring/Operations_Log_Template-967": {
+  "/docs/executive/presentation-materials-805": {
     "__comp": "17896441",
-    "content": "d00b3b13"
+    "content": "1f96bcf3"
   },
-  "/docs/operations/monitoring/Troubleshooting_Guide-fbe": {
+  "/docs/executive/strategic-recommendations-bcb": {
     "__comp": "17896441",
-    "content": "1542e5c4"
+    "content": "c5af432c"
   },
-  "/docs/operations/Operational_Resilience-fb9": {
+  "/docs/executive/system-overview-327": {
     "__comp": "17896441",
-    "content": "e44355c8"
+    "content": "8e657c30"
   },
-  "/docs/operations/Operations_Modes-387": {
+  "/docs/executive/system-overview-detailed-fcf": {
     "__comp": "17896441",
-    "content": "6ec8efe0"
+    "content": "a0fe59c4"
   },
-  "/docs/operations/operations-manual-0d5": {
+  "/docs/executive/team-status-4d0": {
     "__comp": "17896441",
-    "content": "9bd1fffd"
+    "content": "7d57fc2e"
   },
-  "/docs/operations/training/Training_Materials-835": {
+  "/docs/legal/compliance-framework-be7": {
     "__comp": "17896441",
-    "content": "be9be82a"
+    "content": "c49d044e"
   },
-  "/docs/technical/ai-benefits-fd9": {
+  "/docs/legal/legal-framework-666": {
     "__comp": "17896441",
-    "content": "fdc7b9db"
+    "content": "7a90e420"
   },
-  "/docs/technical/architecture/Architecture_Decision_Records-be1": {
+  "/docs/operations/customer-onboarding-guide-156": {
     "__comp": "17896441",
-    "content": "ad358c63"
+    "content": "1b1c0d66"
   },
-  "/docs/technical/architecture/technical-architecture-519": {
+  "/docs/operations/deployment/deployment-guide-951": {
     "__comp": "17896441",
-    "content": "861b020e"
+    "content": "db33fe00"
   },
-  "/docs/technical/Blockchain_Integration-58b": {
+  "/docs/operations/implementation-plan-5de": {
     "__comp": "17896441",
-    "content": "f49cf5f4"
+    "content": "528a59a9"
   },
-  "/docs/technical/blockchain/Blockchain_Architecture-0a7": {
+  "/docs/operations/maintenance/maintenance-procedures-7cf": {
     "__comp": "17896441",
-    "content": "a1b3e9fe"
+    "content": "32942358"
   },
-  "/docs/technical/blockchain/Blockchain_Architecture_Detailed-84d": {
+  "/docs/operations/manufacturing-strategy-b3a": {
     "__comp": "17896441",
-    "content": "f5abdf08"
+    "content": "bd2d1e9a"
   },
-  "/docs/technical/blockchain/Blockchain_Security_Compliance-98a": {
+  "/docs/operations/monitoring/operations-log-template-e64": {
     "__comp": "17896441",
-    "content": "2c18f280"
+    "content": "63fceea1"
   },
-  "/docs/technical/blockchain/blockchain-benefits-9b4": {
+  "/docs/operations/monitoring/troubleshooting-guide-2d9": {
     "__comp": "17896441",
-    "content": "afd89f7d"
+    "content": "ba00cc71"
   },
-  "/docs/technical/blockchain/blockchain-implementation-guide-3da": {
+  "/docs/operations/operational-resilience-d33": {
     "__comp": "17896441",
-    "content": "916c15a9"
+    "content": "53ad90fa"
   },
-  "/docs/technical/blockchain/blockchain-implementation-phases-9a5": {
+  "/docs/operations/operations-manual-224": {
     "__comp": "17896441",
-    "content": "01b28ab9"
+    "content": "0a4980e1"
   },
-  "/docs/technical/blockchain/blockchain-protocols-analysis-fa6": {
+  "/docs/operations/operations-modes-df5": {
     "__comp": "17896441",
-    "content": "169acc8f"
+    "content": "dd4147de"
   },
-  "/docs/technical/blockchain/implementation-roadmap-609": {
+  "/docs/operations/training/training-materials-ed9": {
     "__comp": "17896441",
-    "content": "9853f98e"
+    "content": "4ea537d3"
   },
-  "/docs/technical/Decentralized_AI-074": {
+  "/docs/research/experimental-counter-drone-effectors-transform-warfare-2c2": {
     "__comp": "17896441",
-    "content": "38812d73"
+    "content": "23d3a764"
   },
-  "/docs/technical/Defense_Integration-e46": {
+  "/docs/research/inst-airframe-design-and-aerodynamics-modified-384": {
     "__comp": "17896441",
-    "content": "dd603234"
+    "content": "7d5eec97"
   },
-  "/docs/technical/Defense_Technology_Deep_Dive-42f": {
+  "/docs/research/inst-avionics-autonomy-and-navigation-modified-3d4": {
     "__comp": "17896441",
-    "content": "ef556d66"
+    "content": "9b57f8b6"
   },
-  "/docs/technical/glossary-f91": {
+  "/docs/research/inst-business-and-economics-modified-cdd": {
     "__comp": "17896441",
-    "content": "d53d0575"
+    "content": "ffc9a25b"
   },
-  "/docs/technical/Hardware_Foundation-b3b": {
+  "/docs/research/inst-combined-prompt-modified-bd0": {
     "__comp": "17896441",
-    "content": "1c607805"
+    "content": "46f4b103"
   },
-  "/docs/technical/integration/API_Documentation-5cd": {
+  "/docs/research/inst-communications-and-ground-segment-9e2": {
     "__comp": "17896441",
-    "content": "d0d439af"
+    "content": "de446305"
   },
-  "/docs/technical/integration/integration-guide-1bf": {
+  "/docs/research/inst-cross-cutting-concerns-modified-679": {
     "__comp": "17896441",
-    "content": "ab91cdaf"
+    "content": "3caf3e76"
   },
-  "/docs/technical/mechanical/Mechanical_Design_ADRs-1d1": {
+  "/docs/research/inst-forward-looking-modified-0c8": {
     "__comp": "17896441",
-    "content": "96b2efbc"
+    "content": "64adf5af"
   },
-  "/docs/technical/mechanical/Mechanical_Design_Records-1bb": {
+  "/docs/research/inst-maintenance-sustainment-manufacturing-payload-environment-and-operations-modified-214": {
     "__comp": "17896441",
-    "content": "e879dfac"
+    "content": "e09e1e30"
   },
-  "/docs/technical/performance/performance-specifications-506": {
+  "/docs/research/inst-motor-specification-and-performance-modified-1e0": {
     "__comp": "17896441",
-    "content": "a0b5aea5"
+    "content": "cb049c36"
   },
-  "/docs/technical/reusable-systems-architecture-def": {
+  "/docs/research/inst-power-electronics-and-esc-caa": {
     "__comp": "17896441",
-    "content": "29bf46e2"
+    "content": "3e1445fa"
   },
-  "/docs/technical/System_Architecture-e5d": {
+  "/docs/research/inst-power-storage-and-management-6a3": {
     "__comp": "17896441",
-    "content": "e1f280c3"
+    "content": "94a0438b"
   },
-  "/docs/technical/Technical_Architecture-13e": {
+  "/docs/research/inst-propulsion-systems-complete-f74": {
     "__comp": "17896441",
-    "content": "8bf6e605"
+    "content": "9a85f9a9"
   },
-  "/docs/technical/Technical_Architecture_Synthesis-399": {
+  "/docs/research/inst-safety-reliability-certification-regulatory-standards-modified-844": {
     "__comp": "17896441",
-    "content": "6acada6f"
+    "content": "d84dc591"
   },
-  "/docs/technical/technical-analysis-385": {
+  "/docs/research/resp-airframe-design-and-aerodynamics-claude-af0": {
     "__comp": "17896441",
-    "content": "a8bdbfae"
+    "content": "08c01e96"
   },
-  "/docs/technical/ThreatSimulator_Enhancements-fc1": {
+  "/docs/research/sensor-technologies-comprehensive-analysis-977": {
     "__comp": "17896441",
-    "content": "46e657d0"
+    "content": "271f3d98"
   },
-  "/docs/visual-elements/System_Architecture_Diagrams-287": {
+  "/docs/technical/ai-benefits-fdd": {
     "__comp": "17896441",
-    "content": "7c6eaa26"
+    "content": "5a238265"
+  },
+  "/docs/technical/architecture/architecture-decision-records-53c": {
+    "__comp": "17896441",
+    "content": "eabd6afa"
+  },
+  "/docs/technical/architecture/technical-architecture-79f": {
+    "__comp": "17896441",
+    "content": "7966a064"
+  },
+  "/docs/technical/blockchain-integration-729": {
+    "__comp": "17896441",
+    "content": "392b83c6"
+  },
+  "/docs/technical/blockchain/blockchain-architecture-0ac": {
+    "__comp": "17896441",
+    "content": "fa832865"
+  },
+  "/docs/technical/blockchain/blockchain-architecture-detailed-a18": {
+    "__comp": "17896441",
+    "content": "ef498574"
+  },
+  "/docs/technical/blockchain/blockchain-benefits-603": {
+    "__comp": "17896441",
+    "content": "0ad1d5b7"
+  },
+  "/docs/technical/blockchain/blockchain-implementation-guide-d7e": {
+    "__comp": "17896441",
+    "content": "e52859fe"
+  },
+  "/docs/technical/blockchain/blockchain-implementation-phases-c59": {
+    "__comp": "17896441",
+    "content": "a891c3b9"
+  },
+  "/docs/technical/blockchain/blockchain-protocols-analysis-96d": {
+    "__comp": "17896441",
+    "content": "90bcda7d"
+  },
+  "/docs/technical/blockchain/blockchain-security-compliance-882": {
+    "__comp": "17896441",
+    "content": "6a046dd4"
+  },
+  "/docs/technical/blockchain/implementation-roadmap-bea": {
+    "__comp": "17896441",
+    "content": "f5f65a5b"
+  },
+  "/docs/technical/decentralized-ai-875": {
+    "__comp": "17896441",
+    "content": "72408706"
+  },
+  "/docs/technical/defense-integration-844": {
+    "__comp": "17896441",
+    "content": "e6af9321"
+  },
+  "/docs/technical/defense-technology-deep-dive-5d7": {
+    "__comp": "17896441",
+    "content": "705d8008"
+  },
+  "/docs/technical/glossary-307": {
+    "__comp": "17896441",
+    "content": "4be4b91d"
+  },
+  "/docs/technical/hardware-foundation-63b": {
+    "__comp": "17896441",
+    "content": "4b9a98f2"
+  },
+  "/docs/technical/integration/api-documentation-0c6": {
+    "__comp": "17896441",
+    "content": "6727a04a"
+  },
+  "/docs/technical/integration/integration-guide-642": {
+    "__comp": "17896441",
+    "content": "0636f813"
+  },
+  "/docs/technical/mechanical/mechanical-design-adrs-53c": {
+    "__comp": "17896441",
+    "content": "6e0b777f"
+  },
+  "/docs/technical/mechanical/mechanical-design-records-8ec": {
+    "__comp": "17896441",
+    "content": "1ff4ecb4"
+  },
+  "/docs/technical/performance/performance-specifications-466": {
+    "__comp": "17896441",
+    "content": "3cc55783"
+  },
+  "/docs/technical/reusable-systems-architecture-eae": {
+    "__comp": "17896441",
+    "content": "2c46797c"
+  },
+  "/docs/technical/system-architecture-c68": {
+    "__comp": "17896441",
+    "content": "9b27b406"
+  },
+  "/docs/technical/technical-analysis-021": {
+    "__comp": "17896441",
+    "content": "24f8fced"
+  },
+  "/docs/technical/technical-architecture-1a1": {
+    "__comp": "17896441",
+    "content": "8eea5a4c"
+  },
+  "/docs/technical/technical-architecture-synthesis-12b": {
+    "__comp": "17896441",
+    "content": "7ff84c7b"
+  },
+  "/docs/technical/threatsimulator-enhancements-b56": {
+    "__comp": "17896441",
+    "content": "fb30c09f"
+  },
+  "/docs/visual-elements/system-architecture-diagrams-cb0": {
+    "__comp": "17896441",
+    "content": "5e032dff"
   },
   "/-e5f": {
     "__comp": "1df93b7f",

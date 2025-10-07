@@ -84,6 +84,55 @@ Key interconnections:
 - Cross-chain validation ensures military-grade reliability
 - Address validation secures all blockchain interactions
 $END$
+
+# main-overview
+## Development Guidelines
+- Only modify code directly relevant to the specific request. Avoid changing unrelated functionality.
+- Never replace code with placeholders like `# ... rest of the processing ...`. Always include complete code.
+- Break problems into smaller steps. Think through each step separately before implementing.
+- Always provide a complete PLAN with REASONING based on evidence from code and logs before making changes.
+- Explain your OBSERVATIONS clearly, then provide REASONING to identify the exact issue. Add console logs when needed to gather more information.
+The Phoenix-Rooivalk system implements a layered military defense architecture with three core pillars:
+## Counter-UAS Defense Core (Importance: 95)
+Located in `apps/api` and `crates/evidence`
+- Modular threat detection system with RKV components:
+  - RKV-M: Aerial VTOL mothership coordination
+  - RKV-I: Deployable mini interceptors
+  - RKV-G: Ground support rover integration
+  - RKV-C2: Command and control data plane
+## Blockchain Evidence System (Importance: 90)
+Located in `crates/anchor-etherlink` and `crates/anchor-solana`
+- Dual-chain evidence anchoring
+- Military-grade cryptographic proof generation
+- Tamper-proof audit trails
+- Federated learning integration
+- Autonomous swarm coordination protocols
+## Threat Response Engine (Importance: 85)
+Located in `apps/keeper`
+- Specialized threat categorization:
+  ```
+  drone: kinetic countermeasures
+  radar: electronic warfare
+  stealth: laser-based detection
+  swarm: distributed response
+  heavy: laser neutralization
+  ```
+- Non-destructive neutralization systems
+- Geofenced operation boundaries
+- Do-not-engage zone enforcement
+## Evidence Management Pipeline (Importance: 80)
+Located in `crates/evidence`
+- Cryptographic chain of custody
+- Multi-chain evidence anchoring
+- Military-grade address validation
+- Engagement proof verification
+- Automated compliance logging
+The system maintains strict operational boundaries through:
+- Mandatory geofencing
+- Fail-safe return protocols
+- Export control compliance
+- Audit logging requirements
+$END$
 # === END USER INSTRUCTIONS ===
 
 
@@ -98,51 +147,55 @@ $END$
 - Explain your OBSERVATIONS clearly, then provide REASONING to identify the exact issue. Add console logs when needed to gather more information.
 
 
-The Phoenix-Rooivalk system implements a layered military defense architecture with three core pillars:
+The Phoenix Rooivalk counter-drone defense system consists of three primary business domains:
 
-## Counter-UAS Defense Core (Importance: 95)
-Located in `apps/api` and `crates/evidence`
-- Modular threat detection system with RKV components:
-  - RKV-M: Aerial VTOL mothership coordination
-  - RKV-I: Deployable mini interceptors
-  - RKV-G: Ground support rover integration
-  - RKV-C2: Command and control data plane
+## Core Defense Operations
+- Autonomous threat detection and response system
+- Multi-layered defense architecture with edge computing capabilities
+- Advanced formation control and tactical positioning
+- Real-time energy management and resource allocation
 
-## Blockchain Evidence System (Importance: 90)
-Located in `crates/anchor-etherlink` and `crates/anchor-solana`
-- Dual-chain evidence anchoring
-- Military-grade cryptographic proof generation
-- Tamper-proof audit trails
-- Federated learning integration
-- Autonomous swarm coordination protocols
+Key Components:
+```
+apps/marketing/src/components/utils/autoTargeting.ts
+apps/marketing/src/components/utils/responseProtocols.ts
+apps/marketing/src/components/utils/strategicDeployment.ts
+```
+Importance Score: 95
 
-## Threat Response Engine (Importance: 85)
-Located in `apps/keeper`
-- Specialized threat categorization:
-  ```
-  drone: kinetic countermeasures
-  radar: electronic warfare
-  stealth: laser-based detection
-  swarm: distributed response
-  heavy: laser neutralization
-  ```
-- Non-destructive neutralization systems
-- Geofenced operation boundaries
-- Do-not-engage zone enforcement
+## Evidence Management 
+- Blockchain-based evidence anchoring system
+- Dual-chain approach using Solana and Etherlink
+- Tamper-proof engagement logging
+- Transaction confirmation and retry mechanisms
 
-## Evidence Management Pipeline (Importance: 80)
-Located in `crates/evidence`
-- Cryptographic chain of custody
-- Multi-chain evidence anchoring
-- Military-grade address validation
-- Engagement proof verification
-- Automated compliance logging
+Key Components:
+```
+crates/evidence/src/lib.rs
+crates/anchor-solana/src/lib.rs
+crates/anchor-etherlink/src/lib.rs
+```
+Importance Score: 90
 
-The system maintains strict operational boundaries through:
-- Mandatory geofencing
-- Fail-safe return protocols
-- Export control compliance
-- Audit logging requirements
+## Simulation and Training
+- Military-grade threat simulation engine
+- Energy-based weapon systems management
+- Rules of Engagement (ROE) enforcement
+- Research and development progression system
+
+Key Components:
+```
+apps/marketing/src/components/ThreatSimulator.tsx
+apps/marketing/src/components/ROEIndicator.tsx
+apps/marketing/src/components/EnergyManagement.tsx
+```
+Importance Score: 85
+
+Domain Integration:
+- Evidence management provides audit trails for defense operations
+- Simulation system validates defense strategies before deployment
+- ROE system ensures compliance across all operations
+- Edge computing enables autonomous operation in denied environments
 
 $END$
 

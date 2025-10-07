@@ -1,10 +1,11 @@
 import * as React from "react";
-import type { GameState, Threat } from "../types/game";
+import type { GameState } from "../types/game";
 
 interface ThreatSimulatorComponentsProps {
   gameState: GameState;
   onThreatClick: (e: React.MouseEvent, threatId: string) => void;
   onThreatHover: (threatId: string | null) => void;
+  onActivateWeapon: (threatId: string | null) => void;
   getThreatAppearance: (type: string) => {
     emoji: string;
     color: string;
@@ -14,10 +15,14 @@ interface ThreatSimulatorComponentsProps {
 
 export const ThreatSimulatorComponents: React.FC<
   ThreatSimulatorComponentsProps
-> = ({ gameState, onThreatClick, onThreatHover, getThreatAppearance }) => {
-  const [hoveredThreat, setHoveredThreat] = React.useState<string | null>(
-    null,
-  );
+> = ({
+  gameState,
+  onThreatClick,
+  onActivateWeapon,
+  onThreatHover,
+  getThreatAppearance,
+}) => {
+  const [hoveredThreat, setHoveredThreat] = React.useState<string | null>(null);
 
   return (
     <div className="absolute inset-0 pointer-events-none">
@@ -31,7 +36,7 @@ export const ThreatSimulatorComponents: React.FC<
         <div className="absolute inset-16 border border-blue-400/35 rounded-full" />
         {/* Range markers */}
         <div className="absolute inset-0">
-          {[0, 45, 90, 135, 180, 225, 270, 315].map(angle => (
+          {[0, 45, 90, 135, 180, 225, 270, 315].map((angle) => (
             <div
               key={angle}
               className="absolute top-1/2 left-1/2 w-0.5 h-8 bg-blue-400/20 transform -translate-x-1/2 -translate-y-1/2"
@@ -81,7 +86,7 @@ export const ThreatSimulatorComponents: React.FC<
         </div>
       </div>
       {/* Enhanced Threats */}
-      {gameState.threats.map(threat => {
+      {gameState.threats.map((threat) => {
         const appearance = getThreatAppearance(threat.type);
         const isSelected = gameState.selectedThreats.includes(threat.id);
         const isHovered = hoveredThreat === threat.id;
@@ -118,7 +123,7 @@ export const ThreatSimulatorComponents: React.FC<
               opacity: isNeutralized ? fadeOpacity : 1,
               pointerEvents: "auto", // Enable pointer events for this element
             }}
-            onClick={e =>
+            onClick={(e) =>
               !isNeutralized && !isCrater && onThreatClick(e, threat.id)
             }
             onMouseEnter={() => {
@@ -131,14 +136,14 @@ export const ThreatSimulatorComponents: React.FC<
               setHoveredThreat(null);
               onThreatHover(null);
             }}
-            onKeyDown={e => {
+            onKeyDown={(e) => {
               if (
                 !isNeutralized &&
                 !isCrater &&
                 (e.key === "Enter" || e.key === " ")
               ) {
                 e.preventDefault();
-                onThreatClick(e as any, threat.id);
+                onThreatClick(e as unknown as React.MouseEvent, threat.id);
               }
             }}
             role="button"
@@ -146,11 +151,7 @@ export const ThreatSimulatorComponents: React.FC<
             aria-label={`Threat ${threat.type} at position ${Math.round(
               threat.x,
             )}, ${Math.round(threat.y)}${
-              isNeutralized
-                ? " (neutralized)"
-                : isCrater
-                  ? " (crater)"
-                  : ""
+              isNeutralized ? " (neutralized)" : isCrater ? " (crater)" : ""
             }`}
           >
             {/* Threat icon with enhanced styling */}
@@ -176,25 +177,28 @@ export const ThreatSimulatorComponents: React.FC<
               {isCrater ? "🕳️" : isNeutralized ? "💥" : appearance.emoji}
             </div>
             {/* Threat Trail SVG */}
-            {!isNeutralized && !isCrater && threat.trail && threat.trail.length > 1 && (
-              <svg
-                className="absolute top-0 left-0 w-full h-full pointer-events-none"
-                style={{
-                  transform: `translate(-${threat.x}px, -${threat.y}px)`,
-                  width: '800px', /* Match game area */
-                  height: '600px'
-                }}
-              >
-                <polyline
-                  points={threat.trail.map(p => `${p.x},${p.y}`).join(' ')}
-                  className="threat-trail"
-                  fill="none"
-                  stroke="rgba(255, 255, 255, 0.2)"
-                  strokeWidth="2"
-                  strokeDasharray="4 4"
-                />
-              </svg>
-            )}
+            {!isNeutralized &&
+              !isCrater &&
+              threat.trail &&
+              threat.trail.length > 1 && (
+                <svg
+                  className="absolute top-0 left-0 w-full h-full pointer-events-none"
+                  style={{
+                    transform: `translate(-${threat.x}px, -${threat.y}px)`,
+                    width: "800px" /* Match game area */,
+                    height: "600px",
+                  }}
+                >
+                  <polyline
+                    points={threat.trail.map((p) => `${p.x},${p.y}`).join(" ")}
+                    className="threat-trail"
+                    fill="none"
+                    stroke="rgba(255, 255, 255, 0.2)"
+                    strokeWidth="2"
+                    strokeDasharray="4 4"
+                  />
+                </svg>
+              )}
             {/* Priority indicator */}
             {priority !== "low" && (
               <div
@@ -237,7 +241,7 @@ export const ThreatSimulatorComponents: React.FC<
         );
       })}
       {/* Enhanced Drones */}
-      {gameState.drones.map(drone => (
+      {gameState.drones.map((drone) => (
         <div
           key={drone.id}
           className="absolute transform -translate-x-1/2 -translate-y-1/2 transition-all duration-300"
@@ -279,7 +283,7 @@ export const ThreatSimulatorComponents: React.FC<
       )}
       {/* Deployment Bays */}
       {gameState.showDeploymentZones &&
-        gameState.deploymentBays.map(bay => (
+        gameState.deploymentBays.map((bay) => (
           <div
             key={bay.id}
             className="absolute transform -translate-x-1/2 -translate-y-1/2"

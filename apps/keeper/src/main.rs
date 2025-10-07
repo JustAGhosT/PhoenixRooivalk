@@ -1,10 +1,61 @@
+use anchor_etherlink::{EtherlinkProvider, EtherlinkProviderStub};
 use axum::{routing::get, Router};
+use phoenix_evidence::anchor::AnchorProvider;
+use phoenix_keeper::{ensure_schema, run_confirmation_loop, run_job_loop, SqliteJobProvider};
 use sqlx::sqlite::SqlitePoolOptions;
 use std::time::Duration;
 use tokio::signal;
 use tracing_subscriber::{layer::SubscriberExt, util::SubscriberInitExt};
-use anchor_etherlink::EtherlinkProviderStub;
-use phoenix_keeper::{ensure_schema, run_job_loop, run_confirmation_loop, SqliteJobProvider};
+
+/// Creates the appropriate Etherlink provider based on environment configuration
+fn create_etherlink_provider() -> Box<dyn AnchorProvider + Send + Sync> {
+    let use_stub = match std::env::var("KEEPER_USE_STUB") {
+        Ok(val) => {
+            match val.trim().to_lowercase().as_str() {
+                "true" | "1" | "yes" | "on" => true,
+                "false" | "0" | "no" | "off" => false,
+                other => {
+                    // Emit warning for unrecognized values
+                    tracing::warn!("Invalid KEEPER_USE_STUB value '{}'. Expected true/false/1/0/yes/no/on/off. Using real provider for safety.", other);
+                    false // Default to false (real provider) for unrecognized values
+                }
+            }
+        }
+        Err(_) => false, // Default to false (real provider) if env var is missing or unparsable
+    };
+
+    if use_stub {
+        tracing::info!("Using EtherlinkProviderStub for development/testing");
+        Box::new(EtherlinkProviderStub)
+    } else {
+        tracing::info!("Using real EtherlinkProvider for production");
+
+        let endpoint = std::env::var("ETHERLINK_ENDPOINT")
+            .unwrap_or_else(|_| "https://node.etherlink.com".to_string());
+        let network = std::env::var("ETHERLINK_NETWORK").unwrap_or_else(|_| "mainnet".to_string());
+        let private_key = std::env::var("ETHERLINK_PRIVATE_KEY").ok();
+
+        match EtherlinkProvider::new(endpoint.clone(), network.clone(), private_key) {
+            Ok(provider) => {
+                tracing::info!(
+                    endpoint = %endpoint,
+                    network = %network,
+                    "Successfully created EtherlinkProvider"
+                );
+                Box::new(provider)
+            }
+            Err(e) => {
+                tracing::error!(
+                    endpoint = %endpoint,
+                    network = %network,
+                    error = %e,
+                    "Failed to create EtherlinkProvider"
+                );
+                std::process::exit(1);
+            }
+        }
+    }
+}
 
 #[tokio::main]
 async fn main() {
@@ -20,10 +71,19 @@ async fn main() {
     let http = tokio::spawn(async move {
         let addr = "0.0.0.0:8081";
         tracing::info!(%addr, "keeper http starting");
-        axum::Server::bind(&addr.parse().unwrap())
-            .serve(app.into_make_service())
-            .await
-            .unwrap();
+
+        let listener = match tokio::net::TcpListener::bind(addr).await {
+            Ok(listener) => listener,
+            Err(_e) => {
+                tracing::error!(address=%addr, error=%_e, "Failed to bind HTTP server");
+                std::process::exit(1);
+            }
+        };
+
+        if let Err(_e) = axum::serve(listener, app.into_make_service()).await {
+            tracing::error!(error=%_e, "HTTP server runtime error");
+            std::process::exit(1);
+        }
     });
 
     // Job runner
@@ -34,27 +94,36 @@ async fn main() {
             .map(Duration::from_millis)
             .unwrap_or_else(|| Duration::from_secs(5));
 
-        let db_url = std::env::var("KEEPER_DB_URL").unwrap_or_else(|_| "sqlite://blockchain_outbox.sqlite3".to_string());
-        match SqlitePoolOptions::new().max_connections(5).connect(&db_url).await {
+        let db_url = std::env::var("KEEPER_DB_URL")
+            .unwrap_or_else(|_| "sqlite://blockchain_outbox.sqlite3".to_string());
+        match SqlitePoolOptions::new()
+            .max_connections(5)
+            .connect(&db_url)
+            .await
+        {
             Ok(pool) => {
-                if let Err(e) = ensure_schema(&pool).await { tracing::error!(error=%e, "schema init failed"); }
-                
+                if let Err(_e) = ensure_schema(&pool).await {
+                    tracing::error!(error=%_e, "schema init failed");
+                    tracing::error!("Exiting due to schema initialization failure");
+                    std::process::exit(1);
+                }
+
                 let mut jp = SqliteJobProvider::new(pool.clone());
-                let anchor = EtherlinkProviderStub;
-                
+                let anchor = create_etherlink_provider();
+
                 // Start job processing loop
-                let job_pool = pool.clone();
-                let job_anchor = anchor.clone();
+                let job_anchor = anchor;
                 let job_handle = tokio::spawn(async move {
-                    run_job_loop(&mut jp, &job_anchor, poll_interval).await;
+                    run_job_loop(&mut jp, job_anchor.as_ref(), poll_interval).await;
                 });
-                
+
                 // Start confirmation polling loop
                 let confirm_interval = Duration::from_secs(30); // Check confirmations every 30s
+                let confirm_anchor = create_etherlink_provider();
                 let confirm_handle = tokio::spawn(async move {
-                    run_confirmation_loop(&pool, &anchor, confirm_interval).await;
+                    run_confirmation_loop(&pool, confirm_anchor.as_ref(), confirm_interval).await;
                 });
-                
+
                 // Wait for either loop to complete (they shouldn't)
                 tokio::select! {
                     _ = job_handle => {

@@ -127,7 +127,7 @@ export class FormationManager {
         score: 0.6,
         advantages: ["defensive perimeter"],
         disadvantages: ["overwhelmed by numbers"],
-        modifications: ["switch to wedge", "add interceptors"],
+        modifications: ["switch to wedge", "add effectors"],
       },
       "line-stealth": {
         score: 0.7,

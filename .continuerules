@@ -1,0 +1,46 @@
+# === USER INSTRUCTIONS ===
+# Main Overview - Simulation/Gameplay System
+**This document describes a simulation/threat-model for testing and gameplay purposes only. The PhoenixRooivalk is a counter-drone defense system simulator, not an actual military platform.**
+
+The PhoenixRooivalk counter-drone defense system simulator consists of four major business components for gameplay balance and simulation priority.
+
+## Simulation Components
+- Multi-layered threat detection using simulated RF, acoustic and optical signatures
+- Simulated response system with representative 120-195ms engagement time
+- Edge-based decision making for simulated GPS-denied environments
+- Simulated drone swarm coordination protocols
+- Representative rules of engagement for gameplay purposes
+- Simulated dual-chain (Solana + EtherLink) evidence anchoring
+- Cryptographic proof generation for simulated threat engagements
+- Representative audit trail for accountability in gameplay scenarios
+- Chain-agnostic transaction verification simulation
+- Evidence job lifecycle management for gameplay and demonstration
+- Simulated energy budgeting across weapon systems
+- Formation control for simulated defensive drone swarms
+- Specialized drone type coordination in gameplay scenarios
+- Mission-specific deployment zone generation for simulation purposes
+- Progressive research and technology unlock system for player progression
+- Zone-based threat prioritization algorithms for gameplay balance
+- Multi-factor effectiveness calculation in simulated environments
+- Resource-aware deployment decisions for gameplay strategy
+- Formation-specific behavior patterns for enhanced simulation
+- Threat wave generation and progression for gameplay challenge
+## Simulation Architecture & Performance
+
+The simulator implements a modular architecture allowing flexible deployment scaling based on simulated threat levels. Core components communicate through an event-driven system targeting sub-200ms response times in simulated contested environments.
+
+## Simulated Safety & Compliance
+
+Simulated compliance features include geofencing, fail-safe return-to-launch (RTL) protocols, and mandatory civilian protection zones. All simulated engagements are recorded with blockchain-based evidence anchoring for gameplay accountability and mission debriefing.
+
+## Verification & Performance Notes
+
+**Simulation Context:** All performance metrics, response times, and system capabilities described in this document are simulated values designed for gameplay balance and entertainment purposes only.
+
+**Verification Expectations:** 
+- Performance claims represent simulated targets within the game environment
+- Response times and system capabilities are not validated hardware benchmarks
+- Reviewers should evaluate features based on gameplay experience and simulation fidelity
+- No real-world defense system capabilities are implied or represented
+# === END USER INSTRUCTIONS ===
+```

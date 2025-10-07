@@ -1,0 +1,6 @@
+<svg viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2">
+  <!-- Triangle base -->
+  <path d="M12 4L20 18L4 18Z" />
+  <!-- Shield symbol inside -->
+  <path d="M12 8L8 12L12 16L16 12Z" />
+</svg>

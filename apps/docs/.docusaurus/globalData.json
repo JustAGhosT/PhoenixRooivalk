@@ -8,36 +8,85 @@
           "label": "Next",
           "isLast": true,
           "path": "/docs",
-          "mainDocId": "README",
+          "mainDocId": "phoenix-rooivalk-documentation",
           "docs": [
+            {
+              "id": "business/budget-timeline-templates",
+              "path": "/docs/business/budget-timeline-templates",
+              "sidebar": "docs"
+            },
             {
               "id": "business/business-model",
               "path": "/docs/business/business-model",
               "sidebar": "docs"
             },
             {
-              "id": "business/Competitive_Analysis",
-              "path": "/docs/business/Competitive_Analysis",
+              "id": "business/commercial-proposal-template",
+              "path": "/docs/business/commercial-proposal-template",
               "sidebar": "docs"
             },
             {
-              "id": "business/Emerging_Trends",
-              "path": "/docs/business/Emerging_Trends",
+              "id": "business/competitive-analysis",
+              "path": "/docs/business/competitive-analysis",
               "sidebar": "docs"
             },
             {
-              "id": "business/Market_Analysis",
-              "path": "/docs/business/Market_Analysis",
+              "id": "business/competitive-differentiation-guide",
+              "path": "/docs/business/competitive-differentiation-guide",
               "sidebar": "docs"
             },
             {
-              "id": "business/ROI_Analysis",
-              "path": "/docs/business/ROI_Analysis",
+              "id": "business/discovery-questionnaire",
+              "path": "/docs/business/discovery-questionnaire",
               "sidebar": "docs"
             },
             {
-              "id": "business/Use_Cases",
-              "path": "/docs/business/Use_Cases",
+              "id": "business/dod-proposal-template",
+              "path": "/docs/business/dod-proposal-template",
+              "sidebar": "docs"
+            },
+            {
+              "id": "business/emerging-trends",
+              "path": "/docs/business/emerging-trends",
+              "sidebar": "docs"
+            },
+            {
+              "id": "business/investment-teaser",
+              "path": "/docs/business/investment-teaser"
+            },
+            {
+              "id": "business/market-analysis",
+              "path": "/docs/business/market-analysis",
+              "sidebar": "docs"
+            },
+            {
+              "id": "business/presentation-video-script",
+              "path": "/docs/business/presentation-video-script",
+              "sidebar": "docs"
+            },
+            {
+              "id": "business/roi-analysis",
+              "path": "/docs/business/roi-analysis",
+              "sidebar": "docs"
+            },
+            {
+              "id": "business/technical-requirements-checklist",
+              "path": "/docs/business/technical-requirements-checklist",
+              "sidebar": "docs"
+            },
+            {
+              "id": "business/traction-metrics",
+              "path": "/docs/business/traction-metrics",
+              "sidebar": "docs"
+            },
+            {
+              "id": "business/use-cases",
+              "path": "/docs/business/use-cases",
+              "sidebar": "docs"
+            },
+            {
+              "id": "design/icon-requirements",
+              "path": "/docs/design/icon-requirements",
               "sidebar": "docs"
             },
             {
@@ -46,8 +95,8 @@
               "sidebar": "docs"
             },
             {
-              "id": "executive/Global_Strategy",
-              "path": "/docs/executive/Global_Strategy",
+              "id": "executive/global-strategy",
+              "path": "/docs/executive/global-strategy",
               "sidebar": "docs"
             },
             {
@@ -56,49 +105,63 @@
               "sidebar": "docs"
             },
             {
-              "id": "executive/phoenix-rooivalk-pitch-deck",
-              "path": "/docs/executive/phoenix-rooivalk-pitch-deck"
-            },
-            {
-              "id": "executive/phoenix-rooivalk-technical-whitepaper",
-              "path": "/docs/executive/phoenix-rooivalk-technical-whitepaper"
-            },
-            {
-              "id": "executive/Presentation_Materials",
-              "path": "/docs/executive/Presentation_Materials",
+              "id": "executive/phoenix-rooivalk-litepaper",
+              "path": "/docs/executive/phoenix-rooivalk-litepaper",
               "sidebar": "docs"
             },
             {
-              "id": "executive/Strategic_Recommendations",
-              "path": "/docs/executive/Strategic_Recommendations",
+              "id": "executive/phoenix-rooivalk-pitch-deck",
+              "path": "/docs/executive/phoenix-rooivalk-pitch-deck",
+              "sidebar": "docs"
+            },
+            {
+              "id": "executive/phoenix-rooivalk-technical-whitepaper",
+              "path": "/docs/executive/phoenix-rooivalk-technical-whitepaper",
+              "sidebar": "docs"
+            },
+            {
+              "id": "executive/presentation-materials",
+              "path": "/docs/executive/presentation-materials",
+              "sidebar": "docs"
+            },
+            {
+              "id": "executive/strategic-recommendations",
+              "path": "/docs/executive/strategic-recommendations",
               "sidebar": "docs"
             },
             {
               "id": "executive/system-overview",
-              "path": "/docs/executive/system-overview"
+              "path": "/docs/executive/system-overview",
+              "sidebar": "docs"
             },
             {
               "id": "executive/system-overview-detailed",
-              "path": "/docs/executive/system-overview-detailed"
-            },
-            {
-              "id": "executive/Team_Status",
-              "path": "/docs/executive/Team_Status",
+              "path": "/docs/executive/system-overview-detailed",
               "sidebar": "docs"
             },
             {
-              "id": "legal/Compliance_Framework",
-              "path": "/docs/legal/Compliance_Framework",
+              "id": "executive/team-status",
+              "path": "/docs/executive/team-status",
               "sidebar": "docs"
             },
             {
-              "id": "legal/Legal_Framework",
-              "path": "/docs/legal/Legal_Framework",
+              "id": "legal/compliance-framework",
+              "path": "/docs/legal/compliance-framework",
               "sidebar": "docs"
             },
             {
-              "id": "operations/deployment/Deployment_Guide",
-              "path": "/docs/operations/deployment/Deployment_Guide",
+              "id": "legal/legal-framework",
+              "path": "/docs/legal/legal-framework",
+              "sidebar": "docs"
+            },
+            {
+              "id": "operations/customer-onboarding-guide",
+              "path": "/docs/operations/customer-onboarding-guide",
+              "sidebar": "docs"
+            },
+            {
+              "id": "operations/deployment/deployment-guide",
+              "path": "/docs/operations/deployment/deployment-guide",
               "sidebar": "docs"
             },
             {
@@ -107,33 +170,28 @@
               "sidebar": "docs"
             },
             {
-              "id": "operations/maintenance/Maintenance_Procedures",
-              "path": "/docs/operations/maintenance/Maintenance_Procedures",
+              "id": "operations/maintenance/maintenance-procedures",
+              "path": "/docs/operations/maintenance/maintenance-procedures",
               "sidebar": "docs"
             },
             {
-              "id": "operations/Manufacturing_Strategy",
-              "path": "/docs/operations/Manufacturing_Strategy",
+              "id": "operations/manufacturing-strategy",
+              "path": "/docs/operations/manufacturing-strategy",
               "sidebar": "docs"
             },
             {
-              "id": "operations/monitoring/Operations_Log_Template",
-              "path": "/docs/operations/monitoring/Operations_Log_Template",
+              "id": "operations/monitoring/operations-log-template",
+              "path": "/docs/operations/monitoring/operations-log-template",
               "sidebar": "docs"
             },
             {
-              "id": "operations/monitoring/Troubleshooting_Guide",
-              "path": "/docs/operations/monitoring/Troubleshooting_Guide",
+              "id": "operations/monitoring/troubleshooting-guide",
+              "path": "/docs/operations/monitoring/troubleshooting-guide",
               "sidebar": "docs"
             },
             {
-              "id": "operations/Operational_Resilience",
-              "path": "/docs/operations/Operational_Resilience",
-              "sidebar": "docs"
-            },
-            {
-              "id": "operations/Operations_Modes",
-              "path": "/docs/operations/Operations_Modes",
+              "id": "operations/operational-resilience",
+              "path": "/docs/operations/operational-resilience",
               "sidebar": "docs"
             },
             {
@@ -142,44 +200,113 @@
               "sidebar": "docs"
             },
             {
-              "id": "operations/training/Training_Materials",
-              "path": "/docs/operations/training/Training_Materials",
+              "id": "operations/operations-modes",
+              "path": "/docs/operations/operations-modes",
               "sidebar": "docs"
             },
             {
-              "id": "README",
+              "id": "operations/training/training-materials",
+              "path": "/docs/operations/training/training-materials",
+              "sidebar": "docs"
+            },
+            {
+              "id": "phoenix-rooivalk-documentation",
               "path": "/docs/"
             },
             {
-              "id": "technical/ai-benefits",
-              "path": "/docs/technical/ai-benefits"
+              "id": "research/experimental-counter-drone-effectors-transform-warfare",
+              "path": "/docs/research/experimental-counter-drone-effectors-transform-warfare",
+              "sidebar": "docs"
             },
             {
-              "id": "technical/architecture/Architecture_Decision_Records",
-              "path": "/docs/technical/architecture/Architecture_Decision_Records"
+              "id": "research/inst-airframe-design-and-aerodynamics-modified",
+              "path": "/docs/research/inst-airframe-design-and-aerodynamics-modified"
+            },
+            {
+              "id": "research/inst-avionics-autonomy-and-navigation-modified",
+              "path": "/docs/research/inst-avionics-autonomy-and-navigation-modified"
+            },
+            {
+              "id": "research/inst-business-and-economics-modified",
+              "path": "/docs/research/inst-business-and-economics-modified"
+            },
+            {
+              "id": "research/inst-combined-prompt-modified",
+              "path": "/docs/research/inst-combined-prompt-modified"
+            },
+            {
+              "id": "research/inst-communications-and-ground-segment",
+              "path": "/docs/research/inst-communications-and-ground-segment"
+            },
+            {
+              "id": "research/inst-cross-cutting-concerns-modified",
+              "path": "/docs/research/inst-cross-cutting-concerns-modified"
+            },
+            {
+              "id": "research/inst-forward-looking-modified",
+              "path": "/docs/research/inst-forward-looking-modified"
+            },
+            {
+              "id": "research/inst-maintenance-sustainment-manufacturing-payload-environment-and-operations-modified",
+              "path": "/docs/research/inst-maintenance-sustainment-manufacturing-payload-environment-and-operations-modified"
+            },
+            {
+              "id": "research/inst-motor-specification-and-performance-modified",
+              "path": "/docs/research/inst-motor-specification-and-performance-modified"
+            },
+            {
+              "id": "research/inst-power-electronics-and-esc",
+              "path": "/docs/research/inst-power-electronics-and-esc"
+            },
+            {
+              "id": "research/inst-power-storage-and-management",
+              "path": "/docs/research/inst-power-storage-and-management"
+            },
+            {
+              "id": "research/inst-propulsion-systems-complete",
+              "path": "/docs/research/inst-propulsion-systems-complete"
+            },
+            {
+              "id": "research/inst-safety-reliability-certification-regulatory-standards-modified",
+              "path": "/docs/research/inst-safety-reliability-certification-regulatory-standards-modified"
+            },
+            {
+              "id": "research/resp-airframe-design-and-aerodynamics-claude",
+              "path": "/docs/research/resp-airframe-design-and-aerodynamics-claude"
+            },
+            {
+              "id": "research/sensor-technologies-comprehensive-analysis",
+              "path": "/docs/research/sensor-technologies-comprehensive-analysis",
+              "sidebar": "docs"
+            },
+            {
+              "id": "technical/ai-benefits",
+              "path": "/docs/technical/ai-benefits",
+              "sidebar": "docs"
+            },
+            {
+              "id": "technical/architecture/architecture-decision-records",
+              "path": "/docs/technical/architecture/architecture-decision-records",
+              "sidebar": "docs"
             },
             {
               "id": "technical/architecture/technical-architecture",
-              "path": "/docs/technical/architecture/technical-architecture"
-            },
-            {
-              "id": "technical/Blockchain_Integration",
-              "path": "/docs/technical/Blockchain_Integration",
+              "path": "/docs/technical/architecture/technical-architecture",
               "sidebar": "docs"
             },
             {
-              "id": "technical/blockchain/Blockchain_Architecture",
-              "path": "/docs/technical/blockchain/Blockchain_Architecture",
+              "id": "technical/blockchain-integration",
+              "path": "/docs/technical/blockchain-integration",
               "sidebar": "docs"
             },
             {
-              "id": "technical/blockchain/Blockchain_Architecture_Detailed",
-              "path": "/docs/technical/blockchain/Blockchain_Architecture_Detailed",
+              "id": "technical/blockchain/blockchain-architecture",
+              "path": "/docs/technical/blockchain/blockchain-architecture",
               "sidebar": "docs"
             },
             {
-              "id": "technical/blockchain/Blockchain_Security_Compliance",
-              "path": "/docs/technical/blockchain/Blockchain_Security_Compliance",
+              "id": "technical/blockchain/blockchain-architecture-detailed",
+              "path": "/docs/technical/blockchain/blockchain-architecture-detailed",
               "sidebar": "docs"
             },
             {
@@ -203,37 +330,43 @@
               "sidebar": "docs"
             },
             {
+              "id": "technical/blockchain/blockchain-security-compliance",
+              "path": "/docs/technical/blockchain/blockchain-security-compliance",
+              "sidebar": "docs"
+            },
+            {
               "id": "technical/blockchain/implementation-roadmap",
               "path": "/docs/technical/blockchain/implementation-roadmap",
               "sidebar": "docs"
             },
             {
-              "id": "technical/Decentralized_AI",
-              "path": "/docs/technical/Decentralized_AI",
+              "id": "technical/decentralized-ai",
+              "path": "/docs/technical/decentralized-ai",
               "sidebar": "docs"
             },
             {
-              "id": "technical/Defense_Integration",
-              "path": "/docs/technical/Defense_Integration",
+              "id": "technical/defense-integration",
+              "path": "/docs/technical/defense-integration",
               "sidebar": "docs"
             },
             {
-              "id": "technical/Defense_Technology_Deep_Dive",
-              "path": "/docs/technical/Defense_Technology_Deep_Dive",
+              "id": "technical/defense-technology-deep-dive",
+              "path": "/docs/technical/defense-technology-deep-dive",
               "sidebar": "docs"
             },
             {
               "id": "technical/glossary",
-              "path": "/docs/technical/glossary"
-            },
-            {
-              "id": "technical/Hardware_Foundation",
-              "path": "/docs/technical/Hardware_Foundation",
+              "path": "/docs/technical/glossary",
               "sidebar": "docs"
             },
             {
-              "id": "technical/integration/API_Documentation",
-              "path": "/docs/technical/integration/API_Documentation",
+              "id": "technical/hardware-foundation",
+              "path": "/docs/technical/hardware-foundation",
+              "sidebar": "docs"
+            },
+            {
+              "id": "technical/integration/api-documentation",
+              "path": "/docs/technical/integration/api-documentation",
               "sidebar": "docs"
             },
             {
@@ -242,13 +375,13 @@
               "sidebar": "docs"
             },
             {
-              "id": "technical/mechanical/Mechanical_Design_ADRs",
-              "path": "/docs/technical/mechanical/Mechanical_Design_ADRs",
+              "id": "technical/mechanical/mechanical-design-adrs",
+              "path": "/docs/technical/mechanical/mechanical-design-adrs",
               "sidebar": "docs"
             },
             {
-              "id": "technical/mechanical/Mechanical_Design_Records",
-              "path": "/docs/technical/mechanical/Mechanical_Design_Records",
+              "id": "technical/mechanical/mechanical-design-records",
+              "path": "/docs/technical/mechanical/mechanical-design-records",
               "sidebar": "docs"
             },
             {
@@ -261,30 +394,33 @@
               "path": "/docs/technical/reusable-systems-architecture"
             },
             {
-              "id": "technical/System_Architecture",
-              "path": "/docs/technical/System_Architecture",
+              "id": "technical/system-architecture",
+              "path": "/docs/technical/system-architecture",
               "sidebar": "docs"
-            },
-            {
-              "id": "technical/Technical_Architecture",
-              "path": "/docs/technical/Technical_Architecture",
-              "sidebar": "docs"
-            },
-            {
-              "id": "technical/Technical_Architecture_Synthesis",
-              "path": "/docs/technical/Technical_Architecture_Synthesis"
             },
             {
               "id": "technical/technical-analysis",
-              "path": "/docs/technical/technical-analysis"
+              "path": "/docs/technical/technical-analysis",
+              "sidebar": "docs"
             },
             {
-              "id": "technical/ThreatSimulator_Enhancements",
-              "path": "/docs/technical/ThreatSimulator_Enhancements"
+              "id": "technical/technical-architecture",
+              "path": "/docs/technical/technical-architecture",
+              "sidebar": "docs"
             },
             {
-              "id": "visual-elements/System_Architecture_Diagrams",
-              "path": "/docs/visual-elements/System_Architecture_Diagrams",
+              "id": "technical/technical-architecture-synthesis",
+              "path": "/docs/technical/technical-architecture-synthesis",
+              "sidebar": "docs"
+            },
+            {
+              "id": "technical/threatsimulator-enhancements",
+              "path": "/docs/technical/threatsimulator-enhancements",
+              "sidebar": "docs"
+            },
+            {
+              "id": "visual-elements/system-architecture-diagrams",
+              "path": "/docs/visual-elements/system-architecture-diagrams",
               "sidebar": "docs"
             }
           ],

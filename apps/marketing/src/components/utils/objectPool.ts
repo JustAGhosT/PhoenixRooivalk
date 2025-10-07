@@ -246,7 +246,7 @@ export const createDronePool = (
       isActive: false,
       lastUsed: 0,
       type: "drone",
-      droneType: "interceptor",
+      droneType: "effector",
       position: { x: 0, y: 0 },
       velocity: { x: 0, y: 0 },
       health: 100,
@@ -257,7 +257,7 @@ export const createDronePool = (
       isReturning: false,
     }),
     resetFn: (drone: DronePoolObject): void => {
-      drone.droneType = "interceptor";
+      drone.droneType = "effector";
       drone.position = { x: 0, y: 0 };
       drone.velocity = { x: 0, y: 0 };
       drone.health = 100;

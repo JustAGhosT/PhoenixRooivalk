@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback } from "react";
 
 interface FeedItem {
   timestamp: string;
@@ -12,7 +12,7 @@ export const useEventFeed = () => {
     const timestamp = new Date().toLocaleTimeString();
     const newItem: FeedItem = { timestamp, message };
 
-    setFeedItems(prevItems => {
+    setFeedItems((prevItems) => {
       const newItems = [newItem, ...prevItems];
       // Keep the feed to a maximum of 40 items
       return newItems.slice(0, 40);
