@@ -2,11 +2,14 @@
 
 ## Overview
 
-Complete migration of the ThreatSimulator frontend from React/Next.js to Leptos (Rust WASM), achieving a fully functional game with superior performance and type safety.
+Complete migration of the ThreatSimulator frontend from React/Next.js to Leptos
+(Rust WASM), achieving a fully functional game with superior performance and
+type safety.
 
 ## Components Architecture
 
 ### Main App (`components.rs`)
+
 - **Responsibility**: Application root, keyboard handling, modal management
 - **Key Features**:
   - Global keyboard event handling (pause, reset, weapon selection, help)
@@ -20,6 +23,7 @@ Complete migration of the ThreatSimulator frontend from React/Next.js to Leptos 
   - `R`: Reset game
 
 ### GameCanvas (`components/game_canvas.rs`)
+
 - **Responsibility**: Game rendering and update loop
 - **Key Features**:
   - `requestAnimationFrame` game loop
@@ -34,8 +38,9 @@ Complete migration of the ThreatSimulator frontend from React/Next.js to Leptos 
   - Type-colored threats (7 colors)
   - Health bars with gradient colors
   - Drone battery indicators
-  
+
 ### HUD (`components/hud.rs`)
+
 - **Responsibility**: Real-time stats display
 - **Displays**:
   - Score (formatted 6-digit)
@@ -50,6 +55,7 @@ Complete migration of the ThreatSimulator frontend from React/Next.js to Leptos 
   - Current weapon indicator
 
 ### WeaponPanel (`components/weapon_panel.rs`)
+
 - **Responsibility**: Weapon selection interface
 - **Features**:
   - 13 weapon types with keyboard shortcuts
@@ -66,12 +72,10 @@ Complete migration of the ThreatSimulator frontend from React/Next.js to Leptos 
   7. GNSS Denial
   8. Optical Dazzler
   9. Acoustic Weapon
-  0. Decoy Beacon
-  C. Chaff Dispenser
-  S. Smart Slug
-  A. AI Deception
+  10. Decoy Beacon C. Chaff Dispenser S. Smart Slug A. AI Deception
 
 ### StatsPanel (`components/stats_panel.rs`)
+
 - **Responsibility**: Detailed statistics display
 - **Sections**:
   - Combat Performance (score, neutralized, wave, active threats)
@@ -82,6 +86,7 @@ Complete migration of the ThreatSimulator frontend from React/Next.js to Leptos 
 ## Game Loop Architecture
 
 ### Update Cycle (60+ FPS)
+
 ```rust
 requestAnimationFrame(|current_time| {
     1. Calculate delta_time from last frame
@@ -95,6 +100,7 @@ requestAnimationFrame(|current_time| {
 ```
 
 ### State Flow
+
 ```
 GameEngine (Rust)
     ↓ update()
@@ -108,6 +114,7 @@ UI Components (auto-update)
 ## Rendering System
 
 ### Canvas Layers (bottom to top)
+
 1. **Background**: Dark gradient (#0a0e1a → #0f1929)
 2. **Grid**: Tactical overlay (20×12 grid)
 3. **Range Circles**: Defensive perimeter visualization
@@ -118,6 +125,7 @@ UI Components (auto-update)
 ### Color Coding
 
 **Threats**:
+
 - `#ff6666`: Commercial (basic)
 - `#ff3333`: Military (armored)
 - `#ffaa33`: Swarm (coordinated)
@@ -127,6 +135,7 @@ UI Components (auto-update)
 - `#ff33ff`: Electronic Warfare (jammer)
 
 **Drones**:
+
 - `#00ff00`: Interceptor
 - `#ffaa00`: Jammer
 - `#33aaff`: Surveillance
@@ -136,6 +145,7 @@ UI Components (auto-update)
 ## Input System
 
 ### Mouse Events
+
 - **Click**: Target and fire at nearest threat
   - Calculates canvas-relative coordinates
   - Finds nearest threat within click radius
@@ -143,6 +153,7 @@ UI Components (auto-update)
   - Updates score (+10 per hit)
 
 ### Keyboard Events
+
 - **Global listener** attached to window
 - **Event delegation** through Leptos signals
 - **Prevent default** on Space to avoid scrolling
@@ -150,18 +161,21 @@ UI Components (auto-update)
 ## Performance Optimizations
 
 ### Rendering
+
 - ✅ Single canvas element (no DOM thrashing)
 - ✅ Efficient draw calls (batched by type)
 - ✅ Conditional rendering (health bars only when damaged)
 - ✅ Shadow blur only for visual effects
 
 ### State Management
+
 - ✅ Fine-grained reactivity (only changed values update)
 - ✅ Memoized computations
 - ✅ Minimal cloning (Rc<RefCell<>> for engine)
 - ✅ Efficient vector operations
 
 ### Game Loop
+
 - ✅ requestAnimationFrame (browser-optimized timing)
 - ✅ Delta time clamping (prevents huge jumps)
 - ✅ FPS monitoring
@@ -170,6 +184,7 @@ UI Components (auto-update)
 ## Migration Comparison
 
 ### Before (React/TypeScript)
+
 ```typescript
 // Multiple hooks, complex dependency tracking
 const [threats, setThreats] = useState([]);
@@ -188,6 +203,7 @@ const canvasRef = useRef<HTMLCanvasElement>(null);
 ```
 
 ### After (Leptos/Rust)
+
 ```rust
 // Reactive signals, automatic dependency tracking
 let threats = create_rw_signal(Vec::new());
@@ -208,21 +224,24 @@ let canvas_ref = create_node_ref::<html::Canvas>();
 ## Code Metrics
 
 ### Lines of Code
+
 | Module             | Lines   | Tests | Status |
 | ------------------ | ------- | ----- | ------ |
-| `components.rs`    | 210     | N/A   | ✅      |
-| `game_canvas.rs`   | 330     | N/A   | ✅      |
-| `hud.rs`           | 150     | N/A   | ✅      |
-| `weapon_panel.rs`  | 90      | N/A   | ✅      |
-| `stats_panel.rs`   | 160     | N/A   | ✅      |
-| **Total Frontend** | **940** | -     | **✅**  |
+| `components.rs`    | 210     | N/A   | ✅     |
+| `game_canvas.rs`   | 330     | N/A   | ✅     |
+| `hud.rs`           | 150     | N/A   | ✅     |
+| `weapon_panel.rs`  | 90      | N/A   | ✅     |
+| `stats_panel.rs`   | 160     | N/A   | ✅     |
+| **Total Frontend** | **940** | -     | **✅** |
 
 ### Comparison
+
 - **React Version**: ~2,500 lines (TypeScript + JSX)
 - **Leptos Version**: ~940 lines (pure Rust)
 - **Reduction**: 62% less code for same functionality
 
 ### Quality Metrics
+
 - ✅ **Type Safety**: 100% (compile-time guarantees)
 - ✅ **Memory Safety**: 100% (Rust ownership)
 - ✅ **Test Coverage**: Game engine 100%, UI integration pending
@@ -231,6 +250,7 @@ let canvas_ref = create_node_ref::<html::Canvas>();
 ## Features Implemented
 
 ### ✅ Complete
+
 - [x] Full UI component suite
 - [x] Game engine integration
 - [x] Mouse targeting system
@@ -248,6 +268,7 @@ let canvas_ref = create_node_ref::<html::Canvas>();
 - [x] Game reset functionality
 
 ### ⏳ Pending (Future Enhancements)
+
 - [ ] Particle effects (explosions, trails)
 - [ ] Power-up visual indicators
 - [ ] Achievement notifications
@@ -262,24 +283,28 @@ let canvas_ref = create_node_ref::<html::Canvas>();
 ### Running the App
 
 **Option 1: Full Tauri App** (recommended)
+
 ```bash
 cd apps/threat-simulator-desktop
 cargo tauri dev
 ```
 
 **Option 2: Frontend Only** (faster iteration)
+
 ```bash
 cd apps/threat-simulator-desktop
 trunk serve --open
 ```
 
 ### Building for Production
+
 ```bash
 cargo tauri build
 # Output: src-tauri/target/release/bundle/
 ```
 
 ### Testing
+
 ```bash
 # All tests (29 passing)
 cargo test -p threat-simulator-desktop --lib
@@ -295,12 +320,14 @@ cargo fmt -p threat-simulator-desktop --check
 ## Performance Targets
 
 ### Achieved ✅
+
 - **FPS**: 60+ (measured in dev mode)
 - **Input Latency**: <16ms (single frame)
 - **Memory**: ~40MB (WASM + canvas)
 - **Load Time**: <1s (dev), <200ms (release)
 
 ### Theoretical Maximum
+
 - **FPS**: 144+ (limited only by refresh rate)
 - **Max Threats**: 500+ simultaneous
 - **Max Drones**: 100+ simultaneous
@@ -309,22 +336,26 @@ cargo fmt -p threat-simulator-desktop --check
 ## Browser Compatibility
 
 ### Tested
+
 - ✅ Chrome/Edge (WebView2)
 - ✅ Native Tauri WebView
 
 ### Expected to Work
+
 - ✅ Firefox (via Trunk serve)
 - ✅ Safari (WebKit support)
 
 ## Known Limitations
 
 ### Current
+
 1. **WASM-only**: Requires `wasm32-unknown-unknown` target
 2. **No SSR**: Client-side rendering only (by design)
 3. **Canvas-based**: No DOM manipulation for game entities
 4. **Single-threaded**: Game loop runs on main thread
 
 ### Not Limitations (Advantages!)
+
 - GameEngine runs at native speed (WASM is fast!)
 - Leptos signals are more efficient than React hooks
 - Canvas rendering outperforms DOM for many entities
@@ -332,23 +363,26 @@ cargo fmt -p threat-simulator-desktop --check
 ## Troubleshooting
 
 ### "Cannot find module leptos"
+
 → Run `trunk serve` or build for `wasm32-unknown-unknown`
 
 ### "Game loop not starting"
-→ Check browser console for WASM loading errors
-→ Ensure `is_running` signal is true
+
+→ Check browser console for WASM loading errors → Ensure `is_running` signal is
+true
 
 ### "Canvas is blank"
-→ Verify canvas size matches container
-→ Check that render_frame is being called
+
+→ Verify canvas size matches container → Check that render_frame is being called
 
 ### "Keyboard shortcuts not working"
-→ Ensure window has focus
-→ Check browser console for event listener errors
+
+→ Ensure window has focus → Check browser console for event listener errors
 
 ## Future Enhancements
 
 ### Phase 1 (Next)
+
 - Particle effects system for explosions
 - Sound effects integration
 - Achievement notification system
@@ -356,6 +390,7 @@ cargo fmt -p threat-simulator-desktop --check
 - Tauri backend command integration
 
 ### Phase 2
+
 - Minimap component
 - Settings panel (difficulty, controls)
 - Replay recording/playback
@@ -363,6 +398,7 @@ cargo fmt -p threat-simulator-desktop --check
 - Custom weapon loadouts
 
 ### Phase 3
+
 - Multiplayer support (sync via Tauri)
 - VR mode (WebXR)
 - Advanced visual effects
@@ -372,6 +408,7 @@ cargo fmt -p threat-simulator-desktop --check
 ## Conclusion
 
 The Leptos frontend migration is **complete and fully functional**, providing:
+
 - ✅ Full game loop with engine integration
 - ✅ All 13 weapon types selectable
 - ✅ Mouse and keyboard controls
@@ -380,5 +417,5 @@ The Leptos frontend migration is **complete and fully functional**, providing:
 - ✅ Help system and pause functionality
 - ✅ 60+ FPS performance
 
-The app is **ready for Tauri desktop packaging** and further feature development.
-
+The app is **ready for Tauri desktop packaging** and further feature
+development.

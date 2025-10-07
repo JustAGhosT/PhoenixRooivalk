@@ -52,6 +52,7 @@ pnpm build:tauri
 ### 1. Install Prerequisites
 
 **Rust:**
+
 ```bash
 # Install Rust (if not already installed)
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
@@ -61,11 +62,13 @@ rustup target add wasm32-unknown-unknown
 ```
 
 **Trunk (WASM bundler):**
+
 ```bash
 cargo install trunk
 ```
 
 **Tauri CLI:**
+
 ```bash
 cargo install tauri-cli --version "^2.0"
 ```
@@ -104,6 +107,7 @@ pnpm sim:dev
 | `pnpm sim:build:tauri` | Desktop installers     | Production release |
 
 **Build outputs:**
+
 - Windows: `src-tauri/target/release/bundle/msi/*.msi` (~12MB)
 - macOS: `src-tauri/target/release/bundle/dmg/*.dmg` (~15MB)
 - Linux: `src-tauri/target/release/bundle/deb/*.deb` (~14MB)
@@ -113,12 +117,14 @@ pnpm sim:dev
 ## 🎮 Gameplay Controls
 
 ### Essential
+
 - **Space**: Pause/Resume
 - **Click**: Fire at threats
 - **1-9,0**: Select weapons
 - **R**: Reset game
 
 ### Panels
+
 - **H**: Help
 - **S**: Stats
 - **E**: Energy
@@ -135,7 +141,9 @@ pnpm sim:dev
 ## 🐛 Troubleshooting
 
 ### "pnpm: command not found"
+
 **Solution**: Install pnpm first
+
 ```bash
 npm install -g pnpm
 # or use corepack
@@ -143,13 +151,17 @@ corepack enable
 ```
 
 ### "trunk: command not found"
+
 **Solution**: Install trunk
+
 ```bash
 cargo install trunk
 ```
 
 ### "Failed to load WASM"
+
 **Solution**: Rebuild for WASM target
+
 ```bash
 cd apps/threat-simulator-desktop
 trunk clean
@@ -157,15 +169,20 @@ trunk build
 ```
 
 ### "Tauri build fails"
+
 **Solution**: Install platform-specific dependencies
 
 **Windows:**
-- Install [WebView2](https://developer.microsoft.com/en-us/microsoft-edge/webview2/)
+
+- Install
+  [WebView2](https://developer.microsoft.com/en-us/microsoft-edge/webview2/)
 
 **macOS:**
+
 - Xcode Command Line Tools: `xcode-select --install`
 
 **Linux (Ubuntu/Debian):**
+
 ```bash
 sudo apt update
 sudo apt install libwebkit2gtk-4.1-dev \
@@ -179,7 +196,9 @@ sudo apt install libwebkit2gtk-4.1-dev \
 ```
 
 ### "Port 8080 already in use"
+
 **Solution**: Change Trunk port
+
 ```bash
 trunk serve --port 8081 --open
 ```
@@ -189,6 +208,7 @@ trunk serve --port 8081 --open
 ## 📊 Verification
 
 ### Quick Test Run
+
 ```bash
 # From project root
 pnpm sim:test
@@ -200,6 +220,7 @@ pnpm sim:test
 ```
 
 ### Quick Lint Check
+
 ```bash
 pnpm sim:lint
 
@@ -213,6 +234,7 @@ pnpm sim:lint
 ## 🏃 Quick Demo
 
 1. **Start the app:**
+
    ```bash
    pnpm sim:dev
    ```
@@ -242,6 +264,7 @@ pnpm sim:lint
 ## 🎯 Common Workflows
 
 ### Daily Development
+
 ```bash
 # Terminal 1: Run dev server
 pnpm sim:dev
@@ -255,6 +278,7 @@ cargo watch -x "test --lib"
 ```
 
 ### Pre-Commit
+
 ```bash
 # Format and lint
 pnpm sim:lint
@@ -269,6 +293,7 @@ git commit -m "feat: your changes"
 ```
 
 ### Production Build
+
 ```bash
 # Build desktop installer
 pnpm sim:build:tauri
@@ -280,4 +305,3 @@ pnpm sim:build:tauri
 ---
 
 **Ready to play? Run `pnpm sim:dev` from the project root!** 🚀
-

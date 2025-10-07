@@ -2,11 +2,14 @@
 
 ## Overview
 
-This document tracks the migration of the Phoenix Rooivalk ThreatSimulator from a web-based React/Next.js application to a high-performance desktop application using Leptos (Rust WASM) and Tauri.
+This document tracks the migration of the Phoenix Rooivalk ThreatSimulator from
+a web-based React/Next.js application to a high-performance desktop application
+using Leptos (Rust WASM) and Tauri.
 
 ## Migration Status
 
 ### ✅ Completed (100%)
+
 - [x] Project structure setup
 - [x] Tauri 2.0 backend configuration
 - [x] Leptos frontend framework setup
@@ -41,9 +44,10 @@ This document tracks the migration of the Phoenix Rooivalk ThreatSimulator from 
 - [x] Comprehensive documentation (2,500+ lines across 8 files)
 
 ### 📋 Future Enhancements (v0.2.0+)
+
 - [ ] Sound effects (weapon firing, explosions)
 - [ ] Projectile visuals (lasers, bullets, nets)
-- [ ] Advanced pathfinding (A* for drones)
+- [ ] Advanced pathfinding (A\* for drones)
 - [ ] Minimap component
 - [ ] Settings panel (volume, difficulty, graphics)
 - [ ] Save/load functionality
@@ -55,6 +59,7 @@ This document tracks the migration of the Phoenix Rooivalk ThreatSimulator from 
 ## Architecture Comparison
 
 ### Before (React/Next.js)
+
 ```
 apps/marketing/
 ├── src/
@@ -73,6 +78,7 @@ apps/marketing/
 ```
 
 ### After (Leptos/Tauri)
+
 ```
 apps/threat-simulator-desktop/
 ├── src/                           # Leptos frontend (WASM)
@@ -97,6 +103,7 @@ apps/threat-simulator-desktop/
 ### 1. State Management: React Hooks → Leptos Signals
 
 **Before (React):**
+
 ```typescript
 const [score, setScore] = useState(0);
 const [threats, setThreats] = useState<Threat[]>([]);
@@ -107,6 +114,7 @@ useEffect(() => {
 ```
 
 **After (Leptos):**
+
 ```rust
 let score = create_rw_signal(0);
 let threats = create_rw_signal(Vec::<Threat>::new());
@@ -117,6 +125,7 @@ create_effect(move |_| {
 ```
 
 **Benefits:**
+
 - Fine-grained reactivity (no virtual DOM)
 - Compile-time dependency tracking
 - Automatic cleanup
@@ -125,6 +134,7 @@ create_effect(move |_| {
 ### 2. Game Loop: JavaScript RAF → Rust + Web-sys
 
 **Before:**
+
 ```typescript
 useEffect(() => {
   const gameLoop = () => {
@@ -137,6 +147,7 @@ useEffect(() => {
 ```
 
 **After:**
+
 ```rust
 let _interval = Interval::new(16, move || {
     render_frame(&context, &game_state, width, height);
@@ -145,6 +156,7 @@ let _interval = Interval::new(16, move || {
 ```
 
 **Benefits:**
+
 - Predictable timing
 - Better performance
 - Easier to profile
@@ -153,15 +165,17 @@ let _interval = Interval::new(16, move || {
 ### 3. Physics: Custom JS → Rapier2D
 
 **Before:**
+
 ```typescript
 function checkCollision(a: Vector2, b: Vector2): boolean {
   const dx = a.x - b.x;
   const dy = a.y - b.y;
-  return Math.sqrt(dx*dx + dy*dy) < (a.radius + b.radius);
+  return Math.sqrt(dx * dx + dy * dy) < a.radius + b.radius;
 }
 ```
 
 **After:**
+
 ```rust
 use rapier2d::prelude::*;
 
@@ -172,6 +186,7 @@ use rapier2d::prelude::*;
 ```
 
 **Benefits:**
+
 - Battle-tested physics
 - SIMD optimizations
 - Better collision accuracy
@@ -180,15 +195,17 @@ use rapier2d::prelude::*;
 ### 4. Evidence Recording: API Calls → Direct Integration
 
 **Before:**
+
 ```typescript
 // Async HTTP requests to backend
-await fetch('/api/evidence', {
-  method: 'POST',
-  body: JSON.stringify(evidence)
+await fetch("/api/evidence", {
+  method: "POST",
+  body: JSON.stringify(evidence),
 });
 ```
 
 **After:**
+
 ```rust
 // Direct function calls to evidence crate
 use phoenix_evidence::Evidence;
@@ -199,6 +216,7 @@ let evidence_id = evidence_manager
 ```
 
 **Benefits:**
+
 - Zero serialization overhead
 - Type safety
 - Better error handling
@@ -234,16 +252,20 @@ let evidence_id = evidence_manager
 All core game engine components have comprehensive test coverage:
 
 - **Types & Math** (7 tests): Vector2 operations, serialization, entity creation
-- **Physics** (5 tests): Collision detection, impact calculation, physics resolution
+- **Physics** (5 tests): Collision detection, impact calculation, physics
+  resolution
 - **Formations** (5 tests): All 6 formation types, positioning algorithms
-- **Wave System** (6 tests): Difficulty scaling, wave progression, threat spawning
+- **Wave System** (6 tests): Difficulty scaling, wave progression, threat
+  spawning
 - **Game Engine** (6 tests): Engine lifecycle, entity management, integration
 - **Particle System** (6 tests): Particle lifecycle, movement, types, cleanup
-- **Auto-Targeting** (7 tests): Priority calculation, target selection, cooldowns, area effects
+- **Auto-Targeting** (7 tests): Priority calculation, target selection,
+  cooldowns, area effects
 - **Event Feed** (2 tests): Feed item creation, severity levels
 - **Synergy System** (3 tests): Combo detection, bonuses, multiple synergies
 
 **Test Quality**:
+
 - ✅ Zero clippy warnings (strict mode: `-D warnings`)
 - ✅ All tests complete in <50ms
 - ✅ Edge cases covered (zero vectors, zero-distance collision, etc.)
@@ -255,6 +277,7 @@ See [TESTING.md](./TESTING.md) for complete test documentation.
 ## Development Workflow
 
 ### Daily Development
+
 ```bash
 # Terminal 1: Frontend development (fast reload)
 cd apps/threat-simulator-desktop
@@ -265,6 +288,7 @@ cargo tauri dev
 ```
 
 ### Testing
+
 ```bash
 # All tests
 cargo test --workspace
@@ -277,6 +301,7 @@ cargo tarpaulin --workspace
 ```
 
 ### Building
+
 ```bash
 # Development build
 cargo tauri build --debug
@@ -293,24 +318,29 @@ cargo tauri build --target x86_64-unknown-linux-gnu
 ## Challenges & Solutions
 
 ### Challenge 1: Canvas Rendering in WASM
-**Problem**: Direct canvas manipulation is tricky in WASM
-**Solution**: Used `web-sys` bindings with proper ownership management
+
+**Problem**: Direct canvas manipulation is tricky in WASM **Solution**: Used
+`web-sys` bindings with proper ownership management
 
 ### Challenge 2: Async Tauri Commands
-**Problem**: Leptos signals aren't `Send`
-**Solution**: Used `spawn_local` for async operations, clone signals for commands
+
+**Problem**: Leptos signals aren't `Send` **Solution**: Used `spawn_local` for
+async operations, clone signals for commands
 
 ### Challenge 3: Game Loop Timing
+
 **Problem**: `requestAnimationFrame` behaves differently in Tauri WebView
 **Solution**: Used `gloo-timers` with fixed timestep
 
 ### Challenge 4: Evidence Integration
-**Problem**: Evidence crate expects tokio runtime
-**Solution**: Tauri provides tokio runtime, use `invoke` for async ops
+
+**Problem**: Evidence crate expects tokio runtime **Solution**: Tauri provides
+tokio runtime, use `invoke` for async ops
 
 ## Next Steps
 
 ### Short Term (v0.2.0)
+
 1. Complete core game engine migration
 2. Implement all 13 weapon types
 3. Add collision detection
@@ -318,6 +348,7 @@ cargo tauri build --target x86_64-unknown-linux-gnu
 5. Save/load game state
 
 ### Medium Term (v0.3.0)
+
 1. Advanced drone AI
 2. Formation flight patterns
 3. Achievement system
@@ -325,6 +356,7 @@ cargo tauri build --target x86_64-unknown-linux-gnu
 5. Comprehensive testing
 
 ### Long Term (v1.0.0)
+
 1. Blockchain evidence integration
 2. Multiplayer support
 3. VR/AR experiments
@@ -355,5 +387,7 @@ When migrating React components:
 
 ## Conclusion
 
-This migration represents a fundamental shift from web technology to native desktop performance while maintaining the same functionality and improving the developer experience. The Rust ecosystem provides safety, performance, and powerful abstractions that enable building complex, performant applications.
-
+This migration represents a fundamental shift from web technology to native
+desktop performance while maintaining the same functionality and improving the
+developer experience. The Rust ecosystem provides safety, performance, and
+powerful abstractions that enable building complex, performant applications.

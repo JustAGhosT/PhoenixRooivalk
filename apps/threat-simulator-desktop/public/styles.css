@@ -97,8 +97,12 @@ body {
 }
 
 @keyframes phoenix-glow {
-  0% { filter: brightness(1) drop-shadow(0 0 10px rgba(255, 107, 53, 0.5)); }
-  100% { filter: brightness(1.2) drop-shadow(0 0 20px rgba(255, 107, 53, 0.8)); }
+  0% {
+    filter: brightness(1) drop-shadow(0 0 10px rgba(255, 107, 53, 0.5));
+  }
+  100% {
+    filter: brightness(1.2) drop-shadow(0 0 20px rgba(255, 107, 53, 0.8));
+  }
 }
 
 .loading-title {
@@ -161,10 +165,20 @@ body {
 }
 
 @keyframes dots-animation {
-  0%, 20% { content: ''; }
-  40% { content: '.'; }
-  60% { content: '..'; }
-  80%, 100% { content: '...'; }
+  0%,
+  20% {
+    content: "";
+  }
+  40% {
+    content: ".";
+  }
+  60% {
+    content: "..";
+  }
+  80%,
+  100% {
+    content: "...";
+  }
 }
 
 .spinner-container {
@@ -184,8 +198,12 @@ body {
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 /* Game Canvas */
@@ -635,7 +653,9 @@ body {
 
 .cooldown-fill {
   height: 100%;
-  transition: width 0.1s linear, background-color 0.2s ease;
+  transition:
+    width 0.1s linear,
+    background-color 0.2s ease;
   border-radius: 3px;
 }
 
@@ -1137,7 +1157,9 @@ kbd {
 
 .energy-fill-large {
   height: 100%;
-  transition: width 0.3s ease, background 0.5s ease;
+  transition:
+    width 0.3s ease,
+    background 0.5s ease;
   box-shadow: 0 0 15px currentColor;
 }
 
