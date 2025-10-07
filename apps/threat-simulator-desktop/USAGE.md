@@ -16,7 +16,7 @@ pnpm sim:dev
 # Start full Tauri desktop app
 pnpm sim:dev:tauri
 
-# Run all 35 tests
+# Run all 47 tests
 pnpm sim:test
 
 # Lint and quality checks
@@ -84,7 +84,7 @@ pnpm sim:dev:tauri
 pnpm sim:test
 ```
 
-**Runs:** All 35 tests in <50ms
+**Runs:** All 47 tests in <50ms
 
 ### For **Production Build**
 

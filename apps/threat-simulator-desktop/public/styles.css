@@ -161,6 +161,13 @@ body {
 }
 
 .dots {
+  display: inline-block;
+  position: relative;
+}
+
+.dots::after {
+  content: "";
+  display: inline-block;
   animation: dots-animation 1.5s infinite;
 }
 

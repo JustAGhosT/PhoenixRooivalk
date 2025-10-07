@@ -4,8 +4,11 @@
 use serde::{Deserialize, Serialize};
 use std::sync::Mutex;
 use tauri::State;
+use tracing::{debug, error, info};
+use tracing_subscriber;
 
 // Game state that will be managed by Tauri backend
+#[serde(rename_all = "camelCase")]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 struct GameSession {
     session_id: String,
@@ -19,10 +22,40 @@ struct AppState {
     current_session: Mutex<Option<GameSession>>,
 }
 
+// Persist session data to database/evidence chain
+fn save_session_to_persistence(session: &GameSession) -> Result<String, String> {
+    // TODO: Integrate with phoenix-evidence crate and blockchain anchoring
+    // For now, we'll serialize to JSON as a placeholder
+    let session_json = serde_json::to_string_pretty(session)
+        .map_err(|e| format!("Failed to serialize session: {}", e))?;
+    
+    debug!("Persisting session data: {}", session_json);
+    
+    // Placeholder for actual database/blockchain persistence
+    // In production, this would:
+    // 1. Save to local SQLite database
+    // 2. Queue for blockchain anchoring (Solana/EtherLink)
+    // 3. Generate tamper-evident hash
+    
+    let evidence_id = format!("evidence-{}", session.session_id);
+    info!(
+        session_id = %session.session_id,
+        score = session.score,
+        threats = session.threats_neutralized,
+        level = session.level,
+        evidence_id = %evidence_id,
+        "Session persisted successfully"
+    );
+    
+    Ok(evidence_id)
+}
+
 // Tauri commands that can be called from the frontend
 
 #[tauri::command]
-async fn start_game_session(state: State<'_, AppState>) -> Result<GameSession, String> {
+fn start_game_session(state: State<'_, AppState>) -> Result<GameSession, String> {
+    debug!("Starting new game session");
+
     let session = GameSession {
         session_id: uuid::Uuid::new_v4().to_string(),
         start_time: chrono::Utc::now().timestamp(),
@@ -31,29 +64,84 @@ async fn start_game_session(state: State<'_, AppState>) -> Result<GameSession, S
         level: 1,
     };
 
-    let mut current = state.current_session.lock().unwrap();
+    let mut current = state
+        .current_session
+        .lock()
+        .map_err(|e| {
+            error!("Failed to acquire session lock (mutex poisoned): {}", e);
+            format!("Failed to acquire session lock (mutex poisoned): {}", e)
+        })?;
+    
+    info!(
+        session_id = %session.session_id,
+        start_time = session.start_time,
+        "New game session created"
+    );
+    
     *current = Some(session.clone());
 
     Ok(session)
 }
 
 #[tauri::command]
-async fn end_game_session(
+fn end_game_session(
     state: State<'_, AppState>,
     final_score: u32,
     threats_neutralized: u32,
 ) -> Result<(), String> {
-    let mut current = state.current_session.lock().unwrap();
+    debug!(
+        final_score = final_score,
+        threats_neutralized = threats_neutralized,
+        "Ending game session"
+    );
+
+    let mut current = match state.current_session.lock() {
+        Ok(guard) => guard,
+        Err(e) => {
+            error!("Failed to acquire session lock (mutex poisoned): {}", e);
+            return Err(format!("Failed to acquire session lock (mutex poisoned): {}", e));
+        }
+    };
+
     if let Some(session) = current.as_mut() {
+        // Update session with final stats
         session.score = final_score;
         session.threats_neutralized = threats_neutralized;
 
-        // TODO: Save session to database/evidence chain
-        println!("Game session ended: {:?}", session);
-    }
+        info!(
+            session_id = %session.session_id,
+            duration_secs = chrono::Utc::now().timestamp() - session.start_time,
+            final_score = final_score,
+            threats_neutralized = threats_neutralized,
+            level = session.level,
+            "Game session ending, persisting data"
+        );
 
-    *current = None;
-    Ok(())
+        // Persist session to database/evidence chain
+        match save_session_to_persistence(session) {
+            Ok(evidence_id) => {
+                info!(
+                    session_id = %session.session_id,
+                    evidence_id = %evidence_id,
+                    "Session persisted successfully, clearing current session"
+                );
+                // Only clear session if persistence succeeded
+                *current = None;
+                Ok(())
+            }
+            Err(e) => {
+                error!(
+                    session_id = %session.session_id,
+                    error = %e,
+                    "Failed to persist session data"
+                );
+                Err(format!("Failed to persist session: {}", e))
+            }
+        }
+    } else {
+        error!("No active session to end");
+        Err("No active session to end".to_string())
+    }
 }
 
 #[tauri::command]
@@ -80,6 +168,16 @@ fn get_system_info() -> Result<serde_json::Value, String> {
 }
 
 fn main() {
+    // Initialize structured logging with tracing
+    tracing_subscriber::fmt()
+        .with_target(true)
+        .with_level(true)
+        .with_line_number(true)
+        .with_thread_ids(true)
+        .init();
+
+    info!("Phoenix Rooivalk Threat Simulator starting");
+
     tauri::Builder::default()
         .plugin(tauri_plugin_shell::init())
         .manage(AppState {

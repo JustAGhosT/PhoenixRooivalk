@@ -96,7 +96,7 @@ pnpm sim:dev
 | -------------------- | ------------------------------------------------ | ----------------------- |
 | `pnpm sim:dev`       | Starts Trunk dev server on http://localhost:8080 | Fast frontend iteration |
 | `pnpm sim:dev:tauri` | Starts full Tauri desktop app                    | Testing native features |
-| `pnpm sim:test`      | Runs all 35 tests                                | Verifying changes       |
+| `pnpm sim:test`      | Runs all 47 tests                                | Verifying changes       |
 | `pnpm sim:lint`      | Runs clippy (strict mode)                        | Code quality checks     |
 
 ### Build Commands
@@ -214,9 +214,9 @@ trunk serve --port 8081 --open
 pnpm sim:test
 
 # Expected output:
-# running 35 tests
-# ...................................
-# test result: ok. 35 passed; 0 failed
+# running 47 tests
+# ...............................................
+# test result: ok. 47 passed; 0 failed
 ```
 
 ### Quick Lint Check

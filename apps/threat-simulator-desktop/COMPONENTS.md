@@ -251,16 +251,16 @@
 - `S`: Smart Slug
 - `A`: AI Deception
 
-### UI Panels (9)
+### UI Panels (9) - All Migrated ✅
 
 - `H`: Help
-- `S`: Stats (detailed)
-- `E`: Energy Management
-- `D`: Drone Deployment
-- `L`: Event Log
-- `T`: Token Store
-- `F`: Research Panel
-- `G`: Synergy Indicator
+- `S`: Stats (detailed) ✅
+- `E`: Energy Management ✅
+- `D`: Drone Deployment ✅
+- `L`: Event Log ✅
+- `T`: Token Store ✅ (fully migrated, see line 69)
+- `F`: Research Panel ✅ (fully migrated, see line 77)
+- `G`: Synergy Indicator ✅ (fully migrated, see line 86)
 - `?`: Help (alternate)
 
 ---
@@ -355,7 +355,7 @@ Max Entities:       500+ threats simultaneously
 ```bash
 pnpm sim:dev              # Start dev server
 pnpm sim:dev:tauri        # Start desktop app
-pnpm sim:test             # Run 35 tests
+pnpm sim:test             # Run 47 tests
 pnpm sim:lint             # Lint check
 pnpm sim:build:tauri      # Build installer
 ```

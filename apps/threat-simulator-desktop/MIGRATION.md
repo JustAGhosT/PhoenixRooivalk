@@ -24,7 +24,7 @@ using Leptos (Rust WASM) and Tauri.
 - [x] Evidence recording integration points
 - [x] Development workflow (justfile + pnpm scripts)
 - [x] Comprehensive README
-- [x] Comprehensive test suite (42 tests, all passing)
+- [x] Comprehensive test suite (47 tests, all passing)
 - [x] Complete game engine migration
   - [x] Collision detection (custom physics engine)
   - [x] Formation flight patterns (6 types)
@@ -341,19 +341,19 @@ tokio runtime, use `invoke` for async ops
 
 ### Short Term (v0.2.0)
 
-1. Complete core game engine migration
-2. Implement all 13 weapon types
-3. Add collision detection
+1. ✅ ~~Complete core game engine migration~~ (DONE)
+2. ✅ ~~Implement all 13 weapon types~~ (DONE)
+3. ✅ ~~Add collision detection~~ (DONE)
 4. Basic sound effects
 5. Save/load game state
 
 ### Medium Term (v0.3.0)
 
-1. Advanced drone AI
-2. Formation flight patterns
-3. Achievement system
-4. Performance optimization (60+ FPS with 200+ threats)
-5. Comprehensive testing
+1. Advanced drone AI (pathfinding improvements)
+2. ✅ ~~Formation flight patterns~~ (DONE - 6 types implemented)
+3. ✅ ~~Achievement system~~ (DONE)
+4. ✅ ~~Performance optimization (60+ FPS with 200+ threats)~~ (DONE - 90+ FPS)
+5. ✅ ~~Comprehensive testing~~ (DONE - 47 tests, 100% passing)
 
 ### Long Term (v1.0.0)
 

@@ -4,39 +4,42 @@
 
 ### Overall Statistics
 
-- **Total Tests**: 42
+- **Total Tests**: 47
 - **Status**: ✅ All Passing
 - **Code Coverage**: ~90% (estimated)
 - **Test Runtime**: <50ms
 
 ## Test Breakdown by Module
 
-**Total Modules Tested**: 10  
-**Total Tests**: 42
+**Total Modules Tested**: 8  
+**Total Tests**: 47
 
-### 1. Core Types (`game/types.rs`) - 7 tests
+### 1. Core Types (`game/types.rs`) - 9 tests
 
 | Test                             | Description                           | Status |
 | -------------------------------- | ------------------------------------- | ------ |
-| `test_vector2_distance`          | 3-4-5 triangle distance calculation   | ✅     |
-| `test_vector2_normalize`         | Unit vector normalization             | ✅     |
-| `test_vector2_normalize_zero`    | Edge case: zero vector normalization  | ✅     |
-| `test_vector2_scale`             | Scalar multiplication                 | ✅     |
-| `test_weapon_type_serialization` | JSON serialization round-trip         | ✅     |
-| `test_threat_creation`           | Threat struct creation and properties | ✅     |
-| `test_drone_battery_drains`      | Battery drain simulation              | ✅     |
+| `test_vector2_distance`          | 3-4-5 triangle distance calculation   | ✅      |
+| `test_vector2_normalize`         | Unit vector normalization             | ✅      |
+| `test_vector2_normalize_zero`    | Edge case: zero vector normalization  | ✅      |
+| `test_vector2_scale`             | Scalar multiplication                 | ✅      |
+| `test_vector2_add`               | Vector addition                       | ✅      |
+| `test_vector2_subtract`          | Vector subtraction                    | ✅      |
+| `test_weapon_type_serialization` | JSON serialization round-trip         | ✅      |
+| `test_threat_creation`           | Threat struct creation and properties | ✅      |
+| `test_drone_battery_drains`      | Battery drain simulation              | ✅      |
 
 **Coverage**: ✅ Vector2 math, Serialization, Type construction
 
-### 2. Physics System (`game/physics.rs`) - 5 tests
+### 2. Physics System (`game/physics.rs`) - 6 tests
 
 | Test                                       | Description                                | Status |
 | ------------------------------------------ | ------------------------------------------ | ------ |
-| `test_no_collision`                        | Distant objects don't collide              | ✅     |
-| `test_collision_detected`                  | Overlapping circles detected               | ✅     |
-| `test_collision_result_with_details`       | Detailed impact info (point, force, depth) | ✅     |
-| `test_collision_at_zero_distance`          | Edge case: identical positions             | ✅     |
-| `test_resolve_collision_separates_objects` | Physics-based separation                   | ✅     |
+| `test_no_collision`                        | Distant objects don't collide              | ✅      |
+| `test_collision_detected`                  | Overlapping circles detected               | ✅      |
+| `test_collision_result_with_details`       | Detailed impact info (point, force, depth) | ✅      |
+| `test_collision_at_zero_distance`          | Edge case: identical positions             | ✅      |
+| `test_resolve_collision_separates_objects` | Physics-based separation                   | ✅      |
+| `test_collision_boundary_check`            | Boundary collision detection               | ✅      |
 
 **Coverage**: ✅ Collision detection, Impact calculation, Physics resolution,
 Edge cases
@@ -45,11 +48,11 @@ Edge cases
 
 | Test                              | Description                     | Status |
 | --------------------------------- | ------------------------------- | ------ |
-| `test_create_circle_formation`    | Circle formation creation       | ✅     |
-| `test_drone_positions_calculated` | Position calculation            | ✅     |
-| `test_move_formation`             | Dynamic formation repositioning | ✅     |
-| `test_disband_formation`          | Formation cleanup               | ✅     |
-| `test_multiple_formations`        | Multiple concurrent formations  | ✅     |
+| `test_create_circle_formation`    | Circle formation creation       | ✅      |
+| `test_drone_positions_calculated` | Position calculation            | ✅      |
+| `test_move_formation`             | Dynamic formation repositioning | ✅      |
+| `test_disband_formation`          | Formation cleanup               | ✅      |
+| `test_multiple_formations`        | Multiple concurrent formations  | ✅      |
 
 **Coverage**: ✅ 6 formation types, Position calculation, Multi-formation
 management
@@ -63,33 +66,72 @@ management
 - ✅ Semicircle
 - ✅ Swarm
 
-### 4. Wave Management (`game/waves.rs`) - 6 tests
+### 4. Wave Management (`game/waves.rs`) - 7 tests
 
 | Test                                       | Description                     | Status |
 | ------------------------------------------ | ------------------------------- | ------ |
-| `test_wave_config_generation`              | Wave configuration creation     | ✅     |
-| `test_difficulty_scaling`                  | Progressive difficulty increase | ✅     |
-| `test_wave_progression`                    | Wave completion and advancement | ✅     |
-| `test_threat_spawning`                     | Threat spawn mechanics          | ✅     |
-| `test_wave_progress_tracking`              | Progress percentage calculation | ✅     |
-| `test_higher_waves_have_more_threat_types` | Threat variety increases        | ✅     |
+| `test_wave_config_generation`              | Wave configuration creation     | ✅      |
+| `test_difficulty_scaling`                  | Progressive difficulty increase | ✅      |
+| `test_wave_progression`                    | Wave completion and advancement | ✅      |
+| `test_threat_spawning`                     | Threat spawn mechanics          | ✅      |
+| `test_wave_progress_tracking`              | Progress percentage calculation | ✅      |
+| `test_higher_waves_have_more_threat_types` | Threat variety increases        | ✅      |
+| `test_wave_reset`                          | Wave system reset functionality | ✅      |
 
 **Coverage**: ✅ Difficulty scaling, Wave progression, Threat spawning, Progress
 tracking
 
-### 5. Game Engine (`game/engine.rs`) - 6 tests
+### 5. Game Engine (`game/engine.rs`) - 7 tests
 
 | Test                       | Description                | Status |
 | -------------------------- | -------------------------- | ------ |
-| `test_engine_creation`     | Engine initialization      | ✅     |
-| `test_threat_spawning`     | Integrated threat spawning | ✅     |
-| `test_add_drone`           | Drone addition to game     | ✅     |
-| `test_damage_threat`       | Threat damage application  | ✅     |
-| `test_remove_dead_threats` | Dead entity cleanup        | ✅     |
-| `test_wave_progression`    | End-to-end wave system     | ✅     |
+| `test_engine_creation`     | Engine initialization      | ✅      |
+| `test_threat_spawning`     | Integrated threat spawning | ✅      |
+| `test_add_drone`           | Drone addition to game     | ✅      |
+| `test_damage_threat`       | Threat damage application  | ✅      |
+| `test_remove_dead_threats` | Dead entity cleanup        | ✅      |
+| `test_wave_progression`    | End-to-end wave system     | ✅      |
+| `test_engine_update`       | Game loop update cycle     | ✅      |
 
 **Coverage**: ✅ Engine lifecycle, Entity management, Wave integration, State
 updates
+
+### 6. Particle System (`game/particles.rs`) - 6 tests
+
+| Test                            | Description                        | Status |
+| ------------------------------- | ---------------------------------- | ------ |
+| `test_particle_creation`        | Particle initialization            | ✅      |
+| `test_particle_physics_update`  | Physics simulation (gravity, drag) | ✅      |
+| `test_particle_lifecycle`       | Auto-cleanup when expired          | ✅      |
+| `test_explosion_particles`      | Explosion particle spawning        | ✅      |
+| `test_trail_particles`          | Trail particle behavior            | ✅      |
+| `test_particle_rotation`        | Rotational physics                 | ✅      |
+
+**Coverage**: ✅ 5 particle types (Explosion, Trail, Debris, Spark, PowerUp),
+Physics simulation, Lifecycle management
+
+### 7. Event Feed (`event_feed.rs`) - 3 tests
+
+| Test                       | Description                    | Status |
+| -------------------------- | ------------------------------ | ------ |
+| `test_add_event`           | Event addition to feed         | ✅      |
+| `test_event_severity`      | Severity level filtering       | ✅      |
+| `test_event_capacity_limit` | Max 10 events auto-scroll      | ✅      |
+
+**Coverage**: ✅ 4 severity levels (Info, Warning, Critical, Success), Timestamped
+entries, Auto-scroll
+
+### 8. Synergy System (`synergy_system.rs`) - 4 tests
+
+| Test                            | Description                      | Status |
+| ------------------------------- | -------------------------------- | ------ |
+| `test_synergy_detection`        | Weapon combo detection           | ✅      |
+| `test_synergy_bonus_calculation` | Bonus damage/range calculation   | ✅      |
+| `test_multiple_synergies`       | Multiple active synergies        | ✅      |
+| `test_synergy_deactivation`     | Synergy removal on weapon change | ✅      |
+
+**Coverage**: ✅ 6 synergy effects, Real-time combo detection, Bonus calculations
+(+30% damage, +35% range, +25% cooldown)
 
 ## Test Quality Metrics
 
@@ -305,7 +347,7 @@ open tarpaulin-report.html
 
 ## Conclusion
 
-The core game engine has **comprehensive test coverage** with 29 passing tests
+The core game engine has **comprehensive test coverage** with 47 passing tests
 covering:
 
 - ✅ Vector mathematics
@@ -314,6 +356,9 @@ covering:
 - ✅ Formation management (6 types)
 - ✅ Wave progression
 - ✅ Entity lifecycle
+- ✅ Particle system (5 types)
+- ✅ Event feed (4 severity levels)
+- ✅ Synergy system (6 combos)
 - ✅ Edge cases and error conditions
 
 All tests pass with **zero warnings** from clippy, demonstrating high code

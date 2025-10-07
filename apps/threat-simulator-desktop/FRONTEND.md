@@ -101,7 +101,7 @@ requestAnimationFrame(|current_time| {
 
 ### State Flow
 
-```
+```text
 GameEngine (Rust)
     ↓ update()
 Threats & Drones vectors

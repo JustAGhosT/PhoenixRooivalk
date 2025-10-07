@@ -79,7 +79,7 @@ pnpm sim:dev
 # Full desktop app (with Tauri backend)
 pnpm sim:dev:tauri
 
-# Run all 35 tests
+# Run all 47 tests
 pnpm sim:test
 
 # Lint and format
