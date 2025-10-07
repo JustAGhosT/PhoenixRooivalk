@@ -10,13 +10,13 @@ pub fn CooldownMeter(
         let curr = current.get();
         let mx = max.get();
         if mx > 0.0 {
-            ((curr / mx) * 100.0).min(100.0)
+            ((curr / mx) * 100.0).clamp(0.0, 100.0)
         } else {
             0.0
         }
     };
 
-    let is_ready = move || current.get() == 0.0;
+    let is_ready = move || current.get() <= 0.0;
 
     view! {
         <div class="cooldown-meter">
@@ -39,7 +39,7 @@ pub fn CooldownMeter(
                         if is_ready() { "cooldown-bar ready" } else { "cooldown-bar charging" }
                     }
 
-                    style:width=move || format!("{}%", 100.0 - percentage())
+                    style:width=move || format!("{}%", (100.0 - percentage()).clamp(0.0, 100.0))
                 ></div>
             </div>
         </div>
@@ -66,7 +66,7 @@ pub fn WeaponCooldownGrid(weapons: ReadSignal<Vec<crate::game::Weapon>>) -> impl
                                         class="cooldown-fill"
                                         style:width=move || {
                                             let pct = if max_cooldown > 0.0 {
-                                                ((cooldown / max_cooldown) * 100.0).min(100.0)
+                                                ((cooldown / max_cooldown) * 100.0).clamp(0.0, 100.0)
                                             } else {
                                                 0.0
                                             };
@@ -74,7 +74,7 @@ pub fn WeaponCooldownGrid(weapons: ReadSignal<Vec<crate::game::Weapon>>) -> impl
                                         }
 
                                         style:background-color=move || {
-                                            if cooldown == 0.0 { "#00ff00" } else { "#ff6600" }
+                                            if cooldown <= 0.0 { "#00ff00" } else { "#ff6600" }
                                         }
                                     ></div>
                                 </div>

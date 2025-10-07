@@ -252,6 +252,29 @@ impl FormationManager {
     }
 
     fn calculate_semicircle_positions(&mut self, formation: &Formation, count: usize) {
+        // Handle single-drone case to avoid division by zero
+        if count == 1 {
+            if let Some(drone_id) = formation.drone_ids.first() {
+                // Place single drone at the top of the semicircle (angle = PI/2)
+                let angle = std::f32::consts::PI / 2.0;
+                let x = formation.center.x + formation.radius * angle.cos();
+                let y = formation.center.y + formation.radius * angle.sin();
+
+                self.drone_positions.insert(
+                    drone_id.clone(),
+                    DronePosition {
+                        drone_id: drone_id.clone(),
+                        current: Vector2::new(x, y),
+                        target: Vector2::new(x, y),
+                        role: FormationRole::Leader,
+                        priority: formation.priority,
+                    },
+                );
+            }
+            return;
+        }
+
+        // Handle multiple drones (count > 1)
         let angle_step = std::f32::consts::PI / (count - 1) as f32;
 
         for (i, drone_id) in formation.drone_ids.iter().enumerate() {
@@ -423,5 +446,32 @@ mod tests {
         assert_ne!(id1, id2);
         assert_eq!(manager.formations.len(), 2);
         assert_eq!(manager.drone_positions.len(), 4);
+    }
+
+    #[test]
+    fn test_single_drone_semicircle() {
+        let mut manager = FormationManager::new();
+        let drones = vec!["drone1".to_string()];
+        let center = Vector2::new(100.0, 100.0);
+
+        // This should not panic with division by zero
+        let formation_id =
+            manager.create_formation(FormationType::Semicircle, center, drones);
+
+        // Verify the formation was created
+        assert!(manager.formations.contains_key(&formation_id));
+
+        // Verify the single drone has a position
+        assert_eq!(manager.drone_positions.len(), 1);
+
+        // Verify the drone is assigned Leader role
+        let drone_pos = manager.drone_positions.get("drone1").unwrap();
+        assert_eq!(drone_pos.role, FormationRole::Leader);
+
+        // Verify the drone is positioned at the top of the semicircle (angle = PI/2)
+        // At PI/2: cos(PI/2) ≈ 0, sin(PI/2) = 1
+        // So position should be approximately (center.x + 0, center.y + radius)
+        assert!((drone_pos.target.x - center.x).abs() < 1.0); // Should be near center.x
+        assert!(drone_pos.target.y > center.y); // Should be above center
     }
 }
