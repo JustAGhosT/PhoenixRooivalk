@@ -10,13 +10,13 @@ export const AIBenefitsSection: React.FC = () => {
     >
       <div className="max-w-[1400px] mx-auto">
         <RevealSection className="text-center mb-8">
-          <div className="inline-block bg-[var(--primary)] text-black px-4 py-2 rounded-full text-sm font-bold mb-4">
+          <div className="inline-block bg-[rgb(var(--primary))] text-black px-4 py-2 rounded-full text-sm font-bold mb-4">
             AI + BLOCKCHAIN REVOLUTION
           </div>
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
             Revolutionary AI + Blockchain Performance
           </h2>
-          <p className="text-[var(--gray)] max-w-3xl mx-auto text-lg">
+          <p className="text-[rgb(var(--gray))] max-w-3xl mx-auto text-lg">
             PhoenixRooivalk combines cutting-edge AI with military-grade
             blockchain technology to deliver unprecedented performance: 99.7%
             accuracy with 99.3% data integrity protection.
@@ -87,11 +87,11 @@ export const AIBenefitsSection: React.FC = () => {
         </RevealSection>
 
         <RevealSection className="text-center mt-8">
-          <div className="bg-[rgba(0,255,136,0.1)] border border-[var(--primary)]/30 rounded-xl p-6 max-w-4xl mx-auto">
+          <div className="bg-[rgba(0,255,136,0.1)] border border-[rgb(var(--primary))]/30 rounded-xl p-6 max-w-4xl mx-auto">
             <h3 className="text-2xl font-bold text-white mb-4">
               18-Month AI + Blockchain Advantage
             </h3>
-            <p className="text-[var(--gray)] text-lg mb-6">
+            <p className="text-[rgb(var(--gray))] text-lg mb-6">
               While competitors race to meet the 2027 autonomous warfare
               deadline, PhoenixRooivalk&apos;s integrated AI-blockchain system
               is ready for immediate deployment, providing a decisive
@@ -122,12 +122,12 @@ const MetricCard: React.FC<{
   value: string;
   comparison: string;
 }> = ({ title, value, comparison }) => (
-  <div className="flex items-center justify-between p-4 bg-[rgba(0,255,136,0.1)] border border-[var(--primary)]/30 rounded-lg">
+  <div className="flex items-center justify-between p-4 bg-[rgba(0,255,136,0.1)] border border-[rgb(var(--primary))]/30 rounded-lg">
     <div>
-      <div className="font-bold text-[var(--primary)]">{title}</div>
+      <div className="font-bold text-[rgb(var(--primary))]">{title}</div>
       <div className="text-sm text-gray-300">{comparison}</div>
     </div>
-    <div className="text-2xl font-bold text-[var(--primary)]">{value}</div>
+    <div className="text-2xl font-bold text-[rgb(var(--primary))]">{value}</div>
   </div>
 );
 

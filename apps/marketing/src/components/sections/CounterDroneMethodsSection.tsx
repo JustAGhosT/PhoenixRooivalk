@@ -28,59 +28,59 @@ const MethodCard: React.FC<MethodCardProps> = ({
   <div className="card card--elevated">
     <div className="text-center mb-6">
       <div className="text-4xl mb-4">{icon}</div>
-      <h3 className="text-2xl font-bold text-[var(--action-primary)] mb-2">
+      <h3 className="text-2xl font-bold text-[rgb(var(--action-primary))] mb-2">
         {title}
       </h3>
-      <p className="text-[var(--text-muted)]">{description}</p>
+      <p className="text-[rgb(var(--text-muted))]">{description}</p>
     </div>
 
     {/* Key Metrics */}
     <div className="grid grid-cols-3 gap-4 mb-6">
       <div className="text-center p-3 bg-[rgba(var(--primary),0.1)] rounded-lg border border-[rgba(var(--primary),0.2)]">
-        <div className="text-sm text-[var(--text-muted)] mb-1">
+        <div className="text-sm text-[rgb(var(--text-muted))] mb-1">
           Effectiveness
         </div>
-        <div className="text-lg font-bold text-[var(--action-success)]">
+        <div className="text-lg font-bold text-[rgb(var(--action-success))]">
           {effectiveness}
         </div>
       </div>
       <div className="text-center p-3 bg-[rgba(var(--primary),0.1)] rounded-lg border border-[rgba(var(--primary),0.2)]">
-        <div className="text-sm text-[var(--text-muted)] mb-1">
+        <div className="text-sm text-[rgb(var(--text-muted))] mb-1">
           Response Time
         </div>
-        <div className="text-lg font-bold text-[var(--action-primary)]">
+        <div className="text-lg font-bold text-[rgb(var(--action-primary))]">
           {responseTime}
         </div>
       </div>
       <div className="text-center p-3 bg-[rgba(var(--primary),0.1)] rounded-lg border border-[rgba(var(--primary),0.2)]">
-        <div className="text-sm text-[var(--text-muted)] mb-1">Range</div>
-        <div className="text-lg font-bold text-[var(--accent)]">{range}</div>
+        <div className="text-sm text-[rgb(var(--text-muted))] mb-1">Range</div>
+        <div className="text-lg font-bold text-[rgb(var(--accent))]">{range}</div>
       </div>
     </div>
 
     {/* Pros and Cons */}
     <div className="grid md:grid-cols-2 gap-4 mb-6">
       <div>
-        <h4 className="text-sm font-semibold text-[var(--action-success)] mb-2">
+        <h4 className="text-sm font-semibold text-[rgb(var(--action-success))] mb-2">
           ✓ Advantages
         </h4>
-        <ul className="text-sm text-[var(--text-muted)] space-y-1">
+        <ul className="text-sm text-[rgb(var(--text-muted))] space-y-1">
           {pros.map((pro, index) => (
             <li key={index} className="flex items-start">
-              <span className="text-[var(--action-success)] mr-2">•</span>
+              <span className="text-[rgb(var(--action-success))] mr-2">•</span>
               {pro}
             </li>
           ))}
         </ul>
       </div>
       <div>
-        <h4 className="text-sm font-semibold text-[var(--action-warning)] mb-2">
+        <h4 className="text-sm font-semibold text-[rgb(var(--action-warning))] mb-2">
           ⚠ Limitations
         </h4>
-        <ul className="text-sm text-[var(--text-muted)] space-y-1">
+        <ul className="text-sm text-[rgb(var(--text-muted))] space-y-1">
           {cons.map((con, index) => (
             <li key={index} className="flex items-start">
-              <span className="text-[var(--action-warning)] mr-2">•</span>
+              <span className="text-[rgb(var(--action-warning))] mr-2">•</span>
               {con}
             </li>
           ))}
@@ -90,10 +90,10 @@ const MethodCard: React.FC<MethodCardProps> = ({
 
     {/* Use Case */}
     <div className="p-4 bg-[rgba(var(--bg-secondary),0.6)] rounded-lg border border-[rgba(var(--primary),0.2)]">
-      <h4 className="text-sm font-semibold text-[var(--text-primary)] mb-2">
+      <h4 className="text-sm font-semibold text-[rgb(var(--text-primary))] mb-2">
         Best Use Case
       </h4>
-      <p className="text-sm text-[var(--text-muted)]">{useCase}</p>
+      <p className="text-sm text-[rgb(var(--text-muted))]">{useCase}</p>
     </div>
   </div>
 );
@@ -242,7 +242,7 @@ export const CounterDroneMethodsSection: React.FC = () => {
 
   return (
     <RevealSection>
-      <section className="py-20 bg-[var(--bg-primary)] relative overflow-hidden">
+      <section className="py-20 bg-[rgb(var(--bg-primary))] relative overflow-hidden">
         {/* Background pattern */}
         <div className="absolute inset-0 opacity-5">
           <div className="absolute inset-0 bg-[linear-gradient(rgba(var(--primary),0.1)_1px,_transparent_1px),_linear-gradient(90deg,_rgba(var(--primary),0.1)_1px,_transparent_1px)] bg-[length:50px_50px]"></div>
@@ -274,7 +274,7 @@ export const CounterDroneMethodsSection: React.FC = () => {
                 <h3 className="text-2xl font-bold text-[rgb(var(--primary))] mb-4">
                   Integrated Defense Strategy
                 </h3>
-                <p className="text-[var(--text-muted)] mb-6 max-w-3xl mx-auto">
+                <p className="text-[rgb(var(--text-muted))] mb-6 max-w-3xl mx-auto">
                   Phoenix Rooivalk combines multiple counter-drone methods in a
                   layered defense approach. The system automatically selects the
                   most appropriate method based on threat type, environmental
@@ -285,7 +285,7 @@ export const CounterDroneMethodsSection: React.FC = () => {
                     <div className="text-3xl font-bold text-[rgb(var(--action-success))] mb-2">
                       95%
                     </div>
-                    <div className="text-sm text-[var(--text-muted)]">
+                    <div className="text-sm text-[rgb(var(--text-muted))]">
                       Combined Effectiveness
                     </div>
                   </div>
@@ -293,7 +293,7 @@ export const CounterDroneMethodsSection: React.FC = () => {
                     <div className="text-3xl font-bold text-[rgb(var(--action-primary))] mb-2">
                       &lt;200ms
                     </div>
-                    <div className="text-sm text-[var(--text-muted)]">
+                    <div className="text-sm text-[rgb(var(--text-muted))]">
                       Average Response Time
                     </div>
                   </div>
@@ -301,7 +301,7 @@ export const CounterDroneMethodsSection: React.FC = () => {
                     <div className="text-3xl font-bold text-[rgb(var(--accent))] mb-2">
                       6
                     </div>
-                    <div className="text-sm text-[var(--text-muted)]">
+                    <div className="text-sm text-[rgb(var(--text-muted))]">
                       Defense Methods
                     </div>
                   </div>

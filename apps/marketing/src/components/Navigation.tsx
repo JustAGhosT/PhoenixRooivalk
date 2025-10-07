@@ -92,7 +92,7 @@ export const Navigation: React.FC = () => {
   ];
 
   return (
-    <nav className="sticky top-0 z-50 bg-[var(--bg-primary)] border-b border-[var(--border)] px-6 py-4">
+    <nav className="sticky top-0 z-50 bg-[rgb(var(--bg-primary))] border-b border-[rgb(var(--border))] px-6 py-4">
       <div className="container flex items-center justify-between">
         {/* Logo */}
         <Link href="/" className="flex items-center space-x-4 group">
@@ -116,7 +116,7 @@ export const Navigation: React.FC = () => {
 
         {/* Enhanced Navigation with Dropdowns */}
         <div className="hidden lg:flex items-center space-x-8">
-          <ul className="flex gap-6 text-[var(--text-secondary)]">
+          <ul className="flex gap-6 text-[rgb(var(--text-secondary))]">
             {navigationItems.map((item) => (
               <li
                 key={item.type === "link" ? item.href : item.label}
@@ -124,7 +124,7 @@ export const Navigation: React.FC = () => {
               >
                 {item.type === "dropdown" ? (
                   <>
-                    <button className="hover:text-[var(--text-primary)] focus:text-[var(--text-primary)] transition-colors font-medium flex items-center gap-1">
+                    <button className="hover:text-[rgb(var(--text-primary))] focus:text-[rgb(var(--text-primary))] transition-colors font-medium flex items-center gap-1">
                       {item.label}
                       <svg
                         className="w-4 h-4"
@@ -141,16 +141,16 @@ export const Navigation: React.FC = () => {
                       </svg>
                     </button>
                     {/* Dropdown Menu */}
-                    <div className="absolute top-full left-0 mt-2 w-64 bg-[var(--bg-surface)] border border-[var(--border)] rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible group-focus-within:opacity-100 group-focus-within:visible transition-all duration-200 z-50">
+                    <div className="absolute top-full left-0 mt-2 w-64 bg-[rgb(var(--bg-surface))] border border-[rgb(var(--border))] rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible group-focus-within:opacity-100 group-focus-within:visible transition-all duration-200 z-50">
                       <div className="py-2">
                         {item.items?.map((subItem) => (
                           <Link
                             key={subItem.href}
                             href={subItem.href}
-                            className="flex flex-col px-4 py-3 text-sm text-[var(--text-primary)] hover:bg-[var(--bg-secondary)] transition-colors"
+                            className="flex flex-col px-4 py-3 text-sm text-[rgb(var(--text-primary))] hover:bg-[rgb(var(--bg-secondary))] transition-colors"
                           >
                             <span className="font-medium">{subItem.label}</span>
-                            <span className="text-xs text-[var(--text-muted)]">
+                            <span className="text-xs text-[rgb(var(--text-muted))]">
                               {subItem.description}
                             </span>
                           </Link>
@@ -161,7 +161,7 @@ export const Navigation: React.FC = () => {
                 ) : item.type === "link" ? (
                   <Link
                     href={item.href}
-                    className="hover:text-[var(--text-primary)] transition-colors font-medium"
+                    className="hover:text-[rgb(var(--text-primary))] transition-colors font-medium"
                   >
                     {item.label}
                   </Link>
@@ -220,13 +220,13 @@ export const Navigation: React.FC = () => {
               </button>
 
               {/* Dropdown Menu */}
-              <div className="absolute right-0 mt-2 w-56 bg-[var(--bg-surface)] border border-[var(--border)] rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+              <div className="absolute right-0 mt-2 w-56 bg-[rgb(var(--bg-surface))] border border-[rgb(var(--border))] rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
                 <div className="py-2">
                   <a
                     href="https://github.com/JustAGhosT/PhoenixRooivalk"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center px-4 py-2 text-sm text-[var(--text-primary)] hover:bg-[var(--bg-secondary)] transition-colors"
+                    className="flex items-center px-4 py-2 text-sm text-[rgb(var(--text-primary))] hover:bg-[rgb(var(--bg-secondary))] transition-colors"
                   >
                     <svg
                       className="w-4 h-4 mr-3"
@@ -237,7 +237,7 @@ export const Navigation: React.FC = () => {
                     </svg>
                     <div>
                       <div className="font-medium">Phoenix Rooivalk</div>
-                      <div className="text-xs text-[var(--text-muted)]">
+                      <div className="text-xs text-[rgb(var(--text-muted))]">
                         Main repository
                       </div>
                     </div>
@@ -246,7 +246,7 @@ export const Navigation: React.FC = () => {
                     href="https://github.com/justaghost/cognitive-mesh"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center px-4 py-2 text-sm text-[var(--text-primary)] hover:bg-[var(--bg-secondary)] transition-colors"
+                    className="flex items-center px-4 py-2 text-sm text-[rgb(var(--text-primary))] hover:bg-[rgb(var(--bg-secondary))] transition-colors"
                   >
                     <svg
                       className="w-4 h-4 mr-3"
@@ -257,17 +257,17 @@ export const Navigation: React.FC = () => {
                     </svg>
                     <div>
                       <div className="font-medium">Cognitive Mesh</div>
-                      <div className="text-xs text-[var(--text-muted)]">
+                      <div className="text-xs text-[rgb(var(--text-muted))]">
                         AI integration
                       </div>
                     </div>
                   </a>
-                  <div className="border-t border-[var(--border)] my-1"></div>
+                  <div className="border-t border-[rgb(var(--border))] my-1"></div>
                   <a
                     href="https://docs-phoenixrooivalk.netlify.app"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center px-4 py-2 text-sm text-[var(--text-primary)] hover:bg-[var(--bg-secondary)] transition-colors"
+                    className="flex items-center px-4 py-2 text-sm text-[rgb(var(--text-primary))] hover:bg-[rgb(var(--bg-secondary))] transition-colors"
                   >
                     <svg
                       className="w-4 h-4 mr-3"
@@ -284,7 +284,7 @@ export const Navigation: React.FC = () => {
                     </svg>
                     <div>
                       <div className="font-medium">Documentation</div>
-                      <div className="text-xs text-[var(--text-muted)]">
+                      <div className="text-xs text-[rgb(var(--text-muted))]">
                         Technical docs
                       </div>
                     </div>
@@ -302,9 +302,9 @@ export const Navigation: React.FC = () => {
           >
             <div className="w-5 h-5">
               {theme === "phoenix" ? (
-                <div className="w-full h-full bg-[var(--action-primary)] rounded-full"></div>
+                <div className="w-full h-full bg-[rgb(var(--action-primary))] rounded-full"></div>
               ) : (
-                <div className="w-full h-full bg-[var(--action-secondary)] rounded"></div>
+                <div className="w-full h-full bg-[rgb(var(--action-secondary))] rounded"></div>
               )}
             </div>
           </button>

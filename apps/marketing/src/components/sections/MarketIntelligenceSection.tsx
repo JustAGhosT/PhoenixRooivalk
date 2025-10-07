@@ -56,7 +56,7 @@ export const MarketIntelligenceSection: React.FC = () => {
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
             Market Opportunity & Competitive Position
           </h2>
-          <p className="text-[var(--gray)] max-w-3xl mx-auto">
+          <p className="text-[rgb(var(--gray))] max-w-3xl mx-auto">
             Phoenix Rooivalk addresses critical gaps in the $26B counter-drone
             market with SAE Level 4 autonomous architecture
           </p>
@@ -73,7 +73,7 @@ export const MarketIntelligenceSection: React.FC = () => {
                 key={index}
                 className="bg-gray-900/50 border border-gray-700/50 rounded-lg p-6 text-center"
               >
-                <div className="text-3xl font-bold text-[var(--primary)] mb-2">
+                <div className="text-3xl font-bold text-[rgb(var(--primary))] mb-2">
                   {data.metric}
                 </div>
                 <div className="text-lg font-semibold text-white mb-2">
@@ -99,7 +99,7 @@ export const MarketIntelligenceSection: React.FC = () => {
                 <div className="text-xl font-bold text-white mb-2">
                   {competitor.name}
                 </div>
-                <div className="text-sm text-[var(--primary)] mb-3">
+                <div className="text-sm text-[rgb(var(--primary))] mb-3">
                   {competitor.status}
                 </div>
                 <div className="text-sm text-gray-300 mb-3">
@@ -115,13 +115,13 @@ export const MarketIntelligenceSection: React.FC = () => {
 
         {/* Phoenix Advantage */}
         <RevealSection className="mt-12">
-          <div className="bg-gradient-to-r from-[var(--primary)]/10 to-[var(--secondary)]/10 border border-[var(--primary)]/30 rounded-lg p-8 text-center">
+          <div className="bg-gradient-to-r from-[rgb(var(--primary))]/10 to-[rgb(var(--secondary))]/10 border border-[rgb(var(--primary))]/30 rounded-lg p-8 text-center">
             <h3 className="text-2xl font-bold text-white mb-4">
               Phoenix Rooivalk Advantage
             </h3>
             <div className="grid md:grid-cols-3 gap-6 text-left">
               <div>
-                <div className="text-lg font-semibold text-[var(--primary)] mb-2">
+                <div className="text-lg font-semibold text-[rgb(var(--primary))] mb-2">
                   Speed
                 </div>
                 <div className="text-sm text-gray-300">
@@ -129,7 +129,7 @@ export const MarketIntelligenceSection: React.FC = () => {
                 </div>
               </div>
               <div>
-                <div className="text-lg font-semibold text-[var(--primary)] mb-2">
+                <div className="text-lg font-semibold text-[rgb(var(--primary))] mb-2">
                   Autonomy
                 </div>
                 <div className="text-sm text-gray-300">
@@ -137,7 +137,7 @@ export const MarketIntelligenceSection: React.FC = () => {
                 </div>
               </div>
               <div>
-                <div className="text-lg font-semibold text-[var(--primary)] mb-2">
+                <div className="text-lg font-semibold text-[rgb(var(--primary))] mb-2">
                   Accountability
                 </div>
                 <div className="text-sm text-gray-300">

@@ -45,22 +45,22 @@ export const Footer: React.FC = () => {
               <h3 className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-br from-[rgb(var(--phoenix-white))] to-[rgb(var(--primary))] mb-4">
                 Phoenix Rooivalk
               </h3>
-              <p className="text-[var(--gray)] text-sm mb-4">
+              <p className="text-[rgb(var(--gray))] text-sm mb-4">
                 Advanced counter-UAS defense systems for military and civilian
                 protection.
               </p>
-              <p className="text-[var(--gray)] text-xs">
+              <p className="text-[rgb(var(--gray))] text-xs">
                 Nexamesh Technologies (Delaware C-Corp in progress)
               </p>
               <div className="flex space-x-4">
-                <div className="w-8 h-8 bg-[var(--primary)]/20 rounded-lg flex items-center justify-center">
-                  <span className="text-[var(--primary)] text-sm">🛡️</span>
+                <div className="w-8 h-8 bg-[rgb(var(--primary))]/20 rounded-lg flex items-center justify-center">
+                  <span className="text-[rgb(var(--primary))] text-sm">🛡️</span>
                 </div>
-                <div className="w-8 h-8 bg-[var(--primary)]/20 rounded-lg flex items-center justify-center">
-                  <span className="text-[var(--primary)] text-sm">🚁</span>
+                <div className="w-8 h-8 bg-[rgb(var(--primary))]/20 rounded-lg flex items-center justify-center">
+                  <span className="text-[rgb(var(--primary))] text-sm">🚁</span>
                 </div>
-                <div className="w-8 h-8 bg-[var(--primary)]/20 rounded-lg flex items-center justify-center">
-                  <span className="text-[var(--primary)] text-sm">📡</span>
+                <div className="w-8 h-8 bg-[rgb(var(--primary))]/20 rounded-lg flex items-center justify-center">
+                  <span className="text-[rgb(var(--primary))] text-sm">📡</span>
                 </div>
               </div>
             </div>
@@ -76,7 +76,7 @@ export const Footer: React.FC = () => {
                     <li key={link.href}>
                       <Link
                         href={link.href}
-                        className="text-[var(--gray)] hover:text-[var(--primary)] transition-colors duration-200 text-sm"
+                        className="text-[rgb(var(--gray))] hover:text-[rgb(var(--primary))] transition-colors duration-200 text-sm"
                       >
                         {link.label}
                       </Link>
@@ -91,10 +91,10 @@ export const Footer: React.FC = () => {
           <div className="border-t border-[rgba(var(--primary),0.1)] pt-8">
             <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
               <div className="text-center md:text-left">
-                <p className="text-[var(--gray)] text-sm mb-2">
+                <p className="text-[rgb(var(--gray))] text-sm mb-2">
                   © 2025 Phoenix Rooivalk. All rights reserved.
                 </p>
-                <p className="text-xs text-[var(--gray)]/70">
+                <p className="text-xs text-[rgb(var(--gray))]/70">
                   ITAR Compliance Planned • ISO 27001 Certification Planned •
                   Classified Operations Planned Ready
                 </p>
@@ -103,18 +103,18 @@ export const Footer: React.FC = () => {
               <div className="flex items-center space-x-6">
                 <div className="flex items-center space-x-2">
                   <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-                  <span className="text-xs text-[var(--gray)]">
+                  <span className="text-xs text-[rgb(var(--gray))]">
                     System Online
                   </span>
                 </div>
-                <div className="text-xs text-[var(--gray)]">v2.1.0-alpha</div>
+                <div className="text-xs text-[rgb(var(--gray))]">v2.1.0-alpha</div>
               </div>
             </div>
 
             {/* Disclaimer */}
             <div className="mt-6 p-4 bg-[rgba(var(--tactical-charcoal),0.5)] rounded-lg border border-[rgba(var(--primary),0.1)]">
-              <p className="text-xs text-[var(--gray)] text-center leading-relaxed">
-                <strong className="text-[var(--primary)]">Disclaimer:</strong>{" "}
+              <p className="text-xs text-[rgb(var(--gray))] text-center leading-relaxed">
+                <strong className="text-[rgb(var(--primary))]">Disclaimer:</strong>{" "}
                 Phoenix Rooivalk is an R&D concept in planning. No
                 certifications, pilots, or endorsements are claimed. All
                 simulations and metrics are illustrative and subject to change.

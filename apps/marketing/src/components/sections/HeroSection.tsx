@@ -88,10 +88,10 @@ export const HeroSection: React.FC = () => {
         <div className="mt-6 max-w-4xl mx-auto">
           <div className="card card--elevated">
             <div className="text-center mb-6">
-              <h3 className="text-2xl font-bold text-[var(--action-primary)] mb-4">
+              <h3 className="text-2xl font-bold text-[rgb(var(--action-primary))] mb-4">
                 SAE Level 4 Autonomy Concept
               </h3>
-              <p className="text-[var(--text-muted)] mb-6">
+              <p className="text-[rgb(var(--text-muted))] mb-6">
                 Edge-first decision making without network dependency
               </p>
             </div>
@@ -99,33 +99,33 @@ export const HeroSection: React.FC = () => {
             {/* Visual concept representation */}
             <div className="space-y-4">
               <div className="flex items-center justify-between p-4 bg-[rgba(var(--primary),0.1)] rounded-lg border border-[rgba(var(--primary),0.2)]">
-                <span className="text-sm font-medium text-[var(--text-primary)]">
+                <span className="text-sm font-medium text-[rgb(var(--text-primary))]">
                   Detection Latency
                 </span>
-                <span className="text-lg font-bold text-[var(--action-success)]">
+                <span className="text-lg font-bold text-[rgb(var(--action-success))]">
                   &lt;200ms
                 </span>
               </div>
               <div className="flex items-center justify-between p-4 bg-[rgba(var(--primary),0.1)] rounded-lg border border-[rgba(var(--primary),0.2)]">
-                <span className="text-sm font-medium text-[var(--text-primary)]">
+                <span className="text-sm font-medium text-[rgb(var(--text-primary))]">
                   Network Independence
                 </span>
-                <span className="text-lg font-bold text-[var(--action-success)]">
+                <span className="text-lg font-bold text-[rgb(var(--action-success))]">
                   100%
                 </span>
               </div>
               <div className="flex items-center justify-between p-4 bg-[rgba(var(--primary),0.1)] rounded-lg border border-[rgba(var(--primary),0.2)]">
-                <span className="text-sm font-medium text-[var(--text-primary)]">
+                <span className="text-sm font-medium text-[rgb(var(--text-primary))]">
                   Market Gap Addressed
                 </span>
-                <span className="text-lg font-bold text-[var(--action-success)]">
+                <span className="text-lg font-bold text-[rgb(var(--action-success))]">
                   64%
                 </span>
               </div>
             </div>
 
-            <div className="mt-6 p-4 bg-[var(--action-warning)]/10 border border-[var(--action-warning)]/20 rounded-lg">
-              <p className="text-xs text-[var(--action-warning)] text-center font-semibold">
+            <div className="mt-6 p-4 bg-[rgb(var(--action-warning))]/10 border border-[rgb(var(--action-warning))]/20 rounded-lg">
+              <p className="text-xs text-[rgb(var(--action-warning))] text-center font-semibold">
                 💡 This represents a conceptual approach under development.
                 Performance metrics are targets for validation.
               </p>

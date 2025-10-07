@@ -4,7 +4,7 @@ import { Button } from "../components/ui/button";
 
 export default function NotFound(): React.ReactElement {
   return (
-    <div className="min-h-screen bg-[var(--darker)] text-white flex items-center justify-center px-6">
+    <div className="min-h-screen bg-[rgb(var(--darker))] text-white flex items-center justify-center px-6">
       <div className="max-w-md mx-auto text-center">
         <div className="mb-8">
           <h1 className="text-6xl font-bold text-[rgb(var(--primary))] mb-4">
