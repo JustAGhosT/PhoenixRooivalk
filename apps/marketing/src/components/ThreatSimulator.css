@@ -98,7 +98,11 @@
   align-items: center;
   padding: 12px 16px;
   border-top: 1px solid rgb(var(--sim-border));
-  background: linear-gradient(to bottom, rgb(var(--sim-panel)), rgb(var(--sim-elev)));
+  background: linear-gradient(
+    to bottom,
+    rgb(var(--sim-panel)),
+    rgb(var(--sim-elev))
+  );
 }
 .level {
   display: flex;
@@ -201,8 +205,8 @@
   flex-shrink: 0; /* Prevent the disclaimer from shrinking */
 }
 
-/* Buttons (reuse your .btn variants if you included my ui-patch) */
-.btn {
+/* Buttons (scoped to simulator to avoid conflicts with global styles) */
+.sim-btn {
   background: rgb(var(--sim-accent));
   color: #0b0b0b;
   border: 1px solid transparent;
@@ -210,12 +214,12 @@
   padding: 8px 14px;
   font-weight: 800;
 }
-.btn--secondary {
+.sim-btn--secondary {
   background: #182028;
   color: rgb(var(--sim-text));
   border-color: rgb(var(--sim-border));
 }
-.btn--ghost {
+.sim-btn--ghost {
   background: transparent;
   border-color: rgb(var(--sim-border));
   color: rgb(var(--sim-text));
@@ -1385,17 +1389,17 @@
 }
 
 .risk-level--low {
-  background: rgba(var(--sim-success), 0.20);
+  background: rgba(var(--sim-success), 0.2);
   color: rgb(var(--sim-success));
 }
 
 .risk-level--medium {
-  background: rgba(var(--sim-warning), 0.20);
+  background: rgba(var(--sim-warning), 0.2);
   color: rgb(var(--sim-warning));
 }
 
 .risk-level--high {
-  background: rgba(var(--sim-danger), 0.20);
+  background: rgba(var(--sim-danger), 0.2);
   color: rgb(var(--sim-danger));
 }
 
@@ -1427,7 +1431,7 @@
 
 .legal-badge-note {
   padding: 8px;
-  background: rgba(var(--sim-warning), 0.10);
+  background: rgba(var(--sim-warning), 0.1);
   border: 1px solid var(--sim-warning) 30;
   border-radius: 4px;
   font-size: 12px;
@@ -1633,7 +1637,7 @@
 .energy-budget-warning {
   margin-top: 8px;
   padding: 4px 6px;
-  background: rgba(var(--sim-warning), 0.20);
+  background: rgba(var(--sim-warning), 0.2);
   border: 1px solid var(--sim-warning) 40;
   border-radius: 3px;
   font-size: 10px;
@@ -1703,7 +1707,7 @@
 .research-option-warning {
   margin-top: 8px;
   padding: 6px 8px;
-  background: rgba(var(--sim-warning), 0.20);
+  background: rgba(var(--sim-warning), 0.2);
   border: 1px solid var(--sim-warning) 40;
   border-radius: 4px;
   font-size: 11px;
@@ -1720,7 +1724,7 @@
 }
 
 .weapon-item-container.selected {
-  background: rgba(var(--sim-accent), 0.10);
+  background: rgba(var(--sim-accent), 0.1);
   border-radius: 6px;
   padding: 2px;
 }
@@ -1794,7 +1798,7 @@
 }
 
 .drone-item-container.selected {
-  background: rgba(var(--sim-accent), 0.10);
+  background: rgba(var(--sim-accent), 0.1);
   border-radius: 6px;
   padding: 2px;
 }
@@ -2064,7 +2068,7 @@
 .energy-warning {
   margin-top: 12px;
   padding: 8px;
-  background: rgba(var(--sim-danger), 0.20);
+  background: rgba(var(--sim-danger), 0.2);
   border: 1px solid var(--sim-danger) 40;
   border-radius: 4px;
   display: flex;
@@ -2086,7 +2090,7 @@
 .energy-low-warning {
   margin-top: 12px;
   padding: 8px;
-  background: rgba(var(--sim-warning), 0.20);
+  background: rgba(var(--sim-warning), 0.2);
   border: 1px solid var(--sim-warning) 40;
   border-radius: 4px;
   display: flex;
@@ -2466,13 +2470,13 @@
 }
 
 .energy-indicator.sufficient {
-  background: rgba(var(--sim-success), 0.20);
+  background: rgba(var(--sim-success), 0.2);
   border: 1px solid var(--sim-success) 40;
   color: rgb(var(--sim-success));
 }
 
 .energy-indicator.insufficient {
-  background: rgba(var(--sim-danger), 0.20);
+  background: rgba(var(--sim-danger), 0.2);
   border: 1px solid var(--sim-danger) 40;
   color: rgb(var(--sim-danger));
 }
@@ -2501,14 +2505,14 @@
 }
 
 .insufficient-energy-overlay {
-  background: rgba(var(--sim-danger), 0.20);
-  border-color: rgba(var(--sim-danger), 0.40);
+  background: rgba(var(--sim-danger), 0.2);
+  border-color: rgba(var(--sim-danger), 0.4);
   color: rgb(var(--sim-danger));
 }
 
 .ready-overlay {
-  background: rgba(var(--sim-success), 0.20);
-  border-color: rgba(var(--sim-success), 0.40);
+  background: rgba(var(--sim-success), 0.2);
+  border-color: rgba(var(--sim-success), 0.4);
   color: rgb(var(--sim-success));
 }
 
@@ -2650,7 +2654,7 @@
 
 .roe-legal-flag {
   padding: 2px 4px;
-  background: rgba(var(--sim-warning), 0.20);
+  background: rgba(var(--sim-warning), 0.2);
   border: 1px solid var(--sim-warning) 40;
   border-radius: 3px;
   font-size: 7px;
@@ -2697,7 +2701,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background: radial-gradient(circle, rgb(var(--sim-bg)) 0%, rgb(var(--sim-elev)) 100%);
+  background: radial-gradient(
+    circle,
+    rgb(var(--sim-bg)) 0%,
+    rgb(var(--sim-elev)) 100%
+  );
   border-radius: 6px;
   padding: 20px;
   position: relative;
@@ -2999,19 +3007,19 @@
 }
 
 .status-indicator.planning {
-  background: rgba(var(--sim-warning), 0.20);
+  background: rgba(var(--sim-warning), 0.2);
   border: 1px solid var(--sim-warning) 40;
   color: rgb(var(--sim-warning));
 }
 
 .status-indicator.active {
-  background: rgba(var(--sim-success), 0.20);
+  background: rgba(var(--sim-success), 0.2);
   border: 1px solid var(--sim-success) 40;
   color: rgb(var(--sim-success));
 }
 
 .status-indicator.complete {
-  background: rgba(var(--sim-accent), 0.20);
+  background: rgba(var(--sim-accent), 0.2);
   border: 1px solid var(--sim-accent) 40;
   color: rgb(var(--sim-accent));
 }
@@ -3131,7 +3139,7 @@
 
 .effector-card.selected {
   border-color: rgb(var(--sim-success));
-  background: rgba(var(--sim-success), 0.10);
+  background: rgba(var(--sim-success), 0.1);
 }
 
 .effector-card.insufficient-energy {
@@ -3238,7 +3246,7 @@
 .legal-warning {
   margin-top: 6px;
   padding: 4px 8px;
-  background: rgba(var(--sim-warning), 0.20);
+  background: rgba(var(--sim-warning), 0.2);
   border: 1px solid var(--sim-warning) 40;
   border-radius: 3px;
   font-size: 8px;
