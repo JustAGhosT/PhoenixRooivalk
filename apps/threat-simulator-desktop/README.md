@@ -70,12 +70,36 @@ xcode-select --install
 
 ## Development
 
-### Running the App
+### 🏃 Quick Commands (From Project Root)
+
+```bash
+# Frontend only (fastest iteration, hot-reload)
+pnpm sim:dev
+
+# Full desktop app (with Tauri backend)
+pnpm sim:dev:tauri
+
+# Run all 35 tests
+pnpm sim:test
+
+# Lint and format
+pnpm sim:lint
+cargo fmt -p threat-simulator-desktop
+```
+
+### Running the App (From App Directory)
 
 ```bash
 cd apps/threat-simulator-desktop
-cargo tauri dev
+
+# Frontend only
+pnpm dev          # or: trunk serve --open
+
+# Full desktop app
+pnpm dev:tauri    # or: cargo tauri dev
 ```
+
+**📖 See [QUICKSTART.md](./QUICKSTART.md) for detailed setup and troubleshooting.**
 
 This will:
 1. Start the Trunk dev server (frontend)

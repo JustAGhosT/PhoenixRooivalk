@@ -49,18 +49,18 @@ The Phoenix Rooivalk ThreatSimulator has been **completely migrated** from React
 
 ## 🎮 Complete Feature Matrix
 
-| Feature Category | Count | Status |
-|------------------|-------|--------|
-| **Weapons** | 13 types | ✅ All implemented |
-| **Drones** | 9 types | ✅ All implemented |
-| **Threats** | 7 types | ✅ All implemented |
-| **Formations** | 6 patterns | ✅ All implemented |
-| **Particle Types** | 5 types | ✅ All implemented |
-| **Synergies** | 6 combos | ✅ All implemented |
-| **UI Panels** | 14 panels | ✅ All implemented |
+| Feature Category      | Count        | Status            |
+| --------------------- | ------------ | ----------------- |
+| **Weapons**           | 13 types     | ✅ All implemented |
+| **Drones**            | 9 types      | ✅ All implemented |
+| **Threats**           | 7 types      | ✅ All implemented |
+| **Formations**        | 6 patterns   | ✅ All implemented |
+| **Particle Types**    | 5 types      | ✅ All implemented |
+| **Synergies**         | 6 combos     | ✅ All implemented |
+| **UI Panels**         | 14 panels    | ✅ All implemented |
 | **Keyboard Controls** | 22 shortcuts | ✅ All implemented |
-| **Research Items** | 8+ upgrades | ✅ System complete |
-| **Modal Overlays** | 6 types | ✅ All implemented |
+| **Research Items**    | 8+ upgrades  | ✅ System complete |
+| **Modal Overlays**    | 6 types      | ✅ All implemented |
 
 ---
 
@@ -142,14 +142,14 @@ pnpm clean            # cargo clean && trunk clean
 ## 📊 Final Metrics
 
 ### Code Volume
-| Category | React (Before) | Leptos (After) | Reduction |
-|----------|----------------|----------------|-----------|
-| UI Components | 1,300 lines | 1,350 lines | -4% (feature parity+) |
-| Game Engine | 1,200 lines | 1,420 lines | -18% (+ tests) |
-| State Management | 900 lines (hooks) | 200 lines (signals) | **78%** ✅ |
-| Particle System | 450 lines | 280 lines | **38%** ✅ |
-| **Total Functional** | **3,850 lines** | **3,250 lines** | **16%** ✅ |
-| **Tests** | **0 lines (0 tests)** | **~500 lines (35 tests)** | **∞%** ✅ |
+| Category             | React (Before)        | Leptos (After)            | Reduction             |
+| -------------------- | --------------------- | ------------------------- | --------------------- |
+| UI Components        | 1,300 lines           | 1,350 lines               | -4% (feature parity+) |
+| Game Engine          | 1,200 lines           | 1,420 lines               | -18% (+ tests)        |
+| State Management     | 900 lines (hooks)     | 200 lines (signals)       | **78%** ✅             |
+| Particle System      | 450 lines             | 280 lines                 | **38%** ✅             |
+| **Total Functional** | **3,850 lines**       | **3,250 lines**           | **16%** ✅             |
+| **Tests**            | **0 lines (0 tests)** | **~500 lines (35 tests)** | **∞%** ✅              |
 
 ### Test Coverage
 ```
@@ -171,15 +171,15 @@ Clippy:               0        ✅ Zero warnings
 
 ### Performance Benchmarks
 
-| Metric | React (Web) | Leptos/Tauri (Desktop) | Improvement |
-|--------|-------------|------------------------|-------------|
-| **Load Time** | 2,000ms | 200ms | **10x faster** ✅ |
-| **Memory (idle)** | 150MB | 35MB | **4.3x better** ✅ |
-| **Memory (active)** | 200MB+ | 45MB | **4.4x better** ✅ |
-| **Frame Time** | 16.7ms (60 FPS) | 11-16ms (60-90 FPS) | **2x smoother** ✅ |
-| **Bundle Size** | ~5MB (WASM+JS) | 12MB (.msi) | Native app ✅ |
-| **Max Entities** | ~100 threats | ~500 threats | **5x capacity** ✅ |
-| **Input Latency** | ~32ms | <16ms | **2x faster** ✅ |
+| Metric              | React (Web)     | Leptos/Tauri (Desktop) | Improvement       |
+| ------------------- | --------------- | ---------------------- | ----------------- |
+| **Load Time**       | 2,000ms         | 200ms                  | **10x faster** ✅  |
+| **Memory (idle)**   | 150MB           | 35MB                   | **4.3x better** ✅ |
+| **Memory (active)** | 200MB+          | 45MB                   | **4.4x better** ✅ |
+| **Frame Time**      | 16.7ms (60 FPS) | 11-16ms (60-90 FPS)    | **2x smoother** ✅ |
+| **Bundle Size**     | ~5MB (WASM+JS)  | 12MB (.msi)            | Native app ✅      |
+| **Max Entities**    | ~100 threats    | ~500 threats           | **5x capacity** ✅ |
+| **Input Latency**   | ~32ms           | <16ms                  | **2x faster** ✅   |
 
 ---
 
@@ -376,15 +376,15 @@ feature/leptos-tauri-threat-simulator (8 commits)
 
 ## 📈 Success Metrics - ALL EXCEEDED
 
-| Target | Goal | Achieved | Status |
-|--------|------|----------|--------|
-| Component Migration | 14/14 | **17/17** | ✅✅ **121%** |
-| Test Coverage | 80% | **100%** | ✅✅ **125%** |
-| FPS | 60 | **90+** | ✅✅ **150%** |
-| Memory | <80MB | **<50MB** | ✅✅ **160%** |
-| Load Time | <1s | **<1s** | ✅ **100%** |
-| Code Quality | No warnings | **0 warnings** | ✅✅ **100%** |
-| Documentation | 1,000+ lines | **2,200+ lines** | ✅✅ **220%** |
+| Target              | Goal         | Achieved         | Status      |
+| ------------------- | ------------ | ---------------- | ----------- |
+| Component Migration | 14/14        | **17/17**        | ✅✅ **121%** |
+| Test Coverage       | 80%          | **100%**         | ✅✅ **125%** |
+| FPS                 | 60           | **90+**          | ✅✅ **150%** |
+| Memory              | <80MB        | **<50MB**        | ✅✅ **160%** |
+| Load Time           | <1s          | **<1s**          | ✅ **100%**  |
+| Code Quality        | No warnings  | **0 warnings**   | ✅✅ **100%** |
+| Documentation       | 1,000+ lines | **2,200+ lines** | ✅✅ **220%** |
 
 ---
 

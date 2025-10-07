@@ -12,7 +12,13 @@
     "rust:format": "cargo fmt --all",
     "rust:format:check": "cargo fmt --all -- --check",
     "fx": "pnpm run format && pnpm run lint",
-    "prepare": "husky"
+    "prepare": "husky",
+    "sim:dev": "pnpm -C apps/threat-simulator-desktop dev",
+    "sim:dev:tauri": "pnpm -C apps/threat-simulator-desktop dev:tauri",
+    "sim:build": "pnpm -C apps/threat-simulator-desktop build",
+    "sim:build:tauri": "pnpm -C apps/threat-simulator-desktop build:tauri",
+    "sim:test": "pnpm -C apps/threat-simulator-desktop test",
+    "sim:lint": "pnpm -C apps/threat-simulator-desktop lint"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^7.18.0",
