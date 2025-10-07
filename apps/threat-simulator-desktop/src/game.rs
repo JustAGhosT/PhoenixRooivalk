@@ -9,6 +9,7 @@ use std::cell::RefCell;
 
 pub mod engine;
 pub mod formations;
+pub mod particles;
 pub mod physics;
 pub mod types;
 pub mod waves;

@@ -208,14 +208,14 @@ let canvas_ref = create_node_ref::<html::Canvas>();
 ## Code Metrics
 
 ### Lines of Code
-| Module | Lines | Tests | Status |
-|--------|-------|-------|--------|
-| `components.rs` | 210 | N/A | ✅ |
-| `game_canvas.rs` | 330 | N/A | ✅ |
-| `hud.rs` | 150 | N/A | ✅ |
-| `weapon_panel.rs` | 90 | N/A | ✅ |
-| `stats_panel.rs` | 160 | N/A | ✅ |
-| **Total Frontend** | **940** | - | **✅** |
+| Module             | Lines   | Tests | Status |
+| ------------------ | ------- | ----- | ------ |
+| `components.rs`    | 210     | N/A   | ✅      |
+| `game_canvas.rs`   | 330     | N/A   | ✅      |
+| `hud.rs`           | 150     | N/A   | ✅      |
+| `weapon_panel.rs`  | 90      | N/A   | ✅      |
+| `stats_panel.rs`   | 160     | N/A   | ✅      |
+| **Total Frontend** | **940** | -     | **✅**  |
 
 ### Comparison
 - **React Version**: ~2,500 lines (TypeScript + JSX)

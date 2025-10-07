@@ -1,12 +1,22 @@
 use leptos::*;
 
+mod cooldown_meter;
+mod drone_deployment;
+mod energy_management;
+mod event_feed;
 mod game_canvas;
 mod hud;
+mod overlays;
 mod stats_panel;
 mod weapon_panel;
 
+pub use cooldown_meter::{CooldownMeter, WeaponCooldownGrid};
+pub use drone_deployment::DroneDeploymentPanel;
+pub use energy_management::EnergyManagement;
+pub use event_feed::{create_feed_item, EventFeed, FeedItem, FeedSeverity};
 pub use game_canvas::GameCanvas;
 pub use hud::Hud;
+pub use overlays::{AchievementNotification, FullscreenPrompt, GameOverOverlay, SimulationWarning};
 pub use stats_panel::StatsPanel;
 pub use weapon_panel::WeaponPanel;
 
@@ -22,7 +32,13 @@ pub fn App() -> impl IntoView {
     // Reactive signals for UI state
     let (show_help, set_show_help) = create_signal(false);
     let (show_stats, set_show_stats) = create_signal(false);
+    let (show_energy, set_show_energy) = create_signal(false);
+    let (show_drones, set_show_drones) = create_signal(false);
+    let (show_warning, set_show_warning) = create_signal(true);
+    let (show_events, set_show_events) = create_signal(false);
     let (is_running, set_is_running) = create_signal(false);
+    let (achievement_message, set_achievement_message) = create_signal(None::<String>);
+    let (event_feed, set_event_feed) = create_signal(Vec::<FeedItem>::new());
 
     // Keyboard event handler
     let game_state_kb = game_state.clone();
@@ -45,10 +61,26 @@ pub fn App() -> impl IntoView {
                     // Stats toggle
                     set_show_stats.update(|s| *s = !*s);
                 }
+                "e" | "E" => {
+                    // Energy management toggle
+                    set_show_energy.update(|e| *e = !*e);
+                }
+                "d" | "D" => {
+                    // Drone deployment toggle
+                    set_show_drones.update(|d| *d = !*d);
+                }
+                "l" | "L" => {
+                    // Event log toggle
+                    set_show_events.update(|e| *e = !*e);
+                }
                 "r" | "R" => {
                     // Reset game
                     game_state_kb.reset();
                     set_is_running.set(false);
+                    set_event_feed.set(vec![create_feed_item(
+                        "Game reset".to_string(),
+                        FeedSeverity::Info,
+                    )]);
                 }
                 // Weapon selection (1-9, 0, C, S, A)
                 "1" => game_state_kb.selected_weapon.set(WeaponType::Kinetic),
@@ -78,9 +110,37 @@ pub fn App() -> impl IntoView {
 
     view! {
         <div class="app-container">
+            // Simulation warning overlay
+            <SimulationWarning show=show_warning on_close=move || set_show_warning.set(false)/>
+
+            // Achievement notifications
+            <AchievementNotification
+                message=achievement_message
+                on_dismiss=move || set_achievement_message.set(None)
+            />
+
             <Hud game_state=game_state.clone() is_running=is_running/>
 
             <GameCanvas game_state=game_state.clone() is_running=is_running/>
+
+            // Side panels
+            <Show when=move || show_events.get() fallback=|| view! { <div></div> }>
+                <div class="side-panel left">
+                    <EventFeed feed_items=event_feed/>
+                </div>
+            </Show>
+
+            <Show when=move || show_energy.get() fallback=|| view! { <div></div> }>
+                <div class="side-panel right">
+                    <EnergyManagement game_state=game_state.clone()/>
+                </div>
+            </Show>
+
+            <Show when=move || show_drones.get() fallback=|| view! { <div></div> }>
+                <div class="side-panel right-lower">
+                    <DroneDeploymentPanel game_state=game_state.clone()/>
+                </div>
+            </Show>
 
             <div class="controls-footer">
                 <div class="control-section">
@@ -88,6 +148,14 @@ pub fn App() -> impl IntoView {
                         class="control-button primary"
                         on:click=move |_| {
                             set_is_running.update(|r| *r = !*r);
+                            if is_running.get() {
+                                set_event_feed
+                                    .update(|feed| {
+                                        feed.push(
+                                            create_feed_item("Mission started".to_string(), FeedSeverity::Info),
+                                        );
+                                    });
+                            }
                         }
                     >
 
@@ -99,6 +167,10 @@ pub fn App() -> impl IntoView {
                         on:click=move |_| {
                             game_state.reset();
                             set_is_running.set(false);
+                            set_event_feed
+                                .set(vec![
+                                    create_feed_item("Game reset".to_string(), FeedSeverity::Info),
+                                ]);
                         }
                     >
 
@@ -109,6 +181,36 @@ pub fn App() -> impl IntoView {
                 <WeaponPanel game_state=game_state.clone()/>
 
                 <div class="control-section">
+                    <button
+                        class="control-button"
+                        on:click=move |_| {
+                            set_show_events.update(|e| *e = !*e);
+                        }
+                    >
+
+                        "📜 LOG"
+                    </button>
+
+                    <button
+                        class="control-button"
+                        on:click=move |_| {
+                            set_show_energy.update(|e| *e = !*e);
+                        }
+                    >
+
+                        "⚡ ENERGY"
+                    </button>
+
+                    <button
+                        class="control-button"
+                        on:click=move |_| {
+                            set_show_drones.update(|d| *d = !*d);
+                        }
+                    >
+
+                        "🚁 DRONES"
+                    </button>
+
                     <button
                         class="control-button"
                         on:click=move |_| {
@@ -161,6 +263,18 @@ pub fn App() -> impl IntoView {
                                 <li>
                                     <kbd>"S"</kbd>
                                     " - Toggle detailed stats"
+                                </li>
+                                <li>
+                                    <kbd>"E"</kbd>
+                                    " - Toggle energy management"
+                                </li>
+                                <li>
+                                    <kbd>"D"</kbd>
+                                    " - Toggle drone deployment"
+                                </li>
+                                <li>
+                                    <kbd>"L"</kbd>
+                                    " - Toggle event log"
                                 </li>
                                 <li>
                                     <kbd>"H"</kbd>
