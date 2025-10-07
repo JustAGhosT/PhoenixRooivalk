@@ -1,0 +1,19 @@
+[[hooks]]
+stage = "build"
+command = "cargo"
+command_arguments = ["build", "--release"]
+
+[build]
+target = "index.html"
+dist = "dist"
+public_url = "/"
+filehash = true
+
+[watch]
+ignore = ["dist", "target"]
+
+[serve]
+address = "127.0.0.1"
+port = 8080
+open = false
+

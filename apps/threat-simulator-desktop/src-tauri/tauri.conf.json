@@ -1,0 +1,53 @@
+{
+  "productName": "Phoenix Rooivalk Threat Simulator",
+  "version": "0.1.0",
+  "identifier": "com.phoenixrooivalk.threatsimulator",
+  "build": {
+    "beforeDevCommand": "trunk serve",
+    "beforeBuildCommand": "trunk build --release",
+    "devUrl": "http://localhost:8080",
+    "frontendDist": "../dist"
+  },
+  "app": {
+    "windows": [
+      {
+        "title": "Phoenix Rooivalk Threat Simulator",
+        "width": 1920,
+        "height": 1080,
+        "resizable": true,
+        "fullscreen": false,
+        "decorations": true,
+        "transparent": false,
+        "alwaysOnTop": false,
+        "minWidth": 1280,
+        "minHeight": 720
+      }
+    ],
+    "security": {
+      "csp": "default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval'"
+    }
+  },
+  "bundle": {
+    "active": true,
+    "targets": ["app", "dmg", "deb", "appimage", "msi"],
+    "icon": [
+      "icons/32x32.png",
+      "icons/128x128.png",
+      "icons/128x128@2x.png",
+      "icons/icon.icns",
+      "icons/icon.ico"
+    ],
+    "resources": [],
+    "externalBin": [],
+    "copyright": "Copyright © 2025 Phoenix Rooivalk",
+    "category": "Simulation",
+    "shortDescription": "Counter-drone defense simulation and training platform",
+    "longDescription": "Advanced counter-drone defense simulation platform with blockchain-based evidence recording for military training and evaluation."
+  },
+  "plugins": {
+    "shell": {
+      "open": true
+    }
+  }
+}
+
