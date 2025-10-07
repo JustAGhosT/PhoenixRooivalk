@@ -40,13 +40,13 @@ export const WhitepaperSection: React.FC = () => {
     <section className="px-6 md:px-[5%] lg:px-8 py-12 bg-[linear-gradient(180deg,rgba(0,255,136,0.1),rgba(0,136,255,0.1))]">
       <div className="max-w-[1400px] mx-auto text-center">
         <RevealSection>
-          <div className="inline-block bg-gradient-to-r from-[rgb(var(--primary))] to-[rgb(var(--secondary))] text-black px-4 py-2 rounded-full text-sm font-bold mb-6">
+          <div className="inline-block bg-gradient-to-r from-primary to-secondary text-black px-4 py-2 rounded-full text-sm font-bold mb-6">
             📋 COMPREHENSIVE TECHNICAL DOCUMENTATION
           </div>
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
             Get the Complete Technical Whitepaper
           </h2>
-          <p className="text-[rgb(var(--gray))] max-w-3xl mx-auto text-lg mb-6">
+          <p className="text-gray max-w-3xl mx-auto text-lg mb-6">
             Download our detailed technical documentation covering system
             architecture, security implementation, deployment configurations,
             and performance specifications.

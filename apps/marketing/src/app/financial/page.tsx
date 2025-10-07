@@ -68,7 +68,7 @@ export default function FinancialPage(): React.ReactElement {
   const roi = calculateROI();
 
   return (
-    <main className="relative overflow-hidden bg-[rgb(var(--tactical-black))] text-white min-h-screen">
+    <main className="relative overflow-hidden bg-tactical-black text-white min-h-screen">
       {/* Background */}
       <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_bottom,_#1b2735_0%,_#090a0f_100%)]">
         <div className="absolute inset-0 bg-[linear-gradient(rgba(var(--primary),0.03)_1px,_transparent_1px),_linear-gradient(90deg,_rgba(var(--primary),0.03)_1px,_transparent_1px)] bg-[length:50px_50px] animate-gridMove" />
@@ -80,10 +80,10 @@ export default function FinancialPage(): React.ReactElement {
         <div className="max-w-[1400px] mx-auto">
           {/* Header */}
           <div className="text-center mb-16">
-            <h1 className="text-4xl md:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-br from-[rgb(var(--phoenix-white))] to-[rgb(var(--primary))] mb-6">
+            <h1 className="text-4xl md:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-br from-phoenix-white to-primary mb-6">
               ROI Calculator & Financial Analysis
             </h1>
-            <p className="text-xl text-[rgb(var(--gray))] max-w-3xl mx-auto">
+            <p className="text-xl text-gray max-w-3xl mx-auto">
               Calculate the return on investment for Phoenix Rooivalk&apos;s
               autonomous counter-drone defense system. Compare costs, savings,
               and performance against traditional solutions.
@@ -95,7 +95,7 @@ export default function FinancialPage(): React.ReactElement {
             {/* Input Controls */}
             <div className="space-y-8">
               <div className="bg-[rgba(var(--tactical-charcoal),0.8)] backdrop-blur-sm border border-[rgba(var(--primary),0.2)] rounded-2xl p-8">
-                <h2 className="text-2xl font-bold text-[rgb(var(--primary))] mb-6">
+                <h2 className="text-2xl font-bold text-primary mb-6">
                   Configure Your Scenario
                 </h2>
 
@@ -103,7 +103,7 @@ export default function FinancialPage(): React.ReactElement {
                   <div>
                     <label
                       htmlFor="threat-frequency"
-                      className="block text-[rgb(var(--phoenix-white))] font-semibold mb-3"
+                      className="block text-phoenix-white font-semibold mb-3"
                     >
                       Threat Frequency (per month)
                     </label>
@@ -119,11 +119,11 @@ export default function FinancialPage(): React.ReactElement {
                           threatFrequency: parseInt(e.target.value),
                         }))
                       }
-                      className="w-full h-3 bg-[rgb(var(--tactical-gray))] rounded-lg appearance-none cursor-pointer slider"
+                      className="w-full h-3 bg-tactical-gray rounded-lg appearance-none cursor-pointer slider"
                     />
-                    <div className="flex justify-between text-[rgb(var(--gray))] text-sm mt-2">
+                    <div className="flex justify-between text-gray text-sm mt-2">
                       <span>1</span>
-                      <span className="text-[rgb(var(--accent))] font-bold text-lg">
+                      <span className="text-accent font-bold text-lg">
                         {inputs.threatFrequency} threats/month
                       </span>
                       <span>50</span>
@@ -133,7 +133,7 @@ export default function FinancialPage(): React.ReactElement {
                   <div>
                     <label
                       htmlFor="response-time"
-                      className="block text-[rgb(var(--phoenix-white))] font-semibold mb-3"
+                      className="block text-phoenix-white font-semibold mb-3"
                     >
                       Current Response Time (milliseconds)
                     </label>
@@ -150,11 +150,11 @@ export default function FinancialPage(): React.ReactElement {
                           averageResponseTime: parseInt(e.target.value),
                         }))
                       }
-                      className="w-full h-3 bg-[rgb(var(--tactical-gray))] rounded-lg appearance-none cursor-pointer slider"
+                      className="w-full h-3 bg-tactical-gray rounded-lg appearance-none cursor-pointer slider"
                     />
-                    <div className="flex justify-between text-[rgb(var(--gray))] text-sm mt-2">
+                    <div className="flex justify-between text-gray text-sm mt-2">
                       <span>500ms</span>
-                      <span className="text-[rgb(var(--accent))] font-bold text-lg">
+                      <span className="text-accent font-bold text-lg">
                         {inputs.averageResponseTime.toLocaleString()}ms
                       </span>
                       <span>10s</span>
@@ -164,7 +164,7 @@ export default function FinancialPage(): React.ReactElement {
                   <div>
                     <label
                       htmlFor="deployment-cost"
-                      className="block text-[rgb(var(--phoenix-white))] font-semibold mb-3"
+                      className="block text-phoenix-white font-semibold mb-3"
                     >
                       System Deployment Cost (USD)
                     </label>
@@ -181,11 +181,11 @@ export default function FinancialPage(): React.ReactElement {
                           deploymentCost: parseInt(e.target.value),
                         }))
                       }
-                      className="w-full h-3 bg-[rgb(var(--tactical-gray))] rounded-lg appearance-none cursor-pointer slider"
+                      className="w-full h-3 bg-tactical-gray rounded-lg appearance-none cursor-pointer slider"
                     />
-                    <div className="flex justify-between text-[rgb(var(--gray))] text-sm mt-2">
+                    <div className="flex justify-between text-gray text-sm mt-2">
                       <span>$50K</span>
-                      <span className="text-[rgb(var(--accent))] font-bold text-lg">
+                      <span className="text-accent font-bold text-lg">
                         ${inputs.deploymentCost.toLocaleString()}
                       </span>
                       <span>$2M</span>
@@ -195,7 +195,7 @@ export default function FinancialPage(): React.ReactElement {
                   <div>
                     <label
                       htmlFor="personnel-cost"
-                      className="block text-[rgb(var(--phoenix-white))] font-semibold mb-3"
+                      className="block text-phoenix-white font-semibold mb-3"
                     >
                       Annual Personnel Cost (USD)
                     </label>
@@ -212,11 +212,11 @@ export default function FinancialPage(): React.ReactElement {
                           personnelCost: parseInt(e.target.value),
                         }))
                       }
-                      className="w-full h-3 bg-[rgb(var(--tactical-gray))] rounded-lg appearance-none cursor-pointer slider"
+                      className="w-full h-3 bg-tactical-gray rounded-lg appearance-none cursor-pointer slider"
                     />
-                    <div className="flex justify-between text-[rgb(var(--gray))] text-sm mt-2">
+                    <div className="flex justify-between text-gray text-sm mt-2">
                       <span>$50K</span>
-                      <span className="text-[rgb(var(--accent))] font-bold text-lg">
+                      <span className="text-accent font-bold text-lg">
                         ${inputs.personnelCost.toLocaleString()}
                       </span>
                       <span>$500K</span>
@@ -226,7 +226,7 @@ export default function FinancialPage(): React.ReactElement {
                   <div>
                     <label
                       htmlFor="downtime-cost"
-                      className="block text-[rgb(var(--phoenix-white))] font-semibold mb-3"
+                      className="block text-phoenix-white font-semibold mb-3"
                     >
                       Cost Per Successful Attack (USD)
                     </label>
@@ -243,11 +243,11 @@ export default function FinancialPage(): React.ReactElement {
                           downtimeCost: parseInt(e.target.value),
                         }))
                       }
-                      className="w-full h-3 bg-[rgb(var(--tactical-gray))] rounded-lg appearance-none cursor-pointer slider"
+                      className="w-full h-3 bg-tactical-gray rounded-lg appearance-none cursor-pointer slider"
                     />
-                    <div className="flex justify-between text-[rgb(var(--gray))] text-sm mt-2">
+                    <div className="flex justify-between text-gray text-sm mt-2">
                       <span>$100K</span>
-                      <span className="text-[rgb(var(--accent))] font-bold text-lg">
+                      <span className="text-accent font-bold text-lg">
                         ${inputs.downtimeCost.toLocaleString()}
                       </span>
                       <span>$10M</span>
@@ -262,28 +262,28 @@ export default function FinancialPage(): React.ReactElement {
               {/* Phoenix Rooivalk Results */}
               <div className="bg-[rgba(var(--tactical-charcoal),0.8)] backdrop-blur-sm border border-[rgba(var(--primary),0.3)] rounded-2xl p-8">
                 <div className="flex items-center space-x-3 mb-6">
-                  <div className="w-8 h-8 bg-gradient-to-r from-[rgb(var(--primary))] to-[rgb(var(--accent))] rounded-lg flex items-center justify-center">
+                  <div className="w-8 h-8 bg-gradient-to-r from-primary to-accent rounded-lg flex items-center justify-center">
                     <span className="text-white font-bold text-sm">P</span>
                   </div>
-                  <h3 className="text-2xl font-bold text-[rgb(var(--primary))]">
+                  <h3 className="text-2xl font-bold text-primary">
                     Phoenix Rooivalk
                   </h3>
                 </div>
 
                 <div className="grid grid-cols-2 gap-6 mb-6">
                   <div className="text-center p-4 bg-[rgba(var(--tactical-black),0.6)] rounded-lg border border-[rgba(var(--primary),0.2)]">
-                    <div className="text-3xl font-bold text-[rgb(var(--status-active))] mb-2">
+                    <div className="text-3xl font-bold text-status-active mb-2">
                       {(roi.phoenix.successRate * 100).toFixed(1)}%
                     </div>
-                    <div className="text-[rgb(var(--gray))] text-sm">
+                    <div className="text-gray text-sm">
                       Success Rate
                     </div>
                   </div>
                   <div className="text-center p-4 bg-[rgba(var(--tactical-black),0.6)] rounded-lg border border-[rgba(var(--primary),0.2)]">
-                    <div className="text-3xl font-bold text-[rgb(var(--phoenix-white))] mb-2">
+                    <div className="text-3xl font-bold text-phoenix-white mb-2">
                       {roi.phoenix.prevented.toFixed(1)}
                     </div>
-                    <div className="text-[rgb(var(--gray))] text-sm">
+                    <div className="text-gray text-sm">
                       Threats Prevented/Year
                     </div>
                   </div>
@@ -291,26 +291,26 @@ export default function FinancialPage(): React.ReactElement {
 
                 <div className="space-y-4">
                   <div className="flex justify-between items-center py-3 border-b border-[rgba(var(--primary),0.1)]">
-                    <span className="text-[rgb(var(--gray))]">
+                    <span className="text-gray">
                       Annual Savings:
                     </span>
-                    <span className="text-[rgb(var(--status-active))] font-bold text-xl">
+                    <span className="text-status-active font-bold text-xl">
                       ${roi.phoenix.savings.toLocaleString()}
                     </span>
                   </div>
                   <div className="flex justify-between items-center py-3 border-b border-[rgba(var(--primary),0.1)]">
-                    <span className="text-[rgb(var(--gray))]">
+                    <span className="text-gray">
                       Payback Period:
                     </span>
-                    <span className="text-[rgb(var(--phoenix-white))] font-bold">
+                    <span className="text-phoenix-white font-bold">
                       {roi.phoenix.paybackPeriod < 1
                         ? "< 1 year"
                         : `${roi.phoenix.paybackPeriod.toFixed(1)} years`}
                     </span>
                   </div>
                   <div className="flex justify-between items-center py-3">
-                    <span className="text-[rgb(var(--gray))]">3-Year ROI:</span>
-                    <span className="text-[rgb(var(--accent))] font-bold text-2xl">
+                    <span className="text-gray">3-Year ROI:</span>
+                    <span className="text-accent font-bold text-2xl">
                       {roi.phoenix.roi.toFixed(0)}%
                     </span>
                   </div>
@@ -320,28 +320,28 @@ export default function FinancialPage(): React.ReactElement {
               {/* Traditional Systems Comparison */}
               <div className="bg-[rgba(var(--tactical-charcoal),0.8)] backdrop-blur-sm border border-[rgba(var(--tactical-gray),0.3)] rounded-2xl p-8">
                 <div className="flex items-center space-x-3 mb-6">
-                  <div className="w-8 h-8 bg-[rgb(var(--tactical-gray))] rounded-lg flex items-center justify-center">
+                  <div className="w-8 h-8 bg-tactical-gray rounded-lg flex items-center justify-center">
                     <span className="text-white font-bold text-sm">T</span>
                   </div>
-                  <h3 className="text-2xl font-bold text-[rgb(var(--gray))]">
+                  <h3 className="text-2xl font-bold text-gray">
                     Traditional Systems
                   </h3>
                 </div>
 
                 <div className="grid grid-cols-2 gap-6 mb-6">
                   <div className="text-center p-4 bg-[rgba(var(--tactical-black),0.6)] rounded-lg border border-[rgba(var(--tactical-gray),0.2)]">
-                    <div className="text-3xl font-bold text-[rgb(var(--status-warning))] mb-2">
+                    <div className="text-3xl font-bold text-status-warning mb-2">
                       {(roi.traditional.successRate * 100).toFixed(1)}%
                     </div>
-                    <div className="text-[rgb(var(--gray))] text-sm">
+                    <div className="text-gray text-sm">
                       Success Rate
                     </div>
                   </div>
                   <div className="text-center p-4 bg-[rgba(var(--tactical-black),0.6)] rounded-lg border border-[rgba(var(--tactical-gray),0.2)]">
-                    <div className="text-3xl font-bold text-[rgb(var(--phoenix-white))] mb-2">
+                    <div className="text-3xl font-bold text-phoenix-white mb-2">
                       {roi.traditional.prevented.toFixed(1)}
                     </div>
-                    <div className="text-[rgb(var(--gray))] text-sm">
+                    <div className="text-gray text-sm">
                       Threats Prevented/Year
                     </div>
                   </div>
@@ -349,26 +349,26 @@ export default function FinancialPage(): React.ReactElement {
 
                 <div className="space-y-4">
                   <div className="flex justify-between items-center py-3 border-b border-[rgba(var(--tactical-gray),0.1)]">
-                    <span className="text-[rgb(var(--gray))]">
+                    <span className="text-gray">
                       Annual Savings:
                     </span>
-                    <span className="text-[rgb(var(--status-warning))] font-bold text-xl">
+                    <span className="text-status-warning font-bold text-xl">
                       ${roi.traditional.savings.toLocaleString()}
                     </span>
                   </div>
                   <div className="flex justify-between items-center py-3 border-b border-[rgba(var(--tactical-gray),0.1)]">
-                    <span className="text-[rgb(var(--gray))]">
+                    <span className="text-gray">
                       Payback Period:
                     </span>
-                    <span className="text-[rgb(var(--phoenix-white))] font-bold">
+                    <span className="text-phoenix-white font-bold">
                       {roi.traditional.paybackPeriod < 1
                         ? "< 1 year"
                         : `${roi.traditional.paybackPeriod.toFixed(1)} years`}
                     </span>
                   </div>
                   <div className="flex justify-between items-center py-3">
-                    <span className="text-[rgb(var(--gray))]">3-Year ROI:</span>
-                    <span className="text-[rgb(var(--gray))] font-bold text-2xl">
+                    <span className="text-gray">3-Year ROI:</span>
+                    <span className="text-gray font-bold text-2xl">
                       {roi.traditional.roi.toFixed(0)}%
                     </span>
                   </div>
@@ -377,20 +377,20 @@ export default function FinancialPage(): React.ReactElement {
 
               {/* Savings Comparison */}
               <div className="bg-[rgba(var(--tactical-charcoal),0.8)] backdrop-blur-sm border border-[rgba(var(--accent),0.3)] rounded-2xl p-8">
-                <h3 className="text-2xl font-bold text-[rgb(var(--accent))] mb-6 text-center">
+                <h3 className="text-2xl font-bold text-accent mb-6 text-center">
                   Annual Savings Difference
                 </h3>
                 <div className="text-center">
-                  <div className="text-4xl font-bold text-[rgb(var(--status-active))] mb-2">
+                  <div className="text-4xl font-bold text-status-active mb-2">
                     $
                     {(
                       roi.phoenix.savings - roi.traditional.savings
                     ).toLocaleString()}
                   </div>
-                  <div className="text-[rgb(var(--gray))] mb-4">
+                  <div className="text-gray mb-4">
                     Additional savings with Phoenix Rooivalk
                   </div>
-                  <div className="text-lg font-bold text-[rgb(var(--accent))]">
+                  <div className="text-lg font-bold text-accent">
                     {(
                       ((roi.phoenix.savings - roi.traditional.savings) /
                         roi.traditional.savings) *
@@ -405,10 +405,10 @@ export default function FinancialPage(): React.ReactElement {
 
           {/* CTA Section */}
           <div className="text-center bg-[rgba(var(--tactical-charcoal),0.8)] backdrop-blur-sm border border-[rgba(var(--primary),0.2)] rounded-2xl p-12">
-            <h2 className="text-3xl font-bold text-[rgb(var(--phoenix-white))] mb-4">
+            <h2 className="text-3xl font-bold text-phoenix-white mb-4">
               Ready to Maximize Your ROI?
             </h2>
-            <p className="text-[rgb(var(--gray))] mb-8 max-w-2xl mx-auto text-lg">
+            <p className="text-gray mb-8 max-w-2xl mx-auto text-lg">
               Get a detailed financial analysis tailored to your specific threat
               environment and budget constraints.
             </p>
@@ -416,7 +416,7 @@ export default function FinancialPage(): React.ReactElement {
               <Button
                 href="#contact"
                 size="lg"
-                className="bg-gradient-to-r from-[rgb(var(--primary))] to-[rgb(var(--accent))] hover:from-[rgb(var(--accent))] hover:to-[rgb(var(--primary))] shadow-xl"
+                className="bg-gradient-to-r from-primary to-accent hover:from-accent hover:to-primary shadow-xl"
               >
                 Request Detailed Analysis
               </Button>
@@ -424,7 +424,7 @@ export default function FinancialPage(): React.ReactElement {
                 href="/interactive-demo"
                 variant="ghost"
                 size="lg"
-                className="border-[rgb(var(--primary))] text-[rgb(var(--primary))] hover:bg-[rgba(var(--primary),0.1)]"
+                className="border-primary text-primary hover:bg-[rgba(var(--primary),0.1)]"
               >
                 Try Interactive Demo
               </Button>

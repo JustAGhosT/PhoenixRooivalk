@@ -87,7 +87,7 @@ export const SocialProofSection: React.FC = () => {
   ];
 
   return (
-    <section className="py-20 bg-gradient-to-br from-[rgb(var(--tactical-black))] to-[rgb(var(--tactical-obsidian))] relative overflow-hidden">
+    <section className="py-20 bg-gradient-to-br from-tactical-black to-tactical-obsidian relative overflow-hidden">
       {/* Background pattern */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute inset-0 bg-[linear-gradient(rgba(var(--primary),0.1)_1px,_transparent_1px),_linear-gradient(90deg,_rgba(var(--primary),0.1)_1px,_transparent_1px)] bg-[length:50px_50px]"></div>
@@ -97,10 +97,10 @@ export const SocialProofSection: React.FC = () => {
         <div className="max-w-[1400px] mx-auto">
           {/* Section Header */}
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-br from-[rgb(var(--phoenix-white))] to-[rgb(var(--primary))] mb-6">
+            <h2 className="text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-br from-phoenix-white to-primary mb-6">
               Innovation in Counter-Drone Defense
             </h2>
-            <p className="text-xl text-[rgb(var(--gray))] max-w-3xl mx-auto">
+            <p className="text-xl text-gray max-w-3xl mx-auto">
               Phoenix Rooivalk represents the next generation of autonomous
               counter-drone defense technology, designed to address critical
               gaps in current market solutions.
@@ -109,10 +109,10 @@ export const SocialProofSection: React.FC = () => {
 
           {/* What We're Hearing */}
           <div className="mb-20">
-            <h3 className="text-2xl font-bold text-[rgb(var(--primary))] mb-8 text-center">
+            <h3 className="text-2xl font-bold text-primary mb-8 text-center">
               What We&apos;re Hearing (Discovery Notes, Not Endorsements)
             </h3>
-            <p className="text-sm text-[rgb(var(--gray))] text-center mb-6 max-w-2xl mx-auto">
+            <p className="text-sm text-gray text-center mb-6 max-w-2xl mx-auto">
               Paraphrased insights from exploratory interviews with defense
               stakeholders.
             </p>
@@ -125,17 +125,17 @@ export const SocialProofSection: React.FC = () => {
                   <div className="flex items-start space-x-4 mb-4">
                     <div className="text-3xl">{testimonial.avatar}</div>
                     <div>
-                      <p className="text-[rgb(var(--phoenix-white))] text-lg leading-relaxed mb-4">
+                      <p className="text-phoenix-white text-lg leading-relaxed mb-4">
                         &quot;{testimonial.quote}&quot;
                       </p>
                       <div>
-                        <div className="font-semibold text-[rgb(var(--primary))]">
+                        <div className="font-semibold text-primary">
                           {testimonial.author}
                         </div>
-                        <div className="text-[rgb(var(--gray))] text-sm">
+                        <div className="text-gray text-sm">
                           {testimonial.title}
                         </div>
-                        <div className="text-[rgb(var(--accent))] text-sm font-medium">
+                        <div className="text-accent text-sm font-medium">
                           {testimonial.organization}
                         </div>
                       </div>
@@ -148,7 +148,7 @@ export const SocialProofSection: React.FC = () => {
 
           {/* Partnerships */}
           <div className="mb-20">
-            <h3 className="text-2xl font-bold text-[rgb(var(--primary))] mb-8 text-center">
+            <h3 className="text-2xl font-bold text-primary mb-8 text-center">
               Strategic Partnerships
             </h3>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
@@ -158,10 +158,10 @@ export const SocialProofSection: React.FC = () => {
                   className="bg-[rgba(var(--tactical-charcoal),0.6)] backdrop-blur-sm border border-[rgba(var(--primary),0.1)] rounded-lg p-4 text-center hover:border-[rgba(var(--primary),0.3)] hover:bg-[rgba(var(--tactical-charcoal),0.8)] transition-all duration-300 group"
                 >
                   <div className="text-3xl mb-2">{partner.logo}</div>
-                  <div className="font-semibold text-[rgb(var(--phoenix-white))] text-sm mb-1">
+                  <div className="font-semibold text-phoenix-white text-sm mb-1">
                     {partner.name}
                   </div>
-                  <div className="text-[rgb(var(--gray))] text-xs">
+                  <div className="text-gray text-xs">
                     {partner.type}
                   </div>
                 </div>
@@ -171,13 +171,13 @@ export const SocialProofSection: React.FC = () => {
 
           {/* Development Status & Certifications */}
           <div className="mb-20">
-            <h3 className="text-2xl font-bold text-[rgb(var(--primary))] mb-8 text-center">
+            <h3 className="text-2xl font-bold text-primary mb-8 text-center">
               Development Status & Compliance
             </h3>
 
             {/* Development Status */}
             <div className="mb-12">
-              <h4 className="text-xl font-semibold text-[rgb(var(--accent))] mb-6 text-center">
+              <h4 className="text-xl font-semibold text-accent mb-6 text-center">
                 Development Roadmap (Targets, Post-Funding)
               </h4>
               <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -185,17 +185,17 @@ export const SocialProofSection: React.FC = () => {
                   <RevealSection key={index}>
                     <div className="bg-[rgba(var(--tactical-charcoal),0.8)] backdrop-blur-sm border border-[rgba(var(--primary),0.2)] rounded-xl p-6 text-center hover:border-[rgba(var(--primary),0.4)] transition-all duration-300">
                       <div className="text-3xl mb-3">{status.icon}</div>
-                      <h5 className="text-lg font-bold text-[rgb(var(--primary))] mb-2">
+                      <h5 className="text-lg font-bold text-primary mb-2">
                         {status.title}
                       </h5>
-                      <p className="text-[rgb(var(--gray))] text-sm mb-3">
+                      <p className="text-gray text-sm mb-3">
                         {status.description}
                       </p>
                       <div
                         className={`inline-block px-3 py-1 rounded-full text-xs font-semibold ${
                           status.status === "Active"
-                            ? "bg-[rgba(var(--status-active),0.2)] text-[rgb(var(--status-active))] border border-[rgba(var(--status-active),0.3)]"
-                            : "bg-[rgba(var(--status-warning),0.2)] text-[rgb(var(--status-warning))] border border-[rgba(var(--status-warning),0.3)]"
+                            ? "bg-[rgba(var(--status-active),0.2)] text-status-active border border-[rgba(var(--status-active),0.3)]"
+                            : "bg-[rgba(var(--status-warning),0.2)] text-status-warning border border-[rgba(var(--status-warning),0.3)]"
                         }`}
                       >
                         {status.status}
@@ -208,7 +208,7 @@ export const SocialProofSection: React.FC = () => {
 
             {/* Compliance Roadmap */}
             <div>
-              <h4 className="text-xl font-semibold text-[rgb(var(--accent))] mb-6 text-center">
+              <h4 className="text-xl font-semibold text-accent mb-6 text-center">
                 Assurance Roadmap (Targets, Post-Funding)
               </h4>
               <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
@@ -218,16 +218,16 @@ export const SocialProofSection: React.FC = () => {
                     className="bg-[rgba(var(--tactical-charcoal),0.6)] backdrop-blur-sm border border-[rgba(var(--primary),0.1)] rounded-lg p-4 text-center hover:border-[rgba(var(--primary),0.3)] transition-all duration-300"
                   >
                     <div className="text-2xl mb-2">{cert.icon}</div>
-                    <div className="font-semibold text-[rgb(var(--phoenix-white))] text-sm mb-1">
+                    <div className="font-semibold text-phoenix-white text-sm mb-1">
                       {cert.name}
                     </div>
                     <div
                       className={`text-xs px-2 py-1 rounded-full inline-block ${
                         cert.status === "Certified"
-                          ? "bg-[rgba(var(--status-active),0.2)] text-[rgb(var(--status-active))] border border-[rgba(var(--status-active),0.3)]"
+                          ? "bg-[rgba(var(--status-active),0.2)] text-status-active border border-[rgba(var(--status-active),0.3)]"
                           : cert.status === "In Progress"
-                            ? "bg-[rgba(var(--status-warning),0.2)] text-[rgb(var(--status-warning))] border border-[rgba(var(--status-warning),0.3)]"
-                            : "bg-[rgba(var(--status-offline),0.2)] text-[rgb(var(--status-offline))] border border-[rgba(var(--status-offline),0.3)]"
+                            ? "bg-[rgba(var(--status-warning),0.2)] text-status-warning border border-[rgba(var(--status-warning),0.3)]"
+                            : "bg-[rgba(var(--status-offline),0.2)] text-status-offline border border-[rgba(var(--status-offline),0.3)]"
                       }`}
                     >
                       {cert.status}
@@ -240,7 +240,7 @@ export const SocialProofSection: React.FC = () => {
 
           {/* Media Coverage */}
           <div className="mb-16">
-            <h3 className="text-2xl font-bold text-[rgb(var(--primary))] mb-8 text-center">
+            <h3 className="text-2xl font-bold text-primary mb-8 text-center">
               Industry Recognition
             </h3>
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -249,13 +249,13 @@ export const SocialProofSection: React.FC = () => {
                   key={index}
                   className="bg-[rgba(var(--tactical-charcoal),0.6)] backdrop-blur-sm border border-[rgba(var(--primary),0.1)] rounded-lg p-4 hover:border-[rgba(var(--primary),0.3)] transition-all duration-300"
                 >
-                  <div className="font-semibold text-[rgb(var(--primary))] text-sm mb-2">
+                  <div className="font-semibold text-primary text-sm mb-2">
                     {article.outlet}
                   </div>
-                  <div className="text-[rgb(var(--phoenix-white))] text-sm mb-2 leading-relaxed">
+                  <div className="text-phoenix-white text-sm mb-2 leading-relaxed">
                     {article.headline}
                   </div>
-                  <div className="text-[rgb(var(--gray))] text-xs">
+                  <div className="text-gray text-xs">
                     {article.date}
                   </div>
                 </div>
@@ -265,10 +265,10 @@ export const SocialProofSection: React.FC = () => {
 
           {/* CTA Section */}
           <div className="text-center bg-[rgba(var(--tactical-charcoal),0.8)] backdrop-blur-sm border border-[rgba(var(--primary),0.2)] rounded-2xl p-8">
-            <h3 className="text-2xl font-bold text-[rgb(var(--phoenix-white))] mb-4">
+            <h3 className="text-2xl font-bold text-phoenix-white mb-4">
               Ready to Experience 120ms Response Time?
             </h3>
-            <p className="text-[rgb(var(--gray))] mb-6 max-w-2xl mx-auto">
+            <p className="text-gray mb-6 max-w-2xl mx-auto">
               Join leading defense organizations in piloting the next generation
               of autonomous counter-drone defense.
             </p>
@@ -276,7 +276,7 @@ export const SocialProofSection: React.FC = () => {
               <Button
                 href="#contact"
                 size="lg"
-                className="bg-gradient-to-r from-[rgb(var(--primary))] to-[rgb(var(--accent))] hover:from-[rgb(var(--accent))] hover:to-[rgb(var(--primary))] shadow-xl"
+                className="bg-gradient-to-r from-primary to-accent hover:from-accent hover:to-primary shadow-xl"
               >
                 Request Pilot Program
               </Button>
@@ -284,7 +284,7 @@ export const SocialProofSection: React.FC = () => {
                 href="/compliance"
                 variant="ghost"
                 size="lg"
-                className="border-[rgb(var(--primary))] text-[rgb(var(--primary))] hover:bg-[rgba(var(--primary),0.1)]"
+                className="border-primary text-primary hover:bg-[rgba(var(--primary),0.1)]"
               >
                 View Certifications
               </Button>

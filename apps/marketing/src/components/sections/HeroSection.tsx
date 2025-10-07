@@ -16,45 +16,45 @@ export const HeroSection: React.FC = () => {
         </div>
 
         {/* Vision-focused headline */}
-        <h1 className="text-5xl md:text-7xl font-extrabold leading-tight bg-clip-text text-transparent bg-gradient-to-br from-white to-[rgb(var(--primary))] animate-fadeInUp mb-6">
+        <h1 className="text-5xl md:text-7xl font-extrabold leading-tight bg-clip-text text-transparent bg-gradient-to-br from-white to-primary animate-fadeInUp mb-6">
           Edge Autonomy in RF-Denied Environments
-          <span className="block text-3xl md:text-5xl mt-3 text-[rgb(var(--accent))]">
+          <span className="block text-3xl md:text-5xl mt-3 text-accent">
             SAE Level 4 Local Decisioning
           </span>
         </h1>
-        <p className="mb-8 text-xl text-[rgb(var(--gray))] animate-fadeInUp [animation-delay:200ms] leading-relaxed max-w-3xl mx-auto">
+        <p className="mb-8 text-xl text-gray animate-fadeInUp [animation-delay:200ms] leading-relaxed max-w-3xl mx-auto">
           Autonomous counter-drone defense that operates without network
           connectivity. Sub-200ms response times in complete RF denial.
         </p>
-        <div className="mt-6 p-6 bg-gradient-to-r from-[rgba(var(--primary),0.1)] to-[rgba(var(--secondary),0.1)] rounded-xl border border-[rgba(var(--primary),0.2)] max-w-4xl mx-auto">
+        <div className="mt-6 p-6 bg-gradient-to-r from-primary/10 to-secondary/10 rounded-xl border border-primary/20 max-w-4xl mx-auto">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             <div className="text-center">
-              <div className="text-2xl font-bold text-[rgb(var(--primary))]">
+              <div className="text-2xl font-bold text-primary">
                 &lt;200ms
               </div>
-              <div className="text-sm text-[rgb(var(--gray))]">
+              <div className="text-sm text-gray">
                 Response Time
               </div>
             </div>
             <div className="text-center">
-              <div className="text-2xl font-bold text-[rgb(var(--primary))]">
+              <div className="text-2xl font-bold text-primary">
                 100%
               </div>
-              <div className="text-sm text-[rgb(var(--gray))]">
+              <div className="text-sm text-gray">
                 Offline Operation
               </div>
             </div>
             <div className="text-center">
-              <div className="text-2xl font-bold text-[rgb(var(--primary))]">
+              <div className="text-2xl font-bold text-primary">
                 64%
               </div>
-              <div className="text-sm text-[rgb(var(--gray))]">Market Gap</div>
+              <div className="text-sm text-gray">Market Gap</div>
             </div>
             <div className="text-center">
-              <div className="text-2xl font-bold text-[rgb(var(--primary))]">
+              <div className="text-2xl font-bold text-primary">
                 $26B
               </div>
-              <div className="text-sm text-[rgb(var(--gray))]">
+              <div className="text-sm text-gray">
                 Market by 2030
               </div>
             </div>
@@ -88,10 +88,10 @@ export const HeroSection: React.FC = () => {
         <div className="mt-6 max-w-4xl mx-auto">
           <div className="card card--elevated">
             <div className="text-center mb-6">
-              <h3 className="text-2xl font-bold text-[rgb(var(--action-primary))] mb-4">
+              <h3 className="text-2xl font-bold text-primary mb-4">
                 SAE Level 4 Autonomy Concept
               </h3>
-              <p className="text-[rgb(var(--text-muted))] mb-6">
+              <p className="text-text-muted mb-6">
                 Edge-first decision making without network dependency
               </p>
             </div>
@@ -99,7 +99,7 @@ export const HeroSection: React.FC = () => {
             {/* Visual concept representation */}
             <div className="space-y-4">
               <div className="flex items-center justify-between p-4 bg-[rgba(var(--primary),0.1)] rounded-lg border border-[rgba(var(--primary),0.2)]">
-                <span className="text-sm font-medium text-[rgb(var(--text-primary))]">
+                <span className="text-sm font-medium text-text-primary">
                   Detection Latency
                 </span>
                 <span className="text-lg font-bold text-[rgb(var(--action-success))]">
@@ -107,7 +107,7 @@ export const HeroSection: React.FC = () => {
                 </span>
               </div>
               <div className="flex items-center justify-between p-4 bg-[rgba(var(--primary),0.1)] rounded-lg border border-[rgba(var(--primary),0.2)]">
-                <span className="text-sm font-medium text-[rgb(var(--text-primary))]">
+                <span className="text-sm font-medium text-text-primary">
                   Network Independence
                 </span>
                 <span className="text-lg font-bold text-[rgb(var(--action-success))]">
@@ -115,7 +115,7 @@ export const HeroSection: React.FC = () => {
                 </span>
               </div>
               <div className="flex items-center justify-between p-4 bg-[rgba(var(--primary),0.1)] rounded-lg border border-[rgba(var(--primary),0.2)]">
-                <span className="text-sm font-medium text-[rgb(var(--text-primary))]">
+                <span className="text-sm font-medium text-text-primary">
                   Market Gap Addressed
                 </span>
                 <span className="text-lg font-bold text-[rgb(var(--action-success))]">
