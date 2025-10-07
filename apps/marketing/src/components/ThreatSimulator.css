@@ -98,7 +98,7 @@
   align-items: center;
   padding: 12px 16px;
   border-top: 1px solid rgb(var(--sim-border));
-  background: linear-gradient(to bottom, var(--sim-panel), var(--sim-elev));
+  background: linear-gradient(to bottom, rgb(var(--sim-panel)), rgb(var(--sim-elev)));
 }
 .level {
   display: flex;
@@ -203,7 +203,7 @@
 
 /* Buttons (reuse your .btn variants if you included my ui-patch) */
 .btn {
-  background: var(--sim-accent);
+  background: rgb(var(--sim-accent));
   color: #0b0b0b;
   border: 1px solid transparent;
   border-radius: 10px;
@@ -213,11 +213,11 @@
 .btn--secondary {
   background: #182028;
   color: rgb(var(--sim-text));
-  border-color: var(--sim-border);
+  border-color: rgb(var(--sim-border));
 }
 .btn--ghost {
   background: transparent;
-  border-color: var(--sim-border);
+  border-color: rgb(var(--sim-border));
   color: rgb(var(--sim-text));
 }
 
@@ -583,14 +583,14 @@
 .progress-bar {
   flex: 1;
   height: 8px;
-  background: var(--sim-border);
+  background: rgb(var(--sim-border));
   border-radius: 4px;
   overflow: hidden;
 }
 
 .progress-fill {
   height: 100%;
-  background: linear-gradient(90deg, var(--sim-accent), #2ed573);
+  background: linear-gradient(90deg, rgb(var(--sim-accent)), #2ed573);
   transition: width 0.3s ease;
 }
 
@@ -625,7 +625,7 @@
 }
 
 .category-button.active {
-  background: var(--sim-accent);
+  background: rgb(var(--sim-accent));
   color: #0b0b0b;
   border-color: transparent;
 }
@@ -717,7 +717,7 @@
 }
 
 .unlock-button {
-  background: var(--sim-accent);
+  background: rgb(var(--sim-accent));
   color: #0b0b0b;
   border-color: transparent;
 }
@@ -895,7 +895,7 @@
 
 .purchase-button {
   padding: 8px 16px;
-  background: var(--sim-accent);
+  background: rgb(var(--sim-accent));
   color: #0b0b0b;
   border: none;
   border-radius: 6px;
@@ -1240,7 +1240,7 @@
 }
 
 .info-popover-link:hover {
-  color: var(--sim-accent-hover);
+  color: rgb(var(--sim-accent-hover));
   text-decoration: underline;
 }
 
@@ -1278,18 +1278,18 @@
 }
 
 .legal-badge-indicator--low {
-  color: var(--sim-success);
-  border-color: var(--sim-success);
+  color: rgb(var(--sim-success));
+  border-color: rgb(var(--sim-success));
 }
 
 .legal-badge-indicator--medium {
-  color: var(--sim-warning);
-  border-color: var(--sim-warning);
+  color: rgb(var(--sim-warning));
+  border-color: rgb(var(--sim-warning));
 }
 
 .legal-badge-indicator--high {
-  color: var(--sim-danger);
-  border-color: var(--sim-danger);
+  color: rgb(var(--sim-danger));
+  border-color: rgb(var(--sim-danger));
 }
 
 .legal-badge-indicator:hover {
@@ -1301,7 +1301,7 @@
 }
 
 .legal-badge-dot {
-  color: var(--sim-danger);
+  color: rgb(var(--sim-danger));
   font-size: 8px;
   animation: pulse 1.5s infinite;
 }
@@ -1385,18 +1385,18 @@
 }
 
 .risk-level--low {
-  background: var(--sim-success) 20;
-  color: var(--sim-success);
+  background: rgba(var(--sim-success), 0.20);
+  color: rgb(var(--sim-success));
 }
 
 .risk-level--medium {
-  background: var(--sim-warning) 20;
-  color: var(--sim-warning);
+  background: rgba(var(--sim-warning), 0.20);
+  color: rgb(var(--sim-warning));
 }
 
 .risk-level--high {
-  background: var(--sim-danger) 20;
-  color: var(--sim-danger);
+  background: rgba(var(--sim-danger), 0.20);
+  color: rgb(var(--sim-danger));
 }
 
 .legal-badge-requirements h5 {
@@ -1427,7 +1427,7 @@
 
 .legal-badge-note {
   padding: 8px;
-  background: var(--sim-warning) 10;
+  background: rgba(var(--sim-warning), 0.10);
   border: 1px solid var(--sim-warning) 30;
   border-radius: 4px;
   font-size: 12px;
@@ -1442,7 +1442,7 @@
 .legal-badge-acknowledge {
   width: 100%;
   padding: 8px 12px;
-  background: var(--sim-accent);
+  background: rgb(var(--sim-accent));
   color: white;
   border: none;
   border-radius: 4px;
@@ -1453,7 +1453,7 @@
 }
 
 .legal-badge-acknowledge:hover {
-  background: var(--sim-accent-hover);
+  background: rgb(var(--sim-accent-hover));
 }
 
 /* Cooldown Meter */
@@ -1507,11 +1507,11 @@
 }
 
 .cooldown-meter-ready {
-  color: var(--sim-success);
+  color: rgb(var(--sim-success));
 }
 
 .cooldown-meter-time {
-  color: var(--sim-warning);
+  color: rgb(var(--sim-warning));
 }
 
 .cooldown-meter-tooltip {
@@ -1545,15 +1545,15 @@
 }
 
 .roe-risk-indicator--low {
-  --risk-color: var(--sim-success);
+  --risk-color: rgb(var(--sim-success));
 }
 
 .roe-risk-indicator--med {
-  --risk-color: var(--sim-warning);
+  --risk-color: rgb(var(--sim-warning));
 }
 
 .roe-risk-indicator--high {
-  --risk-color: var(--sim-danger);
+  --risk-color: rgb(var(--sim-danger));
 }
 
 .roe-risk-icon {
@@ -1594,7 +1594,7 @@
 
 .energy-budget-bar {
   height: 6px;
-  background: var(--sim-border);
+  background: rgb(var(--sim-border));
   border-radius: 3px;
   overflow: hidden;
   margin-bottom: 8px;
@@ -1633,11 +1633,11 @@
 .energy-budget-warning {
   margin-top: 8px;
   padding: 4px 6px;
-  background: var(--sim-warning) 20;
+  background: rgba(var(--sim-warning), 0.20);
   border: 1px solid var(--sim-warning) 40;
   border-radius: 3px;
   font-size: 10px;
-  color: var(--sim-warning);
+  color: rgb(var(--sim-warning));
   text-align: center;
 }
 
@@ -1671,7 +1671,7 @@
 }
 
 .info-button {
-  background: var(--sim-accent);
+  background: rgb(var(--sim-accent));
   color: white;
   border: none;
   padding: 4px 8px;
@@ -1682,7 +1682,7 @@
 }
 
 .info-button:hover {
-  background: var(--sim-accent-hover);
+  background: rgb(var(--sim-accent-hover));
 }
 
 .research-option-specs {
@@ -1703,11 +1703,11 @@
 .research-option-warning {
   margin-top: 8px;
   padding: 6px 8px;
-  background: var(--sim-warning) 20;
+  background: rgba(var(--sim-warning), 0.20);
   border: 1px solid var(--sim-warning) 40;
   border-radius: 4px;
   font-size: 11px;
-  color: var(--sim-warning);
+  color: rgb(var(--sim-warning));
   text-align: center;
 }
 
@@ -1720,7 +1720,7 @@
 }
 
 .weapon-item-container.selected {
-  background: var(--sim-accent) 10;
+  background: rgba(var(--sim-accent), 0.10);
   border-radius: 6px;
   padding: 2px;
 }
@@ -1780,7 +1780,7 @@
 }
 
 .weapon-info-button:hover {
-  background: var(--sim-accent);
+  background: rgb(var(--sim-accent));
   color: white;
   border-color: rgb(var(--sim-accent));
 }
@@ -1794,7 +1794,7 @@
 }
 
 .drone-item-container.selected {
-  background: var(--sim-accent) 10;
+  background: rgba(var(--sim-accent), 0.10);
   border-radius: 6px;
   padding: 2px;
 }
@@ -1951,7 +1951,7 @@
 }
 
 .bonus-value {
-  color: var(--sim-success);
+  color: rgb(var(--sim-success));
   font-weight: 600;
 }
 
@@ -2015,12 +2015,12 @@
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.3px;
-  background: var(--sim-success);
+  background: rgb(var(--sim-success));
   color: white;
 }
 
 .energy-status.energy-overloaded {
-  background: var(--sim-danger);
+  background: rgb(var(--sim-danger));
 }
 
 .energy-breakdown {
@@ -2064,7 +2064,7 @@
 .energy-warning {
   margin-top: 12px;
   padding: 8px;
-  background: var(--sim-danger) 20;
+  background: rgba(var(--sim-danger), 0.20);
   border: 1px solid var(--sim-danger) 40;
   border-radius: 4px;
   display: flex;
@@ -2079,14 +2079,14 @@
 
 .energy-warning-text {
   font-size: 10px;
-  color: var(--sim-danger);
+  color: rgb(var(--sim-danger));
   line-height: 1.3;
 }
 
 .energy-low-warning {
   margin-top: 12px;
   padding: 8px;
-  background: var(--sim-warning) 20;
+  background: rgba(var(--sim-warning), 0.20);
   border: 1px solid var(--sim-warning) 40;
   border-radius: 4px;
   display: flex;
@@ -2101,7 +2101,7 @@
 
 .energy-low-text {
   font-size: 10px;
-  color: var(--sim-warning);
+  color: rgb(var(--sim-warning));
   line-height: 1.3;
 }
 
@@ -2234,7 +2234,7 @@
 }
 
 .deployment-count-btn:hover:not(:disabled) {
-  background: var(--sim-accent);
+  background: rgb(var(--sim-accent));
   color: white;
   border-color: rgb(var(--sim-accent));
 }
@@ -2269,7 +2269,7 @@
 }
 
 .deployment-info-btn:hover {
-  background: var(--sim-accent);
+  background: rgb(var(--sim-accent));
   color: white;
   border-color: rgb(var(--sim-accent));
 }
@@ -2297,7 +2297,7 @@
 
 .deployment-disabled-reason {
   font-size: 9px;
-  color: var(--sim-danger);
+  color: rgb(var(--sim-danger));
   font-style: italic;
   margin-top: 4px;
 }
@@ -2365,7 +2365,7 @@
 }
 
 .cooldown-ready {
-  color: var(--sim-success);
+  color: rgb(var(--sim-success));
   font-size: 14px;
   text-shadow: 0 0 4px var(--sim-success);
 }
@@ -2388,7 +2388,7 @@
   width: 100%;
   height: 100%;
   border-radius: 50%;
-  background: var(--sim-success);
+  background: rgb(var(--sim-success));
   opacity: 0.3;
   transform: translate(-50%, -50%) scale(1);
   animation: ready-pulse 2s ease-in-out infinite;
@@ -2466,15 +2466,15 @@
 }
 
 .energy-indicator.sufficient {
-  background: var(--sim-success) 20;
+  background: rgba(var(--sim-success), 0.20);
   border: 1px solid var(--sim-success) 40;
-  color: var(--sim-success);
+  color: rgb(var(--sim-success));
 }
 
 .energy-indicator.insufficient {
-  background: var(--sim-danger) 20;
+  background: rgba(var(--sim-danger), 0.20);
   border: 1px solid var(--sim-danger) 40;
-  color: var(--sim-danger);
+  color: rgb(var(--sim-danger));
 }
 
 .energy-icon {
@@ -2501,15 +2501,15 @@
 }
 
 .insufficient-energy-overlay {
-  background: var(--sim-danger) 20;
-  border-color: var(--sim-danger) 40;
-  color: var(--sim-danger);
+  background: rgba(var(--sim-danger), 0.20);
+  border-color: rgba(var(--sim-danger), 0.40);
+  color: rgb(var(--sim-danger));
 }
 
 .ready-overlay {
-  background: var(--sim-success) 20;
-  border-color: var(--sim-success) 40;
-  color: var(--sim-success);
+  background: rgba(var(--sim-success), 0.20);
+  border-color: rgba(var(--sim-success), 0.40);
+  color: rgb(var(--sim-success));
 }
 
 .status-text {
@@ -2638,7 +2638,7 @@
   content: "→";
   position: absolute;
   left: 0;
-  color: var(--sim-success);
+  color: rgb(var(--sim-success));
   font-weight: bold;
 }
 
@@ -2650,12 +2650,12 @@
 
 .roe-legal-flag {
   padding: 2px 4px;
-  background: var(--sim-warning) 20;
+  background: rgba(var(--sim-warning), 0.20);
   border: 1px solid var(--sim-warning) 40;
   border-radius: 3px;
   font-size: 7px;
   font-weight: 600;
-  color: var(--sim-warning);
+  color: rgb(var(--sim-warning));
   text-transform: uppercase;
   letter-spacing: 0.2px;
 }
@@ -2697,7 +2697,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background: radial-gradient(circle, var(--sim-bg) 0%, var(--sim-elev) 100%);
+  background: radial-gradient(circle, rgb(var(--sim-bg)) 0%, rgb(var(--sim-elev)) 100%);
   border-radius: 6px;
   padding: 20px;
   position: relative;
@@ -2709,7 +2709,7 @@
 }
 
 .radar-background {
-  fill: var(--sim-bg);
+  fill: rgb(var(--sim-bg));
 }
 
 .range-ring {
@@ -2999,19 +2999,19 @@
 }
 
 .status-indicator.planning {
-  background: var(--sim-warning) 20;
+  background: rgba(var(--sim-warning), 0.20);
   border: 1px solid var(--sim-warning) 40;
-  color: var(--sim-warning);
+  color: rgb(var(--sim-warning));
 }
 
 .status-indicator.active {
-  background: var(--sim-success) 20;
+  background: rgba(var(--sim-success), 0.20);
   border: 1px solid var(--sim-success) 40;
-  color: var(--sim-success);
+  color: rgb(var(--sim-success));
 }
 
 .status-indicator.complete {
-  background: var(--sim-accent) 20;
+  background: rgba(var(--sim-accent), 0.20);
   border: 1px solid var(--sim-accent) 40;
   color: rgb(var(--sim-accent));
 }
@@ -3130,13 +3130,13 @@
 }
 
 .effector-card.selected {
-  border-color: var(--sim-success);
-  background: var(--sim-success) 10;
+  border-color: rgb(var(--sim-success));
+  background: rgba(var(--sim-success), 0.10);
 }
 
 .effector-card.insufficient-energy {
   opacity: 0.6;
-  border-color: var(--sim-danger);
+  border-color: rgb(var(--sim-danger));
 }
 
 .effector-header {
@@ -3201,7 +3201,7 @@
 }
 
 .info-btn:hover {
-  background: var(--sim-accent);
+  background: rgb(var(--sim-accent));
   color: white;
   border-color: rgb(var(--sim-accent));
 }
@@ -3225,8 +3225,8 @@
 }
 
 .effector-select-btn.selected {
-  background: var(--sim-success);
-  border-color: var(--sim-success);
+  background: rgb(var(--sim-success));
+  border-color: rgb(var(--sim-success));
   color: white;
 }
 
@@ -3238,11 +3238,11 @@
 .legal-warning {
   margin-top: 6px;
   padding: 4px 8px;
-  background: var(--sim-warning) 20;
+  background: rgba(var(--sim-warning), 0.20);
   border: 1px solid var(--sim-warning) 40;
   border-radius: 3px;
   font-size: 8px;
-  color: var(--sim-warning);
+  color: rgb(var(--sim-warning));
   text-align: center;
 }
 
@@ -3286,7 +3286,7 @@
 
 .fire-btn {
   padding: 6px 12px;
-  background: var(--sim-danger);
+  background: rgb(var(--sim-danger));
   border: 1px solid var(--sim-danger);
   border-radius: 4px;
   color: white;
@@ -3297,7 +3297,7 @@
 }
 
 .fire-btn:hover:not(:disabled) {
-  background: var(--sim-danger);
+  background: rgb(var(--sim-danger));
   filter: brightness(1.1);
 }
 
@@ -3315,7 +3315,7 @@
 
 .start-mission-btn {
   padding: 12px 24px;
-  background: var(--sim-accent);
+  background: rgb(var(--sim-accent));
   border: 1px solid var(--sim-accent);
   border-radius: 6px;
   color: white;
@@ -3328,19 +3328,19 @@
 }
 
 .start-mission-btn:hover:not(:disabled) {
-  background: var(--sim-accent);
+  background: rgb(var(--sim-accent));
   filter: brightness(1.1);
 }
 
 .start-mission-btn.disabled {
-  background: var(--sim-muted);
+  background: rgb(var(--sim-muted));
   border-color: rgb(var(--sim-muted));
   cursor: not-allowed;
 }
 
 .start-mission-btn.ready {
-  background: var(--sim-success);
-  border-color: var(--sim-success);
+  background: rgb(var(--sim-success));
+  border-color: rgb(var(--sim-success));
 }
 
 /* Threat Simulator Demo Styles */
@@ -3392,7 +3392,7 @@
 }
 
 .mode-btn.active {
-  background: var(--sim-accent);
+  background: rgb(var(--sim-accent));
   border-color: rgb(var(--sim-accent));
   color: white;
 }
@@ -3506,7 +3506,7 @@
 
 .demo-info-btn {
   padding: 8px 16px;
-  background: var(--sim-accent);
+  background: rgb(var(--sim-accent));
   border: 1px solid var(--sim-accent);
   border-radius: 4px;
   color: white;
@@ -3517,7 +3517,7 @@
 }
 
 .demo-info-btn:hover {
-  background: var(--sim-accent);
+  background: rgb(var(--sim-accent));
   filter: brightness(1.1);
 }
 
