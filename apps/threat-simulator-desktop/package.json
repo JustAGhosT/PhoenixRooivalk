@@ -1,0 +1,20 @@
+{
+  "name": "threat-simulator-desktop",
+  "version": "0.1.0",
+  "description": "Phoenix Rooivalk Threat Simulator - Leptos/Tauri Desktop Application",
+  "scripts": {
+    "dev": "trunk serve --open",
+    "dev:tauri": "cargo tauri dev",
+    "build": "trunk build --release",
+    "build:tauri": "cargo tauri build",
+    "test": "cargo test --lib",
+    "test:watch": "cargo watch -x 'test --lib'",
+    "lint": "cargo clippy --lib -- -D warnings",
+    "fmt": "cargo fmt",
+    "fmt:check": "cargo fmt -- --check",
+    "clean": "cargo clean && trunk clean",
+    "check": "cargo check --lib"
+  },
+  "private": true
+}
+

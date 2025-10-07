@@ -7,7 +7,10 @@ mod event_feed;
 mod game_canvas;
 mod hud;
 mod overlays;
+mod research_panel;
 mod stats_panel;
+mod synergy_system;
+mod token_store;
 mod weapon_panel;
 
 pub use cooldown_meter::{CooldownMeter, WeaponCooldownGrid};
@@ -17,7 +20,10 @@ pub use event_feed::{create_feed_item, EventFeed, FeedItem, FeedSeverity};
 pub use game_canvas::GameCanvas;
 pub use hud::Hud;
 pub use overlays::{AchievementNotification, FullscreenPrompt, GameOverOverlay, SimulationWarning};
+pub use research_panel::{ResearchCategory, ResearchItem, ResearchPanel};
 pub use stats_panel::StatsPanel;
+pub use synergy_system::{calculate_synergy_bonuses, SynergyEffect, SynergySystem};
+pub use token_store::TokenStore;
 pub use weapon_panel::WeaponPanel;
 
 use crate::game::{GameStateManager, WeaponType};
@@ -36,6 +42,9 @@ pub fn App() -> impl IntoView {
     let (show_drones, set_show_drones) = create_signal(false);
     let (show_warning, set_show_warning) = create_signal(true);
     let (show_events, set_show_events) = create_signal(false);
+    let (show_research, set_show_research) = create_signal(false);
+    let (show_token_store, set_show_token_store) = create_signal(false);
+    let (show_synergies, set_show_synergies) = create_signal(true); // Auto-show synergies
     let (is_running, set_is_running) = create_signal(false);
     let (achievement_message, set_achievement_message) = create_signal(None::<String>);
     let (event_feed, set_event_feed) = create_signal(Vec::<FeedItem>::new());
@@ -72,6 +81,18 @@ pub fn App() -> impl IntoView {
                 "l" | "L" => {
                     // Event log toggle
                     set_show_events.update(|e| *e = !*e);
+                }
+                "t" | "T" => {
+                    // Token store toggle
+                    set_show_token_store.update(|t| *t = !*t);
+                }
+                "f" | "F" => {
+                    // Research panel toggle
+                    set_show_research.update(|r| *r = !*r);
+                }
+                "g" | "G" => {
+                    // Synergy toggle
+                    set_show_synergies.update(|s| *s = !*s);
                 }
                 "r" | "R" => {
                     // Reset game
@@ -141,6 +162,22 @@ pub fn App() -> impl IntoView {
                     <DroneDeploymentPanel game_state=game_state.clone()/>
                 </div>
             </Show>
+
+            // Research Panel (full modal)
+            <ResearchPanel show=show_research on_close=move || set_show_research.set(false)/>
+
+            // Token Store (full modal)
+            <TokenStore
+                game_state=game_state.clone()
+                show=show_token_store
+                on_close=move || set_show_token_store.set(false)
+            />
+
+            // Synergy System (floating indicator)
+            <SynergySystem
+                active_weapons=create_signal(vec![game_state.selected_weapon.get()]).0
+                show=show_synergies
+            />
 
             <div class="controls-footer">
                 <div class="control-section">
@@ -224,6 +261,26 @@ pub fn App() -> impl IntoView {
                     <button
                         class="control-button"
                         on:click=move |_| {
+                            set_show_research.update(|r| *r = !*r);
+                        }
+                    >
+
+                        "🔬 RESEARCH"
+                    </button>
+
+                    <button
+                        class="control-button"
+                        on:click=move |_| {
+                            set_show_token_store.update(|t| *t = !*t);
+                        }
+                    >
+
+                        "🪙 STORE"
+                    </button>
+
+                    <button
+                        class="control-button"
+                        on:click=move |_| {
                             set_show_help.update(|h| *h = !*h);
                         }
                     >
@@ -275,6 +332,18 @@ pub fn App() -> impl IntoView {
                                 <li>
                                     <kbd>"L"</kbd>
                                     " - Toggle event log"
+                                </li>
+                                <li>
+                                    <kbd>"T"</kbd>
+                                    " - Toggle token store"
+                                </li>
+                                <li>
+                                    <kbd>"F"</kbd>
+                                    " - Toggle research panel"
+                                </li>
+                                <li>
+                                    <kbd>"G"</kbd>
+                                    " - Toggle synergy indicator"
                                 </li>
                                 <li>
                                     <kbd>"H"</kbd>

@@ -18,15 +18,15 @@ Successfully migrated the Phoenix Rooivalk ThreatSimulator from a web-based Reac
 
 ### ✅ Fully Implemented (100%)
 
-| Category | React (Before) | Leptos (After) | Status |
-|----------|----------------|----------------|--------|
-| **Core Game Engine** | 1,200 lines, 0 tests | 1,300 lines, 29 tests | ✅ |
-| **UI Components** | 1,300 lines | 940 lines | ✅ |
-| **Particle System** | 450 lines, 0 tests | 280 lines, 6 tests | ✅ |
-| **Event System** | 200 lines | 150 lines | ✅ |
-| **State Management** | 900 lines (hooks) | 200 lines (signals) | ✅ |
-| **Total LOC** | ~4,050 lines | ~2,870 lines | **29% reduction** |
-| **Test Coverage** | 0% (0 tests) | 100% (35 tests) | **∞ improvement** |
+| Category             | React (Before)       | Leptos (After)        | Status            |
+| -------------------- | -------------------- | --------------------- | ----------------- |
+| **Core Game Engine** | 1,200 lines, 0 tests | 1,300 lines, 29 tests | ✅                 |
+| **UI Components**    | 1,300 lines          | 940 lines             | ✅                 |
+| **Particle System**  | 450 lines, 0 tests   | 280 lines, 6 tests    | ✅                 |
+| **Event System**     | 200 lines            | 150 lines             | ✅                 |
+| **State Management** | 900 lines (hooks)    | 200 lines (signals)   | ✅                 |
+| **Total LOC**        | ~4,050 lines         | ~2,870 lines          | **29% reduction** |
+| **Test Coverage**    | 0% (0 tests)         | 100% (35 tests)       | **∞ improvement** |
 
 ---
 
@@ -34,40 +34,40 @@ Successfully migrated the Phoenix Rooivalk ThreatSimulator from a web-based Reac
 
 ### ✅ Core Components (11/11 Complete)
 
-| Component | React File | Leptos File | Status | Tests |
-|-----------|------------|-------------|--------|-------|
-| Main App | ThreatSimulator.tsx | components.rs | ✅ | - |
-| Game Canvas | RadarCanvas.tsx | game_canvas.rs | ✅ | - |
-| HUD Overlay | HUDBar.tsx | hud.rs | ✅ | - |
-| Weapon Panel | WeaponStatus.tsx | weapon_panel.rs | ✅ | - |
-| Stats Panel | DetailedStats.tsx | stats_panel.rs | ✅ | - |
-| Event Feed | EventFeed.tsx | event_feed.rs | ✅ | 2 |
-| Particles | ParticleEffects.tsx | particles.rs | ✅ | 6 |
-| Overlays | ThreatSimulatorOverlays.tsx | overlays.rs | ✅ | - |
-| Cooldown Meters | CooldownMeter.tsx | cooldown_meter.rs | ✅ | - |
-| Energy Mgmt | EnergyManagement.tsx | energy_management.rs | ✅ | - |
-| Drone Deploy | DroneDeployment.tsx | drone_deployment.rs | ✅ | - |
+| Component       | React File                  | Leptos File          | Status | Tests |
+| --------------- | --------------------------- | -------------------- | ------ | ----- |
+| Main App        | ThreatSimulator.tsx         | components.rs        | ✅      | -     |
+| Game Canvas     | RadarCanvas.tsx             | game_canvas.rs       | ✅      | -     |
+| HUD Overlay     | HUDBar.tsx                  | hud.rs               | ✅      | -     |
+| Weapon Panel    | WeaponStatus.tsx            | weapon_panel.rs      | ✅      | -     |
+| Stats Panel     | DetailedStats.tsx           | stats_panel.rs       | ✅      | -     |
+| Event Feed      | EventFeed.tsx               | event_feed.rs        | ✅      | 2     |
+| Particles       | ParticleEffects.tsx         | particles.rs         | ✅      | 6     |
+| Overlays        | ThreatSimulatorOverlays.tsx | overlays.rs          | ✅      | -     |
+| Cooldown Meters | CooldownMeter.tsx           | cooldown_meter.rs    | ✅      | -     |
+| Energy Mgmt     | EnergyManagement.tsx        | energy_management.rs | ✅      | -     |
+| Drone Deploy    | DroneDeployment.tsx         | drone_deployment.rs  | ✅      | -     |
 
 ### ✅ Game Engine (6/6 Complete)
 
-| Module | React File | Leptos File | Lines | Tests |
-|--------|------------|-------------|-------|-------|
-| Types | threatTypes.ts, weaponTypes.ts | types.rs | 230 | 7 |
-| Physics | collisionSystem.ts | physics.rs | 210 | 5 |
-| Formations | formationManager.ts | formations.rs | 320 | 5 |
-| Waves | waveManager.ts | waves.rs | 350 | 6 |
-| Engine | gameEngine.ts | engine.rs | 220 | 6 |
-| Weapons | weaponTypes.ts | weapons.rs | 90 | - |
-| **Total** | **~1,800 lines** | **~1,420 lines** | **21% reduction** | **29 tests** |
+| Module     | React File                     | Leptos File      | Lines             | Tests        |
+| ---------- | ------------------------------ | ---------------- | ----------------- | ------------ |
+| Types      | threatTypes.ts, weaponTypes.ts | types.rs         | 230               | 7            |
+| Physics    | collisionSystem.ts             | physics.rs       | 210               | 5            |
+| Formations | formationManager.ts            | formations.rs    | 320               | 5            |
+| Waves      | waveManager.ts                 | waves.rs         | 350               | 6            |
+| Engine     | gameEngine.ts                  | engine.rs        | 220               | 6            |
+| Weapons    | weaponTypes.ts                 | weapons.rs       | 90                | -            |
+| **Total**  | **~1,800 lines**               | **~1,420 lines** | **21% reduction** | **29 tests** |
 
 ### ⏳ Optional Components (Skipped - Not Essential)
 
-| Component | Reason Skipped |
-|-----------|----------------|
+| Component     | Reason Skipped                   |
+| ------------- | -------------------------------- |
 | ResearchPanel | Game mechanic not needed for MVP |
-| TokenStore | Blockchain integration pending |
-| SynergySystem | Advanced feature for v2.0 |
-| RadarSystem | Replaced by simplified canvas |
+| TokenStore    | Blockchain integration pending   |
+| SynergySystem | Advanced feature for v2.0        |
+| RadarSystem   | Replaced by simplified canvas    |
 
 ---
 
@@ -87,14 +87,14 @@ Successfully migrated the Phoenix Rooivalk ThreatSimulator from a web-based Reac
 
 ### 🚀 Performance
 
-| Metric | React | Leptos/Tauri | Improvement |
-|--------|-------|--------------|-------------|
-| Load Time | 2,000ms | 200ms | **10x faster** |
-| Memory Usage | 150MB | 40MB | **3.75x better** |
-| Frame Time | 16.7ms (60 FPS) | 8.3ms (120 FPS) | **2x smoother** |
-| Bundle Size | N/A (web) | 12MB | **Native app** |
-| Cold Start | 3,000ms | 500ms | **6x faster** |
-| Max Entities | ~100 threats | ~500 threats | **5x capacity** |
+| Metric       | React           | Leptos/Tauri    | Improvement      |
+| ------------ | --------------- | --------------- | ---------------- |
+| Load Time    | 2,000ms         | 200ms           | **10x faster**   |
+| Memory Usage | 150MB           | 40MB            | **3.75x better** |
+| Frame Time   | 16.7ms (60 FPS) | 8.3ms (120 FPS) | **2x smoother**  |
+| Bundle Size  | N/A (web)       | 12MB            | **Native app**   |
+| Cold Start   | 3,000ms         | 500ms           | **6x faster**    |
+| Max Entities | ~100 threats    | ~500 threats    | **5x capacity**  |
 
 ### 📊 Test Coverage Breakdown
 
@@ -116,42 +116,42 @@ Total:            35 tests  ✅
 
 ### ✅ Implemented Features
 
-| Feature | React | Leptos | Notes |
-|---------|-------|--------|-------|
-| Threat Spawning | ✅ | ✅ | Improved with wave system |
-| Weapon Selection (13 types) | ✅ | ✅ | All weapons implemented |
-| Mouse Targeting | ✅ | ✅ | Click-to-fire |
-| Keyboard Controls | ✅ | ✅ | Extended (E,D,L added) |
-| Resource Management | ✅ | ✅ | Energy, cooling, health |
-| Wave Progression | ✅ | ✅ | 7 threat types |
-| Formation System | ✅ | ✅ | 6 formation patterns |
-| Particle Effects | ✅ | ✅ | 5 particle types |
-| Event Logging | ✅ | ✅ | 4 severity levels |
-| Stats Display | ✅ | ✅ | Real-time + detailed |
-| Help System | ✅ | ✅ | Improved modal |
-| Pause/Resume | ✅ | ✅ | Space key |
-| Game Reset | ✅ | ✅ | R key |
-| FPS Monitoring | ✅ | ✅ | Real-time display |
-| Drone Deployment | ✅ | ✅ | 9 drone types |
-| Energy Visualization | ✅ | ✅ | Power budget breakdown |
-| Warning Overlays | ✅ | ✅ | Simulation disclaimer |
-| Achievement System | ✅ | ✅ | Notification pop-ups |
-| Cooldown Indicators | ✅ | ✅ | Per-weapon display |
+| Feature                     | React | Leptos | Notes                     |
+| --------------------------- | ----- | ------ | ------------------------- |
+| Threat Spawning             | ✅     | ✅      | Improved with wave system |
+| Weapon Selection (13 types) | ✅     | ✅      | All weapons implemented   |
+| Mouse Targeting             | ✅     | ✅      | Click-to-fire             |
+| Keyboard Controls           | ✅     | ✅      | Extended (E,D,L added)    |
+| Resource Management         | ✅     | ✅      | Energy, cooling, health   |
+| Wave Progression            | ✅     | ✅      | 7 threat types            |
+| Formation System            | ✅     | ✅      | 6 formation patterns      |
+| Particle Effects            | ✅     | ✅      | 5 particle types          |
+| Event Logging               | ✅     | ✅      | 4 severity levels         |
+| Stats Display               | ✅     | ✅      | Real-time + detailed      |
+| Help System                 | ✅     | ✅      | Improved modal            |
+| Pause/Resume                | ✅     | ✅      | Space key                 |
+| Game Reset                  | ✅     | ✅      | R key                     |
+| FPS Monitoring              | ✅     | ✅      | Real-time display         |
+| Drone Deployment            | ✅     | ✅      | 9 drone types             |
+| Energy Visualization        | ✅     | ✅      | Power budget breakdown    |
+| Warning Overlays            | ✅     | ✅      | Simulation disclaimer     |
+| Achievement System          | ✅     | ✅      | Notification pop-ups      |
+| Cooldown Indicators         | ✅     | ✅      | Per-weapon display        |
 
 ### 🎨 Visual Features
 
-| Visual Element | Implemented | Quality |
-|----------------|-------------|---------|
-| Tactical Grid | ✅ | 20×12 grid overlay |
-| Range Circles | ✅ | 3 levels (200/400/600m) |
-| Glow Effects | ✅ | Mothership, threats, drones |
-| Health Bars | ✅ | Gradient colors |
-| Battery Indicators | ✅ | Color-coded (green→red) |
-| Type Colors | ✅ | 7 threat types |
-| Resource Bars | ✅ | Animated gradients |
-| Particle Effects | ✅ | Explosions, trails, debris |
-| Modal Animations | ✅ | Slide, fade, bounce |
-| Responsive UI | ✅ | Works 1280px+ |
+| Visual Element     | Implemented | Quality                     |
+| ------------------ | ----------- | --------------------------- |
+| Tactical Grid      | ✅           | 20×12 grid overlay          |
+| Range Circles      | ✅           | 3 levels (200/400/600m)     |
+| Glow Effects       | ✅           | Mothership, threats, drones |
+| Health Bars        | ✅           | Gradient colors             |
+| Battery Indicators | ✅           | Color-coded (green→red)     |
+| Type Colors        | ✅           | 7 threat types              |
+| Resource Bars      | ✅           | Animated gradients          |
+| Particle Effects   | ✅           | Explosions, trails, debris  |
+| Modal Animations   | ✅           | Slide, fade, bounce         |
+| Responsive UI      | ✅           | Works 1280px+               |
 
 ---
 
@@ -454,14 +454,14 @@ All known issues have been resolved:
 
 ### ✅ All Targets Exceeded
 
-| Target | Goal | Achieved | Status |
-|--------|------|----------|--------|
-| Test Coverage | 80% | 100% (engine) | ✅✅ |
-| FPS | 60 | 90+ | ✅✅ |
-| Memory | <80MB | <50MB | ✅✅ |
-| Load Time | <1s | <1s | ✅ |
-| Code Quality | No warnings | 0 warnings | ✅✅ |
-| Documentation | 1,000+ lines | 1,800+ lines | ✅✅ |
+| Target        | Goal         | Achieved      | Status |
+| ------------- | ------------ | ------------- | ------ |
+| Test Coverage | 80%          | 100% (engine) | ✅✅     |
+| FPS           | 60           | 90+           | ✅✅     |
+| Memory        | <80MB        | <50MB         | ✅✅     |
+| Load Time     | <1s          | <1s           | ✅      |
+| Code Quality  | No warnings  | 0 warnings    | ✅✅     |
+| Documentation | 1,000+ lines | 1,800+ lines  | ✅✅     |
 
 ---
 
