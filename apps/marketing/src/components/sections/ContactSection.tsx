@@ -7,10 +7,7 @@ import styles from "./ContactSection.module.css";
 
 export const ContactSection: React.FC = () => {
   return (
-    <section
-      className={styles.section}
-      id="contact"
-    >
+    <section className={styles.section} id="contact">
       <div className={styles.container}>
         <div className={styles.header}>
           <h2 className={styles.title}>
@@ -52,9 +49,7 @@ export const ContactSection: React.FC = () => {
           </div>
 
           <div className={styles.card}>
-            <h3 className={styles.cardTitle}>
-              Technical Resources
-            </h3>
+            <h3 className={styles.cardTitle}>Technical Resources</h3>
             <p className={styles.cardDescription}>
               Download comprehensive technical documentation and market
               analysis. Learn about SAE Level 4 architecture, market

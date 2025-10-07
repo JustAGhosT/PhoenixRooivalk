@@ -82,7 +82,11 @@
 .metricsCard {
   margin-top: 1.5rem;
   padding: 1.5rem;
-  background: linear-gradient(to right, rgba(var(--primary), 0.1), rgba(var(--secondary), 0.1));
+  background: linear-gradient(
+    to right,
+    rgba(var(--primary), 0.1),
+    rgba(var(--secondary), 0.1)
+  );
   border-radius: 0.75rem;
   border: 1px solid rgba(var(--primary), 0.2);
   max-width: 56rem;
@@ -224,4 +228,3 @@
     transform: translateY(0);
   }
 }
-

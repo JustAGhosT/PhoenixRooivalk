@@ -4,10 +4,7 @@ import styles from "./HeroSection.module.css";
 
 export const HeroSection: React.FC = () => {
   return (
-    <section
-      className={styles.section}
-      id="hero"
-    >
+    <section className={styles.section} id="hero">
       <div className={styles.container}>
         {/* Development status indicators */}
         <div className={styles.statusBadges}>
@@ -30,34 +27,20 @@ export const HeroSection: React.FC = () => {
         <div className={styles.metricsCard}>
           <div className={styles.metricsGrid}>
             <div className={styles.metric}>
-              <div className={styles.metricValue}>
-                &lt;200ms
-              </div>
-              <div className={styles.metricLabel}>
-                Response Time
-              </div>
+              <div className={styles.metricValue}>&lt;200ms</div>
+              <div className={styles.metricLabel}>Response Time</div>
             </div>
             <div className={styles.metric}>
-              <div className={styles.metricValue}>
-                100%
-              </div>
-              <div className={styles.metricLabel}>
-                Offline Operation
-              </div>
+              <div className={styles.metricValue}>100%</div>
+              <div className={styles.metricLabel}>Offline Operation</div>
             </div>
             <div className={styles.metric}>
-              <div className={styles.metricValue}>
-                64%
-              </div>
+              <div className={styles.metricValue}>64%</div>
               <div className={styles.metricLabel}>Market Gap</div>
             </div>
             <div className={styles.metric}>
-              <div className={styles.metricValue}>
-                $26B
-              </div>
-              <div className={styles.metricLabel}>
-                Market by 2030
-              </div>
+              <div className={styles.metricValue}>$26B</div>
+              <div className={styles.metricLabel}>Market by 2030</div>
             </div>
           </div>
         </div>
@@ -103,25 +86,19 @@ export const HeroSection: React.FC = () => {
                 <span className={styles.conceptMetricLabel}>
                   Detection Latency
                 </span>
-                <span className={styles.conceptMetricValue}>
-                  &lt;200ms
-                </span>
+                <span className={styles.conceptMetricValue}>&lt;200ms</span>
               </div>
               <div className={styles.conceptMetric}>
                 <span className={styles.conceptMetricLabel}>
                   Network Independence
                 </span>
-                <span className={styles.conceptMetricValue}>
-                  100%
-                </span>
+                <span className={styles.conceptMetricValue}>100%</span>
               </div>
               <div className={styles.conceptMetric}>
                 <span className={styles.conceptMetricLabel}>
                   Market Gap Addressed
                 </span>
-                <span className={styles.conceptMetricValue}>
-                  64%
-                </span>
+                <span className={styles.conceptMetricValue}>64%</span>
               </div>
             </div>
 

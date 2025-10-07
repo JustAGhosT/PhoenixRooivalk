@@ -172,7 +172,6 @@ The assistant should structure the investigation using the following systematic
 approach:
 
 1. **Comprehensive Technology Taxonomy Development:**
-
    - Create hierarchical classification of motor technologies by application
      domain (military/industrial/racing)
    - Categorize by motor architecture: brushless outrunner, brushless inrunner,
@@ -181,7 +180,6 @@ approach:
    - Map technology readiness levels (TRL 1-9) for emerging innovations
 
 2. **Quantitative Performance Benchmarking:**
-
    - Compile technical specifications with numerical data: thrust output
      (grams/Newtons), power consumption (Watts), efficiency percentages, KV
      ratings, weight (grams), dimensions (mm), voltage ranges, current draw,
@@ -195,7 +193,6 @@ approach:
      operations, and competition results
 
 3. **Competitive Technology Analysis:**
-
    - Compare competing motor technologies with objective performance matrices
    - Evaluate trade-offs: efficiency vs power density, cost vs reliability,
      weight vs durability, performance vs thermal management
@@ -205,7 +202,6 @@ approach:
      general-purpose, established vs emerging brands
 
 4. **Market Leadership and Competitive Landscape:**
-
    - Identify current market leaders in defense (prime contractors and
      specialized suppliers), commercial (enterprise platform manufacturers), and
      racing (component manufacturers) segments
@@ -214,7 +210,6 @@ approach:
    - Evaluate vertical integration vs specialized component approaches
 
 5. **Emerging Technology and Innovation Tracking:**
-
    - Highlight cutting-edge innovations: advanced motor topologies (axial flux,
      halbach array), novel materials (high-temperature superconductors, advanced
      magnetic materials, carbon nanotube composites), next-generation ESC
@@ -225,7 +220,6 @@ approach:
    - Identify research institutions and companies leading innovation
 
 6. **Technology Gap Analysis:**
-
    - Document unsolved engineering challenges: thermal management at extreme
      power densities, efficiency optimization across wide operational envelopes,
      reliability under extreme environmental conditions, electromagnetic
@@ -235,7 +229,6 @@ approach:
    - Highlight research opportunities and development priorities
 
 7. **Economic and Business Analysis:**
-
    - Provide cost analysis: component costs, system-level costs, total cost of
      ownership, operational cost per flight hour
    - Evaluate business considerations: supply chain reliability, vendor lock-in
@@ -416,14 +409,12 @@ _3.3 System Integration Considerations:_
 - Investment and M&A activity in the sector
 
 1. Technology Roadmap:
-
    - Current state-of-the-art across sectors
    - Emerging innovations and timeline estimates
    - Unsolved engineering challenges
    - Future development trajectories
 
 2. Practical Recommendations:
-
    - Military mission planners: motor selection for specific operational
      requirements
    - Industrial fleet operators: optimization for efficiency and reliability

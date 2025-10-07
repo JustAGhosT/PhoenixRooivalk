@@ -43,9 +43,7 @@ export const Footer: React.FC = () => {
           <div className={styles.grid}>
             {/* Company Info */}
             <div className={styles.companyInfo}>
-              <h3 className={styles.companyTitle}>
-                Phoenix Rooivalk
-              </h3>
+              <h3 className={styles.companyTitle}>Phoenix Rooivalk</h3>
               <p className={styles.companyDescription}>
                 Advanced counter-UAS defense systems for military and civilian
                 protection.
@@ -69,16 +67,11 @@ export const Footer: React.FC = () => {
             {/* Footer Sections */}
             {footerSections.map((section) => (
               <div key={section.title} className={styles.section}>
-                <h4 className={styles.sectionTitle}>
-                  {section.title}
-                </h4>
+                <h4 className={styles.sectionTitle}>{section.title}</h4>
                 <ul className={styles.linkList}>
                   {section.links.map((link) => (
                     <li key={link.href}>
-                      <Link
-                        href={link.href}
-                        className={styles.link}
-                      >
+                      <Link href={link.href} className={styles.link}>
                         {link.label}
                       </Link>
                     </li>
@@ -104,9 +97,7 @@ export const Footer: React.FC = () => {
               <div className={styles.status}>
                 <div className={styles.statusIndicator}>
                   <div className={styles.statusDot}></div>
-                  <span className={styles.statusText}>
-                    System Online
-                  </span>
+                  <span className={styles.statusText}>System Online</span>
                 </div>
                 <div className={styles.version}>v2.1.0-alpha</div>
               </div>

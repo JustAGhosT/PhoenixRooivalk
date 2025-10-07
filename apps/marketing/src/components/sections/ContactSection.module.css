@@ -88,7 +88,11 @@
 }
 
 .sbirCard {
-  background: linear-gradient(to right, rgba(var(--primary), 0.1), rgba(var(--secondary), 0.1));
+  background: linear-gradient(
+    to right,
+    rgba(var(--primary), 0.1),
+    rgba(var(--secondary), 0.1)
+  );
   border: 1px solid rgba(var(--primary), 0.3);
   border-radius: 0.5rem;
   padding: 2rem;

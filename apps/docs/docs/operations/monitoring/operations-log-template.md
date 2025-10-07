@@ -93,11 +93,9 @@ analysis, and continuous improvement.
 ### System Performance
 
 - **Rate Limiting Encountered**: [ ] Yes [ ] No
-
   - **Details**: [description if yes]
 
 - **Blockhash or Preflight Errors Observed**: [ ] Yes [ ] No
-
   - **Details**: [description if yes]
 
 - **Manual Interventions Required**: [ ] Yes [ ] No

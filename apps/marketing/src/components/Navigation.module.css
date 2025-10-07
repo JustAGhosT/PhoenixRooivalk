@@ -55,7 +55,11 @@
   position: absolute;
   inset: 0;
   border-radius: 0.75rem;
-  background: linear-gradient(to bottom right, rgba(var(--primary), 0.3), rgba(var(--accent), 0.3));
+  background: linear-gradient(
+    to bottom right,
+    rgba(var(--primary), 0.3),
+    rgba(var(--accent), 0.3)
+  );
   opacity: 0;
   filter: blur(1rem);
   transition: opacity 0.3s ease;
@@ -69,7 +73,11 @@
   position: absolute;
   inset: -0.25rem;
   border-radius: 0.75rem;
-  background: linear-gradient(to bottom right, rgba(var(--primary), 0.1), rgba(var(--accent), 0.1));
+  background: linear-gradient(
+    to bottom right,
+    rgba(var(--primary), 0.1),
+    rgba(var(--accent), 0.1)
+  );
   opacity: 0;
   filter: blur(1.5rem);
   transition: opacity 0.3s ease;
@@ -82,7 +90,11 @@
 .logoText {
   font-size: 1.5rem;
   font-weight: 700;
-  background: linear-gradient(to bottom right, rgb(var(--primary)), rgb(var(--accent)));
+  background: linear-gradient(
+    to bottom right,
+    rgb(var(--primary)),
+    rgb(var(--accent))
+  );
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -91,7 +103,11 @@
 }
 
 .logo:hover .logoText {
-  background: linear-gradient(to bottom right, rgb(var(--accent)), rgb(var(--primary)));
+  background: linear-gradient(
+    to bottom right,
+    rgb(var(--accent)),
+    rgb(var(--primary))
+  );
   background-clip: text;
   -webkit-background-clip: text;
 }
@@ -385,7 +401,11 @@
 }
 
 .ctaButton {
-  background: linear-gradient(to bottom right, rgb(var(--primary)), rgb(var(--accent)));
+  background: linear-gradient(
+    to bottom right,
+    rgb(var(--primary)),
+    rgb(var(--accent))
+  );
   color: var(--bg-primary);
   font-weight: 600;
   padding: 0.5rem 1.5rem;
