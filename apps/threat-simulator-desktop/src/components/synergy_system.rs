@@ -19,85 +19,8 @@ pub fn SynergySystem(
     active_weapons: ReadSignal<Vec<WeaponType>>,
     show: ReadSignal<bool>,
 ) -> impl IntoView {
-    let synergies = std::rc::Rc::new(vec![
-        SynergyEffect {
-            id: "gnss_rf_combo".to_string(),
-            name: "Navigation Disruption".to_string(),
-            description:
-                "GNSS Denial and RF Takeover combine to completely confuse drone navigation"
-                    .to_string(),
-            weapons: vec![WeaponType::GnssDeny, WeaponType::RfTakeover],
-            bonus_damage: 0.0,
-            bonus_range: 0.2,
-            bonus_cooldown: 0.15,
-            visual_effect: "navigation confusion".to_string(),
-            color: "#8b5cf6".to_string(),
-        },
-        SynergyEffect {
-            id: "optical_net_combo".to_string(),
-            name: "Blind and Capture".to_string(),
-            description: "Optical Dazzler blinds cameras while Net captures disabled drones"
-                .to_string(),
-            weapons: vec![WeaponType::OpticalDazzle, WeaponType::Net],
-            bonus_damage: 0.0,
-            bonus_range: 0.15,
-            bonus_cooldown: 0.0,
-            visual_effect: "blind capture".to_string(),
-            color: "#70a1ff".to_string(),
-        },
-        SynergyEffect {
-            id: "kinetic_laser_combo".to_string(),
-            name: "Overwhelming Force".to_string(),
-            description: "Kinetic and Laser weapons combine for maximum destruction".to_string(),
-            weapons: vec![WeaponType::Kinetic, WeaponType::Laser],
-            bonus_damage: 0.3,
-            bonus_range: 0.1,
-            bonus_cooldown: 0.0,
-            visual_effect: "destruction field".to_string(),
-            color: "#ff6b6b".to_string(),
-        },
-        SynergyEffect {
-            id: "decoy_capture".to_string(),
-            name: "Decoy and Capture".to_string(),
-            description: "Decoy Beacon attracts threats into Net capture zones".to_string(),
-            weapons: vec![WeaponType::DecoyBeacon, WeaponType::Net],
-            bonus_damage: 0.0,
-            bonus_range: 0.25,
-            bonus_cooldown: 0.2,
-            visual_effect: "attraction field".to_string(),
-            color: "#4ecdc4".to_string(),
-        },
-        SynergyEffect {
-            id: "electronic_dominance".to_string(),
-            name: "Electronic Dominance".to_string(),
-            description: "Multiple EW systems create layered electronic defense".to_string(),
-            weapons: vec![
-                WeaponType::Electronic,
-                WeaponType::Hpm,
-                WeaponType::RfTakeover,
-            ],
-            bonus_damage: 0.2,
-            bonus_range: 0.3,
-            bonus_cooldown: 0.1,
-            visual_effect: "EM field".to_string(),
-            color: "#a29bfe".to_string(),
-        },
-        SynergyEffect {
-            id: "ai_deception_combo".to_string(),
-            name: "Cognitive Warfare".to_string(),
-            description: "AI Deception combined with decoys creates confusion".to_string(),
-            weapons: vec![
-                WeaponType::AiDeception,
-                WeaponType::DecoyBeacon,
-                WeaponType::Chaff,
-            ],
-            bonus_damage: 0.15,
-            bonus_range: 0.2,
-            bonus_cooldown: 0.25,
-            visual_effect: "cognitive disruption".to_string(),
-            color: "#fdcb6e".to_string(),
-        },
-    ]);
+    // Use get_all_synergies() as single source of truth
+    let synergies = std::rc::Rc::new(get_all_synergies());
 
     view! {
         <Show when=move || show.get() fallback=|| view! { <div></div> }>
@@ -213,23 +136,26 @@ pub fn calculate_synergy_bonuses(active_weapons: &[WeaponType]) -> (f32, f32, f3
     (total_damage, total_range, total_cooldown)
 }
 
-fn get_all_synergies() -> Vec<SynergyEffect> {
+pub fn get_all_synergies() -> Vec<SynergyEffect> {
     vec![
         SynergyEffect {
             id: "gnss_rf_combo".to_string(),
             name: "Navigation Disruption".to_string(),
-            description: "GNSS Denial and RF Takeover combine to confuse navigation".to_string(),
+            description:
+                "GNSS Denial and RF Takeover combine to completely confuse drone navigation"
+                    .to_string(),
             weapons: vec![WeaponType::GnssDeny, WeaponType::RfTakeover],
             bonus_damage: 0.0,
             bonus_range: 0.2,
-            bonus_cooldown: 0.1,
+            bonus_cooldown: 0.15,
             visual_effect: "navigation confusion".to_string(),
             color: "#8b5cf6".to_string(),
         },
         SynergyEffect {
             id: "optical_net_combo".to_string(),
             name: "Blind and Capture".to_string(),
-            description: "Optical Dazzler blinds while Net captures".to_string(),
+            description: "Optical Dazzler blinds cameras while Net captures disabled drones"
+                .to_string(),
             weapons: vec![WeaponType::OpticalDazzle, WeaponType::Net],
             bonus_damage: 0.0,
             bonus_range: 0.15,
@@ -240,7 +166,7 @@ fn get_all_synergies() -> Vec<SynergyEffect> {
         SynergyEffect {
             id: "kinetic_laser_combo".to_string(),
             name: "Overwhelming Force".to_string(),
-            description: "Kinetic and Laser weapons for maximum destruction".to_string(),
+            description: "Kinetic and Laser weapons combine for maximum destruction".to_string(),
             weapons: vec![WeaponType::Kinetic, WeaponType::Laser],
             bonus_damage: 0.3,
             bonus_range: 0.1,
@@ -249,9 +175,20 @@ fn get_all_synergies() -> Vec<SynergyEffect> {
             color: "#ff6b6b".to_string(),
         },
         SynergyEffect {
+            id: "decoy_capture".to_string(),
+            name: "Decoy and Capture".to_string(),
+            description: "Decoy Beacon attracts threats into Net capture zones".to_string(),
+            weapons: vec![WeaponType::DecoyBeacon, WeaponType::Net],
+            bonus_damage: 0.0,
+            bonus_range: 0.25,
+            bonus_cooldown: 0.2,
+            visual_effect: "attraction field".to_string(),
+            color: "#4ecdc4".to_string(),
+        },
+        SynergyEffect {
             id: "electronic_dominance".to_string(),
             name: "Electronic Dominance".to_string(),
-            description: "Layered electronic warfare capabilities".to_string(),
+            description: "Multiple EW systems create layered electronic defense".to_string(),
             weapons: vec![
                 WeaponType::Electronic,
                 WeaponType::Hpm,
@@ -262,6 +199,21 @@ fn get_all_synergies() -> Vec<SynergyEffect> {
             bonus_cooldown: 0.1,
             visual_effect: "EM field".to_string(),
             color: "#a29bfe".to_string(),
+        },
+        SynergyEffect {
+            id: "ai_deception_combo".to_string(),
+            name: "Cognitive Warfare".to_string(),
+            description: "AI Deception combined with decoys creates confusion".to_string(),
+            weapons: vec![
+                WeaponType::AiDeception,
+                WeaponType::DecoyBeacon,
+                WeaponType::Chaff,
+            ],
+            bonus_damage: 0.15,
+            bonus_range: 0.2,
+            bonus_cooldown: 0.25,
+            visual_effect: "cognitive disruption".to_string(),
+            color: "#fdcb6e".to_string(),
         },
     ]
 }

@@ -176,16 +176,16 @@ pnpm clean            # cargo clean && trunk clean
 ```text
 Module                Tests    Status
 ────────────────────────────────────
-Core Types            7        ✅
-Physics System        5        ✅
+Core Types            9        ✅
+Physics System        6        ✅
 Formations            5        ✅
-Wave Management       6        ✅
-Game Engine           6        ✅
+Wave Management       7        ✅
+Game Engine           7        ✅
 Particle System       6        ✅
-Event Feed            2        ✅ NEW
-Synergy System        3        ✅ NEW (in module)
+Event Feed            3        ✅ NEW
+Synergy System        4        ✅ NEW (in module)
 ────────────────────────────────────
-Total                 35       ✅ 100% passing
+Total                 47       ✅ 100% passing
 Runtime:             <50ms    ✅ Fast
 Clippy:               0        ✅ Zero warnings
 ```

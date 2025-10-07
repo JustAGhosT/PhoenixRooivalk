@@ -10,8 +10,8 @@ public_url = "/"
 filehash = true
 
 [watch]
-ignore = ["dist"]
-# Removed "target" from ignore list - it doesn't exist yet and causes errors
+ignore = ["dist", "target"]
+# Must ignore "target" to prevent cargo build outputs from triggering endless rebuild loops
 
 [serve]
 # Use 'addresses' instead of deprecated 'address'

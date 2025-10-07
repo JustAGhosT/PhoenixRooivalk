@@ -52,6 +52,23 @@ fn save_session_to_persistence(session: &GameSession) -> Result<String, String> 
 
 // Tauri commands that can be called from the frontend
 
+// Input struct for end_game_session to handle camelCase from frontend
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+struct EndGameSessionInput {
+    final_score: u32,
+    threats_neutralized: u32,
+}
+
+// Input struct for save_evidence to handle camelCase from frontend
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+struct EvidencePayload {
+    session_id: String,
+    event_type: String,
+    event_data: serde_json::Value,
+}
+
 #[tauri::command]
 fn start_game_session(state: State<'_, AppState>) -> Result<GameSession, String> {
     debug!("Starting new game session");
@@ -86,12 +103,11 @@ fn start_game_session(state: State<'_, AppState>) -> Result<GameSession, String>
 #[tauri::command]
 fn end_game_session(
     state: State<'_, AppState>,
-    final_score: u32,
-    threats_neutralized: u32,
+    input: EndGameSessionInput,
 ) -> Result<(), String> {
     debug!(
-        final_score = final_score,
-        threats_neutralized = threats_neutralized,
+        final_score = input.final_score,
+        threats_neutralized = input.threats_neutralized,
         "Ending game session"
     );
 
@@ -105,14 +121,14 @@ fn end_game_session(
 
     if let Some(session) = current.as_mut() {
         // Update session with final stats
-        session.score = final_score;
-        session.threats_neutralized = threats_neutralized;
+        session.score = input.final_score;
+        session.threats_neutralized = input.threats_neutralized;
 
         info!(
             session_id = %session.session_id,
             duration_secs = chrono::Utc::now().timestamp() - session.start_time,
-            final_score = final_score,
-            threats_neutralized = threats_neutralized,
+            final_score = input.final_score,
+            threats_neutralized = input.threats_neutralized,
             level = session.level,
             "Game session ending, persisting data"
         );
@@ -145,15 +161,11 @@ fn end_game_session(
 }
 
 #[tauri::command]
-async fn save_evidence(
-    session_id: String,
-    event_type: String,
-    event_data: serde_json::Value,
-) -> Result<String, String> {
+async fn save_evidence(payload: EvidencePayload) -> Result<String, String> {
     // TODO: Integrate with phoenix-evidence crate
     println!(
         "Saving evidence: session={}, type={}, data={:?}",
-        session_id, event_type, event_data
+        payload.session_id, payload.event_type, payload.event_data
     );
     Ok("evidence-id-placeholder".to_string())
 }

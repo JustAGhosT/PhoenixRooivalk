@@ -247,22 +247,20 @@ let evidence_id = evidence_manager
 
 ## Test Coverage
 
-### Current Status: ✅ 42/42 Passing
+### Current Status: ✅ 47/47 Passing
 
 All core game engine components have comprehensive test coverage:
 
-- **Types & Math** (7 tests): Vector2 operations, serialization, entity creation
-- **Physics** (5 tests): Collision detection, impact calculation, physics
+- **Types & Math** (9 tests): Vector2 operations, serialization, entity creation
+- **Physics** (6 tests): Collision detection, impact calculation, physics
   resolution
 - **Formations** (5 tests): All 6 formation types, positioning algorithms
-- **Wave System** (6 tests): Difficulty scaling, wave progression, threat
+- **Wave System** (7 tests): Difficulty scaling, wave progression, threat
   spawning
-- **Game Engine** (6 tests): Engine lifecycle, entity management, integration
+- **Game Engine** (7 tests): Engine lifecycle, entity management, integration
 - **Particle System** (6 tests): Particle lifecycle, movement, types, cleanup
-- **Auto-Targeting** (7 tests): Priority calculation, target selection,
-  cooldowns, area effects
-- **Event Feed** (2 tests): Feed item creation, severity levels
-- **Synergy System** (3 tests): Combo detection, bonuses, multiple synergies
+- **Event Feed** (3 tests): Feed item creation, severity levels
+- **Synergy System** (4 tests): Combo detection, bonuses, multiple synergies
 
 **Test Quality**:
 

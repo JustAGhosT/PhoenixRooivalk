@@ -64,14 +64,19 @@ comprehensive test coverage (47 tests).
 | Weapons    | weaponTypes.ts                 | weapons.rs       | 90                | -            |
 | **Total**  | **~1,800 lines**               | **~1,420 lines** | **21% reduction** | **29 tests** |
 
+### ✅ Advanced Components (3/3 Complete)
+
+| Component     | React File        | Leptos File          | Status | Tests |
+| ------------- | ----------------- | -------------------- | ------ | ----- |
+| ResearchPanel | ResearchPanel.tsx | research_panel.rs    | ✅      | -     |
+| TokenStore    | TokenStore.tsx    | token_store.rs       | ✅      | -     |
+| SynergySystem | SynergySystem.tsx | synergy_system.rs    | ✅      | 3     |
+
 ### ⏳ Optional Components (Skipped - Not Essential)
 
-| Component     | Reason Skipped                   |
-| ------------- | -------------------------------- |
-| ResearchPanel | Game mechanic not needed for MVP |
-| TokenStore    | Blockchain integration pending   |
-| SynergySystem | Advanced feature for v2.0        |
-| RadarSystem   | Replaced by simplified canvas    |
+| Component   | Reason Skipped                |
+| ----------- | ----------------------------- |
+| RadarSystem | Replaced by simplified canvas |
 
 ---
 
@@ -224,25 +229,14 @@ feature/leptos-tauri-threat-simulator (6 commits)
 
 ### Deferred to Future Versions
 
-1. **ResearchPanel** - Complex research tree UI
-
-   - **Reason**: Game balance mechanic, not core to MVP
-   - **Priority**: v0.3.0
-   - **Complexity**: Medium
-
-2. **TokenStore** - Blockchain wallet integration
-
-   - **Reason**: Requires full evidence chain integration
-   - **Priority**: v1.0.0
-   - **Complexity**: High
-
-3. **SynergySystem** - Advanced formation synergies
+1. **Sound Effects** - Weapon firing, explosions, ambient audio
 
    - **Reason**: Nice-to-have, not essential gameplay
    - **Priority**: v0.4.0
    - **Complexity**: Medium
 
-4. **Advanced AI** - Smart threat pathfinding
+2. **Advanced AI** - Smart threat pathfinding
+
    - **Reason**: Current basic AI sufficient for MVP
    - **Priority**: v0.3.0
    - **Complexity**: High
@@ -397,16 +391,16 @@ Input Latency:    <8ms
 
 ### Medium Term (v0.3.0)
 
-- [ ] ResearchPanel migration
+- [x] ~~ResearchPanel migration~~ (COMPLETED - see line 71)
 - [ ] Advanced drone AI (pathfinding)
-- [ ] Achievement unlock system
+- [x] ~~Achievement unlock system~~ (COMPLETED - see line 147)
 - [ ] Save/load game state
 - [ ] Performance profiling
 
 ### Long Term (v1.0.0)
 
 - [ ] Full blockchain evidence integration
-- [ ] TokenStore wallet UI
+- [x] ~~TokenStore wallet UI~~ (COMPLETED - see line 72)
 - [ ] Multiplayer support
 - [ ] Replay system
 - [ ] VR/AR experiments

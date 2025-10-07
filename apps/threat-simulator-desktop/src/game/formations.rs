@@ -224,11 +224,13 @@ impl FormationManager {
     fn calculate_wedge_positions(&mut self, formation: &Formation, _count: usize) {
         // V-shaped formation with leader at tip
         for (i, drone_id) in formation.drone_ids.iter().enumerate() {
-            let row = (i as f32 / 2.0).floor();
+            // Calculate tier: each pair of wingmen advances one step down the V
+            // Leader (i=0) at tier 0, then pairs at tiers 1, 2, 3, etc.
+            let tier = ((i + 1) / 2) as f32;
             let side = if i % 2 == 0 { 1.0 } else { -1.0 };
 
-            let x = formation.center.x + side * row * formation.spacing;
-            let y = formation.center.y + row * formation.spacing;
+            let x = formation.center.x + side * tier * formation.spacing;
+            let y = formation.center.y + tier * formation.spacing;
 
             let role = if i == 0 {
                 FormationRole::Leader

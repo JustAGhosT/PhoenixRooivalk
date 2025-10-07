@@ -212,7 +212,10 @@ pub fn App() -> impl IntoView {
 
             // Synergy System (floating indicator)
             <SynergySystem
-                active_weapons=create_signal(vec![game_state_rc.clone().selected_weapon.get()]).0
+                active_weapons={
+                    let game_state_synergy = game_state_rc.clone();
+                    create_memo(move |_| vec![game_state_synergy.selected_weapon.get()])
+                }
                 show=show_synergies
             />
 

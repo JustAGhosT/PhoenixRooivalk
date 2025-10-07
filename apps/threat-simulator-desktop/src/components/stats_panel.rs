@@ -1,6 +1,9 @@
 use crate::game::GameStateManager;
 use leptos::*;
 
+// Small epsilon for floating-point comparisons (cooldown readiness check)
+const COOLDOWN_EPSILON: f32 = 1e-6;
+
 #[component]
 pub fn StatsPanel(game_state: GameStateManager, show: ReadSignal<bool>) -> impl IntoView {
     view! {
@@ -101,7 +104,8 @@ pub fn StatsPanel(game_state: GameStateManager, show: ReadSignal<bool>) -> impl 
                                         } else {
                                             0.0
                                         };
-                                        let is_ready = weapon.cooldown == 0.0;
+                                        // Use epsilon comparison to handle floating-point precision
+                                        let is_ready = weapon.cooldown <= COOLDOWN_EPSILON;
                                         view! {
                                             <div class="weapon-status-item">
                                                 <span class="weapon-type">

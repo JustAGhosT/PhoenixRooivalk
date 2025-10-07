@@ -25,12 +25,25 @@ pub fn GameCanvas(game_state: GameStateManager, is_running: ReadSignal<bool>) ->
 
         let canvas = canvas_elem.unchecked_ref::<HtmlCanvasElement>();
         web_sys::console::log_1(&"Canvas element found!".into());
-        let context = canvas
-            .get_context("2d")
-            .unwrap()
-            .unwrap()
-            .dyn_into::<CanvasRenderingContext2d>()
-            .unwrap();
+        
+        // Get 2D context with proper error handling
+        let context = match canvas.get_context("2d") {
+            Ok(Some(ctx)) => match ctx.dyn_into::<CanvasRenderingContext2d>() {
+                Ok(ctx_2d) => ctx_2d,
+                Err(_) => {
+                    web_sys::console::error_1(&"Failed to cast canvas context to 2D".into());
+                    return;
+                }
+            },
+            Ok(None) => {
+                web_sys::console::error_1(&"Canvas 2D context is None".into());
+                return;
+            },
+            Err(e) => {
+                web_sys::console::error_2(&"Failed to get canvas context:".into(), &e);
+                return;
+            }
+        };
         web_sys::console::log_1(&"Canvas context created!".into());
 
         // Set canvas size to fill container
@@ -83,7 +96,8 @@ pub fn GameCanvas(game_state: GameStateManager, is_running: ReadSignal<bool>) ->
 
                 game_state_loop.threats.set(threats);
                 game_state_loop.drones.set(drones);
-                game_state_loop.level.set(engine_ref.current_wave() as u8);
+                // Clamp wave number to u8 range to prevent wraparound past 255
+                game_state_loop.level.set(engine_ref.current_wave().min(255) as u8);
             }
 
             // Render
@@ -97,8 +111,8 @@ pub fn GameCanvas(game_state: GameStateManager, is_running: ReadSignal<bool>) ->
                 .game_time
                 .update(|t| *t += delta_time as f64);
 
-            // Calculate FPS
-            let fps = 1.0 / delta_time.max(0.001);
+            // Calculate FPS (cast to f64 for frame_rate signal)
+            let fps = 1.0f64 / (delta_time as f64).max(0.001);
             game_state_loop.frame_rate.set(fps);
 
             // Request next frame
@@ -119,8 +133,14 @@ pub fn GameCanvas(game_state: GameStateManager, is_running: ReadSignal<bool>) ->
             .request_animation_frame(closure.borrow().as_ref().unwrap().as_ref().unchecked_ref())
             .unwrap();
 
-        // Keep closure alive
-        std::mem::forget(closure);
+        // Clean up: break the Rc cycle so the closure can be dropped
+        on_cleanup({
+            let closure = closure.clone();
+            move || {
+                // Dropping the Closure removes the JS callback reference
+                let _ = closure.borrow_mut().take();
+            }
+        });
     });
 
     view! {
@@ -230,9 +250,10 @@ fn render_frame(
         if threat.is_targeted {
             ctx.set_fill_style(&JsValue::from_str("#ffff00"));
             ctx.set_font("10px monospace");
-            let label = &threat.id[threat.id.len().saturating_sub(8)..];
+            // Safely take last 8 chars (Unicode scalar values) to avoid UTF-8 boundary panics
+            let label: String = threat.id.chars().rev().take(8).collect::<Vec<_>>().into_iter().rev().collect();
             ctx.fill_text(
-                label,
+                &label,
                 threat.position.x as f64 - 15.0,
                 threat.position.y as f64 - threat.size as f64 - 15.0,
             )

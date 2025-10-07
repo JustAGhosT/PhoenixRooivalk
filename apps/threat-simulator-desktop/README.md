@@ -169,15 +169,19 @@ apps/threat-simulator-desktop/
 - [x] Tauri backend commands for session management
 - [x] Evidence recording API integration
 
+### Completed (See [COMPLETE.md](./COMPLETE.md) for details)
+- [x] Weapon system implementation (13 weapons)
+- [x] Collision detection (custom physics engine)
+- [x] Drone deployment and control (9 drone types)
+- [x] Formation flight patterns (6 formation types)
+- [x] Wave management system (progressive difficulty)
+- [x] Achievement system (notification system)
+- [x] Advanced components (TokenStore, ResearchPanel, SynergySystem)
+- [x] Comprehensive test coverage (47 tests, 100% passing)
+
 ### In Progress
-- [ ] Weapon system implementation
-- [ ] Collision detection with Rapier2D
-- [ ] Drone deployment and control
-- [ ] Formation flight patterns
-- [ ] Wave management system
 - [ ] Power-ups and special abilities
-- [ ] Achievement system
-- [ ] Blockchain evidence integration
+- [ ] Full blockchain evidence integration (API ready, full integration pending)
 
 ### Planned
 - [ ] Multi-level progression

@@ -202,12 +202,12 @@ impl WaveManager {
 
         // Random spawn position on edge of map
         let angle = rng.gen::<f32>() * 2.0 * std::f32::consts::PI;
-        let distance = 800.0;
+        let spawn_radius = 800.0;
         let center = Vector2::new(960.0, 540.0);
 
         let position = Vector2::new(
-            center.x + angle.cos() * distance,
-            center.y + angle.sin() * distance,
+            center.x + angle.cos() * spawn_radius,
+            center.y + angle.sin() * spawn_radius,
         );
 
         let (base_health, base_speed, base_size) = match threat_type {
@@ -223,17 +223,30 @@ impl WaveManager {
         let health = base_health * scaling.health_multiplier;
         let speed = base_speed * scaling.speed_multiplier;
 
+        // Calculate direction vector toward the base (center)
+        let dx = center.x - position.x;
+        let dy = center.y - position.y;
+        let distance_to_base = (dx * dx + dy * dy).sqrt();
+
+        // Initialize velocity toward the base
+        let velocity = if distance_to_base > 0.0 {
+            let scale = speed / distance_to_base;
+            Vector2::new(dx * scale, dy * scale)
+        } else {
+            Vector2::zero()
+        };
+
         Threat {
             id: format!("threat-{}-{}", current_wave, rng.gen::<u32>()),
             threat_type,
             position,
-            velocity: Vector2::zero(),
+            velocity,
             health,
             max_health: health,
             speed,
             size: base_size,
             is_targeted: false,
-            distance_to_base: distance,
+            distance_to_base,
         }
     }
 
