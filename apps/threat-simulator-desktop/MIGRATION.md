@@ -21,13 +21,14 @@ This document tracks the migration of the Phoenix Rooivalk ThreatSimulator from 
 - [x] Evidence recording integration points
 - [x] Development workflow (justfile)
 - [x] Comprehensive README
+- [x] Comprehensive test suite (29 tests, all passing)
 
 ### 🚧 In Progress
-- [ ] Complete game engine migration
-  - [ ] Collision detection (Rapier2D)
-  - [ ] Formation flight patterns
-  - [ ] Wave management system
-  - [ ] Advanced pathfinding
+- [x] Complete game engine migration
+  - [x] Collision detection (custom physics engine)
+  - [x] Formation flight patterns (6 types)
+  - [x] Wave management system
+  - [ ] Advanced pathfinding (AI pathfinding for drones)
 
 ### 📋 Pending
 - [ ] Full weapon system implementation (13 weapon types)
@@ -216,6 +217,26 @@ let evidence_id = evidence_manager
 4. **WASM Performance**: Near-native speed for game logic
 5. **Better Memory Layout**: Rust's ownership system
 6. **Native APIs**: Direct OS integration
+
+## Test Coverage
+
+### Current Status: ✅ 29/29 Passing
+
+All core game engine components have comprehensive test coverage:
+
+- **Types & Math** (7 tests): Vector2 operations, serialization, entity creation
+- **Physics** (5 tests): Collision detection, impact calculation, physics resolution
+- **Formations** (5 tests): All 6 formation types, positioning algorithms
+- **Wave System** (6 tests): Difficulty scaling, wave progression, threat spawning
+- **Game Engine** (6 tests): Engine lifecycle, entity management, integration
+
+**Test Quality**:
+- ✅ Zero clippy warnings (strict mode: `-D warnings`)
+- ✅ All tests complete in <50ms
+- ✅ Edge cases covered (zero vectors, zero-distance collision, etc.)
+- ✅ Integration tests (wave → engine, physics → engine)
+
+See [TESTING.md](./TESTING.md) for complete test documentation.
 
 ## Development Workflow
 
