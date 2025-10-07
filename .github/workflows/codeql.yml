@@ -96,11 +96,20 @@ jobs:
         if: matrix.language == 'javascript-typescript'
         uses: pnpm/action-setup@v4
 
+      - name: Generate lockfile if missing
+        if: matrix.language == 'javascript-typescript'
+        run: |
+          if [ ! -f pnpm-lock.yaml ]; then
+            echo "pnpm-lock.yaml not found, generating..."
+            pnpm install --no-frozen-lockfile
+          fi
+
       - name: Setup Node.js
         if: matrix.language == 'javascript-typescript'
         uses: actions/setup-node@v5
         with:
           node-version: "20"
+          package-manager-cache: false
 
       - name: Install dependencies
         if: matrix.language == 'javascript-typescript'
