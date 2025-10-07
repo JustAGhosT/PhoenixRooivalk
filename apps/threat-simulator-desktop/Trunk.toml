@@ -10,10 +10,12 @@ public_url = "/"
 filehash = true
 
 [watch]
-ignore = ["dist", "target"]
+ignore = ["dist"]
+# Removed "target" from ignore list - it doesn't exist yet and causes errors
 
 [serve]
-address = "127.0.0.1"
+# Use 'addresses' instead of deprecated 'address'
+addresses = ["127.0.0.1"]
 port = 8080
-open = false
+open = true
 
