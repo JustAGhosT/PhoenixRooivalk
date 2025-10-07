@@ -115,8 +115,9 @@ export const Navigation: React.FC = () => {
         </Link>
 
         {/* Enhanced Navigation with Dropdowns */}
-        <div className="hidden lg:flex items-center space-x-8">
-          <ul className="flex gap-6 text-[var(--text-secondary)]">
+        <div className="lg:block">
+          <div className="flex items-center space-x-8">
+            <ul className="flex gap-6 text-[var(--text-secondary)]">
             {navigationItems.map((item) => (
               <li
                 key={item.type === "link" ? item.href : item.label}
@@ -169,6 +170,7 @@ export const Navigation: React.FC = () => {
               </li>
             ))}
           </ul>
+          </div>
         </div>
 
         {/* Mobile navigation */}

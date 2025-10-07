@@ -18,7 +18,7 @@ export function StickyHeader({ isVisible }: StickyHeaderProps) {
 
   return createPortal(
     <div
-      className={`fixed top-0 left-0 right-0 z-50 bg-[rgba(var(--bg-primary),0.95)] backdrop-blur border-b border-[var(--border)] transform transition-transform duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 bg-[rgba(10,14,26,0.95)] backdrop-blur border-b border-[rgba(0,255,136,0.2)] transform transition-transform duration-300 ${
         isVisible ? "translate-y-0" : "-translate-y-full"
       }`}
     >
