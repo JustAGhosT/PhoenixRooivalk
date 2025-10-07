@@ -42,6 +42,7 @@ pub struct DronePosition {
     pub target: Vector2,
     pub role: FormationRole,
     pub priority: u8,
+    pub relative_offset: Option<Vector2>, // For swarm formations: persistent offset from center
 }
 
 pub struct FormationManager {
@@ -141,6 +142,7 @@ impl FormationManager {
                     target: Vector2::new(x, y),
                     role,
                     priority: formation.priority,
+                    relative_offset: None, // Circle formations don't use relative offsets
                 },
             );
         }
@@ -168,6 +170,7 @@ impl FormationManager {
                     target: Vector2::new(x, y),
                     role,
                     priority: formation.priority,
+                    relative_offset: None, // Line formations don't use relative offsets
                 },
             );
         }
@@ -216,6 +219,7 @@ impl FormationManager {
                     target: Vector2::new(x, y),
                     role,
                     priority: formation.priority,
+                    relative_offset: None, // Diamond formations don't use relative offsets
                 },
             );
         }
@@ -248,6 +252,7 @@ impl FormationManager {
                     target: Vector2::new(x, y),
                     role,
                     priority: formation.priority,
+                    relative_offset: None, // Wedge formations don't use relative offsets
                 },
             );
         }
@@ -270,6 +275,7 @@ impl FormationManager {
                         target: Vector2::new(x, y),
                         role: FormationRole::Leader,
                         priority: formation.priority,
+                        relative_offset: None, // Semicircle formations don't use relative offsets
                     },
                 );
             }
@@ -298,6 +304,7 @@ impl FormationManager {
                     target: Vector2::new(x, y),
                     role,
                     priority: formation.priority,
+                    relative_offset: None, // Semicircle formations don't use relative offsets
                 },
             );
         }
@@ -308,12 +315,25 @@ impl FormationManager {
         let mut rng = rand::thread_rng();
 
         for drone_id in formation.drone_ids.iter() {
-            // Random offset within radius
-            let angle = rng.gen::<f32>() * 2.0 * std::f32::consts::PI;
-            let distance = rng.gen::<f32>() * formation.radius;
+            // Check if drone already has a relative offset (for swarm persistence)
+            let relative_offset = if let Some(existing_pos) = self.drone_positions.get(drone_id) {
+                // Use existing offset if available (prevents jumping when formation moves)
+                existing_pos.relative_offset.unwrap_or_else(|| {
+                    // Generate new offset if existing position didn't have one
+                    let angle = rng.gen::<f32>() * 2.0 * std::f32::consts::PI;
+                    let distance = rng.gen::<f32>() * formation.radius;
+                    Vector2::new(distance * angle.cos(), distance * angle.sin())
+                })
+            } else {
+                // New drone: generate random offset within radius
+                let angle = rng.gen::<f32>() * 2.0 * std::f32::consts::PI;
+                let distance = rng.gen::<f32>() * formation.radius;
+                Vector2::new(distance * angle.cos(), distance * angle.sin())
+            };
 
-            let x = formation.center.x + distance * angle.cos();
-            let y = formation.center.y + distance * angle.sin();
+            // Apply relative offset to current formation center
+            let x = formation.center.x + relative_offset.x;
+            let y = formation.center.y + relative_offset.y;
 
             self.drone_positions.insert(
                 drone_id.clone(),
@@ -323,6 +343,7 @@ impl FormationManager {
                     target: Vector2::new(x, y),
                     role: FormationRole::Support,
                     priority: formation.priority,
+                    relative_offset: Some(relative_offset), // Persist offset for swarm formations
                 },
             );
         }

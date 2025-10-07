@@ -163,11 +163,6 @@ pub fn App() -> impl IntoView {
 
     view! {
         <div class="app-container">
-            // Simple test to see if Leptos is working
-            <div style="position: fixed; top: 10px; left: 10px; background: red; color: white; padding: 10px; z-index: 9999;">
-                "Leptos App is working!"
-            </div>
-
             // Simulation warning overlay
             <SimulationWarning show=show_warning on_close=move || set_show_warning.set(false)/>
 
@@ -214,7 +209,13 @@ pub fn App() -> impl IntoView {
             <SynergySystem
                 active_weapons={
                     let game_state_synergy = game_state_rc.clone();
-                    create_memo(move |_| vec![game_state_synergy.selected_weapon.get()])
+                    create_memo(move |_| {
+                        // Get all equipped weapons for multi-weapon synergy detection
+                        game_state_synergy.weapons.get()
+                            .into_iter()
+                            .map(|w| w.weapon_type)
+                            .collect::<Vec<_>>()
+                    })
                 }
                 show=show_synergies
             />
