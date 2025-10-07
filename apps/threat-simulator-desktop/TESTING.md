@@ -12,39 +12,39 @@
 
 ### 1. Core Types (`game/types.rs`) - 7 tests
 
-| Test | Description | Status |
-|------|-------------|--------|
-| `test_vector2_distance` | 3-4-5 triangle distance calculation | ✅ |
-| `test_vector2_normalize` | Unit vector normalization | ✅ |
-| `test_vector2_normalize_zero` | Edge case: zero vector normalization | ✅ |
-| `test_vector2_scale` | Scalar multiplication | ✅ |
-| `test_weapon_type_serialization` | JSON serialization round-trip | ✅ |
-| `test_threat_creation` | Threat struct creation and properties | ✅ |
-| `test_drone_battery_drains` | Battery drain simulation | ✅ |
+| Test                             | Description                           | Status |
+| -------------------------------- | ------------------------------------- | ------ |
+| `test_vector2_distance`          | 3-4-5 triangle distance calculation   | ✅      |
+| `test_vector2_normalize`         | Unit vector normalization             | ✅      |
+| `test_vector2_normalize_zero`    | Edge case: zero vector normalization  | ✅      |
+| `test_vector2_scale`             | Scalar multiplication                 | ✅      |
+| `test_weapon_type_serialization` | JSON serialization round-trip         | ✅      |
+| `test_threat_creation`           | Threat struct creation and properties | ✅      |
+| `test_drone_battery_drains`      | Battery drain simulation              | ✅      |
 
 **Coverage**: ✅ Vector2 math, Serialization, Type construction
 
 ### 2. Physics System (`game/physics.rs`) - 5 tests
 
-| Test | Description | Status |
-|------|-------------|--------|
-| `test_no_collision` | Distant objects don't collide | ✅ |
-| `test_collision_detected` | Overlapping circles detected | ✅ |
-| `test_collision_result_with_details` | Detailed impact info (point, force, depth) | ✅ |
-| `test_collision_at_zero_distance` | Edge case: identical positions | ✅ |
-| `test_resolve_collision_separates_objects` | Physics-based separation | ✅ |
+| Test                                       | Description                                | Status |
+| ------------------------------------------ | ------------------------------------------ | ------ |
+| `test_no_collision`                        | Distant objects don't collide              | ✅      |
+| `test_collision_detected`                  | Overlapping circles detected               | ✅      |
+| `test_collision_result_with_details`       | Detailed impact info (point, force, depth) | ✅      |
+| `test_collision_at_zero_distance`          | Edge case: identical positions             | ✅      |
+| `test_resolve_collision_separates_objects` | Physics-based separation                   | ✅      |
 
 **Coverage**: ✅ Collision detection, Impact calculation, Physics resolution, Edge cases
 
 ### 3. Formation System (`game/formations.rs`) - 5 tests
 
-| Test | Description | Status |
-|------|-------------|--------|
-| `test_create_circle_formation` | Circle formation creation | ✅ |
-| `test_drone_positions_calculated` | Position calculation | ✅ |
-| `test_move_formation` | Dynamic formation repositioning | ✅ |
-| `test_disband_formation` | Formation cleanup | ✅ |
-| `test_multiple_formations` | Multiple concurrent formations | ✅ |
+| Test                              | Description                     | Status |
+| --------------------------------- | ------------------------------- | ------ |
+| `test_create_circle_formation`    | Circle formation creation       | ✅      |
+| `test_drone_positions_calculated` | Position calculation            | ✅      |
+| `test_move_formation`             | Dynamic formation repositioning | ✅      |
+| `test_disband_formation`          | Formation cleanup               | ✅      |
+| `test_multiple_formations`        | Multiple concurrent formations  | ✅      |
 
 **Coverage**: ✅ 6 formation types, Position calculation, Multi-formation management
 
@@ -58,27 +58,27 @@
 
 ### 4. Wave Management (`game/waves.rs`) - 6 tests
 
-| Test | Description | Status |
-|------|-------------|--------|
-| `test_wave_config_generation` | Wave configuration creation | ✅ |
-| `test_difficulty_scaling` | Progressive difficulty increase | ✅ |
-| `test_wave_progression` | Wave completion and advancement | ✅ |
-| `test_threat_spawning` | Threat spawn mechanics | ✅ |
-| `test_wave_progress_tracking` | Progress percentage calculation | ✅ |
-| `test_higher_waves_have_more_threat_types` | Threat variety increases | ✅ |
+| Test                                       | Description                     | Status |
+| ------------------------------------------ | ------------------------------- | ------ |
+| `test_wave_config_generation`              | Wave configuration creation     | ✅      |
+| `test_difficulty_scaling`                  | Progressive difficulty increase | ✅      |
+| `test_wave_progression`                    | Wave completion and advancement | ✅      |
+| `test_threat_spawning`                     | Threat spawn mechanics          | ✅      |
+| `test_wave_progress_tracking`              | Progress percentage calculation | ✅      |
+| `test_higher_waves_have_more_threat_types` | Threat variety increases        | ✅      |
 
 **Coverage**: ✅ Difficulty scaling, Wave progression, Threat spawning, Progress tracking
 
 ### 5. Game Engine (`game/engine.rs`) - 6 tests
 
-| Test | Description | Status |
-|------|-------------|--------|
-| `test_engine_creation` | Engine initialization | ✅ |
-| `test_threat_spawning` | Integrated threat spawning | ✅ |
-| `test_add_drone` | Drone addition to game | ✅ |
-| `test_damage_threat` | Threat damage application | ✅ |
-| `test_remove_dead_threats` | Dead entity cleanup | ✅ |
-| `test_wave_progression` | End-to-end wave system | ✅ |
+| Test                       | Description                | Status |
+| -------------------------- | -------------------------- | ------ |
+| `test_engine_creation`     | Engine initialization      | ✅      |
+| `test_threat_spawning`     | Integrated threat spawning | ✅      |
+| `test_add_drone`           | Drone addition to game     | ✅      |
+| `test_damage_threat`       | Threat damage application  | ✅      |
+| `test_remove_dead_threats` | Dead entity cleanup        | ✅      |
+| `test_wave_progression`    | End-to-end wave system     | ✅      |
 
 **Coverage**: ✅ Engine lifecycle, Entity management, Wave integration, State updates
 
