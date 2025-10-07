@@ -97,7 +97,8 @@ jobs:
           fi
 
       - name: Deploy to Netlify
-        if: ${{ steps.check_build.outputs.exists == 'true' &&
+        if:
+          ${{ steps.check_build.outputs.exists == 'true' &&
           steps.check_secrets.outputs.secrets_available == 'true' }}
         uses: nwtgck/actions-netlify@v3
         with:
@@ -205,7 +206,8 @@ jobs:
 
       - name: Sanitize branch name for Netlify alias
         id: sanitize_branch_name
-        if: ${{ steps.check_build_preview.outputs.exists == 'true' &&
+        if:
+          ${{ steps.check_build_preview.outputs.exists == 'true' &&
           steps.check_secrets_preview.outputs.secrets_available == 'true' }}
         env:
           BRANCH: ${{ github.head_ref }}
@@ -217,14 +219,16 @@ jobs:
           echo "Safe alias: $SAFE_ALIAS"
 
       - name: Deploy Preview to Netlify
-        if: ${{ steps.check_build_preview.outputs.exists == 'true' &&
+        if:
+          ${{ steps.check_build_preview.outputs.exists == 'true' &&
           steps.check_secrets_preview.outputs.secrets_available == 'true' }}
         uses: nwtgck/actions-netlify@v3
         with:
           publish-dir: "apps/docs/build"
           production-deploy: false
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          deploy-message: "Deploy Preview from PR #${{ github.event.pull_request.number }}"
+          deploy-message:
+            "Deploy Preview from PR #${{ github.event.pull_request.number }}"
           enable-commit-comment: true
           enable-commit-status: true
           enable-pull-request-comment: true
