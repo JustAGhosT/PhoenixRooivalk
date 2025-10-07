@@ -35,8 +35,16 @@ pub fn GameCanvas(game_state: GameStateManager, is_running: ReadSignal<bool>) ->
 
         // Set canvas size to fill container
         let rect = canvas.get_bounding_client_rect();
-        let width = if rect.width() > 0.0 { rect.width() } else { 1920.0 };
-        let height = if rect.height() > 0.0 { rect.height() } else { 1080.0 };
+        let width = if rect.width() > 0.0 {
+            rect.width()
+        } else {
+            1920.0
+        };
+        let height = if rect.height() > 0.0 {
+            rect.height()
+        } else {
+            1080.0
+        };
         web_sys::console::log_3(&"Canvas size:".into(), &width.into(), &height.into());
         canvas.set_width(width as u32);
         canvas.set_height(height as u32);
@@ -96,14 +104,14 @@ pub fn GameCanvas(game_state: GameStateManager, is_running: ReadSignal<bool>) ->
             // Request next frame
             let win = web_sys::window().unwrap();
             win.request_animation_frame(
-                    closure_clone
-                        .borrow()
-                        .as_ref()
-                        .unwrap()
-                        .as_ref()
-                        .unchecked_ref(),
-                )
-                .unwrap();
+                closure_clone
+                    .borrow()
+                    .as_ref()
+                    .unwrap()
+                    .as_ref()
+                    .unchecked_ref(),
+            )
+            .unwrap();
         }));
 
         // Start the animation loop

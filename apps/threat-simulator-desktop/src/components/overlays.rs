@@ -27,7 +27,10 @@ where
 }
 
 #[component]
-pub fn AchievementNotification<F>(message: ReadSignal<Option<String>>, on_dismiss: F) -> impl IntoView
+pub fn AchievementNotification<F>(
+    message: ReadSignal<Option<String>>,
+    on_dismiss: F,
+) -> impl IntoView
 where
     F: Fn() + Copy + 'static,
 {

@@ -2,7 +2,11 @@ use crate::game::{DroneType, GameStateManager};
 use leptos::*;
 
 #[component]
-pub fn TokenStore<F>(game_state: GameStateManager, show: ReadSignal<bool>, on_close: F) -> impl IntoView
+pub fn TokenStore<F>(
+    game_state: GameStateManager,
+    show: ReadSignal<bool>,
+    on_close: F,
+) -> impl IntoView
 where
     F: Fn() + Copy + 'static,
 {
@@ -73,7 +77,6 @@ where
             250,
         ),
     ]);
-
 
     let purchase_drone = move |drone_type: DroneType, cost: u32| {
         if tokens.get() >= cost {

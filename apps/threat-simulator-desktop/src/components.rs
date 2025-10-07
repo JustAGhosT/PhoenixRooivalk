@@ -48,14 +48,14 @@ pub fn App() -> impl IntoView {
     let (is_running, set_is_running) = create_signal(true); // Start running
     let (achievement_message, set_achievement_message) = create_signal(None::<String>);
     let (event_feed, set_event_feed) = create_signal(Vec::<FeedItem>::new());
-    
+
     // Loading state
     let (is_loading, set_is_loading) = create_signal(true);
     let (loading_progress, set_loading_progress) = create_signal(0u8);
 
     // Wrap game state in Rc to allow multiple references
     let game_state_rc = std::rc::Rc::new(game_state.clone());
-    
+
     // Keyboard event handler
     let game_state_kb = game_state_rc.clone();
     create_effect(move |_| {
@@ -95,11 +95,17 @@ pub fn App() -> impl IntoView {
                 "5" => game_state_inner.selected_weapon.set(WeaponType::Hpm),
                 "6" => game_state_inner.selected_weapon.set(WeaponType::RfTakeover),
                 "7" => game_state_inner.selected_weapon.set(WeaponType::GnssDeny),
-                "8" => game_state_inner.selected_weapon.set(WeaponType::OpticalDazzle),
+                "8" => game_state_inner
+                    .selected_weapon
+                    .set(WeaponType::OpticalDazzle),
                 "9" => game_state_inner.selected_weapon.set(WeaponType::Acoustic),
-                "0" => game_state_inner.selected_weapon.set(WeaponType::DecoyBeacon),
+                "0" => game_state_inner
+                    .selected_weapon
+                    .set(WeaponType::DecoyBeacon),
                 "c" | "C" => game_state_inner.selected_weapon.set(WeaponType::Chaff),
-                "a" | "A" => game_state_inner.selected_weapon.set(WeaponType::AiDeception),
+                "a" | "A" => game_state_inner
+                    .selected_weapon
+                    .set(WeaponType::AiDeception),
                 _ => {}
             }
         }) as Box<dyn FnMut(_)>);
@@ -119,7 +125,7 @@ pub fn App() -> impl IntoView {
     let game_state_drones = game_state_rc.clone();
     let game_state_tokens = game_state_rc.clone();
     let game_state_weapons = game_state_rc.clone();
-    
+
     // Simulate loading progress
     create_effect(move |_| {
         if is_loading.get() {
@@ -138,26 +144,30 @@ pub fn App() -> impl IntoView {
                         let closure = Closure::wrap(Box::new(move || {
                             set_is_loading.set(false);
                         }) as Box<dyn FnMut()>);
-                        window.set_timeout_with_callback_and_timeout_and_arguments_0(
-                            closure.as_ref().unchecked_ref(),
-                            500,
-                        ).unwrap();
+                        window
+                            .set_timeout_with_callback_and_timeout_and_arguments_0(
+                                closure.as_ref().unchecked_ref(),
+                                500,
+                            )
+                            .unwrap();
                         std::mem::forget(closure);
                     }
                 }) as Box<dyn FnMut()>);
-                window.request_animation_frame(closure.as_ref().unchecked_ref()).unwrap();
+                window
+                    .request_animation_frame(closure.as_ref().unchecked_ref())
+                    .unwrap();
                 std::mem::forget(closure);
             }
         }
     });
-    
+
     view! {
         <div class="app-container">
             // Simple test to see if Leptos is working
             <div style="position: fixed; top: 10px; left: 10px; background: red; color: white; padding: 10px; z-index: 9999;">
                 "Leptos App is working!"
             </div>
-            
+
             // Simulation warning overlay
             <SimulationWarning show=show_warning on_close=move || set_show_warning.set(false)/>
 

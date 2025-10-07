@@ -2,8 +2,8 @@
 #![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
 
 use serde::{Deserialize, Serialize};
-use tauri::State;
 use std::sync::Mutex;
+use tauri::State;
 
 // Game state that will be managed by Tauri backend
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -30,10 +30,10 @@ async fn start_game_session(state: State<'_, AppState>) -> Result<GameSession, S
         threats_neutralized: 0,
         level: 1,
     };
-    
+
     let mut current = state.current_session.lock().unwrap();
     *current = Some(session.clone());
-    
+
     Ok(session)
 }
 
@@ -47,11 +47,11 @@ async fn end_game_session(
     if let Some(session) = current.as_mut() {
         session.score = final_score;
         session.threats_neutralized = threats_neutralized;
-        
+
         // TODO: Save session to database/evidence chain
         println!("Game session ended: {:?}", session);
     }
-    
+
     *current = None;
     Ok(())
 }
@@ -63,8 +63,10 @@ async fn save_evidence(
     event_data: serde_json::Value,
 ) -> Result<String, String> {
     // TODO: Integrate with phoenix-evidence crate
-    println!("Saving evidence: session={}, type={}, data={:?}", 
-             session_id, event_type, event_data);
+    println!(
+        "Saving evidence: session={}, type={}, data={:?}",
+        session_id, event_type, event_data
+    );
     Ok("evidence-id-placeholder".to_string())
 }
 
@@ -92,4 +94,3 @@ fn main() {
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
 }
-

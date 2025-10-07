@@ -23,7 +23,9 @@ pub fn SynergySystem(
         SynergyEffect {
             id: "gnss_rf_combo".to_string(),
             name: "Navigation Disruption".to_string(),
-            description: "GNSS Denial and RF Takeover combine to completely confuse drone navigation".to_string(),
+            description:
+                "GNSS Denial and RF Takeover combine to completely confuse drone navigation"
+                    .to_string(),
             weapons: vec![WeaponType::GnssDeny, WeaponType::RfTakeover],
             bonus_damage: 0.0,
             bonus_range: 0.2,
@@ -34,7 +36,8 @@ pub fn SynergySystem(
         SynergyEffect {
             id: "optical_net_combo".to_string(),
             name: "Blind and Capture".to_string(),
-            description: "Optical Dazzler blinds cameras while Net captures disabled drones".to_string(),
+            description: "Optical Dazzler blinds cameras while Net captures disabled drones"
+                .to_string(),
             weapons: vec![WeaponType::OpticalDazzle, WeaponType::Net],
             bonus_damage: 0.0,
             bonus_range: 0.15,
@@ -68,7 +71,11 @@ pub fn SynergySystem(
             id: "electronic_dominance".to_string(),
             name: "Electronic Dominance".to_string(),
             description: "Multiple EW systems create layered electronic defense".to_string(),
-            weapons: vec![WeaponType::Electronic, WeaponType::Hpm, WeaponType::RfTakeover],
+            weapons: vec![
+                WeaponType::Electronic,
+                WeaponType::Hpm,
+                WeaponType::RfTakeover,
+            ],
             bonus_damage: 0.2,
             bonus_range: 0.3,
             bonus_cooldown: 0.1,
@@ -79,7 +86,11 @@ pub fn SynergySystem(
             id: "ai_deception_combo".to_string(),
             name: "Cognitive Warfare".to_string(),
             description: "AI Deception combined with decoys creates confusion".to_string(),
-            weapons: vec![WeaponType::AiDeception, WeaponType::DecoyBeacon, WeaponType::Chaff],
+            weapons: vec![
+                WeaponType::AiDeception,
+                WeaponType::DecoyBeacon,
+                WeaponType::Chaff,
+            ],
             bonus_damage: 0.15,
             bonus_range: 0.2,
             bonus_cooldown: 0.25,
@@ -186,11 +197,11 @@ pub fn SynergySystem(
 /// Calculate total synergy bonuses for current weapon selection
 pub fn calculate_synergy_bonuses(active_weapons: &[WeaponType]) -> (f32, f32, f32) {
     let synergies = get_all_synergies();
-    
+
     let mut total_damage = 0.0;
     let mut total_range = 0.0;
     let mut total_cooldown = 0.0;
-    
+
     for synergy in synergies {
         if synergy.weapons.iter().all(|w| active_weapons.contains(w)) {
             total_damage += synergy.bonus_damage;
@@ -198,7 +209,7 @@ pub fn calculate_synergy_bonuses(active_weapons: &[WeaponType]) -> (f32, f32, f3
             total_cooldown += synergy.bonus_cooldown;
         }
     }
-    
+
     (total_damage, total_range, total_cooldown)
 }
 
@@ -241,7 +252,11 @@ fn get_all_synergies() -> Vec<SynergyEffect> {
             id: "electronic_dominance".to_string(),
             name: "Electronic Dominance".to_string(),
             description: "Layered electronic warfare capabilities".to_string(),
-            weapons: vec![WeaponType::Electronic, WeaponType::Hpm, WeaponType::RfTakeover],
+            weapons: vec![
+                WeaponType::Electronic,
+                WeaponType::Hpm,
+                WeaponType::RfTakeover,
+            ],
             bonus_damage: 0.2,
             bonus_range: 0.3,
             bonus_cooldown: 0.1,
@@ -254,26 +269,26 @@ fn get_all_synergies() -> Vec<SynergyEffect> {
 #[cfg(test)]
 mod tests {
     use super::*;
-    
+
     #[test]
     fn test_synergy_detection() {
         let active = vec![WeaponType::GnssDeny, WeaponType::RfTakeover];
         let (damage, range, cooldown) = calculate_synergy_bonuses(&active);
-        
+
         assert!(range > 0.0);
         assert!(cooldown > 0.0);
     }
-    
+
     #[test]
     fn test_no_synergy() {
         let active = vec![WeaponType::Kinetic];
         let (damage, range, cooldown) = calculate_synergy_bonuses(&active);
-        
+
         assert_eq!(damage, 0.0);
         assert_eq!(range, 0.0);
         assert_eq!(cooldown, 0.0);
     }
-    
+
     #[test]
     fn test_multiple_synergies() {
         let active = vec![
@@ -283,10 +298,9 @@ mod tests {
             WeaponType::RfTakeover,
         ];
         let (damage, range, _) = calculate_synergy_bonuses(&active);
-        
+
         // Should have both kinetic_laser and gnss_rf synergies
         assert!(damage > 0.0);
         assert!(range > 0.0);
     }
 }
-
