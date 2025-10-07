@@ -50,20 +50,20 @@ The Phoenix Rooivalk ThreatSimulator has been **completely migrated** from React
 
 ## 🎯 Complete Feature Matrix
 
-| Feature Type | Count | Status |
-|--------------|-------|--------|
-| **Weapons** | 13 types | ✅ All implemented |
-| **Drones** | 9 types | ✅ All implemented |
-| **Threats** | 7 types | ✅ All implemented |
-| **Formations** | 6 patterns | ✅ All implemented |
-| **Particle Types** | 5 types | ✅ All implemented |
-| **Synergies** | 6 combos | ✅ All implemented |
-| **Research Items** | 8+ upgrades | ✅ System complete |
-| **UI Components** | 14 panels | ✅ All implemented |
+| Feature Type          | Count        | Status            |
+| --------------------- | ------------ | ----------------- |
+| **Weapons**           | 13 types     | ✅ All implemented |
+| **Drones**            | 9 types      | ✅ All implemented |
+| **Threats**           | 7 types      | ✅ All implemented |
+| **Formations**        | 6 patterns   | ✅ All implemented |
+| **Particle Types**    | 5 types      | ✅ All implemented |
+| **Synergies**         | 6 combos     | ✅ All implemented |
+| **Research Items**    | 8+ upgrades  | ✅ System complete |
+| **UI Components**     | 14 panels    | ✅ All implemented |
 | **Keyboard Controls** | 23 shortcuts | ✅ All implemented |
-| **Modal Overlays** | 6 types | ✅ All implemented |
-| **NPM Scripts** | 12 commands | ✅ All configured |
-| **Tests** | 42 tests | ✅ 100% passing |
+| **Modal Overlays**    | 6 types      | ✅ All implemented |
+| **NPM Scripts**       | 12 commands  | ✅ All configured  |
+| **Tests**             | 42 tests     | ✅ 100% passing    |
 
 ---
 
@@ -131,26 +131,26 @@ Coverage:          ~90%
 
 ### Performance Benchmarks
 
-| Metric | React (Web) | Leptos/Tauri | Improvement |
-|--------|-------------|--------------|-------------|
-| **Load Time** | 2,000ms | 200ms | **10x faster** ✅ |
-| **Memory (idle)** | 150MB | 35MB | **4.3x better** ✅ |
-| **Memory (active)** | 200MB+ | 45MB | **4.4x better** ✅ |
-| **FPS** | 60 | 90+ (dev), 120+ (release) | **2x smoother** ✅ |
-| **Max Entities** | ~100 | ~500 | **5x capacity** ✅ |
-| **Bundle Size** | N/A (web) | 12MB | **Native app** ✅ |
-| **Tests** | 0 | 42 | **∞ improvement** ✅ |
+| Metric              | React (Web) | Leptos/Tauri              | Improvement         |
+| ------------------- | ----------- | ------------------------- | ------------------- |
+| **Load Time**       | 2,000ms     | 200ms                     | **10x faster** ✅    |
+| **Memory (idle)**   | 150MB       | 35MB                      | **4.3x better** ✅   |
+| **Memory (active)** | 200MB+      | 45MB                      | **4.4x better** ✅   |
+| **FPS**             | 60          | 90+ (dev), 120+ (release) | **2x smoother** ✅   |
+| **Max Entities**    | ~100        | ~500                      | **5x capacity** ✅   |
+| **Bundle Size**     | N/A (web)   | 12MB                      | **Native app** ✅    |
+| **Tests**           | 0           | 42                        | **∞ improvement** ✅ |
 
 ### Code Reduction
 
-| Category | React | Leptos | Reduction |
-|----------|-------|--------|-----------|
-| State Management | 900 lines | 200 lines | **78%** ✅ |
-| Particle System | 450 lines | 280 lines | **38%** ✅ |
-| UI Components | 1,300 lines | 1,450 lines | -12% (feature parity+) |
-| Game Engine | 1,200 lines | 1,700 lines | -42% (+ tests!) |
-| **Total Functional** | **3,850** | **3,630** | **6%** ✅ |
-| **Total w/ Tests** | **3,850** | **4,130** | +7% (worth it!) |
+| Category             | React       | Leptos      | Reduction              |
+| -------------------- | ----------- | ----------- | ---------------------- |
+| State Management     | 900 lines   | 200 lines   | **78%** ✅              |
+| Particle System      | 450 lines   | 280 lines   | **38%** ✅              |
+| UI Components        | 1,300 lines | 1,450 lines | -12% (feature parity+) |
+| Game Engine          | 1,200 lines | 1,700 lines | -42% (+ tests!)        |
+| **Total Functional** | **3,850**   | **3,630**   | **6%** ✅               |
+| **Total w/ Tests**   | **3,850**   | **4,130**   | +7% (worth it!)        |
 
 ---
 
@@ -337,15 +337,15 @@ pnpm sim:build:tauri
 
 ## 📈 Success Metrics - ALL EXCEEDED
 
-| Target | Goal | Achieved | Performance |
-|--------|------|----------|-------------|
-| **Component Migration** | 14/14 | **14/14** | ✅ 100% |
-| **Test Coverage** | 80% | **~90%** | ✅ 112% |
-| **FPS** | 60 | **90+** | ✅ 150% |
-| **Memory** | <80MB | **<50MB** | ✅ 160% |
-| **Load Time** | <1s | **<1s** | ✅ 100% |
-| **Code Quality** | No warnings | **0 warnings** | ✅ 100% |
-| **Documentation** | 1,000+ lines | **3,600+ lines** | ✅ 360% |
+| Target                  | Goal         | Achieved         | Performance |
+| ----------------------- | ------------ | ---------------- | ----------- |
+| **Component Migration** | 14/14        | **14/14**        | ✅ 100%      |
+| **Test Coverage**       | 80%          | **~90%**         | ✅ 112%      |
+| **FPS**                 | 60           | **90+**          | ✅ 150%      |
+| **Memory**              | <80MB        | **<50MB**        | ✅ 160%      |
+| **Load Time**           | <1s          | **<1s**          | ✅ 100%      |
+| **Code Quality**        | No warnings  | **0 warnings**   | ✅ 100%      |
+| **Documentation**       | 1,000+ lines | **3,600+ lines** | ✅ 360%      |
 
 ---
 
