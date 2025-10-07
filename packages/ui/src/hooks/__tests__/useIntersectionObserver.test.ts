@@ -1,4 +1,5 @@
 import { renderHook, act } from "@testing-library/react";
+
 import { useIntersectionObserver } from "../useIntersectionObserver";
 
 // Mock IntersectionObserver for tests

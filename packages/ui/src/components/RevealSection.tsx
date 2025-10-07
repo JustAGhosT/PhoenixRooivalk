@@ -1,6 +1,7 @@
 "use client";
 
 import { ReactNode } from "react";
+
 import { useIntersectionObserver } from "../hooks/useIntersectionObserver";
 
 interface RevealSectionProps {

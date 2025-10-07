@@ -1,7 +1,8 @@
 /* eslint-env node */
+import { resolve } from "path";
+
 import type * as Preset from "@docusaurus/preset-classic";
 import type { Config } from "@docusaurus/types";
-import { resolve } from "path";
 import { themes as prismThemes } from "prism-react-renderer";
 
 // Node.js environment declarations

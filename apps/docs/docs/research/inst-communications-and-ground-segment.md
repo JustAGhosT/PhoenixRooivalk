@@ -278,12 +278,10 @@ For each major technology area (C2/Data Links, Racing Video Systems, Ground
 Control Stations), provide:
 
 1. **Technology Overview**
-
    - Fundamental principles and current state-of-the-art
    - Key performance parameters and measurement methodologies
 
 2. **Sector-Specific Analysis**
-
    - Military implementations: systems, specifications, operational constraints
    - Industrial implementations: systems, specifications, regulatory
      considerations
@@ -292,7 +290,6 @@ Control Stations), provide:
      technologies
 
 3. **Comparative Technology Tables**
-
    - Technical specifications: frequency bands, data rates, latency, range,
      power consumption
    - Performance metrics: link reliability, interference resistance,
@@ -301,7 +298,6 @@ Control Stations), provide:
    - Maturity assessment: TRL levels, deployment status, vendor ecosystem
 
 4. **Leading Manufacturers and Products**
-
    - Market leaders in each sector with specific product lines
    - Technological approaches and differentiators
    - Performance benchmarks from independent testing where available

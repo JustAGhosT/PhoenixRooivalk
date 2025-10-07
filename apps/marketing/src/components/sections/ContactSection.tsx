@@ -3,35 +3,33 @@
 import { downloadWhitepaper } from "@phoenix-rooivalk/utils";
 import React from "react";
 import { Button } from "../ui/button";
+import styles from "./ContactSection.module.css";
 
 export const ContactSection: React.FC = () => {
   return (
-    <section
-      className="px-6 md:px-[5%] lg:px-8 py-12 bg-[linear-gradient(180deg,rgba(0,136,255,0.05),transparent)]"
-      id="contact"
-    >
-      <div className="max-w-[1400px] mx-auto">
-        <div className="text-center mb-8">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+    <section className={styles.section} id="contact">
+      <div className={styles.container}>
+        <div className={styles.header}>
+          <h2 className={styles.title}>
             Ready to Deploy SAE Level 4 Autonomous Defense?
           </h2>
-          <p className="text-[var(--gray)] max-w-2xl mx-auto">
+          <p className={styles.subtitle}>
             Join the next generation of counter-drone defense. Request
             capability demonstration or download technical whitepaper.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-8">
-          <div className="bg-gray-900/50 border border-gray-700/50 rounded-lg p-8">
-            <h3 className="text-xl font-bold text-white mb-4">
+        <div className={styles.grid}>
+          <div className={styles.card}>
+            <h3 className={styles.cardTitle}>
               Request Capability Demonstration
             </h3>
-            <p className="text-gray-300 mb-6">
+            <p className={styles.cardDescription}>
               See Phoenix Rooivalk&apos;s SAE Level 4 autonomous architecture in
               action. Demonstrate &lt;2ms response time, RF-silent drone
               detection, and swarm defense capabilities.
             </p>
-            <div className="space-y-4">
+            <div className={styles.buttonGroup}>
               <Button
                 href="mailto:demo@phoenixrooivalk.com"
                 size="lg"
@@ -50,16 +48,14 @@ export const ContactSection: React.FC = () => {
             </div>
           </div>
 
-          <div className="bg-gray-900/50 border border-gray-700/50 rounded-lg p-8">
-            <h3 className="text-xl font-bold text-white mb-4">
-              Technical Resources
-            </h3>
-            <p className="text-gray-300 mb-6">
+          <div className={styles.card}>
+            <h3 className={styles.cardTitle}>Technical Resources</h3>
+            <p className={styles.cardDescription}>
               Download comprehensive technical documentation and market
               analysis. Learn about SAE Level 4 architecture, market
               opportunity, and competitive positioning.
             </p>
-            <div className="space-y-4">
+            <div className={styles.buttonGroup}>
               <Button
                 onClick={(e: React.MouseEvent) => {
                   e.preventDefault();
@@ -83,12 +79,12 @@ export const ContactSection: React.FC = () => {
           </div>
         </div>
 
-        <div className="text-center mt-12">
-          <div className="bg-gradient-to-r from-[var(--primary)]/10 to-[var(--secondary)]/10 border border-[var(--primary)]/30 rounded-lg p-8">
-            <h3 className="text-2xl font-bold text-white mb-4">
+        <div className={styles.sbirSection}>
+          <div className={styles.sbirCard}>
+            <h3 className={styles.sbirTitle}>
               SBIR & Government Opportunities
             </h3>
-            <p className="text-gray-300 mb-6">
+            <p className={styles.sbirDescription}>
               Phoenix Rooivalk is actively pursuing Air Force SBIR Phase I
               ($350K) and seeking partnerships with defense contractors for
               market entry. Contact us for SBIR collaboration or government
