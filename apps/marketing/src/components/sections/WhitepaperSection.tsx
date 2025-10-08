@@ -2,6 +2,7 @@ import { downloadWhitepaper } from "@phoenix-rooivalk/utils";
 import React from "react";
 import { RevealSection } from "../RevealSection";
 import { Button } from "../ui/button";
+import styles from "./WhitepaperSection.module.css";
 
 export const WhitepaperSection: React.FC = () => {
   const features: Array<{
@@ -37,22 +38,22 @@ export const WhitepaperSection: React.FC = () => {
   ];
 
   return (
-    <section className="px-6 md:px-[5%] lg:px-[5%] py-12 bg-[linear-gradient(180deg,rgba(0,255,136,0.1),rgba(0,136,255,0.1))]">
-      <div className="max-w-[1400px] mx-auto text-center">
+    <section className={styles.section}>
+      <div className={styles.container}>
         <RevealSection>
-          <div className="inline-block bg-gradient-to-r from-[var(--primary)] to-[var(--secondary)] text-black px-4 py-2 rounded-full text-sm font-bold mb-6">
+          <div className={styles.badge}>
             📋 COMPREHENSIVE TECHNICAL DOCUMENTATION
           </div>
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+          <h2 className={styles.title}>
             Get the Complete Technical Whitepaper
           </h2>
-          <p className="text-[var(--gray)] max-w-3xl mx-auto text-lg mb-6">
+          <p className={styles.description}>
             Download our detailed technical documentation covering system
             architecture, security implementation, deployment configurations,
             and performance specifications.
           </p>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8 max-w-4xl mx-auto">
+          <div className={styles.grid}>
             {features.map((feature, index) => (
               <FeatureCard
                 key={index}
@@ -64,7 +65,7 @@ export const WhitepaperSection: React.FC = () => {
             ))}
           </div>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className={styles.actions}>
             <Button
               onClick={() => downloadWhitepaper()}
               size="lg"
@@ -88,26 +89,13 @@ const FeatureCard: React.FC<{
   description: string;
   color: "green" | "blue" | "purple" | "yellow";
 }> = ({ icon, title, description, color }) => {
-  const getColorClass = (color: string) => {
-    switch (color) {
-      case "green":
-        return "bg-gray-800/50 border-green-500/20 text-green-400";
-      case "blue":
-        return "bg-gray-800/50 border-blue-500/20 text-blue-400";
-      case "purple":
-        return "bg-gray-800/50 border-purple-500/20 text-purple-400";
-      case "yellow":
-        return "bg-gray-800/50 border-yellow-500/20 text-yellow-400";
-      default:
-        return "bg-gray-800/50 border-blue-500/20 text-blue-400";
-    }
-  };
+  const colorClass = `card${color.charAt(0).toUpperCase() + color.slice(1)}`;
 
   return (
-    <div className={`p-4 rounded-lg border ${getColorClass(color)}`}>
-      <div className="text-2xl mb-2">{icon}</div>
-      <h3 className={`font-semibold text-sm mb-1`}>{title}</h3>
-      <p className="text-xs text-gray-300">{description}</p>
+    <div className={`${styles.card} ${styles[colorClass]}`}>
+      <div className={styles.cardIcon}>{icon}</div>
+      <h3 className={styles.cardTitle}>{title}</h3>
+      <p className={styles.cardDescription}>{description}</p>
     </div>
   );
 };
