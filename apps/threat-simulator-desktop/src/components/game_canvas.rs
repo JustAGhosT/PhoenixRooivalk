@@ -191,9 +191,12 @@ fn render_frame(
     width: f64,
     height: f64,
 ) {
+    web_sys::console::log_3(&"render_frame: Starting render with dimensions:".into(), &width.into(), &height.into());
+    
     // Clear canvas with dark background
     ctx.set_fill_style(&JsValue::from_str("#0a0e1a"));
     ctx.fill_rect(0.0, 0.0, width, height);
+    web_sys::console::log_1(&"render_frame: Canvas cleared with background".into());
 
     // Draw tactical grid
     ctx.set_stroke_style(&JsValue::from_str("rgba(0, 255, 255, 0.08)"));
@@ -216,6 +219,7 @@ fn render_frame(
         ctx.line_to(width, y);
         ctx.stroke();
     }
+    web_sys::console::log_1(&"render_frame: Grid drawn".into());
 
     // Draw range circles (defensive perimeter)
     let center_x = width / 2.0;
@@ -229,6 +233,7 @@ fn render_frame(
             .unwrap();
         ctx.stroke();
     }
+    web_sys::console::log_3(&"render_frame: Range circles drawn at center:".into(), &center_x.into(), &center_y.into());
 
     // Draw mothership (center) with glow effect
     ctx.set_shadow_blur(20.0);
@@ -246,6 +251,7 @@ fn render_frame(
         .unwrap();
     ctx.fill();
     ctx.set_shadow_blur(0.0);
+    web_sys::console::log_1(&"render_frame: Mothership drawn".into());
 
     // Draw threats with type-specific colors
     let threats = game_state.threats.get_untracked();
@@ -389,4 +395,6 @@ fn render_frame(
             bar_height,
         );
     }
+    
+    web_sys::console::log_1(&"render_frame: Render completed successfully".into());
 }
