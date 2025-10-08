@@ -12,6 +12,17 @@ pub fn GameCanvas(game_state: GameStateManager, is_running: ReadSignal<bool>) ->
     // Game engine - shared between animation loop and event handlers
     let engine = Rc::new(RefCell::new(GameEngine::new(1)));
 
+    // Create a shared running state for the animation loop
+    let is_running_shared = Rc::new(RefCell::new(false));
+    let is_running_shared_effect = is_running_shared.clone();
+    
+    // Keep the shared state in sync with the Leptos signal
+    create_effect(move |_| {
+        let running = is_running.get();
+        *is_running_shared_effect.borrow_mut() = running;
+        web_sys::console::log_1(&format!("is_running signal changed to: {}", running).into());
+    });
+
     // Set up canvas immediately when component mounts (during loading)
     create_effect(move |_| {
         web_sys::console::log_1(&"GameCanvas create_effect triggered - setting up canvas".into());
@@ -77,6 +88,7 @@ pub fn GameCanvas(game_state: GameStateManager, is_running: ReadSignal<bool>) ->
         // Clone for the game loop
         let engine_loop = engine.clone();
         let game_state_loop = game_state.clone();
+        let is_running_loop = is_running_shared.clone();
 
         // Use requestAnimationFrame for smoother animation
         let Some(window) = web_sys::window() else {
@@ -96,8 +108,9 @@ pub fn GameCanvas(game_state: GameStateManager, is_running: ReadSignal<bool>) ->
 
         *closure.borrow_mut() = Some(Closure::wrap(Box::new(move |current_time: f64| {
             web_sys::console::log_1(&"Animation loop callback called".into());
-            web_sys::console::log_1(&format!("is_running value: {}", is_running.get()).into());
-            if !is_running.get() {
+            let is_game_running = *is_running_loop.borrow();
+            web_sys::console::log_1(&format!("is_running value: {}", is_game_running).into());
+            if !is_game_running {
                 web_sys::console::log_1(&"Game not running in animation loop".into());
                 // Still request next frame even when not running, so we can check again
                 if let Some(win) = web_sys::window() {
