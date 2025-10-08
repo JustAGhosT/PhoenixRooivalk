@@ -5,7 +5,7 @@ import EventFeed from "./EventFeed";
 import HUDBar from "./HUDBar";
 import { ParticleEffects } from "./ParticleEffects";
 import RadarCanvas from "./RadarCanvas";
-import "./ThreatSimulator.css";
+import "./ThreatSimulator.module.css";
 import { ThreatSimulatorComponents } from "./ThreatSimulatorComponents";
 import { ThreatSimulatorOverlays } from "./ThreatSimulatorOverlays";
 import { WeaponStatus } from "./WeaponStatus";
