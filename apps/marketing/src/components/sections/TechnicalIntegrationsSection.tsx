@@ -71,7 +71,7 @@ export const TechnicalIntegrationsSection: React.FC = () => {
 
   return (
     <section
-      className="px-6 md:px-[5%] lg:px-8 py-16 bg-gradient-to-br from-gray-900 to-black"
+      className="px-6 md:px-[5%] lg:px-[5%] py-16 bg-gradient-to-br from-gray-900 to-black"
       id="integrations"
     >
       <div className="max-w-[1400px] mx-auto">

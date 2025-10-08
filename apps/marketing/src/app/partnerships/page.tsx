@@ -21,7 +21,7 @@ export default function PartnershipsPage(): React.ReactElement {
       {/* Main Content */}
       <div className="pt-20">
         <section className="py-20 bg-gradient-to-br from-[rgb(var(--bg-primary))] to-[rgb(var(--darker))] relative overflow-hidden">
-          <div className="relative z-10 px-6 md:px-[5%] lg:px-8">
+          <div className="relative z-10 px-6 md:px-[5%] lg:px-[5%]">
             <div className="max-w-[1400px] mx-auto">
               {/* Section Header */}
               <div className="text-center mb-16">

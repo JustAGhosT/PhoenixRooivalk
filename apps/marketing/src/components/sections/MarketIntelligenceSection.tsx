@@ -48,7 +48,7 @@ export const MarketIntelligenceSection: React.FC = () => {
 
   return (
     <section
-      className="px-6 md:px-[5%] lg:px-8 py-12 bg-[linear-gradient(180deg,rgba(0,136,255,0.05),rgba(0,255,136,0.05))]"
+      className="px-6 md:px-[5%] lg:px-[5%] py-12 bg-[linear-gradient(180deg,rgba(0,136,255,0.05),rgba(0,255,136,0.05))]"
       id="market"
     >
       <div className="max-w-[1400px] mx-auto">

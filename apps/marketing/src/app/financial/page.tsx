@@ -76,7 +76,7 @@ export default function FinancialPage(): React.ReactElement {
 
       <Navigation />
 
-      <div className="px-6 md:px-[5%] lg:px-8 py-16">
+      <div className="px-6 md:px-[5%] lg:px-[5%] py-16">
         <div className="max-w-[1400px] mx-auto">
           {/* Header */}
           <div className="text-center mb-16">
