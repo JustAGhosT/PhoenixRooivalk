@@ -5,6 +5,7 @@ import { InfoPopover } from "./InfoPopover";
 import { LegalBadge } from "./LegalBadge";
 import { ROERiskIndicator } from "./ROERiskIndicator";
 import { RESEARCH_CATEGORIES, ResourceManager } from "./utils/resourceManager";
+import styles from "./ResearchPanel.module.css";
 
 interface ResearchPanelProps {
   resourceManager: ResourceManager;
@@ -75,46 +76,46 @@ export const ResearchPanel: React.FC<ResearchPanelProps> = ({
   });
 
   return (
-    <div className="research-panel-overlay">
-      <div className="research-panel">
-        <div className="research-panel-header">
+    <div className={styles.overlay}>
+      <div className={styles.panel}>
+        <div className={styles.header}>
           <h3>Research & Development</h3>
-          <button className="close-button" onClick={onClose}>
+          <button className={styles.closeButton} onClick={onClose}>
             ×
           </button>
         </div>
 
-        <div className="research-resources">
-          <div className="resource-display">
-            <span className="resource-label">Tokens:</span>
-            <span className="resource-value">{state.tokens}</span>
+        <div className={styles.resources}>
+          <div className={styles.resourceDisplay}>
+            <span className={styles.resourceLabel}>Tokens:</span>
+            <span className={styles.resourceValue}>{state.tokens}</span>
           </div>
-          <div className="resource-display">
-            <span className="resource-label">Research Points:</span>
-            <span className="resource-value">{state.researchPoints}</span>
+          <div className={styles.resourceDisplay}>
+            <span className={styles.resourceLabel}>Research Points:</span>
+            <span className={styles.resourceValue}>{state.researchPoints}</span>
           </div>
         </div>
 
         {currentResearch && (
-          <div className="current-research">
+          <div className={styles.currentResearch}>
             <h4>Active Research</h4>
-            <div className="research-item">
-              <div className="research-info">
-                <span className="research-name">{currentResearch.name}</span>
-                <span className="research-description">
+            <div className={styles.item}>
+              <div className={styles.info}>
+                <span className={styles.name}>{currentResearch.name}</span>
+                <span className={styles.description}>
                   {currentResearch.description}
                 </span>
               </div>
-              <div className="research-progress">
-                <div className="progress-bar">
+              <div className={styles.progress}>
+                <div className={styles.progressBar}>
                   <div
-                    className="progress-fill"
+                    className={styles.progressFill}
                     style={{
                       width: `${(currentResearch.progress / currentResearch.target) * 100}%`,
                     }}
                   />
                 </div>
-                <span className="progress-text">
+                <span className={styles.progressText}>
                   {currentResearch.progress}/{currentResearch.target}
                 </span>
               </div>
@@ -122,16 +123,16 @@ export const ResearchPanel: React.FC<ResearchPanelProps> = ({
           </div>
         )}
 
-        <div className="research-categories">
+        <div className={styles.categories}>
           <button
-            className={`category-button ${selectedCategory === "effector" ? "active" : ""}`}
+            className={`${styles.categoryButton} ${selectedCategory === "effector" ? styles.active : ""}`}
             onClick={() => setSelectedCategory("effector")}
           >
             {RESEARCH_CATEGORIES.effector.icon}{" "}
             {RESEARCH_CATEGORIES.effector.name}
           </button>
           <button
-            className={`category-button ${selectedCategory === "drone" ? "active" : ""}`}
+            className={`${styles.categoryButton} ${selectedCategory === "drone" ? styles.active : ""}`}
             onClick={() => setSelectedCategory("drone")}
           >
             {RESEARCH_CATEGORIES.drone.icon} {RESEARCH_CATEGORIES.drone.name}
@@ -146,11 +147,11 @@ export const ResearchPanel: React.FC<ResearchPanelProps> = ({
           />
         )}
 
-        <div className="research-options">
+        <div className={styles.options}>
           <h4>
             {selectedCategory === "effector" ? "Weapon Systems" : "Drone Types"}
           </h4>
-          <div className="research-list">
+          <div className={styles.list}>
             {filteredResearch.map((item) => {
               const effectorData = effectorDatabase.effectors.find(
                 (e) => e.id === item.type,
@@ -158,11 +159,11 @@ export const ResearchPanel: React.FC<ResearchPanelProps> = ({
               const isLegalAcknowledged = acknowledgedLegal.has(item.type);
 
               return (
-                <div key={item.type} className="research-option">
-                  <div className="research-option-header">
-                    <div className="research-option-title">
+                <div key={item.type} className={styles.option}>
+                  <div className={styles.optionHeader}>
+                    <div className={styles.optionTitle}>
                       <h5>{item.name}</h5>
-                      <div className="research-option-badges">
+                      <div className={styles.optionBadges}>
                         {effectorData && (
                           <>
                             <ROERiskIndicator
@@ -185,19 +186,19 @@ export const ResearchPanel: React.FC<ResearchPanelProps> = ({
                         )}
                       </div>
                     </div>
-                    <div className="research-costs">
-                      <span className="cost-item">
+                    <div className={styles.costs}>
+                      <span className={styles.costItem}>
                         🔬 {item.researchCost} RP
                       </span>
-                      <span className="cost-item">
+                      <span className={styles.costItem}>
                         🪙 {item.unlockCost} Tokens
                       </span>
                       {effectorData && (
                         <>
-                          <span className="cost-item">
+                          <span className={styles.costItem}>
                             ⚡ {effectorData.energy} Energy
                           </span>
-                          <span className="cost-item">
+                          <span className={styles.costItem}>
                             ⏱️ {(effectorData.cooldown || 0) / 1000}s Cooldown
                           </span>
                         </>
@@ -205,27 +206,27 @@ export const ResearchPanel: React.FC<ResearchPanelProps> = ({
                     </div>
                   </div>
 
-                  <div className="research-option-content">
-                    <p className="research-option-description">
+                  <div className={styles.optionContent}>
+                    <p className={styles.optionDescription}>
                       {item.description}
                     </p>
 
                     {effectorData && (
-                      <div className="research-option-details">
+                      <div className={styles.optionDetails}>
                         <InfoPopover
                           title={effectorData.name}
                           brands={effectorData.brands}
                           sources={effectorData.sources}
                         >
                           <button
-                            className="info-button"
+                            className={styles.infoButton}
                             aria-label="View real-world analogues"
                           >
                             ℹ️ Real-World Info
                           </button>
                         </InfoPopover>
 
-                        <div className="research-option-specs">
+                        <div className={styles.optionSpecs}>
                           <span>Range: {effectorData.range}</span>
                           <span>Class: {effectorData.class}</span>
                           {effectorData.collateral_risk && (
@@ -236,9 +237,9 @@ export const ResearchPanel: React.FC<ResearchPanelProps> = ({
                     )}
                   </div>
 
-                  <div className="research-option-actions">
+                  <div className={styles.optionActions}>
                     <button
-                      className="action-button research-button"
+                      className={`${styles.actionButton} ${styles.researchButton}`}
                       onClick={() => handleStartResearch(item.type)}
                       disabled={
                         state.activeResearch !== null ||
@@ -251,7 +252,7 @@ export const ResearchPanel: React.FC<ResearchPanelProps> = ({
                       Start Research
                     </button>
                     <button
-                      className="action-button unlock-button"
+                      className={`${styles.actionButton} ${styles.unlockButton}`}
                       onClick={() => handleUnlockDirect(item.type)}
                       disabled={
                         state.tokens < item.unlockCost ||
@@ -267,7 +268,7 @@ export const ResearchPanel: React.FC<ResearchPanelProps> = ({
                   {effectorData?.legal_flags &&
                     effectorData.legal_flags.length > 0 &&
                     !isLegalAcknowledged && (
-                      <div className="research-option-warning">
+                      <div className={styles.optionWarning}>
                         ⚠️ Legal compliance requirements must be acknowledged
                         before use
                       </div>

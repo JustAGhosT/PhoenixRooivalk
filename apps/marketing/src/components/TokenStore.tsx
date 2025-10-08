@@ -1,5 +1,6 @@
 import React from "react";
 import { ResourceManager } from "./utils/resourceManager";
+import styles from "./TokenStore.module.css";
 
 interface TokenStoreProps {
   resourceManager: ResourceManager;
@@ -22,45 +23,45 @@ export const TokenStore: React.FC<TokenStoreProps> = ({
   };
 
   return (
-    <div className="token-store-overlay">
-      <div className="token-store">
-        <div className="token-store-header">
+    <div className={styles.overlay}>
+      <div className={styles.store}>
+        <div className={styles.header}>
           <h3>Token Store</h3>
-          <button className="close-button" onClick={onClose}>
+          <button className={styles.closeButton} onClick={onClose}>
             ×
           </button>
         </div>
 
-        <div className="token-balance">
-          <span className="balance-label">Available Tokens:</span>
-          <span className="balance-value">🪙 {state.tokens}</span>
+        <div className={styles.balance}>
+          <span className={styles.balanceLabel}>Available Tokens:</span>
+          <span className={styles.balanceValue}>🪙 {state.tokens}</span>
         </div>
 
-        <div className="store-section">
+        <div className={styles.section}>
           <h4>Deploy Drones</h4>
-          <p className="store-description">
+          <p className={styles.description}>
             Purchase additional drones for deployment. You can only deploy
             drones you have researched.
           </p>
 
-          <div className="drone-purchase-list">
+          <div className={styles.purchaseList}>
             {unlockedDrones.map((type) => {
               const droneData = resourceManager.getDroneData(type);
               if (!droneData) return null;
 
               return (
-                <div key={type} className="drone-purchase-item">
-                  <div className="drone-info">
+                <div key={type} className={styles.purchaseItem}>
+                  <div className={styles.droneInfo}>
                     <h5>{droneData.name}</h5>
-                    <p className="drone-role">{droneData.role}</p>
-                    <p className="drone-description">{droneData.notes}</p>
+                    <p className={styles.droneRole}>{droneData.role}</p>
+                    <p className={styles.droneDescription}>{droneData.notes}</p>
                   </div>
-                  <div className="drone-purchase-actions">
-                    <div className="drone-cost">
+                  <div className={styles.purchaseActions}>
+                    <div className={styles.droneCost}>
                       🪙 {droneData.tokenCost} Tokens
                     </div>
                     <button
-                      className="purchase-button"
+                      className={styles.purchaseButton}
                       onClick={() => handlePurchaseDrone(type)}
                       disabled={state.tokens < droneData.tokenCost}
                     >
@@ -73,34 +74,34 @@ export const TokenStore: React.FC<TokenStoreProps> = ({
           </div>
         </div>
 
-        <div className="store-section">
+        <div className={styles.section}>
           <h4>Earn Tokens</h4>
-          <div className="token-earning-methods">
-            <div className="earning-method">
-              <span className="earning-icon">🎯</span>
-              <div className="earning-info">
-                <span className="earning-title">Neutralize Threats</span>
-                <span className="earning-amount">+5 tokens per threat</span>
+          <div className={styles.earningMethods}>
+            <div className={styles.earningMethod}>
+              <span className={styles.earningIcon}>🎯</span>
+              <div className={styles.earningInfo}>
+                <span className={styles.earningTitle}>Neutralize Threats</span>
+                <span className={styles.earningAmount}>+5 tokens per threat</span>
               </div>
             </div>
-            <div className="earning-method">
-              <span className="earning-icon">🏆</span>
-              <div className="earning-info">
-                <span className="earning-title">Complete Waves</span>
-                <span className="earning-amount">+25 tokens per wave</span>
+            <div className={styles.earningMethod}>
+              <span className={styles.earningIcon}>🏆</span>
+              <div className={styles.earningInfo}>
+                <span className={styles.earningTitle}>Complete Waves</span>
+                <span className={styles.earningAmount}>+25 tokens per wave</span>
               </div>
             </div>
-            <div className="earning-method">
-              <span className="earning-icon">⭐</span>
-              <div className="earning-info">
-                <span className="earning-title">High Scores</span>
-                <span className="earning-amount">+1 token per 100 points</span>
+            <div className={styles.earningMethod}>
+              <span className={styles.earningIcon}>⭐</span>
+              <div className={styles.earningInfo}>
+                <span className={styles.earningTitle}>High Scores</span>
+                <span className={styles.earningAmount}>+1 token per 100 points</span>
               </div>
             </div>
           </div>
         </div>
 
-        <div className="store-help">
+        <div className={styles.help}>
           <h4>Tips</h4>
           <ul>
             <li>
