@@ -1,8 +1,9 @@
 import * as React from "react";
-import effectorDatabase from "../data/effectorDatabase.json";
-import type { Drone, GameState } from "../types/game";
+import effectorDatabase from "../../data/effectorDatabase.json";
+import type { Drone, GameState } from "../../types/game";
+import { InfoPopover } from "../InfoPopover";
+import styles from "./DroneDeployment.module.css";
 import { EnergyBudget } from "./EnergyBudget";
-import { InfoPopover } from "./InfoPopover";
 
 interface DroneDeploymentProps {
   drones: GameState["drones"];
@@ -41,9 +42,9 @@ export const DroneDeployment: React.FC<DroneDeploymentProps> = ({
   energy,
 }) => {
   return (
-    <div className="drone-deployment-panel">
-      <h3 className="drone-deployment-title">DRONE DEPLOYMENT</h3>
-      <nav aria-label="Drone Deployment" role="group" className="drone-list">
+    <div className={styles.droneDeploymentPanel}>
+      <h3 className={styles.droneDeploymentTitle}>DRONE DEPLOYMENT</h3>
+      <nav aria-label="Drone Deployment" role="group" className={styles.droneList}>
         {deploymentBays.map((bay) => {
           const data = DRONE_DATA[bay.droneType as keyof typeof DRONE_DATA];
 
@@ -55,13 +56,13 @@ export const DroneDeployment: React.FC<DroneDeploymentProps> = ({
             return (
               <div
                 key={bay.id}
-                className="drone-item disabled"
+                className={`${styles.droneItem} ${styles.disabled}`}
                 title="Unknown drone type"
               >
-                <div className="drone-icon">❓</div>
-                <div className="drone-details">
-                  <div className="drone-name">Unknown Drone</div>
-                  <div className="drone-count">
+                <div className={styles.droneIcon}>❓</div>
+                <div className={styles.droneDetails}>
+                  <div className={styles.droneName}>Unknown Drone</div>
+                  <div className={styles.droneCount}>
                     {bay.currentDrones} / {bay.capacity}
                   </div>
                 </div>
@@ -82,13 +83,13 @@ export const DroneDeployment: React.FC<DroneDeploymentProps> = ({
           return (
             <div
               key={bay.id}
-              className={`drone-item-container ${isSelected ? "selected" : ""}`}
+              className={`${styles.droneItemContainer} ${isSelected ? styles.selected : ""}`}
             >
               <button
                 role="checkbox"
                 aria-checked={isSelected}
                 disabled={isDisabled}
-                className={`drone-item ${isSelected ? "selected" : ""} ${isDisabled ? "disabled" : ""}`}
+                className={`${styles.droneItem} ${isSelected ? styles.selected : ""} ${isDisabled ? styles.disabled : ""}`}
                 onClick={() => !isDisabled && onSelectDroneType(bay.droneType)}
                 title={
                   isDisabled
@@ -96,17 +97,17 @@ export const DroneDeployment: React.FC<DroneDeploymentProps> = ({
                     : `Select ${data.name}`
                 }
               >
-                <div className="drone-header">
-                  <div className="drone-icon">{data.icon}</div>
+                <div className={styles.droneHeader}>
+                  <div className={styles.droneIcon}>{data.icon}</div>
                   {droneData && (
-                    <div className="drone-info-button">
+                    <div className={styles.droneInfoButton}>
                       <InfoPopover
                         title={droneData.name}
                         brands={droneData.brands}
                         sources={droneData.sources}
                       >
                         <span
-                          className="info-button"
+                          className={styles.infoButton}
                           role="button"
                           tabIndex={0}
                           aria-label="View drone details"
@@ -126,17 +127,17 @@ export const DroneDeployment: React.FC<DroneDeploymentProps> = ({
                   )}
                 </div>
 
-                <div className="drone-details">
-                  <div className="drone-name">{data.name}</div>
-                  <div className="drone-specs">
-                    <div className="drone-count">
+                <div className={styles.droneDetails}>
+                  <div className={styles.droneName}>{data.name}</div>
+                  <div className={styles.droneSpecs}>
+                    <div className={styles.droneCount}>
                       {bay.currentDrones} / {bay.capacity}
                     </div>
                     {droneData && (
                       <>
-                        <div className="drone-energy">⚡ {energyCost}</div>
-                        <div className="drone-speed">🏃 {droneData.speed}</div>
-                        <div className="drone-endurance">
+                        <div className={styles.droneEnergy}>⚡ {energyCost}</div>
+                        <div className={styles.droneSpeed}>🏃 {droneData.speed}</div>
+                        <div className={styles.droneEndurance}>
                           ⏱️ {droneData.endurance}
                         </div>
                       </>
@@ -145,24 +146,24 @@ export const DroneDeployment: React.FC<DroneDeploymentProps> = ({
                 </div>
 
                 {droneData && (
-                  <div className="drone-role">
-                    <span className="role-badge">{droneData.role}</span>
+                  <div className={styles.droneRole}>
+                    <span className={styles.roleBadge}>{droneData.role}</span>
                   </div>
                 )}
 
                 {!bay.isReady && (
-                  <div className="drone-cooldown">RECHARGING</div>
+                  <div className={styles.droneCooldown}>RECHARGING</div>
                 )}
               </button>
             </div>
           );
         })}
       </nav>
-      <div className="drone-deployment-info">
+      <div className={styles.droneDeploymentInfo}>
         <EnergyBudget used={energy} max={100} showDetails={false} />
 
         {selectedDroneType && (
-          <div className="deployment-selection">
+          <div className={styles.deploymentSelection}>
             <p>
               Selected:{" "}
               {(() => {
@@ -171,7 +172,7 @@ export const DroneDeployment: React.FC<DroneDeploymentProps> = ({
                 return data ? data.name : "Unknown drone";
               })()}
             </p>
-            <p className="deployment-instruction">Click on map to deploy.</p>
+            <p className={styles.deploymentInstruction}>Click on map to deploy.</p>
           </div>
         )}
       </div>

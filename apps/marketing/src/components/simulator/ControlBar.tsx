@@ -86,7 +86,11 @@ const ControlBar: React.FC<ControlBarProps> = ({
 
       <div className={styles.level}>
         <span className={styles.levelLabel}>Level</span>
-        <div className={styles.levelButtons} role="group" aria-label="Select level">
+        <div
+          className={styles.levelButtons}
+          role="group"
+          aria-label="Select level"
+        >
           {levels.map((level) => (
             <button
               key={level}
@@ -183,7 +187,11 @@ const ControlBar: React.FC<ControlBarProps> = ({
       >
         🪙
       </button>
-      <button className={`${styles.btn} ${styles.btnGhost}`} onClick={onShowHelp} title="?">
+      <button
+        className={`${styles.btn} ${styles.btnGhost}`}
+        onClick={onShowHelp}
+        title="?"
+      >
         ?
       </button>
     </footer>

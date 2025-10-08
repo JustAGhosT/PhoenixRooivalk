@@ -99,7 +99,9 @@ export const DetailedStats: React.FC<DetailedStatsProps> = ({
           </div>
           <div className={styles.statItem}>
             <span>Mode:</span>{" "}
-            <span className={styles.capitalize}>{gameState.automationMode}</span>
+            <span className={styles.capitalize}>
+              {gameState.automationMode}
+            </span>
           </div>
         </div>
       </div>

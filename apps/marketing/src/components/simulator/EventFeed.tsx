@@ -15,13 +15,14 @@ const EventFeed: React.FC<EventFeedProps> = ({ feedItems }) => {
     <aside className={styles.feed} aria-live="polite" aria-atomic="false">
       {feedItems.length === 0 && (
         <div className={styles.feedItem}>
-          <span className={styles.timestamp}>--:--:--</span> System initialized. Awaiting
-          events.
+          <span className={styles.timestamp}>--:--:--</span> System initialized.
+          Awaiting events.
         </div>
       )}
       {feedItems.map((item, index) => (
         <div key={index} className={styles.feedItem}>
-          <span className={styles.timestamp}>{item.timestamp}</span> {item.message}
+          <span className={styles.timestamp}>{item.timestamp}</span>{" "}
+          {item.message}
         </div>
       ))}
     </aside>

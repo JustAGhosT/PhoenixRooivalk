@@ -81,21 +81,27 @@ export const TokenStore: React.FC<TokenStoreProps> = ({
               <span className={styles.earningIcon}>🎯</span>
               <div className={styles.earningInfo}>
                 <span className={styles.earningTitle}>Neutralize Threats</span>
-                <span className={styles.earningAmount}>+5 tokens per threat</span>
+                <span className={styles.earningAmount}>
+                  +5 tokens per threat
+                </span>
               </div>
             </div>
             <div className={styles.earningMethod}>
               <span className={styles.earningIcon}>🏆</span>
               <div className={styles.earningInfo}>
                 <span className={styles.earningTitle}>Complete Waves</span>
-                <span className={styles.earningAmount}>+25 tokens per wave</span>
+                <span className={styles.earningAmount}>
+                  +25 tokens per wave
+                </span>
               </div>
             </div>
             <div className={styles.earningMethod}>
               <span className={styles.earningIcon}>⭐</span>
               <div className={styles.earningInfo}>
                 <span className={styles.earningTitle}>High Scores</span>
-                <span className={styles.earningAmount}>+1 token per 100 points</span>
+                <span className={styles.earningAmount}>
+                  +1 token per 100 points
+                </span>
               </div>
             </div>
           </div>
