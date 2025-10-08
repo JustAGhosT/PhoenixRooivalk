@@ -1,6 +1,7 @@
 "use client";
 
 import React, { ReactNode } from "react";
+import styles from "./RevealSection.module.css";
 
 interface RevealSectionProps {
   children: ReactNode;
@@ -11,5 +12,5 @@ export const RevealSection: React.FC<RevealSectionProps> = ({
   children,
   className = "",
 }) => {
-  return <div className={className}>{children}</div>;
+  return <div className={`${styles.revealSection} ${className}`}>{children}</div>;
 };

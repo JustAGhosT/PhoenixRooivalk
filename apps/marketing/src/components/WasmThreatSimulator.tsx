@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useId, useRef, useState } from "react";
+import styles from "./WasmThreatSimulator.module.css";
 
 interface WasmThreatSimulatorProps {
   autoFullscreen?: boolean;
@@ -326,69 +327,28 @@ export const WasmThreatSimulator: React.FC<WasmThreatSimulatorProps> = ({
   return (
     <div
       ref={containerRef}
-      className={`wasm-threat-simulator-container ${className}`}
-      style={{
-        width: "100%",
-        maxWidth: "100%", // Always respect container width
-        height: isTeaser ? "600px" : "100vh",
-        minHeight: isTeaser ? "600px" : "800px",
-        maxHeight: isTeaser ? "600px" : "none",
-        position: "relative",
-        backgroundColor: "#000",
-        borderRadius: isTeaser ? "8px" : "0",
-        overflow: "hidden",
-        display: "flex",
-        flexDirection: "column",
-        margin: "0 auto",
-      }}
+      className={`wasm-threat-simulator-container ${styles.container} ${isTeaser ? styles.containerTeaser : styles.containerFull} ${className}`}
     >
       {/* WASM styles are now dynamically loaded and scoped - no inline overrides needed */}
 
       {isLoading && (
-        <div
-          style={{
-            position: "absolute",
-            top: "50%",
-            left: "50%",
-            transform: "translate(-50%, -50%)",
-            textAlign: "center",
-            color: "#00ff00",
-            fontFamily: "monospace",
-          }}
-        >
-          <div
-            style={{
-              fontSize: "24px",
-              marginBottom: "20px",
-              animation: "pulse 1.5s ease-in-out infinite",
-            }}
-          >
+        <div className={styles.loadingOverlay}>
+          <div className={styles.loadingText}>
             ⚡ Loading Threat Simulator...
           </div>
-          <div style={{ fontSize: "14px", color: "#0f0" }}>
+          <div className={styles.loadingSubtext}>
             Initializing WASM Runtime
           </div>
         </div>
       )}
 
       {error && (
-        <div
-          style={{
-            position: "absolute",
-            top: "50%",
-            left: "50%",
-            transform: "translate(-50%, -50%)",
-            textAlign: "center",
-            color: "#ff0000",
-            fontFamily: "monospace",
-            maxWidth: "80%",
-          }}
-        >
-          <div style={{ fontSize: "24px", marginBottom: "20px" }}>
+        <div className={styles.errorOverlay}>
+          <div className={styles.errorTitle}>
             ⚠️ Error Loading Simulator
           </div>
-          <div style={{ fontSize: "14px", color: "#faa" }}>{error}</div>
-          <div style={{ fontSize: "12px", color: "#888", marginTop: "10px" }}>
+          <div className={styles.errorMessage}>{error}</div>
+          <div className={styles.errorHint}>
             Please try refreshing the page
           </div>
         </div>
@@ -397,26 +357,8 @@ export const WasmThreatSimulator: React.FC<WasmThreatSimulatorProps> = ({
       {/* Mount point for the Leptos WASM app - uses unique ID to prevent conflicts */}
       <div
         id={uniqueMountId}
-        style={{
-          width: "100%",
-          height: "100%",
-          display: wasmInitialized ? "block" : "none",
-          flex: 1,
-          position: "relative",
-        }}
+        className={`${styles.wasmMount} ${wasmInitialized ? styles.wasmMountVisible : styles.wasmMountHidden}`}
       />
-
-      <style jsx>{`
-        @keyframes pulse {
-          0%,
-          100% {
-            opacity: 1;
-          }
-          50% {
-            opacity: 0.5;
-          }
-        }
-      `}</style>
     </div>
   );
 };
