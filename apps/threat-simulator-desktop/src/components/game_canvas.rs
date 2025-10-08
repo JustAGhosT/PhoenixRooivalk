@@ -86,9 +86,12 @@ pub fn GameCanvas(game_state: GameStateManager, is_running: ReadSignal<bool>) ->
         let closure_clone = closure.clone();
 
         *closure.borrow_mut() = Some(Closure::wrap(Box::new(move |current_time: f64| {
+            web_sys::console::log_1(&"Animation loop callback called".into());
             if !is_running.get_untracked() {
+                web_sys::console::log_1(&"Game not running in animation loop".into());
                 return;
             }
+            web_sys::console::log_1(&"Animation loop executing".into());
 
             let delta_time = ((current_time - last_time) / 1000.0) as f32;
             last_time = current_time;
@@ -146,12 +149,14 @@ pub fn GameCanvas(game_state: GameStateManager, is_running: ReadSignal<bool>) ->
         }) as Box<dyn FnMut(f64)>));
 
         // Start the animation loop
+        web_sys::console::log_1(&"Starting animation loop".into());
         if let Err(e) = window
             .request_animation_frame(closure.borrow().as_ref().unwrap().as_ref().unchecked_ref())
         {
             web_sys::console::error_2(&"Failed to start animation loop:".into(), &e);
             return;
         }
+        web_sys::console::log_1(&"Animation loop started successfully".into());
 
         // Clean up: break the Rc cycle so the closure can be dropped
         on_cleanup({
