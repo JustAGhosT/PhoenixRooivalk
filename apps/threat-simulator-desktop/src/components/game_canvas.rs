@@ -121,8 +121,8 @@ pub fn GameCanvas(game_state: GameStateManager, is_running: ReadSignal<bool>) ->
                 .game_time
                 .update(|t| *t += delta_time as f64);
 
-            // Calculate FPS (cast to f64 for frame_rate signal)
-            let fps = 1.0f64 / (delta_time as f64).max(0.001);
+            // Calculate FPS (cast to f32 for frame_rate signal)
+            let fps = 1.0f32 / (delta_time as f32).max(0.001);
             game_state_loop.frame_rate.set(fps);
 
             // Request next frame
