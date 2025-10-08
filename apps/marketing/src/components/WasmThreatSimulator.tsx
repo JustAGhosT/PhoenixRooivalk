@@ -238,44 +238,7 @@ export const WasmThreatSimulator: React.FC<WasmThreatSimulatorProps> = ({
         margin: "0 auto",
       }}
     >
-      {/* Scoped WASM styles - no global CSS interference */}
-      <style jsx>{`
-        .wasm-threat-simulator-container {
-          isolation: isolate;
-          contain: layout style paint;
-          position: relative;
-          z-index: 1;
-        }
-
-        /* Scope all WASM styles to this container only */
-        .wasm-threat-simulator-container * {
-          box-sizing: border-box;
-          font-family: "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell",
-            "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
-          background: #0a0e1a;
-          color: #e0e0e0;
-          overflow: hidden;
-          width: 100%;
-          height: 100%;
-          margin: 0;
-          padding: 0;
-        }
-
-        /* Hide overlays in teaser mode for cleaner presentation */
-        ${isTeaser
-          ? `
-          .wasm-threat-simulator-container .warning-overlay {
-            display: none !important;
-          }
-          .wasm-threat-simulator-container .achievement-notification {
-            display: none !important;
-          }
-          .wasm-threat-simulator-container .game-over-overlay {
-            display: none !important;
-          }
-        `
-          : ""}
-      `}</style>
+      {/* WASM styles are now dynamically loaded and scoped - no inline overrides needed */}
 
       {isLoading && (
         <div

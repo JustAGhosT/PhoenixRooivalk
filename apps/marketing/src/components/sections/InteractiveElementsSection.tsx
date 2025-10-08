@@ -178,12 +178,12 @@ export const InteractiveElementsSection: React.FC = () => {
                     }
                     className="range w-full"
                   />
-                  <div className="flex justify-between text-[rgb(var(--gray))] text-sm mt-1 gap-2">
-                    <span>1</span>
-                    <span className="text-[rgb(var(--accent))] font-bold flex-shrink-0">
+                  <div className="flex justify-between text-[rgb(var(--gray))] text-sm mt-1">
+                    <span className="flex-shrink-0">1</span>
+                    <span className="text-[rgb(var(--accent))] font-bold flex-shrink-0 px-2">
                       {roiInputs.threatFrequency} threats/month
                     </span>
-                    <span>20</span>
+                    <span className="flex-shrink-0">20</span>
                   </div>
                 </div>
 
@@ -209,12 +209,12 @@ export const InteractiveElementsSection: React.FC = () => {
                     }
                     className="range w-full"
                   />
-                  <div className="flex justify-between text-[rgb(var(--gray))] text-sm mt-1 gap-2">
-                    <span>1s</span>
-                    <span className="text-[rgb(var(--accent))] font-bold flex-shrink-0">
+                  <div className="flex justify-between text-[rgb(var(--gray))] text-sm mt-1">
+                    <span className="flex-shrink-0">1s</span>
+                    <span className="text-[rgb(var(--accent))] font-bold flex-shrink-0 px-2">
                       {roiInputs.averageResponseTime}ms
                     </span>
-                    <span>10s</span>
+                    <span className="flex-shrink-0">10s</span>
                   </div>
                 </div>
 
@@ -240,15 +240,15 @@ export const InteractiveElementsSection: React.FC = () => {
                     }
                     className="range w-full"
                   />
-                  <div className="flex justify-between text-[rgb(var(--gray))] text-sm mt-1 gap-2">
-                    <span>$100K</span>
-                    <span className="text-[rgb(var(--accent))] font-bold flex-shrink-0">
+                  <div className="flex justify-between text-[rgb(var(--gray))] text-sm mt-1">
+                    <span className="flex-shrink-0">$100K</span>
+                    <span className="text-[rgb(var(--accent))] font-bold flex-shrink-0 px-2">
                       $
                       {isClient
                         ? roiInputs.deploymentCost.toLocaleString()
                         : roiInputs.deploymentCost.toString()}
                     </span>
-                    <span>$1M</span>
+                    <span className="flex-shrink-0">$1M</span>
                   </div>
                 </div>
               </div>
