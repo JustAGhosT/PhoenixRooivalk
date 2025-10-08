@@ -242,7 +242,8 @@ body {
   border: 2px solid rgba(0, 255, 255, 0.4);
   border-radius: 8px;
   padding: 20px;
-  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+backdrop-filter: blur(15px);
   box-shadow: 0 8px 32px rgba(0, 255, 255, 0.2);
   min-width: 280px;
 }
@@ -547,7 +548,8 @@ body {
   text-transform: uppercase;
   letter-spacing: 1.5px;
   transition: all 0.2s ease;
-  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+backdrop-filter: blur(10px);
 }
 
 .control-button:hover {
@@ -665,7 +667,8 @@ body {
   right: 0;
   bottom: 0;
   background: rgba(0, 0, 0, 0.85);
-  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+backdrop-filter: blur(10px);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -849,7 +852,8 @@ kbd {
   border: 2px solid rgba(0, 255, 255, 0.4);
   border-radius: 8px;
   padding: 20px;
-  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+backdrop-filter: blur(15px);
   box-shadow: 0 8px 32px rgba(0, 255, 255, 0.2);
   max-height: 60vh;
   overflow-y: auto;
@@ -1871,7 +1875,8 @@ kbd {
   min-width: 300px;
   max-width: 350px;
   z-index: 95;
-  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+backdrop-filter: blur(15px);
   box-shadow: 0 8px 32px rgba(139, 92, 246, 0.3);
   animation: slideInRight 0.3s ease;
 }
