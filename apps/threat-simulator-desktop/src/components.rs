@@ -58,7 +58,7 @@ pub fn App() -> impl IntoView {
 
     // Keyboard event handler
     let game_state_kb = game_state_rc.clone();
-    create_effect(move |_| {
+    {
         let window = web_sys::window().unwrap();
         let game_state_inner = game_state_kb.clone();
         let closure = Closure::wrap(Box::new(move |event: KeyboardEvent| {
@@ -114,9 +114,17 @@ pub fn App() -> impl IntoView {
             .add_event_listener_with_callback("keydown", closure.as_ref().unchecked_ref())
             .unwrap();
 
-        // Keep closure alive
+        // Clean up on component unmount
+        on_cleanup({
+            let window = window.clone();
+            let closure_ref = closure.as_ref().unchecked_ref::<js_sys::Function>().clone();
+            move || {
+                let _ = window.remove_event_listener_with_callback("keydown", &closure_ref);
+            }
+        });
+        // Keep closure alive until cleanup
         std::mem::forget(closure);
-    });
+    }
 
     // Clone game state for components
     let game_state_hud = game_state_rc.clone();
@@ -126,40 +134,83 @@ pub fn App() -> impl IntoView {
     let game_state_tokens = game_state_rc.clone();
     let game_state_weapons = game_state_rc.clone();
 
-    // Simulate loading progress
-    create_effect(move |_| {
-        if is_loading.get() {
-            let progress = loading_progress.get();
-            if progress < 100 {
-                set_loading_progress.set(progress + 10);
-                // Use request_animation_frame for smooth progress
-                let window = web_sys::window().unwrap();
-                let closure = Closure::wrap(Box::new(move || {
-                    if progress < 90 {
-                        set_loading_progress.update(|p| *p += 1);
-                    } else if progress >= 90 {
-                        set_loading_progress.set(100);
-                        // Complete loading after a short delay
-                        let window = web_sys::window().unwrap();
-                        let closure = Closure::wrap(Box::new(move || {
-                            set_is_loading.set(false);
-                        }) as Box<dyn FnMut()>);
-                        window
-                            .set_timeout_with_callback_and_timeout_and_arguments_0(
-                                closure.as_ref().unchecked_ref(),
-                                500,
-                            )
-                            .unwrap();
-                        std::mem::forget(closure);
-                    }
-                }) as Box<dyn FnMut()>);
-                window
-                    .request_animation_frame(closure.as_ref().unchecked_ref())
-                    .unwrap();
-                std::mem::forget(closure);
+    // Simulate loading progress with proper cleanup
+    {
+        use std::cell::RefCell;
+        use std::rc::Rc;
+
+        let animation_handle = Rc::new(RefCell::new(None::<i32>));
+        let timeout_handle = Rc::new(RefCell::new(None::<i32>));
+
+        let window = web_sys::window().unwrap();
+        let animate_handle = animation_handle.clone();
+        let timeout_handle_inner = timeout_handle.clone();
+
+        let animate_fn = Rc::new(RefCell::new(None::<Closure<dyn FnMut()>>));
+        let animate_fn_clone = animate_fn.clone();
+
+        *animate_fn.borrow_mut() = Some(Closure::wrap(Box::new(move || {
+            // Stop if loading was cancelled
+            if !is_loading.get() {
+                return;
             }
-        }
-    });
+
+            let progress = loading_progress.get();
+            if progress < 90 {
+                set_loading_progress.update(|p| *p += 1);
+                // Queue next frame
+                let handle = window
+                    .request_animation_frame(
+                        animate_fn_clone
+                            .borrow()
+                            .as_ref()
+                            .unwrap()
+                            .as_ref()
+                            .unchecked_ref(),
+                    )
+                    .unwrap();
+                *animate_handle.borrow_mut() = Some(handle);
+            } else if progress < 100 {
+                set_loading_progress.set(100);
+                // Once at 100%, schedule turning loading off
+                let timeout_closure = Closure::wrap(Box::new(move || {
+                    set_is_loading.set(false);
+                }) as Box<dyn FnMut()>);
+                let handle = window
+                    .set_timeout_with_callback_and_timeout_and_arguments_0(
+                        timeout_closure.as_ref().unchecked_ref(),
+                        500,
+                    )
+                    .unwrap();
+                *timeout_handle_inner.borrow_mut() = Some(handle);
+                std::mem::forget(timeout_closure);
+            }
+        }) as Box<dyn FnMut()>));
+
+        // Kick off the first frame
+        let handle = window
+            .request_animation_frame(
+                animate_fn
+                    .borrow()
+                    .as_ref()
+                    .unwrap()
+                    .as_ref()
+                    .unchecked_ref(),
+            )
+            .unwrap();
+        *animation_handle.borrow_mut() = Some(handle);
+
+        // Clean up on unmount
+        on_cleanup(move || {
+            if let Some(h) = animation_handle.borrow_mut().take() {
+                window.cancel_animation_frame(h).ok();
+            }
+            if let Some(h) = timeout_handle.borrow_mut().take() {
+                window.clear_timeout_with_handle(h);
+            }
+            animate_fn.borrow_mut().take();
+        });
+    }
 
     view! {
         <div class="app-container">
