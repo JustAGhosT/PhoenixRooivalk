@@ -185,10 +185,10 @@ apps/marketing/
 ```
 apps/threat-simulator-desktop/
 ├── 11 Leptos components
-├── 6 game engine modules
+├── 7 game engine modules
 ├── 1 particle system
 ├── Rust game logic (WASM)
-├── 35 comprehensive tests
+├── 47 comprehensive tests
 ├── Cross-platform desktop
 └── ~2,870 lines total
 ```
