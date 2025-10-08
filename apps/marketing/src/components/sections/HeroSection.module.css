@@ -70,12 +70,13 @@
   font-size: 3rem;
   font-weight: 800;
   line-height: 1.2;
-  background: linear-gradient(135deg, #ffffff 0%, #ff9f5a 50%, #ffb366 100%);
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: #ffffff;
   animation: fadeInUp 1s ease both;
   margin-bottom: 2rem;
+}
+
+.headlineOrange {
+  color: #ff9f5a;
 }
 
 @media (min-width: 768px) {

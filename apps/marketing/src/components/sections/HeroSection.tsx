@@ -15,7 +15,8 @@ export const HeroSection: React.FC = () => {
 
         {/* Vision-focused headline */}
         <h1 className={styles.headline}>
-          Edge Autonomy in RF-Denied Environments
+          Edge Autonomy <span className={styles.headlineOrange}>in</span> RF-
+          Denied <span className={styles.headlineOrange}>Environments</span>
           <span className={styles.headlineSubtext}>
             SAE Level 4 Local Decisioning
           </span>
