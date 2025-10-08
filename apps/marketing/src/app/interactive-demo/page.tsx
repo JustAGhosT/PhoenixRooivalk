@@ -1,4 +1,4 @@
-import { ThreatSimulator } from "../../components/ThreatSimulator";
+import { WasmThreatSimulator } from "../../components/WasmThreatSimulator";
 
 export default function InteractiveDemoPage() {
   return (
@@ -12,14 +12,14 @@ export default function InteractiveDemoPage() {
             Interactive Defense System Demonstration
           </p>
           <p className="text-gray-400 max-w-3xl mx-auto">
-            Experience the power of advanced counter-UAS defense technology. The
-            demo will automatically enter full-screen mode for optimal
-            interaction. Control weapons, deploy drones, and neutralize aerial
-            threats in real-time.
+            Experience the power of advanced counter-UAS defense technology built with
+            Rust and WebAssembly for maximum performance. The demo will automatically
+            enter full-screen mode for optimal interaction. Control weapons, deploy
+            drones, and neutralize aerial threats in real-time.
           </p>
         </div>
 
-        <ThreatSimulator autoFullscreen={true} />
+        <WasmThreatSimulator autoFullscreen={true} />
 
         <div className="mt-12 text-center">
           <div className="bg-gray-800/50 p-8 rounded-lg max-w-4xl mx-auto">

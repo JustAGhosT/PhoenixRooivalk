@@ -1,0 +1,10 @@
+{
+  "syncedAt": "2025-10-08T07:05:49.114Z",
+  "files": [
+    "styles-2e626ac1d358eb54.css",
+    "threat-simulator-desktop-43e4df905ff42f76.js",
+    "threat-simulator-desktop-43e4df905ff42f76_bg.wasm"
+  ],
+  "sourceDir": "C:\\Users\\smitj\\repos\\PhoenixRooivalk\\apps\\threat-simulator-desktop\\dist",
+  "targetDir": "C:\\Users\\smitj\\repos\\PhoenixRooivalk\\apps\\marketing\\public\\wasm"
+}
