@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import styles from "./LegalBadge.module.css";
 
 interface LegalBadgeProps {
   legalFlags: string[];
@@ -44,31 +45,31 @@ export const LegalBadge: React.FC<LegalBadgeProps> = ({
   const riskLevel = getRiskLevel(legalFlags);
 
   return (
-    <div className={`legal-badge ${className}`}>
+    <div className={`${styles.badge} ${className}`}>
       <button
         type="button"
-        className={`legal-badge-indicator legal-badge-indicator--${riskLevel} ${acknowledged ? "legal-badge-indicator--acknowledged" : ""}`}
+        className={`${styles.indicator} ${styles[`indicator${riskLevel.charAt(0).toUpperCase() + riskLevel.slice(1)}`]} ${acknowledged ? styles.indicatorAcknowledged : ""}`}
         onClick={() => setShowDetails(!showDetails)}
         aria-expanded={showDetails}
         aria-label={`Legal compliance requirements (${riskLevel} risk)`}
       >
-        <span className="legal-badge-icon">⚠️</span>
-        <span className="legal-badge-text">
+        <span className={styles.icon}>⚠️</span>
+        <span className={styles.text}>
           {riskLevel === "high"
             ? "ITAR/Export"
             : riskLevel === "medium"
               ? "Compliance"
               : "Restrictions"}
         </span>
-        {!acknowledged && <span className="legal-badge-dot">●</span>}
+        {!acknowledged && <span className={styles.dot}>●</span>}
       </button>
 
       {showDetails && (
-        <div className="legal-badge-details">
-          <div className="legal-badge-details-header">
+        <div className={styles.details}>
+          <div className={styles.detailsHeader}>
             <h4>Legal Compliance Requirements</h4>
             <button
-              className="legal-badge-close"
+              className={styles.closeButton}
               onClick={() => setShowDetails(false)}
               aria-label="Close details"
             >
@@ -76,25 +77,27 @@ export const LegalBadge: React.FC<LegalBadgeProps> = ({
             </button>
           </div>
 
-          <div className="legal-badge-details-content">
-            <div className="legal-badge-risk-level">
-              <span className={`risk-level risk-level--${riskLevel}`}>
+          <div className={styles.detailsContent}>
+            <div className={styles.riskLevel}>
+              <span
+                className={`${styles.riskLevelBadge} ${styles[`riskLevel${riskLevel.charAt(0).toUpperCase() + riskLevel.slice(1)}`]}`}
+              >
                 {riskLevel.toUpperCase()} RISK
               </span>
             </div>
 
-            <div className="legal-badge-requirements">
+            <div className={styles.requirements}>
               <h5>Requirements:</h5>
-              <ul className="legal-badge-list">
+              <ul className={styles.list}>
                 {legalFlags.map((flag, index) => (
-                  <li key={index} className="legal-badge-item">
+                  <li key={index} className={styles.item}>
                     {flag}
                   </li>
                 ))}
               </ul>
             </div>
 
-            <div className="legal-badge-note">
+            <div className={styles.note}>
               <p>
                 This is a concept demonstration system. In actual deployment,
                 all legal requirements must be properly addressed and
@@ -104,9 +107,9 @@ export const LegalBadge: React.FC<LegalBadgeProps> = ({
           </div>
 
           {!acknowledged && (
-            <div className="legal-badge-actions">
+            <div className={styles.actions}>
               <button
-                className="legal-badge-acknowledge"
+                className={styles.acknowledgeButton}
                 onClick={handleAcknowledge}
               >
                 Acknowledge Requirements

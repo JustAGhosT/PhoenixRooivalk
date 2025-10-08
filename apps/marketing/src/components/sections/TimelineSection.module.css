@@ -1,0 +1,189 @@
+.section {
+  padding: 5rem 1.5rem;
+  background: linear-gradient(
+    to bottom right,
+    rgb(var(--bg-primary)),
+    rgb(var(--darker))
+  );
+  position: relative;
+  overflow: hidden;
+}
+
+@media (min-width: 768px) {
+  .section {
+    padding-left: 5%;
+    padding-right: 5%;
+  }
+}
+
+@media (min-width: 1024px) {
+  .section {
+    padding-left: 5%;
+    padding-right: 5%;
+  }
+}
+
+.backgroundPattern {
+  position: absolute;
+  inset: 0;
+  opacity: 0.05;
+}
+
+.backgroundGrid {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(rgba(var(--primary), 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(var(--primary), 0.1) 1px, transparent 1px);
+  background-size: 50px 50px;
+}
+
+.content {
+  position: relative;
+  z-index: 10;
+}
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.title {
+  font-size: 2.25rem;
+  font-weight: bold;
+  background: linear-gradient(
+    to bottom right,
+    rgb(var(--text-primary)),
+    rgb(var(--primary))
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .title {
+    font-size: 3rem;
+  }
+}
+
+.description {
+  font-size: 1.25rem;
+  color: rgb(var(--gray));
+  max-width: 48rem;
+  margin: 0 auto;
+}
+
+.timeline {
+  display: grid;
+  gap: 2rem;
+}
+
+@media (min-width: 768px) {
+  .timeline {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .timeline {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.timelineItem {
+  background: rgba(17, 24, 39, 0.5);
+  border: 1px solid rgba(55, 65, 81, 0.5);
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.timelineItem:hover {
+  transform: translateY(-4px);
+  border-color: var(--primary);
+}
+
+.phaseLabel {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--primary);
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.phaseTitle {
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: #fff;
+  margin-bottom: 0.5rem;
+}
+
+.phaseDuration {
+  font-size: 0.875rem;
+  color: #9ca3af;
+  margin-bottom: 0.75rem;
+}
+
+.phaseStatus {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+}
+
+.statusCompleted {
+  background: rgba(34, 197, 94, 0.2);
+  color: #4ade80;
+}
+
+.statusActive {
+  background: rgba(59, 130, 246, 0.2);
+  color: #60a5fa;
+}
+
+.statusPlanned {
+  background: rgba(234, 179, 8, 0.2);
+  color: #facc15;
+}
+
+.statusFuture {
+  background: rgba(107, 114, 128, 0.2);
+  color: #9ca3af;
+}
+
+.phaseDescription {
+  font-size: 0.875rem;
+  color: #d1d5db;
+  margin-bottom: 1rem;
+}
+
+.milestones {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.milestone {
+  font-size: 0.75rem;
+  color: #9ca3af;
+  margin-bottom: 0.5rem;
+  padding-left: 1rem;
+  position: relative;
+}
+
+.milestone::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: var(--primary);
+}

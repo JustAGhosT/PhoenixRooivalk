@@ -1,5 +1,6 @@
 import * as React from "react";
 import { RevealSection } from "../RevealSection";
+import styles from "./TechnicalIntegrationsSection.module.css";
 
 export const TechnicalIntegrationsSection: React.FC = () => {
   const coreIntegrations = [
@@ -13,9 +14,7 @@ export const TechnicalIntegrationsSection: React.FC = () => {
         "Legal compliance records",
         "Audit trail transparency",
       ],
-      color: "from-purple-500 to-violet-600",
-      bgColor: "from-purple-900/20 to-violet-900/20",
-      borderColor: "border-purple-500/30",
+      colorClass: "purple",
       status: "Live",
       tier: "Core",
     },
@@ -29,9 +28,7 @@ export const TechnicalIntegrationsSection: React.FC = () => {
         "Distributed model inference",
         "Optional cloud enhancement",
       ],
-      color: "from-green-500 to-emerald-600",
-      bgColor: "from-green-900/20 to-emerald-900/20",
-      borderColor: "border-green-500/30",
+      colorClass: "green",
       status: "Beta",
       tier: "Enhanced",
     },
@@ -45,9 +42,7 @@ export const TechnicalIntegrationsSection: React.FC = () => {
         "Anti-spoofing protection",
         "Network resilience",
       ],
-      color: "from-teal-500 to-cyan-600",
-      bgColor: "from-teal-900/20 to-cyan-900/20",
-      borderColor: "border-teal-500/30",
+      colorClass: "teal",
       status: "Planned",
       tier: "Enhanced",
     },
@@ -61,86 +56,74 @@ export const TechnicalIntegrationsSection: React.FC = () => {
         "Pattern recognition",
         "Regulatory compliance",
       ],
-      color: "from-orange-500 to-red-600",
-      bgColor: "from-orange-900/20 to-red-900/20",
-      borderColor: "border-orange-500/30",
+      colorClass: "orange",
       status: "Planned",
       tier: "Strategic",
     },
   ];
 
   return (
-    <section
-      className="px-6 md:px-[5%] lg:px-[5%] py-16 bg-gradient-to-br from-gray-900 to-black"
-      id="integrations"
-    >
-      <div className="max-w-[1400px] mx-auto">
+    <section className={styles.section} id="integrations">
+      <div className={styles.container}>
         <RevealSection>
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-300">
-              Core Technical Integrations
-            </h2>
-            <p className="text-lg text-gray-400 max-w-3xl mx-auto">
+          <div className={styles.header}>
+            <h2 className={styles.title}>Core Technical Integrations</h2>
+            <p className={styles.description}>
               Phoenix Rooivalk operates autonomously at the edge, with optional
               blockchain and AI enhancements when network connectivity is
               available. Core functionality never depends on external services.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 gap-6">
+          <div className={styles.grid}>
             {coreIntegrations.map((integration, _index) => (
               <div
                 key={integration.name}
-                className={`p-6 rounded-xl bg-gradient-to-br ${integration.bgColor} border ${integration.borderColor} hover:scale-105 transition-all duration-300 relative`}
+                className={`${styles.card} ${styles[`card${integration.colorClass.charAt(0).toUpperCase() + integration.colorClass.slice(1)}`]}`}
               >
-                <div className="absolute top-3 right-3 flex gap-2">
+                <div className={styles.badges}>
                   <span
-                    className={`px-2 py-1 rounded-full text-xs font-medium ${
+                    className={`${styles.badge} ${
                       integration.status === "Live"
-                        ? "bg-green-500/20 text-green-400"
+                        ? styles.badgeLive
                         : integration.status === "Beta"
-                          ? "bg-yellow-500/20 text-yellow-400"
-                          : "bg-gray-500/20 text-gray-400"
+                          ? styles.badgeBeta
+                          : styles.badgePlanned
                     }`}
                   >
                     {integration.status}
                   </span>
                   <span
-                    className={`px-2 py-1 rounded-full text-xs font-medium ${
+                    className={`${styles.badge} ${
                       integration.tier === "Core"
-                        ? "bg-blue-500/20 text-blue-400"
+                        ? styles.badgeCore
                         : integration.tier === "Enhanced"
-                          ? "bg-green-500/20 text-green-400"
-                          : "bg-orange-500/20 text-orange-400"
+                          ? styles.badgeEnhanced
+                          : styles.badgeStrategic
                     }`}
                   >
                     {integration.tier}
                   </span>
                 </div>
-                <div className="flex items-center gap-4 mb-4">
+                <div className={styles.cardContent}>
                   <div
-                    className={`w-12 h-12 rounded-lg bg-gradient-to-br ${integration.color} flex items-center justify-center text-2xl`}
+                    className={`${styles.icon} ${styles[`icon${integration.colorClass.charAt(0).toUpperCase() + integration.colorClass.slice(1)}`]}`}
                   >
                     {integration.icon}
                   </div>
                   <div>
-                    <h3 className="text-xl font-bold text-white">
-                      {integration.name}
-                    </h3>
-                    <p className="text-sm text-gray-400">
+                    <h3 className={styles.cardTitle}>{integration.name}</h3>
+                    <p className={styles.cardDescription}>
                       {integration.description}
                     </p>
                   </div>
                 </div>
 
-                <ul className="space-y-2">
+                <ul className={styles.featureList}>
                   {integration.features.map((feature, featureIndex) => (
-                    <li
-                      key={featureIndex}
-                      className="flex items-center gap-2 text-sm text-gray-300"
-                    >
+                    <li key={featureIndex} className={styles.featureItem}>
                       <div
-                        className={`w-1.5 h-1.5 rounded-full bg-gradient-to-r ${integration.color}`}
+                        className={`${styles.featureBullet} ${styles[`featureBullet${integration.colorClass.charAt(0).toUpperCase() + integration.colorClass.slice(1)}`]}`}
                       ></div>
                       {feature}
                     </li>
@@ -151,84 +134,104 @@ export const TechnicalIntegrationsSection: React.FC = () => {
           </div>
 
           {/* Technical Architecture Diagram */}
-          <div className="mt-16 p-8 bg-gradient-to-r from-gray-800/50 to-gray-900/50 rounded-xl border border-gray-700">
-            <h3 className="text-2xl font-bold text-white mb-6 text-center">
+          <div className={styles.architectureDiagram}>
+            <h3 className={styles.architectureTitle}>
               Three-Tier Defense Architecture
             </h3>
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 items-center">
-              <div className="text-center">
-                <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-cyan-600 rounded-lg flex items-center justify-center text-xl mx-auto mb-2">
+            <div className={styles.architectureGrid}>
+              <div className={styles.architectureItem}>
+                <div
+                  className={`${styles.architectureIcon} ${styles.architectureIconBlue}`}
+                >
                   ⚡
                 </div>
-                <h4 className="text-sm font-semibold text-white mb-1">
+                <h4 className={styles.architectureItemTitle}>
                   Edge Processing
                 </h4>
-                <p className="text-xs text-gray-400">&lt;50ms response</p>
-                <span className="inline-block px-2 py-1 bg-blue-500/20 text-blue-400 text-xs rounded-full mt-1">
+                <p className={styles.architectureItemSubtitle}>
+                  &lt;50ms response
+                </p>
+                <span
+                  className={`${styles.architectureItemBadge} ${styles.architectureItemBadgeCore}`}
+                >
                   Core
                 </span>
               </div>
 
-              <div className="text-center">
-                <div className="w-12 h-12 bg-gradient-to-br from-green-500 to-emerald-600 rounded-lg flex items-center justify-center text-xl mx-auto mb-2">
+              <div className={styles.architectureItem}>
+                <div
+                  className={`${styles.architectureIcon} ${styles.architectureIconGreen}`}
+                >
                   🤖
                 </div>
-                <h4 className="text-sm font-semibold text-white mb-1">
-                  Morpheus AI
-                </h4>
-                <p className="text-xs text-gray-400">10-30s analysis</p>
-                <span className="inline-block px-2 py-1 bg-green-500/20 text-green-400 text-xs rounded-full mt-1">
+                <h4 className={styles.architectureItemTitle}>Morpheus AI</h4>
+                <p className={styles.architectureItemSubtitle}>
+                  10-30s analysis
+                </p>
+                <span
+                  className={`${styles.architectureItemBadge} ${styles.architectureItemBadgeEnhanced}`}
+                >
                   Enhanced
                 </span>
               </div>
 
-              <div className="text-center">
-                <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-violet-600 rounded-lg flex items-center justify-center text-xl mx-auto mb-2">
+              <div className={styles.architectureItem}>
+                <div
+                  className={`${styles.architectureIcon} ${styles.architectureIconPurple}`}
+                >
                   ⛓️
                 </div>
-                <h4 className="text-sm font-semibold text-white mb-1">
+                <h4 className={styles.architectureItemTitle}>
                   Solana Blockchain
                 </h4>
-                <p className="text-xs text-gray-400">400ms confirmation</p>
-                <span className="inline-block px-2 py-1 bg-purple-500/20 text-purple-400 text-xs rounded-full mt-1">
+                <p className={styles.architectureItemSubtitle}>
+                  400ms confirmation
+                </p>
+                <span
+                  className={`${styles.architectureItemBadge} ${styles.architectureItemBadgeCore}`}
+                >
                   Core
                 </span>
               </div>
 
-              <div className="text-center">
-                <div className="w-12 h-12 bg-gradient-to-br from-orange-500 to-red-600 rounded-lg flex items-center justify-center text-xl mx-auto mb-2">
+              <div className={styles.architectureItem}>
+                <div
+                  className={`${styles.architectureIcon} ${styles.architectureIconOrange}`}
+                >
                   📊
                 </div>
-                <h4 className="text-sm font-semibold text-white mb-1">
+                <h4 className={styles.architectureItemTitle}>
                   Pinax Analytics
                 </h4>
-                <p className="text-xs text-gray-400">99.9% uptime</p>
-                <span className="inline-block px-2 py-1 bg-orange-500/20 text-orange-400 text-xs rounded-full mt-1">
+                <p className={styles.architectureItemSubtitle}>99.9% uptime</p>
+                <span
+                  className={`${styles.architectureItemBadge} ${styles.architectureItemBadgeStrategic}`}
+                >
                   Strategic
                 </span>
               </div>
             </div>
 
-            <div className="mt-8 text-center">
-              <div className="text-sm text-gray-400 mb-4">
+            <div className={styles.architectureFooter}>
+              <div className={styles.architectureFooterText}>
                 Core functionality operates autonomously, with optional
                 enhancements when network connectivity is available
               </div>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs text-gray-500">
-                <div className="bg-gray-800/50 rounded p-3">
-                  <div className="font-semibold text-white mb-1">
+              <div className={styles.architectureFooterGrid}>
+                <div className={styles.architectureFooterCard}>
+                  <div className={styles.architectureFooterCardTitle}>
                     Core Defense
                   </div>
                   <div>Edge processing, sensor fusion, autonomous response</div>
                 </div>
-                <div className="bg-gray-800/50 rounded p-3">
-                  <div className="font-semibold text-white mb-1">
+                <div className={styles.architectureFooterCard}>
+                  <div className={styles.architectureFooterCardTitle}>
                     Enhanced Intelligence
                   </div>
                   <div>AI analysis, blockchain evidence, anti-spoofing</div>
                 </div>
-                <div className="bg-gray-800/50 rounded p-3">
-                  <div className="font-semibold text-white mb-1">
+                <div className={styles.architectureFooterCard}>
+                  <div className={styles.architectureFooterCardTitle}>
                     Strategic Analytics
                   </div>
                   <div>Historical patterns, compliance reporting, insights</div>
@@ -238,43 +241,67 @@ export const TechnicalIntegrationsSection: React.FC = () => {
           </div>
 
           {/* Value Proposition */}
-          <div className="mt-12 grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <div className="p-6 bg-gradient-to-br from-green-900/20 to-emerald-900/20 rounded-xl border border-green-500/30">
-              <h4 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
-                <span className="text-2xl">⚡</span>
+          <div className={styles.valueProposition}>
+            <div className={`${styles.valueCard} ${styles.valueCardGreen}`}>
+              <h4 className={styles.valueCardTitle}>
+                <span className={styles.valueCardIcon}>⚡</span>
                 Core Performance
               </h4>
-              <ul className="space-y-2 text-sm text-gray-300">
-                <li>• Sub-second response times</li>
-                <li>• 100% autonomous operation</li>
-                <li>• Zero network dependency</li>
-                <li>• Military-grade reliability</li>
+              <ul className={styles.valueCardList}>
+                <li className={styles.valueCardListItem}>
+                  • Sub-second response times
+                </li>
+                <li className={styles.valueCardListItem}>
+                  • 100% autonomous operation
+                </li>
+                <li className={styles.valueCardListItem}>
+                  • Zero network dependency
+                </li>
+                <li className={styles.valueCardListItem}>
+                  • Military-grade reliability
+                </li>
               </ul>
             </div>
 
-            <div className="p-6 bg-gradient-to-br from-purple-900/20 to-violet-900/20 rounded-xl border border-purple-500/30">
-              <h4 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
-                <span className="text-2xl">🧠</span>
+            <div className={`${styles.valueCard} ${styles.valueCardPurple}`}>
+              <h4 className={styles.valueCardTitle}>
+                <span className={styles.valueCardIcon}>🧠</span>
                 Enhanced Intelligence
               </h4>
-              <ul className="space-y-2 text-sm text-gray-300">
-                <li>• 97% accuracy with AI enhancement</li>
-                <li>• Immutable evidence trails</li>
-                <li>• Historical pattern analysis</li>
-                <li>• Optional network features</li>
+              <ul className={styles.valueCardList}>
+                <li className={styles.valueCardListItem}>
+                  • 97% accuracy with AI enhancement
+                </li>
+                <li className={styles.valueCardListItem}>
+                  • Immutable evidence trails
+                </li>
+                <li className={styles.valueCardListItem}>
+                  • Historical pattern analysis
+                </li>
+                <li className={styles.valueCardListItem}>
+                  • Optional network features
+                </li>
               </ul>
             </div>
 
-            <div className="p-6 bg-gradient-to-br from-orange-900/20 to-red-900/20 rounded-xl border border-orange-500/30">
-              <h4 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
-                <span className="text-2xl">🎯</span>
+            <div className={`${styles.valueCard} ${styles.valueCardOrange}`}>
+              <h4 className={styles.valueCardTitle}>
+                <span className={styles.valueCardIcon}>🎯</span>
                 Strategic Value
               </h4>
-              <ul className="space-y-2 text-sm text-gray-300">
-                <li>• Future-proof architecture</li>
-                <li>• Scalable intelligence layer</li>
-                <li>• Compliance-ready design</li>
-                <li>• Investment protection</li>
+              <ul className={styles.valueCardList}>
+                <li className={styles.valueCardListItem}>
+                  • Future-proof architecture
+                </li>
+                <li className={styles.valueCardListItem}>
+                  • Scalable intelligence layer
+                </li>
+                <li className={styles.valueCardListItem}>
+                  • Compliance-ready design
+                </li>
+                <li className={styles.valueCardListItem}>
+                  • Investment protection
+                </li>
               </ul>
             </div>
           </div>

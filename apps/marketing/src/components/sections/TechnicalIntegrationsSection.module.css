@@ -1,0 +1,464 @@
+.section {
+  padding: 4rem 1.5rem;
+  background: linear-gradient(to bottom right, #111827, #000);
+}
+
+@media (min-width: 768px) {
+  .section {
+    padding-left: 5%;
+    padding-right: 5%;
+  }
+}
+
+@media (min-width: 1024px) {
+  .section {
+    padding-left: 5%;
+    padding-right: 5%;
+  }
+}
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.title {
+  font-size: 1.875rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  background: linear-gradient(to right, #fff, #d1d5db);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+@media (min-width: 768px) {
+  .title {
+    font-size: 2.25rem;
+  }
+}
+
+.description {
+  font-size: 1.125rem;
+  color: #9ca3af;
+  max-width: 48rem;
+  margin: 0 auto;
+}
+
+.grid {
+  display: grid;
+  gap: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.card {
+  padding: 1.5rem;
+  border-radius: 0.75rem;
+  border: 1px solid;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+.cardPurple {
+  background: linear-gradient(
+    to bottom right,
+    rgba(139, 92, 246, 0.2),
+    rgba(124, 58, 237, 0.2)
+  );
+  border-color: rgba(168, 85, 247, 0.3);
+}
+
+.cardGreen {
+  background: linear-gradient(
+    to bottom right,
+    rgba(34, 197, 94, 0.2),
+    rgba(16, 185, 129, 0.2)
+  );
+  border-color: rgba(34, 197, 94, 0.3);
+}
+
+.cardTeal {
+  background: linear-gradient(
+    to bottom right,
+    rgba(20, 184, 166, 0.2),
+    rgba(6, 182, 212, 0.2)
+  );
+  border-color: rgba(20, 184, 166, 0.3);
+}
+
+.cardOrange {
+  background: linear-gradient(
+    to bottom right,
+    rgba(249, 115, 22, 0.2),
+    rgba(239, 68, 68, 0.2)
+  );
+  border-color: rgba(249, 115, 22, 0.3);
+}
+
+.badges {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  display: flex;
+  gap: 0.5rem;
+}
+
+.badge {
+  padding: 0.25rem 0.5rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.badgeLive {
+  background-color: rgba(34, 197, 94, 0.2);
+  color: #4ade80;
+}
+
+.badgeBeta {
+  background-color: rgba(234, 179, 8, 0.2);
+  color: #facc15;
+}
+
+.badgePlanned {
+  background-color: rgba(107, 114, 128, 0.2);
+  color: #9ca3af;
+}
+
+.badgeCore {
+  background-color: rgba(59, 130, 246, 0.2);
+  color: #60a5fa;
+}
+
+.badgeEnhanced {
+  background-color: rgba(34, 197, 94, 0.2);
+  color: #4ade80;
+}
+
+.badgeStrategic {
+  background-color: rgba(249, 115, 22, 0.2);
+  color: #fb923c;
+}
+
+.cardContent {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.icon {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+}
+
+.iconPurple {
+  background: linear-gradient(to bottom right, #a855f7, #7c3aed);
+}
+
+.iconGreen {
+  background: linear-gradient(to bottom right, #22c55e, #10b981);
+}
+
+.iconTeal {
+  background: linear-gradient(to bottom right, #14b8a6, #06b6d4);
+}
+
+.iconOrange {
+  background: linear-gradient(to bottom right, #f97316, #ef4444);
+}
+
+.cardTitle {
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: #fff;
+}
+
+.cardDescription {
+  font-size: 0.875rem;
+  color: #9ca3af;
+}
+
+.featureList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.featureItem {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  color: #d1d5db;
+}
+
+.featureBullet {
+  width: 0.375rem;
+  height: 0.375rem;
+  border-radius: 9999px;
+}
+
+.featureBulletPurple {
+  background: linear-gradient(to right, #a855f7, #7c3aed);
+}
+
+.featureBulletGreen {
+  background: linear-gradient(to right, #22c55e, #10b981);
+}
+
+.featureBulletTeal {
+  background: linear-gradient(to right, #14b8a6, #06b6d4);
+}
+
+.featureBulletOrange {
+  background: linear-gradient(to right, #f97316, #ef4444);
+}
+
+.architectureDiagram {
+  margin-top: 4rem;
+  padding: 2rem;
+  background: linear-gradient(
+    to right,
+    rgba(31, 41, 55, 0.5),
+    rgba(17, 24, 39, 0.5)
+  );
+  border-radius: 0.75rem;
+  border: 1px solid #374151;
+}
+
+.architectureTitle {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #fff;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.architectureGrid {
+  display: grid;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+@media (min-width: 768px) {
+  .architectureGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .architectureGrid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.architectureItem {
+  text-align: center;
+}
+
+.architectureIcon {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  margin: 0 auto 0.5rem;
+}
+
+.architectureIconBlue {
+  background: linear-gradient(to bottom right, #3b82f6, #06b6d4);
+}
+
+.architectureIconGreen {
+  background: linear-gradient(to bottom right, #22c55e, #10b981);
+}
+
+.architectureIconPurple {
+  background: linear-gradient(to bottom right, #a855f7, #7c3aed);
+}
+
+.architectureIconOrange {
+  background: linear-gradient(to bottom right, #f97316, #ef4444);
+}
+
+.architectureItemTitle {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 0.25rem;
+}
+
+.architectureItemSubtitle {
+  font-size: 0.75rem;
+  color: #9ca3af;
+}
+
+.architectureItemBadge {
+  display: inline-block;
+  padding: 0.25rem 0.5rem;
+  font-size: 0.75rem;
+  border-radius: 9999px;
+  margin-top: 0.25rem;
+}
+
+.architectureItemBadgeCore {
+  background-color: rgba(59, 130, 246, 0.2);
+  color: #60a5fa;
+}
+
+.architectureItemBadgeEnhanced {
+  background-color: rgba(34, 197, 94, 0.2);
+  color: #4ade80;
+}
+
+.architectureItemBadgeStrategic {
+  background-color: rgba(249, 115, 22, 0.2);
+  color: #fb923c;
+}
+
+.architectureFooter {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.architectureFooterText {
+  font-size: 0.875rem;
+  color: #9ca3af;
+  margin-bottom: 1rem;
+}
+
+.architectureFooterGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  font-size: 0.75rem;
+  color: #6b7280;
+}
+
+@media (min-width: 768px) {
+  .architectureFooterGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.architectureFooterCard {
+  background-color: rgba(31, 41, 55, 0.5);
+  border-radius: 0.25rem;
+  padding: 0.75rem;
+}
+
+.architectureFooterCardTitle {
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 0.25rem;
+}
+
+.valueProposition {
+  margin-top: 3rem;
+  display: grid;
+  gap: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .valueProposition {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .valueProposition {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.valueCard {
+  padding: 1.5rem;
+  border-radius: 0.75rem;
+  border: 1px solid;
+}
+
+.valueCardGreen {
+  background: linear-gradient(
+    to bottom right,
+    rgba(6, 78, 59, 0.2),
+    rgba(5, 46, 22, 0.2)
+  );
+  border-color: rgba(34, 197, 94, 0.3);
+}
+
+.valueCardPurple {
+  background: linear-gradient(
+    to bottom right,
+    rgba(76, 29, 149, 0.2),
+    rgba(88, 28, 135, 0.2)
+  );
+  border-color: rgba(168, 85, 247, 0.3);
+}
+
+.valueCardOrange {
+  background: linear-gradient(
+    to bottom right,
+    rgba(124, 45, 18, 0.2),
+    rgba(153, 27, 27, 0.2)
+  );
+  border-color: rgba(249, 115, 22, 0.3);
+}
+
+.valueCardTitle {
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: #fff;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.valueCardIcon {
+  font-size: 1.5rem;
+}
+
+.valueCardList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.valueCardListItem {
+  font-size: 0.875rem;
+  color: #d1d5db;
+}
