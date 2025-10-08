@@ -206,14 +206,19 @@ apps/threat-simulator-desktop/
 ## Commits Summary
 
 ```
-feature/leptos-tauri-threat-simulator (6 commits)
+feature/leptos-tauri-threat-simulator (11 commits)
 
-1. 93cc0f5 - Initial Leptos/Tauri setup
-2. a79713d - Core engine + 29 tests
-3. b40b980 - MIGRATION.md updates
-4. 74d07a6 - Complete UI migration
-5. d43c05a - Frontend documentation
-6. f4f8160 - Advanced components (current)
+1.  93cc0f5 - Initial Leptos/Tauri setup
+2.  a79713d - Core engine + 29 tests
+3.  b40b980 - MIGRATION.md updates
+4.  74d07a6 - Complete UI migration
+5.  d43c05a - Frontend documentation
+6.  f4f8160 - Particles, overlays, event feed, etc.
+7.  ff13bea - STATUS.md
+8.  2887754 - TokenStore, ResearchPanel, SynergySystem
+9.  ecc41d6 - Root pnpm scripts + QUICKSTART
+10. d5810bf - USAGE guide
+11. e57b1f5 - AutoTargeting system (current)
 ```
 
 **Total Changes (apps/threat-simulator-desktop only)**:
