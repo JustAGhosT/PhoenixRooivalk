@@ -193,8 +193,23 @@ export const WasmThreatSimulator: React.FC<WasmThreatSimulatorProps> = ({
 
       {/* Override WASM global styles to prevent interference with React components */}
       <style jsx global>{`
-        /* Only override specific WASM global styles that interfere */
+        /* Override WASM global styles that break the layout */
         body {
+          overflow: auto !important;
+          background: rgb(var(--bg-primary)) !important;
+          color: rgb(var(--text-secondary)) !important;
+          font-family:
+            system-ui,
+            -apple-system,
+            BlinkMacSystemFont,
+            "Segoe UI",
+            Roboto,
+            sans-serif !important;
+          width: auto !important;
+          height: auto !important;
+        }
+
+        html {
           overflow: auto !important;
         }
 
