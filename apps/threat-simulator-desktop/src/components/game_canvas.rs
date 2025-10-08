@@ -16,6 +16,14 @@ pub fn GameCanvas(game_state: GameStateManager, is_running: ReadSignal<bool>) ->
     let is_running_shared = Rc::new(RefCell::new(false));
     let is_running_shared_effect = is_running_shared.clone();
 
+    // Create animation closure and scheduled flag (outside create_effect for broader scope)
+    let animation_closure = Rc::new(RefCell::new(None::<Closure<dyn FnMut(f64)>>));
+    let animation_scheduled = Rc::new(RefCell::new(false));
+
+    // Clone for use in the second create_effect
+    let animation_closure_for_restart = animation_closure.clone();
+    let animation_scheduled_for_restart = animation_scheduled.clone();
+
     // Keep the shared state in sync with the Leptos signal
     create_effect(move |_| {
         let running = is_running.get();
@@ -100,12 +108,8 @@ pub fn GameCanvas(game_state: GameStateManager, is_running: ReadSignal<bool>) ->
         let last_time = Rc::new(RefCell::new(performance.now()));
         let last_time_clone = last_time.clone();
 
-        // Create the animation frame callback
-        let animation_closure = Rc::new(RefCell::new(None::<Closure<dyn FnMut(f64)>>));
+        // Clone the animation closure and scheduled flag for this scope
         let animation_closure_clone = animation_closure.clone();
-
-        // Track if animation is currently scheduled to avoid duplicates
-        let animation_scheduled = Rc::new(RefCell::new(false));
         let animation_scheduled_clone = animation_scheduled.clone();
 
         let callback = Closure::wrap(Box::new(move |current_time: f64| {
@@ -242,8 +246,8 @@ pub fn GameCanvas(game_state: GameStateManager, is_running: ReadSignal<bool>) ->
 
     // Watch for is_running changes and restart animation when game resumes
     {
-        let animation_closure_restart = animation_closure.clone();
-        let animation_scheduled_restart = animation_scheduled.clone();
+        let animation_closure_restart = animation_closure_for_restart.clone();
+        let animation_scheduled_restart = animation_scheduled_for_restart.clone();
         create_effect(move |_| {
             let is_running_now = is_running.get();
             if is_running_now && !*animation_scheduled_restart.borrow() {
