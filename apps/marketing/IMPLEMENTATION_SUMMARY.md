@@ -328,12 +328,14 @@ ROI_CALCULATOR_COMPLETE: $75;
    ```
 
 2. **Create Social Media Images** ⚠️ HIGH PRIORITY
+
    - `public/og-image.png` (1200x630)
    - `public/twitter-image.png` (1200x675)
    - Feature logo + "SAE Level 4 Autonomous Defense"
    - Use brand colors (orange/slate)
 
 3. **Verify Deployment**
+
    - Test robots.txt: `https://phoenixrooivalk.netlify.app/robots.txt`
    - Test sitemap: `https://phoenixrooivalk.netlify.app/sitemap.xml`
    - Verify Open Graph: Use [OpenGraph.xyz](https://www.opengraph.xyz/)
@@ -346,12 +348,14 @@ ROI_CALCULATOR_COMPLETE: $75;
 ### Week 2-3
 
 5. **Accessibility Testing**
+
    - Install axe DevTools extension
    - Test with NVDA/JAWS screen reader
    - Verify keyboard navigation (Tab through all CTAs)
    - Test color contrast with WebAIM tool
 
 6. **Analytics Configuration**
+
    - Set up conversion goals in analytics platform
    - Create dashboard for key metrics
    - Set up email alerts for demo requests
@@ -364,11 +368,13 @@ ROI_CALCULATOR_COMPLETE: $75;
 ### Week 4+
 
 8. **Content Enhancement**
+
    - Write 3 blog posts (see MARKETING_SITE_IMPROVEMENTS.md)
    - Create case studies
    - Develop video content
 
 9. **Conversion Optimization**
+
    - Implement A/B testing framework
    - Add newsletter signup component
    - Create lead qualification forms

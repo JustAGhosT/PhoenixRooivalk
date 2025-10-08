@@ -188,8 +188,9 @@
   backdrop-filter: blur(12px);
   border: 1px solid rgba(249, 115, 22, 0.2);
   border-radius: 0.75rem;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3),
-              0 0 0 1px rgba(249, 115, 22, 0.1) inset;
+  box-shadow:
+    0 10px 40px rgba(0, 0, 0, 0.3),
+    0 0 0 1px rgba(249, 115, 22, 0.1) inset;
   opacity: 0;
   visibility: hidden;
   transform: translateY(-10px);
@@ -325,8 +326,9 @@
   backdrop-filter: blur(12px);
   border: 1px solid rgba(249, 115, 22, 0.2);
   border-radius: 0.75rem;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3),
-              0 0 0 1px rgba(249, 115, 22, 0.1) inset;
+  box-shadow:
+    0 10px 40px rgba(0, 0, 0, 0.3),
+    0 0 0 1px rgba(249, 115, 22, 0.1) inset;
   opacity: 0;
   visibility: hidden;
   transform: translateY(-10px);
