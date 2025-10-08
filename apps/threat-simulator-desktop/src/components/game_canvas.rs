@@ -44,27 +44,24 @@ pub fn GameCanvas(game_state: GameStateManager, is_running: ReadSignal<bool>) ->
                 Ok(ctx_2d) => ctx_2d,
                 Err(_) => {
                     if cfg!(debug_assertions) {
-                        web_sys::console::error_1(&"Failed to cast canvas context to 2D".into());
+                    web_sys::console::error_1(&"Failed to cast canvas context to 2D".into());
                     }
                     return;
                 }
             },
             Ok(None) => {
                 if cfg!(debug_assertions) {
-                    web_sys::console::error_1(&"Canvas 2D context is None".into());
+                web_sys::console::error_1(&"Canvas 2D context is None".into());
                 }
                 return;
             }
             Err(e) => {
                 if cfg!(debug_assertions) {
-                    web_sys::console::error_2(&"Failed to get canvas context:".into(), &e);
+                web_sys::console::error_2(&"Failed to get canvas context:".into(), &e);
                 }
                 return;
             }
         };
-        if cfg!(debug_assertions) {
-            web_sys::console::log_1(&"Canvas context created!".into());
-        }
 
         // Set canvas size to fill container
         let rect = canvas.get_bounding_client_rect();
@@ -93,15 +90,15 @@ pub fn GameCanvas(game_state: GameStateManager, is_running: ReadSignal<bool>) ->
         // Use requestAnimationFrame for smoother animation
         let Some(window) = web_sys::window() else {
             if cfg!(debug_assertions) {
-                web_sys::console::error_1(
-                    &"Window not available: must run in browser environment".into(),
-                );
+            web_sys::console::error_1(
+                &"Window not available: must run in browser environment".into(),
+            );
             }
             return;
         };
         let Some(performance) = window.performance() else {
             if cfg!(debug_assertions) {
-                web_sys::console::error_1(&"Performance API not available in this browser".into());
+            web_sys::console::error_1(&"Performance API not available in this browser".into());
             }
             return;
         };
@@ -163,15 +160,15 @@ pub fn GameCanvas(game_state: GameStateManager, is_running: ReadSignal<bool>) ->
 
             // Request next frame only if not already scheduled
             if !*animation_scheduled_clone.borrow() {
-                if let Some(win) = web_sys::window() {
-                    if let Err(e) = win.request_animation_frame(
+            if let Some(win) = web_sys::window() {
+                if let Err(e) = win.request_animation_frame(
                         animation_closure_clone
-                            .borrow()
-                            .as_ref()
-                            .unwrap()
-                            .as_ref()
-                            .unchecked_ref(),
-                    ) {
+                        .borrow()
+                        .as_ref()
+                        .unwrap()
+                        .as_ref()
+                        .unchecked_ref(),
+                ) {
                         if cfg!(debug_assertions) {
                             web_sys::console::error_2(
                                 &"Failed to request animation frame:".into(),
@@ -181,31 +178,23 @@ pub fn GameCanvas(game_state: GameStateManager, is_running: ReadSignal<bool>) ->
                     } else {
                         // Mark as scheduled on success
                         *animation_scheduled_clone.borrow_mut() = true;
-                    }
-                } else {
+                }
+            } else {
                     if cfg!(debug_assertions) {
-                        web_sys::console::error_1(&"Window unavailable for animation frame".into());
-                    }
+                web_sys::console::error_1(&"Window unavailable for animation frame".into());
+            }
                 }
             }
         }) as Box<dyn FnMut(f64)>);
 
         *animation_closure.borrow_mut() = Some(callback);
 
-        // Start the animation loop
-        if cfg!(debug_assertions) {
-            web_sys::console::log_1(&"Starting animation loop".into());
-        }
-
-        // Test that the closure is properly created
+        // Start the animation loop - validate closure is set
         if animation_closure.borrow().is_none() {
             if cfg!(debug_assertions) {
                 web_sys::console::error_1(&"Closure is None!".into());
             }
             return;
-        }
-        if cfg!(debug_assertions) {
-            web_sys::console::log_1(&"Closure created successfully".into());
         }
 
         match window.request_animation_frame(
@@ -216,13 +205,7 @@ pub fn GameCanvas(game_state: GameStateManager, is_running: ReadSignal<bool>) ->
                 .as_ref()
                 .unchecked_ref(),
         ) {
-            Ok(handle) => {
-                if cfg!(debug_assertions) {
-                    web_sys::console::log_2(
-                        &"Animation loop started with handle:".into(),
-                        &handle.into(),
-                    );
-                }
+            Ok(_handle) => {
                 // Mark as scheduled
                 *animation_scheduled.borrow_mut() = true;
             }
@@ -262,12 +245,6 @@ pub fn GameCanvas(game_state: GameStateManager, is_running: ReadSignal<bool>) ->
                             .unchecked_ref(),
                     ) {
                         *animation_scheduled_restart.borrow_mut() = true;
-                        if cfg!(debug_assertions) {
-                            web_sys::console::log_2(
-                                &"Animation restarted on resume with handle:".into(),
-                                &handle.into(),
-                            );
-                        }
                     }
                 }
             }
