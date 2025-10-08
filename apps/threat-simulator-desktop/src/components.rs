@@ -238,9 +238,12 @@ pub fn App() -> impl IntoView {
             } else if progress < 100 {
                 set_loading_progress.set(100);
                 // Once at 100%, schedule turning loading off and showing start screen
+                let animate_handle_clone = animate_handle.clone();
                 let timeout_closure = Closure::wrap(Box::new(move || {
                     set_is_loading.set(false);
                     set_show_start_screen.set(true); // Show start screen after loading completes
+                    // Clear animation handle to stop further requests
+                    *animate_handle_clone.borrow_mut() = None;
                 }) as Box<dyn FnMut()>);
                 let handle = window_clone
                     .set_timeout_with_callback_and_timeout_and_arguments_0(
@@ -281,14 +284,7 @@ pub fn App() -> impl IntoView {
     view! {
         <div class="app-container">
             // Loading screen
-            <Show when=move || {
-                let loading = is_loading.get();
-                web_sys::console::log_2(&"Loading state:".into(), &loading.into());
-                loading
-            } fallback=|| {
-                web_sys::console::log_1(&"Loading screen hidden, showing game".into());
-                view! { <div></div> }
-            }>
+            <Show when=move || is_loading.get() fallback=|| view! { <div></div> }>
                 <LoadingIndicator progress=loading_progress/>
             </Show>
 
@@ -309,10 +305,8 @@ pub fn App() -> impl IntoView {
                         <button
                             class="start-button"
                             on:click=move |_| {
-                                web_sys::console::log_1(&"START MISSION button clicked!".into());
                                 set_show_start_screen.set(false);
                                 set_is_running.set(true);
-                                web_sys::console::log_1(&"is_running set to true".into());
                                 set_event_feed.update(|feed| {
                                     feed.push(create_feed_item("Mission started".to_string(), FeedSeverity::Success));
                                 });
@@ -336,10 +330,6 @@ pub fn App() -> impl IntoView {
             />
 
             <Hud game_state=(*game_state_hud).clone() is_running=is_running/>
-
-            <div style="position: fixed; top: 50px; left: 50px; background: red; color: white; padding: 10px; z-index: 999;">
-                "DEBUG: App container visible"
-            </div>
 
             <GameCanvas game_state=(*game_state_canvas).clone() is_running=is_running/>
 

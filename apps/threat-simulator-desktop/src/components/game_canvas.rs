@@ -29,6 +29,16 @@ pub fn GameCanvas(game_state: GameStateManager, is_running: ReadSignal<bool>) ->
 
         let Some(canvas_elem) = canvas_ref.get() else {
             web_sys::console::log_1(&"Canvas not ready yet".into());
+            // DEBUG: Check if ANY canvas exists in the DOM
+            if let Some(document) = web_sys::window().and_then(|w| w.document()) {
+                let canvases = document.query_selector_all("canvas").unwrap();
+                web_sys::console::log_2(&"Total canvas elements in DOM:".into(), &canvases.length().into());
+                for i in 0..canvases.length() {
+                    if let Some(canvas) = canvases.get(i) {
+                        web_sys::console::log_2(&format!("Canvas {}: ", i).into(), &canvas);
+                    }
+                }
+            }
             return;
         };
 
@@ -84,6 +94,32 @@ pub fn GameCanvas(game_state: GameStateManager, is_running: ReadSignal<bool>) ->
         canvas.set_width(width as u32);
         canvas.set_height(height as u32);
         web_sys::console::log_3(&"Canvas dimensions set to:".into(), &(canvas.width() as f64).into(), &(canvas.height() as f64).into());
+        
+        // DEBUG: Check canvas actual DOM properties
+        if let Some(win) = web_sys::window() {
+            if let Ok(Some(style)) = win.get_computed_style(&canvas_elem) {
+                let z_index = style.get_property_value("z-index").unwrap_or_else(|_| "unknown".to_string());
+                let position = style.get_property_value("position").unwrap_or_else(|_| "unknown".to_string());
+                let width_css = style.get_property_value("width").unwrap_or_else(|_| "unknown".to_string());
+                let height_css = style.get_property_value("height").unwrap_or_else(|_| "unknown".to_string());
+                web_sys::console::log_1(&format!("Canvas CSS - z-index: {}, position: {}, width: {}, height: {}", z_index, position, width_css, height_css).into());
+            }
+        }
+        
+        // Get the canvas's actual screen position
+        let rect = canvas.get_bounding_client_rect();
+        web_sys::console::log_1(&format!("Canvas screen position - top: {}, left: {}, width: {}, height: {}", rect.top(), rect.left(), rect.width(), rect.height()).into());
+        
+        // TEST: Draw something immediately to confirm canvas is visible
+        web_sys::console::log_1(&"TEST: Drawing immediate test pattern".into());
+        context.set_fill_style_str("#ff0000");
+        context.fill_rect(0.0, 0.0, width, height);
+        context.set_fill_style_str("#00ff00");
+        context.fill_rect(50.0, 50.0, 200.0, 200.0);
+        context.set_fill_style_str("#ffffff");
+        context.set_font("48px Arial");
+        let _ = context.fill_text("CANVAS VISIBLE", width / 2.0 - 200.0, height / 2.0);
+        web_sys::console::log_1(&"TEST: Test pattern drawn".into());
 
         // Clone for the game loop
         let engine_loop = engine.clone();
@@ -109,11 +145,8 @@ pub fn GameCanvas(game_state: GameStateManager, is_running: ReadSignal<bool>) ->
         let animation_closure_clone = animation_closure.clone();
 
         let callback = Closure::wrap(Box::new(move |current_time: f64| {
-            web_sys::console::log_1(&"Animation loop callback called".into());
             let is_game_running = *is_running_loop.borrow();
-            web_sys::console::log_1(&format!("is_running value: {}", is_game_running).into());
             if !is_game_running {
-                web_sys::console::log_1(&"Game not running in animation loop".into());
                 // Still request next frame even when not running, so we can check again
                 if let Some(win) = web_sys::window() {
                     let _ = win.request_animation_frame(
@@ -127,7 +160,6 @@ pub fn GameCanvas(game_state: GameStateManager, is_running: ReadSignal<bool>) ->
                 }
                 return;
             }
-            web_sys::console::log_1(&"Animation loop executing - game is running!".into());
 
             let prev_time = *last_time_clone.borrow();
             let delta_time = ((current_time - prev_time) / 1000.0) as f32;
@@ -154,20 +186,7 @@ pub fn GameCanvas(game_state: GameStateManager, is_running: ReadSignal<bool>) ->
             }
 
             // Render
-            web_sys::console::log_1(&"About to call render_frame".into());
-            // Check if context is still valid
-            if let Some(canvas) = context.canvas() {
-                web_sys::console::log_1(&"Canvas context is valid".into());
-                web_sys::console::log_2(&"Canvas element dimensions:".into(), &format!("{}x{}", canvas.width(), canvas.height()).into());
-            } else {
-                web_sys::console::error_1(&"Canvas context has no canvas element".into());
-            }
-            match std::panic::catch_unwind(|| {
             render_frame(&context, &game_state_loop, width, height);
-            }) {
-                Ok(_) => web_sys::console::log_1(&"render_frame call completed".into()),
-                Err(e) => web_sys::console::error_1(&format!("render_frame panic: {:?}", e).into()),
-            }
 
             // Update reactive state
             game_state_loop.regenerate_energy(delta_time);
@@ -238,70 +257,217 @@ pub fn GameCanvas(game_state: GameStateManager, is_running: ReadSignal<bool>) ->
             class="game-canvas"
             width="1920"
             height="1080"
-            style="border: 2px solid #00ffff; background: #0a0e1a;"
         />
     }
 }
 
 fn render_frame(
     ctx: &CanvasRenderingContext2d,
-    _game_state: &GameStateManager,
+    game_state: &GameStateManager,
     width: f64,
     height: f64,
 ) {
-    web_sys::console::log_3(&"render_frame: Starting render with dimensions:".into(), &width.into(), &height.into());
-    
     // Clear canvas with dark background
     ctx.set_fill_style_str("#0a0e1a");
     ctx.fill_rect(0.0, 0.0, width, height);
-    web_sys::console::log_1(&"render_frame: Canvas cleared with background".into());
-    
-    // Draw simple radar display
+
+    // Draw tactical grid
+    ctx.set_stroke_style_str("rgba(0, 255, 255, 0.08)");
+    ctx.set_line_width(1.0);
+
+    // Vertical lines
+    for i in 0..20 {
+        let x = (i as f64) * (width / 20.0);
+        ctx.begin_path();
+        ctx.move_to(x, 0.0);
+        ctx.line_to(x, height);
+        ctx.stroke();
+    }
+
+    // Horizontal lines
+    for i in 0..12 {
+        let y = (i as f64) * (height / 12.0);
+        ctx.begin_path();
+        ctx.move_to(0.0, y);
+        ctx.line_to(width, y);
+        ctx.stroke();
+    }
+
+    // Draw range circles (defensive perimeter)
     let center_x = width / 2.0;
     let center_y = height / 2.0;
 
-    // Radar background circle
-    ctx.set_fill_style_str("rgba(0, 50, 0, 0.3)");
+    ctx.set_stroke_style_str("rgba(0, 255, 255, 0.15)");
+    ctx.set_line_width(2.0);
+    for radius in [200.0, 400.0, 600.0] {
+        ctx.begin_path();
+        ctx.arc(center_x, center_y, radius, 0.0, 2.0 * std::f64::consts::PI)
+            .unwrap();
+        ctx.stroke();
+    }
+
+    // Draw mothership (center) with glow effect
+    ctx.set_shadow_blur(20.0);
+    ctx.set_shadow_color("rgba(0, 255, 255, 0.8)");
+    ctx.set_fill_style_str("#00ffff");
     ctx.begin_path();
-    ctx.arc(center_x, center_y, 200.0, 0.0, 2.0 * std::f64::consts::PI).unwrap();
+    ctx.arc(center_x, center_y, 30.0, 0.0, 2.0 * std::f64::consts::PI)
+        .unwrap();
     ctx.fill();
 
-    // Radar grid lines
-    ctx.set_stroke_style_str("rgba(0, 255, 0, 0.5)");
-    ctx.set_line_width(1.0);
-    
-    // Horizontal line
+    // Inner core
+    ctx.set_fill_style_str("#ffffff");
     ctx.begin_path();
-    ctx.move_to(center_x - 200.0, center_y);
-    ctx.line_to(center_x + 200.0, center_y);
-    ctx.stroke();
-    
-    // Vertical line
-    ctx.begin_path();
-    ctx.move_to(center_x, center_y - 200.0);
-    ctx.line_to(center_x, center_y + 200.0);
-    ctx.stroke();
-    
-    // Radar sweep line (rotating)
-    let now = web_sys::js_sys::Date::new_0();
-    let angle = (now.get_seconds() as f64 + now.get_milliseconds() as f64 / 1000.0) * 6.0; // 6 degrees per second
-    let radians = angle * std::f64::consts::PI / 180.0;
-    
+    ctx.arc(center_x, center_y, 15.0, 0.0, 2.0 * std::f64::consts::PI)
+        .unwrap();
+    ctx.fill();
+    ctx.set_shadow_blur(0.0);
+
+    // Draw threats with type-specific colors
+    let threats = game_state.threats.get_untracked();
+
+    for threat in threats.iter() {
+        // Color based on threat type
+        let color = match threat.threat_type {
+            crate::game::ThreatType::Commercial => "#ff6666",
+            crate::game::ThreatType::Military => "#ff3333",
+            crate::game::ThreatType::Swarm => "#ffaa33",
+            crate::game::ThreatType::Stealth => "#9933ff",
+            crate::game::ThreatType::Kamikaze => "#ff0000",
+            crate::game::ThreatType::Recon => "#33ff99",
+            crate::game::ThreatType::ElectronicWarfare => "#ff33ff",
+        };
+
+        // Draw threat with glow
+        ctx.set_shadow_blur(10.0);
+        ctx.set_shadow_color(color);
+        ctx.set_fill_style_str(color);
         ctx.begin_path();
-    ctx.move_to(center_x, center_y);
-    ctx.line_to(
-        center_x + 200.0 * radians.cos(),
-        center_y + 200.0 * radians.sin(),
-    );
-    ctx.stroke();
-    
-    // Center dot
-    ctx.set_fill_style_str("#00ff00");
-        ctx.begin_path();
-    ctx.arc(center_x, center_y, 3.0, 0.0, 2.0 * std::f64::consts::PI).unwrap();
+        ctx.arc(
+            threat.position.x as f64,
+            threat.position.y as f64,
+            threat.size as f64 * 0.5,
+            0.0,
+            2.0 * std::f64::consts::PI,
+        )
+        .unwrap();
         ctx.fill();
-    
-    web_sys::console::log_1(&"render_frame: Radar display drawn".into());
-    
-    web_sys::console::log_1(&"render_frame: Render completed successfully".into());
+        ctx.set_shadow_blur(0.0);
+
+        // Threat ID label for targeted threats
+        if threat.is_targeted {
+            ctx.set_fill_style_str("#ffff00");
+            ctx.set_font("10px monospace");
+            // Safely take last 8 chars (Unicode scalar values) to avoid UTF-8 boundary panics
+            let label: String = threat
+                .id
+                .chars()
+                .rev()
+                .take(8)
+                .collect::<Vec<_>>()
+                .into_iter()
+                .rev()
+                .collect();
+            ctx.fill_text(
+                &label,
+                threat.position.x as f64 - 15.0,
+                threat.position.y as f64 - threat.size as f64 - 15.0,
+            )
+            .unwrap();
+        }
+
+        // Health bar
+        if threat.health < threat.max_health {
+            let bar_width = threat.size as f64;
+            let bar_height = 4.0;
+            let health_pct = threat.health / threat.max_health;
+
+            // Background
+            ctx.set_fill_style_str("rgba(0, 0, 0, 0.7)");
+            ctx.fill_rect(
+                threat.position.x as f64 - bar_width / 2.0,
+                threat.position.y as f64 - threat.size as f64 - 12.0,
+                bar_width,
+                bar_height,
+            );
+
+            // Health
+            let health_color = if health_pct > 0.6 {
+                "#00ff00"
+            } else if health_pct > 0.3 {
+                "#ffaa00"
+            } else {
+                "#ff3333"
+            };
+            ctx.set_fill_style_str(health_color);
+            ctx.fill_rect(
+                threat.position.x as f64 - bar_width / 2.0,
+                threat.position.y as f64 - threat.size as f64 - 12.0,
+                bar_width * health_pct as f64,
+                bar_height,
+            );
+        }
+    }
+
+    // Draw drones with battery indicators
+    let drones = game_state.drones.get_untracked();
+
+    for drone in drones.iter() {
+        let drone_color = match drone.drone_type {
+            crate::game::DroneType::Interceptor => "#00ff00",
+            crate::game::DroneType::Jammer => "#ffaa00",
+            crate::game::DroneType::Surveillance => "#33aaff",
+            crate::game::DroneType::Effector => "#ff6600",
+            crate::game::DroneType::Shield => "#3366ff",
+            _ => "#00ffaa",
+        };
+
+        ctx.set_shadow_blur(8.0);
+        ctx.set_shadow_color(drone_color);
+        ctx.set_fill_style_str(drone_color);
+        ctx.begin_path();
+        ctx.arc(
+            drone.position.x as f64,
+            drone.position.y as f64,
+            10.0,
+            0.0,
+            2.0 * std::f64::consts::PI,
+        )
+        .unwrap();
+        ctx.fill();
+        ctx.set_shadow_blur(0.0);
+
+        // Battery indicator
+        let battery_pct = drone.battery / drone.max_battery;
+        let bar_width = 20.0;
+        let bar_height = 3.0;
+
+        ctx.set_fill_style_str("rgba(0, 0, 0, 0.7)");
+        ctx.fill_rect(
+            drone.position.x as f64 - bar_width / 2.0,
+            drone.position.y as f64 + 15.0,
+            bar_width,
+            bar_height,
+        );
+
+        let battery_color = if battery_pct > 0.5 {
+            "#00ff00"
+        } else if battery_pct > 0.2 {
+            "#ffaa00"
+        } else {
+            "#ff3333"
+        };
+        ctx.set_fill_style_str(battery_color);
+        ctx.fill_rect(
+            drone.position.x as f64 - bar_width / 2.0,
+            drone.position.y as f64 + 15.0,
+            bar_width * battery_pct as f64,
+            bar_height,
+        );
+    }
+
+    // Version indicator in bottom right corner
+    ctx.set_font("12px 'Courier New', monospace");
+    ctx.set_fill_style_str("rgba(0, 255, 255, 0.4)");
+    ctx.fill_text("v0.1.0-alpha", width - 80.0, height - 10.0).unwrap();
 }
