@@ -192,7 +192,7 @@ export const WasmThreatSimulator: React.FC<WasmThreatSimulatorProps> = ({
           // Scope regular selectors to the container
           const scopedSelector = selector
             .split(",")
-            .map((s) => `.wasm-threat-simulator-container ${s.trim()}`)
+            .map((s: string) => `.wasm-threat-simulator-container ${s.trim()}`)
             .join(", ");
           return `${scopedSelector} {`;
         });
