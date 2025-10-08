@@ -230,7 +230,7 @@ impl FormationManager {
         for (i, drone_id) in formation.drone_ids.iter().enumerate() {
             // Calculate tier: each pair of wingmen advances one step down the V
             // Leader (i=0) at tier 0, then pairs at tiers 1, 2, 3, etc.
-            let tier = ((i + 1) / 2) as f32;
+            let tier = i.div_ceil(2) as f32;
             let side = if i % 2 == 0 { 1.0 } else { -1.0 };
 
             let x = formation.center.x + side * tier * formation.spacing;
