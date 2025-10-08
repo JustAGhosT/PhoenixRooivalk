@@ -82,7 +82,7 @@ pub fn GameCanvas(game_state: GameStateManager, is_running: ReadSignal<bool>) ->
         let closure = Rc::new(RefCell::new(None::<Closure<dyn FnMut(f64)>>));
         let closure_clone = closure.clone();
 
-        *closure.borrow_mut() = Some(Closure::new(move |current_time: f64| {
+        *closure.borrow_mut() = Some(Closure::wrap(Box::new(move |current_time: f64| {
             if !is_running.get_untracked() {
                 return;
             }
@@ -140,7 +140,7 @@ pub fn GameCanvas(game_state: GameStateManager, is_running: ReadSignal<bool>) ->
             } else {
                 web_sys::console::error_1(&"Window unavailable for animation frame".into());
             }
-        }));
+        }) as Box<dyn FnMut(f64)>));
 
         // Start the animation loop
         if let Err(e) = window

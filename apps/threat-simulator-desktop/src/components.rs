@@ -19,6 +19,7 @@ pub use energy_management::EnergyManagement;
 pub use event_feed::{create_feed_item, EventFeed, FeedItem, FeedSeverity};
 pub use game_canvas::GameCanvas;
 pub use hud::Hud;
+pub use loading::LoadingIndicator;
 pub use overlays::{AchievementNotification, SimulationWarning};
 pub use research_panel::ResearchPanel;
 pub use stats_panel::StatsPanel;
@@ -277,6 +278,11 @@ pub fn App() -> impl IntoView {
 
     view! {
         <div class="app-container">
+            // Loading screen
+            <Show when=move || is_loading.get() fallback=|| view! { <div></div> }>
+                <LoadingIndicator progress=loading_progress.read_only()/>
+            </Show>
+
             // Simulation warning overlay
             <SimulationWarning show=show_warning on_close=move || set_show_warning.set(false)/>
 
