@@ -175,6 +175,21 @@ export const WasmThreatSimulator: React.FC<WasmThreatSimulatorProps> = ({
       {/* Load WASM styles - dynamically resolved from manifest */}
       {cssUrl && <link rel="stylesheet" href={cssUrl} />}
 
+      {/* Hide overlays in teaser mode for cleaner presentation */}
+      {isTeaser && (
+        <style jsx global>{`
+          .warning-overlay {
+            display: none !important;
+          }
+          .achievement-notification {
+            display: none !important;
+          }
+          .game-over-overlay {
+            display: none !important;
+          }
+        `}</style>
+      )}
+
       {isLoading && (
         <div
           style={{
