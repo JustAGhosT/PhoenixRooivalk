@@ -1,0 +1,23 @@
+/* Event Feed Component Styles */
+.feed {
+  max-height: 140px;
+  overflow: auto;
+  padding: 8px 16px;
+  background: rgb(var(--sim-elev));
+  border-top: 1px dashed var(--sim-border);
+  flex-shrink: 0;
+}
+
+.feedItem {
+  display: flex;
+  gap: 10px;
+  padding: 6px 0;
+  font-size: 0.9rem;
+  color: rgb(var(--sim-muted));
+}
+
+.timestamp {
+  color: rgb(var(--sim-gold));
+  min-width: 64px;
+  text-align: right;
+}

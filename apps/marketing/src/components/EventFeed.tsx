@@ -1,4 +1,5 @@
 import React from "react";
+import styles from "./EventFeed.module.css";
 
 interface FeedItem {
   timestamp: string;
@@ -11,16 +12,16 @@ interface EventFeedProps {
 
 const EventFeed: React.FC<EventFeedProps> = ({ feedItems }) => {
   return (
-    <aside className="threatsim__feed" aria-live="polite" aria-atomic="false">
+    <aside className={styles.feed} aria-live="polite" aria-atomic="false">
       {feedItems.length === 0 && (
-        <div className="feed-item">
-          <span className="t">--:--:--</span> System initialized. Awaiting
+        <div className={styles.feedItem}>
+          <span className={styles.timestamp}>--:--:--</span> System initialized. Awaiting
           events.
         </div>
       )}
       {feedItems.map((item, index) => (
-        <div key={index} className="feed-item">
-          <span className="t">{item.timestamp}</span> {item.message}
+        <div key={index} className={styles.feedItem}>
+          <span className={styles.timestamp}>{item.timestamp}</span> {item.message}
         </div>
       ))}
     </aside>

@@ -4,6 +4,7 @@ import type { GameState } from "../types/game";
 import { CooldownMeter } from "./CooldownMeter";
 import { InfoPopover } from "./InfoPopover";
 import { ROERiskIndicator } from "./ROERiskIndicator";
+import styles from "./WeaponStatus.module.css";
 
 interface WeaponStatusProps {
   weapons: GameState["weapons"];
@@ -33,12 +34,12 @@ export const WeaponStatus: React.FC<WeaponStatusProps> = ({
   onSwitchWeapon,
 }) => {
   return (
-    <div className="weapon-status-panel">
-      <h3 className="weapon-status-title">WEAPON SYSTEMS</h3>
+    <div className={styles.panel}>
+      <h3 className={styles.title}>WEAPON SYSTEMS</h3>
       <nav
         aria-label="Weapon Systems"
         role="radiogroup"
-        className="weapon-list"
+        className={styles.list}
       >
         {Object.entries(weapons).map(([id, weaponState]) => {
           const wData = weaponData[id as keyof typeof weaponData];
@@ -49,13 +50,13 @@ export const WeaponStatus: React.FC<WeaponStatusProps> = ({
             return (
               <div
                 key={id}
-                className="weapon-item disabled"
+                className={`${styles.item} ${styles.disabled}`}
                 title="Unknown weapon type"
               >
-                <div className="weapon-icon">❓</div>
-                <div className="weapon-details">
-                  <div className="weapon-name">Unknown Weapon</div>
-                  <div className="weapon-ammo">
+                <div className={styles.icon}>❓</div>
+                <div className={styles.details}>
+                  <div className={styles.name}>Unknown Weapon</div>
+                  <div className={styles.ammo}>
                     {weaponState.ammo} / {weaponState.maxAmmo}
                   </div>
                 </div>
@@ -84,20 +85,20 @@ export const WeaponStatus: React.FC<WeaponStatusProps> = ({
           return (
             <div
               key={id}
-              className={`weapon-item-container ${isSelected ? "selected" : ""}`}
+              className={`${styles.itemContainer} ${isSelected ? styles.selected : ""}`}
             >
               <button
                 role="radio"
                 aria-checked={isSelected}
-                className={`weapon-item ${isSelected ? "selected" : ""}`}
+                className={`${styles.item} ${isSelected ? styles.selected : ""}`}
                 onClick={handleWeaponClick}
                 onKeyDown={handleKeyDown}
                 type="button"
                 aria-label={`Switch to ${wData.name} weapon`}
               >
-                <div className="weapon-header">
-                  <div className="weapon-icon">{wData.icon}</div>
-                  <div className="weapon-cooldown-meter">
+                <div className={styles.header}>
+                  <div className={styles.icon}>{wData.icon}</div>
+                  <div className={styles.cooldownMeter}>
                     <CooldownMeter
                       cooldown={weaponState.cooldown}
                       lastFired={weaponState.lastFired || 0}
@@ -106,18 +107,18 @@ export const WeaponStatus: React.FC<WeaponStatusProps> = ({
                   </div>
                 </div>
 
-                <div className="weapon-details">
-                  <div className="weapon-name">{wData.name}</div>
-                  <div className="weapon-specs">
-                    <div className="weapon-ammo">
+                <div className={styles.details}>
+                  <div className={styles.name}>{wData.name}</div>
+                  <div className={styles.specs}>
+                    <div className={styles.ammo}>
                       {weaponState.ammo} / {weaponState.maxAmmo}
                     </div>
                     {effectorData && (
                       <>
-                        <div className="weapon-energy">
+                        <div className={styles.energy}>
                           ⚡ {effectorData.energy}
                         </div>
-                        <div className="weapon-range">
+                        <div className={styles.range}>
                           📏 {effectorData.range}
                         </div>
                       </>
@@ -126,7 +127,7 @@ export const WeaponStatus: React.FC<WeaponStatusProps> = ({
                 </div>
 
                 {effectorData && (
-                  <div className="weapon-badges">
+                  <div className={styles.badges}>
                     <ROERiskIndicator
                       riskLevel={effectorData.roe as "low" | "med" | "high"}
                     />
@@ -135,14 +136,14 @@ export const WeaponStatus: React.FC<WeaponStatusProps> = ({
               </button>
 
               {effectorData && (
-                <div className="weapon-info">
+                <div className={styles.info}>
                   <InfoPopover
                     title={effectorData.name}
                     brands={effectorData.brands}
                     sources={effectorData.sources}
                   >
                     <button
-                      className="weapon-info-button"
+                      className={styles.infoButton}
                       aria-label="View weapon details"
                     >
                       ℹ️
