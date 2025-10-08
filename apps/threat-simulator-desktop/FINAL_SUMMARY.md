@@ -18,35 +18,34 @@ enhancements**.
 
 ## 📦 Complete Component Inventory
 
-### ✅ All 14 UI Components Migrated
+### ✅ All 13 UI Components Migrated
 
 1. ✅ **Main App** (`components.rs`) - 350 lines
 2. ✅ **GameCanvas** (`game_canvas.rs`) - 330 lines
 3. ✅ **HUD** (`hud.rs`) - 150 lines (with auto-targeting indicator)
 4. ✅ **WeaponPanel** (`weapon_panel.rs`) - 90 lines
 5. ✅ **StatsPanel** (`stats_panel.rs`) - 160 lines
-6. ✅ **EventFeed** (`event_feed.rs`) - 150 lines + 2 tests
-7. ✅ **ParticleSystem** (`game/particles.rs`) - 280 lines + 6 tests
-8. ✅ **Overlays** (`overlays.rs`) - 200 lines (4 overlay types)
-9. ✅ **CooldownMeter** (`cooldown_meter.rs`) - 80 lines
-10. ✅ **EnergyManagement** (`energy_management.rs`) - 150 lines
-11. ✅ **DroneDeployment** (`drone_deployment.rs`) - 140 lines
-12. ✅ **TokenStore** (`token_store.rs`) - 150 lines
-13. ✅ **ResearchPanel** (`research_panel.rs`) - 220 lines
-14. ✅ **SynergySystem** (`synergy_system.rs`) - 200 lines + 3 tests
+6. ✅ **EventFeed** (`event_feed.rs`) - 150 lines + 3 tests
+7. ✅ **Overlays** (`overlays.rs`) - 200 lines (4 overlay types)
+8. ✅ **CooldownMeter** (`cooldown_meter.rs`) - 80 lines
+9. ✅ **EnergyManagement** (`energy_management.rs`) - 150 lines
+10. ✅ **DroneDeployment** (`drone_deployment.rs`) - 140 lines
+11. ✅ **TokenStore** (`token_store.rs`) - 150 lines
+12. ✅ **ResearchPanel** (`research_panel.rs`) - 220 lines
+13. ✅ **SynergySystem** (`synergy_system.rs`) - 200 lines + 4 tests
 
 ### ✅ All 8 Game Engine Modules Migrated
 
-15. ✅ **Types** (`game/types.rs`) - 230 lines + 7 tests
-16. ✅ **Physics** (`game/physics.rs`) - 210 lines + 5 tests
-17. ✅ **Formations** (`game/formations.rs`) - 320 lines + 5 tests
-18. ✅ **Waves** (`game/waves.rs`) - 350 lines + 6 tests
-19. ✅ **Engine** (`game/engine.rs`) - 220 lines + 6 tests
-20. ✅ **Weapons** (`game/weapons.rs`) - 90 lines
-21. ✅ **Particles** (`game/particles.rs`) - 280 lines + 6 tests
-22. ✅ **AutoTargeting** (`game/auto_targeting.rs`) - 240 lines + 7 tests
+14. ✅ **Types** (`game/types.rs`) - 230 lines + 9 tests
+15. ✅ **Physics** (`game/physics.rs`) - 210 lines + 6 tests
+16. ✅ **Formations** (`game/formations.rs`) - 320 lines + 6 tests
+17. ✅ **Waves** (`game/waves.rs`) - 350 lines + 7 tests
+18. ✅ **Engine** (`game/engine.rs`) - 220 lines + 7 tests
+19. ✅ **Weapons** (`game/weapons.rs`) - 90 lines
+20. ✅ **Particles** (`game/particles.rs`) - 280 lines + 6 tests
+21. ✅ **AutoTargeting** (`game/auto_targeting.rs`) - 240 lines + 7 tests
 
-**Grand Total: 22 modules, 4,100+ lines, 47 tests**
+**Grand Total: 21 modules (13 UI + 8 Engine), 4,100+ lines, 47 tests**
 
 ---
 
@@ -121,15 +120,15 @@ pnpm build:tauri       # Cargo tauri build
 ```
 Module              Tests    Lines    Status
 ─────────────────────────────────────────────
-Types               7        230      ✅
-Physics             5        210      ✅
-Formations          5        320      ✅
-Waves               6        350      ✅
-Engine              6        220      ✅
+Types               9        230      ✅
+Physics             6        210      ✅
+Formations          6        320      ✅
+Waves               7        350      ✅
+Engine              7        220      ✅
 Particles           6        280      ✅
 Auto-Targeting      7        240      ✅  NEW
-Event Feed          2        150      ✅
-Synergy System      3        200      ✅
+Event Feed          3        150      ✅
+Synergy System      4        200      ✅
 ─────────────────────────────────────────────
 Total               47       2,200    ✅
 
@@ -163,7 +162,7 @@ Coverage:          ~90%
 
 ---
 
-## 📖 Complete Documentation (2,700+ lines)
+## 📖 Complete Documentation (3,600+ lines)
 
 1. **README.md** (290 lines) - Setup, architecture, prerequisites
 2. **MIGRATION.md** (350 lines) - Migration details, decisions, roadmap
@@ -200,11 +199,11 @@ feature/leptos-tauri-threat-simulator (11 commits)
 11. e57b1f5 - AutoTargeting system (current)
 ```
 
-**Total Changes:**
+**Total Changes (apps/threat-simulator-desktop only):**
 
-- 65 files changed
-- 12,000+ insertions
-- 700+ deletions
+- 49 files changed
+- 12,440+ insertions
+- 0 deletions (new app)
 - 47 tests added
 - 3,600+ lines documentation
 
@@ -600,7 +599,7 @@ pnpm sim:build:tauri
 
 You have successfully migrated a complex React game to Leptos/Tauri with:
 
-- 22 modules
+- 21 modules
 - 47 tests
 - 4,100+ lines of code
 - 3,600+ lines of documentation

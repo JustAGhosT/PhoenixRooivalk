@@ -216,13 +216,13 @@ feature/leptos-tauri-threat-simulator (6 commits)
 6. f4f8160 - Advanced components (current)
 ```
 
-**Total Changes**:
+**Total Changes (apps/threat-simulator-desktop only)**:
 
-- 45 files changed
-- 9,200+ insertions
-- 600+ deletions
+- 49 files changed
+- 12,440+ insertions
+- 0 deletions (new app)
 - 47 tests added
-- 1,500+ lines of documentation
+- 3,600+ lines of documentation
 
 ---
 
