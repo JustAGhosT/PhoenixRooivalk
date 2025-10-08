@@ -1,7 +1,7 @@
 "use client";
 import * as React from "react";
 import { useEffect, useState } from "react";
-import { ThreatSimulator } from "../ThreatSimulator";
+import { WasmThreatSimulator } from "../WasmThreatSimulator";
 import { Button } from "../ui/button";
 
 export const InteractiveElementsSection: React.FC = () => {
@@ -354,13 +354,13 @@ export const InteractiveElementsSection: React.FC = () => {
             </div>
 
             <div className="relative">
-              <div className="bg-[rgba(15,23,42,0.9)] backdrop-blur-sm rounded-xl border border-[rgba(var(--primary),0.3)] p-6 shadow-2xl">
-                <ThreatSimulator isTeaser={true} />
+              <div className="bg-gradient-to-br from-[rgba(var(--bg-primary),0.8)] to-[rgba(var(--bg-secondary),0.8)] rounded-xl border border-[rgba(var(--primary),0.3)] p-4">
+                <WasmThreatSimulator isTeaser={true} />
               </div>
 
               <div className="text-center mt-8">
                 <Button href="/interactive-demo" variant="primary" size="lg">
-                  🚀 Try Full Interactive Demo
+                  🚀 Try Full Interactive Demo (Rust/WASM)
                 </Button>
               </div>
             </div>
