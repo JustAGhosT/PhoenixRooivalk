@@ -49,21 +49,56 @@ export const HeroSection: React.FC = () => {
         {/* Enhanced CTAs with specific value propositions */}
         <div className={styles.ctaSection}>
           <div className={styles.ctaButtons}>
-            <Button href="/interactive-demo" size="lg" variant="primary">
+            <Button
+              href="/interactive-demo"
+              size="lg"
+              variant="primary"
+              trackingEvent="Demo Clicked"
+              trackingProps={{ location: "hero", type: "primary" }}
+              aria-label="Try the interactive threat simulator demo"
+            >
               Try the Simulation (Concept UI)
             </Button>
-            <Button href="/contact" variant="secondary" size="lg">
+            <Button
+              href="/contact"
+              variant="secondary"
+              size="lg"
+              trackingEvent="Contact Clicked"
+              trackingProps={{ location: "hero", type: "early-access" }}
+              aria-label="Join early access program"
+            >
               Join Early Access
             </Button>
           </div>
           <div className={styles.secondaryLinks}>
-            <Button href="/technical" variant="ghost" size="sm">
+            <Button
+              href="/technical"
+              variant="ghost"
+              size="sm"
+              trackingEvent="Technical Specs Viewed"
+              trackingProps={{ location: "hero" }}
+              aria-label="View technical specifications"
+            >
               Technical Specifications →
             </Button>
-            <Button href="/financial" variant="ghost" size="sm">
+            <Button
+              href="/financial"
+              variant="ghost"
+              size="sm"
+              trackingEvent="ROI Calculator Viewed"
+              trackingProps={{ location: "hero" }}
+              aria-label="Calculate return on investment"
+            >
               ROI Calculator →
             </Button>
-            <Button href="/compliance" variant="ghost" size="sm">
+            <Button
+              href="/compliance"
+              variant="ghost"
+              size="sm"
+              trackingEvent="Compliance Viewed"
+              trackingProps={{ location: "hero" }}
+              aria-label="View compliance and certifications"
+            >
               Compliance & Certifications →
             </Button>
           </div>

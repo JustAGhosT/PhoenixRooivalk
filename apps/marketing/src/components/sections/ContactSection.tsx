@@ -34,6 +34,9 @@ export const ContactSection: React.FC = () => {
                 href="mailto:demo@phoenixrooivalk.com"
                 size="lg"
                 className="w-full"
+                trackingEvent="Demo Requested"
+                trackingProps={{ location: "contact-section", type: "email" }}
+                aria-label="Email us to schedule a technical demonstration"
               >
                 Schedule Technical Demo
               </Button>
@@ -42,6 +45,9 @@ export const ContactSection: React.FC = () => {
                 variant="ghost"
                 size="lg"
                 className="w-full"
+                trackingEvent="Partnership Inquiry"
+                trackingProps={{ location: "contact-section", type: "email" }}
+                aria-label="Email us for partnership inquiries"
               >
                 Partnership Inquiries
               </Button>
@@ -64,6 +70,9 @@ export const ContactSection: React.FC = () => {
                 size="lg"
                 className="w-full"
                 type="button"
+                trackingEvent="Whitepaper Downloaded"
+                trackingProps={{ location: "contact-section", type: "button" }}
+                aria-label="Download technical whitepaper PDF"
               >
                 Download Technical Whitepaper
               </Button>
@@ -72,6 +81,9 @@ export const ContactSection: React.FC = () => {
                 variant="ghost"
                 size="lg"
                 className="w-full"
+                trackingEvent="Technical Specs Viewed"
+                trackingProps={{ location: "contact-section", source: "cta" }}
+                aria-label="View detailed technical specifications"
               >
                 View Technical Specifications
               </Button>
