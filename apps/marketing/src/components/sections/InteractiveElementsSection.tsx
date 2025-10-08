@@ -1,7 +1,7 @@
 "use client";
 import * as React from "react";
 import { useEffect, useState } from "react";
-import { ThreatSimulator } from "../ThreatSimulator";
+import Image from "next/image";
 import { Button } from "../ui/button";
 
 export const InteractiveElementsSection: React.FC = () => {
@@ -354,8 +354,16 @@ export const InteractiveElementsSection: React.FC = () => {
             </div>
 
             <div className="relative">
-              <div className="bg-gradient-to-br from-[rgba(var(--bg-primary),0.8)] to-[rgba(var(--bg-secondary),0.8)] rounded-xl border border-[rgba(var(--primary),0.3)] p-4">
-                <ThreatSimulator isTeaser={true} />
+              <div className="bg-gradient-to-br from-[rgba(var(--bg-primary),0.8)] to-[rgba(var(--bg-secondary),0.8)] rounded-xl border border-[rgba(var(--primary),0.3)] p-4 overflow-hidden">
+                <Image 
+                  src="/img/Leptos+Tauri.png" 
+                  alt="Phoenix Rooivalk Desktop Simulator built with Leptos and Tauri" 
+                  width={1920}
+                  height={1080}
+                  className="w-full h-auto rounded-lg"
+                  priority
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[rgba(var(--bg-primary),0.7)] to-transparent pointer-events-none" />
               </div>
 
               <div className="text-center mt-6">

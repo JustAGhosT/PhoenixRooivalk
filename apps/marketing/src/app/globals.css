@@ -263,21 +263,21 @@ h6 {
 }
 
 .pill--concept {
-  background: rgba(249, 115, 22, 0.1);
-  color: rgb(var(--action-primary));
-  border: 1px solid rgba(249, 115, 22, 0.2);
+  background: rgba(249, 115, 22, 0.15);
+  color: #ff8c42;
+  border: 1.5px solid rgba(249, 115, 22, 0.5);
 }
 
 .pill--partners {
-  background: rgba(100, 116, 139, 0.1);
-  color: rgb(var(--action-secondary));
-  border: 1px solid rgba(100, 116, 139, 0.2);
+  background: rgba(100, 116, 139, 0.15);
+  color: #94a3b8;
+  border: 1.5px solid rgba(100, 116, 139, 0.5);
 }
 
 .pill--sbir {
-  background: rgba(245, 158, 11, 0.1);
-  color: rgb(var(--action-warning));
-  border: 1px solid rgba(245, 158, 11, 0.2);
+  background: rgba(245, 158, 11, 0.15);
+  color: #ffa94d;
+  border: 1.5px solid rgba(245, 158, 11, 0.5);
 }
 
 /* Card System */

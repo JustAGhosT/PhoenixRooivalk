@@ -64,7 +64,7 @@
   font-size: 3rem;
   font-weight: 800;
   line-height: 1.2;
-  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+  background: linear-gradient(135deg, #ffffff 0%, #ff9f5a 50%, #ffb366 100%);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -82,7 +82,8 @@
   display: block;
   font-size: 1.875rem;
   margin-top: 1rem;
-  color: #f4b14a;
+  color: #ffa94d;
+  font-weight: 700;
 }
 
 @media (min-width: 768px) {
