@@ -310,8 +310,10 @@ pub fn App() -> impl IntoView {
                         <button
                             class="start-button"
                             on:click=move |_| {
+                                web_sys::console::log_1(&"START MISSION button clicked!".into());
                                 set_show_start_screen.set(false);
                                 set_is_running.set(true);
+                                web_sys::console::log_1(&"is_running set to true".into());
                                 set_event_feed.update(|feed| {
                                     feed.push(create_feed_item("Mission started".to_string(), FeedSeverity::Success));
                                 });
