@@ -54,15 +54,16 @@ comprehensive test coverage (47 tests).
 
 ### ✅ Game Engine (7/7 Complete)
 
-| Module     | React File                     | Leptos File      | Lines             | Tests        |
-| ---------- | ------------------------------ | ---------------- | ----------------- | ------------ |
-| Types      | threatTypes.ts, weaponTypes.ts | types.rs         | 230               | 9            |
-| Physics    | collisionSystem.ts             | physics.rs       | 210               | 6            |
-| Formations | formationManager.ts            | formations.rs    | 320               | 6            |
-| Waves      | waveManager.ts                 | waves.rs         | 350               | 7            |
-| Engine     | gameEngine.ts                  | engine.rs        | 220               | 7            |
-| Weapons    | weaponTypes.ts                 | weapons.rs       | 90                | -            |
-| **Total**  | **~1,800 lines**               | **~1,420 lines** | **21% reduction** | **35 tests** |
+| Module        | React File                     | Leptos File         | Lines             | Tests        |
+| ------------- | ------------------------------ | ------------------- | ----------------- | ------------ |
+| Types         | threatTypes.ts, weaponTypes.ts | types.rs            | 230               | 9            |
+| Physics       | collisionSystem.ts             | physics.rs          | 210               | 6            |
+| Formations    | formationManager.ts            | formations.rs       | 320               | 6            |
+| Waves         | waveManager.ts                 | waves.rs            | 350               | 7            |
+| Engine        | gameEngine.ts                  | engine.rs           | 220               | 7            |
+| Weapons       | weaponTypes.ts                 | weapons.rs          | 90                | -            |
+| AutoTargeting | autoTargeting.ts               | auto_targeting.rs   | 240               | 7            |
+| **Total**     | **~2,040 lines**               | **~1,660 lines**    | **19% reduction** | **42 tests** |
 
 ### ✅ Advanced Components (3/3 Complete)
 
