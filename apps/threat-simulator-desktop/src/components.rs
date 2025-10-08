@@ -143,6 +143,7 @@ pub fn App() -> impl IntoView {
         let timeout_handle = Rc::new(RefCell::new(None::<i32>));
 
         let window = web_sys::window().unwrap();
+        let window_clone = window.clone();
         let animate_handle = animation_handle.clone();
         let timeout_handle_inner = timeout_handle.clone();
 
@@ -159,7 +160,7 @@ pub fn App() -> impl IntoView {
             if progress < 90 {
                 set_loading_progress.update(|p| *p += 1);
                 // Queue next frame
-                let handle = window
+                let handle = window_clone
                     .request_animation_frame(
                         animate_fn_clone
                             .borrow()
@@ -176,7 +177,7 @@ pub fn App() -> impl IntoView {
                 let timeout_closure = Closure::wrap(Box::new(move || {
                     set_is_loading.set(false);
                 }) as Box<dyn FnMut()>);
-                let handle = window
+                let handle = window_clone
                     .set_timeout_with_callback_and_timeout_and_arguments_0(
                         timeout_closure.as_ref().unchecked_ref(),
                         500,

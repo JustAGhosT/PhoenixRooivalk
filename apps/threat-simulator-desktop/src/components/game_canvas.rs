@@ -5,9 +5,6 @@ use std::rc::Rc;
 use wasm_bindgen::{closure::Closure, JsCast, JsValue};
 use web_sys::{CanvasRenderingContext2d, HtmlCanvasElement};
 
-// Suppress deprecation warnings for canvas API - these methods still work
-#[allow(deprecated)]
-
 #[component]
 pub fn GameCanvas(game_state: GameStateManager, is_running: ReadSignal<bool>) -> impl IntoView {
     let canvas_ref = create_node_ref::<html::Canvas>();
@@ -173,6 +170,7 @@ pub fn GameCanvas(game_state: GameStateManager, is_running: ReadSignal<bool>) ->
     }
 }
 
+#[allow(deprecated)]
 fn render_frame(
     ctx: &CanvasRenderingContext2d,
     game_state: &GameStateManager,
