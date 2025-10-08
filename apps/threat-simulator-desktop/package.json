@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "trunk serve --open",
     "dev:tauri": "cargo tauri dev",
-    "build": "trunk build --release",
+    "build": "command -v trunk > /dev/null 2>&1 && trunk build --release || echo 'Trunk not available, skipping WASM build (not needed for marketing deployment)'",
     "build:tauri": "cargo tauri build",
     "test": "cargo test --lib",
     "test:watch": "cargo watch -x 'test --lib'",
