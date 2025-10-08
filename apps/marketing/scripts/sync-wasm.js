@@ -53,9 +53,7 @@ const wasmFiles = files.filter(
 );
 
 if (wasmFiles.length === 0) {
-  console.warn(
-    "⚠️  Warning: No WASM artifacts found. Skipping WASM sync.",
-  );
+  console.warn("⚠️  Warning: No WASM artifacts found. Skipping WASM sync.");
   console.warn("   The threat simulator has not been built yet.");
   console.warn("   To include WASM simulator:");
   console.warn("     cd apps/threat-simulator-desktop");
