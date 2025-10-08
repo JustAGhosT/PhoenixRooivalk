@@ -225,7 +225,7 @@ export const WasmThreatSimulator: React.FC<WasmThreatSimulatorProps> = ({
       className={`wasm-threat-simulator-container ${className}`}
       style={{
         width: "100%",
-        maxWidth: isTeaser ? "100%" : "100vw",
+        maxWidth: "100%", // Always respect container width
         height: isTeaser ? "600px" : "100vh",
         minHeight: isTeaser ? "600px" : "800px",
         maxHeight: isTeaser ? "600px" : "none",
