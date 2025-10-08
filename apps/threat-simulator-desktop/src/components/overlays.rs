@@ -27,6 +27,25 @@ where
 }
 
 #[component]
+pub fn IntegratedSimulationWarning() -> impl IntoView {
+    view! {
+        <div class="integrated-warning">
+            <div class="warning-icon">"⚠️"</div>
+            <div class="warning-text">
+                <div class="warning-title">"SIMULATION MODULE"</div>
+                <div class="warning-description">
+                    "This interactive module is designed to visualize counter-drone concepts. "
+                    "It does not represent real-world sensor performance, detection ranges, or decision latency."
+                </div>
+                <div class="warning-accept">
+                    "By clicking 'START MISSION', you acknowledge this is a demonstration simulation."
+                </div>
+            </div>
+        </div>
+    }
+}
+
+#[component]
 pub fn AchievementNotification<F>(
     message: ReadSignal<Option<String>>,
     on_dismiss: F,

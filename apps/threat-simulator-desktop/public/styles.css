@@ -303,6 +303,52 @@ body {
   color: #00ffff;
 }
 
+/* Integrated Warning (within start screen) */
+.integrated-warning {
+  display: flex;
+  align-items: flex-start;
+  background: rgba(255, 193, 7, 0.1);
+  border: 1px solid rgba(255, 193, 7, 0.3);
+  border-radius: 8px;
+  padding: 16px;
+  margin: 20px 0;
+  gap: 12px;
+}
+
+.integrated-warning .warning-icon {
+  font-size: 1.5rem;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.integrated-warning .warning-text {
+  flex: 1;
+}
+
+.integrated-warning .warning-title {
+  font-size: 0.9rem;
+  font-weight: bold;
+  color: #ffc107;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.integrated-warning .warning-description {
+  font-size: 0.85rem;
+  color: #e0e0e0;
+  line-height: 1.4;
+  margin-bottom: 8px;
+}
+
+.integrated-warning .warning-accept {
+  font-size: 0.8rem;
+  color: #ffc107;
+  font-style: italic;
+  border-top: 1px solid rgba(255, 193, 7, 0.2);
+  padding-top: 8px;
+}
+
 @keyframes titleGlow {
   0%,
   100% {

@@ -20,7 +20,7 @@ pub use event_feed::{create_feed_item, EventFeed, FeedItem, FeedSeverity};
 pub use game_canvas::GameCanvas;
 pub use hud::Hud;
 pub use loading::LoadingIndicator;
-pub use overlays::{AchievementNotification, SimulationWarning};
+pub use overlays::{AchievementNotification, IntegratedSimulationWarning, SimulationWarning};
 pub use research_panel::ResearchPanel;
 pub use stats_panel::StatsPanel;
 pub use synergy_system::SynergySystem;
@@ -295,14 +295,13 @@ pub fn App() -> impl IntoView {
             // Start screen - shows after loading completes
             <Show when=move || show_start_screen.get() fallback=|| view! { <div></div> }>
                 <div class="start-screen">
-                    // Show warning first
-                    <Show when=move || show_warning.get() fallback=|| view! { <div></div> }>
-                        <SimulationWarning show=show_warning on_close=move || set_show_warning.set(false)/>
-                    </Show>
-                    
                     <div class="start-content">
                         <h1 class="start-title">"Phoenix Rooivalk"</h1>
                         <h2 class="start-subtitle">"Counter-Drone Defense Simulator"</h2>
+                        
+                        // Integrated warning (no close button)
+                        <IntegratedSimulationWarning/>
+                        
                         <div class="start-description">
                             <p>"Defend your mothership against waves of hostile drones."</p>
                             <p>"Deploy weapons, manage resources, and survive as long as you can."</p>
