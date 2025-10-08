@@ -179,25 +179,91 @@ export const WasmThreatSimulator: React.FC<WasmThreatSimulatorProps> = ({
         const response = await fetch(cssUrl);
         const cssText = await response.text();
 
+        // Import postcss dynamically for CSS transformation
+        const postcss = (await import("postcss")).default;
+
         // Create a scoped style element
         const styleElement = document.createElement("style");
         styleElement.id = `wasm-styles-${uniqueMountId}`;
 
-        // Scope all CSS rules to the simulator container
-        const scopedCss = cssText.replace(/([^{}]+){/g, (match, selector) => {
-          // Skip @ rules (media queries, keyframes, etc.)
-          if (selector.trim().startsWith("@")) {
-            return match;
-          }
-          // Scope regular selectors to the container
-          const scopedSelector = selector
-            .split(",")
-            .map((s: string) => `.wasm-threat-simulator-container ${s.trim()}`)
-            .join(", ");
-          return `${scopedSelector} {`;
+        // Generate unique scope identifier
+        const scopeClass = `.wasm-threat-simulator-container`;
+        const keyframePrefix = `wasm-${uniqueMountId}`;
+
+        // PostCSS plugin to scope CSS selectors and handle @keyframes
+        const scopePlugin = () => {
+          return {
+            postcssPlugin: "scope-wasm-css",
+            Once(root: any) {
+              // Track animation name mappings
+              const animationMap = new Map<string, string>();
+
+              // First pass: rename @keyframes and track mappings
+              root.walkAtRules("keyframes", (atRule: any) => {
+                const originalName = atRule.params.trim();
+                const scopedName = `${keyframePrefix}-${originalName}`;
+                animationMap.set(originalName, scopedName);
+                atRule.params = scopedName;
+              });
+
+              // Second pass: scope all selectors and update animation references
+              root.walkRules((rule: any) => {
+                // Skip rules inside @keyframes
+                if (
+                  rule.parent &&
+                  rule.parent.type === "atrule" &&
+                  rule.parent.name === "keyframes"
+                ) {
+                  return;
+                }
+
+                // Scope selectors (handles :root exclusions)
+                rule.selector = rule.selector
+                  .split(",")
+                  .map((selector: string) => {
+                    const trimmed = selector.trim();
+                    // Don't scope :root selectors - skip them
+                    if (trimmed.startsWith(":root")) {
+                      return "";
+                    }
+                    // Prefix with container class
+                    return `${scopeClass} ${trimmed}`;
+                  })
+                  .filter((s: string) => s) // Remove empty selectors
+                  .join(", ");
+
+                // Update animation-name and animation shorthand properties
+                rule.walkDecls((decl: any) => {
+                  if (decl.prop === "animation-name") {
+                    const names = decl.value.split(",").map((n: string) => {
+                      const name = n.trim();
+                      return animationMap.get(name) || name;
+                    });
+                    decl.value = names.join(", ");
+                  } else if (decl.prop === "animation") {
+                    // Handle animation shorthand: find and replace animation names
+                    let value = decl.value;
+                    animationMap.forEach((scopedName, originalName) => {
+                      // Use word boundary regex to match animation names
+                      const regex = new RegExp(`\\b${originalName}\\b`, "g");
+                      value = value.replace(regex, scopedName);
+                    });
+                    decl.value = value;
+                  }
+                });
+              });
+            },
+          };
+        };
+
+        scopePlugin.postcss = true;
+
+        // Process CSS with PostCSS
+        const result = await postcss([scopePlugin()]).process(cssText, {
+          from: undefined,
         });
 
-        styleElement.textContent = scopedCss;
+        styleElement.textContent = result.css;
         document.head.appendChild(styleElement);
         setWasmStylesLoaded(true);
       } catch (err) {
