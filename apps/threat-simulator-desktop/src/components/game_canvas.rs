@@ -2,7 +2,7 @@ use crate::game::{engine::GameEngine, GameStateManager};
 use leptos::*;
 use std::cell::RefCell;
 use std::rc::Rc;
-use wasm_bindgen::{closure::Closure, JsCast, JsValue};
+use wasm_bindgen::{closure::Closure, JsCast};
 use web_sys::{CanvasRenderingContext2d, HtmlCanvasElement};
 
 #[component]
