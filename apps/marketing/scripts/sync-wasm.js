@@ -2,10 +2,10 @@
 
 /**
  * sync-wasm.js
- * 
+ *
  * Syncs WASM artifacts from the threat-simulator-desktop dist folder
  * to the marketing site's public/wasm folder.
- * 
+ *
  * This script runs automatically before building the marketing site
  * to ensure the latest WASM build is included.
  */
@@ -14,10 +14,7 @@ const fs = require("fs");
 const path = require("path");
 
 // Paths
-const sourceDir = path.join(
-  __dirname,
-  "../../threat-simulator-desktop/dist"
-);
+const sourceDir = path.join(__dirname, "../../threat-simulator-desktop/dist");
 const targetDir = path.join(__dirname, "../public/wasm");
 
 console.log("🔄 Syncing WASM artifacts...");
@@ -32,12 +29,16 @@ if (!fs.existsSync(targetDir)) {
 
 // Check if source directory exists
 if (!fs.existsSync(sourceDir)) {
-  console.error(
-    "❌ Error: Source directory does not exist. Please build the threat simulator first:"
+  console.warn(
+    "⚠️  Warning: Source directory does not exist. Skipping WASM sync.",
   );
-  console.error("   cd apps/threat-simulator-desktop");
-  console.error("   pnpm build");
-  process.exit(1);
+  console.warn("   The threat simulator has not been built yet.");
+  console.warn("   To include WASM simulator:");
+  console.warn("     cd apps/threat-simulator-desktop");
+  console.warn("     pnpm build");
+  console.warn("     cd ../marketing");
+  console.warn("     pnpm sync:wasm");
+  process.exit(0);
 }
 
 // Read source directory
@@ -48,16 +49,20 @@ const wasmFiles = files.filter(
   (file) =>
     file.endsWith(".wasm") ||
     file.endsWith(".js") ||
-    (file.endsWith(".css") && file.startsWith("styles-"))
+    (file.endsWith(".css") && file.startsWith("styles-")),
 );
 
 if (wasmFiles.length === 0) {
-  console.error(
-    "❌ Error: No WASM artifacts found. Please build the threat simulator first:"
+  console.warn(
+    "⚠️  Warning: No WASM artifacts found. Skipping WASM sync.",
   );
-  console.error("   cd apps/threat-simulator-desktop");
-  console.error("   pnpm build");
-  process.exit(1);
+  console.warn("   The threat simulator has not been built yet.");
+  console.warn("   To include WASM simulator:");
+  console.warn("     cd apps/threat-simulator-desktop");
+  console.warn("     pnpm build");
+  console.warn("     cd ../marketing");
+  console.warn("     pnpm sync:wasm");
+  process.exit(0);
 }
 
 // Copy files
@@ -112,8 +117,7 @@ const manifest = {
 
 fs.writeFileSync(
   path.join(targetDir, "manifest.json"),
-  JSON.stringify(manifest, null, 2)
+  JSON.stringify(manifest, null, 2),
 );
 
 console.log("\n📝 Manifest written to public/wasm/manifest.json");
-

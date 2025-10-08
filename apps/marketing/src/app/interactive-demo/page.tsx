@@ -12,10 +12,11 @@ export default function InteractiveDemoPage() {
             Interactive Defense System Demonstration
           </p>
           <p className="text-gray-400 max-w-3xl mx-auto">
-            Experience the power of advanced counter-UAS defense technology built with
-            Rust and WebAssembly for maximum performance. The demo will automatically
-            enter full-screen mode for optimal interaction. Control weapons, deploy
-            drones, and neutralize aerial threats in real-time.
+            Experience the power of advanced counter-UAS defense technology
+            built with Rust and WebAssembly for maximum performance. The demo
+            will automatically enter full-screen mode for optimal interaction.
+            Control weapons, deploy drones, and neutralize aerial threats in
+            real-time.
           </p>
         </div>
 

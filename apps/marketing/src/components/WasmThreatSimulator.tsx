@@ -34,8 +34,10 @@ export const WasmThreatSimulator: React.FC<WasmThreatSimulatorProps> = ({
         setError(null);
 
         // Resolve asset URLs via manifest to avoid hardcoded hashes
-        const manifest = await fetch("/wasm/manifest.json", { cache: "no-store" })
-          .then(r => (r.ok ? r.json() : null))
+        const manifest = await fetch("/wasm/manifest.json", {
+          cache: "no-store",
+        })
+          .then((r) => (r.ok ? r.json() : null))
           .catch(() => null);
         const pick = (ext: string, fallback: string) => {
           if (manifest && Array.isArray(manifest.files)) {
@@ -44,13 +46,20 @@ export const WasmThreatSimulator: React.FC<WasmThreatSimulatorProps> = ({
           }
           return fallback;
         };
-        const jsUrl = pick(".js", "/wasm/threat-simulator-desktop-43e4df905ff42f76.js");
-        const wasmUrl = pick(".wasm", "/wasm/threat-simulator-desktop-43e4df905ff42f76_bg.wasm");
+        const jsUrl = pick(
+          ".js",
+          "/wasm/threat-simulator-desktop-43e4df905ff42f76.js",
+        );
+        const wasmUrl = pick(
+          ".wasm",
+          "/wasm/threat-simulator-desktop-43e4df905ff42f76_bg.wasm",
+        );
 
         // Load WASM via dynamic import to avoid inline scripts/CSP issues
         const mod = await import(/* webpackIgnore: true */ jsUrl);
         const init = mod.default || mod.__wbg_init;
-        if (typeof init !== "function") throw new Error("Invalid WASM module: missing default init");
+        if (typeof init !== "function")
+          throw new Error("Invalid WASM module: missing default init");
         await init({ module_or_path: wasmUrl });
         if (!mounted) return;
 
@@ -60,9 +69,9 @@ export const WasmThreatSimulator: React.FC<WasmThreatSimulatorProps> = ({
         // Apply fullscreen if requested
         if (autoFullscreen && containerRef.current?.requestFullscreen) {
           setTimeout(() => {
-            containerRef.current!
-              .requestFullscreen()
-              .catch(() => { /* ignore: user gesture required or denied */ });
+            containerRef.current!.requestFullscreen().catch(() => {
+              /* ignore: user gesture required or denied */
+            });
           }, 500);
         }
       } catch (err) {
