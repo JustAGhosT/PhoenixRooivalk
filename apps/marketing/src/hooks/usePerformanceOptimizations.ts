@@ -42,14 +42,8 @@ export const usePerformanceOptimizations = () => {
     `;
     document.head.appendChild(style);
 
-    // Add font preloading links
-    const preloadLink = document.createElement("link");
-    preloadLink.rel = "preload";
-    preloadLink.href = "/fonts/inter-var.woff2";
-    preloadLink.as = "font";
-    preloadLink.type = "font/woff2";
-    preloadLink.crossOrigin = "anonymous";
-    document.head.appendChild(preloadLink);
+    // Add font preloading links (removed non-existent font)
+    // Note: Using system fonts as defined in globals.css
 
     const preconnect1 = document.createElement("link");
     preconnect1.rel = "preconnect";
@@ -65,8 +59,6 @@ export const usePerformanceOptimizations = () => {
     return () => {
       // Cleanup on unmount
       if (style.parentNode) style.parentNode.removeChild(style);
-      if (preloadLink.parentNode)
-        preloadLink.parentNode.removeChild(preloadLink);
       if (preconnect1.parentNode)
         preconnect1.parentNode.removeChild(preconnect1);
       if (preconnect2.parentNode)
