@@ -32,6 +32,7 @@ export const WasmThreatSimulator: React.FC<WasmThreatSimulatorProps> = ({
   const [error, setError] = useState<string | null>(null);
   const [wasmInitialized, setWasmInitialized] = useState(false);
   const [cssUrl, setCssUrl] = useState<string | null>(null);
+  const [wasmStylesLoaded, setWasmStylesLoaded] = useState(false);
 
   // Generate unique mount ID for this instance
   const mountId = useId().replace(/:/g, "-"); // Replace React's : separator
@@ -169,12 +170,166 @@ export const WasmThreatSimulator: React.FC<WasmThreatSimulatorProps> = ({
     };
   }, [autoFullscreen, uniqueMountId]);
 
+  // Dynamically load and scope WASM CSS to prevent global interference
+  useEffect(() => {
+    if (!cssUrl || wasmStylesLoaded) return;
+
+    const loadWasmStyles = async () => {
+      try {
+        const response = await fetch(cssUrl);
+        const cssText = await response.text();
+
+        // Import postcss dynamically for CSS transformation
+        const postcss = (await import("postcss")).default;
+
+        // Create a scoped style element
+        const styleElement = document.createElement("style");
+        styleElement.id = `wasm-styles-${uniqueMountId}`;
+
+        // Generate unique scope identifier
+        const scopeClass = `.wasm-threat-simulator-container`;
+        const keyframePrefix = `wasm-${uniqueMountId}`;
+
+        // PostCSS plugin to scope CSS selectors and handle @keyframes
+        const scopePlugin = () => {
+          interface PostCSSNode {
+            parent?: PostCSSNode;
+            type: string;
+            name?: string;
+            params?: string;
+            selector?: string;
+            walkDecls?: (callback: (decl: PostCSSDecl) => void) => void;
+          }
+
+          interface PostCSSAtRule extends PostCSSNode {
+            params: string;
+          }
+
+          interface PostCSSRule extends PostCSSNode {
+            selector: string;
+            parent?: PostCSSNode;
+            walkDecls: (callback: (decl: PostCSSDecl) => void) => void;
+          }
+
+          interface PostCSSDecl {
+            prop: string;
+            value: string;
+          }
+
+          interface PostCSSRoot {
+            walkAtRules: (
+              name: string,
+              callback: (atRule: PostCSSAtRule) => void,
+            ) => void;
+            walkRules: (callback: (rule: PostCSSRule) => void) => void;
+          }
+
+          return {
+            postcssPlugin: "scope-wasm-css",
+            Once(root: PostCSSRoot) {
+              // Track animation name mappings
+              const animationMap = new Map<string, string>();
+
+              // First pass: rename @keyframes and track mappings
+              root.walkAtRules("keyframes", (atRule: PostCSSAtRule) => {
+                const originalName = atRule.params.trim();
+                const scopedName = `${keyframePrefix}-${originalName}`;
+                animationMap.set(originalName, scopedName);
+                atRule.params = scopedName;
+              });
+
+              // Second pass: scope all selectors and update animation references
+              root.walkRules((rule: PostCSSRule) => {
+                // Skip rules inside @keyframes
+                if (
+                  rule.parent &&
+                  rule.parent.type === "atrule" &&
+                  rule.parent.name === "keyframes"
+                ) {
+                  return;
+                }
+
+                // Scope selectors (handles :root exclusions)
+                rule.selector = rule.selector
+                  .split(",")
+                  .map((selector: string) => {
+                    const trimmed = selector.trim();
+                    // Don't scope :root selectors - skip them
+                    if (trimmed.startsWith(":root")) {
+                      return "";
+                    }
+                    // Prefix with container class
+                    return `${scopeClass} ${trimmed}`;
+                  })
+                  .filter((s: string) => s) // Remove empty selectors
+                  .join(", ");
+
+                // Update animation-name and animation shorthand properties
+                rule.walkDecls((decl: PostCSSDecl) => {
+                  if (decl.prop === "animation-name") {
+                    const names = decl.value.split(",").map((n: string) => {
+                      const name = n.trim();
+                      return animationMap.get(name) || name;
+                    });
+                    decl.value = names.join(", ");
+                  } else if (decl.prop === "animation") {
+                    // Handle animation shorthand: find and replace animation names
+                    let value = decl.value;
+                    animationMap.forEach((scopedName, originalName) => {
+                      // Escape special regex characters in animation name
+                      const escapedName = originalName.replace(
+                        /[.*+?^${}()|[\]\\]/g,
+                        "\\$&",
+                      );
+                      // Use word boundary regex to match animation names
+                      // eslint-disable-next-line security/detect-non-literal-regexp
+                      const regex = new RegExp(`\\b${escapedName}\\b`, "g");
+                      value = value.replace(regex, scopedName);
+                    });
+                    decl.value = value;
+                  }
+                });
+              });
+            },
+          };
+        };
+
+        scopePlugin.postcss = true;
+
+        // Process CSS with PostCSS
+        const result = await postcss([scopePlugin()]).process(cssText, {
+          from: undefined,
+        });
+
+        styleElement.textContent = result.css;
+        document.head.appendChild(styleElement);
+        setWasmStylesLoaded(true);
+      } catch (err) {
+        console.warn("Failed to load WASM styles:", err);
+        setWasmStylesLoaded(true); // Continue without styles
+      }
+    };
+
+    loadWasmStyles();
+
+    return () => {
+      // Cleanup scoped styles on unmount
+      const styleElement = document.getElementById(
+        `wasm-styles-${uniqueMountId}`,
+      );
+      if (styleElement) {
+        styleElement.remove();
+      }
+    };
+  }, [cssUrl, uniqueMountId, wasmStylesLoaded]);
+
   return (
     <div
       ref={containerRef}
       className={`wasm-threat-simulator-container ${className}`}
       style={{
         width: "100%",
+        maxWidth: "100%", // Always respect container width
         height: isTeaser ? "600px" : "100vh",
         minHeight: isTeaser ? "600px" : "800px",
         maxHeight: isTeaser ? "600px" : "none",
@@ -184,43 +339,10 @@ export const WasmThreatSimulator: React.FC<WasmThreatSimulatorProps> = ({
         overflow: "hidden",
         display: "flex",
         flexDirection: "column",
+        margin: "0 auto",
       }}
     >
-      {/* Load WASM styles - dynamically resolved from manifest */}
-      {cssUrl && <link rel="stylesheet" href={cssUrl} />}
-
-      {/* Override WASM global styles to prevent interference with React components */}
-      <style jsx global>{`
-        /* Only override specific WASM global styles that interfere */
-        body {
-          overflow: auto !important;
-        }
-
-        /* Scope WASM styles to the simulator container only */
-        .wasm-threat-simulator-container {
-          isolation: isolate;
-          contain: layout style paint;
-        }
-
-        .wasm-threat-simulator-container * {
-          box-sizing: border-box;
-        }
-
-        /* Hide overlays in teaser mode for cleaner presentation */
-        ${isTeaser
-          ? `
-          .warning-overlay {
-            display: none !important;
-          }
-          .achievement-notification {
-            display: none !important;
-          }
-          .game-over-overlay {
-            display: none !important;
-          }
-        `
-          : ""}
-      `}</style>
+      {/* WASM styles are now dynamically loaded and scoped - no inline overrides needed */}
 
       {isLoading && (
         <div
