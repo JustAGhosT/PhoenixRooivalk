@@ -12,7 +12,7 @@ const metrics = [
 export const MetricsSection: React.FC = () => {
   return (
     <section
-      className="px-[5%] py-12 bg-[linear-gradient(180deg,transparent,rgba(0,136,255,0.05))]"
+      className="px-6 md:px-[5%] lg:px-8 py-12 bg-[linear-gradient(180deg,transparent,rgba(0,136,255,0.05))]"
       id="metrics"
     >
       <div className="max-w-[1400px] mx-auto">
