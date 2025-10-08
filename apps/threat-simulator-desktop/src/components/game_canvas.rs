@@ -28,6 +28,14 @@ pub fn GameCanvas(game_state: GameStateManager, is_running: ReadSignal<bool>) ->
 
         let canvas = canvas_elem.unchecked_ref::<HtmlCanvasElement>();
         web_sys::console::log_1(&"Canvas element found!".into());
+        
+        // Check canvas visibility
+        let style = window.get_computed_style(&canvas_elem).unwrap().unwrap();
+        let display = style.get_property_value("display").unwrap_or_else(|_| "unknown".to_string());
+        let visibility = style.get_property_value("visibility").unwrap_or_else(|_| "unknown".to_string());
+        let opacity = style.get_property_value("opacity").unwrap_or_else(|_| "unknown".to_string());
+        web_sys::console::log_3(&"Canvas CSS display:".into(), &display.into(), &visibility.into());
+        web_sys::console::log_1(&format!("Canvas CSS opacity: {}", opacity).into());
 
         // Get 2D context with proper error handling
         let context = match canvas.get_context("2d") {
@@ -62,8 +70,11 @@ pub fn GameCanvas(game_state: GameStateManager, is_running: ReadSignal<bool>) ->
             1080.0
         };
         web_sys::console::log_3(&"Canvas size:".into(), &width.into(), &height.into());
+        web_sys::console::log_3(&"Canvas bounding rect:".into(), &rect.width().into(), &rect.height().into());
+        web_sys::console::log_3(&"Canvas position:".into(), &rect.left().into(), &rect.top().into());
         canvas.set_width(width as u32);
         canvas.set_height(height as u32);
+        web_sys::console::log_3(&"Canvas dimensions set to:".into(), &(canvas.width() as f64).into(), &(canvas.height() as f64).into());
 
         // Clone for the game loop
         let engine_loop = engine.clone();
