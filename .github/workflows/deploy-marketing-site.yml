@@ -163,6 +163,7 @@ jobs:
           fi
 
       - name: Sanitize branch name for Netlify alias
+        id: sanitize_branch_name
         if: steps.check_secrets_preview.outputs.secrets_available == 'true'
         run: |
           # Sanitize branch name for Netlify alias (lowercase, replace / with -, remove invalid chars)
@@ -178,8 +179,7 @@ jobs:
           publish-dir: "apps/marketing/out"
           production-deploy: false
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          deploy-message:
-            "Deploy Preview (marketing) from PR #${{
+          deploy-message: "Deploy Preview (marketing) from PR #${{
             github.event.pull_request.number }}"
           enable-commit-comment: true
           enable-commit-status: true
