@@ -101,12 +101,14 @@ pub fn GameCanvas(game_state: GameStateManager, is_running: ReadSignal<bool>) ->
             web_sys::console::error_1(&"Performance API not available in this browser".into());
             return;
         };
-        let mut last_time = performance.now();
+        let last_time = Rc::new(RefCell::new(performance.now()));
+        let last_time_clone = last_time.clone();
 
-        let closure = Rc::new(RefCell::new(None::<Closure<dyn FnMut(f64)>>));
-        let closure_clone = closure.clone();
+        // Create the animation frame callback
+        let animation_closure = Rc::new(RefCell::new(None::<Closure<dyn FnMut(f64)>>));
+        let animation_closure_clone = animation_closure.clone();
 
-        *closure.borrow_mut() = Some(Closure::wrap(Box::new(move |current_time: f64| {
+        let callback = Closure::wrap(Box::new(move |current_time: f64| {
             web_sys::console::log_1(&"Animation loop callback called".into());
             let is_game_running = *is_running_loop.borrow();
             web_sys::console::log_1(&format!("is_running value: {}", is_game_running).into());
@@ -115,7 +117,7 @@ pub fn GameCanvas(game_state: GameStateManager, is_running: ReadSignal<bool>) ->
                 // Still request next frame even when not running, so we can check again
                 if let Some(win) = web_sys::window() {
                     let _ = win.request_animation_frame(
-                        closure_clone
+                        animation_closure_clone
                             .borrow()
                             .as_ref()
                             .unwrap()
@@ -127,8 +129,9 @@ pub fn GameCanvas(game_state: GameStateManager, is_running: ReadSignal<bool>) ->
             }
             web_sys::console::log_1(&"Animation loop executing - game is running!".into());
 
-            let delta_time = ((current_time - last_time) / 1000.0) as f32;
-            last_time = current_time;
+            let prev_time = *last_time_clone.borrow();
+            let delta_time = ((current_time - prev_time) / 1000.0) as f32;
+            *last_time_clone.borrow_mut() = current_time;
 
             // Clamp delta time to prevent huge jumps
             let delta_time = delta_time.min(0.1).max(0.001);
@@ -160,7 +163,7 @@ pub fn GameCanvas(game_state: GameStateManager, is_running: ReadSignal<bool>) ->
                 web_sys::console::error_1(&"Canvas context has no canvas element".into());
             }
             match std::panic::catch_unwind(|| {
-                render_frame(&context, &game_state_loop, width, height);
+            render_frame(&context, &game_state_loop, width, height);
             }) {
                 Ok(_) => web_sys::console::log_1(&"render_frame call completed".into()),
                 Err(e) => web_sys::console::error_1(&format!("render_frame panic: {:?}", e).into()),
@@ -181,7 +184,7 @@ pub fn GameCanvas(game_state: GameStateManager, is_running: ReadSignal<bool>) ->
             // Request next frame
             if let Some(win) = web_sys::window() {
                 if let Err(e) = win.request_animation_frame(
-                    closure_clone
+                    animation_closure_clone
                         .borrow()
                         .as_ref()
                         .unwrap()
@@ -193,24 +196,38 @@ pub fn GameCanvas(game_state: GameStateManager, is_running: ReadSignal<bool>) ->
             } else {
                 web_sys::console::error_1(&"Window unavailable for animation frame".into());
             }
-        }) as Box<dyn FnMut(f64)>));
+        }) as Box<dyn FnMut(f64)>);
+        
+        *animation_closure.borrow_mut() = Some(callback);
 
         // Start the animation loop
         web_sys::console::log_1(&"Starting animation loop".into());
-        if let Err(e) = window
-            .request_animation_frame(closure.borrow().as_ref().unwrap().as_ref().unchecked_ref())
-        {
-            web_sys::console::error_2(&"Failed to start animation loop:".into(), &e);
+        
+        // Test that the closure is properly created
+        if animation_closure.borrow().is_none() {
+            web_sys::console::error_1(&"Closure is None!".into());
             return;
         }
-        web_sys::console::log_1(&"Animation loop started successfully".into());
+        web_sys::console::log_1(&"Closure created successfully".into());
+        
+        match window.request_animation_frame(
+            animation_closure.borrow().as_ref().unwrap().as_ref().unchecked_ref()
+        ) {
+            Ok(handle) => {
+                web_sys::console::log_2(&"Animation loop started with handle:".into(), &handle.into());
+            }
+            Err(e) => {
+                web_sys::console::error_2(&"Failed to start animation loop:".into(), &e);
+                return;
+            }
+        }
 
         // Clean up: break the Rc cycle so the closure can be dropped
         on_cleanup({
-            let closure = closure.clone();
+            let animation_closure = animation_closure.clone();
             move || {
                 // Dropping the Closure removes the JS callback reference
-                let _ = closure.borrow_mut().take();
+                let _ = animation_closure.borrow_mut().take();
             }
         });
     });
@@ -242,13 +259,13 @@ fn render_frame(
     // Draw simple radar display
     let center_x = width / 2.0;
     let center_y = height / 2.0;
-    
+
     // Radar background circle
     ctx.set_fill_style_str("rgba(0, 50, 0, 0.3)");
     ctx.begin_path();
     ctx.arc(center_x, center_y, 200.0, 0.0, 2.0 * std::f64::consts::PI).unwrap();
     ctx.fill();
-    
+
     // Radar grid lines
     ctx.set_stroke_style_str("rgba(0, 255, 0, 0.5)");
     ctx.set_line_width(1.0);
@@ -270,7 +287,7 @@ fn render_frame(
     let angle = (now.get_seconds() as f64 + now.get_milliseconds() as f64 / 1000.0) * 6.0; // 6 degrees per second
     let radians = angle * std::f64::consts::PI / 180.0;
     
-    ctx.begin_path();
+        ctx.begin_path();
     ctx.move_to(center_x, center_y);
     ctx.line_to(
         center_x + 200.0 * radians.cos(),
@@ -280,9 +297,9 @@ fn render_frame(
     
     // Center dot
     ctx.set_fill_style_str("#00ff00");
-    ctx.begin_path();
+        ctx.begin_path();
     ctx.arc(center_x, center_y, 3.0, 0.0, 2.0 * std::f64::consts::PI).unwrap();
-    ctx.fill();
+        ctx.fill();
     
     web_sys::console::log_1(&"render_frame: Radar display drawn".into());
     
