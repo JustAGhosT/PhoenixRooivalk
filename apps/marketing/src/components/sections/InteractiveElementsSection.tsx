@@ -130,7 +130,7 @@ export const InteractiveElementsSection: React.FC = () => {
                 {/* Sensitivity Toggle */}
                 <div>
                   <fieldset>
-                    <legend className="block text-[var(--text-primary)] font-semibold mb-3">
+                    <legend className="block text-[rgb(var(--text-primary))] font-semibold mb-3">
                       Analysis Sensitivity (Default: Conservative)
                     </legend>
                     <div className="flex gap-2">
@@ -152,7 +152,7 @@ export const InteractiveElementsSection: React.FC = () => {
                       )}
                     </div>
                   </fieldset>
-                  <p className="text-xs text-[var(--text-muted)] mt-2">
+                  <p className="text-xs text-[rgb(var(--text-muted))] mt-2">
                     Conservative uses lower success rates and incident costs for
                     realistic projections.
                   </p>
@@ -444,32 +444,32 @@ export const InteractiveElementsSection: React.FC = () => {
               <div className="card">
                 <div className="text-center mb-4">
                   <div className="text-3xl mb-2">🏢</div>
-                  <h4 className="text-lg font-bold text-[var(--action-primary)] mb-2">
+                  <h4 className="text-lg font-bold text-[rgb(var(--action-primary))] mb-2">
                     Civilian Applications
                   </h4>
                 </div>
                 <div className="space-y-3">
                   <div className="text-sm">
-                    <div className="font-semibold text-[var(--text-primary)] mb-1">
+                    <div className="font-semibold text-[rgb(var(--text-primary))] mb-1">
                       Airport Security
                     </div>
-                    <div className="text-[var(--text-muted)]">
+                    <div className="text-[rgb(var(--text-muted))]">
                       Perimeter protection, runway monitoring
                     </div>
                   </div>
                   <div className="text-sm">
-                    <div className="font-semibold text-[var(--text-primary)] mb-1">
+                    <div className="font-semibold text-[rgb(var(--text-primary))] mb-1">
                       Critical Infrastructure
                     </div>
-                    <div className="text-[var(--text-muted)]">
+                    <div className="text-[rgb(var(--text-muted))]">
                       Power plants, water facilities, communication towers
                     </div>
                   </div>
                   <div className="text-sm">
-                    <div className="font-semibold text-[var(--text-primary)] mb-1">
+                    <div className="font-semibold text-[rgb(var(--text-primary))] mb-1">
                       Event Security
                     </div>
-                    <div className="text-[var(--text-muted)]">
+                    <div className="text-[rgb(var(--text-muted))]">
                       Stadiums, concerts, public gatherings
                     </div>
                   </div>
@@ -480,32 +480,32 @@ export const InteractiveElementsSection: React.FC = () => {
               <div className="card">
                 <div className="text-center mb-4">
                   <div className="text-3xl mb-2">🏭</div>
-                  <h4 className="text-lg font-bold text-[var(--action-primary)] mb-2">
+                  <h4 className="text-lg font-bold text-[rgb(var(--action-primary))] mb-2">
                     Commercial Security
                   </h4>
                 </div>
                 <div className="space-y-3">
                   <div className="text-sm">
-                    <div className="font-semibold text-[var(--text-primary)] mb-1">
+                    <div className="font-semibold text-[rgb(var(--text-primary))] mb-1">
                       Corporate Campus
                     </div>
-                    <div className="text-[var(--text-muted)]">
+                    <div className="text-[rgb(var(--text-muted))]">
                       Headquarters, R&D facilities
                     </div>
                   </div>
                   <div className="text-sm">
-                    <div className="font-semibold text-[var(--text-primary)] mb-1">
+                    <div className="font-semibold text-[rgb(var(--text-primary))] mb-1">
                       Data Center Security
                     </div>
-                    <div className="text-[var(--text-muted)]">
+                    <div className="text-[rgb(var(--text-muted))]">
                       Server farms, cloud infrastructure
                     </div>
                   </div>
                   <div className="text-sm">
-                    <div className="font-semibold text-[var(--text-primary)] mb-1">
+                    <div className="font-semibold text-[rgb(var(--text-primary))] mb-1">
                       Port Security
                     </div>
-                    <div className="text-[var(--text-muted)]">
+                    <div className="text-[rgb(var(--text-muted))]">
                       Shipping terminals, cargo facilities
                     </div>
                   </div>
@@ -516,32 +516,32 @@ export const InteractiveElementsSection: React.FC = () => {
               <div className="card">
                 <div className="text-center mb-4">
                   <div className="text-3xl mb-2">🔬</div>
-                  <h4 className="text-lg font-bold text-[var(--action-primary)] mb-2">
+                  <h4 className="text-lg font-bold text-[rgb(var(--action-primary))] mb-2">
                     Research & Development
                   </h4>
                 </div>
                 <div className="space-y-3">
                   <div className="text-sm">
-                    <div className="font-semibold text-[var(--text-primary)] mb-1">
+                    <div className="font-semibold text-[rgb(var(--text-primary))] mb-1">
                       University Partnerships
                     </div>
-                    <div className="text-[var(--text-muted)]">
+                    <div className="text-[rgb(var(--text-muted))]">
                       Academic research collaboration
                     </div>
                   </div>
                   <div className="text-sm">
-                    <div className="font-semibold text-[var(--text-primary)] mb-1">
+                    <div className="font-semibold text-[rgb(var(--text-primary))] mb-1">
                       Government Labs
                     </div>
-                    <div className="text-[var(--text-muted)]">
+                    <div className="text-[rgb(var(--text-muted))]">
                       DARPA, NSF, national laboratories
                     </div>
                   </div>
                   <div className="text-sm">
-                    <div className="font-semibold text-[var(--text-primary)] mb-1">
+                    <div className="font-semibold text-[rgb(var(--text-primary))] mb-1">
                       International Cooperation
                     </div>
-                    <div className="text-[var(--text-muted)]">
+                    <div className="text-[rgb(var(--text-muted))]">
                       NATO, allied defense research
                     </div>
                   </div>
@@ -552,32 +552,32 @@ export const InteractiveElementsSection: React.FC = () => {
               <div className="card">
                 <div className="text-center mb-4">
                   <div className="text-3xl mb-2">⚡</div>
-                  <h4 className="text-lg font-bold text-[var(--action-primary)] mb-2">
+                  <h4 className="text-lg font-bold text-[rgb(var(--action-primary))] mb-2">
                     Technology Licensing
                   </h4>
                 </div>
                 <div className="space-y-3">
                   <div className="text-sm">
-                    <div className="font-semibold text-[var(--text-primary)] mb-1">
+                    <div className="font-semibold text-[rgb(var(--text-primary))] mb-1">
                       Sensor Fusion
                     </div>
-                    <div className="text-[var(--text-muted)]">
+                    <div className="text-[rgb(var(--text-muted))]">
                       Core detection algorithms
                     </div>
                   </div>
                   <div className="text-sm">
-                    <div className="font-semibold text-[var(--text-primary)] mb-1">
+                    <div className="font-semibold text-[rgb(var(--text-primary))] mb-1">
                       Edge Processing
                     </div>
-                    <div className="text-[var(--text-muted)]">
+                    <div className="text-[rgb(var(--text-muted))]">
                       Autonomous decision-making
                     </div>
                   </div>
                   <div className="text-sm">
-                    <div className="font-semibold text-[var(--text-primary)] mb-1">
+                    <div className="font-semibold text-[rgb(var(--text-primary))] mb-1">
                       Blockchain Integration
                     </div>
-                    <div className="text-[var(--text-muted)]">
+                    <div className="text-[rgb(var(--text-muted))]">
                       Evidence management systems
                     </div>
                   </div>
