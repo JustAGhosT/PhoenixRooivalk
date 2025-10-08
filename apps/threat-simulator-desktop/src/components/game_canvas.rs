@@ -96,13 +96,14 @@ pub fn GameCanvas(game_state: GameStateManager, is_running: ReadSignal<bool>) ->
             }
             return;
         };
-        let Some(performance) = window.performance() else {
+        let Some(_performance) = window.performance() else {
             if cfg!(debug_assertions) {
             web_sys::console::error_1(&"Performance API not available in this browser".into());
             }
             return;
         };
-        let last_time = Rc::new(RefCell::new(performance.now()));
+        // Use -1.0 as sentinel for uninitialized - will be set on first frame
+        let last_time = Rc::new(RefCell::new(-1.0));
         let last_time_clone = last_time.clone();
 
         // Clone the animation closure and scheduled flag for this scope
@@ -119,12 +120,18 @@ pub fn GameCanvas(game_state: GameStateManager, is_running: ReadSignal<bool>) ->
                 return;
             }
 
+            // Lazily initialize last_time on first frame to get accurate delta
             let prev_time = *last_time_clone.borrow();
-            let delta_time = ((current_time - prev_time) / 1000.0) as f32;
-            *last_time_clone.borrow_mut() = current_time;
-
-            // Clamp delta time to prevent huge jumps
-            let delta_time = delta_time.min(0.1).max(0.001);
+            let delta_time = if prev_time < 0.0 {
+                // First frame: set last_time to current and use near-zero delta
+                *last_time_clone.borrow_mut() = current_time;
+                0.001 // Minimal delta for first frame
+            } else {
+                let dt = ((current_time - prev_time) / 1000.0) as f32;
+                *last_time_clone.borrow_mut() = current_time;
+                // Clamp delta time to prevent huge jumps
+                dt.min(0.1).max(0.001)
+            };
 
             // Update game engine
             {
@@ -472,3 +479,4 @@ fn render_frame(
     ctx.fill_text("v0.1.0-alpha", width - 80.0, height - 10.0)
         .unwrap();
 }
+
