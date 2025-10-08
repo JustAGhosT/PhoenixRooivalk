@@ -46,7 +46,8 @@ pub fn App() -> impl IntoView {
     let (show_research, set_show_research) = create_signal(false);
     let (show_token_store, set_show_token_store) = create_signal(false);
     let (show_synergies, set_show_synergies) = create_signal(false); // Hide by default
-    let (is_running, set_is_running) = create_signal(true); // Start running
+    let (is_running, set_is_running) = create_signal(false); // Don't start until user clicks Start
+    let (show_start_screen, set_show_start_screen) = create_signal(false); // Show after loading
     let (achievement_message, set_achievement_message) = create_signal(None::<String>);
     let (event_feed, set_event_feed) = create_signal(Vec::<FeedItem>::new());
 
@@ -236,10 +237,10 @@ pub fn App() -> impl IntoView {
                 *animate_handle.borrow_mut() = Some(handle);
             } else if progress < 100 {
                 set_loading_progress.set(100);
-                // Once at 100%, schedule turning loading off
+                // Once at 100%, schedule turning loading off and showing start screen
                 let timeout_closure = Closure::wrap(Box::new(move || {
                     set_is_loading.set(false);
-                    set_is_running.set(true); // Start the game after loading completes
+                    set_show_start_screen.set(true); // Show start screen after loading completes
                 }) as Box<dyn FnMut()>);
                 let handle = window_clone
                     .set_timeout_with_callback_and_timeout_and_arguments_0(
@@ -289,6 +290,37 @@ pub fn App() -> impl IntoView {
                 view! { <div></div> }
             }>
                 <LoadingIndicator progress=loading_progress/>
+            </Show>
+
+            // Start screen - shows after loading completes
+            <Show when=move || show_start_screen.get() fallback=|| view! { <div></div> }>
+                <div class="start-screen">
+                    <div class="start-content">
+                        <h1 class="start-title">"Phoenix Rooivalk"</h1>
+                        <h2 class="start-subtitle">"Counter-Drone Defense Simulator"</h2>
+                        <div class="start-description">
+                            <p>"Defend your mothership against waves of hostile drones."</p>
+                            <p>"Deploy weapons, manage resources, and survive as long as you can."</p>
+                        </div>
+                        <button
+                            class="start-button"
+                            on:click=move |_| {
+                                set_show_start_screen.set(false);
+                                set_is_running.set(true);
+                                set_event_feed.update(|feed| {
+                                    feed.push(create_feed_item("Mission started".to_string(), FeedSeverity::Success));
+                                });
+                            }
+                        >
+                            "START MISSION"
+                        </button>
+                        <div class="start-controls">
+                            <p><strong>"Controls:"</strong></p>
+                            <p>"SPACE - Pause/Resume | R - Reset | H - Help"</p>
+                            <p>"E - Energy | D - Drones | S - Stats | F - Events"</p>
+                        </div>
+                    </div>
+                </div>
             </Show>
 
             // Simulation warning overlay

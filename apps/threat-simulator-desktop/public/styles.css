@@ -213,6 +213,106 @@ body {
   }
 }
 
+/* Start Screen */
+.start-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #0a0e1a 0%, #1a1f3a 50%, #0a0e1a 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  animation: fadeIn 0.5s ease;
+}
+
+.start-content {
+  text-align: center;
+  max-width: 600px;
+  padding: 40px;
+  background: rgba(10, 14, 26, 0.8);
+  border: 2px solid rgba(0, 255, 255, 0.3);
+  border-radius: 10px;
+  box-shadow: 0 0 30px rgba(0, 255, 255, 0.2);
+}
+
+.start-title {
+  font-size: 3rem;
+  font-weight: bold;
+  color: #00ffff;
+  margin-bottom: 10px;
+  text-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+  animation: titleGlow 2s ease-in-out infinite;
+}
+
+.start-subtitle {
+  font-size: 1.5rem;
+  color: #ff6b35;
+  margin-bottom: 30px;
+  text-shadow: 0 0 10px rgba(255, 107, 53, 0.5);
+}
+
+.start-description {
+  margin-bottom: 40px;
+  color: #e0e0e0;
+  line-height: 1.6;
+}
+
+.start-description p {
+  margin-bottom: 10px;
+}
+
+.start-button {
+  background: linear-gradient(135deg, #00ffff, #0088ff);
+  color: #0a0e1a;
+  border: none;
+  padding: 20px 60px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+  margin-bottom: 30px;
+}
+
+.start-button:hover {
+  background: linear-gradient(135deg, #00ffff, #00ccff);
+  box-shadow: 0 0 30px rgba(0, 255, 255, 0.8);
+  transform: scale(1.05);
+}
+
+.start-button:active {
+  transform: scale(0.95);
+}
+
+.start-controls {
+  padding-top: 20px;
+  border-top: 1px solid rgba(0, 255, 255, 0.3);
+  color: #888;
+  font-size: 0.9rem;
+}
+
+.start-controls p {
+  margin: 5px 0;
+}
+
+.start-controls strong {
+  color: #00ffff;
+}
+
+@keyframes titleGlow {
+  0%,
+  100% {
+    text-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+  }
+  50% {
+    text-shadow: 0 0 30px rgba(0, 255, 255, 0.8), 0 0 40px rgba(0, 255, 255, 0.6);
+  }
+}
+
 /* Game Canvas */
 .game-canvas {
   flex: 1;
