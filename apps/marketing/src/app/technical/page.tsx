@@ -1,48 +1,40 @@
 "use client";
 import Link from "next/link";
 import React from "react";
+import styles from "./technical.module.css";
 
 export default function TechnicalPage(): React.ReactElement {
   return (
-    <main className="relative overflow-hidden bg-[rgb(var(--darker))] text-white">
+    <main className={styles.main}>
       {/* Background */}
-      <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_bottom,_#1b2735_0%,_#090a0f_100%)]">
-        <div className="absolute inset-0 bg-[linear-gradient(rgba(0,255,136,0.03)_1px,_transparent_1px),_linear-gradient(90deg,_rgba(0,255,136,0.03)_1px,_transparent_1px)] bg-[length:50px_50px] animate-gridMove" />
+      <div className={styles.background}>
+        <div className={styles.gridPattern} />
       </div>
 
       {/* Nav */}
-      <nav className="sticky top-0 z-50 bg-[rgba(10,14,26,0.95)] backdrop-blur px-6 py-4">
-        <div className="mx-auto max-w-[1400px] flex items-center justify-between">
-          <Link
-            href="/"
-            className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-br from-[rgb(var(--primary))] to-[rgb(var(--secondary))]"
-          >
+      <nav className={styles.nav}>
+        <div className={styles.navContainer}>
+          <Link href="/" className={styles.logo}>
             Phoenix Rooivalk
           </Link>
-          <ul className="hidden md:flex gap-6 text-[rgb(var(--gray))]">
+          <ul className={styles.navLinks}>
             <li>
-              <Link href="/" className="hover:text-[rgb(var(--primary))]">
+              <Link href="/" className={styles.navLink}>
                 Home
               </Link>
             </li>
             <li>
-              <Link href="/technical" className="text-[rgb(var(--primary))]">
+              <Link href="/technical" className={styles.navLinkActive}>
                 Technical
               </Link>
             </li>
             <li>
-              <Link
-                href="/financial"
-                className="hover:text-[rgb(var(--primary))]"
-              >
+              <Link href="/financial" className={styles.navLink}>
                 Financial
               </Link>
             </li>
             <li>
-              <Link
-                href="/compliance"
-                className="hover:text-[rgb(var(--primary))]"
-              >
+              <Link href="/compliance" className={styles.navLink}>
                 Compliance
               </Link>
             </li>
@@ -51,13 +43,13 @@ export default function TechnicalPage(): React.ReactElement {
       </nav>
 
       {/* Header */}
-      <section className="px-[5%] py-16">
-        <div className="max-w-[1400px] mx-auto">
-          <div className="text-center">
-            <h1 className="text-4xl md:text-5xl font-extrabold bg-clip-text text-transparent bg-gradient-to-br from-white to-[rgb(var(--primary))]">
+      <section className={styles.section}>
+        <div className={styles.container}>
+          <div className={styles.headerSection}>
+            <h1 className={styles.title}>
               AI + Blockchain Technical Specifications
             </h1>
-            <p className="text-[rgb(var(--gray))] mt-4 max-w-3xl mx-auto">
+            <p className={styles.subtitle}>
               Revolutionary AI-blockchain counter-drone system with 99.7%
               accuracy, 99.3% data integrity, and autonomous swarm coordination
               capabilities.
@@ -67,17 +59,17 @@ export default function TechnicalPage(): React.ReactElement {
       </section>
 
       {/* AI + Blockchain Capabilities */}
-      <section className="px-[5%] py-16 bg-[linear-gradient(180deg,rgba(0,255,136,0.05),rgba(0,136,255,0.05))]">
-        <div className="max-w-[1400px] mx-auto">
-          <h2 className="text-3xl font-bold mb-8 text-center text-[rgb(var(--primary))]">
+      <section className={`${styles.section} ${styles.sectionGradient}`}>
+        <div className={styles.container}>
+          <h2 className={styles.sectionTitle}>
             AI + Blockchain Capabilities
           </h2>
-          <div className="grid md:grid-cols-2 gap-8 mb-12">
-            <div className="rounded-xl border border-[rgba(0,255,136,0.2)] bg-[rgba(15,23,42,0.8)] backdrop-blur p-6">
-              <h3 className="text-xl font-semibold mb-4 text-[rgb(var(--primary))]">
+          <div className={`${styles.grid} mb-12`}>
+            <div className={styles.card}>
+              <h3 className={styles.cardTitle}>
                 AI Performance
               </h3>
-              <ul className="space-y-2 text-[rgb(var(--gray))] text-sm">
+              <ul className={styles.cardList}>
                 <li>
                   • 99.7% threat detection accuracy vs 60-70% industry standard
                 </li>
@@ -92,11 +84,11 @@ export default function TechnicalPage(): React.ReactElement {
                 <li>• Continuous learning and adaptation</li>
               </ul>
             </div>
-            <div className="rounded-xl border border-[rgba(0,136,255,0.2)] bg-[rgba(15,23,42,0.8)] backdrop-blur p-6">
-              <h3 className="text-xl font-semibold mb-4 text-[rgb(var(--primary))]">
+            <div className={styles.card}>
+              <h3 className={styles.cardTitle}>
                 Blockchain Security
               </h3>
-              <ul className="space-y-2 text-[rgb(var(--gray))] text-sm">
+              <ul className={styles.cardList}>
                 <li>• 99.3% data integrity protection vs 85% traditional</li>
                 <li>• &lt; 2ms authentication latency vs 50-100ms standard</li>
                 <li>• Tamper-proof audit trails for military accountability</li>
