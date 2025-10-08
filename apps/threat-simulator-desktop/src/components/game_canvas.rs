@@ -68,7 +68,9 @@ pub fn GameCanvas(game_state: GameStateManager, is_running: ReadSignal<bool>) ->
 
         // Use requestAnimationFrame for smoother animation
         let Some(window) = web_sys::window() else {
-            web_sys::console::error_1(&"Window not available: must run in browser environment".into());
+            web_sys::console::error_1(
+                &"Window not available: must run in browser environment".into(),
+            );
             return;
         };
         let Some(performance) = window.performance() else {
@@ -141,9 +143,9 @@ pub fn GameCanvas(game_state: GameStateManager, is_running: ReadSignal<bool>) ->
         }));
 
         // Start the animation loop
-        if let Err(e) = window.request_animation_frame(
-            closure.borrow().as_ref().unwrap().as_ref().unchecked_ref(),
-        ) {
+        if let Err(e) = window
+            .request_animation_frame(closure.borrow().as_ref().unwrap().as_ref().unchecked_ref())
+        {
             web_sys::console::error_2(&"Failed to start animation loop:".into(), &e);
             return;
         }
