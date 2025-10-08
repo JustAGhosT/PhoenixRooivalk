@@ -295,6 +295,11 @@ pub fn App() -> impl IntoView {
             // Start screen - shows after loading completes
             <Show when=move || show_start_screen.get() fallback=|| view! { <div></div> }>
                 <div class="start-screen">
+                    // Show warning first
+                    <Show when=move || show_warning.get() fallback=|| view! { <div></div> }>
+                        <SimulationWarning show=show_warning on_close=move || set_show_warning.set(false)/>
+                    </Show>
+                    
                     <div class="start-content">
                         <h1 class="start-title">"Phoenix Rooivalk"</h1>
                         <h2 class="start-subtitle">"Counter-Drone Defense Simulator"</h2>
@@ -322,9 +327,6 @@ pub fn App() -> impl IntoView {
                     </div>
                 </div>
             </Show>
-
-            // Simulation warning overlay
-            <SimulationWarning show=show_warning on_close=move || set_show_warning.set(false)/>
 
             // Achievement notifications
             <AchievementNotification
