@@ -140,9 +140,7 @@ export const InfoPopover: React.FC<InfoPopoverProps> = ({
           <div className={styles.content}>
             {brands.length > 0 && (
               <div className={styles.section}>
-                <h5 className={styles.sectionTitle}>
-                  Real-World Analogues:
-                </h5>
+                <h5 className={styles.sectionTitle}>Real-World Analogues:</h5>
                 <ul className={styles.list}>
                   {brands.map((brand, index) => (
                     <li key={index} className={styles.item}>

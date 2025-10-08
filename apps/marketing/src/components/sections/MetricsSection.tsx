@@ -15,9 +15,7 @@ export const MetricsSection: React.FC = () => {
     <section className={styles.section} id="metrics">
       <div className={styles.container}>
         <div className={styles.header}>
-          <h2 className={styles.title}>
-            Technical Architecture
-          </h2>
+          <h2 className={styles.title}>Technical Architecture</h2>
           <p className={styles.description}>
             Designed for contested environments with multi-layer resilience and
             evidence integrity.

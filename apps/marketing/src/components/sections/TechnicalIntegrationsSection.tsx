@@ -67,9 +67,7 @@ export const TechnicalIntegrationsSection: React.FC = () => {
       <div className={styles.container}>
         <RevealSection>
           <div className={styles.header}>
-            <h2 className={styles.title}>
-              Core Technical Integrations
-            </h2>
+            <h2 className={styles.title}>Core Technical Integrations</h2>
             <p className={styles.description}>
               Phoenix Rooivalk operates autonomously at the edge, with optional
               blockchain and AI enhancements when network connectivity is
@@ -114,9 +112,7 @@ export const TechnicalIntegrationsSection: React.FC = () => {
                     {integration.icon}
                   </div>
                   <div>
-                    <h3 className={styles.cardTitle}>
-                      {integration.name}
-                    </h3>
+                    <h3 className={styles.cardTitle}>{integration.name}</h3>
                     <p className={styles.cardDescription}>
                       {integration.description}
                     </p>
@@ -125,10 +121,7 @@ export const TechnicalIntegrationsSection: React.FC = () => {
 
                 <ul className={styles.featureList}>
                   {integration.features.map((feature, featureIndex) => (
-                    <li
-                      key={featureIndex}
-                      className={styles.featureItem}
-                    >
+                    <li key={featureIndex} className={styles.featureItem}>
                       <div
                         className={`${styles.featureBullet} ${styles[`featureBullet${integration.colorClass.charAt(0).toUpperCase() + integration.colorClass.slice(1)}`]}`}
                       ></div>
@@ -147,53 +140,73 @@ export const TechnicalIntegrationsSection: React.FC = () => {
             </h3>
             <div className={styles.architectureGrid}>
               <div className={styles.architectureItem}>
-                <div className={`${styles.architectureIcon} ${styles.architectureIconBlue}`}>
+                <div
+                  className={`${styles.architectureIcon} ${styles.architectureIconBlue}`}
+                >
                   ⚡
                 </div>
                 <h4 className={styles.architectureItemTitle}>
                   Edge Processing
                 </h4>
-                <p className={styles.architectureItemSubtitle}>&lt;50ms response</p>
-                <span className={`${styles.architectureItemBadge} ${styles.architectureItemBadgeCore}`}>
+                <p className={styles.architectureItemSubtitle}>
+                  &lt;50ms response
+                </p>
+                <span
+                  className={`${styles.architectureItemBadge} ${styles.architectureItemBadgeCore}`}
+                >
                   Core
                 </span>
               </div>
 
               <div className={styles.architectureItem}>
-                <div className={`${styles.architectureIcon} ${styles.architectureIconGreen}`}>
+                <div
+                  className={`${styles.architectureIcon} ${styles.architectureIconGreen}`}
+                >
                   🤖
                 </div>
-                <h4 className={styles.architectureItemTitle}>
-                  Morpheus AI
-                </h4>
-                <p className={styles.architectureItemSubtitle}>10-30s analysis</p>
-                <span className={`${styles.architectureItemBadge} ${styles.architectureItemBadgeEnhanced}`}>
+                <h4 className={styles.architectureItemTitle}>Morpheus AI</h4>
+                <p className={styles.architectureItemSubtitle}>
+                  10-30s analysis
+                </p>
+                <span
+                  className={`${styles.architectureItemBadge} ${styles.architectureItemBadgeEnhanced}`}
+                >
                   Enhanced
                 </span>
               </div>
 
               <div className={styles.architectureItem}>
-                <div className={`${styles.architectureIcon} ${styles.architectureIconPurple}`}>
+                <div
+                  className={`${styles.architectureIcon} ${styles.architectureIconPurple}`}
+                >
                   ⛓️
                 </div>
                 <h4 className={styles.architectureItemTitle}>
                   Solana Blockchain
                 </h4>
-                <p className={styles.architectureItemSubtitle}>400ms confirmation</p>
-                <span className={`${styles.architectureItemBadge} ${styles.architectureItemBadgeCore}`}>
+                <p className={styles.architectureItemSubtitle}>
+                  400ms confirmation
+                </p>
+                <span
+                  className={`${styles.architectureItemBadge} ${styles.architectureItemBadgeCore}`}
+                >
                   Core
                 </span>
               </div>
 
               <div className={styles.architectureItem}>
-                <div className={`${styles.architectureIcon} ${styles.architectureIconOrange}`}>
+                <div
+                  className={`${styles.architectureIcon} ${styles.architectureIconOrange}`}
+                >
                   📊
                 </div>
                 <h4 className={styles.architectureItemTitle}>
                   Pinax Analytics
                 </h4>
                 <p className={styles.architectureItemSubtitle}>99.9% uptime</p>
-                <span className={`${styles.architectureItemBadge} ${styles.architectureItemBadgeStrategic}`}>
+                <span
+                  className={`${styles.architectureItemBadge} ${styles.architectureItemBadgeStrategic}`}
+                >
                   Strategic
                 </span>
               </div>
@@ -235,10 +248,18 @@ export const TechnicalIntegrationsSection: React.FC = () => {
                 Core Performance
               </h4>
               <ul className={styles.valueCardList}>
-                <li className={styles.valueCardListItem}>• Sub-second response times</li>
-                <li className={styles.valueCardListItem}>• 100% autonomous operation</li>
-                <li className={styles.valueCardListItem}>• Zero network dependency</li>
-                <li className={styles.valueCardListItem}>• Military-grade reliability</li>
+                <li className={styles.valueCardListItem}>
+                  • Sub-second response times
+                </li>
+                <li className={styles.valueCardListItem}>
+                  • 100% autonomous operation
+                </li>
+                <li className={styles.valueCardListItem}>
+                  • Zero network dependency
+                </li>
+                <li className={styles.valueCardListItem}>
+                  • Military-grade reliability
+                </li>
               </ul>
             </div>
 
@@ -248,10 +269,18 @@ export const TechnicalIntegrationsSection: React.FC = () => {
                 Enhanced Intelligence
               </h4>
               <ul className={styles.valueCardList}>
-                <li className={styles.valueCardListItem}>• 97% accuracy with AI enhancement</li>
-                <li className={styles.valueCardListItem}>• Immutable evidence trails</li>
-                <li className={styles.valueCardListItem}>• Historical pattern analysis</li>
-                <li className={styles.valueCardListItem}>• Optional network features</li>
+                <li className={styles.valueCardListItem}>
+                  • 97% accuracy with AI enhancement
+                </li>
+                <li className={styles.valueCardListItem}>
+                  • Immutable evidence trails
+                </li>
+                <li className={styles.valueCardListItem}>
+                  • Historical pattern analysis
+                </li>
+                <li className={styles.valueCardListItem}>
+                  • Optional network features
+                </li>
               </ul>
             </div>
 
@@ -261,10 +290,18 @@ export const TechnicalIntegrationsSection: React.FC = () => {
                 Strategic Value
               </h4>
               <ul className={styles.valueCardList}>
-                <li className={styles.valueCardListItem}>• Future-proof architecture</li>
-                <li className={styles.valueCardListItem}>• Scalable intelligence layer</li>
-                <li className={styles.valueCardListItem}>• Compliance-ready design</li>
-                <li className={styles.valueCardListItem}>• Investment protection</li>
+                <li className={styles.valueCardListItem}>
+                  • Future-proof architecture
+                </li>
+                <li className={styles.valueCardListItem}>
+                  • Scalable intelligence layer
+                </li>
+                <li className={styles.valueCardListItem}>
+                  • Compliance-ready design
+                </li>
+                <li className={styles.valueCardListItem}>
+                  • Investment protection
+                </li>
               </ul>
             </div>
           </div>

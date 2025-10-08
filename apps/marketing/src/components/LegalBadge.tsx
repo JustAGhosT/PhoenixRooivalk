@@ -79,7 +79,9 @@ export const LegalBadge: React.FC<LegalBadgeProps> = ({
 
           <div className={styles.detailsContent}>
             <div className={styles.riskLevel}>
-              <span className={`${styles.riskLevelBadge} ${styles[`riskLevel${riskLevel.charAt(0).toUpperCase() + riskLevel.slice(1)}`]}`}>
+              <span
+                className={`${styles.riskLevelBadge} ${styles[`riskLevel${riskLevel.charAt(0).toUpperCase() + riskLevel.slice(1)}`]}`}
+              >
                 {riskLevel.toUpperCase()} RISK
               </span>
             </div>

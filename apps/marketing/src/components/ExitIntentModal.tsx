@@ -111,9 +111,7 @@ export const ExitIntentModal: React.FC<ExitIntentModalProps> = ({
 
         {/* Whitepaper preview */}
         <div className={styles.preview}>
-          <h3 className={styles.previewTitle}>
-            What&apos;s Inside:
-          </h3>
+          <h3 className={styles.previewTitle}>What&apos;s Inside:</h3>
           <ul className={styles.previewList}>
             <li>• Complete system architecture</li>
             <li>• Technical specifications</li>
@@ -125,10 +123,7 @@ export const ExitIntentModal: React.FC<ExitIntentModalProps> = ({
 
         {/* Action buttons */}
         <div className={styles.actions}>
-          <Button
-            onClick={handleDownloadNow}
-            className={styles.primaryButton}
-          >
+          <Button onClick={handleDownloadNow} className={styles.primaryButton}>
             📥 Download Now
           </Button>
 

@@ -12,5 +12,7 @@ export const RevealSection: React.FC<RevealSectionProps> = ({
   children,
   className = "",
 }) => {
-  return <div className={`${styles.revealSection} ${className}`}>{children}</div>;
+  return (
+    <div className={`${styles.revealSection} ${className}`}>{children}</div>
+  );
 };

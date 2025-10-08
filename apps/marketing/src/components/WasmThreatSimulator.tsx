@@ -336,21 +336,15 @@ export const WasmThreatSimulator: React.FC<WasmThreatSimulatorProps> = ({
           <div className={styles.loadingText}>
             ⚡ Loading Threat Simulator...
           </div>
-          <div className={styles.loadingSubtext}>
-            Initializing WASM Runtime
-          </div>
+          <div className={styles.loadingSubtext}>Initializing WASM Runtime</div>
         </div>
       )}
 
       {error && (
         <div className={styles.errorOverlay}>
-          <div className={styles.errorTitle}>
-            ⚠️ Error Loading Simulator
-          </div>
+          <div className={styles.errorTitle}>⚠️ Error Loading Simulator</div>
           <div className={styles.errorMessage}>{error}</div>
-          <div className={styles.errorHint}>
-            Please try refreshing the page
-          </div>
+          <div className={styles.errorHint}>Please try refreshing the page</div>
         </div>
       )}
 

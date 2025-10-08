@@ -73,9 +73,7 @@ export const CapabilitiesSection: React.FC = () => {
     <section className={styles.section} id="capabilities">
       <div className={styles.container}>
         <RevealSection className={styles.header}>
-          <h2 className={styles.title}>
-            Three-Tier Defense Architecture
-          </h2>
+          <h2 className={styles.title}>Three-Tier Defense Architecture</h2>
           <p className={styles.description}>
             <strong className="text-white">Tier 1 (Core):</strong> Autonomous
             edge operation with sub-second response.
@@ -105,8 +103,6 @@ const CapabilityCard: React.FC<{
     <div className={styles.cardIcon}>{icon}</div>
     <h3 className={styles.cardTitle}>{title}</h3>
     <p className={styles.cardDescription}>{description}</p>
-    {proof && (
-      <div className={styles.cardProof}>✓ {proof}</div>
-    )}
+    {proof && <div className={styles.cardProof}>✓ {proof}</div>}
   </div>
 );
