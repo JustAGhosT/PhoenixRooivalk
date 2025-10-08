@@ -192,14 +192,46 @@ export const WasmThreatSimulator: React.FC<WasmThreatSimulatorProps> = ({
 
         // PostCSS plugin to scope CSS selectors and handle @keyframes
         const scopePlugin = () => {
+          interface PostCSSNode {
+            parent?: PostCSSNode;
+            type: string;
+            name?: string;
+            params?: string;
+            selector?: string;
+            walkDecls?: (callback: (decl: PostCSSDecl) => void) => void;
+          }
+
+          interface PostCSSAtRule extends PostCSSNode {
+            params: string;
+          }
+
+          interface PostCSSRule extends PostCSSNode {
+            selector: string;
+            parent?: PostCSSNode;
+            walkDecls: (callback: (decl: PostCSSDecl) => void) => void;
+          }
+
+          interface PostCSSDecl {
+            prop: string;
+            value: string;
+          }
+
+          interface PostCSSRoot {
+            walkAtRules: (
+              name: string,
+              callback: (atRule: PostCSSAtRule) => void,
+            ) => void;
+            walkRules: (callback: (rule: PostCSSRule) => void) => void;
+          }
+
           return {
             postcssPlugin: "scope-wasm-css",
-            Once(root: any) {
+            Once(root: PostCSSRoot) {
               // Track animation name mappings
               const animationMap = new Map<string, string>();
 
               // First pass: rename @keyframes and track mappings
-              root.walkAtRules("keyframes", (atRule: any) => {
+              root.walkAtRules("keyframes", (atRule: PostCSSAtRule) => {
                 const originalName = atRule.params.trim();
                 const scopedName = `${keyframePrefix}-${originalName}`;
                 animationMap.set(originalName, scopedName);
@@ -207,7 +239,7 @@ export const WasmThreatSimulator: React.FC<WasmThreatSimulatorProps> = ({
               });
 
               // Second pass: scope all selectors and update animation references
-              root.walkRules((rule: any) => {
+              root.walkRules((rule: PostCSSRule) => {
                 // Skip rules inside @keyframes
                 if (
                   rule.parent &&
@@ -233,7 +265,7 @@ export const WasmThreatSimulator: React.FC<WasmThreatSimulatorProps> = ({
                   .join(", ");
 
                 // Update animation-name and animation shorthand properties
-                rule.walkDecls((decl: any) => {
+                rule.walkDecls((decl: PostCSSDecl) => {
                   if (decl.prop === "animation-name") {
                     const names = decl.value.split(",").map((n: string) => {
                       const name = n.trim();
@@ -244,8 +276,14 @@ export const WasmThreatSimulator: React.FC<WasmThreatSimulatorProps> = ({
                     // Handle animation shorthand: find and replace animation names
                     let value = decl.value;
                     animationMap.forEach((scopedName, originalName) => {
+                      // Escape special regex characters in animation name
+                      const escapedName = originalName.replace(
+                        /[.*+?^${}()|[\]\\]/g,
+                        "\\$&",
+                      );
                       // Use word boundary regex to match animation names
-                      const regex = new RegExp(`\\b${originalName}\\b`, "g");
+                      // eslint-disable-next-line security/detect-non-literal-regexp
+                      const regex = new RegExp(`\\b${escapedName}\\b`, "g");
                       value = value.replace(regex, scopedName);
                     });
                     decl.value = value;
