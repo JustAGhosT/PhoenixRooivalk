@@ -1,5 +1,5 @@
 import * as React from "react";
-import type { GameState } from "../types/game";
+import type { GameState } from "../../types/game";
 import styles from "./DetailedStats.module.css";
 
 interface DetailedStatsProps {

@@ -1,5 +1,5 @@
 import * as React from "react";
-import type { PowerUp } from "../types/game";
+import type { PowerUp } from "../../types/game";
 
 interface ParticleEffectsProps {
   activePowerUps: PowerUp[];

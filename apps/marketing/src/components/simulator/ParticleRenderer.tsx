@@ -1,7 +1,7 @@
 "use client";
 import * as React from "react";
 import { useEffect, useRef } from "react";
-import { ParticleSystem } from "./utils/particleSystem";
+import { ParticleSystem } from "../utils/particleSystem";
 
 interface ParticleRendererProps {
   particleSystem: ParticleSystem;

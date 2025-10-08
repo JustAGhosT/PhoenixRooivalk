@@ -1,5 +1,5 @@
 import React from "react";
-import type { Threat } from "../types/game";
+import type { Threat } from "../../types/game";
 
 interface RadarCanvasProps {
   threats: Threat[];

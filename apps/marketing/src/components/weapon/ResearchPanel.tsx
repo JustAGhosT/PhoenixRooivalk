@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import effectorDatabase from "../data/effectorDatabase.json";
-import { FilterChip, FilterChips } from "./FilterChips";
-import { InfoPopover } from "./InfoPopover";
-import { LegalBadge } from "./LegalBadge";
-import { ROERiskIndicator } from "./ROERiskIndicator";
-import { RESEARCH_CATEGORIES, ResourceManager } from "./utils/resourceManager";
+import effectorDatabase from "../../data/effectorDatabase.json";
+import { FilterChip, FilterChips } from "../FilterChips";
+import { InfoPopover } from "../InfoPopover";
+import { LegalBadge } from "../LegalBadge";
+import { ROERiskIndicator } from "../ROERiskIndicator";
+import { RESEARCH_CATEGORIES, ResourceManager } from "../utils/resourceManager";
 import styles from "./ResearchPanel.module.css";
 
 interface ResearchPanelProps {

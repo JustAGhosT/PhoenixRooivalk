@@ -1,9 +1,9 @@
 import * as React from "react";
-import effectorDatabase from "../data/effectorDatabase.json";
-import type { GameState } from "../types/game";
-import { CooldownMeter } from "./CooldownMeter";
-import { InfoPopover } from "./InfoPopover";
-import { ROERiskIndicator } from "./ROERiskIndicator";
+import effectorDatabase from "../../data/effectorDatabase.json";
+import type { GameState } from "../../types/game";
+import { CooldownMeter } from "../stats/CooldownMeter";
+import { InfoPopover } from "../InfoPopover";
+import { ROERiskIndicator } from "../ROERiskIndicator";
 import styles from "./WeaponStatus.module.css";
 
 interface WeaponStatusProps {

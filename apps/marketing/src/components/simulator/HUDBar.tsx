@@ -1,5 +1,5 @@
 import React from "react";
-import { Button } from "./ui/button";
+import { Button } from "../ui/button";
 import styles from "./HUDBar.module.css";
 
 interface HUDBarProps {
@@ -18,11 +18,7 @@ const HUDBar: React.FC<HUDBarProps> = ({
   onToggleResearch,
 }) => {
   return (
-    <header
-      className={styles.hud}
-      role="group"
-      aria-label="Simulator status"
-    >
+    <header className={styles.hud} role="group" aria-label="Simulator status">
       <h3 id="sim-title" className={styles.srOnly}>
         Edge Autonomy Demo (Concept)
       </h3>

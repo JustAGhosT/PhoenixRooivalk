@@ -1,5 +1,5 @@
 import React from "react";
-import { ResourceManager } from "./utils/resourceManager";
+import { ResourceManager } from "../utils/resourceManager";
 import styles from "./TokenStore.module.css";
 
 interface TokenStoreProps {
