@@ -5,6 +5,7 @@
 
 # Trunk
 /dist
+!/dist/.gitkeep
 
 # Tauri
 /src-tauri/target
