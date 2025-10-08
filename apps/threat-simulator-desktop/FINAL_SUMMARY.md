@@ -46,7 +46,7 @@ enhancements**.
 21. ✅ **Particles** (`game/particles.rs`) - 280 lines + 6 tests
 22. ✅ **AutoTargeting** (`game/auto_targeting.rs`) - 240 lines + 7 tests
 
-**Grand Total: 22 modules, 4,100+ lines, 42 tests**
+**Grand Total: 22 modules, 4,100+ lines, 47 tests**
 
 ---
 
@@ -65,7 +65,7 @@ enhancements**.
 | **Keyboard Controls** | 23 shortcuts | ✅ All implemented |
 | **Modal Overlays**    | 6 types      | ✅ All implemented |
 | **NPM Scripts**       | 12 commands  | ✅ All configured  |
-| **Tests**             | 42 tests     | ✅ 100% passing    |
+| **Tests**             | 47 tests     | ✅ 100% passing    |
 
 ---
 
