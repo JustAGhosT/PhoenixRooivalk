@@ -104,20 +104,17 @@ pub fn GameCanvas(game_state: GameStateManager, is_running: ReadSignal<bool>) ->
         let animation_closure = Rc::new(RefCell::new(None::<Closure<dyn FnMut(f64)>>));
         let animation_closure_clone = animation_closure.clone();
 
+        // Track if animation is currently scheduled to avoid duplicates
+        let animation_scheduled = Rc::new(RefCell::new(false));
+        let animation_scheduled_clone = animation_scheduled.clone();
+
         let callback = Closure::wrap(Box::new(move |current_time: f64| {
             let is_game_running = *is_running_loop.borrow();
+            // Mark animation as no longer scheduled
+            *animation_scheduled_clone.borrow_mut() = false;
+
             if !is_game_running {
-                // Still request next frame even when not running, so we can check again
-                if let Some(win) = web_sys::window() {
-                    let _ = win.request_animation_frame(
-                        animation_closure_clone
-                            .borrow()
-                            .as_ref()
-                            .unwrap()
-                            .as_ref()
-                            .unchecked_ref(),
-                    );
-                }
+                // Don't request next frame when paused - just return
                 return;
             }
 
@@ -160,23 +157,31 @@ pub fn GameCanvas(game_state: GameStateManager, is_running: ReadSignal<bool>) ->
             let fps = 1.0f32 / (delta_time as f32).max(0.001);
             game_state_loop.frame_rate.set(fps);
 
-            // Request next frame
-            if let Some(win) = web_sys::window() {
-                if let Err(e) = win.request_animation_frame(
-                    animation_closure_clone
-                        .borrow()
-                        .as_ref()
-                        .unwrap()
-                        .as_ref()
-                        .unchecked_ref(),
-                ) {
-                    if cfg!(debug_assertions) {
-                        web_sys::console::error_2(&"Failed to request animation frame:".into(), &e);
+            // Request next frame only if not already scheduled
+            if !*animation_scheduled_clone.borrow() {
+                if let Some(win) = web_sys::window() {
+                    if let Err(e) = win.request_animation_frame(
+                        animation_closure_clone
+                            .borrow()
+                            .as_ref()
+                            .unwrap()
+                            .as_ref()
+                            .unchecked_ref(),
+                    ) {
+                        if cfg!(debug_assertions) {
+                            web_sys::console::error_2(
+                                &"Failed to request animation frame:".into(),
+                                &e,
+                            );
+                        }
+                    } else {
+                        // Mark as scheduled on success
+                        *animation_scheduled_clone.borrow_mut() = true;
                     }
-                }
-            } else {
-                if cfg!(debug_assertions) {
-                    web_sys::console::error_1(&"Window unavailable for animation frame".into());
+                } else {
+                    if cfg!(debug_assertions) {
+                        web_sys::console::error_1(&"Window unavailable for animation frame".into());
+                    }
                 }
             }
         }) as Box<dyn FnMut(f64)>);
@@ -214,6 +219,8 @@ pub fn GameCanvas(game_state: GameStateManager, is_running: ReadSignal<bool>) ->
                         &handle.into(),
                     );
                 }
+                // Mark as scheduled
+                *animation_scheduled.borrow_mut() = true;
             }
             Err(e) => {
                 if cfg!(debug_assertions) {
@@ -232,6 +239,36 @@ pub fn GameCanvas(game_state: GameStateManager, is_running: ReadSignal<bool>) ->
             }
         });
     });
+
+    // Watch for is_running changes and restart animation when game resumes
+    {
+        let animation_closure_restart = animation_closure.clone();
+        let animation_scheduled_restart = animation_scheduled.clone();
+        create_effect(move |_| {
+            let is_running_now = is_running.get();
+            if is_running_now && !*animation_scheduled_restart.borrow() {
+                // Game just resumed and animation is not scheduled - restart it
+                if let Some(window) = web_sys::window() {
+                    if let Ok(handle) = window.request_animation_frame(
+                        animation_closure_restart
+                            .borrow()
+                            .as_ref()
+                            .unwrap()
+                            .as_ref()
+                            .unchecked_ref(),
+                    ) {
+                        *animation_scheduled_restart.borrow_mut() = true;
+                        if cfg!(debug_assertions) {
+                            web_sys::console::log_2(
+                                &"Animation restarted on resume with handle:".into(),
+                                &handle.into(),
+                            );
+                        }
+                    }
+                }
+            }
+        });
+    }
 
     view! {
         <canvas
