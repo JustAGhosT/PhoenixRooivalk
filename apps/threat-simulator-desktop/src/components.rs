@@ -99,11 +99,12 @@ pub fn App() -> impl IntoView {
     // Watch for high scores
     {
         let game_state_watcher = game_state_rc.clone();
-        let (milestones_reached, set_milestones_reached) = create_signal(std::collections::HashSet::new());
+        let (milestones_reached, set_milestones_reached) =
+            create_signal(std::collections::HashSet::new());
         create_effect(move |_| {
             let score = game_state_watcher.score.get();
             let milestones = [1000, 5000, 10000, 25000, 50000, 100000];
-            
+
             for &milestone in &milestones {
                 if score >= milestone && !milestones_reached.get().contains(&milestone) {
                     set_event_feed.update(|feed| {
@@ -242,7 +243,7 @@ pub fn App() -> impl IntoView {
                 let timeout_closure = Closure::wrap(Box::new(move || {
                     set_is_loading.set(false);
                     set_show_start_screen.set(true); // Show start screen after loading completes
-                    // Clear animation handle to stop further requests
+                                                     // Clear animation handle to stop further requests
                     *animate_handle_clone.borrow_mut() = None;
                 }) as Box<dyn FnMut()>);
                 let handle = window_clone
@@ -294,10 +295,10 @@ pub fn App() -> impl IntoView {
                     <div class="start-content">
                         <h1 class="start-title">"Phoenix Rooivalk"</h1>
                         <h2 class="start-subtitle">"Counter-Drone Defense Simulator"</h2>
-                        
+
                         // Integrated warning (no close button)
                         <IntegratedSimulationWarning/>
-                        
+
                         <div class="start-description">
                             <p>"Defend your mothership against waves of hostile drones."</p>
                             <p>"Deploy weapons, manage resources, and survive as long as you can."</p>
@@ -367,7 +368,7 @@ pub fn App() -> impl IntoView {
                 active_weapons={
                     let game_state_synergy = game_state_rc.clone();
                     let active_weapons_signal = create_rw_signal(Vec::new());
-                    
+
                     // Update the signal when weapons change
                     create_effect(move |_| {
                         let weapons = game_state_synergy.weapons.get()
@@ -376,7 +377,7 @@ pub fn App() -> impl IntoView {
                             .collect::<Vec<_>>();
                         active_weapons_signal.set(weapons);
                     });
-                    
+
                     active_weapons_signal.read_only()
                 }
                 show=show_synergies

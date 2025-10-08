@@ -15,7 +15,7 @@ pub fn GameCanvas(game_state: GameStateManager, is_running: ReadSignal<bool>) ->
     // Create a shared running state for the animation loop
     let is_running_shared = Rc::new(RefCell::new(false));
     let is_running_shared_effect = is_running_shared.clone();
-    
+
     // Keep the shared state in sync with the Leptos signal
     create_effect(move |_| {
         let running = is_running.get();
@@ -24,7 +24,6 @@ pub fn GameCanvas(game_state: GameStateManager, is_running: ReadSignal<bool>) ->
 
     // Set up canvas immediately when component mounts (during loading)
     create_effect(move |_| {
-
         let Some(canvas_elem) = canvas_ref.get() else {
             return;
         };
@@ -37,14 +36,14 @@ pub fn GameCanvas(game_state: GameStateManager, is_running: ReadSignal<bool>) ->
                 Ok(ctx_2d) => ctx_2d,
                 Err(_) => {
                     if cfg!(debug_assertions) {
-                    web_sys::console::error_1(&"Failed to cast canvas context to 2D".into());
+                        web_sys::console::error_1(&"Failed to cast canvas context to 2D".into());
                     }
                     return;
                 }
             },
             Ok(None) => {
                 if cfg!(debug_assertions) {
-                web_sys::console::error_1(&"Canvas 2D context is None".into());
+                    web_sys::console::error_1(&"Canvas 2D context is None".into());
                 }
                 return;
             }
@@ -73,7 +72,7 @@ pub fn GameCanvas(game_state: GameStateManager, is_running: ReadSignal<bool>) ->
         };
         canvas.set_width(width as u32);
         canvas.set_height(height as u32);
-        
+
         // Clear canvas with dark background (no test pattern)
         context.set_fill_style_str("#0a0e1a");
         context.fill_rect(0.0, 0.0, width, height);
@@ -181,14 +180,14 @@ pub fn GameCanvas(game_state: GameStateManager, is_running: ReadSignal<bool>) ->
                 }
             }
         }) as Box<dyn FnMut(f64)>);
-        
+
         *animation_closure.borrow_mut() = Some(callback);
 
         // Start the animation loop
         if cfg!(debug_assertions) {
             web_sys::console::log_1(&"Starting animation loop".into());
         }
-        
+
         // Test that the closure is properly created
         if animation_closure.borrow().is_none() {
             if cfg!(debug_assertions) {
@@ -199,13 +198,21 @@ pub fn GameCanvas(game_state: GameStateManager, is_running: ReadSignal<bool>) ->
         if cfg!(debug_assertions) {
             web_sys::console::log_1(&"Closure created successfully".into());
         }
-        
+
         match window.request_animation_frame(
-            animation_closure.borrow().as_ref().unwrap().as_ref().unchecked_ref()
+            animation_closure
+                .borrow()
+                .as_ref()
+                .unwrap()
+                .as_ref()
+                .unchecked_ref(),
         ) {
             Ok(handle) => {
                 if cfg!(debug_assertions) {
-                    web_sys::console::log_2(&"Animation loop started with handle:".into(), &handle.into());
+                    web_sys::console::log_2(
+                        &"Animation loop started with handle:".into(),
+                        &handle.into(),
+                    );
                 }
             }
             Err(e) => {
@@ -444,5 +451,6 @@ fn render_frame(
     // Version indicator in bottom right corner
     ctx.set_font("12px 'Courier New', monospace");
     ctx.set_fill_style_str("rgba(0, 255, 255, 0.4)");
-    ctx.fill_text("v0.1.0-alpha", width - 80.0, height - 10.0).unwrap();
+    ctx.fill_text("v0.1.0-alpha", width - 80.0, height - 10.0)
+        .unwrap();
 }

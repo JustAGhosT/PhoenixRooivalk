@@ -74,7 +74,7 @@ mod tests {
             threats_neutralized: 50,
             level: 5,
         };
-        
+
         assert_eq!(session.session_id, "test-123");
         assert_eq!(session.score, 1000);
         assert_eq!(session.threats_neutralized, 50);
