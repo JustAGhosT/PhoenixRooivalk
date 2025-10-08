@@ -32,6 +32,7 @@ export const WasmThreatSimulator: React.FC<WasmThreatSimulatorProps> = ({
   const [error, setError] = useState<string | null>(null);
   const [wasmInitialized, setWasmInitialized] = useState(false);
   const [cssUrl, setCssUrl] = useState<string | null>(null);
+  const [wasmStylesLoaded, setWasmStylesLoaded] = useState(false);
 
   // Generate unique mount ID for this instance
   const mountId = useId().replace(/:/g, "-"); // Replace React's : separator
@@ -169,6 +170,55 @@ export const WasmThreatSimulator: React.FC<WasmThreatSimulatorProps> = ({
     };
   }, [autoFullscreen, uniqueMountId]);
 
+  // Dynamically load and scope WASM CSS to prevent global interference
+  useEffect(() => {
+    if (!cssUrl || wasmStylesLoaded) return;
+
+    const loadWasmStyles = async () => {
+      try {
+        const response = await fetch(cssUrl);
+        const cssText = await response.text();
+
+        // Create a scoped style element
+        const styleElement = document.createElement("style");
+        styleElement.id = `wasm-styles-${uniqueMountId}`;
+
+        // Scope all CSS rules to the simulator container
+        const scopedCss = cssText.replace(/([^{}]+){/g, (match, selector) => {
+          // Skip @ rules (media queries, keyframes, etc.)
+          if (selector.trim().startsWith("@")) {
+            return match;
+          }
+          // Scope regular selectors to the container
+          const scopedSelector = selector
+            .split(",")
+            .map((s) => `.wasm-threat-simulator-container ${s.trim()}`)
+            .join(", ");
+          return `${scopedSelector} {`;
+        });
+
+        styleElement.textContent = scopedCss;
+        document.head.appendChild(styleElement);
+        setWasmStylesLoaded(true);
+      } catch (err) {
+        console.warn("Failed to load WASM styles:", err);
+        setWasmStylesLoaded(true); // Continue without styles
+      }
+    };
+
+    loadWasmStyles();
+
+    return () => {
+      // Cleanup scoped styles on unmount
+      const styleElement = document.getElementById(
+        `wasm-styles-${uniqueMountId}`,
+      );
+      if (styleElement) {
+        styleElement.remove();
+      }
+    };
+  }, [cssUrl, uniqueMountId, wasmStylesLoaded]);
+
   return (
     <div
       ref={containerRef}
@@ -188,51 +238,39 @@ export const WasmThreatSimulator: React.FC<WasmThreatSimulatorProps> = ({
         margin: "0 auto",
       }}
     >
-      {/* Load WASM styles - dynamically resolved from manifest */}
-      {cssUrl && <link rel="stylesheet" href={cssUrl} />}
-
-      {/* Override WASM global styles to prevent interference with React components */}
-      <style jsx global>{`
-        /* Override WASM global styles that break the layout */
-        body {
-          overflow: auto !important;
-          background: rgb(var(--bg-primary)) !important;
-          color: rgb(var(--text-secondary)) !important;
-          font-family:
-            system-ui,
-            -apple-system,
-            BlinkMacSystemFont,
-            "Segoe UI",
-            Roboto,
-            sans-serif !important;
-          width: auto !important;
-          height: auto !important;
-        }
-
-        html {
-          overflow: auto !important;
-        }
-
-        /* Scope WASM styles to the simulator container only */
+      {/* Scoped WASM styles - no global CSS interference */}
+      <style jsx>{`
         .wasm-threat-simulator-container {
           isolation: isolate;
           contain: layout style paint;
+          position: relative;
+          z-index: 1;
         }
 
+        /* Scope all WASM styles to this container only */
         .wasm-threat-simulator-container * {
           box-sizing: border-box;
+          font-family: "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell",
+            "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+          background: #0a0e1a;
+          color: #e0e0e0;
+          overflow: hidden;
+          width: 100%;
+          height: 100%;
+          margin: 0;
+          padding: 0;
         }
 
         /* Hide overlays in teaser mode for cleaner presentation */
         ${isTeaser
           ? `
-          .warning-overlay {
+          .wasm-threat-simulator-container .warning-overlay {
             display: none !important;
           }
-          .achievement-notification {
+          .wasm-threat-simulator-container .achievement-notification {
             display: none !important;
           }
-          .game-over-overlay {
+          .wasm-threat-simulator-container .game-over-overlay {
             display: none !important;
           }
         `
