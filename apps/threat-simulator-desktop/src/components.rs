@@ -260,13 +260,13 @@ pub fn App() -> impl IntoView {
             <SynergySystem
                 active_weapons={
                     let game_state_synergy = game_state_rc.clone();
-                    create_derived_signal(move || {
+                    move || {
                         // Get all equipped weapons for multi-weapon synergy detection
                         game_state_synergy.weapons.get()
                             .into_iter()
                             .map(|w| w.weapon_type)
                             .collect::<Vec<_>>()
-                    })
+                    }
                 }
                 show=show_synergies
             />
