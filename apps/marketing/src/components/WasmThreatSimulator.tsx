@@ -58,9 +58,11 @@ export const WasmThreatSimulator: React.FC<WasmThreatSimulatorProps> = ({
         setIsLoading(false);
 
         // Apply fullscreen if requested
-        if (autoFullscreen && containerRef.current) {
+        if (autoFullscreen && containerRef.current?.requestFullscreen) {
           setTimeout(() => {
-            containerRef.current?.requestFullscreen?.();
+            containerRef.current!
+              .requestFullscreen()
+              .catch(() => { /* ignore: user gesture required or denied */ });
           }, 500);
         }
       } catch (err) {
