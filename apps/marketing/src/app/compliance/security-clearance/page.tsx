@@ -135,7 +135,9 @@ export default function SecurityClearancePage(): React.ReactElement {
                   {step.description}
                 </p>
                 <div className="text-center">
-                  <span className="text-xs text-[rgb(var(--gray))]">Duration</span>
+                  <span className="text-xs text-[rgb(var(--gray))]">
+                    Duration
+                  </span>
                   <div className="text-[rgb(var(--primary))] text-sm font-semibold">
                     {step.duration}
                   </div>
@@ -165,7 +167,9 @@ export default function SecurityClearancePage(): React.ReactElement {
                 "Secure communication systems",
               ].map((measure, index) => (
                 <div key={index} className="flex items-start">
-                  <span className="text-[rgb(var(--primary))] mr-3 mt-1">🔒</span>
+                  <span className="text-[rgb(var(--primary))] mr-3 mt-1">
+                    🔒
+                  </span>
                   <span className="text-[rgb(var(--gray))]">{measure}</span>
                 </div>
               ))}
@@ -182,7 +186,9 @@ export default function SecurityClearancePage(): React.ReactElement {
                 "Incident response procedures",
               ].map((measure, index) => (
                 <div key={index} className="flex items-start">
-                  <span className="text-[rgb(var(--primary))] mr-3 mt-1">🛡️</span>
+                  <span className="text-[rgb(var(--primary))] mr-3 mt-1">
+                    🛡️
+                  </span>
                   <span className="text-[rgb(var(--gray))]">{measure}</span>
                 </div>
               ))}

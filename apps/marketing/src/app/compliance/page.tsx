@@ -158,28 +158,36 @@ export default function CompliancePage(): React.ReactElement {
               </h3>
               <ul className="space-y-3 text-[rgb(var(--gray))]">
                 <li className="flex items-start">
-                  <span className="text-[rgb(var(--primary))] mr-2 mt-1">•</span>
+                  <span className="text-[rgb(var(--primary))] mr-2 mt-1">
+                    •
+                  </span>
                   <div>
                     <strong>End-to-End Encryption:</strong> All communications
                     encrypted using AES-256 standards
                   </div>
                 </li>
                 <li className="flex items-start">
-                  <span className="text-[rgb(var(--primary))] mr-2 mt-1">•</span>
+                  <span className="text-[rgb(var(--primary))] mr-2 mt-1">
+                    •
+                  </span>
                   <div>
                     <strong>Zero-Knowledge Architecture:</strong> Sensitive
                     operational data never stored in plaintext
                   </div>
                 </li>
                 <li className="flex items-start">
-                  <span className="text-[rgb(var(--primary))] mr-2 mt-1">•</span>
+                  <span className="text-[rgb(var(--primary))] mr-2 mt-1">
+                    •
+                  </span>
                   <div>
                     <strong>GDPR Compliance:</strong> Full compliance for
                     European deployments and data handling
                   </div>
                 </li>
                 <li className="flex items-start">
-                  <span className="text-[rgb(var(--primary))] mr-2 mt-1">•</span>
+                  <span className="text-[rgb(var(--primary))] mr-2 mt-1">
+                    •
+                  </span>
                   <div>
                     <strong>Key Management:</strong> Secure key rotation and
                     hardware security module integration
@@ -193,28 +201,36 @@ export default function CompliancePage(): React.ReactElement {
               </h3>
               <ul className="space-y-3 text-[rgb(var(--gray))]">
                 <li className="flex items-start">
-                  <span className="text-[rgb(var(--primary))] mr-2 mt-1">•</span>
+                  <span className="text-[rgb(var(--primary))] mr-2 mt-1">
+                    •
+                  </span>
                   <div>
                     <strong>Mandatory Geofencing:</strong> Configurable
                     no-engage zones and operational boundaries
                   </div>
                 </li>
                 <li className="flex items-start">
-                  <span className="text-[rgb(var(--primary))] mr-2 mt-1">•</span>
+                  <span className="text-[rgb(var(--primary))] mr-2 mt-1">
+                    •
+                  </span>
                   <div>
                     <strong>Fail-Safe Protocols:</strong> Return-to-launch and
                     safe-mode activation on system failure
                   </div>
                 </li>
                 <li className="flex items-start">
-                  <span className="text-[rgb(var(--primary))] mr-2 mt-1">•</span>
+                  <span className="text-[rgb(var(--primary))] mr-2 mt-1">
+                    •
+                  </span>
                   <div>
                     <strong>Multi-Factor Authentication:</strong> Biometric and
                     token-based operator verification
                   </div>
                 </li>
                 <li className="flex items-start">
-                  <span className="text-[rgb(var(--primary))] mr-2 mt-1">•</span>
+                  <span className="text-[rgb(var(--primary))] mr-2 mt-1">
+                    •
+                  </span>
                   <div>
                     <strong>Comprehensive Audit Logging:</strong> Immutable
                     blockchain-anchored operation records

@@ -72,13 +72,17 @@ export default function ISO27001Page(): React.ReactElement {
                   <span className="text-yellow-400 font-semibold">Q4 2025</span>
                 </div>
                 <div className="flex justify-between items-center">
-                  <span className="text-[rgb(var(--gray))]">Implementation</span>
+                  <span className="text-[rgb(var(--gray))]">
+                    Implementation
+                  </span>
                   <span className="text-yellow-400 font-semibold">
                     In Progress
                   </span>
                 </div>
                 <div className="flex justify-between items-center">
-                  <span className="text-[rgb(var(--gray))]">Next Milestone</span>
+                  <span className="text-[rgb(var(--gray))]">
+                    Next Milestone
+                  </span>
                   <span className="text-yellow-400 font-semibold">Q2 2025</span>
                 </div>
               </div>
@@ -125,7 +129,9 @@ export default function ISO27001Page(): React.ReactElement {
                   {control.description}
                 </p>
                 <div className="flex justify-between items-center">
-                  <span className="text-xs text-[rgb(var(--gray))]">Controls</span>
+                  <span className="text-xs text-[rgb(var(--gray))]">
+                    Controls
+                  </span>
                   <span className="text-[rgb(var(--primary))] text-sm font-semibold">
                     {control.controls}
                   </span>
@@ -174,7 +180,9 @@ export default function ISO27001Page(): React.ReactElement {
                 <h3 className="text-lg font-semibold mb-3 text-[rgb(var(--primary))]">
                   {step.title}
                 </h3>
-                <p className="text-[rgb(var(--gray))] text-sm">{step.description}</p>
+                <p className="text-[rgb(var(--gray))] text-sm">
+                  {step.description}
+                </p>
               </div>
             ))}
           </div>

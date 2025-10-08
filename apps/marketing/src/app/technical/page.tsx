@@ -31,12 +31,18 @@ export default function TechnicalPage(): React.ReactElement {
               </Link>
             </li>
             <li>
-              <Link href="/financial" className="hover:text-[rgb(var(--primary))]">
+              <Link
+                href="/financial"
+                className="hover:text-[rgb(var(--primary))]"
+              >
                 Financial
               </Link>
             </li>
             <li>
-              <Link href="/compliance" className="hover:text-[rgb(var(--primary))]">
+              <Link
+                href="/compliance"
+                className="hover:text-[rgb(var(--primary))]"
+              >
                 Compliance
               </Link>
             </li>
