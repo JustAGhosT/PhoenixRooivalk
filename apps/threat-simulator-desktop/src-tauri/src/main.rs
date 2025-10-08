@@ -28,15 +28,15 @@ fn save_session_to_persistence(session: &GameSession) -> Result<String, String> 
     // For now, we'll serialize to JSON as a placeholder
     let session_json = serde_json::to_string_pretty(session)
         .map_err(|e| format!("Failed to serialize session: {}", e))?;
-    
+
     debug!("Persisting session data: {}", session_json);
-    
+
     // Placeholder for actual database/blockchain persistence
     // In production, this would:
     // 1. Save to local SQLite database
     // 2. Queue for blockchain anchoring (Solana/EtherLink)
     // 3. Generate tamper-evident hash
-    
+
     let evidence_id = format!("evidence-{}", session.session_id);
     info!(
         session_id = %session.session_id,
@@ -46,7 +46,7 @@ fn save_session_to_persistence(session: &GameSession) -> Result<String, String> 
         evidence_id = %evidence_id,
         "Session persisted successfully"
     );
-    
+
     Ok(evidence_id)
 }
 
@@ -81,30 +81,24 @@ fn start_game_session(state: State<'_, AppState>) -> Result<GameSession, String>
         level: 1,
     };
 
-    let mut current = state
-        .current_session
-        .lock()
-        .map_err(|e| {
-            error!("Failed to acquire session lock (mutex poisoned): {}", e);
-            format!("Failed to acquire session lock (mutex poisoned): {}", e)
-        })?;
-    
+    let mut current = state.current_session.lock().map_err(|e| {
+        error!("Failed to acquire session lock (mutex poisoned): {}", e);
+        format!("Failed to acquire session lock (mutex poisoned): {}", e)
+    })?;
+
     info!(
         session_id = %session.session_id,
         start_time = session.start_time,
         "New game session created"
     );
-    
+
     *current = Some(session.clone());
 
     Ok(session)
 }
 
 #[tauri::command]
-fn end_game_session(
-    state: State<'_, AppState>,
-    input: EndGameSessionInput,
-) -> Result<(), String> {
+fn end_game_session(state: State<'_, AppState>, input: EndGameSessionInput) -> Result<(), String> {
     debug!(
         final_score = input.final_score,
         threats_neutralized = input.threats_neutralized,
@@ -115,7 +109,10 @@ fn end_game_session(
         Ok(guard) => guard,
         Err(e) => {
             error!("Failed to acquire session lock (mutex poisoned): {}", e);
-            return Err(format!("Failed to acquire session lock (mutex poisoned): {}", e));
+            return Err(format!(
+                "Failed to acquire session lock (mutex poisoned): {}",
+                e
+            ));
         }
     };
 

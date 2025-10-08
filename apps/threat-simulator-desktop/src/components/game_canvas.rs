@@ -25,7 +25,7 @@ pub fn GameCanvas(game_state: GameStateManager, is_running: ReadSignal<bool>) ->
 
         let canvas = canvas_elem.unchecked_ref::<HtmlCanvasElement>();
         web_sys::console::log_1(&"Canvas element found!".into());
-        
+
         // Get 2D context with proper error handling
         let context = match canvas.get_context("2d") {
             Ok(Some(ctx)) => match ctx.dyn_into::<CanvasRenderingContext2d>() {
@@ -38,7 +38,7 @@ pub fn GameCanvas(game_state: GameStateManager, is_running: ReadSignal<bool>) ->
             Ok(None) => {
                 web_sys::console::error_1(&"Canvas 2D context is None".into());
                 return;
-            },
+            }
             Err(e) => {
                 web_sys::console::error_2(&"Failed to get canvas context:".into(), &e);
                 return;
@@ -97,7 +97,9 @@ pub fn GameCanvas(game_state: GameStateManager, is_running: ReadSignal<bool>) ->
                 game_state_loop.threats.set(threats);
                 game_state_loop.drones.set(drones);
                 // Clamp wave number to u8 range to prevent wraparound past 255
-                game_state_loop.level.set(engine_ref.current_wave().min(255) as u8);
+                game_state_loop
+                    .level
+                    .set(engine_ref.current_wave().min(255) as u8);
             }
 
             // Render
@@ -251,7 +253,15 @@ fn render_frame(
             ctx.set_fill_style(&JsValue::from_str("#ffff00"));
             ctx.set_font("10px monospace");
             // Safely take last 8 chars (Unicode scalar values) to avoid UTF-8 boundary panics
-            let label: String = threat.id.chars().rev().take(8).collect::<Vec<_>>().into_iter().rev().collect();
+            let label: String = threat
+                .id
+                .chars()
+                .rev()
+                .take(8)
+                .collect::<Vec<_>>()
+                .into_iter()
+                .rev()
+                .collect();
             ctx.fill_text(
                 &label,
                 threat.position.x as f64 - 15.0,

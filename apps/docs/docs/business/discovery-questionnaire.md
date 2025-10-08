@@ -31,8 +31,8 @@ discovery calls to assess needs, technical requirements, and budget parameters.
 
 ### Organization Details
 
-- **Industry Sector**: [ ] Military/Defense [ ] Critical Infrastructure [ ]
-  Commercial [ ] Other: \***\*\_\*\***
+- **Industry Sector**: [ ] Military/Defense [ ] Critical Infrastructure [ ] Commercial
+  [ ] Other: \***\*\_\*\***
 - **Organization Size**: [ ] <100 employees [ ] 100-1000 [ ] 1000-5000 [ ] 5000+
 - **Annual Security Budget**: [ ] <$100K [ ] $100K-$500K [ ] $500K-$2M [ ] $2M+
 
@@ -43,6 +43,7 @@ discovery calls to assess needs, technical requirements, and budget parameters.
 ### Threat Environment
 
 1. **What types of drone threats do you currently face?**
+
    - [ ] Consumer drones (DJI, etc.)
    - [ ] Commercial drones (delivery, surveillance)
    - [ ] Military-grade drones
@@ -50,6 +51,7 @@ discovery calls to assess needs, technical requirements, and budget parameters.
    - [ ] Unknown/classified threats
 
 2. **How frequently do you experience drone incidents?**
+
    - [ ] Daily
    - [ ] Weekly
    - [ ] Monthly
@@ -66,6 +68,7 @@ discovery calls to assess needs, technical requirements, and budget parameters.
 ### Current Solutions
 
 1. **What counter-drone systems do you currently use?**
+
    - [ ] RF jamming systems
    - [ ] Kinetic interceptors
    - [ ] Laser systems
@@ -89,6 +92,7 @@ discovery calls to assess needs, technical requirements, and budget parameters.
 ### Coverage Area
 
 1. **What is the size of your protection area?**
+
    - [ ] <1 km²
    - [ ] 1-5 km²
    - [ ] 5-20 km²
@@ -115,6 +119,7 @@ discovery calls to assess needs, technical requirements, and budget parameters.
 ### Network Infrastructure
 
 1. **What is your current network infrastructure?**
+
    - [ ] High-speed fiber internet
    - [ ] Satellite communication
    - [ ] Cellular networks
@@ -172,6 +177,7 @@ discovery calls to assess needs, technical requirements, and budget parameters.
 ### Budget Parameters
 
 1. **What is your budget range for counter-drone solutions?**
+
    - [ ] <$50K
    - [ ] $50K-$100K
    - [ ] $100K-$500K
@@ -188,6 +194,7 @@ discovery calls to assess needs, technical requirements, and budget parameters.
 ### Timeline
 
 1. **When do you need the solution deployed?**
+
    - [ ] <3 months
    - [ ] 3-6 months
    - [ ] 6-12 months
@@ -208,6 +215,7 @@ discovery calls to assess needs, technical requirements, and budget parameters.
 ### Existing Systems
 
 1. **What security systems do you currently have?**
+
    - [ ] CCTV cameras
    - [ ] Access control systems
    - [ ] Perimeter sensors
@@ -258,6 +266,7 @@ discovery calls to assess needs, technical requirements, and budget parameters.
 ### Decision Process
 
 1. **Who else needs to be involved in the decision process?**
+
    - [ ] Technical team
    - [ ] Security team
    - [ ] Legal/compliance

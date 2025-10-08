@@ -478,8 +478,7 @@ mod tests {
         let center = Vector2::new(100.0, 100.0);
 
         // This should not panic with division by zero
-        let formation_id =
-            manager.create_formation(FormationType::Semicircle, center, drones);
+        let formation_id = manager.create_formation(FormationType::Semicircle, center, drones);
 
         // Verify the formation was created
         assert!(manager.formations.contains_key(&formation_id));

@@ -21,11 +21,12 @@ market.
 ### Current State of South African Defense
 
 <MarketStats title="South African Defense Industry Overview" stats={[ { label:
-"Denel Workforce", value: "~1,000", description: "Down from 10,000+ employees"
-}, { label: "Emergency Funding", value: "R3.4B", description: "2022 Special
-Appropriation Act" }, { label: "Paramount Group Sales", value: "$1.5B+",
-description: "International sales across 30+ countries" }, { label: "CSIR R&D
-Budget", value: "10%", description: "Of Africa's entire R&D budget" } ]} />
+"Denel Workforce", value: "~1,000", description: "Down from 10,000+
+employees" }, { label: "Emergency Funding", value: "R3.4B", description: "2022
+Special Appropriation Act" }, { label: "Paramount Group Sales", value:
+"$1.5B+", description: "International sales across 30+ countries" }, { label:
+"CSIR R&D Budget", value: "10%", description: "Of Africa's entire R&D budget" }
+]} />
 
 **Denel's Financial Distress and Recovery**
 
@@ -72,17 +73,18 @@ CSIR's defense capabilities span:
 ### Technical Specifications
 
 <TechnicalSpecs title="Tethered Drone Performance Metrics" specs={[ { category:
-"Endurance & Power", specifications: [ { name: "Continuous Operation", value:
-"50+ hours", description: "Unlimited flight time via tether" }, { name: "Power
-Transmission", value: "2,200W", description: "Elistair systems maximum" }, {
-name: "Cable Weight", value: "1.8 kg", description: "Per 110 meters of tether"
-}, { name: "Data Bandwidth", value: "40-100+ Gbps", description: "Fiber optic
-transmission" } ] }, { category: "Operational Constraints", specifications: [ {
-name: "Range Limit", value: "50-200m", description: "Tactical systems typical"
-}, { name: "Specialized Range", value: "400m", description: "Specialized
-platforms maximum" }, { name: "Payload Capacity", value: "4-5 kg", description:
-"Standard tethered systems" }, { name: "Altitude Limit", value: "70m",
-description: "Typical operational ceiling" } ] } ]} />
+"Endurance & Power", specifications: [ { name: "Continuous Operation",
+value: "50+ hours", description: "Unlimited flight time via tether" }, { name:
+"Power Transmission", value: "2,200W", description: "Elistair systems maximum"
+}, { name: "Cable Weight", value: "1.8 kg", description: "Per 110 meters
+of tether" }, { name: "Data Bandwidth", value: "40-100+ Gbps",
+description: "Fiber optic transmission" } ] }, { category: "Operational
+Constraints", specifications: [ { name: "Range Limit", value: "50-200m",
+description: "Tactical systems typical" }, { name: "Specialized Range", value:
+"400m", description: "Specialized platforms maximum" }, { name:
+"Payload Capacity", value: "4-5 kg", description: "Standard tethered systems" },
+{ name: "Altitude Limit", value: "70m", description: "Typical
+operational ceiling" } ] } ]} />
 
 ### Power Transmission Physics
 
@@ -103,36 +105,36 @@ Fiber optic tethers provide complete immunity to RF jamming, eliminating the vul
 
 <MarketStats title="Tethered System Economics" stats={[ { label: "System Cost",
 value: "$130,000", description: "Elistair systems approximate cost" }, { label:
-"Mission Cost", value: "$500", description: "Operational expenses per mission"
-}, { label: "Power Consumption", value: "2,200W", description: "Maximum
-continuous power" }, { label: "Data Rate", value: "100+ Gbps", description:
-"Fiber optic bandwidth" } ]} />
+"Mission Cost", value: "$500", description: "Operational expenses per
+mission" }, { label: "Power Consumption", value: "2,200W", description: "Maximum
+continuous power" }, { label: "Data Rate", value: "100+ Gbps",
+description: "Fiber optic bandwidth" } ]} />
 
 ## Counter-Drone Market Analysis
 
 ### Market Size and Growth
 
-<MarketStats title="Global Counter-Drone Market" stats={[ { label: "2025
-Market", value: "$2.4-3.8B", description: "Current market size" }, { label:
-"2030-2031 Projection", value: "$10-15B", description: "Projected market size"
-}, { label: "Growth Rate", value: "25-28%", description: "Annual CAGR" }, {
-label: "Ukraine Impact", value: "70%", description: "Drones account for
+<MarketStats title="Global Counter-Drone Market" stats={[ { label:
+"2025 Market", value: "$2.4-3.8B", description: "Current market size" }, {
+label: "2030-2031 Projection", value: "$10-15B", description: "Projected market
+size" }, { label: "Growth Rate", value: "25-28%", description: "Annual CAGR" },
+{ label: "Ukraine Impact", value: "70%", description: "Drones account for
 deaths/injuries" } ]} />
 
 ### Leading Counter-Drone Systems
 
 <TechnologyComparison title="Counter-Drone System Comparison"
-competitors={["DroneShield", "Dedrone", "Rafael Drone Dome", "Fortem
-DroneHunter"]} rows={[ { feature: "Detection Range", phoenix: "5 km",
-competitor1: "2 km", competitor2: "5 km", competitor3: "5 km" }, { feature:
-"Response Time", phoenix: "3-6 seconds", competitor1: "5 seconds", competitor2:
-"3 seconds", competitor3: "4 seconds" }, { feature: "Accuracy", phoenix: "95%+",
-competitor1: "90%", competitor2: "95%", competitor3: "94%" }, { feature:
-"Blockchain Security", phoenix: true, competitor1: false, competitor2: false,
-competitor3: false }, { feature: "Modular Design", phoenix: true, competitor1:
-false, competitor2: false, competitor3: false }, { feature: "Physical
-Countermeasures", phoenix: true, competitor1: false, competitor2: true,
-competitor3: true } ]} />
+competitors={["DroneShield", "Dedrone", "Rafael Drone Dome",
+"Fortem DroneHunter"]} rows={[ { feature: "Detection Range", phoenix: "5
+km", competitor1: "2 km", competitor2: "5 km", competitor3: "5 km" }, {
+feature: "Response Time", phoenix: "3-6 seconds", competitor1: "5
+seconds", competitor2: "3 seconds", competitor3: "4 seconds" }, { feature:
+"Accuracy", phoenix: "95%+", competitor1: "90%", competitor2:
+"95%", competitor3: "94%" }, { feature: "Blockchain Security", phoenix: true,
+competitor1: false, competitor2: false, competitor3: false }, {
+feature: "Modular Design", phoenix: true, competitor1: false, competitor2:
+false, competitor3: false }, { feature: "Physical Countermeasures",
+phoenix: true, competitor1: false, competitor2: true, competitor3: true } ]} />
 
 ### Ukraine War Impact
 
@@ -158,20 +160,21 @@ The Russia-Ukraine War revolutionized drone and counter-drone tactics at unprece
 "Hyperledger Fabric", specifications: [ { name: "Transactions/Second", value:
 "3,500-20,000", description: "Permissioned network performance" }, { name:
 "Security Model", value: "Permissioned", description: "Access control essential"
-}, { name: "Use Case", value: "Classified Operations", description: "US Navy
-NAVAIR deployment" }, { name: "Compliance", value: "FISMA/NIST", description:
-"Government standards" } ] }, { category: "Hedera Hashgraph", specifications: [
-{ name: "Transactions/Second", value: "10,000+", description: "High-performance
-capability" }, { name: "Finality", value: "Near-instant", description:
-"Mathematical proof of security" }, { name: "Security", value: "aBFT",
-description: "Asynchronous Byzantine Fault Tolerance" }, { name: "Governance",
-value: "Centralized", description: "Hedera Council control" } ] }, { category:
-"Solana", specifications: [ { name: "Transactions/Second", value: "65,000",
-description: "Theoretical maximum throughput" }, { name: "Transaction Cost",
-value: "<$0.01", description: "Low-cost operations" }, { name: "Finality",
-value: "100-130ms", description: "Alpenglow upgrade target" }, { name:
-"Stability", value: "Concerns", description: "Multiple 2021-2022 outages" } ] }
-]} />
+}, { name: "Use Case", value: "Classified Operations", description: "US
+Navy NAVAIR deployment" }, { name: "Compliance", value:
+"FISMA/NIST", description: "Government standards" } ] }, { category: "Hedera
+Hashgraph", specifications: [ { name: "Transactions/Second", value:
+"10,000+", description: "High-performance capability" }, { name: "Finality",
+value: "Near-instant", description: "Mathematical proof of security" }, { name:
+"Security", value: "aBFT", description: "Asynchronous Byzantine Fault Tolerance"
+}, { name: "Governance", value: "Centralized", description: "Hedera
+Council control" } ] }, { category: "Solana", specifications: [ { name:
+"Transactions/Second", value: "65,000", description: "Theoretical maximum
+throughput" }, { name: "Transaction Cost", value: "<$0.01",
+description: "Low-cost operations" }, { name: "Finality", value:
+"100-130ms", description: "Alpenglow upgrade target" }, { name:
+"Stability", value: "Concerns", description: "Multiple 2021-2022 outages" } ] } ]}
+/>
 
 ### Defense Use Case Recommendations
 
@@ -186,20 +189,20 @@ Defense blockchain requirements prioritize controlled access and security over r
 <TechnicalSpecs title="Edge Computing Platform Analysis" specs={[ { category:
 "Hailo-8", specifications: [ { name: "Efficiency", value: "10.4 TOPS/W",
 description: "Industry-leading power efficiency" }, { name: "Performance",
-value: "26 TOPS", description: "INT8 processing capability" }, { name: "Power",
-value: "2.5W", description: "Typical power consumption" }, { name: "Cost",
-value: "$75-150", description: "Per module pricing" } ] }, { category: "Qualcomm
+value: "26 TOPS", description: "INT8 processing capability" }, { name:
+"Power", value: "2.5W", description: "Typical power consumption" }, { name:
+"Cost", value: "$75-150", description: "Per module pricing" } ] }, { category: "Qualcomm
 Flight RB5", specifications: [ { name: "AI Performance", value: "15 TOPS",
 description: "AI Engine capability" }, { name: "Connectivity", value: "5G",
-description: "Integrated beyond-visual-line-of-sight" }, { name: "Cameras",
-value: "7 concurrent", description: "Spectra 480 ISP support" }, { name:
-"Power", value: "15-25W", description: "Higher consumption" } ] }, { category:
-"Google Coral Edge TPU", specifications: [ { name: "Performance", value: "4
-TOPS", description: "Reasonable processing power" }, { name: "Cost", value:
-"$35-75", description: "Ultra-low cost option" }, { name: "Efficiency", value:
-"2 TOPS/W", description: "Acceptable power efficiency" }, { name: "Limitations",
-value: "TensorFlow Lite", description: "Restricted framework support" } ] } ]}
-/>
+description: "Integrated beyond-visual-line-of-sight" }, { name:
+"Cameras", value: "7 concurrent", description: "Spectra 480 ISP support" },
+{ name: "Power", value: "15-25W", description: "Higher consumption" } ] }, {
+category: "Google Coral Edge TPU", specifications: [ { name:
+"Performance", value: "4 TOPS", description: "Reasonable processing power" }, {
+name: "Cost", value: "$35-75", description: "Ultra-low cost option" }, {
+name: "Efficiency", value: "2 TOPS/W", description: "Acceptable power
+efficiency" }, { name: "Limitations", value: "TensorFlow Lite",
+description: "Restricted framework support" } ] } ]} />
 
 ## GPS-Denied Navigation Technology
 
@@ -208,32 +211,34 @@ value: "TensorFlow Lite", description: "Restricted framework support" } ] } ]}
 <TechnicalSpecs title="GPS-Denied Navigation Capabilities" specs={[ { category:
 "Visual SLAM", specifications: [ { name: "Accuracy", value: "<1 meter",
 description: "Over 10-minute flights" }, { name: "Processing", value: "20-30
-Hz", description: "Real-time capability" }, { name: "Algorithm", value:
-"ORB-SLAM3", description: "State-of-the-art system" }, { name: "Recovery",
-value: "Multi-map", description: "Place recognition capability" } ] }, {
-category: "Tactical IMU", specifications: [ { name: "Gyro Bias", value:
+Hz", description: "Real-time capability" }, { name: "Algorithm",
+value: "ORB-SLAM3", description: "State-of-the-art system" }, { name:
+"Recovery", value: "Multi-map", description: "Place recognition capability" } ] },
+{ category: "Tactical IMU", specifications: [ { name: "Gyro Bias", value:
 "6°/hour", description: "Bias stability" }, { name: "Drift", value: "<1%",
-description: "Distance-traveled drift" }, { name: "Survey Grade", value: "9 nm",
-description: "1-hour GNSS outage drift" }, { name: "Standalone", value: "15
-min", description: "Maximum without corrections" } ] }, { category: "LiDAR
-Terrain Following", specifications: [ { name: "Range", value: "200m",
+description: "Distance-traveled drift" }, { name: "Survey Grade", value: "9
+nm", description: "1-hour GNSS outage drift" }, { name: "Standalone", value: "15
+min", description: "Maximum without corrections" } ] }, { category: "LiDAR Terrain
+Following", specifications: [ { name: "Range", value: "200m",
 description: "LightWare SF30/D capability" }, { name: "Update Rate", value:
-"20kHz", description: "High-frequency updates" }, { name: "Accuracy", value:
-"Centimeter", description: "Altitude precision" }, { name: "Integration", value:
-"ArduPilot/PX4", description: "Autopilot compatibility" } ] } ]} />
+"20kHz", description: "High-frequency updates" }, { name: "Accuracy",
+value: "Centimeter", description: "Altitude precision" }, { name:
+"Integration", value: "ArduPilot/PX4", description: "Autopilot compatibility"
+} ] } ]} />
 
 ## Drone Manufacturing Economics
 
 ### Cost Analysis by Category
 
-<MarketStats title="Drone Manufacturing Cost Ranges" stats={[ { label: "FPV
-Tactical", value: "$400", description: "Ukraine production cost" }, { label:
-"Consumer Drones", value: "$25-2,000", description: "Commercial market range" },
-{ label: "Professional Systems", value: "$10,000-100,000", description:
-"Industrial applications" }, { label: "Attack Drones", value: "$20,000-50,000",
-description: "Military tactical systems" }, { label: "MALE Systems", value:
-"$2-10M", description: "Medium altitude long endurance" }, { label: "Strategic
-Drones", value: "$64-140M", description: "High-altitude long-endurance" } ]} />
+<MarketStats title="Drone Manufacturing Cost Ranges" stats={[ { label:
+"FPV Tactical", value: "$400", description: "Ukraine production cost" }, {
+label: "Consumer Drones", value: "$25-2,000", description: "Commercial market
+range" }, { label: "Professional Systems", value: "$10,000-100,000",
+description: "Industrial applications" }, { label: "Attack Drones",
+value: "$20,000-50,000", description: "Military tactical systems" }, {
+label: "MALE Systems", value: "$2-10M", description: "Medium altitude
+long endurance" }, { label: "Strategic Drones", value: "$64-140M", description:
+"High-altitude long-endurance" } ]} />
 
 ### Material Cost Analysis
 
@@ -254,10 +259,10 @@ Recycled carbon fiber production costs plummet to $5 per kg versus $33-66 for vi
 <TechnicalSpecs title="Perovskite Solar Cell Performance" specs={[ { category:
 "Performance Metrics", specifications: [ { name: "Specific Power", value: "44
 W/g", description: "100x lighter than crystalline silicon" }, { name:
-"Efficiency", value: "20.1%", description: "Champion cell performance" }, {
-name: "Area Density", value: "4.5 g/m²", description: "Ultra-lightweight design"
-}, { name: "Thickness", value: "~2.5 μm", description: "Thin-film technology" }
-] } ]} />
+"Efficiency", value: "20.1%", description: "Champion cell performance" },
+{ name: "Area Density", value: "4.5 g/m²", description:
+"Ultra-lightweight design" }, { name: "Thickness", value: "~2.5
+μm", description: "Thin-film technology" } ] } ]} />
 
 ### Hydrogen Fuel Cell Advantages
 
@@ -279,11 +284,11 @@ Hydrogen fuel cells deliver 3x flight time extension versus battery-powered equi
 ### Success Case Studies
 
 <MarketStats title="International Defense Export Success" stats={[ { label:
-"Baykar Exports", value: "$1.8B", description: "90% of revenue from exports" },
-{ label: "TAI Revenue", value: "$2.2B", description: "43% YoY growth" }, {
-label: "LIG Nex1 Profit", value: "191.2B won", description: "65% increase" }, {
-label: "Embraer Defense", value: "$1.78B", description: "Best result in 11
-years" } ]} />
+"Baykar Exports", value: "$1.8B", description: "90% of revenue from exports"
+}, { label: "TAI Revenue", value: "$2.2B", description: "43% YoY growth" },
+{ label: "LIG Nex1 Profit", value: "191.2B won", description: "65% increase" },
+{ label: "Embraer Defense", value: "$1.78B", description: "Best result in
+11 years" } ]} />
 
 ### Key Success Factors
 

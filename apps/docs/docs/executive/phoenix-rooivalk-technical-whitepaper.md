@@ -399,12 +399,14 @@ dependency or human intervention.
 #### Revenue Streams
 
 1. **Hardware Sales (60% of revenue)**
+
    - Base System Units: $25k-$100k per unit
    - Sensor Upgrades: $5k-$15k per additional sensor
    - Swarm Expansion: $15k-$25k per additional drone
    - Installation Services: $5k-$10k per deployment
 
 2. **Software Subscriptions (25% of revenue)**
+
    - Monitoring & Analytics: $1k-$3k/month per site
    - Evidence Storage: $500-$2k/month per site
    - AI Model Updates: $2k-$5k/year per site
@@ -464,11 +466,13 @@ dependency or human intervention.
 #### High-Impact Risks
 
 1. **AI Performance**: Edge AI may not meet performance requirements
+
    - **Mitigation**: NVIDIA Jetson AGX Orin with 275 TOPS performance
    - **Contingency**: Cloud-based AI fallback systems
 
 2. **Blockchain Scalability**: Evidence anchoring may face throughput
    limitations
+
    - **Mitigation**: Hedera's 10,000+ TPS with private chain backup
    - **Contingency**: Multi-chain architecture with Solana fallback
 
@@ -487,10 +491,12 @@ dependency or human intervention.
 #### High-Impact Risks
 
 1. **Competition**: Established players with significant resources
+
    - **Mitigation**: Superior technology and cost advantages
    - **Contingency**: Strategic partnerships and licensing
 
 2. **Market Adoption**: Slow adoption of new technology
+
    - **Mitigation**: Pilot programs and proof-of-concept deployments
    - **Contingency**: Focus on high-value early adopters
 
@@ -509,10 +515,12 @@ dependency or human intervention.
 #### High-Impact Risks
 
 1. **Talent Acquisition**: Difficulty attracting key personnel
+
    - **Mitigation**: Competitive compensation and equity packages
    - **Contingency**: Remote work and international talent
 
 2. **Manufacturing**: Supply chain disruptions and quality issues
+
    - **Mitigation**: Multiple supplier relationships
    - **Contingency**: In-house manufacturing capabilities
 

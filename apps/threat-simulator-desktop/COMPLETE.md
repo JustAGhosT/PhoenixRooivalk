@@ -39,22 +39,20 @@ components have been successfully ported, tested, and documented.
 
 1. ✅ **TokenStore** (`token_store.rs`) - Blockchain wallet, drone purchasing
 2. ✅ **ResearchPanel** (`research_panel.rs`) - Tech tree, 4 categories, 8+
-    items
+   items
 3. ✅ **SynergySystem** (`synergy_system.rs`) - Weapon combo bonuses, real-time
-    detection
+   detection
 
 ### ✅ Game Engine (7/7)
 
 1. ✅ **Types** (`game/types.rs`) - Core data structures (230 lines, 7 tests)
-2. ✅ **Physics** (`game/physics.rs`) - Collision detection (210 lines, 5
-    tests)
-3. ✅ **Formations** (`game/formations.rs`) - 6 formation patterns (320 lines,
-    5 tests)
+2. ✅ **Physics** (`game/physics.rs`) - Collision detection (210 lines, 5 tests)
+3. ✅ **Formations** (`game/formations.rs`) - 6 formation patterns (320 lines, 5
+   tests)
 4. ✅ **Waves** (`game/waves.rs`) - Progressive spawning (350 lines, 6 tests)
 5. ✅ **Engine** (`game/engine.rs`) - Main game loop (220 lines, 6 tests)
 6. ✅ **Weapons** (`game/weapons.rs`) - 13 weapon types (90 lines)
-7. ✅ **Particles** (`game/particles.rs`) - Particle system (280 lines, 6
-    tests)
+7. ✅ **Particles** (`game/particles.rs`) - Particle system (280 lines, 6 tests)
 
 ### Total: 21 modules, 47 tests, 100% passing
 
@@ -62,8 +60,8 @@ components have been successfully ported, tested, and documented.
 
 ## 🎮 Complete Feature Matrix
 
-| Feature Category      | Count        | Status            |
-| --------------------- | ------------ | ----------------- |
+| Feature Category      | Count        | Status             |
+| --------------------- | ------------ | ------------------ |
 | **Weapons**           | 13 types     | ✅ All implemented |
 | **Drones**            | 9 types      | ✅ All implemented |
 | **Threats**           | 7 types      | ✅ All implemented |
@@ -166,10 +164,10 @@ pnpm clean            # cargo clean && trunk clean
 | -------------------- | --------------------- | ------------------------- | --------------------- |
 | UI Components        | 1,300 lines           | 1,350 lines               | -4% (feature parity+) |
 | Game Engine          | 1,200 lines           | 1,420 lines               | -18% (+ tests)        |
-| State Management     | 900 lines (hooks)     | 200 lines (signals)       | **78%** ✅             |
-| Particle System      | 450 lines             | 280 lines                 | **38%** ✅             |
-| **Total Functional** | **3,850 lines**       | **3,250 lines**           | **16%** ✅             |
-| **Tests**            | **0 lines (0 tests)** | **~500 lines (47 tests)** | **∞%** ✅              |
+| State Management     | 900 lines (hooks)     | 200 lines (signals)       | **78%** ✅            |
+| Particle System      | 450 lines             | 280 lines                 | **38%** ✅            |
+| **Total Functional** | **3,850 lines**       | **3,250 lines**           | **16%** ✅            |
+| **Tests**            | **0 lines (0 tests)** | **~500 lines (47 tests)** | **∞%** ✅             |
 
 ### Test Coverage
 
@@ -192,8 +190,8 @@ Clippy:               0        ✅ Zero warnings
 
 ### Performance Benchmarks
 
-| Metric              | React (Web)     | Leptos/Tauri (Desktop) | Improvement       |
-| ------------------- | --------------- | ---------------------- | ----------------- |
+| Metric              | React (Web)     | Leptos/Tauri (Desktop) | Improvement        |
+| ------------------- | --------------- | ---------------------- | ------------------ |
 | **Load Time**       | 2,000ms         | 200ms                  | **10x faster** ✅  |
 | **Memory (idle)**   | 150MB           | 35MB                   | **4.3x better** ✅ |
 | **Memory (active)** | 200MB+          | 45MB                   | **4.4x better** ✅ |
@@ -414,13 +412,13 @@ feature/leptos-tauri-threat-simulator (8 commits)
 
 ## 📈 Success Metrics - ALL EXCEEDED
 
-| Target              | Goal         | Achieved         | Status      |
-| ------------------- | ------------ | ---------------- | ----------- |
+| Target              | Goal         | Achieved         | Status        |
+| ------------------- | ------------ | ---------------- | ------------- |
 | Component Migration | 14/14        | **17/17**        | ✅✅ **121%** |
 | Test Coverage       | 80%          | **100%**         | ✅✅ **125%** |
 | FPS                 | 60           | **90+**          | ✅✅ **150%** |
 | Memory              | <80MB        | **<50MB**        | ✅✅ **160%** |
-| Load Time           | <1s          | **<1s**          | ✅ **100%**  |
+| Load Time           | <1s          | **<1s**          | ✅ **100%**   |
 | Code Quality        | No warnings  | **0 warnings**   | ✅✅ **100%** |
 | Documentation       | 1,000+ lines | **2,200+ lines** | ✅✅ **220%** |
 

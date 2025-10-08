@@ -35,10 +35,11 @@ _Revolutionizing Drone Defense Through Edge AI and Blockchain Accountability_
 # Explosive Market Growth
 
 <MarketStats title="Global Counter-Drone Market" stats={[ { label: "2024 Market
-Size", value: "$1.2-1.8B", description: "Current market value" }, { label: "2030
-Projection", value: "$2.51B", description: "Projected market size" }, { label:
-"Growth Rate", value: "23.5%", description: "Annual CAGR" }, { label: "Ukraine
-Impact", value: "15%", description: "Drones account for casualties" } ]} />
+Size", value: "$1.2-1.8B", description: "Current market value" }, { label:
+"2030 Projection", value: "$2.51B", description: "Projected market size" }, {
+label: "Growth Rate", value: "23.5%", description: "Annual CAGR" }, {
+label: "Ukraine Impact", value: "15%", description: "Drones account
+for casualties" } ]} />
 
 ### Market Drivers
 
@@ -90,16 +91,17 @@ processing. All critical decisions made locally without network dependency.
 
 <TechnologyComparison title="Phoenix Rooivalk vs. Competitors"
 competitors={["DroneShield", "Dedrone", "Rafael Drone Dome", "Fortem"]} rows={[
-{ feature: "Price", phoenix: "R850,000", competitor1: "R1,200,000", competitor2:
-"R1,500,000", competitor3: "R1,300,000" }, { feature: "Detection Range",
-phoenix: "5 km", competitor1: "3 km", competitor2: "4 km", competitor3: "3 km"
-}, { feature: "Response Time", phoenix: "0.12-0.19 seconds", competitor1: "2
-seconds", competitor2: "3 seconds", competitor3: "2 seconds" }, { feature:
-"Accuracy", phoenix: "99%+", competitor1: "95%", competitor2: "90%",
-competitor3: "85%" }, { feature: "Blockchain Security", phoenix: "true",
-competitor1: "false", competitor2: "false", competitor3: "false" }, { feature:
-"Modular Design", phoenix: "true", competitor1: "false", competitor2: "false",
-competitor3: "false" } ]} />
+{
+feature: "Price", phoenix: "R850,000", competitor1: "R1,200,000",
+competitor2: "R1,500,000", competitor3: "R1,300,000" }, { feature: "Detection
+Range", phoenix: "5 km", competitor1: "3 km", competitor2: "4 km",
+competitor3: "3 km" }, { feature: "Response Time", phoenix: "0.12-0.19
+seconds", competitor1: "2 seconds", competitor2: "3 seconds", competitor3:
+"2 seconds" }, { feature: "Accuracy", phoenix: "99%+", competitor1: "95%",
+competitor2: "90%", competitor3: "85%" }, { feature: "Blockchain
+Security", phoenix: "true", competitor1: "false", competitor2:
+"false", competitor3: "false" }, { feature: "Modular Design", phoenix: "true",
+competitor1: "false", competitor2: "false", competitor3: "false" } ]} />
 
 ### Unique Differentiators
 
@@ -130,9 +132,9 @@ competitor3: "false" } ]} />
 <MarketStats title="Financial Projections (3-Year)" stats={[ { label: "Year 1
 Revenue", value: "R25M", description: "25 systems sold" }, { label: "Year 2
 Revenue", value: "R150M", description: "75 systems services" }, { label: "Year 3
-Revenue", value: "R500M", description: "200 systems + recurring" }, { label:
-"Gross Margin", value: "65%", description: "Hardware + software combined" } ]}
-/> </PitchDeckSlide>
+Revenue", value: "R500M", description: "200 systems + recurring" }, {
+label: "Gross Margin", value: "65%", description: "Hardware + software combined"
+} ]} /> </PitchDeckSlide>
 
 <PitchDeckSlide title="Market Positioning" slideNumber={6} totalSlides={15}>
 # Strategic Market Focus
@@ -219,11 +221,11 @@ Revenue", value: "R500M", description: "200 systems + recurring" }, { label:
 - **Payback Period**: 12 months average
 
 <MarketStats title="Investment Requirements" stats={[ { label: "R&D Investment",
-value: "R50M", description: "3-year development program" }, { label:
-"Manufacturing Setup", value: "R30M", description: "Production facility and
-equipment" }, { label: "Working Capital", value: "R40M", description: "Inventory
-and operations" }, { label: "Total Funding", value: "R120M", description:
-"Series A funding round" } ]} /> </PitchDeckSlide>
+value: "R50M", description: "3-year development program" }, {
+label: "Manufacturing Setup", value: "R30M", description: "Production facility
+and equipment" }, { label: "Working Capital", value: "R40M", description:
+"Inventory and operations" }, { label: "Total Funding", value: "R120M",
+description: "Series A funding round" } ]} /> </PitchDeckSlide>
 
 <PitchDeckSlide title="Team & Expertise" slideNumber={9} totalSlides={15}>
 # World-Class Team
@@ -340,10 +342,10 @@ and strategic partnerships ensures sustainable growth and competitive advantage.
 
 <MarketStats title="Market Segmentation" stats={[ { label: "Military", value:
 "50%", description: "Defense and security forces" }, { label: "Infrastructure",
-value: "25%", description: "Critical facilities protection" }, { label:
-"Commercial", value: "15%", description: "Private sector applications" }, {
-label: "International", value: "10%", description: "Export and partnerships" }
-]} /> </PitchDeckSlide>
+value: "25%", description: "Critical facilities protection" }, {
+label: "Commercial", value: "15%", description: "Private sector applications"
+}, { label: "International", value: "10%", description: "Export
+and partnerships" } ]} /> </PitchDeckSlide>
 
 <PitchDeckSlide title="Technology Validation" slideNumber={12} totalSlides={15}>
 # Proven Technology Foundation
@@ -397,11 +399,11 @@ Every component has been validated in real-world combat conditions, ensuring rel
 - **Technology Moats**: AI/ML and blockchain competitive advantages
 - **Export Opportunities**: Global market access through South African advantage
 
-<MarketStats title="Investment Timeline" stats={[ { label: "Series A", value:
-"R120M", description: "Months 1-6" }, { label: "Series B", value: "R300M",
-description: "Months 12-18" }, { label: "Series C", value: "R500M", description:
-"Months 24-30" }, { label: "Exit/IPO", value: "R2-5B", description: "Year 5-7" }
-]} /> </PitchDeckSlide>
+<MarketStats title="Investment Timeline" stats={[ { label: "Series A",
+value: "R120M", description: "Months 1-6" }, { label: "Series B",
+value: "R300M", description: "Months 12-18" }, { label: "Series C",
+value: "R500M", description: "Months 24-30" }, { label: "Exit/IPO", value:
+"R2-5B", description: "Year 5-7" } ]} /> </PitchDeckSlide>
 
 <PitchDeckSlide title="Next Steps & Call to Action" slideNumber={14} totalSlides={15}>
 # Partnership & Investment Opportunities
