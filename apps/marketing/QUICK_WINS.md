@@ -1,6 +1,7 @@
 # ⚡ Quick Wins - Immediate Action Items
 
-This document contains the **highest-impact, lowest-effort improvements** you can implement right now to boost the Phoenix Rooivalk marketing site.
+This document contains the **highest-impact, lowest-effort improvements** you
+can implement right now to boost the Phoenix Rooivalk marketing site.
 
 ---
 
@@ -8,11 +9,14 @@ This document contains the **highest-impact, lowest-effort improvements** you ca
 
 ### 1. Install Analytics (5 minutes)
 
-**Why**: Without analytics, you can't measure anything or make data-driven decisions.
+**Why**: Without analytics, you can't measure anything or make data-driven
+decisions.
 
-**Action**: Add Plausible Analytics to your site (privacy-focused, no cookie banner needed)
+**Action**: Add Plausible Analytics to your site (privacy-focused, no cookie
+banner needed)
 
 **Steps**:
+
 1. Sign up at [plausible.io](https://plausible.io) (free 30-day trial)
 2. Add your domain: `phoenixrooivalk.netlify.app`
 3. Add this to `apps/marketing/src/app/layout.tsx`:
@@ -39,17 +43,20 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 }
 ```
 
-**Result**: Start collecting visitor data, conversion tracking, and user behavior insights immediately.
+**Result**: Start collecting visitor data, conversion tracking, and user
+behavior insights immediately.
 
 ---
 
 ### 2. Submit Sitemap to Google (5 minutes)
 
-**Why**: Your site won't be indexed properly without telling Google about your sitemap.
+**Why**: Your site won't be indexed properly without telling Google about your
+sitemap.
 
 **Action**: Submit sitemap to Google Search Console
 
 **Steps**:
+
 1. Go to [Google Search Console](https://search.google.com/search-console)
 2. Add property: `phoenixrooivalk.netlify.app`
 3. Verify ownership (DNS verification recommended)
@@ -62,11 +69,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
 ### 3. Create Basic OG Image (20 minutes)
 
-**Why**: When people share your site on social media, you need a professional image.
+**Why**: When people share your site on social media, you need a professional
+image.
 
 **Action**: Create a simple Open Graph image using Canva
 
 **Steps**:
+
 1. Go to [Canva.com](https://canva.com) (free account)
 2. Create design → Custom size → 1200 x 630 px
 3. Add your logo (upload `/public/logo.svg`)
@@ -77,6 +86,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 8. Copy to `apps/marketing/public/twitter-image.png`
 
 **Template Text**:
+
 ```
 Phoenix Rooivalk
 ━━━━━━━━━━━━━━━━━━━━
@@ -88,6 +98,7 @@ Counter-Drone Defense
 ```
 
 **Update layout.tsx**:
+
 ```typescript
 openGraph: {
   images: [
@@ -104,7 +115,8 @@ twitter: {
 },
 ```
 
-**Result**: Professional social media previews increase click-through rates by 40%+.
+**Result**: Professional social media previews increase click-through rates by
+40%+.
 
 ---
 
@@ -117,6 +129,7 @@ twitter: {
 **Action**: Run basic accessibility tests
 
 **Steps**:
+
 1. Install [axe DevTools](https://www.deque.com/axe/devtools/) browser extension
 2. Open your site in Chrome
 3. Open DevTools → axe DevTools tab
@@ -131,6 +144,7 @@ twitter: {
    - Review errors and warnings
 
 **Common Issues to Fix**:
+
 - Missing alt text on images
 - Low color contrast (must be 4.5:1 minimum)
 - Missing ARIA labels
@@ -147,6 +161,7 @@ twitter: {
 **Action**: Create a simple newsletter signup component
 
 **Create** `apps/marketing/src/components/NewsletterSignup.tsx`:
+
 ```typescript
 "use client";
 
@@ -161,7 +176,7 @@ export function NewsletterSignup() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setStatus("loading");
-    
+
     try {
       // TODO: Replace with your email service API
       // Example: Mailchimp, ConvertKit, SendGrid
@@ -170,7 +185,7 @@ export function NewsletterSignup() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email }),
       });
-      
+
       if (response.ok) {
         setStatus("success");
         trackEvent("Newsletter Signup", { email });
@@ -187,7 +202,7 @@ export function NewsletterSignup() {
     <div className="newsletter-signup">
       <h3>Stay Updated on Defense Technology</h3>
       <p>Get insights on autonomous defense systems, SAE Level 4 autonomy, and counter-drone innovations.</p>
-      
+
       <form onSubmit={handleSubmit}>
         <input
           type="email"
@@ -201,7 +216,7 @@ export function NewsletterSignup() {
           {status === "loading" ? "Subscribing..." : "Subscribe"}
         </Button>
       </form>
-      
+
       {status === "success" && (
         <p className="success">✓ Thanks! Check your email to confirm.</p>
       )}
@@ -214,6 +229,7 @@ export function NewsletterSignup() {
 ```
 
 **Add to Footer** (`apps/marketing/src/components/Footer.tsx`):
+
 ```typescript
 import { NewsletterSignup } from "./NewsletterSignup";
 
@@ -224,12 +240,14 @@ import { NewsletterSignup } from "./NewsletterSignup";
 ```
 
 **Email Service Options**:
+
 - **Mailchimp**: Free up to 500 contacts
 - **ConvertKit**: Good for creators, free up to 300
 - **Buttondown**: Simple, $9/month
 - **Plausible + Netlify Forms**: No cost, basic features
 
-**Result**: Build email list for lead nurturing, announcements, and content marketing.
+**Result**: Build email list for lead nurturing, announcements, and content
+marketing.
 
 ---
 
@@ -240,6 +258,7 @@ import { NewsletterSignup } from "./NewsletterSignup";
 **Action**: Expand the existing FAQ schema with more defense-specific questions
 
 **Update** `apps/marketing/src/app/home.tsx` (expand existing FAQ):
+
 ```typescript
 {
   "@context": "https://schema.org",
@@ -297,36 +316,45 @@ import { NewsletterSignup } from "./NewsletterSignup";
 
 ### 7. Write First Blog Post (2 hours)
 
-**Why**: Content marketing attracts organic traffic and establishes thought leadership.
+**Why**: Content marketing attracts organic traffic and establishes thought
+leadership.
 
 **Action**: Write and publish first blog post
 
 **Topic Suggestions**:
+
 1. "5 Myths About RF-Denied Operations in Modern Warfare"
 2. "SAE Level 4 Autonomy: What It Means for Defense Systems"
 3. "Edge Computing vs Cloud: Why Milliseconds Matter in Counter-Drone Defense"
 4. "Lessons from Ukraine: The Counter-Drone Technology Gap"
 
 **Post Structure**:
+
 ```markdown
 # [Title]
 
 ## The Problem
+
 [1-2 paragraphs describing the challenge]
 
 ## Why Current Solutions Fall Short
+
 [Bullet points of limitations]
 
 ## The Phoenix Rooivalk Approach
+
 [How your solution addresses each limitation]
 
 ## Technical Deep Dive
+
 [Explain the technology without being salesy]
 
 ## Real-World Applications
+
 [Use cases and scenarios]
 
 ## Conclusion
+
 [Summary + CTA]
 ```
 
@@ -344,6 +372,7 @@ import { NewsletterSignup } from "./NewsletterSignup";
 **Action**: Record 2-minute demo video
 
 **Script Outline**:
+
 ```
 0:00-0:15 - Hook
 "What happens when enemy drones attack and all communications are jammed?"
@@ -362,11 +391,13 @@ Sub-200ms response time. 100% offline operation."
 ```
 
 **Tools**:
+
 - **OBS Studio**: Free screen recording
 - **DaVinci Resolve**: Free video editing
 - **ElevenLabs**: AI voiceover (optional)
 
 **Upload to**:
+
 - YouTube (SEO benefit)
 - Vimeo (professional)
 - LinkedIn (B2B reach)
@@ -381,6 +412,7 @@ Sub-200ms response time. 100% offline operation."
 ### Week 1 Metrics to Track
 
 **Using Plausible Analytics**:
+
 1. **Pageviews**: Total visitors
 2. **Top Pages**: Which pages get most traffic
 3. **Bounce Rate**: How many leave immediately
@@ -388,6 +420,7 @@ Sub-200ms response time. 100% offline operation."
 5. **Traffic Sources**: Where visitors come from
 
 **Goals to Set Up**:
+
 ```javascript
 // In Plausible dashboard, create these goals:
 - pageview: /contact
@@ -400,20 +433,22 @@ Sub-200ms response time. 100% offline operation."
 ### Week 2-4 Optimization
 
 **A/B Test Ideas**:
+
 1. **Hero CTA**: "Try the Simulation" vs "See It In Action"
 2. **Value Prop**: Technical focus vs Business outcome focus
 3. **Social Proof**: Above fold vs Below fold
 4. **Color**: Orange button vs Green button
 
 **Implementation**:
+
 ```typescript
 // Simple A/B test without external tools
 const variant = Math.random() < 0.5 ? 'A' : 'B';
 
 // Track which variant user sees
-trackEvent('AB Test', { 
+trackEvent('AB Test', {
   test: 'hero-cta',
-  variant: variant 
+  variant: variant
 });
 
 // Show different versions
@@ -431,6 +466,7 @@ trackEvent('AB Test', {
 Print this checklist and check off items as you complete them:
 
 ### Critical (Do First)
+
 - [ ] Install Plausible Analytics
 - [ ] Submit sitemap to Google Search Console
 - [ ] Create Open Graph image (og-image.png)
@@ -438,6 +474,7 @@ Print this checklist and check off items as you complete them:
 - [ ] Test skip navigation (Tab key)
 
 ### High Impact (Do Next)
+
 - [ ] Run axe DevTools accessibility scan
 - [ ] Fix any critical accessibility issues
 - [ ] Test keyboard navigation
@@ -445,12 +482,14 @@ Print this checklist and check off items as you complete them:
 - [ ] Expand FAQ schema markup
 
 ### Medium Impact (Do When Ready)
+
 - [ ] Write first blog post
 - [ ] Record 2-minute demo video
 - [ ] Set up conversion goals in analytics
 - [ ] Create email nurture sequence
 
 ### Verification
+
 - [ ] Test robots.txt: visit /robots.txt
 - [ ] Test sitemap: visit /sitemap.xml
 - [ ] Test OG tags: use opengraph.xyz
@@ -462,17 +501,20 @@ Print this checklist and check off items as you complete them:
 ## 🎯 Expected Results
 
 ### Week 1
+
 - ✅ Analytics collecting data
 - ✅ Site indexed by Google
 - ✅ Professional social sharing
 
 ### Week 2-4
+
 - 📈 5-10 qualified leads
 - 📈 20-30 whitepaper downloads
 - 📈 100+ unique visitors
 - 📈 2-3 minute avg session duration
 
 ### Month 2-3
+
 - 📈 20+ qualified leads/month
 - 📈 50+ whitepaper downloads/month
 - 📈 500+ unique visitors/month
@@ -480,6 +522,7 @@ Print this checklist and check off items as you complete them:
 - 📈 <50% bounce rate
 
 ### Month 4-6
+
 - 📈 +50% organic traffic
 - 📈 +100% conversion rate (vs baseline)
 - 📈 10+ demo requests/month
@@ -491,6 +534,7 @@ Print this checklist and check off items as you complete them:
 ## 💡 Pro Tips
 
 ### Defense Industry Specific
+
 1. **Use Military Time**: 14:00 instead of 2:00 PM
 2. **Spell Out Acronyms**: First use always spelled out
 3. **Security Focus**: Emphasize ITAR, ISO-27001, security clearance
@@ -498,6 +542,7 @@ Print this checklist and check off items as you complete them:
 5. **Professional Tone**: Formal but not stuffy
 
 ### Content Strategy
+
 1. **Long-form Content**: Defense buyers expect depth (2000+ words)
 2. **Technical Detail**: Don't dumb it down for this audience
 3. **Case Studies**: Real-world applications and scenarios
@@ -505,6 +550,7 @@ Print this checklist and check off items as you complete them:
 5. **Webinars**: Live demos for qualified prospects
 
 ### Conversion Optimization
+
 1. **Multiple CTAs**: Offer various engagement levels
 2. **Clear Value Prop**: What problem do you solve?
 3. **Social Proof**: Testimonials, partnerships, certifications
@@ -516,6 +562,7 @@ Print this checklist and check off items as you complete them:
 ## 🚨 Common Pitfalls to Avoid
 
 ### SEO Mistakes
+
 - ❌ Duplicate meta descriptions across pages
 - ❌ Generic titles ("Home | Phoenix Rooivalk")
 - ❌ Missing alt text on images
@@ -523,6 +570,7 @@ Print this checklist and check off items as you complete them:
 - ❌ Slow page load times (>3 seconds)
 
 ### Analytics Mistakes
+
 - ❌ Not filtering out bot traffic
 - ❌ Not setting up conversion goals
 - ❌ Tracking everything, optimizing nothing
@@ -530,6 +578,7 @@ Print this checklist and check off items as you complete them:
 - ❌ Not tracking user journey
 
 ### Accessibility Mistakes
+
 - ❌ Using color alone to convey information
 - ❌ Missing keyboard navigation
 - ❌ Auto-playing audio/video
@@ -541,12 +590,14 @@ Print this checklist and check off items as you complete them:
 ## 📞 Need Help?
 
 ### Free Resources
+
 - **Next.js Discord**: [nextjs.org/discord](https://nextjs.org/discord)
 - **WebAIM**: Accessibility testing and guidance
 - **Google Search Central**: SEO documentation
 - **Plausible Community**: Analytics help
 
 ### Paid Services (If Needed)
+
 - **SEO Audit**: Ahrefs, SEMrush ($99-299/month)
 - **Professional Images**: Fiverr designers ($50-200)
 - **Video Production**: Upwork editors ($25-75/hour)
@@ -554,6 +605,8 @@ Print this checklist and check off items as you complete them:
 
 ---
 
-**Remember**: Perfect is the enemy of done. Start with these quick wins, measure results, and iterate. The analytics and tracking you implement today will guide all future optimizations.
+**Remember**: Perfect is the enemy of done. Start with these quick wins, measure
+results, and iterate. The analytics and tracking you implement today will guide
+all future optimizations.
 
 **Good luck! 🚀**

@@ -1,6 +1,5 @@
 "use client";
 
-
 /**
  * Plausible Analytics Component
  * Privacy-focused, GDPR-compliant analytics

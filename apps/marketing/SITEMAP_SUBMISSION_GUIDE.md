@@ -5,12 +5,14 @@
 ### Step 1: Verify Sitemap is Working
 
 1. Build the site to generate the sitemap:
+
    ```bash
    cd apps/marketing
    npm run build
    ```
 
 2. Check locally (if running dev server):
+
    ```
    http://localhost:3000/sitemap.xml
    ```
@@ -35,13 +37,13 @@ You should see XML content with all your pages listed.
    - Click "Continue"
 
 3. **Verify Ownership** (Choose one method):
-   
+
    **Option A: HTML File Upload** (Easiest for Netlify)
    - Download the verification file (e.g., `google123abc.html`)
    - Place in `apps/marketing/public/`
    - Commit and deploy
    - Click "Verify" in Search Console
-   
+
    **Option B: DNS Verification** (Recommended for long-term)
    - Copy the TXT record provided
    - Add to your DNS settings (where you manage phoenixrooivalk.netlify.app)
@@ -68,12 +70,11 @@ You should see XML content with all your pages listed.
 2. **Add Site**
    - Click "Add Site"
    - Enter: `https://phoenixrooivalk.netlify.app`
-   
 3. **Import from Google** (Fastest)
    - Click "Import from Google Search Console"
    - Authorize connection
    - Your site and sitemap will be imported automatically
-   
+
    **OR Verify Manually**:
    - Choose verification method (XML file, meta tag, or DNS)
    - Follow similar steps as Google
@@ -86,40 +87,45 @@ You should see XML content with all your pages listed.
 ### Step 4: Verify Submission Success
 
 **Google Search Console**:
+
 - ✅ Property verified
 - ✅ Sitemap submitted without errors
 - ✅ "Valid" pages count matches your site (should be 16)
 - ⏳ Wait 24-48 hours for initial indexing
 
 **Bing Webmaster Tools**:
+
 - ✅ Site verified
 - ✅ Sitemap processed
 - ✅ Pages discovered
 
 ## Expected Timeline
 
-| Timeframe | What Happens |
-|-----------|--------------|
-| **Immediate** | Sitemap submitted and validated |
-| **24-48 hours** | First pages indexed (usually homepage first) |
-| **1 week** | Most pages indexed and appearing in search |
-| **2-4 weeks** | Full indexing, rankings begin to appear |
-| **2-3 months** | Optimal rankings achieved for target keywords |
+| Timeframe       | What Happens                                  |
+| --------------- | --------------------------------------------- |
+| **Immediate**   | Sitemap submitted and validated               |
+| **24-48 hours** | First pages indexed (usually homepage first)  |
+| **1 week**      | Most pages indexed and appearing in search    |
+| **2-4 weeks**   | Full indexing, rankings begin to appear       |
+| **2-3 months**  | Optimal rankings achieved for target keywords |
 
 ## Monitoring & Optimization
 
 ### Weekly Tasks
+
 1. Check "Coverage" report for indexing errors
 2. Review "Performance" for search queries bringing traffic
 3. Monitor click-through rates on search results
 
 ### Monthly Tasks
+
 1. Review which pages get most organic traffic
 2. Identify top-performing keywords
 3. Update meta descriptions for low-CTR pages
 4. Add new pages to sitemap (automatic with Next.js)
 
 ### Tools for Monitoring
+
 - Google Search Console: Primary SEO monitoring
 - Bing Webmaster Tools: Secondary search engine
 - Plausible Analytics: User behavior and conversions
@@ -128,17 +134,20 @@ You should see XML content with all your pages listed.
 ## Troubleshooting
 
 ### Sitemap Not Found (404 Error)
+
 - Ensure site is deployed to production
 - Check `apps/marketing/src/app/sitemap.ts` exists
 - Verify Next.js build completed successfully
 - Clear Netlify cache and rebuild
 
 ### Sitemap Contains Errors
+
 - Validate XML at: https://www.xml-sitemaps.com/validate-xml-sitemap.html
 - Check for typos in URLs
 - Ensure all URLs are absolute (include domain)
 
 ### Pages Not Being Indexed
+
 - Check robots.txt isn't blocking pages
 - Ensure pages have unique titles and descriptions
 - Verify pages are linked in navigation (internal linking)
@@ -146,6 +155,7 @@ You should see XML content with all your pages listed.
 - Check for "noindex" tags in page HTML
 
 ### Low Rankings
+
 - Takes 2-3 months for new sites
 - Ensure meta descriptions are compelling
 - Add more quality content (blog posts, case studies)
@@ -157,6 +167,7 @@ You should see XML content with all your pages listed.
 For important pages you want indexed quickly:
 
 ### Google
+
 1. Go to Google Search Console
 2. Use "URL Inspection" tool
 3. Enter the URL
@@ -164,6 +175,7 @@ For important pages you want indexed quickly:
 5. Can do 10-20 per day
 
 ### Bing
+
 1. Go to Bing Webmaster Tools
 2. Use "URL Submission" tool
 3. Enter the URL

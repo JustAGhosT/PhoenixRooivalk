@@ -66,14 +66,15 @@ export const WasmThreatSimulator: React.FC<WasmThreatSimulatorProps> = ({
         setWasmInitialized(true);
         setIsLoading(false);
 
-        // Apply fullscreen if requested
-        if (autoFullscreen && containerRef.current?.requestFullscreen) {
-          setTimeout(() => {
-            containerRef.current!.requestFullscreen().catch(() => {
-              /* ignore: user gesture required or denied */
-            });
-          }, 500);
-        }
+        // Removed auto-fullscreen as it interferes with page scrolling
+        // Users can manually enter fullscreen if needed
+        // if (autoFullscreen && containerRef.current?.requestFullscreen) {
+        //   setTimeout(() => {
+        //     containerRef.current!.requestFullscreen().catch(() => {
+        //       /* ignore: user gesture required or denied */
+        //     });
+        //   }, 500);
+        // }
       } catch (err) {
         console.error("Failed to initialize WASM module:", err);
         if (mounted) {

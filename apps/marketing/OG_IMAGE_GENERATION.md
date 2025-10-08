@@ -2,7 +2,8 @@
 
 ## Quick Setup (Manual - 10 minutes)
 
-Since automated image generation requires additional dependencies, here's the fastest manual approach:
+Since automated image generation requires additional dependencies, here's the
+fastest manual approach:
 
 ### Option 1: Using the HTML Template (Recommended)
 
@@ -51,6 +52,7 @@ https://nextjs.org/docs/app/api-reference/file-conventions/metadata/opengraph-im
 ## After Creating Images
 
 1. Update metadata in `src/app/layout.tsx`:
+
    ```typescript
    openGraph: {
      images: [

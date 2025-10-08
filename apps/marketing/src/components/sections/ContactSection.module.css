@@ -72,13 +72,14 @@
 }
 
 .card::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   height: 2px;
-  background: linear-gradient(90deg, 
+  background: linear-gradient(
+    90deg,
     transparent,
     rgb(249, 115, 22),
     transparent
@@ -133,7 +134,7 @@
 }
 
 .sbirCard::before {
-  content: '';
+  content: "";
   position: absolute;
   top: -50%;
   right: -50%;
@@ -148,7 +149,8 @@
 }
 
 @keyframes pulse {
-  0%, 100% {
+  0%,
+  100% {
     opacity: 0.5;
     transform: scale(1);
   }

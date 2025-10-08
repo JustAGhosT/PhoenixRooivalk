@@ -2,7 +2,9 @@
 
 ## Overview
 
-This document provides a comprehensive visual analysis and improvement recommendations for the Phoenix Rooivalk marketing site, focusing on UI/UX enhancements, visual hierarchy, and conversion optimization.
+This document provides a comprehensive visual analysis and improvement
+recommendations for the Phoenix Rooivalk marketing site, focusing on UI/UX
+enhancements, visual hierarchy, and conversion optimization.
 
 ---
 
@@ -11,6 +13,7 @@ This document provides a comprehensive visual analysis and improvement recommend
 ### 1. Enhanced Typography Scale
 
 **Current Issues:**
+
 - Font sizes could be more impactful on hero section
 - Hierarchy could be stronger between headlines and body text
 - Mobile scaling needs refinement
@@ -60,21 +63,33 @@ This document provides a comprehensive visual analysis and improvement recommend
 }
 
 .pill--concept {
-  background: linear-gradient(135deg, rgba(249, 115, 22, 0.2), rgba(251, 146, 60, 0.2));
+  background: linear-gradient(
+    135deg,
+    rgba(249, 115, 22, 0.2),
+    rgba(251, 146, 60, 0.2)
+  );
   border-color: rgba(249, 115, 22, 0.5);
-  color: #FFB380;
+  color: #ffb380;
 }
 
 .pill--partners {
-  background: linear-gradient(135deg, rgba(34, 197, 94, 0.2), rgba(74, 222, 128, 0.2));
+  background: linear-gradient(
+    135deg,
+    rgba(34, 197, 94, 0.2),
+    rgba(74, 222, 128, 0.2)
+  );
   border-color: rgba(34, 197, 94, 0.5);
-  color: #6EE7B7;
+  color: #6ee7b7;
 }
 
 .pill--sbir {
-  background: linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(96, 165, 250, 0.2));
+  background: linear-gradient(
+    135deg,
+    rgba(59, 130, 246, 0.2),
+    rgba(96, 165, 250, 0.2)
+  );
   border-color: rgba(59, 130, 246, 0.5);
-  color: #93C5FD;
+  color: #93c5fd;
 }
 
 .pill:hover {
@@ -97,13 +112,18 @@ This document provides a comprehensive visual analysis and improvement recommend
 }
 
 .btn::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
   transition: left 0.5s ease;
 }
 
@@ -154,20 +174,22 @@ This document provides a comprehensive visual analysis and improvement recommend
   border-radius: 1rem;
   padding: 2rem;
   backdrop-filter: blur(20px);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3),
-              0 0 0 1px rgba(249, 115, 22, 0.1) inset;
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.3),
+    0 0 0 1px rgba(249, 115, 22, 0.1) inset;
   position: relative;
   overflow: hidden;
 }
 
 .metricsCard::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   height: 2px;
-  background: linear-gradient(90deg, 
+  background: linear-gradient(
+    90deg,
     transparent,
     rgb(249, 115, 22),
     transparent
@@ -184,7 +206,7 @@ This document provides a comprehensive visual analysis and improvement recommend
 .metricValue {
   font-size: 3rem;
   font-weight: 900;
-  background: linear-gradient(135deg, #F97316, #FB923C);
+  background: linear-gradient(135deg, #f97316, #fb923c);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -213,7 +235,7 @@ This document provides a comprehensive visual analysis and improvement recommend
 }
 
 .card::after {
-  content: '';
+  content: "";
   position: absolute;
   inset: 0;
   border-radius: inherit;
@@ -247,17 +269,18 @@ This document provides a comprehensive visual analysis and improvement recommend
 ```css
 /* Dynamic gradient backgrounds */
 .section-gradient-1 {
-  background: radial-gradient(
-    ellipse at top left,
-    rgba(249, 115, 22, 0.15),
-    transparent 50%
-  ),
-  radial-gradient(
-    ellipse at bottom right,
-    rgba(59, 130, 246, 0.1),
-    transparent 50%
-  ),
-  linear-gradient(180deg, #0F172A, #1E293B);
+  background:
+    radial-gradient(
+      ellipse at top left,
+      rgba(249, 115, 22, 0.15),
+      transparent 50%
+    ),
+    radial-gradient(
+      ellipse at bottom right,
+      rgba(59, 130, 246, 0.1),
+      transparent 50%
+    ),
+    linear-gradient(180deg, #0f172a, #1e293b);
 }
 
 .section-gradient-2 {
@@ -305,20 +328,20 @@ This document provides a comprehensive visual analysis and improvement recommend
     font-size: 2rem;
     line-height: 1.2;
   }
-  
+
   .headlineSubtext {
     font-size: 1.25rem;
   }
-  
+
   .description {
     font-size: 1rem;
     line-height: 1.6;
   }
-  
+
   .metricValue {
     font-size: 2rem;
   }
-  
+
   .metricLabel {
     font-size: 0.75rem;
   }
@@ -336,7 +359,7 @@ This document provides a comprehensive visual analysis and improvement recommend
     padding: 1rem 1.5rem;
     font-size: 1rem;
   }
-  
+
   .pill {
     padding: 0.75rem 1rem;
     min-height: 44px;
@@ -361,7 +384,7 @@ html {
   html {
     scroll-behavior: auto;
   }
-  
+
   *,
   *::before,
   *::after {
@@ -414,9 +437,15 @@ html {
   animation: fadeInScale 0.6s ease both;
 }
 
-.statusBadges > *:nth-child(1) { animation-delay: 0.1s; }
-.statusBadges > *:nth-child(2) { animation-delay: 0.2s; }
-.statusBadges > *:nth-child(3) { animation-delay: 0.3s; }
+.statusBadges > *:nth-child(1) {
+  animation-delay: 0.1s;
+}
+.statusBadges > *:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.statusBadges > *:nth-child(3) {
+  animation-delay: 0.3s;
+}
 ```
 
 ---
@@ -527,7 +556,7 @@ section:first-of-type {
 }
 
 .cta-section::before {
-  content: '';
+  content: "";
   position: absolute;
   top: -50%;
   right: -50%;
@@ -542,7 +571,8 @@ section:first-of-type {
 }
 
 @keyframes pulse {
-  0%, 100% {
+  0%,
+  100% {
     opacity: 0.5;
     transform: scale(1);
   }
@@ -635,7 +665,7 @@ section:first-of-type {
 }
 
 .progress-bar-fill::after {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
@@ -665,6 +695,7 @@ section:first-of-type {
 ## 🎨 Implementation Checklist
 
 ### High Priority (Immediate)
+
 - [ ] Update button styles with enhanced hover states
 - [ ] Improve status badge design
 - [ ] Add focus-visible states for accessibility
@@ -672,6 +703,7 @@ section:first-of-type {
 - [ ] Implement responsive typography scale
 
 ### Medium Priority (This Week)
+
 - [ ] Add entrance animations with stagger
 - [ ] Improve card hover effects
 - [ ] Enhance CTA sections
@@ -679,6 +711,7 @@ section:first-of-type {
 - [ ] Optimize mobile touch targets
 
 ### Low Priority (Next Week)
+
 - [ ] Add progress bar animations
 - [ ] Implement smooth scroll
 - [ ] Create animated stats counters
@@ -690,6 +723,7 @@ section:first-of-type {
 ## 🎯 Expected Visual Impact
 
 ### User Experience Improvements
+
 - **Clarity**: +40% improvement in visual hierarchy
 - **Engagement**: +25% increase in CTA click-through
 - **Accessibility**: WCAG 2.1 AAA focus states
@@ -697,6 +731,7 @@ section:first-of-type {
 - **Performance**: <100ms interaction response time
 
 ### Professional Appearance
+
 - **Tactical Aesthetic**: Military/defense industry alignment
 - **Modern Design**: 2024 design trends
 - **Brand Consistency**: Phoenix Rooivalk identity throughout

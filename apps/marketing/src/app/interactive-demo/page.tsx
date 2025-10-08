@@ -13,14 +13,12 @@ export default function InteractiveDemoPage() {
           </p>
           <p className="text-gray-400 max-w-3xl mx-auto">
             Experience the power of advanced counter-UAS defense technology
-            built with Rust and WebAssembly for maximum performance. The demo
-            will automatically enter full-screen mode for optimal interaction.
-            Control weapons, deploy drones, and neutralize aerial threats in
-            real-time.
+            built with Rust and WebAssembly for maximum performance. Control
+            weapons, deploy drones, and neutralize aerial threats in real-time.
           </p>
         </div>
 
-        <WasmThreatSimulator autoFullscreen={true} />
+        <WasmThreatSimulator />
 
         <div className="mt-12 text-center">
           <div className="bg-gray-800/50 p-8 rounded-lg max-w-4xl mx-auto">
