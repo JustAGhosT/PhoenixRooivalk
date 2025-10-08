@@ -20,7 +20,7 @@ pub use event_feed::{create_feed_item, EventFeed, FeedItem, FeedSeverity};
 pub use game_canvas::GameCanvas;
 pub use hud::Hud;
 pub use loading::LoadingIndicator;
-pub use overlays::{AchievementNotification, IntegratedSimulationWarning, SimulationWarning};
+pub use overlays::{AchievementNotification, IntegratedSimulationWarning};
 pub use research_panel::ResearchPanel;
 pub use stats_panel::StatsPanel;
 pub use synergy_system::SynergySystem;
@@ -41,7 +41,7 @@ pub fn App() -> impl IntoView {
     let (show_stats, set_show_stats) = create_signal(false);
     let (show_energy, set_show_energy) = create_signal(false);
     let (show_drones, set_show_drones) = create_signal(false);
-    let (show_warning, set_show_warning) = create_signal(true);
+    let (_show_warning, _set_show_warning) = create_signal(true);
     let (show_events, set_show_events) = create_signal(false);
     let (show_research, set_show_research) = create_signal(false);
     let (show_token_store, set_show_token_store) = create_signal(false);

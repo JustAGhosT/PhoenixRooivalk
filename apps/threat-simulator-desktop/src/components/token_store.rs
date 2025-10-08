@@ -87,7 +87,7 @@ where
                 id: format!(
                     "purchased-{:?}-{}",
                     drone_type,
-                    chrono::Utc::now().timestamp_millis()
+                    web_sys::js_sys::Date::new_0().get_time() as i64
                 ),
                 drone_type,
                 position: crate::game::Vector2::new(960.0, 540.0),

@@ -96,6 +96,7 @@ pub fn GameCanvas(game_state: GameStateManager, is_running: ReadSignal<bool>) ->
 
         *closure.borrow_mut() = Some(Closure::wrap(Box::new(move |current_time: f64| {
             web_sys::console::log_1(&"Animation loop callback called".into());
+            web_sys::console::log_1(&format!("is_running value: {}", is_running.get()).into());
             if !is_running.get() {
                 web_sys::console::log_1(&"Game not running in animation loop".into());
                 // Still request next frame even when not running, so we can check again
@@ -111,7 +112,7 @@ pub fn GameCanvas(game_state: GameStateManager, is_running: ReadSignal<bool>) ->
                 }
                 return;
             }
-            web_sys::console::log_1(&"Animation loop executing".into());
+            web_sys::console::log_1(&"Animation loop executing - game is running!".into());
 
             let delta_time = ((current_time - last_time) / 1000.0) as f32;
             last_time = current_time;
@@ -214,7 +215,7 @@ pub fn GameCanvas(game_state: GameStateManager, is_running: ReadSignal<bool>) ->
 
 fn render_frame(
     ctx: &CanvasRenderingContext2d,
-    game_state: &GameStateManager,
+    _game_state: &GameStateManager,
     width: f64,
     height: f64,
 ) {
