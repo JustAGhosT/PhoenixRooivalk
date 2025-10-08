@@ -1,22 +1,16 @@
 import React from "react";
 import { RevealSection } from "../RevealSection";
 import { Button } from "../ui/button";
+import styles from "./UkraineChallengeSection.module.css";
 
 export const UkraineChallengeSection: React.FC = () => {
   return (
-    <section
-      className="px-6 md:px-[5%] lg:px-[5%] py-12 bg-[linear-gradient(180deg,rgba(255,0,0,0.05),rgba(255,136,0,0.05))]"
-      id="ukraine-challenge"
-    >
-      <div className="max-w-[1400px] mx-auto">
-        <RevealSection className="text-center mb-8">
-          <div className="inline-block bg-red-500 text-white px-4 py-2 rounded-full text-sm font-bold mb-4">
-            URGENT: 18-Month Deadline
-          </div>
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-            The 2027 Autonomous Warfare Race
-          </h2>
-          <p className="text-[var(--gray)] max-w-3xl mx-auto text-lg">
+    <section className={styles.section} id="ukraine-challenge">
+      <div className={styles.container}>
+        <RevealSection className={styles.header}>
+          <div className={styles.urgentBadge}>URGENT: 18-Month Deadline</div>
+          <h2 className={styles.title}>The 2027 Autonomous Warfare Race</h2>
+          <p className={styles.description}>
             Ukraine faces an existential challenge: outpace Russia in autonomous
             warfare by 2027 or lose their technological advantage. Current AI
             drones fail 30-40% of the time, confusing trees for tanks and
@@ -24,12 +18,10 @@ export const UkraineChallengeSection: React.FC = () => {
           </p>
         </RevealSection>
 
-        <RevealSection className="grid md:grid-cols-2 gap-8">
-          <div className="space-y-6">
-            <h3 className="text-2xl font-bold text-white mb-4">
-              Current Problems
-            </h3>
-            <div className="space-y-4">
+        <RevealSection className={styles.grid}>
+          <div className={styles.column}>
+            <h3 className={styles.columnTitle}>Current Problems</h3>
+            <div className={styles.cards}>
               <ProblemCard
                 icon="❌"
                 title="False Positives"
@@ -48,11 +40,9 @@ export const UkraineChallengeSection: React.FC = () => {
             </div>
           </div>
 
-          <div className="space-y-6">
-            <h3 className="text-2xl font-bold text-white mb-4">
-              Phoenix Rooivalk Solutions
-            </h3>
-            <div className="space-y-4">
+          <div className={styles.column}>
+            <h3 className={styles.columnTitle}>Phoenix Rooivalk Solutions</h3>
+            <div className={styles.cards}>
               <SolutionCard
                 icon="✅"
                 title="Multi-Sensor Fusion"
@@ -72,19 +62,16 @@ export const UkraineChallengeSection: React.FC = () => {
           </div>
         </RevealSection>
 
-        <RevealSection className="text-center mt-8">
-          <div
-            className="bg-[rgba(0,255,136,0.1)] border rounded-xl p-6 max-w-4xl mx-auto"
-            style={{ borderColor: "rgba(0, 255, 136, 0.3)" }}
-          >
-            <h3 className="text-2xl font-bold text-white mb-4">The Stakes</h3>
-            <p className="text-[var(--gray)] text-lg mb-6">
+        <RevealSection className={styles.stakesSection}>
+          <div className={styles.stakesCard}>
+            <h3 className={styles.stakesTitle}>The Stakes</h3>
+            <p className={styles.stakesText}>
               &quot;Ukraine&apos;s entire war strategy hinges on this race.
               They&apos;ve survived three years by being smarter, not stronger.
               If they lose the AI warfare competition, they lose their main
               advantage over Russia&apos;s superior numbers.&quot;
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className={styles.actions}>
               <Button href="#contact" size="lg">
                 Schedule Urgent Demo
               </Button>
@@ -108,11 +95,11 @@ const ProblemCard: React.FC<{
   title: string;
   description: string;
 }> = ({ icon, title, description }) => (
-  <div className="flex items-start gap-4 p-4 bg-[rgba(255,0,0,0.1)] border border-red-500/30 rounded-lg">
-    <span className="text-red-400 text-2xl">{icon}</span>
+  <div className={styles.problemCard}>
+    <span className={styles.problemIcon}>{icon}</span>
     <div>
-      <div className="font-bold text-red-400">{title}</div>
-      <div className="text-sm text-gray-300">{description}</div>
+      <div className={styles.problemTitle}>{title}</div>
+      <div className={styles.problemDescription}>{description}</div>
     </div>
   </div>
 );
@@ -122,14 +109,11 @@ const SolutionCard: React.FC<{
   title: string;
   description: string;
 }> = ({ icon, title, description }) => (
-  <div
-    className="flex items-start gap-4 p-4 bg-[rgba(0,255,136,0.1)] border rounded-lg"
-    style={{ borderColor: "rgba(0, 255, 136, 0.3)" }}
-  >
-    <span className="text-[var(--primary)] text-2xl">{icon}</span>
+  <div className={styles.solutionCard}>
+    <span className={styles.solutionIcon}>{icon}</span>
     <div>
-      <div className="font-bold text-[var(--primary)]">{title}</div>
-      <div className="text-sm text-gray-300">{description}</div>
+      <div className={styles.solutionTitle}>{title}</div>
+      <div className={styles.solutionDescription}>{description}</div>
     </div>
   </div>
 );
