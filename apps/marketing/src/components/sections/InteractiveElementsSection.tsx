@@ -178,9 +178,9 @@ export const InteractiveElementsSection: React.FC = () => {
                     }
                     className="range w-full"
                   />
-                  <div className="flex justify-between text-[rgb(var(--gray))] text-sm mt-1">
+                  <div className="flex justify-between text-[rgb(var(--gray))] text-sm mt-1 gap-2">
                     <span>1</span>
-                    <span className="text-[rgb(var(--accent))] font-bold">
+                    <span className="text-[rgb(var(--accent))] font-bold flex-shrink-0">
                       {roiInputs.threatFrequency} threats/month
                     </span>
                     <span>20</span>
@@ -209,9 +209,9 @@ export const InteractiveElementsSection: React.FC = () => {
                     }
                     className="range w-full"
                   />
-                  <div className="flex justify-between text-[rgb(var(--gray))] text-sm mt-1">
+                  <div className="flex justify-between text-[rgb(var(--gray))] text-sm mt-1 gap-2">
                     <span>1s</span>
-                    <span className="text-[rgb(var(--accent))] font-bold">
+                    <span className="text-[rgb(var(--accent))] font-bold flex-shrink-0">
                       {roiInputs.averageResponseTime}ms
                     </span>
                     <span>10s</span>
@@ -240,9 +240,9 @@ export const InteractiveElementsSection: React.FC = () => {
                     }
                     className="range w-full"
                   />
-                  <div className="flex justify-between text-[rgb(var(--gray))] text-sm mt-1">
+                  <div className="flex justify-between text-[rgb(var(--gray))] text-sm mt-1 gap-2">
                     <span>$100K</span>
-                    <span className="text-[rgb(var(--accent))] font-bold">
+                    <span className="text-[rgb(var(--accent))] font-bold flex-shrink-0">
                       $
                       {isClient
                         ? roiInputs.deploymentCost.toLocaleString()
