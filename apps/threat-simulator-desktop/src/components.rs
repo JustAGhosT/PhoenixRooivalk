@@ -214,11 +214,11 @@ pub fn App() -> impl IntoView {
 
         *animate_fn.borrow_mut() = Some(Closure::wrap(Box::new(move || {
             // Stop if loading was cancelled
-            if !is_loading.get() {
+            if !is_loading.get_untracked() {
                 return;
             }
 
-            let progress = loading_progress.get();
+            let progress = loading_progress.get_untracked();
             if progress < 90 {
                 set_loading_progress.update(|p| *p += 1);
                 // Queue next frame
