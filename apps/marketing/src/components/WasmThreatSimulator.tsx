@@ -100,10 +100,21 @@ export const WasmThreatSimulator: React.FC<WasmThreatSimulatorProps> = ({
           throw new Error("Required WASM assets (JS or WASM) not found");
         }
 
-        // Temporarily set the mount point's ID to "app" for Leptos
-        const mountElement = document.getElementById(uniqueMountId);
+        // Wait for mount element to be available with retry logic
+        let mountElement = document.getElementById(uniqueMountId);
+        let retries = 0;
+        const maxRetries = 10;
+
+        while (!mountElement && retries < maxRetries) {
+          await new Promise((resolve) => setTimeout(resolve, 50));
+          mountElement = document.getElementById(uniqueMountId);
+          retries++;
+        }
+
         if (!mountElement) {
-          throw new Error("Mount element not found");
+          throw new Error(
+            `Mount element not found after ${maxRetries} retries`,
+          );
         }
         const originalId = mountElement.id;
         mountElement.id = "app";
@@ -177,29 +188,19 @@ export const WasmThreatSimulator: React.FC<WasmThreatSimulatorProps> = ({
 
       {/* Override WASM global styles to prevent interference with React components */}
       <style jsx global>{`
-        /* Prevent WASM styles from affecting the entire page */
+        /* Only override specific WASM global styles that interfere */
         body {
           overflow: auto !important;
-          background: unset !important;
-          color: unset !important;
-          font-family: unset !important;
-          width: unset !important;
-          height: unset !important;
         }
 
         /* Scope WASM styles to the simulator container only */
-        .wasm-threat-simulator-container * {
-          box-sizing: border-box;
+        .wasm-threat-simulator-container {
+          isolation: isolate;
+          contain: layout style paint;
         }
 
-        .wasm-threat-simulator-container body {
-          overflow: hidden;
-          background: #0a0e1a;
-          color: #e0e0e0;
-          font-family: "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell",
-            "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
-          width: 100%;
-          height: 100%;
+        .wasm-threat-simulator-container * {
+          box-sizing: border-box;
         }
 
         /* Hide overlays in teaser mode for cleaner presentation */
