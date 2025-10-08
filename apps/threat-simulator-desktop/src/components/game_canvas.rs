@@ -117,7 +117,13 @@ pub fn GameCanvas(game_state: GameStateManager, is_running: ReadSignal<bool>) ->
             }
 
             // Render
-            render_frame(&context, &game_state_loop, width, height);
+            web_sys::console::log_1(&"About to call render_frame".into());
+            match std::panic::catch_unwind(|| {
+                render_frame(&context, &game_state_loop, width, height);
+            }) {
+                Ok(_) => web_sys::console::log_1(&"render_frame call completed".into()),
+                Err(e) => web_sys::console::error_1(&format!("render_frame panic: {:?}", e).into()),
+            }
 
             // Update reactive state
             game_state_loop.regenerate_energy(delta_time);
