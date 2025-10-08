@@ -65,11 +65,15 @@ export default function ITARCompliancePage(): React.ReactElement {
               </h3>
               <div className="space-y-4">
                 <div className="flex justify-between items-center">
-                  <span className="text-[rgb(var(--gray))]">Export Licenses</span>
+                  <span className="text-[rgb(var(--gray))]">
+                    Export Licenses
+                  </span>
                   <span className="text-yellow-400 font-semibold">Planned</span>
                 </div>
                 <div className="flex justify-between items-center">
-                  <span className="text-[rgb(var(--gray))]">End-User Screening</span>
+                  <span className="text-[rgb(var(--gray))]">
+                    End-User Screening
+                  </span>
                   <span className="text-yellow-400 font-semibold">Planned</span>
                 </div>
                 <div className="flex justify-between items-center">
@@ -128,7 +132,9 @@ export default function ITARCompliancePage(): React.ReactElement {
                   {requirement.description}
                 </p>
                 <div className="flex justify-between items-center">
-                  <span className="text-xs text-[rgb(var(--gray))]">Status</span>
+                  <span className="text-xs text-[rgb(var(--gray))]">
+                    Status
+                  </span>
                   <span className="text-green-400 text-sm font-semibold">
                     {requirement.status}
                   </span>
