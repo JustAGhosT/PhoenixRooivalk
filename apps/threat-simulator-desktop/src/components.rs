@@ -279,7 +279,14 @@ pub fn App() -> impl IntoView {
     view! {
         <div class="app-container">
             // Loading screen
-            <Show when=move || is_loading.get() fallback=|| view! { <div></div> }>
+            <Show when=move || {
+                let loading = is_loading.get();
+                web_sys::console::log_2(&"Loading state:".into(), &loading.into());
+                loading
+            } fallback=|| {
+                web_sys::console::log_1(&"Loading screen hidden, showing game".into());
+                view! { <div></div> }
+            }>
                 <LoadingIndicator progress=loading_progress/>
             </Show>
 
@@ -293,6 +300,10 @@ pub fn App() -> impl IntoView {
             />
 
             <Hud game_state=(*game_state_hud).clone() is_running=is_running/>
+
+            <div style="position: fixed; top: 50px; left: 50px; background: red; color: white; padding: 10px; z-index: 999;">
+                "DEBUG: App container visible"
+            </div>
 
             <GameCanvas game_state=(*game_state_canvas).clone() is_running=is_running/>
 
