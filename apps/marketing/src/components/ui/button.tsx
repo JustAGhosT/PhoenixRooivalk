@@ -1,4 +1,7 @@
+"use client";
+
 import React from "react";
+import { trackEvent } from "../../utils/analytics";
 
 type CommonProps = {
   children: React.ReactNode;
@@ -6,6 +9,9 @@ type CommonProps = {
   size?: "sm" | "md" | "lg";
   className?: string;
   disabled?: boolean;
+  "aria-label"?: string;
+  trackingEvent?: string;
+  trackingProps?: Record<string, string | number | boolean>;
 };
 
 type ButtonOnlyProps = CommonProps &
@@ -35,9 +41,40 @@ export const Button: React.FC<ButtonProps> = ({
   href,
   className = "",
   disabled = false,
+  trackingEvent,
+  trackingProps,
   ...rest
 }) => {
   const onClick = rest.onClick;
+  const ariaLabel = rest["aria-label"];
+
+  // Track analytics on click
+  const handleClick = (
+    event:
+      | React.MouseEvent<HTMLButtonElement>
+      | React.MouseEvent<HTMLAnchorElement>,
+  ) => {
+    if (disabled) {
+      event.preventDefault();
+      event.stopPropagation();
+      return;
+    }
+
+    // Track analytics if event name provided
+    if (trackingEvent) {
+      trackEvent(trackingEvent, {
+        ...trackingProps,
+        variant,
+        label: typeof children === "string" ? children : ariaLabel || "button",
+        ...(href && { href }),
+      });
+    }
+
+    // Call original onClick handler
+    if (onClick) {
+      (onClick as any)(event);
+    }
+  };
 
   // Use the new CSS classes from globals.css
   const getVariantClass = (variant: string) => {
@@ -75,17 +112,9 @@ export const Button: React.FC<ButtonProps> = ({
         {...(rest as React.AnchorHTMLAttributes<HTMLAnchorElement>)}
         href={disabled ? undefined : href}
         aria-disabled={disabled ? "true" : undefined}
+        aria-label={ariaLabel}
         tabIndex={disabled ? -1 : undefined}
-        onClick={(event) => {
-          if (disabled) {
-            event.preventDefault();
-            event.stopPropagation();
-            return;
-          }
-          if (onClick) {
-            (onClick as React.MouseEventHandler<HTMLAnchorElement>)(event);
-          }
-        }}
+        onClick={handleClick as React.MouseEventHandler<HTMLAnchorElement>}
         className={classes}
       >
         {children}
@@ -99,8 +128,9 @@ export const Button: React.FC<ButtonProps> = ({
       type={
         (rest as React.ButtonHTMLAttributes<HTMLButtonElement>).type ?? "button"
       }
-      onClick={onClick as React.MouseEventHandler<HTMLButtonElement>}
+      onClick={handleClick as React.MouseEventHandler<HTMLButtonElement>}
       disabled={disabled}
+      aria-label={ariaLabel}
       className={classes}
     >
       {children}

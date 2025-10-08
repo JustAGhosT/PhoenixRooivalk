@@ -14,7 +14,7 @@ export default function HomePage(): React.ReactElement {
   usePerformanceOptimizations();
 
   return (
-    <main className={styles.main}>
+    <main className={styles.main} id="main-content">
       {/* Background */}
       <div className={styles.background}>
         <div className={styles.backgroundGrid} />

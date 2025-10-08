@@ -1,0 +1,38 @@
+/**
+ * Skip Navigation Styles
+ * Hidden by default, visible on keyboard focus
+ */
+
+.skipNav {
+  position: absolute;
+  left: -10000px;
+  top: 0;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  z-index: 9999;
+}
+
+.skipNav:focus {
+  position: fixed;
+  left: 1rem;
+  top: 1rem;
+  width: auto;
+  height: auto;
+  padding: 1rem 1.5rem;
+  background: rgb(var(--primary));
+  color: white;
+  text-decoration: none;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  font-size: 1rem;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.5);
+  outline: 3px solid rgba(255, 255, 255, 0.5);
+  outline-offset: 2px;
+  transition: all 0.2s ease;
+}
+
+.skipNav:focus:hover {
+  background: rgb(var(--accent));
+  transform: scale(1.05);
+}

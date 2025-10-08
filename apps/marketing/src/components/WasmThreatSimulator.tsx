@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useId, useRef, useState } from "react";
 
 interface WasmThreatSimulatorProps {
   autoFullscreen?: boolean;
@@ -8,12 +8,19 @@ interface WasmThreatSimulatorProps {
   className?: string;
 }
 
+// Singleton flag to prevent multiple WASM instances
+// Leptos targets a specific mount point and multiple instances would conflict
+let wasmInstanceInitialized = false;
+
 /**
  * WasmThreatSimulator - Embeds the Leptos/WASM threat simulator
  *
  * This component loads and initializes the Rust-based WASM threat simulator
  * built with Leptos and Trunk. The WASM module provides a high-performance
  * simulation with native-like performance.
+ *
+ * Note: Only one instance of this component can be active at a time due to
+ * WASM module constraints. Multiple instances will be prevented automatically.
  */
 export const WasmThreatSimulator: React.FC<WasmThreatSimulatorProps> = ({
   autoFullscreen = false,
@@ -24,6 +31,11 @@ export const WasmThreatSimulator: React.FC<WasmThreatSimulatorProps> = ({
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [wasmInitialized, setWasmInitialized] = useState(false);
+  const [cssUrl, setCssUrl] = useState<string | null>(null);
+
+  // Generate unique mount ID for this instance
+  const mountId = useId().replace(/:/g, "-"); // Replace React's : separator
+  const uniqueMountId = `wasm-mount-${mountId}`;
 
   useEffect(() => {
     let mounted = true;
@@ -33,19 +45,39 @@ export const WasmThreatSimulator: React.FC<WasmThreatSimulatorProps> = ({
         setIsLoading(true);
         setError(null);
 
+        // Enforce singleton: only one WASM instance can be initialized
+        if (wasmInstanceInitialized) {
+          console.warn(
+            "WASM Threat Simulator is already initialized. Only one instance is allowed.",
+          );
+          setError(
+            "Another simulator instance is already active. Only one can run at a time.",
+          );
+          setIsLoading(false);
+          return;
+        }
+
+        // Mark this instance as initialized
+        wasmInstanceInitialized = true;
+
         // Resolve asset URLs via manifest to avoid hardcoded hashes
         const manifest = await fetch("/wasm/manifest.json", {
           cache: "no-store",
         })
           .then((r) => (r.ok ? r.json() : null))
-          .catch(() => null);
-        const pick = (ext: string, fallback: string) => {
+          .catch((err) => {
+            console.warn("Failed to load WASM manifest:", err);
+            return null;
+          });
+
+        const pick = (ext: string, fallback?: string) => {
           if (manifest && Array.isArray(manifest.files)) {
             const match = manifest.files.find((f: string) => f.endsWith(ext));
             if (match) return `/wasm/${match}`;
           }
-          return fallback;
+          return fallback || null;
         };
+
         const jsUrl = pick(
           ".js",
           "/wasm/threat-simulator-desktop-43e4df905ff42f76.js",
@@ -54,6 +86,27 @@ export const WasmThreatSimulator: React.FC<WasmThreatSimulatorProps> = ({
           ".wasm",
           "/wasm/threat-simulator-desktop-43e4df905ff42f76_bg.wasm",
         );
+        const resolvedCssUrl = pick(".css");
+
+        // Set CSS URL in state for rendering
+        if (mounted && resolvedCssUrl) {
+          setCssUrl(resolvedCssUrl);
+        } else if (mounted) {
+          console.warn("WASM stylesheet not found in manifest");
+        }
+
+        // Validate required assets
+        if (!jsUrl || !wasmUrl) {
+          throw new Error("Required WASM assets (JS or WASM) not found");
+        }
+
+        // Temporarily set the mount point's ID to "app" for Leptos
+        const mountElement = document.getElementById(uniqueMountId);
+        if (!mountElement) {
+          throw new Error("Mount element not found");
+        }
+        const originalId = mountElement.id;
+        mountElement.id = "app";
 
         // Load WASM via dynamic import to avoid inline scripts/CSP issues
         const mod = await import(/* webpackIgnore: true */ jsUrl);
@@ -61,19 +114,28 @@ export const WasmThreatSimulator: React.FC<WasmThreatSimulatorProps> = ({
         if (typeof init !== "function")
           throw new Error("Invalid WASM module: missing default init");
         await init({ module_or_path: wasmUrl });
+
+        // Restore original unique ID after Leptos mounts
+        setTimeout(() => {
+          if (mountElement && mounted) {
+            mountElement.id = originalId;
+          }
+        }, 100);
+
         if (!mounted) return;
 
         setWasmInitialized(true);
         setIsLoading(false);
 
-        // Apply fullscreen if requested
-        if (autoFullscreen && containerRef.current?.requestFullscreen) {
-          setTimeout(() => {
-            containerRef.current!.requestFullscreen().catch(() => {
-              /* ignore: user gesture required or denied */
-            });
-          }, 500);
-        }
+        // Removed auto-fullscreen as it interferes with page scrolling
+        // Users can manually enter fullscreen if needed
+        // if (autoFullscreen && containerRef.current?.requestFullscreen) {
+        //   setTimeout(() => {
+        //     containerRef.current!.requestFullscreen().catch(() => {
+        //       /* ignore: user gesture required or denied */
+        //     });
+        //   }, 500);
+        // }
       } catch (err) {
         console.error("Failed to initialize WASM module:", err);
         if (mounted) {
@@ -91,8 +153,10 @@ export const WasmThreatSimulator: React.FC<WasmThreatSimulatorProps> = ({
 
     return () => {
       mounted = false;
+      // Reset singleton flag when component unmounts
+      wasmInstanceInitialized = false;
     };
-  }, [autoFullscreen]);
+  }, [autoFullscreen, uniqueMountId]);
 
   return (
     <div
@@ -108,8 +172,8 @@ export const WasmThreatSimulator: React.FC<WasmThreatSimulatorProps> = ({
         overflow: "hidden",
       }}
     >
-      {/* Load WASM styles */}
-      <link rel="stylesheet" href="/wasm/styles-2e626ac1d358eb54.css" />
+      {/* Load WASM styles - dynamically resolved from manifest */}
+      {cssUrl && <link rel="stylesheet" href={cssUrl} />}
 
       {isLoading && (
         <div
@@ -161,9 +225,9 @@ export const WasmThreatSimulator: React.FC<WasmThreatSimulatorProps> = ({
         </div>
       )}
 
-      {/* Mount point for the Leptos WASM app */}
+      {/* Mount point for the Leptos WASM app - uses unique ID to prevent conflicts */}
       <div
-        id="app"
+        id={uniqueMountId}
         style={{
           width: "100%",
           height: "100%",

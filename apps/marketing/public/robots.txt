@@ -1,0 +1,28 @@
+# Phoenix Rooivalk - Defense Technology Robots.txt
+# Allow indexing for defense industry search and lead generation
+
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /_next/
+Disallow: /private/
+
+# Sitemap location
+Sitemap: https://phoenixrooivalk.netlify.app/sitemap.xml
+
+# Rate limiting for aggressive crawlers (defense industry best practice)
+User-agent: AhrefsBot
+Crawl-delay: 10
+
+User-agent: SemrushBot
+Crawl-delay: 10
+
+User-agent: DotBot
+Crawl-delay: 10
+
+# TODO: Consider blocking AI training bots (GPTBot, CCBot) after development phase
+# User-agent: GPTBot
+# Disallow: /
+#
+# User-agent: CCBot
+# Disallow: /
