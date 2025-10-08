@@ -94,7 +94,7 @@ Research, `G` Synergies, `X` Auto-Targeting, `?` Help (alt)
 ```bash
 pnpm sim:dev           # Frontend dev server
 pnpm sim:dev:tauri     # Full desktop app
-pnpm sim:test          # Run 42 tests
+pnpm sim:test          # Run 47 tests
 pnpm sim:lint          # Clippy strict
 pnpm sim:build         # Production WASM
 pnpm sim:build:tauri   # Desktop installers
@@ -116,7 +116,7 @@ pnpm build:tauri       # Cargo tauri build
 
 ## 📊 Final Metrics
 
-### Test Coverage: ✅ 42/42 (100%)
+### Test Coverage: ✅ 47/47 (100%)
 
 ```
 Module              Tests    Lines    Status
@@ -131,7 +131,7 @@ Auto-Targeting      7        240      ✅  NEW
 Event Feed          2        150      ✅
 Synergy System      3        200      ✅
 ─────────────────────────────────────────────
-Total               42       2,200    ✅
+Total               47       2,200    ✅
 
 Runtime:           <50ms
 Clippy:            0 warnings
@@ -148,7 +148,7 @@ Coverage:          ~90%
 | **FPS**             | 60          | 90+ (dev), 120+ (release) | **2x smoother** ✅   |
 | **Max Entities**    | ~100        | ~500                      | **5x capacity** ✅   |
 | **Bundle Size**     | N/A (web)   | 12MB                      | **Native app** ✅    |
-| **Tests**           | 0           | 42                        | **∞ improvement** ✅ |
+| **Tests**           | 0           | 47                        | **∞ improvement** ✅ |
 
 ### Code Reduction
 
@@ -205,7 +205,7 @@ feature/leptos-tauri-threat-simulator (11 commits)
 - 65 files changed
 - 12,000+ insertions
 - 700+ deletions
-- 42 tests added
+- 47 tests added
 - 3,600+ lines documentation
 
 ---
@@ -258,9 +258,9 @@ pnpm dev:tauri
 pnpm sim:test
 
 # Output:
-# running 42 tests
-# ..........................................
-# test result: ok. 42 passed; 0 failed
+# running 47 tests
+# ...............................................
+# test result: ok. 47 passed; 0 failed
 ```
 
 ### ✅ Build Production
@@ -344,7 +344,7 @@ pnpm sim:build:tauri
 2. **4.3x better memory** (150MB → 35MB)
 3. **100% type safety** (compile-time vs runtime)
 4. **100% memory safety** (Rust ownership)
-5. **∞ better tests** (0 → 42 tests)
+5. **∞ better tests** (0 → 47 tests)
 6. **Cross-platform** (Windows, macOS, Linux)
 7. **Native performance** (WASM + native backend)
 8. **Better state management** (signals vs hooks)
@@ -393,7 +393,7 @@ pnpm sim:build:tauri
 # From ANYWHERE in the project:
 pnpm sim:dev              # ✅ Works!
 pnpm sim:dev:tauri        # ✅ Works!
-pnpm sim:test             # ✅ Works! (42 tests pass)
+pnpm sim:test             # ✅ Works! (47 tests pass)
 pnpm sim:lint             # ✅ Works! (0 warnings)
 pnpm sim:build:tauri      # ✅ Works! (builds .msi/.dmg/.deb)
 ```
@@ -467,7 +467,7 @@ pnpm sim:build:tauri      # ✅ Works! (builds .msi/.dmg/.deb)
 
 ```
 ✅ Cross-platform desktop
-✅ 42 comprehensive tests
+✅ 47 comprehensive tests
 ✅ Compile-time type safety
 ✅ Memory safety guaranteed
 ✅ <200ms load times
@@ -529,7 +529,7 @@ pnpm sim:build:tauri      # ✅ Works! (builds .msi/.dmg/.deb)
 
 ### Quality ✅
 
-- [x] 42/42 tests passing
+- [x] 47/47 tests passing
 - [x] Zero clippy warnings
 - [x] Properly formatted
 - [x] Memory safe (no unsafe)
@@ -552,7 +552,7 @@ pnpm sim:build:tauri      # ✅ Works! (builds .msi/.dmg/.deb)
 
 ✅ **100% MIGRATED** - All components ported  
 ✅ **FULLY FUNCTIONAL** - Both Tauri and Leptos  
-✅ **COMPREHENSIVELY TESTED** - 42 tests, 100% pass  
+✅ **COMPREHENSIVELY TESTED** - 47 tests, 100% pass  
 ✅ **PRODUCTION READY** - Desktop installers buildable  
 ✅ **WELL DOCUMENTED** - 3,600+ lines of docs  
 ✅ **PERFORMANCE OPTIMIZED** - 10x faster, 4x memory efficient  
@@ -601,7 +601,7 @@ pnpm sim:build:tauri
 You have successfully migrated a complex React game to Leptos/Tauri with:
 
 - 22 modules
-- 42 tests
+- 47 tests
 - 4,100+ lines of code
 - 3,600+ lines of documentation
 - 23 keyboard controls
