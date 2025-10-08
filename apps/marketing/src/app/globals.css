@@ -156,6 +156,27 @@ body {
   line-height: 1.6;
 }
 
+/* Smooth scroll behavior */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px; /* Account for sticky nav */
+}
+
+/* Respect user's motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
 ::selection {
   background: rgba(var(--primary), 0.3);
   color: rgb(var(--phoenix-white));
@@ -192,7 +213,7 @@ h6 {
   font-size: var(--text-base);
 }
 
-/* Button System - Three Tiers */
+/* Button System - Three Tiers - Enhanced */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -203,9 +224,28 @@ h6 {
   font-size: var(--text-sm);
   transition: all var(--duration-normal) var(--ease);
   cursor: pointer;
-  border: 1px solid transparent;
+  border: 2px solid transparent;
   text-decoration: none;
   min-height: 44px; /* Touch target */
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Animated shine effect on hover */
+.btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+.btn:hover::before {
+  left: 100%;
 }
 
 .btn:focus {
@@ -213,35 +253,44 @@ h6 {
   box-shadow: var(--focus);
 }
 
+.btn:focus-visible {
+  outline: 3px solid rgb(249, 115, 22);
+  outline-offset: 4px;
+  box-shadow: 0 0 0 4px rgba(249, 115, 22, 0.3);
+}
+
 .btn--primary {
-  background: #ff7518;
+  background: linear-gradient(135deg, #ff7518, #ea580c);
   color: white;
   border-color: #ff7518;
-  box-shadow: 0 2px 8px rgba(255, 117, 24, 0.3);
+  box-shadow: 0 0 20px rgba(255, 117, 24, 0.3);
 }
 
 .btn--primary:hover {
-  background: #ea580c;
-  border-color: #ea580c;
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(234, 88, 12, 0.4);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(234, 88, 12, 0.4);
+  border-color: #fb923c;
 }
 
 .btn--secondary {
-  background: rgb(var(--bg-elevated));
+  background: rgba(30, 41, 59, 0.8);
   color: rgb(var(--text-secondary));
-  border-color: rgb(var(--border));
+  border-color: rgb(71, 85, 105);
+  backdrop-filter: blur(10px);
 }
 
 .btn--secondary:hover {
-  background: rgb(var(--bg-tertiary));
+  background: rgba(51, 65, 85, 0.9);
   color: rgb(var(--text-primary));
+  border-color: rgb(100, 116, 139);
+  transform: translateY(-2px);
 }
 
 .btn--ghost {
   background: transparent;
   color: rgb(var(--text-muted));
   border-color: rgb(var(--border-muted));
+  box-shadow: none;
 }
 
 .btn--ghost:hover {
@@ -250,34 +299,42 @@ h6 {
   border-color: rgb(var(--border));
 }
 
-/* Pill System */
+/* Pill System - Enhanced */
 .pill {
   display: inline-flex;
   align-items: center;
-  padding: var(--space-1) var(--space-3);
+  padding: 0.625rem 1.25rem;
   border-radius: 9999px;
-  font-size: var(--text-xs);
+  font-size: 0.875rem;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.05em;
+  border: 2px solid transparent;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.pill:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
 }
 
 .pill--concept {
-  background: rgba(249, 115, 22, 0.15);
-  color: #ff8c42;
-  border: 1.5px solid rgba(249, 115, 22, 0.5);
+  background: linear-gradient(135deg, rgba(249, 115, 22, 0.2), rgba(251, 146, 60, 0.2));
+  border-color: rgba(249, 115, 22, 0.5);
+  color: #FFB380;
 }
 
 .pill--partners {
-  background: rgba(100, 116, 139, 0.15);
-  color: #94a3b8;
-  border: 1.5px solid rgba(100, 116, 139, 0.5);
+  background: linear-gradient(135deg, rgba(34, 197, 94, 0.2), rgba(74, 222, 128, 0.2));
+  border-color: rgba(34, 197, 94, 0.5);
+  color: #6EE7B7;
 }
 
 .pill--sbir {
-  background: rgba(245, 158, 11, 0.15);
-  color: #ffa94d;
-  border: 1.5px solid rgba(245, 158, 11, 0.5);
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(96, 165, 250, 0.2));
+  border-color: rgba(59, 130, 246, 0.5);
+  color: #93C5FD;
 }
 
 /* Card System */

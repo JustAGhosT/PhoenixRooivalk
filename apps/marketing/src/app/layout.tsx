@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import * as React from "react";
+import { Analytics } from "../components/Analytics";
 import { SkipNav } from "../components/SkipNav";
 import { ThemeProvider } from "../contexts/ThemeContext";
 import "./globals.css";
@@ -79,6 +80,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
+        <Analytics />
         <SkipNav />
         <ThemeProvider>{children}</ThemeProvider>
       </body>
