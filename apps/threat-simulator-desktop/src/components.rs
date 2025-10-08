@@ -59,19 +59,19 @@ pub fn App() -> impl IntoView {
     // Watch for critical events - low health
     {
         let game_state_watcher = game_state_rc.clone();
-        let mut last_warning_sent = false;
+        let (last_warning_sent, set_last_warning_sent) = create_signal(false);
         create_effect(move |_| {
             let health = game_state_watcher.mothership_health.get();
-            if health < 25.0 && !last_warning_sent {
+            if health < 25.0 && !last_warning_sent.get() {
                 set_event_feed.update(|feed| {
                     feed.push(create_feed_item(
                         format!("CRITICAL: Mothership health at {}%!", health as u32),
                         FeedSeverity::Critical,
                     ));
                 });
-                last_warning_sent = true;
+                set_last_warning_sent.set(true);
             } else if health >= 25.0 {
-                last_warning_sent = false;
+                set_last_warning_sent.set(false);
             }
         });
     }
@@ -79,17 +79,17 @@ pub fn App() -> impl IntoView {
     // Watch for wave changes
     {
         let game_state_watcher = game_state_rc.clone();
-        let mut last_level = 1u8;
+        let (last_level, set_last_level) = create_signal(1u8);
         create_effect(move |_| {
             let current_level = game_state_watcher.level.get();
-            if current_level > last_level {
+            if current_level > last_level.get() {
                 set_event_feed.update(|feed| {
                     feed.push(create_feed_item(
                         format!("Wave {} incoming!", current_level),
                         FeedSeverity::Warning,
                     ));
                 });
-                last_level = current_level;
+                set_last_level.set(current_level);
             }
         });
     }
@@ -97,20 +97,22 @@ pub fn App() -> impl IntoView {
     // Watch for high scores
     {
         let game_state_watcher = game_state_rc.clone();
-        let mut milestones_reached = std::collections::HashSet::new();
+        let (milestones_reached, set_milestones_reached) = create_signal(std::collections::HashSet::new());
         create_effect(move |_| {
             let score = game_state_watcher.score.get();
             let milestones = [1000, 5000, 10000, 25000, 50000, 100000];
             
             for &milestone in &milestones {
-                if score >= milestone && !milestones_reached.contains(&milestone) {
+                if score >= milestone && !milestones_reached.get().contains(&milestone) {
                     set_event_feed.update(|feed| {
                         feed.push(create_feed_item(
                             format!("Achievement: {} points!", milestone),
                             FeedSeverity::Success,
                         ));
                     });
-                    milestones_reached.insert(milestone);
+                    set_milestones_reached.update(|m| {
+                        m.insert(milestone);
+                    });
                 }
             }
         });
