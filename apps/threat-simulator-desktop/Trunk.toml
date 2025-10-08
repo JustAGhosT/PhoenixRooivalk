@@ -1,0 +1,21 @@
+[[hooks]]
+stage = "build"
+command = "cargo"
+command_arguments = ["build", "--release"]
+
+[build]
+target = "index.html"
+dist = "dist"
+public_url = "/"
+filehash = true
+
+[watch]
+ignore = ["dist", "target"]
+# Must ignore "target" to prevent cargo build outputs from triggering endless rebuild loops
+
+[serve]
+# Use 'addresses' instead of deprecated 'address'
+addresses = ["127.0.0.1"]
+port = 8080
+open = true
+

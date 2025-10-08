@@ -1,0 +1,74 @@
+# Justfile for Phoenix Rooivalk Threat Simulator Desktop
+
+# Default recipe
+default:
+    @just --list
+
+# Install all required tools
+setup:
+    @echo "Installing Rust toolchain..."
+    rustup target add wasm32-unknown-unknown
+    @echo "Installing Trunk..."
+    cargo install trunk
+    @echo "Installing Tauri CLI..."
+    cargo install tauri-cli --version "^2.0"
+    @echo "Setup complete!"
+
+# Run in development mode
+dev:
+    cargo tauri dev
+
+# Run frontend only (faster iteration)
+serve:
+    trunk serve --open
+
+# Build for production
+build:
+    cargo tauri build
+
+# Run all tests
+test:
+    cargo test --workspace
+    
+# Run frontend tests only
+test-frontend:
+    trunk test
+
+# Run backend tests only
+test-backend:
+    cd src-tauri && cargo test
+
+# Format all code
+fmt:
+    cargo fmt --all
+    
+# Run clippy linter
+lint:
+    cargo clippy --workspace -- -D warnings
+
+# Clean build artifacts
+clean:
+    cargo clean
+    rm -rf dist
+    rm -rf src-tauri/target
+
+# Check project health
+check:
+    cargo check --workspace
+    cargo clippy --workspace -- -D warnings
+    cargo test --workspace
+
+# Generate icons (requires imagemagick)
+icons:
+    @echo "Generating app icons..."
+    @echo "TODO: Add icon generation script"
+
+# Show app info
+info:
+    @echo "Phoenix Rooivalk Threat Simulator"
+    @echo "=================================="
+    @rustc --version
+    @cargo --version
+    @trunk --version || echo "Trunk not installed"
+    @cargo tauri --version || echo "Tauri CLI not installed"
+

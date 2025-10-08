@@ -12,6 +12,7 @@ the 12–36 month horizon.
 Your research must deliver a defensible, technically rigorous analysis covering:
 
 1. **Core Hardware Categories:**
+
    - Propulsion systems (motors, propellers, electronic speed controllers)
    - Airframe structures and materials
    - Power storage and energy systems

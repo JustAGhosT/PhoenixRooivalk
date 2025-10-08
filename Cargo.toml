@@ -4,6 +4,8 @@ members = [
   "apps/api",
   "apps/keeper",
   "apps/evidence-cli",
+  "apps/threat-simulator-desktop",
+  "apps/threat-simulator-desktop/src-tauri",
   "crates/evidence",
   "crates/anchor-etherlink",
   "crates/anchor-solana",
