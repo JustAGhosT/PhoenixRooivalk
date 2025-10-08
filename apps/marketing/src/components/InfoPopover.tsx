@@ -1,4 +1,5 @@
 import React, { useEffect, useId, useRef, useState } from "react";
+import styles from "./InfoPopover.module.css";
 
 interface InfoPopoverProps {
   title: string;
@@ -99,7 +100,7 @@ export const InfoPopover: React.FC<InfoPopoverProps> = ({
 
   return (
     <div
-      className={`info-popover-trigger ${className}`}
+      className={`${styles.trigger} ${className}`}
       ref={triggerRef}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
@@ -114,7 +115,7 @@ export const InfoPopover: React.FC<InfoPopoverProps> = ({
       {isOpen && (
         <div
           ref={popoverRef}
-          className="info-popover"
+          className={styles.popover}
           style={{
             position: "fixed",
             left: position.x,
@@ -125,10 +126,10 @@ export const InfoPopover: React.FC<InfoPopoverProps> = ({
           role="tooltip"
           aria-hidden={false}
         >
-          <div className="info-popover-header">
-            <h4 className="info-popover-title">{title}</h4>
+          <div className={styles.header}>
+            <h4 className={styles.title}>{title}</h4>
             <button
-              className="info-popover-close"
+              className={styles.closeButton}
               onClick={() => setIsOpen(false)}
               aria-label="Close popover"
             >
@@ -136,15 +137,15 @@ export const InfoPopover: React.FC<InfoPopoverProps> = ({
             </button>
           </div>
 
-          <div className="info-popover-content">
+          <div className={styles.content}>
             {brands.length > 0 && (
-              <div className="info-popover-section">
-                <h5 className="info-popover-section-title">
+              <div className={styles.section}>
+                <h5 className={styles.sectionTitle}>
                   Real-World Analogues:
                 </h5>
-                <ul className="info-popover-list">
+                <ul className={styles.list}>
                   {brands.map((brand, index) => (
-                    <li key={index} className="info-popover-item">
+                    <li key={index} className={styles.item}>
                       {brand}
                     </li>
                   ))}
@@ -153,18 +154,18 @@ export const InfoPopover: React.FC<InfoPopoverProps> = ({
             )}
 
             {sources.length > 0 && (
-              <div className="info-popover-section">
-                <h5 className="info-popover-section-title">Sources:</h5>
-                <ul className="info-popover-list">
+              <div className={styles.section}>
+                <h5 className={styles.sectionTitle}>Sources:</h5>
+                <ul className={styles.list}>
                   {sources.map((source, index) => {
                     const urlInfo = getSafeUrlInfo(source);
                     return (
-                      <li key={index} className="info-popover-item">
+                      <li key={index} className={styles.item}>
                         <a
                           href={urlInfo.href}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="info-popover-link"
+                          className={styles.link}
                           onClick={(e) => e.stopPropagation()}
                           title={urlInfo.isValid ? source : "Invalid URL"}
                         >
@@ -178,7 +179,7 @@ export const InfoPopover: React.FC<InfoPopoverProps> = ({
             )}
           </div>
 
-          <div className="info-popover-arrow"></div>
+          <div className={styles.arrow}></div>
         </div>
       )}
     </div>

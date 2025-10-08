@@ -7,7 +7,7 @@ import HelpOverlay from "./HelpOverlay";
 import { ParticleEffects } from "./ParticleEffects";
 import RadarCanvas from "./RadarCanvas";
 import { ResearchPanel } from "./ResearchPanel";
-import "./ThreatSimulator.css";
+import styles from "./ThreatSimulator.module.css";
 import { ThreatSimulatorComponents } from "./ThreatSimulatorComponents";
 import ThreatSimulatorGame from "./ThreatSimulatorGame";
 import { ThreatSimulatorOverlays } from "./ThreatSimulatorOverlays";

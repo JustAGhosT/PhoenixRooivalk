@@ -1,0 +1,219 @@
+.badge {
+  position: relative;
+  display: inline-block;
+}
+
+.indicator {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  background: #1a1f2e;
+  border: 2px solid;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.indicatorLow {
+  border-color: #48bb78;
+  color: #48bb78;
+}
+
+.indicatorMedium {
+  border-color: #ed8936;
+  color: #ed8936;
+}
+
+.indicatorHigh {
+  border-color: #f56565;
+  color: #f56565;
+}
+
+.indicator:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.indicatorAcknowledged {
+  opacity: 0.7;
+}
+
+.icon {
+  font-size: 16px;
+  line-height: 1;
+}
+
+.text {
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.dot {
+  margin-left: 4px;
+  font-size: 10px;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.4;
+  }
+}
+
+.details {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  z-index: 1000;
+  min-width: 320px;
+  background: #1a1f2e;
+  border: 1px solid #2d3748;
+  border-radius: 8px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+}
+
+.detailsHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  border-bottom: 1px solid #2d3748;
+  background: #252d3d;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.detailsHeader h4 {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: #e2e8f0;
+}
+
+.closeButton {
+  background: none;
+  border: none;
+  color: #a0aec0;
+  font-size: 24px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s ease;
+}
+
+.closeButton:hover {
+  color: #e2e8f0;
+}
+
+.detailsContent {
+  padding: 16px;
+}
+
+.riskLevel {
+  margin-bottom: 16px;
+}
+
+.riskLevelBadge {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.riskLevelLow {
+  background: rgba(72, 187, 120, 0.2);
+  color: #48bb78;
+}
+
+.riskLevelMedium {
+  background: rgba(237, 137, 54, 0.2);
+  color: #ed8936;
+}
+
+.riskLevelHigh {
+  background: rgba(245, 101, 101, 0.2);
+  color: #f56565;
+}
+
+.requirements h5 {
+  margin: 0 0 8px 0;
+  font-size: 12px;
+  font-weight: 600;
+  color: #a0aec0;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 16px 0;
+}
+
+.item {
+  padding: 4px 0;
+  padding-left: 16px;
+  font-size: 13px;
+  color: #cbd5e0;
+  line-height: 1.5;
+  position: relative;
+}
+
+.item::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: #63b3ed;
+}
+
+.note {
+  padding: 12px;
+  background: rgba(66, 153, 225, 0.1);
+  border-radius: 6px;
+  border-left: 3px solid #4299e1;
+}
+
+.note p {
+  margin: 0;
+  font-size: 12px;
+  color: #cbd5e0;
+  line-height: 1.5;
+}
+
+.actions {
+  padding: 12px 16px;
+  border-top: 1px solid #2d3748;
+  background: #252d3d;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+.acknowledgeButton {
+  width: 100%;
+  padding: 10px 16px;
+  background: #4299e1;
+  border: none;
+  border-radius: 6px;
+  color: white;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.acknowledgeButton:hover {
+  background: #3182ce;
+}
