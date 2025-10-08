@@ -58,7 +58,7 @@ pub fn App() -> impl IntoView {
 
     // Keyboard event handler
     let game_state_kb = game_state_rc.clone();
-    create_effect(move |_| {
+    {
         let window = web_sys::window().unwrap();
         let game_state_inner = game_state_kb.clone();
         let closure = Closure::wrap(Box::new(move |event: KeyboardEvent| {
@@ -114,9 +114,17 @@ pub fn App() -> impl IntoView {
             .add_event_listener_with_callback("keydown", closure.as_ref().unchecked_ref())
             .unwrap();
 
-        // Keep closure alive
+        // Clean up on component unmount
+        on_cleanup({
+            let window = window.clone();
+            let closure_ref = closure.as_ref().unchecked_ref::<js_sys::Function>().clone();
+            move || {
+                let _ = window.remove_event_listener_with_callback("keydown", &closure_ref);
+            }
+        });
+        // Keep closure alive until cleanup
         std::mem::forget(closure);
-    });
+    }
 
     // Clone game state for components
     let game_state_hud = game_state_rc.clone();
