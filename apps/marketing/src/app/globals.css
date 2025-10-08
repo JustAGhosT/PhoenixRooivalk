@@ -226,7 +226,7 @@ h6 {
   cursor: pointer;
   border: 2px solid transparent;
   text-decoration: none;
-  min-height: 44px; /* Touch target */
+  min-height: 48px; /* Touch target */
   position: relative;
   overflow: hidden;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
@@ -268,12 +268,12 @@ h6 {
   background: linear-gradient(135deg, #ff7518, #ea580c);
   color: white;
   border-color: #ff7518;
-  box-shadow: 0 0 20px rgba(255, 117, 24, 0.3);
+  box-shadow: 0 4px 20px rgba(255, 117, 24, 0.35);
 }
 
 .btn--primary:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(234, 88, 12, 0.4);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 28px rgba(234, 88, 12, 0.45);
   border-color: #fb923c;
 }
 
@@ -308,9 +308,9 @@ h6 {
 .pill {
   display: inline-flex;
   align-items: center;
-  padding: 0.625rem 1.25rem;
+  padding: 0.625rem 1.5rem;
   border-radius: 9999px;
-  font-size: 0.875rem;
+  font-size: 0.8125rem;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.05em;
@@ -376,14 +376,14 @@ h6 {
   border: 1px solid rgb(var(--border));
   border-radius: 16px;
   padding: var(--space-6);
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
 }
 
 .card:hover {
-  border-color: rgba(249, 115, 22, 0.5);
+  border-color: rgba(249, 115, 22, 0.6);
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
-  transform: translateY(-4px);
+  transform: translateY(-5px);
 }
 
 .card--elevated {
@@ -416,11 +416,11 @@ h6 {
 
 /* Section Spacing Utilities */
 section {
-  padding: clamp(3rem, 8vw, 6rem) 0;
+  padding: clamp(3.5rem, 8vw, 6.5rem) 0;
 }
 
 section:first-of-type {
-  padding-top: clamp(5rem, 12vw, 8rem);
+  padding-top: clamp(5.5rem, 12vw, 8.5rem);
 }
 
 .section-tight {

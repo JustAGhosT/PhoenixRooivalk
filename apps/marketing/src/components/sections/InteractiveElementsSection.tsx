@@ -281,10 +281,9 @@ export const InteractiveElementsSection: React.FC = () => {
                         Annual Savings:
                       </span>
                       <span className="text-[rgb(var(--status-active))] font-bold">
-                        $
                         {isClient
-                          ? roi.phoenix.savings.toLocaleString()
-                          : roi.phoenix.savings.toString()}
+                          ? `$${Math.round(roi.phoenix.savings).toLocaleString()}`
+                          : `$${Math.round(roi.phoenix.savings).toString()}`}
                       </span>
                     </div>
                     <div className="flex justify-between border-t border-[rgba(var(--primary),0.2)] pt-3">
@@ -322,10 +321,9 @@ export const InteractiveElementsSection: React.FC = () => {
                         Annual Savings:
                       </span>
                       <span className="text-[rgb(var(--action-warning))] font-bold">
-                        $
                         {isClient
-                          ? roi.traditional.savings.toLocaleString()
-                          : roi.traditional.savings.toString()}
+                          ? `$${Math.round(roi.traditional.savings).toLocaleString()}`
+                          : `$${Math.round(roi.traditional.savings).toString()}`}
                       </span>
                     </div>
                     <div className="flex justify-between border-t border-[rgba(var(--primary),0.2)] pt-3">
