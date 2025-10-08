@@ -1,5 +1,6 @@
 import * as React from "react";
 import { RevealSection } from "../RevealSection";
+import styles from "./CapabilitiesSection.module.css";
 
 export const CapabilitiesSection: React.FC = () => {
   const coreCapabilities = [
@@ -69,13 +70,13 @@ export const CapabilitiesSection: React.FC = () => {
   ];
 
   return (
-    <section className="px-6 md:px-[5%] lg:px-[5%] py-12" id="capabilities">
-      <div className="max-w-[1400px] mx-auto">
-        <RevealSection className="text-center mb-8">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+    <section className={styles.section} id="capabilities">
+      <div className={styles.container}>
+        <RevealSection className={styles.header}>
+          <h2 className={styles.title}>
             Three-Tier Defense Architecture
           </h2>
-          <p className="text-[var(--gray)] max-w-3xl mx-auto">
+          <p className={styles.description}>
             <strong className="text-white">Tier 1 (Core):</strong> Autonomous
             edge operation with sub-second response.
             <strong className="text-white"> Tier 2 (Enhanced):</strong> AI and
@@ -84,7 +85,7 @@ export const CapabilitiesSection: React.FC = () => {
             Analytics and compliance reporting.
           </p>
         </RevealSection>
-        <RevealSection className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <RevealSection className={styles.grid}>
           {coreCapabilities.map((capability, index) => (
             <CapabilityCard key={index} {...capability} />
           ))}
@@ -100,12 +101,12 @@ const CapabilityCard: React.FC<{
   description: string;
   proof?: string;
 }> = ({ icon, title, description, proof }) => (
-  <div className="text-center p-6 rounded-xl bg-[rgba(var(--primary),0.05)] border border-[rgba(var(--primary),0.2)] hover:border-[rgba(var(--primary),0.4)] transition-all hover:-translate-y-1">
-    <div className="text-4xl mb-4">{icon}</div>
-    <h3 className="text-xl font-bold text-white mb-3">{title}</h3>
-    <p className="text-[var(--gray)] mb-3">{description}</p>
+  <div className={styles.card}>
+    <div className={styles.cardIcon}>{icon}</div>
+    <h3 className={styles.cardTitle}>{title}</h3>
+    <p className={styles.cardDescription}>{description}</p>
     {proof && (
-      <div className="text-xs text-green-400 font-medium">✓ {proof}</div>
+      <div className={styles.cardProof}>✓ {proof}</div>
     )}
   </div>
 );
