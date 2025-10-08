@@ -103,11 +103,11 @@ export const InteractiveElementsSection: React.FC = () => {
       <div className="relative z-10">
         <div className="max-w-[1400px] mx-auto">
           {/* Section Header */}
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-br from-[rgb(var(--text-primary))] to-[rgb(var(--primary))] mb-6">
+          <div className="text-center mb-20">
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
               Projected ROI Analysis
             </h2>
-            <p className="text-xl text-[rgb(var(--gray))] max-w-3xl mx-auto">
+            <p className="text-xl text-[rgb(var(--gray))] max-w-3xl mx-auto leading-relaxed">
               Explore the potential return on investment for Phoenix
               Rooivalk&apos;s target 120ms response time based on current market
               analysis and projected performance.
@@ -115,7 +115,7 @@ export const InteractiveElementsSection: React.FC = () => {
           </div>
 
           {/* ROI Calculator */}
-          <div className="bg-[rgba(var(--tactical-charcoal),0.8)] backdrop-blur-sm border border-[rgba(var(--primary),0.2)] rounded-2xl p-8">
+          <div className="bg-[rgba(15,23,42,0.9)] backdrop-blur-sm border border-[rgba(var(--primary),0.3)] rounded-2xl p-10 shadow-2xl">
             {/* Hypothetical Disclaimer */}
             <div className="mb-6 p-4 bg-[rgba(var(--status-warning),0.1)] border border-[rgba(var(--status-warning),0.3)] rounded-lg">
               <p className="text-sm text-[rgb(var(--status-warning))] text-center font-semibold">
@@ -255,8 +255,8 @@ export const InteractiveElementsSection: React.FC = () => {
 
               {/* Results */}
               <div className="space-y-6">
-                <div className="bg-[rgba(var(--bg-secondary),0.6)] rounded-xl p-6 border border-[rgba(var(--primary),0.3)]">
-                  <h4 className="text-lg font-bold text-[rgb(var(--primary))] mb-4">
+                <div className="bg-[rgba(15,23,42,0.8)] rounded-xl p-8 border border-[rgba(var(--primary),0.4)] shadow-lg">
+                  <h4 className="text-xl font-bold text-[rgb(var(--primary))] mb-6">
                     Phoenix Rooivalk Results
                   </h4>
                   <div className="space-y-3">
@@ -296,8 +296,8 @@ export const InteractiveElementsSection: React.FC = () => {
                   </div>
                 </div>
 
-                <div className="bg-[rgba(var(--bg-secondary),0.6)] rounded-xl p-6 border border-[rgba(var(--border),0.3)]">
-                  <h4 className="text-lg font-bold text-[rgb(var(--gray))] mb-4">
+                <div className="bg-[rgba(15,23,42,0.8)] rounded-xl p-8 border border-[rgba(var(--border),0.3)] shadow-lg">
+                  <h4 className="text-xl font-bold text-[rgb(var(--gray))] mb-6">
                     Traditional Systems
                   </h4>
                   <div className="space-y-3">
@@ -341,12 +341,12 @@ export const InteractiveElementsSection: React.FC = () => {
           </div>
 
           {/* Interactive Demo Teaser */}
-          <div className="mt-16">
-            <div className="text-center mb-8">
-              <h3 className="text-3xl font-bold text-[var(--text-primary)] mb-4">
+          <div className="mt-24">
+            <div className="text-center mb-12">
+              <h3 className="text-4xl font-bold text-white mb-4">
                 Experience the System
               </h3>
-              <p className="text-[var(--text-muted)] mb-6 max-w-2xl mx-auto">
+              <p className="text-xl text-[rgb(var(--gray))] mb-6 max-w-2xl mx-auto leading-relaxed">
                 Try our interactive defense simulator to see Phoenix Rooivalk
                 technology in action. Experience real-time threat detection,
                 autonomous response, and tactical coordination.
@@ -354,11 +354,11 @@ export const InteractiveElementsSection: React.FC = () => {
             </div>
 
             <div className="relative">
-              <div className="bg-gradient-to-br from-[rgba(var(--bg-primary),0.8)] to-[rgba(var(--bg-secondary),0.8)] rounded-xl border border-[rgba(var(--primary),0.3)] p-4">
+              <div className="bg-[rgba(15,23,42,0.9)] backdrop-blur-sm rounded-xl border border-[rgba(var(--primary),0.3)] p-6 shadow-2xl">
                 <ThreatSimulator isTeaser={true} />
               </div>
 
-              <div className="text-center mt-6">
+              <div className="text-center mt-8">
                 <Button href="/interactive-demo" variant="primary" size="lg">
                   🚀 Try Full Interactive Demo
                 </Button>
@@ -367,9 +367,9 @@ export const InteractiveElementsSection: React.FC = () => {
           </div>
 
           {/* Key Performance Metrics */}
-          <div className="mt-20">
-            <div className="bg-[rgba(var(--bg-surface),0.8)] backdrop-blur-sm border border-[rgba(var(--primary),0.2)] rounded-2xl p-8">
-              <h3 className="text-2xl font-bold text-[rgb(var(--primary))] mb-6 text-center">
+          <div className="mt-24">
+            <div className="bg-[rgba(15,23,42,0.9)] backdrop-blur-sm border border-[rgba(var(--primary),0.3)] rounded-2xl p-10 shadow-2xl">
+              <h3 className="text-3xl font-bold text-white mb-10 text-center">
                 Performance Comparison
               </h3>
 
@@ -432,11 +432,11 @@ export const InteractiveElementsSection: React.FC = () => {
           </div>
 
           {/* Concept Adaptation Calculator */}
-          <div className="mt-16">
-            <h3 className="text-3xl font-bold text-[var(--text-primary)] mb-8 text-center">
+          <div className="mt-24">
+            <h3 className="text-4xl font-bold text-white mb-8 text-center">
               Concept Adaptation Explorer
             </h3>
-            <p className="text-[var(--text-muted)] mb-8 max-w-3xl mx-auto text-center">
+            <p className="text-xl text-[rgb(var(--gray))] mb-12 max-w-3xl mx-auto text-center leading-relaxed">
               Explore how Phoenix Rooivalk&apos;s core technology could adapt to
               different operational environments and threat scenarios.
             </p>
@@ -597,11 +597,11 @@ export const InteractiveElementsSection: React.FC = () => {
           </div>
 
           {/* CTA */}
-          <div className="text-center mt-16">
-            <h3 className="text-3xl font-bold text-[var(--text-primary)] mb-4">
+          <div className="text-center mt-24">
+            <h3 className="text-4xl font-bold text-white mb-6">
               Interested in the Technology?
             </h3>
-            <p className="text-[var(--text-muted)] mb-6 max-w-2xl mx-auto">
+            <p className="text-xl text-[rgb(var(--gray))] mb-10 max-w-2xl mx-auto leading-relaxed">
               Learn more about Phoenix Rooivalk&apos;s innovative approach to
               autonomous counter-drone defense and explore partnership
               opportunities.
