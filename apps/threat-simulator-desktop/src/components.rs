@@ -239,6 +239,7 @@ pub fn App() -> impl IntoView {
                 // Once at 100%, schedule turning loading off
                 let timeout_closure = Closure::wrap(Box::new(move || {
                     set_is_loading.set(false);
+                    set_is_running.set(true); // Start the game after loading completes
                 }) as Box<dyn FnMut()>);
                 let handle = window_clone
                     .set_timeout_with_callback_and_timeout_and_arguments_0(
