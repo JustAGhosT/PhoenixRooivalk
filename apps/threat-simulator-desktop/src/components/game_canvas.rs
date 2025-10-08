@@ -96,8 +96,19 @@ pub fn GameCanvas(game_state: GameStateManager, is_running: ReadSignal<bool>) ->
 
         *closure.borrow_mut() = Some(Closure::wrap(Box::new(move |current_time: f64| {
             web_sys::console::log_1(&"Animation loop callback called".into());
-            if !is_running.get_untracked() {
+            if !is_running.get() {
                 web_sys::console::log_1(&"Game not running in animation loop".into());
+                // Still request next frame even when not running, so we can check again
+                if let Some(win) = web_sys::window() {
+                    let _ = win.request_animation_frame(
+                        closure_clone
+                            .borrow()
+                            .as_ref()
+                            .unwrap()
+                            .as_ref()
+                            .unchecked_ref(),
+                    );
+                }
                 return;
             }
             web_sys::console::log_1(&"Animation loop executing".into());
