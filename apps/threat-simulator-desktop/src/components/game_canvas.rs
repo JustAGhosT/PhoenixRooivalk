@@ -14,9 +14,12 @@ pub fn GameCanvas(game_state: GameStateManager, is_running: ReadSignal<bool>) ->
 
     // Animation loop with game engine
     create_effect(move |_| {
+        web_sys::console::log_1(&"GameCanvas create_effect triggered".into());
         if !is_running.get() {
+            web_sys::console::log_1(&"Game not running, skipping canvas setup".into());
             return;
         }
+        web_sys::console::log_1(&"Game is running, setting up canvas".into());
 
         let Some(canvas_elem) = canvas_ref.get() else {
             web_sys::console::log_1(&"Canvas not ready yet".into());
@@ -166,6 +169,7 @@ pub fn GameCanvas(game_state: GameStateManager, is_running: ReadSignal<bool>) ->
             class="game-canvas"
             width="1920"
             height="1080"
+            style="border: 2px solid #00ffff; background: #0a0e1a;"
         />
     }
 }
