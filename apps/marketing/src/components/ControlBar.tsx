@@ -1,4 +1,5 @@
 import React from "react";
+import styles from "./ControlBar.module.css";
 
 // Type definitions for game modes
 type WeatherMode = "none" | "rain" | "fog" | "night";
@@ -58,12 +59,12 @@ const ControlBar: React.FC<ControlBarProps> = ({
 
   return (
     <footer
-      className="threatsim__controls"
+      className={styles.controls}
       role="toolbar"
       aria-label="Simulator controls"
     >
       <button
-        className="sim-btn sim-btn--secondary"
+        className={`${styles.btn} ${styles.btnSecondary}`}
         id="btn-pause"
         aria-pressed={isPaused}
         title="Space"
@@ -71,11 +72,11 @@ const ControlBar: React.FC<ControlBarProps> = ({
       >
         {isPaused ? "Resume" : "Pause"}
       </button>
-      <button className="sim-btn" id="btn-swarm" title="S" onClick={onSwarm}>
+      <button className={styles.btn} id="btn-swarm" title="S" onClick={onSwarm}>
         Spawn Swarm
       </button>
       <button
-        className="sim-btn sim-btn--secondary"
+        className={`${styles.btn} ${styles.btnSecondary}`}
         id="btn-plus5"
         title="+"
         onClick={onPlus5}
@@ -83,13 +84,13 @@ const ControlBar: React.FC<ControlBarProps> = ({
         +5 Drones
       </button>
 
-      <div className="level">
-        <span className="level__label">Level</span>
-        <div className="level__buttons" role="group" aria-label="Select level">
+      <div className={styles.level}>
+        <span className={styles.levelLabel}>Level</span>
+        <div className={styles.levelButtons} role="group" aria-label="Select level">
           {levels.map((level) => (
             <button
               key={level}
-              className={`chip ${currentLevel === level ? "chip--on" : ""}`}
+              className={`${styles.chip} ${currentLevel === level ? styles.chipOn : ""}`}
               data-level={level}
               onClick={() => onLevelChange(level)}
               aria-pressed={currentLevel === level}
@@ -100,10 +101,10 @@ const ControlBar: React.FC<ControlBarProps> = ({
         </div>
       </div>
 
-      <div className="environment-group">
-        <label className="environment-label">Weather:</label>
+      <div className={styles.environmentGroup}>
+        <label className={styles.environmentLabel}>Weather:</label>
         <select
-          className="chip"
+          className={styles.chip}
           value={weatherMode}
           onChange={(e) => setWeatherMode(e.target.value as WeatherMode)}
         >
@@ -114,10 +115,10 @@ const ControlBar: React.FC<ControlBarProps> = ({
         </select>
       </div>
 
-      <div className="environment-group">
-        <label className="environment-label">Terrain:</label>
+      <div className={styles.environmentGroup}>
+        <label className={styles.environmentLabel}>Terrain:</label>
         <select
-          className="chip"
+          className={styles.chip}
           value={missionType}
           onChange={(e) => setMissionType(e.target.value as MissionType)}
         >
@@ -128,10 +129,10 @@ const ControlBar: React.FC<ControlBarProps> = ({
         </select>
       </div>
 
-      <div className="environment-group">
-        <label className="environment-label">Rules:</label>
+      <div className={styles.environmentGroup}>
+        <label className={styles.environmentLabel}>Rules:</label>
         <select
-          className="chip"
+          className={styles.chip}
           value={automationMode}
           onChange={(e) => setAutomationMode(e.target.value as AutomationMode)}
         >
@@ -142,7 +143,7 @@ const ControlBar: React.FC<ControlBarProps> = ({
       </div>
 
       <button
-        className="sim-btn sim-btn--ghost"
+        className={`${styles.btn} ${styles.btnGhost}`}
         id="btn-reset"
         title="R"
         onClick={onReset}
@@ -153,7 +154,7 @@ const ControlBar: React.FC<ControlBarProps> = ({
       <button
         role="switch"
         aria-checked={showDeploymentZones}
-        className={`switch ${showDeploymentZones ? "switch--on" : ""}`}
+        className={`${styles.switch} ${showDeploymentZones ? styles.switchOn : ""}`}
         onClick={() => setShowDeploymentZones(!showDeploymentZones)}
       >
         Show Zones
@@ -162,27 +163,27 @@ const ControlBar: React.FC<ControlBarProps> = ({
       <button
         role="switch"
         aria-checked={showStats}
-        className={`switch ${showStats ? "switch--on" : ""}`}
+        className={`${styles.switch} ${showStats ? styles.switchOn : ""}`}
         onClick={onShowStats}
       >
         Show Stats
       </button>
 
       <button
-        className="sim-btn sim-btn--ghost"
+        className={`${styles.btn} ${styles.btnGhost}`}
         onClick={onShowResearch}
         title="Research"
       >
         🔬
       </button>
       <button
-        className="sim-btn sim-btn--ghost"
+        className={`${styles.btn} ${styles.btnGhost}`}
         onClick={onShowTokenStore}
         title="Token Store"
       >
         🪙
       </button>
-      <button className="sim-btn sim-btn--ghost" onClick={onShowHelp} title="?">
+      <button className={`${styles.btn} ${styles.btnGhost}`} onClick={onShowHelp} title="?">
         ?
       </button>
     </footer>
