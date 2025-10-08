@@ -175,6 +175,7 @@ export const WasmThreatSimulator: React.FC<WasmThreatSimulatorProps> = ({
       className={`wasm-threat-simulator-container ${className}`}
       style={{
         width: "100%",
+        maxWidth: isTeaser ? "100%" : "100vw",
         height: isTeaser ? "600px" : "100vh",
         minHeight: isTeaser ? "600px" : "800px",
         maxHeight: isTeaser ? "600px" : "none",
@@ -184,6 +185,7 @@ export const WasmThreatSimulator: React.FC<WasmThreatSimulatorProps> = ({
         overflow: "hidden",
         display: "flex",
         flexDirection: "column",
+        margin: "0 auto",
       }}
     >
       {/* Load WASM styles - dynamically resolved from manifest */}
