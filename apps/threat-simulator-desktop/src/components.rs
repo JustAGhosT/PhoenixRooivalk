@@ -56,6 +56,66 @@ pub fn App() -> impl IntoView {
     // Wrap game state in Rc to allow multiple references
     let game_state_rc = std::rc::Rc::new(game_state.clone());
 
+    // Watch for critical events - low health
+    {
+        let game_state_watcher = game_state_rc.clone();
+        let mut last_warning_sent = false;
+        create_effect(move |_| {
+            let health = game_state_watcher.mothership_health.get();
+            if health < 25.0 && !last_warning_sent {
+                set_event_feed.update(|feed| {
+                    feed.push(create_feed_item(
+                        format!("CRITICAL: Mothership health at {}%!", health as u32),
+                        FeedSeverity::Critical,
+                    ));
+                });
+                last_warning_sent = true;
+            } else if health >= 25.0 {
+                last_warning_sent = false;
+            }
+        });
+    }
+
+    // Watch for wave changes
+    {
+        let game_state_watcher = game_state_rc.clone();
+        let mut last_level = 1u8;
+        create_effect(move |_| {
+            let current_level = game_state_watcher.level.get();
+            if current_level > last_level {
+                set_event_feed.update(|feed| {
+                    feed.push(create_feed_item(
+                        format!("Wave {} incoming!", current_level),
+                        FeedSeverity::Warning,
+                    ));
+                });
+                last_level = current_level;
+            }
+        });
+    }
+
+    // Watch for high scores
+    {
+        let game_state_watcher = game_state_rc.clone();
+        let mut milestones_reached = std::collections::HashSet::new();
+        create_effect(move |_| {
+            let score = game_state_watcher.score.get();
+            let milestones = [1000, 5000, 10000, 25000, 50000, 100000];
+            
+            for &milestone in &milestones {
+                if score >= milestone && !milestones_reached.contains(&milestone) {
+                    set_event_feed.update(|feed| {
+                        feed.push(create_feed_item(
+                            format!("Achievement: {} points!", milestone),
+                            FeedSeverity::Success,
+                        ));
+                    });
+                    milestones_reached.insert(milestone);
+                }
+            }
+        });
+    }
+
     // Keyboard event handler
     let game_state_kb = game_state_rc.clone();
     {
@@ -287,7 +347,14 @@ pub fn App() -> impl IntoView {
                                 set_event_feed
                                     .update(|feed| {
                                         feed.push(
-                                            create_feed_item("Mission started".to_string(), FeedSeverity::Info),
+                                            create_feed_item("Mission started".to_string(), FeedSeverity::Success),
+                                        );
+                                    });
+                            } else {
+                                set_event_feed
+                                    .update(|feed| {
+                                        feed.push(
+                                            create_feed_item("Mission paused".to_string(), FeedSeverity::Warning),
                                         );
                                     });
                             }
