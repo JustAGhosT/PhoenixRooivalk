@@ -337,9 +337,6 @@ pub fn App() -> impl IntoView {
 
             <Hud game_state=(*game_state_hud).clone() is_running=is_running/>
 
-            <div style="position: fixed; top: 50px; left: 50px; background: red; color: white; padding: 10px; z-index: 999;">
-                "DEBUG: App container visible"
-            </div>
 
             <GameCanvas game_state=(*game_state_canvas).clone() is_running=is_running/>
 
