@@ -52,17 +52,17 @@ comprehensive test coverage (47 tests).
 | Energy Mgmt     | EnergyManagement.tsx        | energy_management.rs | ✅     | -     |
 | Drone Deploy    | DroneDeployment.tsx         | drone_deployment.rs  | ✅     | -     |
 
-### ✅ Game Engine (6/6 Complete)
+### ✅ Game Engine (7/7 Complete)
 
 | Module     | React File                     | Leptos File      | Lines             | Tests        |
 | ---------- | ------------------------------ | ---------------- | ----------------- | ------------ |
-| Types      | threatTypes.ts, weaponTypes.ts | types.rs         | 230               | 7            |
-| Physics    | collisionSystem.ts             | physics.rs       | 210               | 5            |
-| Formations | formationManager.ts            | formations.rs    | 320               | 5            |
-| Waves      | waveManager.ts                 | waves.rs         | 350               | 6            |
-| Engine     | gameEngine.ts                  | engine.rs        | 220               | 6            |
+| Types      | threatTypes.ts, weaponTypes.ts | types.rs         | 230               | 9            |
+| Physics    | collisionSystem.ts             | physics.rs       | 210               | 6            |
+| Formations | formationManager.ts            | formations.rs    | 320               | 6            |
+| Waves      | waveManager.ts                 | waves.rs         | 350               | 7            |
+| Engine     | gameEngine.ts                  | engine.rs        | 220               | 7            |
 | Weapons    | weaponTypes.ts                 | weapons.rs       | 90                | -            |
-| **Total**  | **~1,800 lines**               | **~1,420 lines** | **21% reduction** | **29 tests** |
+| **Total**  | **~1,800 lines**               | **~1,420 lines** | **21% reduction** | **35 tests** |
 
 ### ✅ Advanced Components (3/3 Complete)
 
@@ -70,7 +70,7 @@ comprehensive test coverage (47 tests).
 | ------------- | ----------------- | ----------------- | ------ | ----- |
 | ResearchPanel | ResearchPanel.tsx | research_panel.rs | ✅     | -     |
 | TokenStore    | TokenStore.tsx    | token_store.rs    | ✅     | -     |
-| SynergySystem | SynergySystem.tsx | synergy_system.rs | ✅     | 3     |
+| SynergySystem | SynergySystem.tsx | synergy_system.rs | ✅     | 4     |
 
 ### ⏳ Optional Components (Skipped - Not Essential)
 
