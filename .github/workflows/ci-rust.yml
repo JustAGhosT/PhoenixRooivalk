@@ -55,7 +55,9 @@ jobs:
           cache-on-failure: true
 
       - name: Install Trunk (for WASM builds)
-        run: cargo install trunk --locked
+        run: |
+          cargo install trunk --locked
+          echo "$HOME/.cargo/bin" >> $GITHUB_PATH
 
       - name: Generate Cargo.lock
         run: cargo generate-lockfile
@@ -64,8 +66,7 @@ jobs:
         run: cargo fmt --all -- --check
 
       - name: Clippy (deny warnings)
-        run:
-          cargo clippy --workspace --all-targets --all-features -- -D warnings
+        run: cargo clippy --workspace --all-targets --all-features -- -D warnings
 
       - name: Build (workspace)
         run: cargo build --workspace --all-targets --all-features

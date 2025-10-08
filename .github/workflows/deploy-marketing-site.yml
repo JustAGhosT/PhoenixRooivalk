@@ -48,7 +48,9 @@ jobs:
           targets: wasm32-unknown-unknown
 
       - name: Install Trunk (for WASM builds)
-        run: cargo install trunk --locked
+        run: |
+          cargo install trunk --locked
+          echo "$HOME/.cargo/bin" >> $GITHUB_PATH
 
       - name: Generate lockfile if missing
         run: |
@@ -124,7 +126,9 @@ jobs:
           targets: wasm32-unknown-unknown
 
       - name: Install Trunk (for WASM builds)
-        run: cargo install trunk --locked
+        run: |
+          cargo install trunk --locked
+          echo "$HOME/.cargo/bin" >> $GITHUB_PATH
 
       - name: Generate lockfile if missing
         run: |
