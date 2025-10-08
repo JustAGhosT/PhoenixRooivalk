@@ -67,16 +67,11 @@ pub fn EventFeed(feed_items: ReadSignal<Vec<FeedItem>>) -> impl IntoView {
 
 /// Helper to create a feed item with current timestamp
 pub fn create_feed_item(message: String, severity: FeedSeverity) -> FeedItem {
-    use std::time::{SystemTime, UNIX_EPOCH};
-
-    let now = SystemTime::now()
-        .duration_since(UNIX_EPOCH)
-        .unwrap()
-        .as_secs();
-
-    let hours = (now / 3600) % 24;
-    let minutes = (now / 60) % 60;
-    let seconds = now % 60;
+    // Use JavaScript Date for WASM compatibility
+    let now = web_sys::js_sys::Date::new_0();
+    let hours = now.get_hours() as u64;
+    let minutes = now.get_minutes() as u64;
+    let seconds = now.get_seconds() as u64;
 
     FeedItem {
         timestamp: format!("{:02}:{:02}:{:02}", hours, minutes, seconds),
