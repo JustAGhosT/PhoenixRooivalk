@@ -175,9 +175,36 @@ export const WasmThreatSimulator: React.FC<WasmThreatSimulatorProps> = ({
       {/* Load WASM styles - dynamically resolved from manifest */}
       {cssUrl && <link rel="stylesheet" href={cssUrl} />}
 
-      {/* Hide overlays in teaser mode for cleaner presentation */}
-      {isTeaser && (
-        <style jsx global>{`
+      {/* Override WASM global styles to prevent interference with React components */}
+      <style jsx global>{`
+        /* Prevent WASM styles from affecting the entire page */
+        body {
+          overflow: auto !important;
+          background: unset !important;
+          color: unset !important;
+          font-family: unset !important;
+          width: unset !important;
+          height: unset !important;
+        }
+
+        /* Scope WASM styles to the simulator container only */
+        .wasm-threat-simulator-container * {
+          box-sizing: border-box;
+        }
+
+        .wasm-threat-simulator-container body {
+          overflow: hidden;
+          background: #0a0e1a;
+          color: #e0e0e0;
+          font-family: "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell",
+            "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+          width: 100%;
+          height: 100%;
+        }
+
+        /* Hide overlays in teaser mode for cleaner presentation */
+        ${isTeaser
+          ? `
           .warning-overlay {
             display: none !important;
           }
@@ -187,8 +214,9 @@ export const WasmThreatSimulator: React.FC<WasmThreatSimulatorProps> = ({
           .game-over-overlay {
             display: none !important;
           }
-        `}</style>
-      )}
+        `
+          : ""}
+      `}</style>
 
       {isLoading && (
         <div
