@@ -37,7 +37,7 @@ export const WhitepaperSection: React.FC = () => {
   ];
 
   return (
-    <section className="px-6 md:px-[5%] lg:px-8 py-12 bg-[linear-gradient(180deg,rgba(0,255,136,0.1),rgba(0,136,255,0.1))]">
+    <section className="px-6 md:px-[5%] lg:px-[5%] py-12 bg-[linear-gradient(180deg,rgba(0,255,136,0.1),rgba(0,136,255,0.1))]">
       <div className="max-w-[1400px] mx-auto text-center">
         <RevealSection>
           <div className="inline-block bg-gradient-to-r from-[var(--primary)] to-[var(--secondary)] text-black px-4 py-2 rounded-full text-sm font-bold mb-6">

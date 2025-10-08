@@ -5,7 +5,7 @@ import { Button } from "../ui/button";
 export const UkraineChallengeSection: React.FC = () => {
   return (
     <section
-      className="px-6 md:px-[5%] lg:px-8 py-12 bg-[linear-gradient(180deg,rgba(255,0,0,0.05),rgba(255,136,0,0.05))]"
+      className="px-6 md:px-[5%] lg:px-[5%] py-12 bg-[linear-gradient(180deg,rgba(255,0,0,0.05),rgba(255,136,0,0.05))]"
       id="ukraine-challenge"
     >
       <div className="max-w-[1400px] mx-auto">

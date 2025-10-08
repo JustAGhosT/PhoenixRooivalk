@@ -69,7 +69,7 @@ export const CapabilitiesSection: React.FC = () => {
   ];
 
   return (
-    <section className="px-6 md:px-[5%] lg:px-8 py-12" id="capabilities">
+    <section className="px-6 md:px-[5%] lg:px-[5%] py-12" id="capabilities">
       <div className="max-w-[1400px] mx-auto">
         <RevealSection className="text-center mb-8">
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
