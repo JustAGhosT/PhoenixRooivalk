@@ -83,7 +83,7 @@ pub fn GameCanvas(game_state: GameStateManager, is_running: ReadSignal<bool>) ->
         let closure_clone = closure.clone();
 
         *closure.borrow_mut() = Some(Closure::new(move |current_time: f64| {
-            if !is_running.get() {
+            if !is_running.get_untracked() {
                 return;
             }
 
@@ -233,7 +233,7 @@ fn render_frame(
     ctx.set_shadow_blur(0.0);
 
     // Draw threats with type-specific colors
-    let threats = game_state.threats.get();
+    let threats = game_state.threats.get_untracked();
 
     for threat in threats.iter() {
         // Color based on threat type
@@ -319,7 +319,7 @@ fn render_frame(
     }
 
     // Draw drones with battery indicators
-    let drones = game_state.drones.get();
+    let drones = game_state.drones.get_untracked();
 
     for drone in drones.iter() {
         let drone_color = match drone.drone_type {
