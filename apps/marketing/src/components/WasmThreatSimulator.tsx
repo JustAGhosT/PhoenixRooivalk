@@ -62,7 +62,7 @@ export const WasmThreatSimulator: React.FC<WasmThreatSimulatorProps> = ({
         wasmInstanceInitialized = true;
 
         // Resolve asset URLs via manifest to avoid hardcoded hashes
-        const manifest = await fetch("/wasm/manifest.json", {
+        const manifest = await fetch("http://localhost:8080/wasm/manifest.json", {
           cache: "no-store",
         })
           .then((r) => (r.ok ? r.json() : null))
@@ -74,18 +74,18 @@ export const WasmThreatSimulator: React.FC<WasmThreatSimulatorProps> = ({
         const pick = (ext: string, fallback?: string) => {
           if (manifest && Array.isArray(manifest.files)) {
             const match = manifest.files.find((f: string) => f.endsWith(ext));
-            if (match) return `/wasm/${match}`;
+            if (match) return `http://localhost:8080/wasm/${match}`;
           }
           return fallback || null;
         };
 
         const jsUrl = pick(
           ".js",
-          "/wasm/threat-simulator-desktop-43e4df905ff42f76.js",
+          "http://localhost:8080/wasm/threat-simulator-desktop-43e4df905ff42f76.js",
         );
         const wasmUrl = pick(
           ".wasm",
-          "/wasm/threat-simulator-desktop-43e4df905ff42f76_bg.wasm",
+          "http://localhost:8080/wasm/threat-simulator-desktop-43e4df905ff42f76_bg.wasm",
         );
         const resolvedCssUrl = pick(".css");
 
@@ -251,7 +251,7 @@ export const WasmThreatSimulator: React.FC<WasmThreatSimulatorProps> = ({
 
                 // Scope selectors (handles :root exclusions)
                 rule.selector = rule.selector
-                  .split(",")
+            .split(",")
                   .map((selector: string) => {
                     const trimmed = selector.trim();
                     // Don't scope :root selectors - skip them
@@ -262,7 +262,7 @@ export const WasmThreatSimulator: React.FC<WasmThreatSimulatorProps> = ({
                     return `${scopeClass} ${trimmed}`;
                   })
                   .filter((s: string) => s) // Remove empty selectors
-                  .join(", ");
+            .join(", ");
 
                 // Update animation-name and animation shorthand properties
                 rule.walkDecls((decl: PostCSSDecl) => {

@@ -266,7 +266,7 @@ pub fn App() -> impl IntoView {
                             .into_iter()
                             .map(|w| w.weapon_type)
                             .collect::<Vec<_>>()
-                    })
+                    }).into()
                 }
                 show=show_synergies
             />
