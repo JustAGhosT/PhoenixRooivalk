@@ -242,13 +242,13 @@ export const CounterDroneMethodsSection: React.FC = () => {
 
   return (
     <RevealSection>
-      <section className="py-20 bg-[var(--bg-primary)] relative overflow-hidden">
+      <section className="px-6 md:px-[5%] lg:px-8 py-20 bg-[var(--bg-primary)] relative overflow-hidden">
         {/* Background pattern */}
         <div className="absolute inset-0 opacity-5">
           <div className="absolute inset-0 bg-[linear-gradient(rgba(var(--primary),0.1)_1px,_transparent_1px),_linear-gradient(90deg,_rgba(var(--primary),0.1)_1px,_transparent_1px)] bg-[length:50px_50px]"></div>
         </div>
 
-        <div className="relative z-10 px-6 md:px-[5%] lg:px-8">
+        <div className="relative z-10">
           <div className="max-w-[1400px] mx-auto">
             {/* Section Header */}
             <div className="text-center mb-16">
