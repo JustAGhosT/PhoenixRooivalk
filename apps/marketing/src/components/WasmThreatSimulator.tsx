@@ -33,60 +33,25 @@ export const WasmThreatSimulator: React.FC<WasmThreatSimulatorProps> = ({
         setIsLoading(true);
         setError(null);
 
-        // Load the WASM module using script tags for better Next.js compatibility
-        const loadScript = (src: string): Promise<void> => {
-          return new Promise((resolve, reject) => {
-            const script = document.createElement("script");
-            script.type = "module";
-            script.textContent = `
-              import init from '${src}';
-              
-              try {
-                const wasm = await init({
-                  module_or_path: '/wasm/threat-simulator-desktop-43e4df905ff42f76_bg.wasm'
-                });
-                
-                window.dispatchEvent(new CustomEvent("WasmLoaded", {
-                  detail: { wasm }
-                }));
-              } catch (error) {
-                window.dispatchEvent(new CustomEvent("WasmError", {
-                  detail: { error }
-                }));
-              }
-            `;
-            document.head.appendChild(script);
-
-            // Listen for events
-            const handleLoaded = () => {
-              cleanup();
-              resolve();
-            };
-
-            const handleError = (event: Event) => {
-              cleanup();
-              const detail = (event as CustomEvent).detail;
-              reject(detail?.error || new Error("Failed to load WASM"));
-            };
-
-            const cleanup = () => {
-              window.removeEventListener("WasmLoaded", handleLoaded);
-              window.removeEventListener("WasmError", handleError);
-            };
-
-            window.addEventListener("WasmLoaded", handleLoaded);
-            window.addEventListener("WasmError", handleError);
-
-            // Timeout after 30 seconds
-            setTimeout(() => {
-              cleanup();
-              reject(new Error("WASM loading timeout"));
-            }, 30000);
-          });
+        // Resolve asset URLs via manifest to avoid hardcoded hashes
+        const manifest = await fetch("/wasm/manifest.json", { cache: "no-store" })
+          .then(r => (r.ok ? r.json() : null))
+          .catch(() => null);
+        const pick = (ext: string, fallback: string) => {
+          if (manifest && Array.isArray(manifest.files)) {
+            const match = manifest.files.find((f: string) => f.endsWith(ext));
+            if (match) return `/wasm/${match}`;
+          }
+          return fallback;
         };
+        const jsUrl = pick(".js", "/wasm/threat-simulator-desktop-43e4df905ff42f76.js");
+        const wasmUrl = pick(".wasm", "/wasm/threat-simulator-desktop-43e4df905ff42f76_bg.wasm");
 
-        await loadScript("/wasm/threat-simulator-desktop-43e4df905ff42f76.js");
-
+        // Load WASM via dynamic import to avoid inline scripts/CSP issues
+        const mod = await import(/* webpackIgnore: true */ jsUrl);
+        const init = mod.default || mod.__wbg_init;
+        if (typeof init !== "function") throw new Error("Invalid WASM module: missing default init");
+        await init({ module_or_path: wasmUrl });
         if (!mounted) return;
 
         setWasmInitialized(true);
