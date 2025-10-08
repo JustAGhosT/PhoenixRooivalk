@@ -170,7 +170,6 @@ pub fn GameCanvas(game_state: GameStateManager, is_running: ReadSignal<bool>) ->
     }
 }
 
-#[allow(deprecated)]
 fn render_frame(
     ctx: &CanvasRenderingContext2d,
     game_state: &GameStateManager,
