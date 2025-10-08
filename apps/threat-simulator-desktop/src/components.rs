@@ -84,14 +84,19 @@ pub fn App() -> impl IntoView {
         let (last_level, set_last_level) = create_signal(1u8);
         create_effect(move |_| {
             let current_level = game_state_watcher.level.get();
-            if current_level > last_level.get() {
+            let previous_level = last_level.get();
+
+            // Always update last_level to track changes
+            set_last_level.set(current_level);
+
+            // Only show feed message when level increases
+            if current_level > previous_level {
                 set_event_feed.update(|feed| {
                     feed.push(create_feed_item(
                         format!("Wave {} incoming!", current_level),
                         FeedSeverity::Warning,
                     ));
                 });
-                set_last_level.set(current_level);
             }
         });
     }
@@ -104,6 +109,12 @@ pub fn App() -> impl IntoView {
         create_effect(move |_| {
             let score = game_state_watcher.score.get();
             let milestones = [1000, 5000, 10000, 25000, 50000, 100000];
+
+            // Clear milestones when score resets to 0
+            if score == 0 {
+                set_milestones_reached.set(std::collections::HashSet::new());
+                return;
+            }
 
             for &milestone in &milestones {
                 if score >= milestone && !milestones_reached.get().contains(&milestone) {
@@ -131,8 +142,10 @@ pub fn App() -> impl IntoView {
 
             match key.as_str() {
                 " " => {
-                    // Space - toggle pause
-                    set_is_running.update(|r| *r = !*r);
+                    // Space - toggle pause (only if start screen is not visible)
+                    if !show_start_screen.get() {
+                        set_is_running.update(|r| *r = !*r);
+                    }
                     event.prevent_default();
                 }
                 "h" | "H" | "?" => set_show_help.update(|h| *h = !*h),
