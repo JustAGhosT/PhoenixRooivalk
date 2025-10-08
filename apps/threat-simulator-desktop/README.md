@@ -1,10 +1,13 @@
 # Phoenix Rooivalk Threat Simulator - Desktop Application
 
-A high-performance desktop application built with **Tauri** (Rust backend) and **Leptos** (Rust frontend/WASM) for simulating counter-drone defense scenarios with blockchain-based evidence recording.
+A high-performance desktop application built with **Tauri** (Rust backend) and
+**Leptos** (Rust frontend/WASM) for simulating counter-drone defense scenarios
+with blockchain-based evidence recording.
 
 ## Architecture
 
 ### Stack
+
 - **Backend**: Tauri 2.0 (Rust)
 - **Frontend**: Leptos 0.6 (Rust + WebAssembly)
 - **Build Tool**: Trunk
@@ -14,12 +17,15 @@ A high-performance desktop application built with **Tauri** (Rust backend) and *
 
 ### Migration from React/Next.js
 
-This application is a complete rewrite of the marketing website's ThreatSimulator component, migrating from:
+This application is a complete rewrite of the marketing website's
+ThreatSimulator component, migrating from:
+
 - React + Next.js → Leptos (Rust WASM)
 - JavaScript game logic → Pure Rust
 - Web-only → Cross-platform desktop app (Tauri)
 
 **Benefits**:
+
 - **Performance**: 10-100x faster game loop and physics
 - **Memory Safety**: Rust eliminates entire classes of bugs
 - **Native Desktop**: Full OS integration, better performance
@@ -29,6 +35,7 @@ This application is a complete rewrite of the marketing website's ThreatSimulato
 ## Prerequisites
 
 ### Required Tools
+
 ```bash
 # Rust (1.70+)
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
@@ -46,6 +53,7 @@ rustup target add wasm32-unknown-unknown
 ### Platform-Specific Dependencies
 
 #### Linux
+
 ```bash
 sudo apt update
 sudo apt install libwebkit2gtk-4.1-dev \
@@ -60,13 +68,17 @@ sudo apt install libwebkit2gtk-4.1-dev \
 ```
 
 #### macOS
+
 ```bash
 xcode-select --install
 ```
 
 #### Windows
-- Install [Microsoft C++ Build Tools](https://visualstudio.microsoft.com/visual-cpp-build-tools/)
-- Install [WebView2](https://developer.microsoft.com/en-us/microsoft-edge/webview2/)
+
+- Install
+  [Microsoft C++ Build Tools](https://visualstudio.microsoft.com/visual-cpp-build-tools/)
+- Install
+  [WebView2](https://developer.microsoft.com/en-us/microsoft-edge/webview2/)
 
 ## Development
 
@@ -99,9 +111,11 @@ pnpm dev          # or: trunk serve --open
 pnpm dev:tauri    # or: cargo tauri dev
 ```
 
-**📖 See [QUICKSTART.md](./QUICKSTART.md) for detailed setup and troubleshooting.**
+**📖 See [QUICKSTART.md](./QUICKSTART.md) for detailed setup and
+troubleshooting.**
 
 This will:
+
 1. Start the Trunk dev server (frontend)
 2. Build the Tauri backend
 3. Launch the desktop application
@@ -160,6 +174,7 @@ apps/threat-simulator-desktop/
 ## Key Features
 
 ### Implemented
+
 - [x] Tauri 2.0 setup with proper configuration
 - [x] Leptos reactive UI framework
 - [x] Canvas-based game rendering with web-sys
@@ -170,6 +185,7 @@ apps/threat-simulator-desktop/
 - [x] Evidence recording API integration
 
 ### Completed (See [COMPLETE.md](./COMPLETE.md) for details)
+
 - [x] Weapon system implementation (13 weapons)
 - [x] Collision detection (custom physics engine)
 - [x] Drone deployment and control (9 drone types)
@@ -180,15 +196,19 @@ apps/threat-simulator-desktop/
 - [x] Comprehensive test coverage (47 tests, 100% passing)
 
 ### In Progress
+
 - [ ] Power-ups and special abilities
 - [ ] Full blockchain evidence integration (API ready, full integration pending)
 
 ### Planned
+
 - [ ] Multi-level progression
 - [ ] Save/load game state
 - [ ] Replay system
-- [x] ~~Performance optimization (60+ FPS)~~ (COMPLETED - achieving 60-90 FPS dev, 120+ FPS release)
-- [ ] Advanced particle effects (basic particles implemented, advanced effects planned)
+- [x] ~~Performance optimization (60+ FPS)~~ (COMPLETED - achieving 60-90 FPS
+      dev, 120+ FPS release)
+- [ ] Advanced particle effects (basic particles implemented, advanced effects
+      planned)
 - [ ] Sound effects and music
 - [ ] Multiplayer support (future)
 - [ ] VR/AR support (future)
@@ -196,6 +216,7 @@ apps/threat-simulator-desktop/
 ## Game Mechanics
 
 ### Threat Types
+
 - **Commercial**: Basic drone, low health, slow speed
 - **Military**: Armored, higher health, moderate speed
 - **Swarm**: Multiple coordinated units
@@ -205,7 +226,9 @@ apps/threat-simulator-desktop/
 - **Electronic Warfare**: Jams systems, reduces effectiveness
 
 ### Weapon Systems
+
 See `src/game/types.rs` for the complete list of 13 weapon types including:
+
 - Kinetic Interceptor
 - Electronic Warfare
 - Directed Energy Laser
@@ -215,6 +238,7 @@ See `src/game/types.rs` for the complete list of 13 weapon types including:
 - And more...
 
 ### Resources
+
 - **Energy**: Required for weapon firing
 - **Cooling**: Prevents weapon overheating
 - **Mothership Health**: Game over when depleted
@@ -222,13 +246,15 @@ See `src/game/types.rs` for the complete list of 13 weapon types including:
 ## Evidence Recording
 
 All game events are recorded and can be anchored to blockchain:
+
 - Session start/end
 - Threat neutralizations
 - Weapon deployments
 - Performance metrics
 - Achievement unlocks
 
-Integration with Phoenix Evidence crate provides tamper-evident audit trails for training and evaluation.
+Integration with Phoenix Evidence crate provides tamper-evident audit trails for
+training and evaluation.
 
 ## Performance Achieved
 
@@ -258,14 +284,17 @@ cargo test
 ### Common Issues
 
 **"Failed to bundle project"**
+
 - Ensure all platform dependencies are installed
 - Check Tauri logs in `src-tauri/target/`
 
 **"WASM compilation failed"**
+
 - Verify `wasm32-unknown-unknown` target is installed
 - Check Trunk version compatibility
 
 **"Can't find Tauri commands"**
+
 - Rebuild backend: `cd src-tauri && cargo build`
 - Check `tauri.conf.json` configuration
 
@@ -274,7 +303,9 @@ cargo test
 See the root `CONTRIBUTING.md` for general guidelines.
 
 ### Migration Checklist
+
 When migrating React components to Leptos:
+
 1. Convert state hooks (`useState`) to signals (`create_signal`)
 2. Convert effects (`useEffect`) to Leptos effects (`create_effect`)
 3. Convert refs (`useRef`) to node refs (`create_node_ref`)
@@ -288,7 +319,7 @@ Copyright © 2025 Phoenix Rooivalk. All rights reserved.
 
 ## Support
 
-For issues specific to this desktop application, please open an issue with the `threat-simulator-desktop` label.
+For issues specific to this desktop application, please open an issue with the
+`threat-simulator-desktop` label.
 
 For general Phoenix Rooivalk questions, see the main project README.
-
