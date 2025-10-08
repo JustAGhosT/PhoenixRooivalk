@@ -177,10 +177,13 @@ export const WasmThreatSimulator: React.FC<WasmThreatSimulatorProps> = ({
         width: "100%",
         height: isTeaser ? "600px" : "100vh",
         minHeight: isTeaser ? "600px" : "800px",
+        maxHeight: isTeaser ? "600px" : "none",
         position: "relative",
         backgroundColor: "#000",
         borderRadius: isTeaser ? "8px" : "0",
         overflow: "hidden",
+        display: "flex",
+        flexDirection: "column",
       }}
     >
       {/* Load WASM styles - dynamically resolved from manifest */}
@@ -276,6 +279,8 @@ export const WasmThreatSimulator: React.FC<WasmThreatSimulatorProps> = ({
           width: "100%",
           height: "100%",
           display: wasmInitialized ? "block" : "none",
+          flex: 1,
+          position: "relative",
         }}
       />
 
