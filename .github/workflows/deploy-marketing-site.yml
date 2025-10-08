@@ -42,6 +42,14 @@ jobs:
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
 
+      - name: Setup Rust (for threat-simulator-desktop WASM dependencies)
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: wasm32-unknown-unknown
+
+      - name: Install Trunk (for WASM builds)
+        run: cargo install trunk --locked
+
       - name: Generate lockfile if missing
         run: |
           if [ ! -f pnpm-lock.yaml ]; then
@@ -110,6 +118,14 @@ jobs:
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
 
+      - name: Setup Rust (for threat-simulator-desktop WASM dependencies)
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: wasm32-unknown-unknown
+
+      - name: Install Trunk (for WASM builds)
+        run: cargo install trunk --locked
+
       - name: Generate lockfile if missing
         run: |
           if [ ! -f pnpm-lock.yaml ]; then
@@ -162,8 +178,7 @@ jobs:
           publish-dir: "apps/marketing/out"
           production-deploy: false
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          deploy-message:
-            "Deploy Preview (marketing) from PR #${{
+          deploy-message: "Deploy Preview (marketing) from PR #${{
             github.event.pull_request.number }}"
           enable-commit-comment: true
           enable-commit-status: true
