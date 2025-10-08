@@ -2,6 +2,7 @@
 import { downloadWhitepaper } from "@phoenix-rooivalk/utils";
 import React, { useEffect, useRef, useState } from "react";
 import { Button } from "./ui/button";
+import styles from "./ExitIntentModal.module.css";
 
 interface ExitIntentModalProps {
   docsUrl?: string;
@@ -81,45 +82,39 @@ export const ExitIntentModal: React.FC<ExitIntentModalProps> = ({
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm"
+      className={styles.overlay}
       role="dialog"
       aria-modal="true"
       aria-labelledby="exit-intent-title"
       aria-describedby="exit-intent-desc"
     >
-      <div
-        ref={dialogRef}
-        className="relative bg-gray-900 border border-green-500/30 rounded-xl p-8 max-w-md mx-4 shadow-2xl"
-      >
+      <div ref={dialogRef} className={styles.dialog}>
         {/* Close button */}
         <button
           ref={closeBtnRef}
           onClick={handleStayOnPage}
-          className="absolute top-4 right-4 text-gray-400 hover:text-white text-2xl leading-none"
+          className={styles.closeButton}
         >
           ×
         </button>
 
         {/* Icon */}
-        <div className="text-center mb-6">
-          <div className="text-6xl mb-4">📋</div>
-          <h2
-            id="exit-intent-title"
-            className="text-2xl font-bold text-green-400 mb-2"
-          >
+        <div className={styles.header}>
+          <div className={styles.icon}>📋</div>
+          <h2 id="exit-intent-title" className={styles.title}>
             Wait! Get Our Technical Whitepaper
           </h2>
-          <p id="exit-intent-desc" className="text-gray-300 text-sm">
+          <p id="exit-intent-desc" className={styles.description}>
             Download our comprehensive technical documentation before you leave.
           </p>
         </div>
 
         {/* Whitepaper preview */}
-        <div className="bg-gray-800/50 rounded-lg p-4 mb-6 border border-green-500/20">
-          <h3 className="text-green-400 font-semibold text-sm mb-2">
+        <div className={styles.preview}>
+          <h3 className={styles.previewTitle}>
             What&apos;s Inside:
           </h3>
-          <ul className="text-xs text-gray-300 space-y-1">
+          <ul className={styles.previewList}>
             <li>• Complete system architecture</li>
             <li>• Technical specifications</li>
             <li>• Security implementation details</li>
@@ -129,15 +124,15 @@ export const ExitIntentModal: React.FC<ExitIntentModalProps> = ({
         </div>
 
         {/* Action buttons */}
-        <div className="space-y-3">
+        <div className={styles.actions}>
           <Button
             onClick={handleDownloadNow}
-            className="w-full bg-green-600 hover:bg-green-700 text-white py-3 text-base font-semibold"
+            className={styles.primaryButton}
           >
             📥 Download Now
           </Button>
 
-          <div className="grid grid-cols-2 gap-3">
+          <div className={styles.secondaryActions}>
             <Button
               onClick={handleMaybeLater}
               variant="ghost"
@@ -156,22 +151,16 @@ export const ExitIntentModal: React.FC<ExitIntentModalProps> = ({
         </div>
 
         {/* Additional links */}
-        <div className="mt-6 pt-4 border-t border-gray-700 text-center">
-          <p className="text-xs text-gray-400 mb-2">Or explore more:</p>
-          <div className="flex justify-center gap-4 text-xs">
-            <a
-              href="/technical"
-              className="text-green-400 hover:text-green-300"
-            >
+        <div className={styles.footer}>
+          <p className={styles.footerText}>Or explore more:</p>
+          <div className={styles.footerLinks}>
+            <a href="/technical" className={styles.footerLink}>
               Technical Docs
             </a>
-            <a
-              href="/interactive-demo"
-              className="text-green-400 hover:text-green-300"
-            >
+            <a href="/interactive-demo" className={styles.footerLink}>
               Live Demo
             </a>
-            <a href="#contact" className="text-green-400 hover:text-green-300">
+            <a href="#contact" className={styles.footerLink}>
               Contact Us
             </a>
           </div>

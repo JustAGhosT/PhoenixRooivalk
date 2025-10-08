@@ -62,3 +62,6 @@ coverage/
 # Rust
 target/
 apps/marketing/next-env.d.ts
+
+# TypeScript build info
+*.tsbuildinfo
