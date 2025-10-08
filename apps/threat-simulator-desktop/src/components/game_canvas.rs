@@ -210,17 +210,17 @@ fn render_frame(
     web_sys::console::log_3(&"render_frame: Starting render with dimensions:".into(), &width.into(), &height.into());
     
     // Clear canvas with dark background
-    ctx.set_fill_style(&"#0a0e1a".into());
+    ctx.set_fill_style_str("#0a0e1a");
     ctx.fill_rect(0.0, 0.0, width, height);
     web_sys::console::log_1(&"render_frame: Canvas cleared with background".into());
     
     // Test: Draw a simple red rectangle to verify canvas is working
-    ctx.set_fill_style(&"#ff0000".into());
+    ctx.set_fill_style_str("#ff0000");
     ctx.fill_rect(10.0, 10.0, 50.0, 50.0);
     web_sys::console::log_1(&"render_frame: Test red rectangle drawn".into());
 
     // Draw tactical grid
-    ctx.set_stroke_style(&"rgba(0, 255, 255, 0.08)".into());
+    ctx.set_stroke_style_str("rgba(0, 255, 255, 0.08)");
     ctx.set_line_width(1.0);
 
     // Vertical lines
@@ -246,7 +246,7 @@ fn render_frame(
     let center_x = width / 2.0;
     let center_y = height / 2.0;
 
-    ctx.set_stroke_style(&"rgba(0, 255, 255, 0.15)".into());
+    ctx.set_stroke_style_str("rgba(0, 255, 255, 0.15)");
     ctx.set_line_width(2.0);
     for radius in [200.0, 400.0, 600.0] {
         ctx.begin_path();
@@ -259,14 +259,14 @@ fn render_frame(
     // Draw mothership (center) with glow effect
     ctx.set_shadow_blur(20.0);
     ctx.set_shadow_color("rgba(0, 255, 255, 0.8)");
-    ctx.set_fill_style(&"#00ffff".into());
+    ctx.set_fill_style_str("#00ffff");
     ctx.begin_path();
     ctx.arc(center_x, center_y, 30.0, 0.0, 2.0 * std::f64::consts::PI)
         .unwrap();
     ctx.fill();
 
     // Inner core
-    ctx.set_fill_style(&"#ffffff".into());
+    ctx.set_fill_style_str("#ffffff");
     ctx.begin_path();
     ctx.arc(center_x, center_y, 15.0, 0.0, 2.0 * std::f64::consts::PI)
         .unwrap();
@@ -292,7 +292,7 @@ fn render_frame(
         // Draw threat with glow
         ctx.set_shadow_blur(10.0);
         ctx.set_shadow_color(color);
-        ctx.set_fill_style(&color.into());
+        ctx.set_fill_style_str(color);
         ctx.begin_path();
         ctx.arc(
             threat.position.x as f64,
@@ -307,7 +307,7 @@ fn render_frame(
 
         // Threat ID label for targeted threats
         if threat.is_targeted {
-            ctx.set_fill_style(&"#ffff00".into());
+            ctx.set_fill_style_str("#ffff00");
             ctx.set_font("10px monospace");
             // Safely take last 8 chars (Unicode scalar values) to avoid UTF-8 boundary panics
             let label: String = threat
@@ -334,7 +334,7 @@ fn render_frame(
             let health_pct = threat.health / threat.max_health;
 
             // Background
-            ctx.set_fill_style(&"rgba(0, 0, 0, 0.7)".into());
+            ctx.set_fill_style_str("rgba(0, 0, 0, 0.7)");
             ctx.fill_rect(
                 threat.position.x as f64 - bar_width / 2.0,
                 threat.position.y as f64 - threat.size as f64 - 12.0,
@@ -350,7 +350,7 @@ fn render_frame(
             } else {
                 "#ff3333"
             };
-            ctx.set_fill_style(&health_color.into());
+            ctx.set_fill_style_str(health_color);
             ctx.fill_rect(
                 threat.position.x as f64 - bar_width / 2.0,
                 threat.position.y as f64 - threat.size as f64 - 12.0,
@@ -375,7 +375,7 @@ fn render_frame(
 
         ctx.set_shadow_blur(8.0);
         ctx.set_shadow_color(drone_color);
-        ctx.set_fill_style(&drone_color.into());
+        ctx.set_fill_style_str(drone_color);
         ctx.begin_path();
         ctx.arc(
             drone.position.x as f64,
@@ -393,7 +393,7 @@ fn render_frame(
         let bar_width = 20.0;
         let bar_height = 3.0;
 
-        ctx.set_fill_style(&"rgba(0, 0, 0, 0.7)".into());
+        ctx.set_fill_style_str("rgba(0, 0, 0, 0.7)");
         ctx.fill_rect(
             drone.position.x as f64 - bar_width / 2.0,
             drone.position.y as f64 + 15.0,
@@ -408,7 +408,7 @@ fn render_frame(
         } else {
             "#ff3333"
         };
-        ctx.set_fill_style(&battery_color.into());
+        ctx.set_fill_style_str(battery_color);
         ctx.fill_rect(
             drone.position.x as f64 - bar_width / 2.0,
             drone.position.y as f64 + 15.0,
