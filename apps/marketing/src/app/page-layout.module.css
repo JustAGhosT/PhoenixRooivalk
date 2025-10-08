@@ -1,0 +1,37 @@
+/* Common page layout styles */
+
+.pageContainer {
+  position: relative;
+  overflow: hidden;
+  background: rgb(var(--darker));
+  color: white;
+}
+
+.backgroundWrapper {
+  position: absolute;
+  inset: 0;
+  z-index: -10;
+  background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+}
+
+.gridPattern {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(rgba(0, 255, 136, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 255, 136, 0.03) 1px, transparent 1px);
+  background-size: 50px 50px;
+  animation: gridMove 20s linear infinite;
+}
+
+@keyframes gridMove {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(50px, 50px);
+  }
+}
+
+.contentWrapper {
+  padding-top: 5rem;
+}
