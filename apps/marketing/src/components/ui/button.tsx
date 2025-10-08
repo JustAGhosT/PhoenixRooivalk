@@ -64,7 +64,7 @@ export const Button: React.FC<ButtonProps> = ({
         ...trackingProps,
         variant,
         label: typeof children === "string" ? children : ariaLabel || "button",
-        href: href || undefined,
+        ...(href && { href }),
       });
     }
 
