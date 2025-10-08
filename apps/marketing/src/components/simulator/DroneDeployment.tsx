@@ -44,7 +44,11 @@ export const DroneDeployment: React.FC<DroneDeploymentProps> = ({
   return (
     <div className={styles.droneDeploymentPanel}>
       <h3 className={styles.droneDeploymentTitle}>DRONE DEPLOYMENT</h3>
-      <nav aria-label="Drone Deployment" role="group" className={styles.droneList}>
+      <nav
+        aria-label="Drone Deployment"
+        role="group"
+        className={styles.droneList}
+      >
         {deploymentBays.map((bay) => {
           const data = DRONE_DATA[bay.droneType as keyof typeof DRONE_DATA];
 
@@ -135,8 +139,12 @@ export const DroneDeployment: React.FC<DroneDeploymentProps> = ({
                     </div>
                     {droneData && (
                       <>
-                        <div className={styles.droneEnergy}>⚡ {energyCost}</div>
-                        <div className={styles.droneSpeed}>🏃 {droneData.speed}</div>
+                        <div className={styles.droneEnergy}>
+                          ⚡ {energyCost}
+                        </div>
+                        <div className={styles.droneSpeed}>
+                          🏃 {droneData.speed}
+                        </div>
                         <div className={styles.droneEndurance}>
                           ⏱️ {droneData.endurance}
                         </div>
@@ -172,7 +180,9 @@ export const DroneDeployment: React.FC<DroneDeploymentProps> = ({
                 return data ? data.name : "Unknown drone";
               })()}
             </p>
-            <p className={styles.deploymentInstruction}>Click on map to deploy.</p>
+            <p className={styles.deploymentInstruction}>
+              Click on map to deploy.
+            </p>
           </div>
         )}
       </div>

@@ -1,16 +1,16 @@
 import React, { useState } from "react";
+import "../ThreatSimulator.module.css";
+import { useEventFeed } from "../hooks/useEventFeed";
+import { useGameState } from "../hooks/useGameState";
+import { WeaponStatus } from "../weapon/WeaponStatus";
 import { DroneDeployment } from "./DroneDeployment";
 import { EnergyManagement } from "./EnergyManagement";
 import EventFeed from "./EventFeed";
 import HUDBar from "./HUDBar";
 import { ParticleEffects } from "./ParticleEffects";
 import RadarCanvas from "./RadarCanvas";
-import "../ThreatSimulator.module.css";
 import { ThreatSimulatorComponents } from "./ThreatSimulatorComponents";
 import { ThreatSimulatorOverlays } from "./ThreatSimulatorOverlays";
-import { WeaponStatus } from "../weapon/WeaponStatus";
-import { useEventFeed } from "../hooks/useEventFeed";
-import { useGameState } from "../hooks/useGameState";
 
 interface ThreatSimulatorGameProps {
   className?: string;

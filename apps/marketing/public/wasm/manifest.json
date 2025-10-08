@@ -1,9 +1,9 @@
 {
-  "syncedAt": "2025-10-08T08:01:57.525Z",
+  "syncedAt": "2025-10-08T23:26:40.674Z",
   "files": [
-    "styles-2e626ac1d358eb54.css",
-    "threat-simulator-desktop-43e4df905ff42f76.js",
-    "threat-simulator-desktop-43e4df905ff42f76_bg.wasm"
+    "styles-cbc35ef5ef53864a.css",
+    "threat-simulator-desktop-8ac2774e309dbb7f.js",
+    "threat-simulator-desktop-8ac2774e309dbb7f_bg.wasm"
   ],
   "sourceDir": "C:\\Users\\smitj\\repos\\PhoenixRooivalk\\apps\\threat-simulator-desktop\\dist",
   "targetDir": "C:\\Users\\smitj\\repos\\PhoenixRooivalk\\apps\\marketing\\public\\wasm"

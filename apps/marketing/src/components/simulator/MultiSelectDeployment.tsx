@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import effectorDatabase from "../../data/effectorDatabase.json";
-import { EnergyManagement } from "./EnergyManagement";
 import { InfoPopover } from "../InfoPopover";
+import { EnergyManagement } from "./EnergyManagement";
 
 export interface DeploymentOption {
   id: string;
