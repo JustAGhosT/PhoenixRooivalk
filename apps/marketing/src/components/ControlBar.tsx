@@ -63,7 +63,7 @@ const ControlBar: React.FC<ControlBarProps> = ({
       aria-label="Simulator controls"
     >
       <button
-        className="btn btn--secondary"
+        className="sim-btn sim-btn--secondary"
         id="btn-pause"
         aria-pressed={isPaused}
         title="Space"
@@ -71,11 +71,11 @@ const ControlBar: React.FC<ControlBarProps> = ({
       >
         {isPaused ? "Resume" : "Pause"}
       </button>
-      <button className="btn" id="btn-swarm" title="S" onClick={onSwarm}>
+      <button className="sim-btn" id="btn-swarm" title="S" onClick={onSwarm}>
         Spawn Swarm
       </button>
       <button
-        className="btn btn--secondary"
+        className="sim-btn sim-btn--secondary"
         id="btn-plus5"
         title="+"
         onClick={onPlus5}
@@ -142,7 +142,7 @@ const ControlBar: React.FC<ControlBarProps> = ({
       </div>
 
       <button
-        className="btn btn--ghost"
+        className="sim-btn sim-btn--ghost"
         id="btn-reset"
         title="R"
         onClick={onReset}
@@ -169,20 +169,20 @@ const ControlBar: React.FC<ControlBarProps> = ({
       </button>
 
       <button
-        className="btn btn--ghost"
+        className="sim-btn sim-btn--ghost"
         onClick={onShowResearch}
         title="Research"
       >
         🔬
       </button>
       <button
-        className="btn btn--ghost"
+        className="sim-btn sim-btn--ghost"
         onClick={onShowTokenStore}
         title="Token Store"
       >
         🪙
       </button>
-      <button className="btn btn--ghost" onClick={onShowHelp} title="?">
+      <button className="sim-btn sim-btn--ghost" onClick={onShowHelp} title="?">
         ?
       </button>
     </footer>

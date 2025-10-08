@@ -1,36 +1,32 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
 :root {
   /* Improved Color System - High Contrast */
 
-  /* Text Colors - WCAG AA Compliant */
-  --text-primary: #f2f4f6; /* High contrast white */
-  --text-secondary: #e2e6ea; /* Body text - 11:1 contrast */
-  --text-muted: #94a3b8; /* Muted text */
-  --text-accent: #f97316; /* Orange for highlights only */
+  /* Text Colors - WCAG AA Compliant (RGB triplets for rgb(var(...))) */
+  --text-primary: 242, 244, 246; /* High contrast white */
+  --text-secondary: 226, 230, 234; /* Body text - 11:1 contrast */
+  --text-muted: 148, 163, 184; /* Muted text */
+  --text-accent: 249, 115, 22; /* Orange for highlights only */
 
-  /* Background Colors */
-  --bg-primary: #0f172a; /* Deep slate */
-  --bg-secondary: #1e293b; /* Slate */
-  --bg-tertiary: #334155; /* Light slate */
-  --bg-surface: #1e293b; /* Card backgrounds */
-  --bg-elevated: #334155; /* Elevated surfaces */
+  /* Background Colors (RGB triplets) */
+  --bg-primary: 15, 23, 42; /* Deep slate */
+  --bg-secondary: 30, 41, 59; /* Slate */
+  --bg-tertiary: 51, 65, 85; /* Light slate */
+  --bg-surface: 30, 41, 59; /* Card backgrounds */
+  --bg-elevated: 51, 65, 85; /* Elevated surfaces */
 
-  /* Border Colors */
-  --border: #28313b; /* Subtle borders */
-  --border-accent: #f97316; /* Orange borders for actions */
-  --border-muted: #475569; /* Muted borders */
+  /* Border Colors (RGB triplets) */
+  --border: 40, 49, 59; /* Subtle borders */
+  --border-accent: 249, 115, 22; /* Orange borders for actions */
+  --border-muted: 71, 85, 105; /* Muted borders */
 
-  /* Action Colors */
-  --action-primary: #f97316; /* Orange for primary actions */
-  --action-secondary: #64748b; /* Neutral for secondary */
-  --action-success: #22c55e; /* Green for success states */
-  --action-warning: #f59e0b; /* Amber for warnings */
-  --action-danger: #ef4444; /* Red for critical states */
+  /* Action Colors (RGB triplets) */
+  --action-primary: 249, 115, 22; /* Orange for primary actions */
+  --action-secondary: 100, 116, 139; /* Neutral for secondary */
+  --action-success: 34, 197, 94; /* Green for success states */
+  --action-warning: 245, 158, 11; /* Amber for warnings */
+  --action-danger: 239, 68, 68; /* Red for critical states */
 
-  /* Legacy compatibility */
+  /* Legacy compatibility (RGB triplets) */
   --primary: 249, 115, 22; /* Orange */
   --secondary: 51, 65, 85; /* Slate */
   --accent: 251, 146, 60; /* Light orange */
@@ -40,6 +36,67 @@
   --gray: 148, 163, 184; /* Gray */
   --steel: 203, 213, 225; /* Steel */
   --orange: 249, 115, 22; /* Orange */
+
+  /* Phoenix Rooivalk Brand Colors (RGB triplets) */
+  --phoenix-white: 255, 255, 255;
+  --phoenix-cream: 254, 252, 232;
+  --phoenix-gold: 255, 215, 0;
+  --phoenix-amber: 251, 191, 36;
+  --phoenix-orange: 249, 115, 22;
+  --phoenix-red: 239, 68, 68;
+  --phoenix-crimson: 220, 38, 127;
+  --phoenix-maroon: 185, 28, 28;
+  --phoenix-deep: 127, 29, 29;
+
+  /* Tactical Neutrals (RGB triplets) */
+  --tactical-black: 0, 0, 0;
+  --tactical-obsidian: 15, 23, 42;
+  --tactical-charcoal: 30, 41, 59;
+  --tactical-gunmetal: 51, 65, 85;
+  --tactical-gray-dark: 71, 85, 105;
+  --tactical-gray: 100, 116, 139;
+  --tactical-gray-light: 148, 163, 184;
+  --tactical-silver: 203, 213, 225;
+
+  /* Sensor Accents (RGB triplets) */
+  --sensor-green: 34, 197, 94;
+  --sensor-amber: 245, 158, 11;
+  --sensor-red: 239, 68, 68;
+
+  /* Status Colors (RGB triplets) */
+  --status-active: 34, 197, 94;
+  --status-warning: 245, 158, 11;
+  --status-alert: 251, 191, 36;
+  --status-critical: 239, 68, 68;
+  --status-offline: 100, 116, 139;
+
+  /* Brand Shortcuts (RGB triplets) */
+  --brand-primary: 249, 115, 22;
+  --brand-accent: 251, 146, 60;
+
+  /* Logo Background (4 components for rgba support) */
+  --logo-bg: 249, 115, 22, 0.1;
+
+  /* Threat Simulator tokens (RGB triplets) */
+  --sim-hover: 26, 35, 50; /* subtle surface highlight */
+  --sim-success: 74, 222, 128; /* maps to friendly green */
+  --sim-warning: 255, 209, 102; /* maps to unknown amber */
+  --sim-danger: 255, 93, 93; /* maps to hostile red/orange */
+  --sim-accent-hover: 230, 52, 0; /* slightly darker accent variant */
+  --sim-bg: 14, 18, 23;
+  --sim-panel: 18, 24, 33;
+  --sim-elev: 23, 31, 42;
+  --sim-border: 41, 51, 68;
+  --sim-text: 228, 233, 239;
+  --sim-muted: 159, 176, 194;
+  --sim-accent: 255, 59, 0; /* primary action */
+  --sim-gold: 255, 209, 102; /* highlight */
+  --sim-ring: 58, 71, 90;
+  --sim-ring-soft: 38, 49, 66;
+  --sim-ego: 203, 213, 225;
+  --sim-hostile: 255, 93, 93; /* red/orange */
+  --sim-unknown: 255, 209, 102; /* amber */
+  --sim-friendly: 74, 222, 128; /* green */
 
   /* 8-pt Spacing Scale */
   --space-1: 0.25rem; /* 4px */
@@ -66,6 +123,9 @@
   --duration-fast: 150ms;
   --duration-normal: 180ms;
   --duration-slow: 300ms;
+  --dur-1: 120ms;
+  --dur-2: 180ms;
+  --radius: 14px;
 
   /* Focus & Accessibility */
   --focus: 0 0 0 2px rgba(249, 115, 22, 0.5);
@@ -82,9 +142,10 @@
   }
 }
 
+html,
 body {
-  background: var(--bg-primary);
-  color: var(--text-secondary);
+  background: rgb(var(--bg-primary));
+  color: rgb(var(--text-secondary));
   font-family:
     system-ui,
     -apple-system,
@@ -95,6 +156,11 @@ body {
   line-height: 1.6;
 }
 
+::selection {
+  background: rgba(var(--primary), 0.3);
+  color: rgb(var(--phoenix-white));
+}
+
 /* Typography Hierarchy */
 h1,
 h2,
@@ -102,7 +168,7 @@ h3,
 h4,
 h5,
 h6 {
-  color: var(--text-primary);
+  color: rgb(var(--text-primary));
   font-weight: 700;
   line-height: 1.2;
 }
@@ -148,9 +214,9 @@ h6 {
 }
 
 .btn--primary {
-  background: var(--action-primary);
+  background: rgb(var(--action-primary));
   color: white;
-  border-color: var(--action-primary);
+  border-color: rgb(var(--action-primary));
 }
 
 .btn--primary:hover {
@@ -160,26 +226,26 @@ h6 {
 }
 
 .btn--secondary {
-  background: var(--bg-elevated);
-  color: var(--text-secondary);
-  border-color: var(--border);
+  background: rgb(var(--bg-elevated));
+  color: rgb(var(--text-secondary));
+  border-color: rgb(var(--border));
 }
 
 .btn--secondary:hover {
-  background: var(--bg-tertiary);
-  color: var(--text-primary);
+  background: rgb(var(--bg-tertiary));
+  color: rgb(var(--text-primary));
 }
 
 .btn--ghost {
   background: transparent;
-  color: var(--text-muted);
-  border-color: var(--border-muted);
+  color: rgb(var(--text-muted));
+  border-color: rgb(var(--border-muted));
 }
 
 .btn--ghost:hover {
-  background: var(--bg-surface);
-  color: var(--text-secondary);
-  border-color: var(--border);
+  background: rgb(var(--bg-surface));
+  color: rgb(var(--text-secondary));
+  border-color: rgb(var(--border));
 }
 
 /* Pill System */
@@ -196,38 +262,38 @@ h6 {
 
 .pill--concept {
   background: rgba(249, 115, 22, 0.1);
-  color: var(--action-primary);
+  color: rgb(var(--action-primary));
   border: 1px solid rgba(249, 115, 22, 0.2);
 }
 
 .pill--partners {
   background: rgba(100, 116, 139, 0.1);
-  color: var(--action-secondary);
+  color: rgb(var(--action-secondary));
   border: 1px solid rgba(100, 116, 139, 0.2);
 }
 
 .pill--sbir {
   background: rgba(245, 158, 11, 0.1);
-  color: var(--action-warning);
+  color: rgb(var(--action-warning));
   border: 1px solid rgba(245, 158, 11, 0.2);
 }
 
 /* Card System */
 .card {
-  background: var(--bg-surface);
-  border: 1px solid var(--border);
+  background: rgb(var(--bg-surface));
+  border: 1px solid rgb(var(--border));
   border-radius: 16px;
   padding: var(--space-6);
   transition: all var(--duration-normal) var(--ease);
 }
 
 .card:hover {
-  border-color: var(--border-accent);
+  border-color: rgb(var(--border-accent));
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 .card--elevated {
-  background: var(--bg-elevated);
+  background: rgb(var(--bg-elevated));
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
@@ -256,7 +322,7 @@ h6 {
   appearance: none;
   height: 6px;
   border-radius: 3px;
-  background: var(--bg-tertiary);
+  background: rgb(var(--bg-tertiary));
   outline: none;
 }
 
@@ -266,18 +332,18 @@ h6 {
   width: 20px;
   height: 20px;
   border-radius: 50%;
-  background: var(--action-primary);
+  background: rgb(var(--action-primary));
   cursor: pointer;
-  border: 2px solid var(--bg-primary);
+  border: 2px solid rgb(var(--bg-primary));
 }
 
 .range::-moz-range-thumb {
   width: 20px;
   height: 20px;
   border-radius: 50%;
-  background: var(--action-primary);
+  background: rgb(var(--action-primary));
   cursor: pointer;
-  border: 2px solid var(--bg-primary);
+  border: 2px solid rgb(var(--bg-primary));
 }
 
 /* KPI Row Pattern */
@@ -286,9 +352,9 @@ h6 {
   grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
   gap: var(--space-4);
   padding: var(--space-4);
-  background: var(--bg-surface);
+  background: rgb(var(--bg-surface));
   border-radius: 12px;
-  border: 1px solid var(--border);
+  border: 1px solid rgb(var(--border));
 }
 
 .kpi-item {
@@ -298,13 +364,13 @@ h6 {
 .kpi-value {
   font-size: var(--text-2xl);
   font-weight: 700;
-  color: var(--action-primary);
+  color: rgb(var(--action-primary));
   margin-bottom: var(--space-1);
 }
 
 .kpi-label {
   font-size: var(--text-xs);
-  color: var(--text-muted);
+  color: rgb(var(--text-muted));
   text-transform: uppercase;
   letter-spacing: 0.05em;
 }

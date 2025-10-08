@@ -7,16 +7,17 @@ import { ContactSection } from "../components/sections/ContactSection";
 import { HeroSection } from "../components/sections/HeroSection";
 import { InteractiveElementsSection } from "../components/sections/InteractiveElementsSection";
 import { usePerformanceOptimizations } from "../hooks/usePerformanceOptimizations";
+import styles from "./home.module.css";
 
 export default function HomePage(): React.ReactElement {
   // Apply performance optimizations
   usePerformanceOptimizations();
 
   return (
-    <main className="relative overflow-hidden bg-[var(--darker)] text-white">
+    <main className={styles.main}>
       {/* Background */}
-      <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_bottom,_#1b2735_0%,_#090a0f_100%)]">
-        <div className="absolute inset-0 bg-[linear-gradient(rgba(0,255,136,0.03)_1px,_transparent_1px),_linear-gradient(90deg,_rgba(0,255,136,0.03)_1px,_transparent_1px)] bg-[length:50px_50px] animate-gridMove" />
+      <div className={styles.background}>
+        <div className={styles.backgroundGrid} />
       </div>
 
       {/* Global Components */}

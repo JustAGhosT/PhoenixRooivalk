@@ -48,6 +48,7 @@ export const DemoCooldownMeter: React.FC<EnhancedCooldownMeterProps> = ({
         clearInterval(interval);
       }
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isActive, cooldownTime, onCooldownComplete]);
 
   const progress =

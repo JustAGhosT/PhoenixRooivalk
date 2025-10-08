@@ -349,6 +349,7 @@ export const createParticlePool = (
 
 // Pool Manager for centralized management
 export class PoolManager {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   private pools: Map<string, ObjectPool<any>> = new Map();
 
   constructor() {
