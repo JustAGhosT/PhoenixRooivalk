@@ -62,9 +62,12 @@ export const WasmThreatSimulator: React.FC<WasmThreatSimulatorProps> = ({
         wasmInstanceInitialized = true;
 
         // Resolve asset URLs via manifest to avoid hardcoded hashes
-        const manifest = await fetch("http://localhost:8080/wasm/manifest.json", {
-          cache: "no-store",
-        })
+        const manifest = await fetch(
+          "http://localhost:8080/wasm/manifest.json",
+          {
+            cache: "no-store",
+          },
+        )
           .then((r) => (r.ok ? r.json() : null))
           .catch((err) => {
             console.warn("Failed to load WASM manifest:", err);
@@ -251,7 +254,7 @@ export const WasmThreatSimulator: React.FC<WasmThreatSimulatorProps> = ({
 
                 // Scope selectors (handles :root exclusions)
                 rule.selector = rule.selector
-            .split(",")
+                  .split(",")
                   .map((selector: string) => {
                     const trimmed = selector.trim();
                     // Don't scope :root selectors - skip them
@@ -262,7 +265,7 @@ export const WasmThreatSimulator: React.FC<WasmThreatSimulatorProps> = ({
                     return `${scopeClass} ${trimmed}`;
                   })
                   .filter((s: string) => s) // Remove empty selectors
-            .join(", ");
+                  .join(", ");
 
                 // Update animation-name and animation shorthand properties
                 rule.walkDecls((decl: PostCSSDecl) => {

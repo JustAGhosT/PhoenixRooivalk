@@ -1,5 +1,6 @@
 use crate::game::{DroneType, GameStateManager};
 use leptos::*;
+use js_sys::Date;
 
 #[component]
 pub fn TokenStore<F>(
@@ -87,7 +88,7 @@ where
                 id: format!(
                     "purchased-{:?}-{}",
                     drone_type,
-                    web_sys::js_sys::Date::new_0().get_time() as i64
+                    Date::new_0().get_time() as i64
                 ),
                 drone_type,
                 position: crate::game::Vector2::new(960.0, 540.0),

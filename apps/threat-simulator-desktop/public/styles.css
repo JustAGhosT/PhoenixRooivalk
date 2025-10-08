@@ -355,7 +355,9 @@ body {
     text-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
   }
   50% {
-    text-shadow: 0 0 30px rgba(0, 255, 255, 0.8), 0 0 40px rgba(0, 255, 255, 0.6);
+    text-shadow:
+      0 0 30px rgba(0, 255, 255, 0.8),
+      0 0 40px rgba(0, 255, 255, 0.6);
   }
 }
 
@@ -1980,6 +1982,31 @@ kbd {
   font-size: 13px;
   margin-bottom: 12px;
   line-height: 1.5;
+}
+
+.research-requirements {
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+
+.research-requirements small {
+  font-size: 11px;
+  color: #8899aa;
+  font-style: italic;
+}
+
+.research-unlock {
+  margin-top: 6px;
+  margin-bottom: 6px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.research-unlock small {
+  font-size: 11px;
+  color: #88cc88;
+  font-weight: 500;
 }
 
 .research-footer {

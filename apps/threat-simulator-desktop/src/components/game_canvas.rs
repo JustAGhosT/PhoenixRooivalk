@@ -20,61 +20,44 @@ pub fn GameCanvas(game_state: GameStateManager, is_running: ReadSignal<bool>) ->
     create_effect(move |_| {
         let running = is_running.get();
         *is_running_shared_effect.borrow_mut() = running;
-        web_sys::console::log_1(&format!("is_running signal changed to: {}", running).into());
     });
 
     // Set up canvas immediately when component mounts (during loading)
     create_effect(move |_| {
-        web_sys::console::log_1(&"GameCanvas create_effect triggered - setting up canvas".into());
 
         let Some(canvas_elem) = canvas_ref.get() else {
-            web_sys::console::log_1(&"Canvas not ready yet".into());
-            // DEBUG: Check if ANY canvas exists in the DOM
-            if let Some(document) = web_sys::window().and_then(|w| w.document()) {
-                let canvases = document.query_selector_all("canvas").unwrap();
-                web_sys::console::log_2(&"Total canvas elements in DOM:".into(), &canvases.length().into());
-                for i in 0..canvases.length() {
-                    if let Some(canvas) = canvases.get(i) {
-                        web_sys::console::log_2(&format!("Canvas {}: ", i).into(), &canvas);
-                    }
-                }
-            }
             return;
         };
 
         let canvas = canvas_elem.unchecked_ref::<HtmlCanvasElement>();
-        web_sys::console::log_1(&"Canvas element found!".into());
-        
-        // Check canvas visibility
-        if let Some(win) = web_sys::window() {
-            if let Ok(Some(style)) = win.get_computed_style(&canvas_elem) {
-                let display = style.get_property_value("display").unwrap_or_else(|_| "unknown".to_string());
-                let visibility = style.get_property_value("visibility").unwrap_or_else(|_| "unknown".to_string());
-                let opacity = style.get_property_value("opacity").unwrap_or_else(|_| "unknown".to_string());
-                web_sys::console::log_3(&"Canvas CSS display:".into(), &display.into(), &visibility.into());
-                web_sys::console::log_1(&format!("Canvas CSS opacity: {}", opacity).into());
-            }
-        }
 
         // Get 2D context with proper error handling
         let context = match canvas.get_context("2d") {
             Ok(Some(ctx)) => match ctx.dyn_into::<CanvasRenderingContext2d>() {
                 Ok(ctx_2d) => ctx_2d,
                 Err(_) => {
+                    if cfg!(debug_assertions) {
                     web_sys::console::error_1(&"Failed to cast canvas context to 2D".into());
+                    }
                     return;
                 }
             },
             Ok(None) => {
+                if cfg!(debug_assertions) {
                 web_sys::console::error_1(&"Canvas 2D context is None".into());
+                }
                 return;
             }
             Err(e) => {
-                web_sys::console::error_2(&"Failed to get canvas context:".into(), &e);
+                if cfg!(debug_assertions) {
+                    web_sys::console::error_2(&"Failed to get canvas context:".into(), &e);
+                }
                 return;
             }
         };
-        web_sys::console::log_1(&"Canvas context created!".into());
+        if cfg!(debug_assertions) {
+            web_sys::console::log_1(&"Canvas context created!".into());
+        }
 
         // Set canvas size to fill container
         let rect = canvas.get_bounding_client_rect();
@@ -88,38 +71,12 @@ pub fn GameCanvas(game_state: GameStateManager, is_running: ReadSignal<bool>) ->
         } else {
             1080.0
         };
-        web_sys::console::log_3(&"Canvas size:".into(), &width.into(), &height.into());
-        web_sys::console::log_3(&"Canvas bounding rect:".into(), &rect.width().into(), &rect.height().into());
-        web_sys::console::log_3(&"Canvas position:".into(), &rect.left().into(), &rect.top().into());
         canvas.set_width(width as u32);
         canvas.set_height(height as u32);
-        web_sys::console::log_3(&"Canvas dimensions set to:".into(), &(canvas.width() as f64).into(), &(canvas.height() as f64).into());
         
-        // DEBUG: Check canvas actual DOM properties
-        if let Some(win) = web_sys::window() {
-            if let Ok(Some(style)) = win.get_computed_style(&canvas_elem) {
-                let z_index = style.get_property_value("z-index").unwrap_or_else(|_| "unknown".to_string());
-                let position = style.get_property_value("position").unwrap_or_else(|_| "unknown".to_string());
-                let width_css = style.get_property_value("width").unwrap_or_else(|_| "unknown".to_string());
-                let height_css = style.get_property_value("height").unwrap_or_else(|_| "unknown".to_string());
-                web_sys::console::log_1(&format!("Canvas CSS - z-index: {}, position: {}, width: {}, height: {}", z_index, position, width_css, height_css).into());
-            }
-        }
-        
-        // Get the canvas's actual screen position
-        let rect = canvas.get_bounding_client_rect();
-        web_sys::console::log_1(&format!("Canvas screen position - top: {}, left: {}, width: {}, height: {}", rect.top(), rect.left(), rect.width(), rect.height()).into());
-        
-        // TEST: Draw something immediately to confirm canvas is visible
-        web_sys::console::log_1(&"TEST: Drawing immediate test pattern".into());
-        context.set_fill_style_str("#ff0000");
+        // Clear canvas with dark background (no test pattern)
+        context.set_fill_style_str("#0a0e1a");
         context.fill_rect(0.0, 0.0, width, height);
-        context.set_fill_style_str("#00ff00");
-        context.fill_rect(50.0, 50.0, 200.0, 200.0);
-        context.set_fill_style_str("#ffffff");
-        context.set_font("48px Arial");
-        let _ = context.fill_text("CANVAS VISIBLE", width / 2.0 - 200.0, height / 2.0);
-        web_sys::console::log_1(&"TEST: Test pattern drawn".into());
 
         // Clone for the game loop
         let engine_loop = engine.clone();
@@ -128,13 +85,17 @@ pub fn GameCanvas(game_state: GameStateManager, is_running: ReadSignal<bool>) ->
 
         // Use requestAnimationFrame for smoother animation
         let Some(window) = web_sys::window() else {
-            web_sys::console::error_1(
-                &"Window not available: must run in browser environment".into(),
-            );
+            if cfg!(debug_assertions) {
+                web_sys::console::error_1(
+                    &"Window not available: must run in browser environment".into(),
+                );
+            }
             return;
         };
         let Some(performance) = window.performance() else {
-            web_sys::console::error_1(&"Performance API not available in this browser".into());
+            if cfg!(debug_assertions) {
+                web_sys::console::error_1(&"Performance API not available in this browser".into());
+            }
             return;
         };
         let last_time = Rc::new(RefCell::new(performance.now()));
@@ -210,33 +171,47 @@ pub fn GameCanvas(game_state: GameStateManager, is_running: ReadSignal<bool>) ->
                         .as_ref()
                         .unchecked_ref(),
                 ) {
-                    web_sys::console::error_2(&"Failed to request animation frame:".into(), &e);
+                    if cfg!(debug_assertions) {
+                        web_sys::console::error_2(&"Failed to request animation frame:".into(), &e);
+                    }
                 }
             } else {
-                web_sys::console::error_1(&"Window unavailable for animation frame".into());
+                if cfg!(debug_assertions) {
+                    web_sys::console::error_1(&"Window unavailable for animation frame".into());
+                }
             }
         }) as Box<dyn FnMut(f64)>);
         
         *animation_closure.borrow_mut() = Some(callback);
 
         // Start the animation loop
-        web_sys::console::log_1(&"Starting animation loop".into());
+        if cfg!(debug_assertions) {
+            web_sys::console::log_1(&"Starting animation loop".into());
+        }
         
         // Test that the closure is properly created
         if animation_closure.borrow().is_none() {
-            web_sys::console::error_1(&"Closure is None!".into());
+            if cfg!(debug_assertions) {
+                web_sys::console::error_1(&"Closure is None!".into());
+            }
             return;
         }
-        web_sys::console::log_1(&"Closure created successfully".into());
+        if cfg!(debug_assertions) {
+            web_sys::console::log_1(&"Closure created successfully".into());
+        }
         
         match window.request_animation_frame(
             animation_closure.borrow().as_ref().unwrap().as_ref().unchecked_ref()
         ) {
             Ok(handle) => {
-                web_sys::console::log_2(&"Animation loop started with handle:".into(), &handle.into());
+                if cfg!(debug_assertions) {
+                    web_sys::console::log_2(&"Animation loop started with handle:".into(), &handle.into());
+                }
             }
             Err(e) => {
-                web_sys::console::error_2(&"Failed to start animation loop:".into(), &e);
+                if cfg!(debug_assertions) {
+                    web_sys::console::error_2(&"Failed to start animation loop:".into(), &e);
+                }
                 return;
             }
         }
