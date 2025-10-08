@@ -5,11 +5,11 @@ use serde::{Deserialize, Serialize};
 use std::sync::Mutex;
 use tauri::State;
 use tracing::{debug, error, info};
-use tracing_subscriber;
+use tracing_subscriber::fmt;
 
 // Game state that will be managed by Tauri backend
-#[serde(rename_all = "camelCase")]
 #[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(rename_all = "camelCase")]
 struct GameSession {
     session_id: String,
     start_time: i64,
@@ -178,7 +178,7 @@ fn get_system_info() -> Result<serde_json::Value, String> {
 
 fn main() {
     // Initialize structured logging with tracing
-    tracing_subscriber::fmt()
+    fmt()
         .with_target(true)
         .with_level(true)
         .with_line_number(true)
