@@ -9,7 +9,7 @@ export default function PartnershipsPage(): React.ReactElement {
   usePerformanceOptimizations();
 
   return (
-    <main className="relative overflow-hidden bg-[var(--darker)] text-white">
+    <main className="relative overflow-hidden bg-[rgb(var(--darker))] text-white">
       {/* Background */}
       <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_bottom,_#1b2735_0%,_#090a0f_100%)]">
         <div className="absolute inset-0 bg-[linear-gradient(rgba(0,255,136,0.03)_1px,_transparent_1px),_linear-gradient(90deg,_rgba(0,255,136,0.03)_1px,_transparent_1px)] bg-[length:50px_50px] animate-gridMove" />
@@ -40,32 +40,32 @@ export default function PartnershipsPage(): React.ReactElement {
                 <div className="card">
                   <div className="text-center mb-4">
                     <div className="text-3xl mb-2">🏢</div>
-                    <h3 className="text-lg font-bold text-[var(--action-primary)] mb-2">
+                    <h3 className="text-lg font-bold text-[rgb(var(--action-primary))] mb-2">
                       Civilian Applications
                     </h3>
                   </div>
                   <div className="space-y-3">
                     <div className="text-sm">
-                      <div className="font-semibold text-[var(--text-primary)] mb-1">
+                      <div className="font-semibold text-[rgb(var(--text-primary))] mb-1">
                         Airport Security
                       </div>
-                      <div className="text-[var(--text-muted)]">
+                      <div className="text-[rgb(var(--text-muted))]">
                         Perimeter protection, runway monitoring
                       </div>
                     </div>
                     <div className="text-sm">
-                      <div className="font-semibold text-[var(--text-primary)] mb-1">
+                      <div className="font-semibold text-[rgb(var(--text-primary))] mb-1">
                         Critical Infrastructure
                       </div>
-                      <div className="text-[var(--text-muted)]">
+                      <div className="text-[rgb(var(--text-muted))]">
                         Power plants, water facilities, communication towers
                       </div>
                     </div>
                     <div className="text-sm">
-                      <div className="font-semibold text-[var(--text-primary)] mb-1">
+                      <div className="font-semibold text-[rgb(var(--text-primary))] mb-1">
                         Event Security
                       </div>
-                      <div className="text-[var(--text-muted)]">
+                      <div className="text-[rgb(var(--text-muted))]">
                         Stadiums, concerts, public gatherings
                       </div>
                     </div>
@@ -76,32 +76,32 @@ export default function PartnershipsPage(): React.ReactElement {
                 <div className="card">
                   <div className="text-center mb-4">
                     <div className="text-3xl mb-2">🏭</div>
-                    <h3 className="text-lg font-bold text-[var(--action-primary)] mb-2">
+                    <h3 className="text-lg font-bold text-[rgb(var(--action-primary))] mb-2">
                       Commercial Security
                     </h3>
                   </div>
                   <div className="space-y-3">
                     <div className="text-sm">
-                      <div className="font-semibold text-[var(--text-primary)] mb-1">
+                      <div className="font-semibold text-[rgb(var(--text-primary))] mb-1">
                         Corporate Campus
                       </div>
-                      <div className="text-[var(--text-muted)]">
+                      <div className="text-[rgb(var(--text-muted))]">
                         Headquarters, R&D facilities
                       </div>
                     </div>
                     <div className="text-sm">
-                      <div className="font-semibold text-[var(--text-primary)] mb-1">
+                      <div className="font-semibold text-[rgb(var(--text-primary))] mb-1">
                         Data Center Security
                       </div>
-                      <div className="text-[var(--text-muted)]">
+                      <div className="text-[rgb(var(--text-muted))]">
                         Server farms, cloud infrastructure
                       </div>
                     </div>
                     <div className="text-sm">
-                      <div className="font-semibold text-[var(--text-primary)] mb-1">
+                      <div className="font-semibold text-[rgb(var(--text-primary))] mb-1">
                         Port Security
                       </div>
-                      <div className="text-[var(--text-muted)]">
+                      <div className="text-[rgb(var(--text-muted))]">
                         Shipping terminals, cargo facilities
                       </div>
                     </div>
@@ -112,32 +112,32 @@ export default function PartnershipsPage(): React.ReactElement {
                 <div className="card">
                   <div className="text-center mb-4">
                     <div className="text-3xl mb-2">🔬</div>
-                    <h3 className="text-lg font-bold text-[var(--action-primary)] mb-2">
+                    <h3 className="text-lg font-bold text-[rgb(var(--action-primary))] mb-2">
                       Research & Development
                     </h3>
                   </div>
                   <div className="space-y-3">
                     <div className="text-sm">
-                      <div className="font-semibold text-[var(--text-primary)] mb-1">
+                      <div className="font-semibold text-[rgb(var(--text-primary))] mb-1">
                         University Partnerships
                       </div>
-                      <div className="text-[var(--text-muted)]">
+                      <div className="text-[rgb(var(--text-muted))]">
                         Academic research collaboration
                       </div>
                     </div>
                     <div className="text-sm">
-                      <div className="font-semibold text-[var(--text-primary)] mb-1">
+                      <div className="font-semibold text-[rgb(var(--text-primary))] mb-1">
                         Government Labs
                       </div>
-                      <div className="text-[var(--text-muted)]">
+                      <div className="text-[rgb(var(--text-muted))]">
                         DARPA, NSF, national laboratories
                       </div>
                     </div>
                     <div className="text-sm">
-                      <div className="font-semibold text-[var(--text-primary)] mb-1">
+                      <div className="font-semibold text-[rgb(var(--text-primary))] mb-1">
                         International Cooperation
                       </div>
-                      <div className="text-[var(--text-muted)]">
+                      <div className="text-[rgb(var(--text-muted))]">
                         NATO, allied defense research
                       </div>
                     </div>
@@ -148,32 +148,32 @@ export default function PartnershipsPage(): React.ReactElement {
                 <div className="card">
                   <div className="text-center mb-4">
                     <div className="text-3xl mb-2">⚡</div>
-                    <h3 className="text-lg font-bold text-[var(--action-primary)] mb-2">
+                    <h3 className="text-lg font-bold text-[rgb(var(--action-primary))] mb-2">
                       Technology Licensing
                     </h3>
                   </div>
                   <div className="space-y-3">
                     <div className="text-sm">
-                      <div className="font-semibold text-[var(--text-primary)] mb-1">
+                      <div className="font-semibold text-[rgb(var(--text-primary))] mb-1">
                         Sensor Fusion
                       </div>
-                      <div className="text-[var(--text-muted)]">
+                      <div className="text-[rgb(var(--text-muted))]">
                         Core detection algorithms
                       </div>
                     </div>
                     <div className="text-sm">
-                      <div className="font-semibold text-[var(--text-primary)] mb-1">
+                      <div className="font-semibold text-[rgb(var(--text-primary))] mb-1">
                         Edge Processing
                       </div>
-                      <div className="text-[var(--text-muted)]">
+                      <div className="text-[rgb(var(--text-muted))]">
                         Autonomous decision-making
                       </div>
                     </div>
                     <div className="text-sm">
-                      <div className="font-semibold text-[var(--text-primary)] mb-1">
+                      <div className="font-semibold text-[rgb(var(--text-primary))] mb-1">
                         Blockchain Integration
                       </div>
-                      <div className="text-[var(--text-muted)]">
+                      <div className="text-[rgb(var(--text-muted))]">
                         Evidence management systems
                       </div>
                     </div>
@@ -183,10 +183,10 @@ export default function PartnershipsPage(): React.ReactElement {
 
               {/* Contact Section */}
               <div className="mt-16 text-center">
-                <h3 className="text-3xl font-bold text-[var(--text-primary)] mb-4">
+                <h3 className="text-3xl font-bold text-[rgb(var(--text-primary))] mb-4">
                   Interested in Partnership?
                 </h3>
-                <p className="text-[var(--text-muted)] mb-6 max-w-2xl mx-auto">
+                <p className="text-[rgb(var(--text-muted))] mb-6 max-w-2xl mx-auto">
                   Contact us to explore collaboration opportunities and learn
                   more about how Phoenix Rooivalk technology can be adapted for
                   your specific needs.
