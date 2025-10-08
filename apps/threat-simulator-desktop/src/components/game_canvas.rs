@@ -118,6 +118,11 @@ pub fn GameCanvas(game_state: GameStateManager, is_running: ReadSignal<bool>) ->
 
             // Render
             web_sys::console::log_1(&"About to call render_frame".into());
+            // Check if context is still valid
+            match context.canvas() {
+                Ok(_) => web_sys::console::log_1(&"Canvas context is valid".into()),
+                Err(e) => web_sys::console::error_2(&"Canvas context is invalid:".into(), &e),
+            }
             match std::panic::catch_unwind(|| {
                 render_frame(&context, &game_state_loop, width, height);
             }) {
@@ -197,6 +202,11 @@ fn render_frame(
     ctx.set_fill_style(&JsValue::from_str("#0a0e1a"));
     ctx.fill_rect(0.0, 0.0, width, height);
     web_sys::console::log_1(&"render_frame: Canvas cleared with background".into());
+    
+    // Test: Draw a simple red rectangle to verify canvas is working
+    ctx.set_fill_style(&JsValue::from_str("#ff0000"));
+    ctx.fill_rect(10.0, 10.0, 50.0, 50.0);
+    web_sys::console::log_1(&"render_frame: Test red rectangle drawn".into());
 
     // Draw tactical grid
     ctx.set_stroke_style(&JsValue::from_str("rgba(0, 255, 255, 0.08)"));
