@@ -115,10 +115,11 @@ Formations:        6 tests  ✅
 Wave Management:   7 tests  ✅
 Game Engine:       7 tests  ✅
 Particle System:   6 tests  ✅
+Auto-Targeting:    7 tests  ✅
 Event Feed:        3 tests  ✅
-Synergy System:    3 tests  ✅
+Synergy System:    4 tests  ✅
 ─────────────────────────────
-Total:            47 tests  ✅
+Total:            55 tests  ✅
 ```
 
 ---
