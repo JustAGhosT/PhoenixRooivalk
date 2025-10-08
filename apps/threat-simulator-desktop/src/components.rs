@@ -280,7 +280,7 @@ pub fn App() -> impl IntoView {
         <div class="app-container">
             // Loading screen
             <Show when=move || is_loading.get() fallback=|| view! { <div></div> }>
-                <LoadingIndicator progress=loading_progress.read_only()/>
+                <LoadingIndicator progress=loading_progress/>
             </Show>
 
             // Simulation warning overlay
