@@ -3,7 +3,8 @@
   top: 0;
   z-index: 1000;
   background: rgba(15, 23, 42, 0.95);
-  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+backdrop-filter: blur(12px);
   border-bottom: 1px solid rgba(249, 115, 22, 0.2);
   padding: 1rem 1.5rem;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
@@ -97,8 +98,8 @@
     rgb(var(--primary)),
     rgb(var(--accent))
   );
-  background-clip: text;
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
   letter-spacing: -0.025em;
   transition: all 0.3s ease;
@@ -110,8 +111,8 @@
     rgb(var(--accent)),
     rgb(var(--primary))
   );
-  background-clip: text;
   -webkit-background-clip: text;
+  background-clip: text;
 }
 
 .navMenu {
@@ -185,7 +186,8 @@
   margin-top: 0.5rem;
   width: 16rem;
   background: rgba(15, 23, 42, 0.98);
-  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+backdrop-filter: blur(12px);
   border: 1px solid rgba(249, 115, 22, 0.2);
   border-radius: 0.75rem;
   box-shadow:
@@ -323,7 +325,8 @@
   margin-top: 0.5rem;
   width: 14rem;
   background: rgba(15, 23, 42, 0.98);
-  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+backdrop-filter: blur(12px);
   border: 1px solid rgba(249, 115, 22, 0.2);
   border-radius: 0.75rem;
   box-shadow:
