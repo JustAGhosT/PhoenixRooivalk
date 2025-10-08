@@ -214,15 +214,17 @@ h6 {
 }
 
 .btn--primary {
-  background: rgb(var(--action-primary));
+  background: #ff7518;
   color: white;
-  border-color: rgb(var(--action-primary));
+  border-color: #ff7518;
+  box-shadow: 0 2px 8px rgba(255, 117, 24, 0.3);
 }
 
 .btn--primary:hover {
   background: #ea580c;
   border-color: #ea580c;
   transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(234, 88, 12, 0.4);
 }
 
 .btn--secondary {
