@@ -67,8 +67,14 @@ pub fn GameCanvas(game_state: GameStateManager, is_running: ReadSignal<bool>) ->
         let game_state_loop = game_state.clone();
 
         // Use requestAnimationFrame for smoother animation
-        let window = web_sys::window().unwrap();
-        let performance = window.performance().unwrap();
+        let Some(window) = web_sys::window() else {
+            web_sys::console::error_1(&"Window not available: must run in browser environment".into());
+            return;
+        };
+        let Some(performance) = window.performance() else {
+            web_sys::console::error_1(&"Performance API not available in this browser".into());
+            return;
+        };
         let mut last_time = performance.now();
 
         let closure = Rc::new(RefCell::new(None::<Closure<dyn FnMut(f64)>>));
@@ -118,22 +124,29 @@ pub fn GameCanvas(game_state: GameStateManager, is_running: ReadSignal<bool>) ->
             game_state_loop.frame_rate.set(fps);
 
             // Request next frame
-            let win = web_sys::window().unwrap();
-            win.request_animation_frame(
-                closure_clone
-                    .borrow()
-                    .as_ref()
-                    .unwrap()
-                    .as_ref()
-                    .unchecked_ref(),
-            )
-            .unwrap();
+            if let Some(win) = web_sys::window() {
+                if let Err(e) = win.request_animation_frame(
+                    closure_clone
+                        .borrow()
+                        .as_ref()
+                        .unwrap()
+                        .as_ref()
+                        .unchecked_ref(),
+                ) {
+                    web_sys::console::error_2(&"Failed to request animation frame:".into(), &e);
+                }
+            } else {
+                web_sys::console::error_1(&"Window unavailable for animation frame".into());
+            }
         }));
 
         // Start the animation loop
-        window
-            .request_animation_frame(closure.borrow().as_ref().unwrap().as_ref().unchecked_ref())
-            .unwrap();
+        if let Err(e) = window.request_animation_frame(
+            closure.borrow().as_ref().unwrap().as_ref().unchecked_ref(),
+        ) {
+            web_sys::console::error_2(&"Failed to start animation loop:".into(), &e);
+            return;
+        }
 
         // Clean up: break the Rc cycle so the closure can be dropped
         on_cleanup({

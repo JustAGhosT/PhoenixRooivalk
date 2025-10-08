@@ -5,14 +5,14 @@
   "scripts": {
     "dev": "trunk serve --open",
     "dev:tauri": "cargo tauri dev",
-    "build": "command -v trunk > /dev/null 2>&1 && trunk build --release || echo 'Trunk not available, skipping WASM build (not needed for marketing deployment)'",
+    "build": "trunk build --release || echo Trunk not available, skipping WASM build",
     "build:tauri": "cargo tauri build",
     "test": "cargo test --lib",
     "test:watch": "cargo watch -x 'test --lib'",
     "lint": "cargo clippy --lib -- -D warnings",
     "fmt": "cargo fmt",
     "fmt:check": "cargo fmt -- --check",
-    "clean": "cargo clean && trunk clean",
+    "clean": "cargo clean & trunk clean || echo Trunk not available",
     "check": "cargo check --lib"
   },
   "private": true

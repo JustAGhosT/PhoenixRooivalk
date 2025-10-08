@@ -60,7 +60,7 @@ enhancements**.
 | **Particle Types**    | 5 types      | ✅ All implemented |
 | **Synergies**         | 6 combos     | ✅ All implemented |
 | **Research Items**    | 8+ upgrades  | ✅ System complete |
-| **UI Components**     | 14 panels    | ✅ All implemented |
+| **UI Components**     | 13 panels    | ✅ All implemented |
 | **Keyboard Controls** | 23 shortcuts | ✅ All implemented |
 | **Modal Overlays**    | 6 types      | ✅ All implemented |
 | **NPM Scripts**       | 12 commands  | ✅ All configured  |
