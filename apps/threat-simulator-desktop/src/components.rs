@@ -19,7 +19,8 @@ pub use energy_management::EnergyManagement;
 pub use event_feed::{create_feed_item, EventFeed, FeedItem, FeedSeverity};
 pub use game_canvas::GameCanvas;
 pub use hud::Hud;
-pub use overlays::{AchievementNotification, SimulationWarning};
+pub use loading::LoadingIndicator;
+pub use overlays::{AchievementNotification, IntegratedSimulationWarning};
 pub use research_panel::ResearchPanel;
 pub use stats_panel::StatsPanel;
 pub use synergy_system::SynergySystem;
@@ -40,12 +41,13 @@ pub fn App() -> impl IntoView {
     let (show_stats, set_show_stats) = create_signal(false);
     let (show_energy, set_show_energy) = create_signal(false);
     let (show_drones, set_show_drones) = create_signal(false);
-    let (show_warning, set_show_warning) = create_signal(true);
+    let (_show_warning, _set_show_warning) = create_signal(true);
     let (show_events, set_show_events) = create_signal(false);
     let (show_research, set_show_research) = create_signal(false);
     let (show_token_store, set_show_token_store) = create_signal(false);
     let (show_synergies, set_show_synergies) = create_signal(false); // Hide by default
-    let (is_running, set_is_running) = create_signal(true); // Start running
+    let (is_running, set_is_running) = create_signal(false); // Don't start until user clicks Start
+    let (show_start_screen, set_show_start_screen) = create_signal(false); // Show after loading
     let (achievement_message, set_achievement_message) = create_signal(None::<String>);
     let (event_feed, set_event_feed) = create_signal(Vec::<FeedItem>::new());
 
@@ -55,6 +57,80 @@ pub fn App() -> impl IntoView {
 
     // Wrap game state in Rc to allow multiple references
     let game_state_rc = std::rc::Rc::new(game_state.clone());
+
+    // Watch for critical events - low health
+    {
+        let game_state_watcher = game_state_rc.clone();
+        let (last_warning_sent, set_last_warning_sent) = create_signal(false);
+        create_effect(move |_| {
+            let health = game_state_watcher.mothership_health.get();
+            if health < 25.0 && !last_warning_sent.get() {
+                set_event_feed.update(|feed| {
+                    feed.push(create_feed_item(
+                        format!("CRITICAL: Mothership health at {}%!", health as u32),
+                        FeedSeverity::Critical,
+                    ));
+                });
+                set_last_warning_sent.set(true);
+            } else if health >= 25.0 {
+                set_last_warning_sent.set(false);
+            }
+        });
+    }
+
+    // Watch for wave changes
+    {
+        let game_state_watcher = game_state_rc.clone();
+        let (last_level, set_last_level) = create_signal(1u8);
+        create_effect(move |_| {
+            let current_level = game_state_watcher.level.get();
+            let previous_level = last_level.get();
+
+            // Always update last_level to track changes
+            set_last_level.set(current_level);
+
+            // Only show feed message when level increases
+            if current_level > previous_level {
+                set_event_feed.update(|feed| {
+                    feed.push(create_feed_item(
+                        format!("Wave {} incoming!", current_level),
+                        FeedSeverity::Warning,
+                    ));
+                });
+            }
+        });
+    }
+
+    // Watch for high scores
+    {
+        let game_state_watcher = game_state_rc.clone();
+        let (milestones_reached, set_milestones_reached) =
+            create_signal(std::collections::HashSet::new());
+        create_effect(move |_| {
+            let score = game_state_watcher.score.get();
+            let milestones = [1000, 5000, 10000, 25000, 50000, 100000];
+
+            // Clear milestones when score resets to 0
+            if score == 0 {
+                set_milestones_reached.set(std::collections::HashSet::new());
+                return;
+            }
+
+            for &milestone in &milestones {
+                if score >= milestone && !milestones_reached.get().contains(&milestone) {
+                    set_event_feed.update(|feed| {
+                        feed.push(create_feed_item(
+                            format!("Achievement: {} points!", milestone),
+                            FeedSeverity::Success,
+                        ));
+                    });
+                    set_milestones_reached.update(|m| {
+                        m.insert(milestone);
+                    });
+                }
+            }
+        });
+    }
 
     // Keyboard event handler
     let game_state_kb = game_state_rc.clone();
@@ -66,8 +142,10 @@ pub fn App() -> impl IntoView {
 
             match key.as_str() {
                 " " => {
-                    // Space - toggle pause
-                    set_is_running.update(|r| *r = !*r);
+                    // Space - toggle pause (only if start screen is not visible)
+                    if !show_start_screen.get() {
+                        set_is_running.update(|r| *r = !*r);
+                    }
                     event.prevent_default();
                 }
                 "h" | "H" | "?" => set_show_help.update(|h| *h = !*h),
@@ -143,6 +221,7 @@ pub fn App() -> impl IntoView {
         let timeout_handle = Rc::new(RefCell::new(None::<i32>));
 
         let window = web_sys::window().unwrap();
+        let window_clone = window.clone();
         let animate_handle = animation_handle.clone();
         let timeout_handle_inner = timeout_handle.clone();
 
@@ -151,15 +230,15 @@ pub fn App() -> impl IntoView {
 
         *animate_fn.borrow_mut() = Some(Closure::wrap(Box::new(move || {
             // Stop if loading was cancelled
-            if !is_loading.get() {
+            if !is_loading.get_untracked() {
                 return;
             }
 
-            let progress = loading_progress.get();
+            let progress = loading_progress.get_untracked();
             if progress < 90 {
                 set_loading_progress.update(|p| *p += 1);
                 // Queue next frame
-                let handle = window
+                let handle = window_clone
                     .request_animation_frame(
                         animate_fn_clone
                             .borrow()
@@ -172,11 +251,15 @@ pub fn App() -> impl IntoView {
                 *animate_handle.borrow_mut() = Some(handle);
             } else if progress < 100 {
                 set_loading_progress.set(100);
-                // Once at 100%, schedule turning loading off
+                // Once at 100%, schedule turning loading off and showing start screen
+                let animate_handle_clone = animate_handle.clone();
                 let timeout_closure = Closure::wrap(Box::new(move || {
                     set_is_loading.set(false);
+                    set_show_start_screen.set(true); // Show start screen after loading completes
+                                                     // Clear animation handle to stop further requests
+                    *animate_handle_clone.borrow_mut() = None;
                 }) as Box<dyn FnMut()>);
-                let handle = window
+                let handle = window_clone
                     .set_timeout_with_callback_and_timeout_and_arguments_0(
                         timeout_closure.as_ref().unchecked_ref(),
                         500,
@@ -214,8 +297,45 @@ pub fn App() -> impl IntoView {
 
     view! {
         <div class="app-container">
-            // Simulation warning overlay
-            <SimulationWarning show=show_warning on_close=move || set_show_warning.set(false)/>
+            // Loading screen
+            <Show when=move || is_loading.get() fallback=|| view! { <div></div> }>
+                <LoadingIndicator progress=loading_progress/>
+            </Show>
+
+            // Start screen - shows after loading completes
+            <Show when=move || show_start_screen.get() fallback=|| view! { <div></div> }>
+                <div class="start-screen">
+                    <div class="start-content">
+                        <h1 class="start-title">"Phoenix Rooivalk"</h1>
+                        <h2 class="start-subtitle">"Counter-Drone Defense Simulator"</h2>
+
+                        // Integrated warning (no close button)
+                        <IntegratedSimulationWarning/>
+
+                        <div class="start-description">
+                            <p>"Defend your mothership against waves of hostile drones."</p>
+                            <p>"Deploy weapons, manage resources, and survive as long as you can."</p>
+                        </div>
+                        <button
+                            class="start-button"
+                            on:click=move |_| {
+                                set_show_start_screen.set(false);
+                                set_is_running.set(true);
+                                set_event_feed.update(|feed| {
+                                    feed.push(create_feed_item("Mission started".to_string(), FeedSeverity::Success));
+                                });
+                            }
+                        >
+                            "START MISSION"
+                        </button>
+                        <div class="start-controls">
+                            <p><strong>"Controls:"</strong></p>
+                            <p>"SPACE - Pause/Resume | R - Reset | H - Help"</p>
+                            <p>"E - Energy | D - Drones | S - Stats | F - Events"</p>
+                        </div>
+                    </div>
+                </div>
+            </Show>
 
             // Achievement notifications
             <AchievementNotification
@@ -260,13 +380,18 @@ pub fn App() -> impl IntoView {
             <SynergySystem
                 active_weapons={
                     let game_state_synergy = game_state_rc.clone();
-                    create_memo(move |_| {
-                        // Get all equipped weapons for multi-weapon synergy detection
-                        game_state_synergy.weapons.get()
+                    let active_weapons_signal = create_rw_signal(Vec::new());
+
+                    // Update the signal when weapons change
+                    create_effect(move |_| {
+                        let weapons = game_state_synergy.weapons.get()
                             .into_iter()
                             .map(|w| w.weapon_type)
-                            .collect::<Vec<_>>()
-                    })
+                            .collect::<Vec<_>>();
+                        active_weapons_signal.set(weapons);
+                    });
+
+                    active_weapons_signal.read_only()
                 }
                 show=show_synergies
             />
@@ -281,7 +406,14 @@ pub fn App() -> impl IntoView {
                                 set_event_feed
                                     .update(|feed| {
                                         feed.push(
-                                            create_feed_item("Mission started".to_string(), FeedSeverity::Info),
+                                            create_feed_item("Mission started".to_string(), FeedSeverity::Success),
+                                        );
+                                    });
+                            } else {
+                                set_event_feed
+                                    .update(|feed| {
+                                        feed.push(
+                                            create_feed_item("Mission paused".to_string(), FeedSeverity::Warning),
                                         );
                                     });
                             }

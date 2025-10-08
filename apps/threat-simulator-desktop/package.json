@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "description": "Phoenix Rooivalk Threat Simulator - Leptos/Tauri Desktop Application",
   "scripts": {
-    "dev": "trunk serve --open",
+    "dev": "trunk serve --port 8080 --open",
     "dev:tauri": "cargo tauri dev",
     "build": "trunk build --release || echo Trunk not available, skipping WASM build",
     "build:tauri": "cargo tauri build",

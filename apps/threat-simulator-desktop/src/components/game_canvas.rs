@@ -1,8 +1,8 @@
 use crate::game::{engine::GameEngine, GameStateManager};
 use leptos::*;
-use std::cell::{Cell, RefCell};
+use std::cell::RefCell;
 use std::rc::Rc;
-use wasm_bindgen::{closure::Closure, JsCast, JsValue};
+use wasm_bindgen::{closure::Closure, JsCast};
 use web_sys::{CanvasRenderingContext2d, HtmlCanvasElement};
 
 #[component]
@@ -12,39 +12,56 @@ pub fn GameCanvas(game_state: GameStateManager, is_running: ReadSignal<bool>) ->
     // Game engine - shared between animation loop and event handlers
     let engine = Rc::new(RefCell::new(GameEngine::new(1)));
 
-    // Animation loop with game engine
-    create_effect(move |_| {
-        if !is_running.get() {
-            return;
-        }
+    // Create a shared running state for the animation loop
+    let is_running_shared = Rc::new(RefCell::new(false));
+    let is_running_shared_effect = is_running_shared.clone();
 
+    // Create animation closure and scheduled flag (outside create_effect for broader scope)
+    let animation_closure = Rc::new(RefCell::new(None::<Closure<dyn FnMut(f64)>>));
+    let animation_scheduled = Rc::new(RefCell::new(false));
+
+    // Clone for use in the second create_effect
+    let animation_closure_for_restart = animation_closure.clone();
+    let animation_scheduled_for_restart = animation_scheduled.clone();
+
+    // Keep the shared state in sync with the Leptos signal
+    create_effect(move |_| {
+        let running = is_running.get();
+        *is_running_shared_effect.borrow_mut() = running;
+    });
+
+    // Set up canvas immediately when component mounts (during loading)
+    create_effect(move |_| {
         let Some(canvas_elem) = canvas_ref.get() else {
-            web_sys::console::log_1(&"Canvas not ready yet".into());
             return;
         };
 
         let canvas = canvas_elem.unchecked_ref::<HtmlCanvasElement>();
-        web_sys::console::log_1(&"Canvas element found!".into());
 
         // Get 2D context with proper error handling
         let context = match canvas.get_context("2d") {
             Ok(Some(ctx)) => match ctx.dyn_into::<CanvasRenderingContext2d>() {
                 Ok(ctx_2d) => ctx_2d,
                 Err(_) => {
+                    if cfg!(debug_assertions) {
                     web_sys::console::error_1(&"Failed to cast canvas context to 2D".into());
+                    }
                     return;
                 }
             },
             Ok(None) => {
+                if cfg!(debug_assertions) {
                 web_sys::console::error_1(&"Canvas 2D context is None".into());
+                }
                 return;
             }
             Err(e) => {
+                if cfg!(debug_assertions) {
                 web_sys::console::error_2(&"Failed to get canvas context:".into(), &e);
+                }
                 return;
             }
         };
-        web_sys::console::log_1(&"Canvas context created!".into());
 
         // Set canvas size to fill container
         let rect = canvas.get_bounding_client_rect();
@@ -58,40 +75,63 @@ pub fn GameCanvas(game_state: GameStateManager, is_running: ReadSignal<bool>) ->
         } else {
             1080.0
         };
-        web_sys::console::log_3(&"Canvas size:".into(), &width.into(), &height.into());
         canvas.set_width(width as u32);
         canvas.set_height(height as u32);
+
+        // Clear canvas with dark background (no test pattern)
+        context.set_fill_style_str("#0a0e1a");
+        context.fill_rect(0.0, 0.0, width, height);
 
         // Clone for the game loop
         let engine_loop = engine.clone();
         let game_state_loop = game_state.clone();
+        let is_running_loop = is_running_shared.clone();
 
         // Use requestAnimationFrame for smoother animation
         let Some(window) = web_sys::window() else {
+            if cfg!(debug_assertions) {
             web_sys::console::error_1(
                 &"Window not available: must run in browser environment".into(),
             );
+            }
             return;
         };
-        let Some(performance) = window.performance() else {
+        let Some(_performance) = window.performance() else {
+            if cfg!(debug_assertions) {
             web_sys::console::error_1(&"Performance API not available in this browser".into());
+            }
             return;
         };
-        let mut last_time = performance.now();
+        // Use -1.0 as sentinel for uninitialized - will be set on first frame
+        let last_time = Rc::new(RefCell::new(-1.0));
+        let last_time_clone = last_time.clone();
 
-        let closure = Rc::new(RefCell::new(None::<Closure<dyn FnMut(f64)>>));
-        let closure_clone = closure.clone();
+        // Clone the animation closure and scheduled flag for this scope
+        let animation_closure_clone = animation_closure.clone();
+        let animation_scheduled_clone = animation_scheduled.clone();
 
-        *closure.borrow_mut() = Some(Closure::new(move |current_time: f64| {
-            if !is_running.get() {
+        let callback = Closure::wrap(Box::new(move |current_time: f64| {
+            let is_game_running = *is_running_loop.borrow();
+            // Mark animation as no longer scheduled
+            *animation_scheduled_clone.borrow_mut() = false;
+
+            if !is_game_running {
+                // Don't request next frame when paused - just return
                 return;
             }
 
-            let delta_time = ((current_time - last_time) / 1000.0) as f32;
-            last_time = current_time;
-
-            // Clamp delta time to prevent huge jumps
-            let delta_time = delta_time.min(0.1).max(0.001);
+            // Lazily initialize last_time on first frame to get accurate delta
+            let prev_time = *last_time_clone.borrow();
+            let delta_time = if prev_time < 0.0 {
+                // First frame: set last_time to current and use near-zero delta
+                *last_time_clone.borrow_mut() = current_time;
+                0.001 // Minimal delta for first frame
+            } else {
+                let dt = ((current_time - prev_time) / 1000.0) as f32;
+                *last_time_clone.borrow_mut() = current_time;
+                // Clamp delta time to prevent huge jumps
+                dt.min(0.1).max(0.001)
+            };
 
             // Update game engine
             {
@@ -121,44 +161,102 @@ pub fn GameCanvas(game_state: GameStateManager, is_running: ReadSignal<bool>) ->
                 .game_time
                 .update(|t| *t += delta_time as f64);
 
-            // Calculate FPS (cast to f64 for frame_rate signal)
-            let fps = 1.0f64 / (delta_time as f64).max(0.001);
+            // Calculate FPS (cast to f32 for frame_rate signal)
+            let fps = 1.0f32 / (delta_time as f32).max(0.001);
             game_state_loop.frame_rate.set(fps);
 
-            // Request next frame
+            // Request next frame only if not already scheduled
+            if !*animation_scheduled_clone.borrow() {
             if let Some(win) = web_sys::window() {
                 if let Err(e) = win.request_animation_frame(
-                    closure_clone
+                        animation_closure_clone
                         .borrow()
                         .as_ref()
                         .unwrap()
                         .as_ref()
                         .unchecked_ref(),
                 ) {
-                    web_sys::console::error_2(&"Failed to request animation frame:".into(), &e);
+                        if cfg!(debug_assertions) {
+                            web_sys::console::error_2(
+                                &"Failed to request animation frame:".into(),
+                                &e,
+                            );
+                        }
+                    } else {
+                        // Mark as scheduled on success
+                        *animation_scheduled_clone.borrow_mut() = true;
                 }
             } else {
+                    if cfg!(debug_assertions) {
                 web_sys::console::error_1(&"Window unavailable for animation frame".into());
             }
-        }));
+                }
+            }
+        }) as Box<dyn FnMut(f64)>);
 
-        // Start the animation loop
-        if let Err(e) = window
-            .request_animation_frame(closure.borrow().as_ref().unwrap().as_ref().unchecked_ref())
-        {
-            web_sys::console::error_2(&"Failed to start animation loop:".into(), &e);
+        *animation_closure.borrow_mut() = Some(callback);
+
+        // Start the animation loop - validate closure is set
+        if animation_closure.borrow().is_none() {
+            if cfg!(debug_assertions) {
+                web_sys::console::error_1(&"Closure is None!".into());
+            }
             return;
+        }
+
+        match window.request_animation_frame(
+            animation_closure
+                .borrow()
+                .as_ref()
+                .unwrap()
+                .as_ref()
+                .unchecked_ref(),
+        ) {
+            Ok(_handle) => {
+                // Mark as scheduled
+                *animation_scheduled.borrow_mut() = true;
+            }
+            Err(e) => {
+                if cfg!(debug_assertions) {
+                    web_sys::console::error_2(&"Failed to start animation loop:".into(), &e);
+                }
+                return;
+            }
         }
 
         // Clean up: break the Rc cycle so the closure can be dropped
         on_cleanup({
-            let closure = closure.clone();
+            let animation_closure = animation_closure.clone();
             move || {
                 // Dropping the Closure removes the JS callback reference
-                let _ = closure.borrow_mut().take();
+                let _ = animation_closure.borrow_mut().take();
             }
         });
     });
+
+    // Watch for is_running changes and restart animation when game resumes
+    {
+        let animation_closure_restart = animation_closure_for_restart.clone();
+        let animation_scheduled_restart = animation_scheduled_for_restart.clone();
+        create_effect(move |_| {
+            let is_running_now = is_running.get();
+            if is_running_now && !*animation_scheduled_restart.borrow() {
+                // Game just resumed and animation is not scheduled - restart it
+                if let Some(window) = web_sys::window() {
+                    if let Ok(handle) = window.request_animation_frame(
+                        animation_closure_restart
+                            .borrow()
+                            .as_ref()
+                            .unwrap()
+                            .as_ref()
+                            .unchecked_ref(),
+                    ) {
+                        *animation_scheduled_restart.borrow_mut() = true;
+                    }
+                }
+            }
+        });
+    }
 
     view! {
         <canvas
@@ -177,11 +275,11 @@ fn render_frame(
     height: f64,
 ) {
     // Clear canvas with dark background
-    ctx.set_fill_style(&JsValue::from_str("#0a0e1a"));
+    ctx.set_fill_style_str("#0a0e1a");
     ctx.fill_rect(0.0, 0.0, width, height);
 
     // Draw tactical grid
-    ctx.set_stroke_style(&JsValue::from_str("rgba(0, 255, 255, 0.08)"));
+    ctx.set_stroke_style_str("rgba(0, 255, 255, 0.08)");
     ctx.set_line_width(1.0);
 
     // Vertical lines
@@ -206,7 +304,7 @@ fn render_frame(
     let center_x = width / 2.0;
     let center_y = height / 2.0;
 
-    ctx.set_stroke_style(&JsValue::from_str("rgba(0, 255, 255, 0.15)"));
+    ctx.set_stroke_style_str("rgba(0, 255, 255, 0.15)");
     ctx.set_line_width(2.0);
     for radius in [200.0, 400.0, 600.0] {
         ctx.begin_path();
@@ -218,14 +316,14 @@ fn render_frame(
     // Draw mothership (center) with glow effect
     ctx.set_shadow_blur(20.0);
     ctx.set_shadow_color("rgba(0, 255, 255, 0.8)");
-    ctx.set_fill_style(&JsValue::from_str("#00ffff"));
+    ctx.set_fill_style_str("#00ffff");
     ctx.begin_path();
     ctx.arc(center_x, center_y, 30.0, 0.0, 2.0 * std::f64::consts::PI)
         .unwrap();
     ctx.fill();
 
     // Inner core
-    ctx.set_fill_style(&JsValue::from_str("#ffffff"));
+    ctx.set_fill_style_str("#ffffff");
     ctx.begin_path();
     ctx.arc(center_x, center_y, 15.0, 0.0, 2.0 * std::f64::consts::PI)
         .unwrap();
@@ -233,7 +331,7 @@ fn render_frame(
     ctx.set_shadow_blur(0.0);
 
     // Draw threats with type-specific colors
-    let threats = game_state.threats.get();
+    let threats = game_state.threats.get_untracked();
 
     for threat in threats.iter() {
         // Color based on threat type
@@ -250,7 +348,7 @@ fn render_frame(
         // Draw threat with glow
         ctx.set_shadow_blur(10.0);
         ctx.set_shadow_color(color);
-        ctx.set_fill_style(&JsValue::from_str(color));
+        ctx.set_fill_style_str(color);
         ctx.begin_path();
         ctx.arc(
             threat.position.x as f64,
@@ -265,7 +363,7 @@ fn render_frame(
 
         // Threat ID label for targeted threats
         if threat.is_targeted {
-            ctx.set_fill_style(&JsValue::from_str("#ffff00"));
+            ctx.set_fill_style_str("#ffff00");
             ctx.set_font("10px monospace");
             // Safely take last 8 chars (Unicode scalar values) to avoid UTF-8 boundary panics
             let label: String = threat
@@ -292,7 +390,7 @@ fn render_frame(
             let health_pct = threat.health / threat.max_health;
 
             // Background
-            ctx.set_fill_style(&JsValue::from_str("rgba(0, 0, 0, 0.7)"));
+            ctx.set_fill_style_str("rgba(0, 0, 0, 0.7)");
             ctx.fill_rect(
                 threat.position.x as f64 - bar_width / 2.0,
                 threat.position.y as f64 - threat.size as f64 - 12.0,
@@ -308,7 +406,7 @@ fn render_frame(
             } else {
                 "#ff3333"
             };
-            ctx.set_fill_style(&JsValue::from_str(health_color));
+            ctx.set_fill_style_str(health_color);
             ctx.fill_rect(
                 threat.position.x as f64 - bar_width / 2.0,
                 threat.position.y as f64 - threat.size as f64 - 12.0,
@@ -319,7 +417,7 @@ fn render_frame(
     }
 
     // Draw drones with battery indicators
-    let drones = game_state.drones.get();
+    let drones = game_state.drones.get_untracked();
 
     for drone in drones.iter() {
         let drone_color = match drone.drone_type {
@@ -333,7 +431,7 @@ fn render_frame(
 
         ctx.set_shadow_blur(8.0);
         ctx.set_shadow_color(drone_color);
-        ctx.set_fill_style(&JsValue::from_str(drone_color));
+        ctx.set_fill_style_str(drone_color);
         ctx.begin_path();
         ctx.arc(
             drone.position.x as f64,
@@ -351,7 +449,7 @@ fn render_frame(
         let bar_width = 20.0;
         let bar_height = 3.0;
 
-        ctx.set_fill_style(&JsValue::from_str("rgba(0, 0, 0, 0.7)"));
+        ctx.set_fill_style_str("rgba(0, 0, 0, 0.7)");
         ctx.fill_rect(
             drone.position.x as f64 - bar_width / 2.0,
             drone.position.y as f64 + 15.0,
@@ -366,7 +464,7 @@ fn render_frame(
         } else {
             "#ff3333"
         };
-        ctx.set_fill_style(&JsValue::from_str(battery_color));
+        ctx.set_fill_style_str(battery_color);
         ctx.fill_rect(
             drone.position.x as f64 - bar_width / 2.0,
             drone.position.y as f64 + 15.0,
@@ -374,4 +472,11 @@ fn render_frame(
             bar_height,
         );
     }
+
+    // Version indicator in bottom right corner
+    ctx.set_font("12px 'Courier New', monospace");
+    ctx.set_fill_style_str("rgba(0, 255, 255, 0.4)");
+    ctx.fill_text("v0.1.0-alpha", width - 80.0, height - 10.0)
+        .unwrap();
 }
+

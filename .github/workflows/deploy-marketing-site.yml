@@ -72,6 +72,11 @@ jobs:
       - name: Type Check
         run: pnpm typecheck
 
+      - name: Clean build cache
+        run: |
+          rm -rf apps/marketing/.next
+          rm -rf apps/marketing/out
+
       - name: Build (marketing)
         run: pnpm --filter marketing build
 
@@ -150,6 +155,11 @@ jobs:
       - name: Type Check
         run: pnpm typecheck
 
+      - name: Clean build cache
+        run: |
+          rm -rf apps/marketing/.next
+          rm -rf apps/marketing/out
+
       - name: Build (marketing)
         run: pnpm --filter marketing build
 
@@ -183,8 +193,7 @@ jobs:
           publish-dir: "apps/marketing/out"
           production-deploy: false
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          deploy-message:
-            "Deploy Preview (marketing) from PR #${{
+          deploy-message: "Deploy Preview (marketing) from PR #${{
             github.event.pull_request.number }}"
           enable-commit-comment: true
           enable-commit-status: true

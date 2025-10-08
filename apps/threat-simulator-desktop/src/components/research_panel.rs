@@ -141,6 +141,35 @@ where
                                             </span>
                                         </div>
                                         <p class="research-description">{item.description}</p>
+                                        {(!item.requirements.is_empty())
+                                            .then(|| {
+                                                view! {
+                                                    <div class="research-requirements">
+                                                        <small>
+                                                            "Requires: "
+                                                            {item.requirements.join(", ")}
+                                                        </small>
+                                                    </div>
+                                                }
+                                            })}
+                                        {item
+                                            .unlocks_weapon
+                                            .map(|weapon| {
+                                                view! {
+                                                    <div class="research-unlock">
+                                                        <small>{format!("🔓 Unlocks: {:?} Weapon", weapon)}</small>
+                                                    </div>
+                                                }
+                                            })}
+                                        {item
+                                            .unlocks_drone
+                                            .map(|drone| {
+                                                view! {
+                                                    <div class="research-unlock">
+                                                        <small>{format!("🔓 Unlocks: {:?} Drone", drone)}</small>
+                                                    </div>
+                                                }
+                                            })}
                                         <div class="research-footer">
                                             <div class="research-time">
                                                 {format!("⏱️ {:.0}s", item.research_time)}

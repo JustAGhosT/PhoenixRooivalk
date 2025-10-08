@@ -85,6 +85,14 @@ pub fn SynergySystem(
                                                     </span>
                                                 }
                                             })}
+                                        {(!synergy.visual_effect.is_empty())
+                                            .then(|| {
+                                                view! {
+                                                    <span class="visual-effect" title=&synergy.visual_effect>
+                                                        "✨"
+                                                    </span>
+                                                }
+                                            })}
 
                                     </div>
                                 </div>
@@ -106,7 +114,29 @@ pub fn SynergySystem(
                         }
                     }
 
-                    fallback=|| view! { <div></div> }
+                    fallback={
+                        move || {
+                            let active = active_weapons.get();
+                            let (dmg, rng, cd) = calculate_synergy_bonuses(&active);
+                            view! {
+                                <div class="synergy-totals">
+                                    <strong>"Total Bonuses: "</strong>
+                                    {(dmg > 0.0)
+                                        .then(|| {
+                                            view! { <span class="bonus">{format!("+{:.0}% DMG ", dmg * 100.0)}</span> }
+                                        })}
+                                    {(rng > 0.0)
+                                        .then(|| {
+                                            view! { <span class="bonus">{format!("+{:.0}% RNG ", rng * 100.0)}</span> }
+                                        })}
+                                    {(cd > 0.0)
+                                        .then(|| {
+                                            view! { <span class="bonus">{format!("-{:.0}% CD", cd * 100.0)}</span> }
+                                        })}
+                                </div>
+                            }
+                        }
+                    }
                 >
                     <div class="no-synergies">
                         "No active synergies. Select compatible weapons to activate bonuses."

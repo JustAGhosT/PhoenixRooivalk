@@ -9,6 +9,7 @@ extern "C" {
 }
 
 #[derive(Serialize, Deserialize)]
+#[allow(dead_code)]
 pub struct GameSession {
     pub session_id: String,
     pub start_time: i64,
@@ -17,11 +18,15 @@ pub struct GameSession {
     pub level: u8,
 }
 
+/// API functions for Tauri desktop integration
+/// These are currently unused in the web version but will be used when running as a desktop app
+#[allow(dead_code)]
 pub async fn start_game_session() -> Result<GameSession, String> {
     let result = invoke("start_game_session", JsValue::NULL).await;
     serde_wasm_bindgen::from_value(result).map_err(|e| e.to_string())
 }
 
+#[allow(dead_code)]
 pub async fn end_game_session(final_score: u32, threats_neutralized: u32) -> Result<(), String> {
     let args = serde_wasm_bindgen::to_value(&serde_json::json!({
         "finalScore": final_score,
@@ -33,6 +38,7 @@ pub async fn end_game_session(final_score: u32, threats_neutralized: u32) -> Res
     serde_wasm_bindgen::from_value(result).map_err(|e| e.to_string())
 }
 
+#[allow(dead_code)]
 pub async fn save_evidence(
     session_id: String,
     event_type: String,
@@ -49,7 +55,29 @@ pub async fn save_evidence(
     serde_wasm_bindgen::from_value(result).map_err(|e| e.to_string())
 }
 
+#[allow(dead_code)]
 pub async fn get_system_info() -> Result<Value, String> {
     let result = invoke("get_system_info", JsValue::NULL).await;
     serde_wasm_bindgen::from_value(result).map_err(|e| e.to_string())
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_game_session_structure() {
+        let session = GameSession {
+            session_id: "test-123".to_string(),
+            start_time: 1234567890,
+            score: 1000,
+            threats_neutralized: 50,
+            level: 5,
+        };
+
+        assert_eq!(session.session_id, "test-123");
+        assert_eq!(session.score, 1000);
+        assert_eq!(session.threats_neutralized, 50);
+        assert_eq!(session.level, 5);
+    }
 }
