@@ -62,6 +62,9 @@ jobs:
       - name: Generate Cargo.lock
         run: cargo generate-lockfile
 
+      - name: Add WebAssembly target
+        run: rustup target add wasm32-unknown-unknown
+
       - name: Build WASM frontend for Tauri
         run: |
           cd apps/threat-simulator-desktop

@@ -1,3 +1,4 @@
+use js_sys::Date;
 use leptos::*;
 
 #[derive(Debug, Clone)]
@@ -68,7 +69,7 @@ pub fn EventFeed(feed_items: ReadSignal<Vec<FeedItem>>) -> impl IntoView {
 /// Helper to create a feed item with current timestamp
 pub fn create_feed_item(message: String, severity: FeedSeverity) -> FeedItem {
     // Use JavaScript Date for WASM compatibility
-    let now = js_sys::Date::new_0();
+    let now = Date::new_0();
     let hours = now.get_hours() as u64;
     let minutes = now.get_minutes() as u64;
     let seconds = now.get_seconds() as u64;
