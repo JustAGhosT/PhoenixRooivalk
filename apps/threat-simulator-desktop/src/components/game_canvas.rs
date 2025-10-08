@@ -12,14 +12,9 @@ pub fn GameCanvas(game_state: GameStateManager, is_running: ReadSignal<bool>) ->
     // Game engine - shared between animation loop and event handlers
     let engine = Rc::new(RefCell::new(GameEngine::new(1)));
 
-    // Animation loop with game engine
+    // Set up canvas immediately when component mounts (during loading)
     create_effect(move |_| {
-        web_sys::console::log_1(&"GameCanvas create_effect triggered".into());
-        if !is_running.get() {
-            web_sys::console::log_1(&"Game not running, skipping canvas setup".into());
-            return;
-        }
-        web_sys::console::log_1(&"Game is running, setting up canvas".into());
+        web_sys::console::log_1(&"GameCanvas create_effect triggered - setting up canvas".into());
 
         let Some(canvas_elem) = canvas_ref.get() else {
             web_sys::console::log_1(&"Canvas not ready yet".into());
@@ -30,12 +25,15 @@ pub fn GameCanvas(game_state: GameStateManager, is_running: ReadSignal<bool>) ->
         web_sys::console::log_1(&"Canvas element found!".into());
         
         // Check canvas visibility
-        let style = window.get_computed_style(&canvas_elem).unwrap().unwrap();
-        let display = style.get_property_value("display").unwrap_or_else(|_| "unknown".to_string());
-        let visibility = style.get_property_value("visibility").unwrap_or_else(|_| "unknown".to_string());
-        let opacity = style.get_property_value("opacity").unwrap_or_else(|_| "unknown".to_string());
-        web_sys::console::log_3(&"Canvas CSS display:".into(), &display.into(), &visibility.into());
-        web_sys::console::log_1(&format!("Canvas CSS opacity: {}", opacity).into());
+        if let Some(win) = web_sys::window() {
+            if let Ok(Some(style)) = win.get_computed_style(&canvas_elem) {
+                let display = style.get_property_value("display").unwrap_or_else(|_| "unknown".to_string());
+                let visibility = style.get_property_value("visibility").unwrap_or_else(|_| "unknown".to_string());
+                let opacity = style.get_property_value("opacity").unwrap_or_else(|_| "unknown".to_string());
+                web_sys::console::log_3(&"Canvas CSS display:".into(), &display.into(), &visibility.into());
+                web_sys::console::log_1(&format!("Canvas CSS opacity: {}", opacity).into());
+            }
+        }
 
         // Get 2D context with proper error handling
         let context = match canvas.get_context("2d") {
@@ -130,9 +128,11 @@ pub fn GameCanvas(game_state: GameStateManager, is_running: ReadSignal<bool>) ->
             // Render
             web_sys::console::log_1(&"About to call render_frame".into());
             // Check if context is still valid
-            match context.canvas() {
-                Ok(_) => web_sys::console::log_1(&"Canvas context is valid".into()),
-                Err(e) => web_sys::console::error_2(&"Canvas context is invalid:".into(), &e),
+            if let Some(canvas) = context.canvas() {
+                web_sys::console::log_1(&"Canvas context is valid".into());
+                web_sys::console::log_2(&"Canvas element dimensions:".into(), &format!("{}x{}", canvas.width(), canvas.height()).into());
+            } else {
+                web_sys::console::error_1(&"Canvas context has no canvas element".into());
             }
             match std::panic::catch_unwind(|| {
                 render_frame(&context, &game_state_loop, width, height);
@@ -210,17 +210,17 @@ fn render_frame(
     web_sys::console::log_3(&"render_frame: Starting render with dimensions:".into(), &width.into(), &height.into());
     
     // Clear canvas with dark background
-    ctx.set_fill_style(&JsValue::from_str("#0a0e1a"));
+    ctx.set_fill_style(&"#0a0e1a".into());
     ctx.fill_rect(0.0, 0.0, width, height);
     web_sys::console::log_1(&"render_frame: Canvas cleared with background".into());
     
     // Test: Draw a simple red rectangle to verify canvas is working
-    ctx.set_fill_style(&JsValue::from_str("#ff0000"));
+    ctx.set_fill_style(&"#ff0000".into());
     ctx.fill_rect(10.0, 10.0, 50.0, 50.0);
     web_sys::console::log_1(&"render_frame: Test red rectangle drawn".into());
 
     // Draw tactical grid
-    ctx.set_stroke_style(&JsValue::from_str("rgba(0, 255, 255, 0.08)"));
+    ctx.set_stroke_style(&"rgba(0, 255, 255, 0.08)".into());
     ctx.set_line_width(1.0);
 
     // Vertical lines
@@ -246,7 +246,7 @@ fn render_frame(
     let center_x = width / 2.0;
     let center_y = height / 2.0;
 
-    ctx.set_stroke_style(&JsValue::from_str("rgba(0, 255, 255, 0.15)"));
+    ctx.set_stroke_style(&"rgba(0, 255, 255, 0.15)".into());
     ctx.set_line_width(2.0);
     for radius in [200.0, 400.0, 600.0] {
         ctx.begin_path();
@@ -259,14 +259,14 @@ fn render_frame(
     // Draw mothership (center) with glow effect
     ctx.set_shadow_blur(20.0);
     ctx.set_shadow_color("rgba(0, 255, 255, 0.8)");
-    ctx.set_fill_style(&JsValue::from_str("#00ffff"));
+    ctx.set_fill_style(&"#00ffff".into());
     ctx.begin_path();
     ctx.arc(center_x, center_y, 30.0, 0.0, 2.0 * std::f64::consts::PI)
         .unwrap();
     ctx.fill();
 
     // Inner core
-    ctx.set_fill_style(&JsValue::from_str("#ffffff"));
+    ctx.set_fill_style(&"#ffffff".into());
     ctx.begin_path();
     ctx.arc(center_x, center_y, 15.0, 0.0, 2.0 * std::f64::consts::PI)
         .unwrap();
@@ -292,7 +292,7 @@ fn render_frame(
         // Draw threat with glow
         ctx.set_shadow_blur(10.0);
         ctx.set_shadow_color(color);
-        ctx.set_fill_style(&JsValue::from_str(color));
+        ctx.set_fill_style(&color.into());
         ctx.begin_path();
         ctx.arc(
             threat.position.x as f64,
@@ -307,7 +307,7 @@ fn render_frame(
 
         // Threat ID label for targeted threats
         if threat.is_targeted {
-            ctx.set_fill_style(&JsValue::from_str("#ffff00"));
+            ctx.set_fill_style(&"#ffff00".into());
             ctx.set_font("10px monospace");
             // Safely take last 8 chars (Unicode scalar values) to avoid UTF-8 boundary panics
             let label: String = threat
@@ -334,7 +334,7 @@ fn render_frame(
             let health_pct = threat.health / threat.max_health;
 
             // Background
-            ctx.set_fill_style(&JsValue::from_str("rgba(0, 0, 0, 0.7)"));
+            ctx.set_fill_style(&"rgba(0, 0, 0, 0.7)".into());
             ctx.fill_rect(
                 threat.position.x as f64 - bar_width / 2.0,
                 threat.position.y as f64 - threat.size as f64 - 12.0,
@@ -350,7 +350,7 @@ fn render_frame(
             } else {
                 "#ff3333"
             };
-            ctx.set_fill_style(&JsValue::from_str(health_color));
+            ctx.set_fill_style(&health_color.into());
             ctx.fill_rect(
                 threat.position.x as f64 - bar_width / 2.0,
                 threat.position.y as f64 - threat.size as f64 - 12.0,
@@ -375,7 +375,7 @@ fn render_frame(
 
         ctx.set_shadow_blur(8.0);
         ctx.set_shadow_color(drone_color);
-        ctx.set_fill_style(&JsValue::from_str(drone_color));
+        ctx.set_fill_style(&drone_color.into());
         ctx.begin_path();
         ctx.arc(
             drone.position.x as f64,
@@ -393,7 +393,7 @@ fn render_frame(
         let bar_width = 20.0;
         let bar_height = 3.0;
 
-        ctx.set_fill_style(&JsValue::from_str("rgba(0, 0, 0, 0.7)"));
+        ctx.set_fill_style(&"rgba(0, 0, 0, 0.7)".into());
         ctx.fill_rect(
             drone.position.x as f64 - bar_width / 2.0,
             drone.position.y as f64 + 15.0,
@@ -408,7 +408,7 @@ fn render_frame(
         } else {
             "#ff3333"
         };
-        ctx.set_fill_style(&JsValue::from_str(battery_color));
+        ctx.set_fill_style(&battery_color.into());
         ctx.fill_rect(
             drone.position.x as f64 - bar_width / 2.0,
             drone.position.y as f64 + 15.0,
