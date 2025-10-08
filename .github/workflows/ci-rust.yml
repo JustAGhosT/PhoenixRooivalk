@@ -67,6 +67,11 @@ jobs:
           cd apps/threat-simulator-desktop
           trunk build --release
 
+      - name: Build Tauri application
+        run: |
+          cd apps/threat-simulator-desktop
+          cargo build --release --package threat-simulator-tauri
+
       - name: Format check
         run: cargo fmt --all -- --check
 
