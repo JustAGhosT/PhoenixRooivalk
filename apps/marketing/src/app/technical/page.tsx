@@ -102,17 +102,17 @@ export default function TechnicalPage(): React.ReactElement {
       </section>
 
       {/* System Architecture */}
-      <section className="px-[5%] py-16 bg-[linear-gradient(180deg,rgba(0,136,255,0.05),transparent)]">
-        <div className="max-w-[1400px] mx-auto">
-          <h2 className="text-3xl font-bold mb-8 text-center text-[rgb(var(--primary))]">
+      <section className={`${styles.section} ${styles.sectionGradient2}`}>
+        <div className={styles.container}>
+          <h2 className={styles.sectionTitle}>
             System Architecture
           </h2>
-          <div className="grid md:grid-cols-2 xl:grid-cols-4 gap-8">
-            <div className="rounded-xl border border-[rgba(0,255,136,0.2)] bg-[rgba(15,23,42,0.8)] backdrop-blur p-6">
-              <h3 className="text-xl font-semibold mb-4 text-[rgb(var(--primary))]">
+          <div className={styles.grid4Cols}>
+            <div className={styles.card}>
+              <h3 className={styles.cardTitle}>
                 Detection Module
               </h3>
-              <ul className="space-y-2 text-[rgb(var(--gray))] text-sm">
+              <ul className={styles.cardList}>
                 <li>• RF Scanning: Communication signal identification</li>
                 <li>• Radar Systems: 3D movement tracking</li>
                 <li>• Optical Cameras: AI-powered object recognition</li>
@@ -121,11 +121,11 @@ export default function TechnicalPage(): React.ReactElement {
                 <li>• EM Detection: Encrypted signal identification</li>
               </ul>
             </div>
-            <div className="rounded-xl border border-[rgba(0,255,136,0.2)] bg-[rgba(15,23,42,0.8)] backdrop-blur p-6">
-              <h3 className="text-xl font-semibold mb-4 text-[rgb(var(--primary))]">
+            <div className={styles.card}>
+              <h3 className={styles.cardTitle}>
                 AI Identification Module
               </h3>
-              <ul className="space-y-2 text-[rgb(var(--gray))] text-sm">
+              <ul className={styles.cardList}>
                 <li>
                   • 99.7% AI Classification: Friendly/neutral/hostile
                   distinction
@@ -142,8 +142,8 @@ export default function TechnicalPage(): React.ReactElement {
                 <li>• Continuous Learning: AI adapts to new threat patterns</li>
               </ul>
             </div>
-            <div className="rounded-xl border border-[rgba(0,255,136,0.2)] bg-[rgba(15,23,42,0.8)] backdrop-blur p-6">
-              <h3 className="text-xl font-semibold mb-4 text-[rgb(var(--primary))]">
+            <div className={styles.card}>
+              <h3 className={styles.cardTitle}>
                 Neutralization Module
               </h3>
               <ul className="space-y-2 text-[rgb(var(--gray))] text-sm">
@@ -155,8 +155,8 @@ export default function TechnicalPage(): React.ReactElement {
                 <li>• Autonomous Interceptors: Fiber-optic drone counter</li>
               </ul>
             </div>
-            <div className="rounded-xl border border-[rgba(0,255,136,0.2)] bg-[rgba(15,23,42,0.8)] backdrop-blur p-6">
-              <h3 className="text-xl font-semibold mb-4 text-[rgb(var(--primary))]">
+            <div className={styles.card}>
+              <h3 className={styles.cardTitle}>
                 Blockchain C2 System
               </h3>
               <ul className="space-y-2 text-[rgb(var(--gray))] text-sm">
@@ -218,7 +218,7 @@ export default function TechnicalPage(): React.ReactElement {
             ].map((config) => (
               <div
                 key={config.title}
-                className="rounded-xl border border-[rgba(0,255,136,0.2)] bg-[rgba(15,23,42,0.8)] backdrop-blur p-6"
+                className={styles.card}
               >
                 <h3 className="text-xl font-semibold mb-2 text-[rgb(var(--primary))]">
                   {config.title}
@@ -320,8 +320,8 @@ export default function TechnicalPage(): React.ReactElement {
             Power & Environmental Specifications
           </h2>
           <div className="grid md:grid-cols-2 gap-8">
-            <div className="rounded-xl border border-[rgba(0,255,136,0.2)] bg-[rgba(15,23,42,0.8)] backdrop-blur p-6">
-              <h3 className="text-xl font-semibold mb-4 text-[rgb(var(--primary))]">
+            <div className={styles.card}>
+              <h3 className={styles.cardTitle}>
                 Power Requirements
               </h3>
               <ul className="space-y-3 text-[rgb(var(--gray))]">
@@ -342,8 +342,8 @@ export default function TechnicalPage(): React.ReactElement {
                 </li>
               </ul>
             </div>
-            <div className="rounded-xl border border-[rgba(0,255,136,0.2)] bg-[rgba(15,23,42,0.8)] backdrop-blur p-6">
-              <h3 className="text-xl font-semibold mb-4 text-[rgb(var(--primary))]">
+            <div className={styles.card}>
+              <h3 className={styles.cardTitle}>
                 Environmental Specifications
               </h3>
               <ul className="space-y-3 text-[rgb(var(--gray))]">
