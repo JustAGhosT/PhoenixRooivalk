@@ -220,19 +220,19 @@ export default function TechnicalPage(): React.ReactElement {
                 key={config.title}
                 className={styles.card}
               >
-                <h3 className="text-xl font-semibold mb-2 text-[rgb(var(--primary))]">
+                <h3 className={styles.cardTitle}>
                   {config.title}
                 </h3>
-                <p className="text-[rgb(var(--gray))] mb-4 text-sm">
+                <p className={styles.subtitle} style={{ marginBottom: '1rem', fontSize: '0.875rem' }}>
                   {config.description}
                 </p>
-                <ul className="space-y-2">
+                <ul className={styles.cardList}>
                   {config.features.map((feature) => (
                     <li
                       key={feature}
-                      className="text-[rgb(var(--gray))] text-sm flex items-center"
+                      className={styles.cardListItem}
                     >
-                      <span className="text-[rgb(var(--primary))] mr-2">•</span>
+                      <span className={styles.cardListBullet}>•</span>
                       {feature}
                     </li>
                   ))}
