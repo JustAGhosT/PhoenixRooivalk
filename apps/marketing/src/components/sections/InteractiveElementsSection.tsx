@@ -125,14 +125,14 @@ export const InteractiveElementsSection: React.FC = () => {
             </div>
             <div className={styles.grid}>
               {/* Input Controls */}
-              <div className="space-y-6">
+              <div className={styles.inputSection}>
                 {/* Sensitivity Toggle */}
                 <div>
                   <fieldset>
-                    <legend className="block text-[rgb(var(--text-primary))] font-semibold mb-3">
+                    <legend className={styles.legend}>
                       Analysis Sensitivity (Default: Conservative)
                     </legend>
-                    <div className="flex gap-2">
+                    <div className={styles.buttonGroup}>
                       {(["conservative", "median", "aggressive"] as const).map(
                         (option) => (
                           <button
@@ -151,7 +151,7 @@ export const InteractiveElementsSection: React.FC = () => {
                       )}
                     </div>
                   </fieldset>
-                  <p className="text-xs text-[rgb(var(--text-muted))] mt-2">
+                  <p className={styles.helperText}>
                     Conservative uses lower success rates and incident costs for
                     realistic projections.
                   </p>
@@ -159,7 +159,7 @@ export const InteractiveElementsSection: React.FC = () => {
                 <div>
                   <label
                     htmlFor="roi-threat-frequency"
-                    className="block text-[rgb(var(--text-primary))] font-semibold mb-2"
+                    className={styles.label}
                   >
                     Threat Frequency (per month)
                   </label>
@@ -175,11 +175,11 @@ export const InteractiveElementsSection: React.FC = () => {
                         threatFrequency: parseInt(e.target.value),
                       }))
                     }
-                    className="range w-full"
+                    className={styles.rangeInput}
                   />
-                  <div className="flex justify-between text-[rgb(var(--gray))] text-sm mt-1">
+                  <div className={styles.rangeLabels}>
                     <span className="flex-shrink-0">1</span>
-                    <span className="text-[rgb(var(--accent))] font-bold flex-shrink-0 px-2">
+                    <span className={styles.rangeValue}>
                       {roiInputs.threatFrequency} threats/month
                     </span>
                     <span className="flex-shrink-0">20</span>
@@ -189,7 +189,7 @@ export const InteractiveElementsSection: React.FC = () => {
                 <div>
                   <label
                     htmlFor="roi-response-time"
-                    className="block text-[rgb(var(--text-primary))] font-semibold mb-2"
+                    className={styles.label}
                   >
                     Current Response Time (ms)
                   </label>
@@ -206,11 +206,11 @@ export const InteractiveElementsSection: React.FC = () => {
                         averageResponseTime: parseInt(e.target.value),
                       }))
                     }
-                    className="range w-full"
+                    className={styles.rangeInput}
                   />
-                  <div className="flex justify-between text-[rgb(var(--gray))] text-sm mt-1">
+                  <div className={styles.rangeLabels}>
                     <span className="flex-shrink-0">1s</span>
-                    <span className="text-[rgb(var(--accent))] font-bold flex-shrink-0 px-2">
+                    <span className={styles.rangeValue}>
                       {roiInputs.averageResponseTime}ms
                     </span>
                     <span className="flex-shrink-0">10s</span>
@@ -220,7 +220,7 @@ export const InteractiveElementsSection: React.FC = () => {
                 <div>
                   <label
                     htmlFor="roi-deployment-cost"
-                    className="block text-[rgb(var(--text-primary))] font-semibold mb-2"
+                    className={styles.label}
                   >
                     Deployment Cost (USD)
                   </label>
@@ -237,11 +237,11 @@ export const InteractiveElementsSection: React.FC = () => {
                         deploymentCost: parseInt(e.target.value),
                       }))
                     }
-                    className="range w-full"
+                    className={styles.rangeInput}
                   />
-                  <div className="flex justify-between text-[rgb(var(--gray))] text-sm mt-1">
+                  <div className={styles.rangeLabels}>
                     <span className="flex-shrink-0">$100K</span>
-                    <span className="text-[rgb(var(--accent))] font-bold flex-shrink-0 px-2">
+                    <span className={styles.rangeValue}>
                       $
                       {isClient
                         ? roiInputs.deploymentCost.toLocaleString()
@@ -253,13 +253,13 @@ export const InteractiveElementsSection: React.FC = () => {
               </div>
 
               {/* Results */}
-              <div className="space-y-6">
+              <div className={styles.inputSection}>
                 <div className="bg-[rgba(15,23,42,0.8)] rounded-xl p-8 border border-[rgba(var(--primary),0.4)] shadow-lg">
                   <h4 className="text-xl font-bold text-[rgb(var(--primary))] mb-6">
                     Phoenix Rooivalk Results
                   </h4>
-                  <div className="space-y-3">
-                    <div className="flex justify-between">
+                  <div className={styles.resultRows}>
+                    <div className={styles.resultRow}>
                       <span className="text-[rgb(var(--gray))]">
                         Success Rate:
                       </span>
@@ -267,7 +267,7 @@ export const InteractiveElementsSection: React.FC = () => {
                         {(roi.phoenix.successRate * 100).toFixed(1)}%
                       </span>
                     </div>
-                    <div className="flex justify-between">
+                    <div className={styles.resultRow}>
                       <span className="text-[rgb(var(--gray))]">
                         Threats Prevented/Year:
                       </span>
@@ -275,7 +275,7 @@ export const InteractiveElementsSection: React.FC = () => {
                         {roi.phoenix.prevented.toFixed(1)}
                       </span>
                     </div>
-                    <div className="flex justify-between">
+                    <div className={styles.resultRow}>
                       <span className="text-[rgb(var(--gray))]">
                         Annual Savings:
                       </span>
@@ -285,7 +285,7 @@ export const InteractiveElementsSection: React.FC = () => {
                           : `$${Math.round(roi.phoenix.savings).toString()}`}
                       </span>
                     </div>
-                    <div className="flex justify-between border-t border-[rgba(var(--primary),0.2)] pt-3">
+                    <div className={`${styles.resultRow} ${styles.resultRowDivider}`}>
                       <span className="text-[rgb(var(--gray))]">ROI:</span>
                       <span className="text-[rgb(var(--accent))] font-bold text-xl">
                         {roi.phoenix.roi.toFixed(0)}%
@@ -298,8 +298,8 @@ export const InteractiveElementsSection: React.FC = () => {
                   <h4 className="text-xl font-bold text-[rgb(var(--gray))] mb-6">
                     Traditional Systems
                   </h4>
-                  <div className="space-y-3">
-                    <div className="flex justify-between">
+                  <div className={styles.resultRows}>
+                    <div className={styles.resultRow}>
                       <span className="text-[rgb(var(--gray))]">
                         Success Rate:
                       </span>
@@ -307,7 +307,7 @@ export const InteractiveElementsSection: React.FC = () => {
                         {(roi.traditional.successRate * 100).toFixed(1)}%
                       </span>
                     </div>
-                    <div className="flex justify-between">
+                    <div className={styles.resultRow}>
                       <span className="text-[rgb(var(--gray))]">
                         Threats Prevented/Year:
                       </span>
@@ -315,7 +315,7 @@ export const InteractiveElementsSection: React.FC = () => {
                         {roi.traditional.prevented.toFixed(1)}
                       </span>
                     </div>
-                    <div className="flex justify-between">
+                    <div className={styles.resultRow}>
                       <span className="text-[rgb(var(--gray))]">
                         Annual Savings:
                       </span>
@@ -325,7 +325,7 @@ export const InteractiveElementsSection: React.FC = () => {
                           : `$${Math.round(roi.traditional.savings).toString()}`}
                       </span>
                     </div>
-                    <div className="flex justify-between border-t border-[rgba(var(--primary),0.2)] pt-3">
+                    <div className={`${styles.resultRow} ${styles.resultRowDivider}`}>
                       <span className="text-[rgb(var(--gray))]">ROI:</span>
                       <span className="text-[rgb(var(--gray))] font-bold text-xl">
                         {roi.traditional.roi.toFixed(0)}%
@@ -447,7 +447,7 @@ export const InteractiveElementsSection: React.FC = () => {
                     Civilian Applications
                   </h4>
                 </div>
-                <div className="space-y-3">
+                <div className={styles.resultRows}>
                   <div className="text-sm">
                     <div className="font-semibold text-[rgb(var(--text-primary))] mb-1">
                       Airport Security
@@ -483,7 +483,7 @@ export const InteractiveElementsSection: React.FC = () => {
                     Commercial Security
                   </h4>
                 </div>
-                <div className="space-y-3">
+                <div className={styles.resultRows}>
                   <div className="text-sm">
                     <div className="font-semibold text-[rgb(var(--text-primary))] mb-1">
                       Corporate Campus
@@ -519,7 +519,7 @@ export const InteractiveElementsSection: React.FC = () => {
                     Research & Development
                   </h4>
                 </div>
-                <div className="space-y-3">
+                <div className={styles.resultRows}>
                   <div className="text-sm">
                     <div className="font-semibold text-[rgb(var(--text-primary))] mb-1">
                       University Partnerships
@@ -555,7 +555,7 @@ export const InteractiveElementsSection: React.FC = () => {
                     Technology Licensing
                   </h4>
                 </div>
-                <div className="space-y-3">
+                <div className={styles.resultRows}>
                   <div className="text-sm">
                     <div className="font-semibold text-[rgb(var(--text-primary))] mb-1">
                       Sensor Fusion
