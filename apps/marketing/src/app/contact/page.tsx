@@ -119,7 +119,9 @@ export default function ContactPage(): React.ReactElement {
                   </button>
                 </div>
                 <div>
-                  <h3 className={styles.subsectionTitle}>Investment & Funding</h3>
+                  <h3 className={styles.subsectionTitle}>
+                    Investment & Funding
+                  </h3>
                   <p className={styles.subsectionText}>
                     Interested in funding opportunities, SBIR collaboration, or
                     early-stage investment? Contact us to discuss partnership
@@ -230,7 +232,9 @@ export default function ContactPage(): React.ReactElement {
                   </ul>
                 </div>
                 <div>
-                  <h3 className={styles.subsectionTitle}>Required Information</h3>
+                  <h3 className={styles.subsectionTitle}>
+                    Required Information
+                  </h3>
                   <ul className={styles.listItem}>
                     <li>• Organization name and jurisdiction</li>
                     <li>• Intended evaluation scope and end use</li>

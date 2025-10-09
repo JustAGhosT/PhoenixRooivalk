@@ -68,10 +68,10 @@ export default function FinancialPage(): React.ReactElement {
   const roi = calculateROI();
 
   return (
-    <main className="relative overflow-hidden bg-[rgb(var(--tactical-black))] text-white min-h-screen">
+    <main className={styles.main}>
       {/* Background */}
-      <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_bottom,_#1b2735_0%,_#090a0f_100%)]">
-        <div className="absolute inset-0 bg-[linear-gradient(rgba(var(--primary),0.03)_1px,_transparent_1px),_linear-gradient(90deg,_rgba(var(--primary),0.03)_1px,_transparent_1px)] bg-[length:50px_50px] animate-gridMove" />
+      <div className={styles.background}>
+        <div className={styles.gridPattern} />
       </div>
 
       <Navigation />

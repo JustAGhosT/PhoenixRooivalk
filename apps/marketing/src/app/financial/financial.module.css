@@ -589,7 +589,11 @@
 .resultValue {
   font-size: 1.875rem;
   font-weight: bold;
-  background: linear-gradient(to right, rgb(var(--primary)), rgb(var(--secondary)));
+  background: linear-gradient(
+    to right,
+    rgb(var(--primary)),
+    rgb(var(--secondary))
+  );
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
