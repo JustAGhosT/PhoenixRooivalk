@@ -28,6 +28,7 @@ const sidebars: SidebarsConfig = {
         "technical/technical-architecture",
         "technical/system-architecture",
         "technical/blockchain-integration",
+        "technical/multi-user-signing-cooperation",
         "technical/decentralized-ai",
         "technical/hardware-foundation",
         "technical/defense-integration",
