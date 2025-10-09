@@ -3,69 +3,66 @@ import * as React from "react";
 import { Footer } from "../../components/Footer";
 import { Navigation } from "../../components/Navigation";
 import { usePerformanceOptimizations } from "../../hooks/usePerformanceOptimizations";
+import styles from "./partnerships.module.css";
 
 export default function PartnershipsPage(): React.ReactElement {
   // Apply performance optimizations
   usePerformanceOptimizations();
 
   return (
-    <main className="relative overflow-hidden bg-[rgb(var(--darker))] text-white">
+    <main className={styles.main}>
       {/* Background */}
-      <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_bottom,_#1b2735_0%,_#090a0f_100%)]">
-        <div className="absolute inset-0 bg-[linear-gradient(rgba(0,255,136,0.03)_1px,_transparent_1px),_linear-gradient(90deg,_rgba(0,255,136,0.03)_1px,_transparent_1px)] bg-[length:50px_50px] animate-gridMove" />
+      <div className={styles.background}>
+        <div className={styles.gridPattern} />
       </div>
 
       {/* Navigation */}
       <Navigation />
 
       {/* Main Content */}
-      <div className="pt-20">
-        <section className="py-20 bg-gradient-to-br from-[rgb(var(--bg-primary))] to-[rgb(var(--darker))] relative overflow-hidden">
-          <div className="relative z-10 px-6 md:px-[5%] lg:px-[5%]">
-            <div className="max-w-[1400px] mx-auto">
+      <div className={styles.contentWrapper}>
+        <section className={styles.heroSection}>
+          <div className={styles.heroContent}>
+            <div className={styles.container}>
               {/* Section Header */}
-              <div className="text-center mb-16">
-                <h1 className="text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-br from-[rgb(var(--text-primary))] to-[rgb(var(--primary))] mb-6">
-                  Partnership Opportunities
-                </h1>
-                <p className="text-xl text-[rgb(var(--gray))] max-w-3xl mx-auto">
+              <div className={styles.headerSection}>
+                <h1 className={styles.title}>Partnership Opportunities</h1>
+                <p className={styles.subtitle}>
                   Explore collaboration opportunities with Phoenix
                   Rooivalk&apos;s innovative counter-drone defense technology.
                 </p>
               </div>
 
               {/* Partnership Categories */}
-              <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+              <div className={styles.grid4Cols}>
                 {/* Civilian Applications */}
-                <div className="card">
-                  <div className="text-center mb-4">
-                    <div className="text-3xl mb-2">🏢</div>
-                    <h3 className="text-lg font-bold text-[rgb(var(--action-primary))] mb-2">
+                <div className={styles.partnershipCard}>
+                  <div className={styles.cardHeader}>
+                    <div className={styles.cardIcon}>🏢</div>
+                    <h3 className={styles.cardHeading}>
                       Civilian Applications
                     </h3>
                   </div>
-                  <div className="space-y-3">
-                    <div className="text-sm">
-                      <div className="font-semibold text-[rgb(var(--text-primary))] mb-1">
+                  <div className={styles.cardContent}>
+                    <div className={styles.cardItem}>
+                      <div className={styles.cardItemTitle}>
                         Airport Security
                       </div>
-                      <div className="text-[rgb(var(--text-muted))]">
+                      <div className={styles.cardItemDescription}>
                         Perimeter protection, runway monitoring
                       </div>
                     </div>
-                    <div className="text-sm">
-                      <div className="font-semibold text-[rgb(var(--text-primary))] mb-1">
+                    <div className={styles.cardItem}>
+                      <div className={styles.cardItemTitle}>
                         Critical Infrastructure
                       </div>
-                      <div className="text-[rgb(var(--text-muted))]">
+                      <div className={styles.cardItemDescription}>
                         Power plants, water facilities, communication towers
                       </div>
                     </div>
-                    <div className="text-sm">
-                      <div className="font-semibold text-[rgb(var(--text-primary))] mb-1">
-                        Event Security
-                      </div>
-                      <div className="text-[rgb(var(--text-muted))]">
+                    <div className={styles.cardItem}>
+                      <div className={styles.cardItemTitle}>Event Security</div>
+                      <div className={styles.cardItemDescription}>
                         Stadiums, concerts, public gatherings
                       </div>
                     </div>
@@ -73,35 +70,31 @@ export default function PartnershipsPage(): React.ReactElement {
                 </div>
 
                 {/* Commercial Security */}
-                <div className="card">
-                  <div className="text-center mb-4">
-                    <div className="text-3xl mb-2">🏭</div>
-                    <h3 className="text-lg font-bold text-[rgb(var(--action-primary))] mb-2">
-                      Commercial Security
-                    </h3>
+                <div className={styles.partnershipCard}>
+                  <div className={styles.cardHeader}>
+                    <div className={styles.cardIcon}>🏭</div>
+                    <h3 className={styles.cardHeading}>Commercial Security</h3>
                   </div>
-                  <div className="space-y-3">
-                    <div className="text-sm">
-                      <div className="font-semibold text-[rgb(var(--text-primary))] mb-1">
+                  <div className={styles.cardContent}>
+                    <div className={styles.cardItem}>
+                      <div className={styles.cardItemTitle}>
                         Corporate Campus
                       </div>
-                      <div className="text-[rgb(var(--text-muted))]">
+                      <div className={styles.cardItemDescription}>
                         Headquarters, R&D facilities
                       </div>
                     </div>
-                    <div className="text-sm">
-                      <div className="font-semibold text-[rgb(var(--text-primary))] mb-1">
+                    <div className={styles.cardItem}>
+                      <div className={styles.cardItemTitle}>
                         Data Center Security
                       </div>
-                      <div className="text-[rgb(var(--text-muted))]">
+                      <div className={styles.cardItemDescription}>
                         Server farms, cloud infrastructure
                       </div>
                     </div>
-                    <div className="text-sm">
-                      <div className="font-semibold text-[rgb(var(--text-primary))] mb-1">
-                        Port Security
-                      </div>
-                      <div className="text-[rgb(var(--text-muted))]">
+                    <div className={styles.cardItem}>
+                      <div className={styles.cardItemTitle}>Port Security</div>
+                      <div className={styles.cardItemDescription}>
                         Shipping terminals, cargo facilities
                       </div>
                     </div>
@@ -109,35 +102,35 @@ export default function PartnershipsPage(): React.ReactElement {
                 </div>
 
                 {/* Research & Development */}
-                <div className="card">
-                  <div className="text-center mb-4">
-                    <div className="text-3xl mb-2">🔬</div>
-                    <h3 className="text-lg font-bold text-[rgb(var(--action-primary))] mb-2">
+                <div className={styles.partnershipCard}>
+                  <div className={styles.cardHeader}>
+                    <div className={styles.cardIcon}>🔬</div>
+                    <h3 className={styles.cardHeading}>
                       Research & Development
                     </h3>
                   </div>
-                  <div className="space-y-3">
-                    <div className="text-sm">
-                      <div className="font-semibold text-[rgb(var(--text-primary))] mb-1">
+                  <div className={styles.cardContent}>
+                    <div className={styles.cardItem}>
+                      <div className={styles.cardItemTitle}>
                         University Partnerships
                       </div>
-                      <div className="text-[rgb(var(--text-muted))]">
+                      <div className={styles.cardItemDescription}>
                         Academic research collaboration
                       </div>
                     </div>
-                    <div className="text-sm">
-                      <div className="font-semibold text-[rgb(var(--text-primary))] mb-1">
+                    <div className={styles.cardItem}>
+                      <div className={styles.cardItemTitle}>
                         Government Labs
                       </div>
-                      <div className="text-[rgb(var(--text-muted))]">
+                      <div className={styles.cardItemDescription}>
                         DARPA, NSF, national laboratories
                       </div>
                     </div>
-                    <div className="text-sm">
-                      <div className="font-semibold text-[rgb(var(--text-primary))] mb-1">
+                    <div className={styles.cardItem}>
+                      <div className={styles.cardItemTitle}>
                         International Cooperation
                       </div>
-                      <div className="text-[rgb(var(--text-muted))]">
+                      <div className={styles.cardItemDescription}>
                         NATO, allied defense research
                       </div>
                     </div>
@@ -145,35 +138,31 @@ export default function PartnershipsPage(): React.ReactElement {
                 </div>
 
                 {/* Technology Licensing */}
-                <div className="card">
-                  <div className="text-center mb-4">
-                    <div className="text-3xl mb-2">⚡</div>
-                    <h3 className="text-lg font-bold text-[rgb(var(--action-primary))] mb-2">
-                      Technology Licensing
-                    </h3>
+                <div className={styles.partnershipCard}>
+                  <div className={styles.cardHeader}>
+                    <div className={styles.cardIcon}>⚡</div>
+                    <h3 className={styles.cardHeading}>Technology Licensing</h3>
                   </div>
-                  <div className="space-y-3">
-                    <div className="text-sm">
-                      <div className="font-semibold text-[rgb(var(--text-primary))] mb-1">
-                        Sensor Fusion
-                      </div>
-                      <div className="text-[rgb(var(--text-muted))]">
+                  <div className={styles.cardContent}>
+                    <div className={styles.cardItem}>
+                      <div className={styles.cardItemTitle}>Sensor Fusion</div>
+                      <div className={styles.cardItemDescription}>
                         Core detection algorithms
                       </div>
                     </div>
-                    <div className="text-sm">
-                      <div className="font-semibold text-[rgb(var(--text-primary))] mb-1">
+                    <div className={styles.cardItem}>
+                      <div className={styles.cardItemTitle}>
                         Edge Processing
                       </div>
-                      <div className="text-[rgb(var(--text-muted))]">
+                      <div className={styles.cardItemDescription}>
                         Autonomous decision-making
                       </div>
                     </div>
-                    <div className="text-sm">
-                      <div className="font-semibold text-[rgb(var(--text-primary))] mb-1">
+                    <div className={styles.cardItem}>
+                      <div className={styles.cardItemTitle}>
                         Blockchain Integration
                       </div>
-                      <div className="text-[rgb(var(--text-muted))]">
+                      <div className={styles.cardItemDescription}>
                         Evidence management systems
                       </div>
                     </div>
@@ -182,16 +171,16 @@ export default function PartnershipsPage(): React.ReactElement {
               </div>
 
               {/* Contact Section */}
-              <div className="mt-16 text-center">
-                <h3 className="text-3xl font-bold text-[rgb(var(--text-primary))] mb-4">
+              <div className={styles.contactSection}>
+                <h3 className={styles.contactTitle}>
                   Interested in Partnership?
                 </h3>
-                <p className="text-[rgb(var(--text-muted))] mb-6 max-w-2xl mx-auto">
+                <p className={styles.contactDescription}>
                   Contact us to explore collaboration opportunities and learn
                   more about how Phoenix Rooivalk technology can be adapted for
                   your specific needs.
                 </p>
-                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <div className={styles.contactButtons}>
                   <a
                     href="mailto:partnerships@phoenixrooivalk.com"
                     className="btn btn--primary"
@@ -208,8 +197,8 @@ export default function PartnershipsPage(): React.ReactElement {
               </div>
 
               {/* Disclaimer */}
-              <div className="mt-8 p-4 bg-[var(--action-warning)]/10 border border-[var(--action-warning)]/20 rounded-lg">
-                <p className="text-sm text-[var(--action-warning)] text-center font-semibold">
+              <div className={styles.disclaimer}>
+                <p className={styles.disclaimerText}>
                   💡 These are potential applications under exploration. Actual
                   deployment would require regulatory approval, market
                   validation, and technology adaptation for specific use cases.
