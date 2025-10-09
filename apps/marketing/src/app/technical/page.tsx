@@ -146,7 +146,7 @@ export default function TechnicalPage(): React.ReactElement {
               <h3 className={styles.cardTitle}>
                 Neutralization Module
               </h3>
-              <ul className="space-y-2 text-[rgb(var(--gray))] text-sm">
+              <ul className={styles.cardList}>
                 <li>• RF Jamming: Communication disruption</li>
                 <li>• GPS Spoofing: Navigation system confusion</li>
                 <li>• Net Entanglement: Non-destructive capture</li>
@@ -159,7 +159,7 @@ export default function TechnicalPage(): React.ReactElement {
               <h3 className={styles.cardTitle}>
                 Blockchain C2 System
               </h3>
-              <ul className="space-y-2 text-[rgb(var(--gray))] text-sm">
+              <ul className={styles.cardList}>
                 <li>• 99.3% Data Integrity: Tamper-proof audit trails</li>
                 <li>• &lt; 2ms Authentication: Blockchain-verified commands</li>
                 <li>• Decentralized Control: No single points of failure</li>
@@ -173,12 +173,12 @@ export default function TechnicalPage(): React.ReactElement {
       </section>
 
       {/* Deployment Options */}
-      <section className="px-[5%] py-16">
-        <div className="max-w-[1400px] mx-auto">
-          <h2 className="text-3xl font-bold mb-8 text-center text-[rgb(var(--primary))]">
+      <section className={styles.section}>
+        <div className={styles.container}>
+          <h2 className={styles.sectionTitle}>
             Deployment Configurations
           </h2>
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className={styles.grid3Cols}>
             {[
               {
                 title: "Fixed Installation",
