@@ -1,0 +1,42 @@
+/* HUD Bar Component Styles */
+.hud {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  padding: 16px 16px 8px;
+  border-bottom: 1px solid rgb(var(--sim-border));
+}
+
+.stat {
+  background: rgb(var(--sim-elev));
+  border: 1px solid rgb(var(--sim-border));
+  border-radius: 10px;
+  padding: 8px 12px;
+}
+
+.label {
+  display: block;
+  font-size: 0.72rem;
+  color: rgb(var(--sim-muted));
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.value {
+  display: block;
+  font-weight: 800;
+  font-size: 1.25rem;
+  color: rgb(var(--sim-text));
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}

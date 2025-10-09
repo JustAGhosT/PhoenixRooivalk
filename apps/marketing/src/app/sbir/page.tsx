@@ -3,32 +3,31 @@ import * as React from "react";
 import { Footer } from "../../components/Footer";
 import { Navigation } from "../../components/Navigation";
 import { usePerformanceOptimizations } from "../../hooks/usePerformanceOptimizations";
+import styles from "./sbir.module.css";
 
 export default function SBIRPage(): React.ReactElement {
   // Apply performance optimizations
   usePerformanceOptimizations();
 
   return (
-    <main className="relative overflow-hidden bg-[rgb(var(--darker))] text-white">
+    <main className={styles.main}>
       {/* Background */}
-      <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_bottom,_#1b2735_0%,_#090a0f_100%)]">
-        <div className="absolute inset-0 bg-[linear-gradient(rgba(0,255,136,0.03)_1px,_transparent_1px),_linear-gradient(90deg,_rgba(0,255,136,0.03)_1px,_transparent_1px)] bg-[length:50px_50px] animate-gridMove" />
+      <div className={styles.background}>
+        <div className={styles.gridPattern} />
       </div>
 
       {/* Navigation */}
       <Navigation />
 
       {/* Main Content */}
-      <div className="pt-20">
-        <section className="py-20 bg-gradient-to-br from-[rgb(var(--bg-primary))] to-[rgb(var(--darker))] relative overflow-hidden">
-          <div className="relative z-10 px-6 md:px-[5%] lg:px-[5%]">
-            <div className="max-w-[1400px] mx-auto">
+      <div className={styles.contentWrapper}>
+        <section className={styles.heroSection}>
+          <div className={styles.heroContent}>
+            <div className={styles.container}>
               {/* Section Header */}
-              <div className="text-center mb-16">
-                <h1 className="text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-br from-[rgb(var(--text-primary))] to-[rgb(var(--primary))] mb-6">
-                  SBIR Program
-                </h1>
-                <p className="text-xl text-[rgb(var(--gray))] max-w-3xl mx-auto">
+              <div className={styles.headerSection}>
+                <h1 className={styles.title}>SBIR Program</h1>
+                <p className={styles.subtitle}>
                   Phoenix Rooivalk is actively pursuing Air Force SBIR Phase I
                   funding and seeking partnerships with defense contractors for
                   market entry.
@@ -36,75 +35,67 @@ export default function SBIRPage(): React.ReactElement {
               </div>
 
               {/* SBIR Program Details */}
-              <div className="grid lg:grid-cols-2 gap-12">
+              <div className={styles.programGrid}>
                 {/* Program Overview */}
-                <div className="space-y-8">
-                  <div className="card">
-                    <h3 className="text-2xl font-bold text-[rgb(var(--action-primary))] mb-4">
+                <div className={styles.programColumn}>
+                  <div className={styles.programCard}>
+                    <h3 className={styles.programTitle}>
                       Air Force SBIR Phase I
                     </h3>
-                    <div className="space-y-4">
-                      <div className="flex justify-between">
-                        <span className="text-[rgb(var(--text-muted))]">
+                    <div className={styles.programDetails}>
+                      <div className={styles.detailRow}>
+                        <span className={styles.detailLabel}>
                           Funding Amount:
                         </span>
-                        <span className="text-[var(--action-success)] font-bold">
+                        <span
+                          className={`${styles.detailValue} ${styles.detailValueSuccess}`}
+                        >
                           $350,000
                         </span>
                       </div>
-                      <div className="flex justify-between">
-                        <span className="text-[rgb(var(--text-muted))]">
-                          Duration:
-                        </span>
-                        <span className="text-[rgb(var(--text-primary))] font-bold">
+                      <div className={styles.detailRow}>
+                        <span className={styles.detailLabel}>Duration:</span>
+                        <span
+                          className={`${styles.detailValue} ${styles.detailValuePrimary}`}
+                        >
                           6 months
                         </span>
                       </div>
-                      <div className="flex justify-between">
-                        <span className="text-[rgb(var(--text-muted))]">
-                          Status:
-                        </span>
-                        <span className="text-[var(--action-warning)] font-bold">
+                      <div className={styles.detailRow}>
+                        <span className={styles.detailLabel}>Status:</span>
+                        <span
+                          className={`${styles.detailValue} ${styles.detailValueWarning}`}
+                        >
                           In Progress
                         </span>
                       </div>
                     </div>
                   </div>
 
-                  <div className="card">
-                    <h3 className="text-2xl font-bold text-[rgb(var(--action-primary))] mb-4">
-                      Program Objectives
-                    </h3>
-                    <ul className="space-y-2">
-                      <li className="flex items-start">
-                        <span className="text-[var(--action-success)] mr-2">
-                          ✓
-                        </span>
-                        <span className="text-[rgb(var(--text-muted))]">
+                  <div className={styles.programCard}>
+                    <h3 className={styles.programTitle}>Program Objectives</h3>
+                    <ul className={styles.objectivesList}>
+                      <li className={styles.objectiveItem}>
+                        <span className={styles.objectiveCheck}>✓</span>
+                        <span className={styles.objectiveText}>
                           Technical validation of SAE Level 4 autonomy concept
                         </span>
                       </li>
-                      <li className="flex items-start">
-                        <span className="text-[var(--action-success)] mr-2">
-                          ✓
-                        </span>
-                        <span className="text-[rgb(var(--text-muted))]">
+                      <li className={styles.objectiveItem}>
+                        <span className={styles.objectiveCheck}>✓</span>
+                        <span className={styles.objectiveText}>
                           Demonstration of sub-200ms response times
                         </span>
                       </li>
-                      <li className="flex items-start">
-                        <span className="text-[var(--action-success)] mr-2">
-                          ✓
-                        </span>
-                        <span className="text-[rgb(var(--text-muted))]">
+                      <li className={styles.objectiveItem}>
+                        <span className={styles.objectiveCheck}>✓</span>
+                        <span className={styles.objectiveText}>
                           RF-denied environment testing
                         </span>
                       </li>
-                      <li className="flex items-start">
-                        <span className="text-[var(--action-success)] mr-2">
-                          ✓
-                        </span>
-                        <span className="text-[rgb(var(--text-muted))]">
+                      <li className={styles.objectiveItem}>
+                        <span className={styles.objectiveCheck}>✓</span>
+                        <span className={styles.objectiveText}>
                           Swarm defense capability validation
                         </span>
                       </li>
@@ -113,66 +104,72 @@ export default function SBIRPage(): React.ReactElement {
                 </div>
 
                 {/* Partnership Opportunities */}
-                <div className="space-y-8">
-                  <div className="card">
-                    <h3 className="text-2xl font-bold text-[rgb(var(--action-primary))] mb-4">
+                <div className={styles.programColumn}>
+                  <div className={styles.programCard}>
+                    <h3 className={styles.programTitle}>
                       Partnership Opportunities
                     </h3>
-                    <div className="space-y-4">
-                      <div className="p-4 bg-[rgba(var(--primary),0.1)] rounded-lg border border-[rgba(var(--primary),0.2)]">
-                        <h4 className="font-semibold text-[rgb(var(--text-primary))] mb-2">
+                    <div className={styles.programDetails}>
+                      <div className={styles.partnershipBox}>
+                        <h4 className={styles.partnershipBoxTitle}>
                           Defense Contractors
                         </h4>
-                        <p className="text-sm text-[rgb(var(--text-muted))]">
+                        <p className={styles.partnershipBoxDescription}>
                           Integration with existing defense systems and
                           platforms
                         </p>
                       </div>
-                      <div className="p-4 bg-[rgba(var(--primary),0.1)] rounded-lg border border-[rgba(var(--primary),0.2)]">
-                        <h4 className="font-semibold text-[rgb(var(--text-primary))] mb-2">
+                      <div className={styles.partnershipBox}>
+                        <h4 className={styles.partnershipBoxTitle}>
                           Technology Partners
                         </h4>
-                        <p className="text-sm text-[rgb(var(--text-muted))]">
+                        <p className={styles.partnershipBoxDescription}>
                           Sensor fusion, AI/ML, and blockchain integration
                         </p>
                       </div>
-                      <div className="p-4 bg-[rgba(var(--primary),0.1)] rounded-lg border border-[rgba(var(--primary),0.2)]">
-                        <h4 className="font-semibold text-[rgb(var(--text-primary))] mb-2">
+                      <div className={styles.partnershipBox}>
+                        <h4 className={styles.partnershipBoxTitle}>
                           Academic Institutions
                         </h4>
-                        <p className="text-sm text-[rgb(var(--text-muted))]">
+                        <p className={styles.partnershipBoxDescription}>
                           Research collaboration and technology validation
                         </p>
                       </div>
                     </div>
                   </div>
 
-                  <div className="card">
-                    <h3 className="text-2xl font-bold text-[rgb(var(--action-primary))] mb-4">
+                  <div className={styles.programCard}>
+                    <h3 className={styles.programTitle}>
                       Government Contracting
                     </h3>
-                    <div className="space-y-3">
-                      <div className="flex justify-between">
-                        <span className="text-[rgb(var(--text-muted))]">
+                    <div className={styles.programDetails}>
+                      <div className={styles.detailRow}>
+                        <span className={styles.detailLabel}>
                           CMMC Level 2:
                         </span>
-                        <span className="text-[var(--action-warning)] font-bold">
+                        <span
+                          className={`${styles.detailValue} ${styles.detailValueWarning}`}
+                        >
                           Planned
                         </span>
                       </div>
-                      <div className="flex justify-between">
-                        <span className="text-[rgb(var(--text-muted))]">
+                      <div className={styles.detailRow}>
+                        <span className={styles.detailLabel}>
                           ITAR Compliance:
                         </span>
-                        <span className="text-[var(--action-warning)] font-bold">
+                        <span
+                          className={`${styles.detailValue} ${styles.detailValueWarning}`}
+                        >
                           Planned
                         </span>
                       </div>
-                      <div className="flex justify-between">
-                        <span className="text-[rgb(var(--text-muted))]">
+                      <div className={styles.detailRow}>
+                        <span className={styles.detailLabel}>
                           Security Clearance:
                         </span>
-                        <span className="text-[var(--action-warning)] font-bold">
+                        <span
+                          className={`${styles.detailValue} ${styles.detailValueWarning}`}
+                        >
                           Planned
                         </span>
                       </div>
@@ -182,16 +179,16 @@ export default function SBIRPage(): React.ReactElement {
               </div>
 
               {/* Contact Section */}
-              <div className="mt-16 text-center">
-                <h3 className="text-3xl font-bold text-[rgb(var(--text-primary))] mb-4">
+              <div className={styles.contactSection}>
+                <h3 className={styles.contactTitle}>
                   Interested in SBIR Collaboration?
                 </h3>
-                <p className="text-[rgb(var(--text-muted))] mb-6 max-w-2xl mx-auto">
+                <p className={styles.contactDescription}>
                   Contact us to learn more about our SBIR program participation
                   and explore collaboration opportunities for government
                   contracting and defense partnerships.
                 </p>
-                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <div className={styles.contactButtons}>
                   <a
                     href="mailto:sbir@phoenixrooivalk.com"
                     className="btn btn--primary"
@@ -208,8 +205,8 @@ export default function SBIRPage(): React.ReactElement {
               </div>
 
               {/* Disclaimer */}
-              <div className="mt-8 p-4 bg-[var(--action-warning)]/10 border border-[var(--action-warning)]/20 rounded-lg">
-                <p className="text-sm text-[var(--action-warning)] text-center font-semibold">
+              <div className={styles.disclaimer}>
+                <p className={styles.disclaimerText}>
                   💡 SBIR program participation is subject to proposal
                   acceptance and funding approval. All timelines and funding
                   amounts are estimates and subject to change.

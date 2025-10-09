@@ -1,0 +1,166 @@
+/* Weapon Status Panel Component Styles */
+.panel {
+  width: 240px;
+  background: rgb(var(--sim-elev));
+  border-right: 1px solid var(--sim-border);
+  padding: 12px;
+  flex-shrink: 0;
+  overflow-y: auto;
+  z-index: 10;
+}
+
+.title {
+  font-size: 0.75rem;
+  color: rgb(var(--sim-muted));
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 8px;
+  padding-left: 4px;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.itemContainer {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.itemContainer.selected {
+  background: rgba(var(--sim-accent), 0.1);
+  border-radius: 6px;
+  padding: 2px;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: rgb(var(--sim-elev));
+  padding: 8px;
+  border-radius: 10px;
+  border: 1px solid rgb(var(--sim-border));
+  cursor: pointer;
+  transition:
+    background var(--dur-1) var(--ease),
+    border-color var(--dur-1) var(--ease);
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  text-align: left;
+}
+
+.item:hover {
+  background: #1b2632;
+  border-color: #3a475a;
+}
+
+.item.selected {
+  background: #1e293b;
+  border-color: rgb(var(--sim-accent));
+  box-shadow: 0 0 8px rgba(255, 59, 0, 0.5);
+}
+
+.item.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+}
+
+.icon {
+  font-size: 1.5rem;
+}
+
+.cooldownMeter {
+  flex-shrink: 0;
+}
+
+.details {
+  flex-grow: 1;
+}
+
+.name {
+  font-weight: 700;
+  color: rgb(var(--sim-text));
+}
+
+.specs {
+  display: flex;
+  gap: 8px;
+  font-size: 10px;
+  color: rgb(var(--sim-muted));
+  margin-top: 2px;
+}
+
+.ammo {
+  font-size: 0.8rem;
+  color: rgb(var(--sim-muted));
+  font-family: monospace;
+}
+
+.energy,
+.range {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.cooldownBar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background-color: rgba(255, 59, 0, 0.2);
+}
+
+.cooldownProgress {
+  height: 100%;
+  background-color: rgb(var(--sim-accent));
+  transition: width 100ms linear;
+}
+
+.badges {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  display: flex;
+  gap: 2px;
+}
+
+.info {
+  position: absolute;
+  top: 4px;
+  left: 4px;
+}
+
+.infoButton {
+  background: rgb(var(--sim-elev));
+  border: 1px solid rgb(var(--sim-border));
+  border-radius: 3px;
+  width: 16px;
+  height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.infoButton:hover {
+  background: rgb(var(--sim-accent));
+  color: white;
+  border-color: rgb(var(--sim-accent));
+}

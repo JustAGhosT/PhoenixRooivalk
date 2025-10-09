@@ -1,0 +1,176 @@
+.droneDeploymentPanel {
+  width: 240px;
+  background: rgb(var(--sim-elev));
+  border-left: 1px solid var(--sim-border);
+  padding: 12px;
+  flex-shrink: 0;
+  overflow-y: auto;
+  z-index: 10;
+}
+
+.droneDeploymentTitle {
+  font-size: 0.75rem;
+  color: rgb(var(--sim-muted));
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 8px;
+  padding-left: 4px;
+}
+
+.droneList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.droneItemContainer {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.droneItemContainer.selected {
+  background: rgba(var(--sim-accent), 0.1);
+  border-radius: 6px;
+  padding: 2px;
+}
+
+.droneItem {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: rgb(var(--sim-panel));
+  padding: 8px;
+  border-radius: 10px;
+  border: 1px solid rgb(var(--sim-border));
+  cursor: pointer;
+  transition:
+    background var(--dur-1) var(--ease),
+    border-color var(--dur-1) var(--ease);
+}
+
+.droneItem:not(.disabled):hover {
+  background: #1b2632;
+  border-color: #3a475a;
+}
+
+.droneItem.selected {
+  background: #1e293b;
+  border-color: rgb(var(--sim-accent));
+  box-shadow: 0 0 8px rgba(255, 59, 0, 0.5);
+}
+
+.droneItem.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background: repeating-linear-gradient(
+    45deg,
+    var(--sim-elev),
+    var(--sim-elev) 5px,
+    #1c2430 5px,
+    #1c2430 10px
+  );
+}
+
+.droneHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+}
+
+.droneIcon {
+  font-size: 1.5rem;
+}
+
+.droneInfoButton {
+  flex-shrink: 0;
+}
+
+.infoButton {
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.droneDetails {
+  flex-grow: 1;
+}
+
+.droneName {
+  font-weight: 700;
+  color: rgb(var(--sim-text));
+}
+
+.droneSpecs {
+  display: flex;
+  gap: 6px;
+  font-size: 10px;
+  color: rgb(var(--sim-muted));
+  margin-top: 2px;
+}
+
+.droneCount {
+  font-size: 0.8rem;
+  color: rgb(var(--sim-muted));
+  font-family: monospace;
+}
+
+.droneEnergy,
+.droneSpeed,
+.droneEndurance {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.droneRole {
+  margin-top: 4px;
+}
+
+.roleBadge {
+  display: inline-block;
+  padding: 2px 6px;
+  background: rgb(var(--sim-elev));
+  border: 1px solid rgb(var(--sim-border));
+  border-radius: 3px;
+  font-size: 9px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: rgb(var(--sim-accent));
+}
+
+.droneCooldown {
+  font-size: 0.7rem;
+  color: rgb(var(--sim-accent));
+  font-weight: bold;
+}
+
+.droneDeploymentInfo {
+  margin-top: 12px;
+  padding: 8px;
+  background: rgb(var(--sim-panel));
+  border-radius: 8px;
+  font-size: 0.8rem;
+  color: rgb(var(--sim-muted));
+  text-align: center;
+}
+
+.deploymentSelection {
+  margin-top: 12px;
+  padding: 8px;
+  background: rgb(var(--sim-elev));
+  border-radius: 4px;
+  border: 1px solid rgb(var(--sim-border));
+}
+
+.deploymentSelection p {
+  margin: 4px 0;
+  font-size: 12px;
+  color: rgb(var(--sim-text));
+}
+
+.deploymentInstruction {
+  font-style: italic;
+  color: rgb(var(--sim-muted));
+}

@@ -1,22 +1,22 @@
-import React, { useState, useEffect } from "react";
-import { EnergyBudget } from "../components/EnergyBudget";
-import { EnergyManagement } from "../components/EnergyManagement";
-import {
-  DemoCooldownMeter,
-  WeaponCooldownMeter,
-} from "../components/EnhancedCooldownMeter";
-import { ROEIndicator } from "../components/ROEIndicator";
-import {
-  RadarSystem,
-  FriendlyDeployment,
-  RadarTarget,
-} from "../components/RadarSystem";
-import { ThreatSimulator } from "../components/ThreatSimulator";
+import React, { useEffect, useState } from "react";
 import { FilterChips } from "../components/FilterChips";
 import { InfoPopover } from "../components/InfoPopover";
 import { LegalBadge } from "../components/LegalBadge";
-import { MultiSelectDeployment } from "../components/MultiSelectDeployment";
-import { SynergySystem } from "../components/SynergySystem";
+import { ROEIndicator } from "../components/ROEIndicator";
+import { ThreatSimulator } from "../components/ThreatSimulator";
+import { EnergyBudget } from "../components/simulator/EnergyBudget";
+import { EnergyManagement } from "../components/simulator/EnergyManagement";
+import { MultiSelectDeployment } from "../components/simulator/MultiSelectDeployment";
+import {
+  FriendlyDeployment,
+  RadarSystem,
+  RadarTarget,
+} from "../components/simulator/RadarSystem";
+import {
+  DemoCooldownMeter,
+  WeaponCooldownMeter,
+} from "../components/stats/EnhancedCooldownMeter";
+import { SynergySystem } from "../components/weapon/SynergySystem";
 
 const ThreatSimulatorDemo: React.FC = () => {
   const [demoMode, setDemoMode] = useState<"full" | "components" | "systems">(
