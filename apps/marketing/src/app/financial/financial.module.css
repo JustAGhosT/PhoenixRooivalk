@@ -500,3 +500,103 @@
 .footerLink:hover {
   text-decoration: underline;
 }
+
+/* Calculator Styles */
+.calculatorSection {
+  margin-bottom: 4rem;
+}
+
+.calculatorGrid {
+  display: grid;
+  gap: 3rem;
+}
+
+@media (min-width: 1024px) {
+  .calculatorGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.calculatorCard {
+  background: rgba(var(--tactical-charcoal), 0.8);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(var(--primary), 0.2);
+  border-radius: 1rem;
+  padding: 2rem;
+}
+
+.calculatorTitle {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: rgb(var(--primary));
+  margin-bottom: 1.5rem;
+}
+
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.label {
+  display: block;
+  color: rgb(var(--phoenix-white));
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+}
+
+.slider {
+  width: 100%;
+  height: 0.75rem;
+  background: rgb(var(--tactical-gray));
+  border-radius: 0.5rem;
+  appearance: none;
+  cursor: pointer;
+}
+
+.sliderLabels {
+  display: flex;
+  justify-content: space-between;
+  color: rgb(var(--gray));
+  font-size: 0.875rem;
+  margin-top: 0.5rem;
+}
+
+.sliderValue {
+  color: rgb(var(--accent));
+  font-weight: bold;
+  font-size: 1.125rem;
+}
+
+.resultsCard {
+  background: rgba(var(--tactical-charcoal), 0.8);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(var(--primary), 0.2);
+  border-radius: 1rem;
+  padding: 2rem;
+}
+
+.resultItem {
+  margin-bottom: 1.5rem;
+}
+
+.resultLabel {
+  color: rgb(var(--gray));
+  font-size: 0.875rem;
+  margin-bottom: 0.25rem;
+}
+
+.resultValue {
+  font-size: 1.875rem;
+  font-weight: bold;
+  background: linear-gradient(to right, rgb(var(--primary)), rgb(var(--secondary)));
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.resultSubtext {
+  font-size: 0.75rem;
+  color: rgb(var(--gray));
+  margin-top: 0.25rem;
+}

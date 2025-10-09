@@ -61,14 +61,10 @@ export default function TechnicalPage(): React.ReactElement {
       {/* AI + Blockchain Capabilities */}
       <section className={`${styles.section} ${styles.sectionGradient}`}>
         <div className={styles.container}>
-          <h2 className={styles.sectionTitle}>
-            AI + Blockchain Capabilities
-          </h2>
+          <h2 className={styles.sectionTitle}>AI + Blockchain Capabilities</h2>
           <div className={`${styles.grid} mb-12`}>
             <div className={styles.card}>
-              <h3 className={styles.cardTitle}>
-                AI Performance
-              </h3>
+              <h3 className={styles.cardTitle}>AI Performance</h3>
               <ul className={styles.cardList}>
                 <li>
                   • 99.7% threat detection accuracy vs 60-70% industry standard
@@ -85,9 +81,7 @@ export default function TechnicalPage(): React.ReactElement {
               </ul>
             </div>
             <div className={styles.card}>
-              <h3 className={styles.cardTitle}>
-                Blockchain Security
-              </h3>
+              <h3 className={styles.cardTitle}>Blockchain Security</h3>
               <ul className={styles.cardList}>
                 <li>• 99.3% data integrity protection vs 85% traditional</li>
                 <li>• &lt; 2ms authentication latency vs 50-100ms standard</li>
@@ -104,14 +98,10 @@ export default function TechnicalPage(): React.ReactElement {
       {/* System Architecture */}
       <section className={`${styles.section} ${styles.sectionGradient2}`}>
         <div className={styles.container}>
-          <h2 className={styles.sectionTitle}>
-            System Architecture
-          </h2>
+          <h2 className={styles.sectionTitle}>System Architecture</h2>
           <div className={styles.grid4Cols}>
             <div className={styles.card}>
-              <h3 className={styles.cardTitle}>
-                Detection Module
-              </h3>
+              <h3 className={styles.cardTitle}>Detection Module</h3>
               <ul className={styles.cardList}>
                 <li>• RF Scanning: Communication signal identification</li>
                 <li>• Radar Systems: 3D movement tracking</li>
@@ -122,9 +112,7 @@ export default function TechnicalPage(): React.ReactElement {
               </ul>
             </div>
             <div className={styles.card}>
-              <h3 className={styles.cardTitle}>
-                AI Identification Module
-              </h3>
+              <h3 className={styles.cardTitle}>AI Identification Module</h3>
               <ul className={styles.cardList}>
                 <li>
                   • 99.7% AI Classification: Friendly/neutral/hostile
@@ -143,9 +131,7 @@ export default function TechnicalPage(): React.ReactElement {
               </ul>
             </div>
             <div className={styles.card}>
-              <h3 className={styles.cardTitle}>
-                Neutralization Module
-              </h3>
+              <h3 className={styles.cardTitle}>Neutralization Module</h3>
               <ul className={styles.cardList}>
                 <li>• RF Jamming: Communication disruption</li>
                 <li>• GPS Spoofing: Navigation system confusion</li>
@@ -156,9 +142,7 @@ export default function TechnicalPage(): React.ReactElement {
               </ul>
             </div>
             <div className={styles.card}>
-              <h3 className={styles.cardTitle}>
-                Blockchain C2 System
-              </h3>
+              <h3 className={styles.cardTitle}>Blockchain C2 System</h3>
               <ul className={styles.cardList}>
                 <li>• 99.3% Data Integrity: Tamper-proof audit trails</li>
                 <li>• &lt; 2ms Authentication: Blockchain-verified commands</li>
@@ -175,9 +159,7 @@ export default function TechnicalPage(): React.ReactElement {
       {/* Deployment Options */}
       <section className={styles.section}>
         <div className={styles.container}>
-          <h2 className={styles.sectionTitle}>
-            Deployment Configurations
-          </h2>
+          <h2 className={styles.sectionTitle}>Deployment Configurations</h2>
           <div className={styles.grid3Cols}>
             {[
               {
@@ -216,22 +198,17 @@ export default function TechnicalPage(): React.ReactElement {
                 ],
               },
             ].map((config) => (
-              <div
-                key={config.title}
-                className={styles.card}
-              >
-                <h3 className={styles.cardTitle}>
-                  {config.title}
-                </h3>
-                <p className={styles.subtitle} style={{ marginBottom: '1rem', fontSize: '0.875rem' }}>
+              <div key={config.title} className={styles.card}>
+                <h3 className={styles.cardTitle}>{config.title}</h3>
+                <p
+                  className={styles.subtitle}
+                  style={{ marginBottom: "1rem", fontSize: "0.875rem" }}
+                >
                   {config.description}
                 </p>
                 <ul className={styles.cardList}>
                   {config.features.map((feature) => (
-                    <li
-                      key={feature}
-                      className={styles.cardListItem}
-                    >
+                    <li key={feature} className={styles.cardListItem}>
                       <span className={styles.cardListBullet}>•</span>
                       {feature}
                     </li>
@@ -244,67 +221,69 @@ export default function TechnicalPage(): React.ReactElement {
       </section>
 
       {/* Coverage Map Simulator */}
-      <section className="px-[5%] py-16 bg-[linear-gradient(180deg,transparent,rgba(0,136,255,0.05))]">
-        <div className="max-w-[1400px] mx-auto">
-          <h2 className="text-3xl font-bold mb-8 text-center text-[rgb(var(--primary))]">
+      <section className={`${styles.section} ${styles.sectionGradient2}`}>
+        <div className={styles.container}>
+          <h2 className={styles.sectionTitle}>
             Detection Coverage Visualization
           </h2>
-          <div className="rounded-xl border border-[rgba(0,255,136,0.2)] bg-[rgba(15,23,42,0.8)] backdrop-blur p-6 mb-8">
-            <div className="relative h-96 bg-gradient-to-br from-slate-800 to-slate-900 rounded-lg overflow-hidden">
+          <div className={styles.coverageMapContainer}>
+            <div className={styles.coverageMap}>
               {/* Simulated satellite view */}
-              <div className="absolute inset-0 opacity-30">
-                <div className="w-full h-full bg-gradient-to-br from-green-900 to-green-800"></div>
+              <div className={styles.terrainLayer}>
+                <div className={styles.terrainBase}></div>
                 {/* Simulated terrain features */}
-                <div className="absolute top-12 left-16 w-20 h-8 bg-tactical-gray rounded opacity-50"></div>
-                <div className="absolute bottom-20 right-12 w-16 h-16 bg-blue-600 rounded-full opacity-40"></div>
-                <div className="absolute top-32 right-24 w-12 h-24 bg-tactical-gray rounded opacity-45"></div>
+                <div className={styles.terrainFeature1}></div>
+                <div className={styles.terrainFeature2}></div>
+                <div className={styles.terrainFeature3}></div>
               </div>
 
               {/* Detection zones */}
-              <div className="absolute inset-0 flex items-center justify-center">
+              <div className={styles.detectionZones}>
                 {/* 5km detection radius */}
-                <div className="absolute w-80 h-80 border-2 border-[rgb(var(--primary))] rounded-full opacity-40 animate-pulse">
-                  <div className="absolute -top-6 left-1/2 transform -translate-x-1/2 text-xs text-[rgb(var(--primary))] font-semibold">
+                <div className={styles.detectionOuter}>
+                  <div className={styles.detectionOuterLabel}>
                     5km Detection
                   </div>
                 </div>
                 {/* 2km neutralization radius */}
-                <div className="absolute w-48 h-48 border-2 border-red-400 rounded-full opacity-60">
-                  <div className="absolute -top-6 left-1/2 transform -translate-x-1/2 text-xs text-red-400 font-semibold">
+                <div className={styles.neutralizationZone}>
+                  <div className={styles.neutralizationLabel}>
                     2km Neutralization
                   </div>
                 </div>
 
                 {/* System location */}
-                <div className="absolute w-8 h-8 bg-gradient-to-br from-[rgb(var(--primary))] to-[rgb(var(--secondary))] rounded-full flex items-center justify-center">
-                  <span className="text-xs">🛡️</span>
+                <div className={styles.systemCenter}>
+                  <span className={styles.systemIcon}>🛡️</span>
                 </div>
 
                 {/* Animated threat paths */}
-                <div className="absolute top-8 left-8 w-3 h-3 bg-red-500 rounded-full animate-bounce">
-                  <div className="absolute -top-4 -left-2 text-xs text-red-400">
-                    Threat
-                  </div>
+                <div className={`${styles.threat} ${styles.threat1}`}>
+                  <div className={styles.threatLabel}>Threat</div>
                 </div>
-                <div className="absolute bottom-12 right-16 w-3 h-3 bg-yellow-500 rounded-full animate-pulse">
-                  <div className="absolute -bottom-4 -left-2 text-xs text-yellow-400">
-                    Unknown
-                  </div>
+                <div className={styles.unknown}>
+                  <div className={styles.unknownLabel}>Unknown</div>
                 </div>
               </div>
 
               {/* Coverage stats */}
-              <div className="absolute bottom-4 left-4 bg-[rgba(0,0,0,0.7)] rounded-lg p-3 text-xs">
-                <div className="text-[rgb(var(--primary))] font-semibold mb-1">
+              <div className={styles.coverageStats}>
+                <div className={styles.coverageStatsTitle}>
                   Coverage Analysis
                 </div>
-                <div className="text-white">Area Protected: 78.5 km²</div>
-                <div className="text-green-400">Active Sensors: 5/5</div>
-                <div className="text-yellow-400">Threats Tracked: 2</div>
+                <div className={styles.coverageStatsItem}>
+                  Area Protected: 78.5 km²
+                </div>
+                <div className={styles.coverageStatsItemActive}>
+                  Active Sensors: 5/5
+                </div>
+                <div className={styles.coverageStatsItemTracking}>
+                  Threats Tracked: 2
+                </div>
               </div>
             </div>
-            <div className="mt-4 text-center">
-              <p className="text-[rgb(var(--gray))] text-sm">
+            <div className={styles.coverageCaption}>
+              <p className={styles.coverageCaptionText}>
                 Interactive coverage map showing 5km detection radius and 2km
                 neutralization zone
               </p>
@@ -314,17 +293,15 @@ export default function TechnicalPage(): React.ReactElement {
       </section>
 
       {/* Power and Portability */}
-      <section className="px-[5%] py-16">
-        <div className="max-w-[1400px] mx-auto">
-          <h2 className="text-3xl font-bold mb-8 text-center text-[rgb(var(--primary))]">
+      <section className={styles.section}>
+        <div className={styles.container}>
+          <h2 className={styles.sectionTitle}>
             Power & Environmental Specifications
           </h2>
-          <div className="grid md:grid-cols-2 gap-8">
+          <div className={styles.grid}>
             <div className={styles.card}>
-              <h3 className={styles.cardTitle}>
-                Power Requirements
-              </h3>
-              <ul className="space-y-3 text-[rgb(var(--gray))]">
+              <h3 className={styles.cardTitle}>Power Requirements</h3>
+              <ul className={styles.specsList}>
                 <li>
                   <strong>Primary:</strong> 220V AC mains power
                 </li>
@@ -343,10 +320,8 @@ export default function TechnicalPage(): React.ReactElement {
               </ul>
             </div>
             <div className={styles.card}>
-              <h3 className={styles.cardTitle}>
-                Environmental Specifications
-              </h3>
-              <ul className="space-y-3 text-[rgb(var(--gray))]">
+              <h3 className={styles.cardTitle}>Environmental Specifications</h3>
+              <ul className={styles.specsList}>
                 <li>
                   <strong>Operating Temperature:</strong> -20°C to +60°C
                 </li>
@@ -369,29 +344,20 @@ export default function TechnicalPage(): React.ReactElement {
       </section>
 
       {/* Footer */}
-      <footer className="px-[5%] py-8 text-center text-[rgb(var(--gray))] border-t border-[rgba(0,255,136,0.2)]">
-        <div className="max-w-[1400px] mx-auto">
+      <footer className={styles.footer}>
+        <div className={styles.footerContainer}>
           <p>
             © 2025 Phoenix Rooivalk. All rights reserved. | ITAR Compliance
             Planned | ISO 27001 Certification Planned
           </p>
-          <div className="mt-4">
-            <Link
-              href="/"
-              className="text-[rgb(var(--primary))] hover:underline mr-6"
-            >
+          <div className={styles.footerLinks}>
+            <Link href="/" className={styles.footerLink}>
               Home
             </Link>
-            <Link
-              href="/financial"
-              className="text-[rgb(var(--primary))] hover:underline mr-6"
-            >
+            <Link href="/financial" className={styles.footerLink}>
               Financial
             </Link>
-            <Link
-              href="/compliance"
-              className="text-[rgb(var(--primary))] hover:underline"
-            >
+            <Link href="/compliance" className={styles.footerLink}>
               Compliance
             </Link>
           </div>
