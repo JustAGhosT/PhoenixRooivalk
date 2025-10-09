@@ -6,3 +6,7 @@ pnpm-lock.yaml
 package-lock.json
 yarn.lock
 
+# Generated WASM files
+apps/marketing/public/wasm/*.js
+apps/marketing/public/wasm/*.wasm
+

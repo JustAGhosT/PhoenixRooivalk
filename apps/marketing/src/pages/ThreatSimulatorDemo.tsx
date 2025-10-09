@@ -8,13 +8,13 @@ import { EnergyBudget } from "../components/simulator/EnergyBudget";
 import { EnergyManagement } from "../components/simulator/EnergyManagement";
 import { MultiSelectDeployment } from "../components/simulator/MultiSelectDeployment";
 import {
-    FriendlyDeployment,
-    RadarSystem,
-    RadarTarget,
+  FriendlyDeployment,
+  RadarSystem,
+  RadarTarget,
 } from "../components/simulator/RadarSystem";
 import {
-    DemoCooldownMeter,
-    WeaponCooldownMeter,
+  DemoCooldownMeter,
+  WeaponCooldownMeter,
 } from "../components/stats/EnhancedCooldownMeter";
 import { SynergySystem } from "../components/weapon/SynergySystem";
 
