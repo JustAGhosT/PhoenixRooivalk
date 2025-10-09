@@ -1,6 +1,7 @@
 import React from "react";
 import { RevealSection } from "../RevealSection";
 import { Button } from "../ui/button";
+import styles from "./SocialProofSection.module.css";
 
 export const SocialProofSection: React.FC = () => {
   const testimonials = [
@@ -87,20 +88,18 @@ export const SocialProofSection: React.FC = () => {
   ];
 
   return (
-    <section className="px-6 md:px-[5%] lg:px-[5%] py-20 bg-gradient-to-br from-[rgb(var(--tactical-black))] to-[rgb(var(--tactical-obsidian))] relative overflow-hidden">
+    <section className={styles.section}>
       {/* Background pattern */}
-      <div className="absolute inset-0 opacity-5">
-        <div className="absolute inset-0 bg-[linear-gradient(rgba(var(--primary),0.1)_1px,_transparent_1px),_linear-gradient(90deg,_rgba(var(--primary),0.1)_1px,_transparent_1px)] bg-[length:50px_50px]"></div>
-      </div>
+      <div className={styles.backgroundPattern} />
 
-      <div className="relative z-10">
-        <div className="max-w-[1400px] mx-auto">
+      <div className={styles.container}>
+        <div className={styles.innerContainer}>
           {/* Section Header */}
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-br from-[rgb(var(--phoenix-white))] to-[rgb(var(--primary))] mb-6">
+          <div className={styles.header}>
+            <h2 className={styles.title}>
               Innovation in Counter-Drone Defense
             </h2>
-            <p className="text-xl text-[rgb(var(--gray))] max-w-3xl mx-auto">
+            <p className={styles.subtitle}>
               Phoenix Rooivalk represents the next generation of autonomous
               counter-drone defense technology, designed to address critical
               gaps in current market solutions.
@@ -108,34 +107,34 @@ export const SocialProofSection: React.FC = () => {
           </div>
 
           {/* What We're Hearing */}
-          <div className="mb-20">
-            <h3 className="text-2xl font-bold text-[rgb(var(--primary))] mb-8 text-center">
+          <div className={styles.testimonialSection}>
+            <h3 className={styles.sectionTitle}>
               What We&apos;re Hearing (Discovery Notes, Not Endorsements)
             </h3>
-            <p className="text-sm text-[rgb(var(--gray))] text-center mb-6 max-w-2xl mx-auto">
+            <p className={styles.sectionSubtitle}>
               Paraphrased insights from exploratory interviews with defense
               stakeholders.
             </p>
-            <div className="grid md:grid-cols-2 gap-8">
+            <div className={styles.testimonialsGrid}>
               {testimonials.map((testimonial, index) => (
                 <div
                   key={index}
-                  className="bg-[rgba(var(--tactical-charcoal),0.8)] backdrop-blur-sm border border-[rgba(var(--primary),0.2)] rounded-xl p-6 hover:border-[rgba(var(--primary),0.4)] transition-all duration-300"
+                  className={styles.testimonialCard}
                 >
-                  <div className="flex items-start space-x-4 mb-4">
-                    <div className="text-3xl">{testimonial.avatar}</div>
-                    <div>
-                      <p className="text-[rgb(var(--phoenix-white))] text-lg leading-relaxed mb-4">
+                  <div className={styles.testimonialHeader}>
+                    <div className={styles.avatar}>{testimonial.avatar}</div>
+                    <div className={styles.testimonialContent}>
+                      <p className={styles.quote}>
                         &quot;{testimonial.quote}&quot;
                       </p>
                       <div>
-                        <div className="font-semibold text-[rgb(var(--primary))]">
+                        <div className={styles.authorName}>
                           {testimonial.author}
                         </div>
-                        <div className="text-[rgb(var(--gray))] text-sm">
+                        <div className={styles.authorTitle}>
                           {testimonial.title}
                         </div>
-                        <div className="text-[rgb(var(--accent))] text-sm font-medium">
+                        <div className={styles.authorOrg}>
                           {testimonial.organization}
                         </div>
                       </div>
@@ -147,21 +146,21 @@ export const SocialProofSection: React.FC = () => {
           </div>
 
           {/* Partnerships */}
-          <div className="mb-20">
-            <h3 className="text-2xl font-bold text-[rgb(var(--primary))] mb-8 text-center">
+          <div className={styles.partnershipsSection}>
+            <h3 className={styles.sectionTitle}>
               Strategic Partnerships
             </h3>
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
+            <div className={styles.partnershipsGrid}>
               {partnerships.map((partner, index) => (
                 <div
                   key={index}
-                  className="bg-[rgba(var(--tactical-charcoal),0.6)] backdrop-blur-sm border border-[rgba(var(--primary),0.1)] rounded-lg p-4 text-center hover:border-[rgba(var(--primary),0.3)] hover:bg-[rgba(var(--tactical-charcoal),0.8)] transition-all duration-300 group"
+                  className={styles.partnerCard}
                 >
-                  <div className="text-3xl mb-2">{partner.logo}</div>
-                  <div className="font-semibold text-[rgb(var(--phoenix-white))] text-sm mb-1">
+                  <div className={styles.partnerLogo}>{partner.logo}</div>
+                  <div className={styles.partnerName}>
                     {partner.name}
                   </div>
-                  <div className="text-[rgb(var(--gray))] text-xs">
+                  <div className={styles.partnerType}>
                     {partner.type}
                   </div>
                 </div>
@@ -170,32 +169,32 @@ export const SocialProofSection: React.FC = () => {
           </div>
 
           {/* Development Status & Certifications */}
-          <div className="mb-20">
-            <h3 className="text-2xl font-bold text-[rgb(var(--primary))] mb-8 text-center">
+          <div className={styles.developmentSection}>
+            <h3 className={styles.sectionTitle}>
               Development Status & Compliance
             </h3>
 
             {/* Development Status */}
-            <div className="mb-12">
-              <h4 className="text-xl font-semibold text-[rgb(var(--accent))] mb-6 text-center">
+            <div className={styles.testimonialSection}>
+              <h4 className={styles.developmentSubtitle}>
                 Development Roadmap (Targets, Post-Funding)
               </h4>
-              <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+              <div className={styles.developmentGrid}>
                 {developmentStatus.map((status, index) => (
                   <RevealSection key={index}>
-                    <div className="bg-[rgba(var(--tactical-charcoal),0.8)] backdrop-blur-sm border border-[rgba(var(--primary),0.2)] rounded-xl p-6 text-center hover:border-[rgba(var(--primary),0.4)] transition-all duration-300">
-                      <div className="text-3xl mb-3">{status.icon}</div>
-                      <h5 className="text-lg font-bold text-[rgb(var(--primary))] mb-2">
+                    <div className={styles.statusCard}>
+                      <div className={styles.statusIcon}>{status.icon}</div>
+                      <h5 className={styles.statusTitle}>
                         {status.title}
                       </h5>
-                      <p className="text-[rgb(var(--gray))] text-sm mb-3">
+                      <p className={styles.statusDescription}>
                         {status.description}
                       </p>
                       <div
-                        className={`inline-block px-3 py-1 rounded-full text-xs font-semibold ${
+                        className={`${styles.statusBadge} ${
                           status.status === "Active"
-                            ? "bg-[rgba(var(--status-active),0.2)] text-[rgb(var(--status-active))] border border-[rgba(var(--status-active),0.3)]"
-                            : "bg-[rgba(var(--status-warning),0.2)] text-[rgb(var(--status-warning))] border border-[rgba(var(--status-warning),0.3)]"
+                            ? styles.statusActive
+                            : styles.statusPlanned
                         }`}
                       >
                         {status.status}
@@ -207,27 +206,27 @@ export const SocialProofSection: React.FC = () => {
             </div>
 
             {/* Compliance Roadmap */}
-            <div>
-              <h4 className="text-xl font-semibold text-[rgb(var(--accent))] mb-6 text-center">
+            <div className={styles.complianceSection}>
+              <h4 className={styles.developmentSubtitle}>
                 Assurance Roadmap (Targets, Post-Funding)
               </h4>
-              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+              <div className={styles.complianceGrid}>
                 {certifications.map((cert, index) => (
                   <div
                     key={index}
-                    className="bg-[rgba(var(--tactical-charcoal),0.6)] backdrop-blur-sm border border-[rgba(var(--primary),0.1)] rounded-lg p-4 text-center hover:border-[rgba(var(--primary),0.3)] transition-all duration-300"
+                    className={styles.certCard}
                   >
-                    <div className="text-2xl mb-2">{cert.icon}</div>
-                    <div className="font-semibold text-[rgb(var(--phoenix-white))] text-sm mb-1">
+                    <div className={styles.certIcon}>{cert.icon}</div>
+                    <div className={styles.certName}>
                       {cert.name}
                     </div>
                     <div
-                      className={`text-xs px-2 py-1 rounded-full inline-block ${
+                      className={`${styles.certStatus} ${
                         cert.status === "Certified"
-                          ? "bg-[rgba(var(--status-active),0.2)] text-[rgb(var(--status-active))] border border-[rgba(var(--status-active),0.3)]"
+                          ? styles.certStatusCertified
                           : cert.status === "In Progress"
-                            ? "bg-[rgba(var(--status-warning),0.2)] text-[rgb(var(--status-warning))] border border-[rgba(var(--status-warning),0.3)]"
-                            : "bg-[rgba(var(--status-offline),0.2)] text-[rgb(var(--status-offline))] border border-[rgba(var(--status-offline),0.3)]"
+                            ? styles.certStatusInProgress
+                            : styles.certStatusPlanned
                       }`}
                     >
                       {cert.status}
@@ -239,23 +238,23 @@ export const SocialProofSection: React.FC = () => {
           </div>
 
           {/* Media Coverage */}
-          <div className="mb-16">
-            <h3 className="text-2xl font-bold text-[rgb(var(--primary))] mb-8 text-center">
+          <div className={styles.mediaSection}>
+            <h3 className={styles.sectionTitle}>
               Industry Recognition
             </h3>
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className={styles.mediaGrid}>
               {mediaCoverage.map((article, index) => (
                 <div
                   key={index}
-                  className="bg-[rgba(var(--tactical-charcoal),0.6)] backdrop-blur-sm border border-[rgba(var(--primary),0.1)] rounded-lg p-4 hover:border-[rgba(var(--primary),0.3)] transition-all duration-300"
+                  className={styles.articleCard}
                 >
-                  <div className="font-semibold text-[rgb(var(--primary))] text-sm mb-2">
+                  <div className={styles.articleOutlet}>
                     {article.outlet}
                   </div>
-                  <div className="text-[rgb(var(--phoenix-white))] text-sm mb-2 leading-relaxed">
+                  <div className={styles.articleHeadline}>
                     {article.headline}
                   </div>
-                  <div className="text-[rgb(var(--gray))] text-xs">
+                  <div className={styles.articleDate}>
                     {article.date}
                   </div>
                 </div>
@@ -264,15 +263,15 @@ export const SocialProofSection: React.FC = () => {
           </div>
 
           {/* CTA Section */}
-          <div className="text-center bg-[rgba(var(--tactical-charcoal),0.8)] backdrop-blur-sm border border-[rgba(var(--primary),0.2)] rounded-2xl p-8">
-            <h3 className="text-2xl font-bold text-[rgb(var(--phoenix-white))] mb-4">
+          <div className={styles.ctaSection}>
+            <h3 className={styles.ctaTitle}>
               Ready to Experience 120ms Response Time?
             </h3>
-            <p className="text-[rgb(var(--gray))] mb-6 max-w-2xl mx-auto">
+            <p className={styles.ctaSubtitle}>
               Join leading defense organizations in piloting the next generation
               of autonomous counter-drone defense.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className={styles.ctaButtons}>
               <Button
                 href="#contact"
                 size="lg"
