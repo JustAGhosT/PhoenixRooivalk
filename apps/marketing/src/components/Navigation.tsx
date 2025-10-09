@@ -313,7 +313,10 @@ export const Navigation: React.FC = () => {
             </div>
           </button>
 
-          {/* Single CTA Button */}
+          {/* Login and CTA Buttons */}
+          <Link href="/login" className={styles.loginButton}>
+            Login
+          </Link>
           <Link href="/contact" className={styles.ctaButton}>
             Join Early Access
           </Link>
