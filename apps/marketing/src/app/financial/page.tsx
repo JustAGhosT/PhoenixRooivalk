@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import { Navigation } from "../../components/Navigation";
 import { Button } from "../../components/ui/button";
+import styles from "./financial.module.css";
 
 export default function FinancialPage(): React.ReactElement {
   const [inputs, setInputs] = useState({
