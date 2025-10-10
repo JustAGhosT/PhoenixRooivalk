@@ -14,9 +14,7 @@ export default function SecurityClearancePage(): React.ReactElement {
       <section className={styles.heroSection}>
         <div className={styles.heroContainer}>
           <h1 className={styles.heroTitle}>
-            <span className={styles.heroTitleGradient}>
-              Security Clearance
-            </span>
+            <span className={styles.heroTitleGradient}>Security Clearance</span>
           </h1>
           <p className={styles.heroSubtitle}>
             Personnel security clearance framework for classified operations and
@@ -62,12 +60,12 @@ export default function SecurityClearancePage(): React.ReactElement {
               </ul>
             </div>
             <div className={styles.infoCard}>
-              <h3 className={styles.infoCardTitle}>
-                Clearance Levels
-              </h3>
+              <h3 className={styles.infoCardTitle}>Clearance Levels</h3>
               <div className={styles.requirementsList}>
                 <div className={styles.clearanceLevelItem}>
-                  <span className={styles.clearanceLevelName}>Confidential</span>
+                  <span className={styles.clearanceLevelName}>
+                    Confidential
+                  </span>
                   <span className={styles.statusPlanned}>Planned</span>
                 </div>
                 <div className={styles.clearanceLevelItem}>
@@ -123,20 +121,12 @@ export default function SecurityClearancePage(): React.ReactElement {
             ].map((step, index) => (
               <div key={index} className={styles.processCard}>
                 <div className={styles.processCardHeader}>
-                  <div className={styles.processNumber}>
-                    {index + 1}
-                  </div>
-                  <h3 className={styles.processTitle}>
-                    {step.title}
-                  </h3>
+                  <div className={styles.processNumber}>{index + 1}</div>
+                  <h3 className={styles.processTitle}>{step.title}</h3>
                 </div>
-                <p className={styles.processDescription}>
-                  {step.description}
-                </p>
+                <p className={styles.processDescription}>{step.description}</p>
                 <div className={styles.processDuration}>
-                  <span className={styles.processDurationLabel}>
-                    Duration
-                  </span>
+                  <span className={styles.processDurationLabel}>Duration</span>
                   <div className={styles.processDurationValue}>
                     {step.duration}
                   </div>
@@ -155,9 +145,7 @@ export default function SecurityClearancePage(): React.ReactElement {
           </h2>
           <div className={styles.grid2Cols}>
             <div>
-              <h3 className={styles.subsectionTitle}>
-                Physical Security
-              </h3>
+              <h3 className={styles.subsectionTitle}>Physical Security</h3>
               <ul className={styles.checkList}>
                 {[
                   "Secure facility access controls",
@@ -174,9 +162,7 @@ export default function SecurityClearancePage(): React.ReactElement {
               </ul>
             </div>
             <div>
-              <h3 className={styles.subsectionTitle}>
-                Information Security
-              </h3>
+              <h3 className={styles.subsectionTitle}>Information Security</h3>
               <ul className={styles.checkList}>
                 {[
                   "Encrypted data transmission",
