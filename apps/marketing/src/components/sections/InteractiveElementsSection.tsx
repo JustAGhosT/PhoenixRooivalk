@@ -246,32 +246,30 @@ export const InteractiveElementsSection: React.FC = () => {
 
               {/* Results */}
               <div className={styles.inputSection}>
-                <div className="bg-[rgba(15,23,42,0.8)] rounded-xl p-8 border border-[rgba(var(--primary),0.4)] shadow-lg">
-                  <h4 className="text-xl font-bold text-[rgb(var(--primary))] mb-6">
+                <div className={styles.resultCard}>
+                  <h4 className={styles.resultCardTitle}>
                     Phoenix Rooivalk Results
                   </h4>
                   <div className={styles.resultRows}>
                     <div className={styles.resultRow}>
-                      <span className="text-[rgb(var(--gray))]">
-                        Success Rate:
-                      </span>
-                      <span className="text-[rgb(var(--status-active))] font-bold">
+                      <span className={styles.resultLabel}>Success Rate:</span>
+                      <span className={styles.resultValueSuccess}>
                         {(roi.phoenix.successRate * 100).toFixed(1)}%
                       </span>
                     </div>
                     <div className={styles.resultRow}>
-                      <span className="text-[rgb(var(--gray))]">
+                      <span className={styles.resultLabel}>
                         Threats Prevented/Year:
                       </span>
-                      <span className="text-[rgb(var(--phoenix-white))] font-bold">
+                      <span className={styles.resultValueWhite}>
                         {roi.phoenix.prevented.toFixed(1)}
                       </span>
                     </div>
                     <div className={styles.resultRow}>
-                      <span className="text-[rgb(var(--gray))]">
+                      <span className={styles.resultLabel}>
                         Annual Savings:
                       </span>
-                      <span className="text-[rgb(var(--status-active))] font-bold">
+                      <span className={styles.resultValueSuccess}>
                         {isClient
                           ? `$${Math.round(roi.phoenix.savings).toLocaleString()}`
                           : `$${Math.round(roi.phoenix.savings).toString()}`}
@@ -280,40 +278,38 @@ export const InteractiveElementsSection: React.FC = () => {
                     <div
                       className={`${styles.resultRow} ${styles.resultRowDivider}`}
                     >
-                      <span className="text-[rgb(var(--gray))]">ROI:</span>
-                      <span className="text-[rgb(var(--accent))] font-bold text-xl">
+                      <span className={styles.resultLabel}>ROI:</span>
+                      <span className={styles.resultValueAccent}>
                         {roi.phoenix.roi.toFixed(0)}%
                       </span>
                     </div>
                   </div>
                 </div>
 
-                <div className="bg-[rgba(15,23,42,0.8)] rounded-xl p-8 border border-[rgba(var(--border),0.3)] shadow-lg">
-                  <h4 className="text-xl font-bold text-[rgb(var(--gray))] mb-6">
+                <div className={styles.resultCardSecondary}>
+                  <h4 className={styles.resultCardTitleSecondary}>
                     Traditional Systems
                   </h4>
                   <div className={styles.resultRows}>
                     <div className={styles.resultRow}>
-                      <span className="text-[rgb(var(--gray))]">
-                        Success Rate:
-                      </span>
-                      <span className="text-[rgb(var(--action-warning))] font-bold">
+                      <span className={styles.resultLabel}>Success Rate:</span>
+                      <span className={styles.resultValueWarning}>
                         {(roi.traditional.successRate * 100).toFixed(1)}%
                       </span>
                     </div>
                     <div className={styles.resultRow}>
-                      <span className="text-[rgb(var(--gray))]">
+                      <span className={styles.resultLabel}>
                         Threats Prevented/Year:
                       </span>
-                      <span className="text-[rgb(var(--phoenix-white))] font-bold">
+                      <span className={styles.resultValueWhite}>
                         {roi.traditional.prevented.toFixed(1)}
                       </span>
                     </div>
                     <div className={styles.resultRow}>
-                      <span className="text-[rgb(var(--gray))]">
+                      <span className={styles.resultLabel}>
                         Annual Savings:
                       </span>
-                      <span className="text-[rgb(var(--action-warning))] font-bold">
+                      <span className={styles.resultValueWarning}>
                         {isClient
                           ? `$${Math.round(roi.traditional.savings).toLocaleString()}`
                           : `$${Math.round(roi.traditional.savings).toString()}`}
@@ -322,8 +318,8 @@ export const InteractiveElementsSection: React.FC = () => {
                     <div
                       className={`${styles.resultRow} ${styles.resultRowDivider}`}
                     >
-                      <span className="text-[rgb(var(--gray))]">ROI:</span>
-                      <span className="text-[rgb(var(--gray))] font-bold text-xl">
+                      <span className={styles.resultLabel}>ROI:</span>
+                      <span className={styles.resultValueGray}>
                         {roi.traditional.roi.toFixed(0)}%
                       </span>
                     </div>

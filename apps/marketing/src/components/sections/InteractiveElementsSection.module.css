@@ -515,3 +515,69 @@
     flex-direction: row;
   }
 }
+
+/* Result Cards */
+.resultCard {
+  background: rgba(15, 23, 42, 0.8);
+  border-radius: 0.75rem;
+  padding: 2rem;
+  border: 1px solid rgba(var(--primary), 0.4);
+  box-shadow:
+    0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.resultCardSecondary {
+  background: rgba(15, 23, 42, 0.8);
+  border-radius: 0.75rem;
+  padding: 2rem;
+  border: 1px solid rgba(var(--border), 0.3);
+  box-shadow:
+    0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.resultCardTitle {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: rgb(var(--primary));
+  margin-bottom: 1.5rem;
+}
+
+.resultCardTitleSecondary {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: rgb(var(--gray));
+  margin-bottom: 1.5rem;
+}
+
+.resultLabel {
+  color: rgb(var(--gray));
+}
+
+.resultValueSuccess {
+  color: rgb(var(--status-active));
+  font-weight: 700;
+}
+
+.resultValueWhite {
+  color: rgb(var(--phoenix-white));
+  font-weight: 700;
+}
+
+.resultValueWarning {
+  color: rgb(var(--action-warning));
+  font-weight: 700;
+}
+
+.resultValueAccent {
+  color: rgb(var(--accent));
+  font-weight: 700;
+  font-size: 1.25rem;
+}
+
+.resultValueGray {
+  color: rgb(var(--gray));
+  font-weight: 700;
+  font-size: 1.25rem;
+}
