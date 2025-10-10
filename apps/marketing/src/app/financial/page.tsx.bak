@@ -135,7 +135,7 @@ export default function FinancialPage(): React.ReactElement {
                   <div>
                     <label
                       htmlFor="response-time"
-                      className={styles.label}
+                      className="block text-[rgb(var(--phoenix-white))] font-semibold mb-3"
                     >
                       Current Response Time (milliseconds)
                     </label>
@@ -154,9 +154,9 @@ export default function FinancialPage(): React.ReactElement {
                       }
                       className="w-full h-3 bg-[rgb(var(--tactical-gray))] rounded-lg appearance-none cursor-pointer slider"
                     />
-                    <div className={styles.sliderLabels}>
+                    <div className="flex justify-between text-[rgb(var(--gray))] text-sm mt-2">
                       <span>500ms</span>
-                      <span className={styles.sliderValue}>
+                      <span className="text-[rgb(var(--accent))] font-bold text-lg">
                         {inputs.averageResponseTime.toLocaleString()}ms
                       </span>
                       <span>10s</span>
@@ -166,7 +166,7 @@ export default function FinancialPage(): React.ReactElement {
                   <div>
                     <label
                       htmlFor="deployment-cost"
-                      className={styles.label}
+                      className="block text-[rgb(var(--phoenix-white))] font-semibold mb-3"
                     >
                       System Deployment Cost (USD)
                     </label>
@@ -185,9 +185,9 @@ export default function FinancialPage(): React.ReactElement {
                       }
                       className="w-full h-3 bg-[rgb(var(--tactical-gray))] rounded-lg appearance-none cursor-pointer slider"
                     />
-                    <div className={styles.sliderLabels}>
+                    <div className="flex justify-between text-[rgb(var(--gray))] text-sm mt-2">
                       <span>$50K</span>
-                      <span className={styles.sliderValue}>
+                      <span className="text-[rgb(var(--accent))] font-bold text-lg">
                         ${inputs.deploymentCost.toLocaleString()}
                       </span>
                       <span>$2M</span>
@@ -197,7 +197,7 @@ export default function FinancialPage(): React.ReactElement {
                   <div>
                     <label
                       htmlFor="personnel-cost"
-                      className={styles.label}
+                      className="block text-[rgb(var(--phoenix-white))] font-semibold mb-3"
                     >
                       Annual Personnel Cost (USD)
                     </label>
@@ -216,9 +216,9 @@ export default function FinancialPage(): React.ReactElement {
                       }
                       className="w-full h-3 bg-[rgb(var(--tactical-gray))] rounded-lg appearance-none cursor-pointer slider"
                     />
-                    <div className={styles.sliderLabels}>
+                    <div className="flex justify-between text-[rgb(var(--gray))] text-sm mt-2">
                       <span>$50K</span>
-                      <span className={styles.sliderValue}>
+                      <span className="text-[rgb(var(--accent))] font-bold text-lg">
                         ${inputs.personnelCost.toLocaleString()}
                       </span>
                       <span>$500K</span>
@@ -228,7 +228,7 @@ export default function FinancialPage(): React.ReactElement {
                   <div>
                     <label
                       htmlFor="downtime-cost"
-                      className={styles.label}
+                      className="block text-[rgb(var(--phoenix-white))] font-semibold mb-3"
                     >
                       Cost Per Successful Attack (USD)
                     </label>
@@ -247,9 +247,9 @@ export default function FinancialPage(): React.ReactElement {
                       }
                       className="w-full h-3 bg-[rgb(var(--tactical-gray))] rounded-lg appearance-none cursor-pointer slider"
                     />
-                    <div className={styles.sliderLabels}>
+                    <div className="flex justify-between text-[rgb(var(--gray))] text-sm mt-2">
                       <span>$100K</span>
-                      <span className={styles.sliderValue}>
+                      <span className="text-[rgb(var(--accent))] font-bold text-lg">
                         ${inputs.downtimeCost.toLocaleString()}
                       </span>
                       <span>$10M</span>
