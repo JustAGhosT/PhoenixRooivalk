@@ -1,34 +1,28 @@
 import React from "react";
 import { RevealSection } from "../RevealSection";
 import { Button } from "../ui/button";
+import styles from "./AIBenefitsSection.module.css";
 
 export const AIBenefitsSection: React.FC = () => {
   return (
-    <section
-      className="px-6 md:px-[5%] lg:px-[5%] py-12 bg-[linear-gradient(180deg,rgba(0,255,136,0.05),rgba(0,136,255,0.05))]"
-      id="ai-benefits"
-    >
-      <div className="max-w-[1400px] mx-auto">
-        <RevealSection className="text-center mb-8">
-          <div className="inline-block bg-[var(--primary)] text-black px-4 py-2 rounded-full text-sm font-bold mb-4">
-            AI + BLOCKCHAIN REVOLUTION
-          </div>
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+    <section className={styles.section} id="ai-benefits">
+      <div className={styles.container}>
+        <RevealSection className={styles.header}>
+          <div className={styles.badge}>AI + BLOCKCHAIN REVOLUTION</div>
+          <h2 className={styles.title}>
             Revolutionary AI + Blockchain Performance
           </h2>
-          <p className="text-[rgb(var(--gray))] max-w-3xl mx-auto text-lg">
+          <p className={styles.subtitle}>
             PhoenixRooivalk combines cutting-edge AI with military-grade
             blockchain technology to deliver unprecedented performance: 99.7%
             accuracy with 99.3% data integrity protection.
           </p>
         </RevealSection>
 
-        <RevealSection className="grid md:grid-cols-2 gap-8">
-          <div className="space-y-6">
-            <h3 className="text-2xl font-bold text-white mb-6">
-              AI + Blockchain Performance
-            </h3>
-            <div className="space-y-4">
+        <RevealSection className={styles.grid}>
+          <div className={styles.column}>
+            <h3 className={styles.columnTitle}>AI + Blockchain Performance</h3>
+            <div className={styles.metricsContainer}>
               <MetricCard
                 title="AI Detection Accuracy"
                 value="99.7%"
@@ -52,11 +46,9 @@ export const AIBenefitsSection: React.FC = () => {
             </div>
           </div>
 
-          <div className="space-y-6">
-            <h3 className="text-2xl font-bold text-white mb-6">
-              AI + Blockchain Capabilities
-            </h3>
-            <div className="space-y-4">
+          <div className={styles.column}>
+            <h3 className={styles.columnTitle}>AI + Blockchain Capabilities</h3>
+            <div className={styles.featuresContainer}>
               <FeatureCard
                 icon="🧠"
                 title="Multi-Modal AI Intelligence"
@@ -86,19 +78,19 @@ export const AIBenefitsSection: React.FC = () => {
           </div>
         </RevealSection>
 
-        <RevealSection className="text-center mt-8">
-          <div className="bg-[rgba(0,255,136,0.1)] border border-[rgb(var(--primary))]/30 rounded-xl p-6 max-w-4xl mx-auto">
-            <h3 className="text-2xl font-bold text-white mb-4">
+        <RevealSection className={styles.ctaSection}>
+          <div className={styles.ctaCard}>
+            <h3 className={styles.ctaTitle}>
               18-Month AI + Blockchain Advantage
             </h3>
-            <p className="text-[rgb(var(--gray))] text-lg mb-6">
+            <p className={styles.ctaDescription}>
               While competitors race to meet the 2027 autonomous warfare
               deadline, PhoenixRooivalk&apos;s integrated AI-blockchain system
               is ready for immediate deployment, providing a decisive
               technological advantage in the critical race for autonomous
               warfare dominance.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className={styles.ctaButtons}>
               <Button href="#contact" size="lg">
                 Request AI + Blockchain Demo
               </Button>
@@ -122,12 +114,12 @@ const MetricCard: React.FC<{
   value: string;
   comparison: string;
 }> = ({ title, value, comparison }) => (
-  <div className="flex items-center justify-between p-4 bg-[rgba(0,255,136,0.1)] border border-[rgb(var(--primary))]/30 rounded-lg">
-    <div>
-      <div className="font-bold text-[rgb(var(--primary))]">{title}</div>
-      <div className="text-sm text-gray-300">{comparison}</div>
+  <div className={styles.metricCard}>
+    <div className={styles.metricInfo}>
+      <div className={styles.metricTitle}>{title}</div>
+      <div className={styles.metricComparison}>{comparison}</div>
     </div>
-    <div className="text-2xl font-bold text-[rgb(var(--primary))]">{value}</div>
+    <div className={styles.metricValue}>{value}</div>
   </div>
 );
 
@@ -136,11 +128,11 @@ const FeatureCard: React.FC<{
   title: string;
   description: string;
 }> = ({ icon, title, description }) => (
-  <div className="flex items-start gap-4 p-4 bg-[rgba(0,136,255,0.1)] border border-blue-500/30 rounded-lg">
-    <span className="text-blue-400 text-2xl">{icon}</span>
-    <div>
-      <div className="font-bold text-blue-400">{title}</div>
-      <div className="text-sm text-gray-300">{description}</div>
+  <div className={styles.featureCard}>
+    <span className={styles.featureIcon}>{icon}</span>
+    <div className={styles.featureContent}>
+      <div className={styles.featureTitle}>{title}</div>
+      <div className={styles.featureDescription}>{description}</div>
     </div>
   </div>
 );

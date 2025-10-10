@@ -102,3 +102,102 @@
   margin-top: 3rem;
   text-align: center;
 }
+
+.ctaCard {
+  background-color: rgba(0, 255, 136, 0.1);
+  border: 1px solid rgba(var(--primary), 0.3);
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  max-width: 56rem;
+  margin: 0 auto;
+}
+
+.ctaTitle {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: rgb(var(--white));
+  margin-bottom: 1rem;
+}
+
+.ctaDescription {
+  color: rgb(var(--gray));
+  font-size: 1.125rem;
+  margin-bottom: 1.5rem;
+}
+
+.ctaButtons {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  justify-content: center;
+}
+
+@media (min-width: 640px) {
+  .ctaButtons {
+    flex-direction: row;
+  }
+}
+
+/* MetricCard Styles */
+.metricCard {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+  background-color: rgba(0, 255, 136, 0.1);
+  border: 1px solid rgba(var(--primary), 0.3);
+  border-radius: 0.5rem;
+}
+
+.metricInfo {
+  display: flex;
+  flex-direction: column;
+}
+
+.metricTitle {
+  font-weight: 700;
+  color: rgb(var(--primary));
+}
+
+.metricComparison {
+  font-size: 0.875rem;
+  color: rgb(var(--text-muted));
+}
+
+.metricValue {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: rgb(var(--primary));
+}
+
+/* FeatureCard Styles */
+.featureCard {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1rem;
+  background-color: rgba(0, 136, 255, 0.1);
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  border-radius: 0.5rem;
+}
+
+.featureIcon {
+  color: rgb(59, 130, 246);
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+
+.featureContent {
+  display: flex;
+  flex-direction: column;
+}
+
+.featureTitle {
+  font-weight: 700;
+  color: rgb(59, 130, 246);
+}
+
+.featureDescription {
+  font-size: 0.875rem;
+  color: rgb(var(--text-muted));
+}

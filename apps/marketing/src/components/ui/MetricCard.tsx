@@ -1,4 +1,5 @@
 import React from "react";
+import styles from "./MetricCard.module.css";
 
 interface MetricCardProps {
   value: string;
@@ -14,14 +15,10 @@ export const MetricCard: React.FC<MetricCardProps> = ({
   className = "",
 }) => {
   return (
-    <div
-      className={`text-center p-6 rounded-xl bg-[rgba(0,255,136,0.05)] border border-[rgba(0,255,136,0.2)] hover:border-[rgba(0,255,136,0.4)] transition-all hover:-translate-y-1 ${className}`}
-    >
-      <div className="text-3xl md:text-4xl font-bold text-[rgb(var(--primary))] mb-2">
-        {value}
-      </div>
-      <div className="text-lg font-semibold text-white mb-1">{label}</div>
-      <div className="text-sm text-[rgb(var(--gray))]">{description}</div>
+    <div className={`${styles.card} ${className}`}>
+      <div className={styles.value}>{value}</div>
+      <div className={styles.label}>{label}</div>
+      <div className={styles.description}>{description}</div>
     </div>
   );
 };
