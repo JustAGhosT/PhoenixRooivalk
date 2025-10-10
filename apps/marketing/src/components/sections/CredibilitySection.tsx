@@ -25,7 +25,8 @@ export const CredibilitySection: React.FC = () => {
     {
       icon: "🤝",
       title: "Partnership Ready",
-      description: "Seeking Anduril integration and defense contractor partnerships",
+      description:
+        "Seeking Anduril integration and defense contractor partnerships",
     },
   ];
 

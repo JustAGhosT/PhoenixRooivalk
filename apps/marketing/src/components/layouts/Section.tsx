@@ -19,7 +19,11 @@ export const Section: React.FC<SectionProps> = ({
   background = "default",
 }) => {
   const backgroundClass =
-    background !== "default" ? styles[`background${background.charAt(0).toUpperCase() + background.slice(1)}`] : "";
+    background !== "default"
+      ? styles[
+          `background${background.charAt(0).toUpperCase() + background.slice(1)}`
+        ]
+      : "";
 
   return (
     <section
@@ -50,7 +54,9 @@ export const SectionContainer: React.FC<SectionContainerProps> = ({
 }) => {
   const maxWidthClass =
     maxWidth !== "default"
-      ? styles[`maxWidth${maxWidth.charAt(0).toUpperCase() + maxWidth.slice(1)}`]
+      ? styles[
+          `maxWidth${maxWidth.charAt(0).toUpperCase() + maxWidth.slice(1)}`
+        ]
       : "";
   const centeredClass = centered ? styles.centered : "";
 

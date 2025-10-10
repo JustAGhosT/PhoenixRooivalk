@@ -18,9 +18,12 @@ export const Card: React.FC<CardProps> = ({
   className = "",
   colorVariant = "default",
 }) => {
-  const colorClass = colorVariant !== "default" 
-    ? styles[`card${colorVariant.charAt(0).toUpperCase() + colorVariant.slice(1)}`] 
-    : "";
+  const colorClass =
+    colorVariant !== "default"
+      ? styles[
+          `card${colorVariant.charAt(0).toUpperCase() + colorVariant.slice(1)}`
+        ]
+      : "";
 
   return (
     <div className={`${styles.card} ${colorClass} ${className}`}>

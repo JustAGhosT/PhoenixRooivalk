@@ -20,9 +20,14 @@ export const Badge: React.FC<BadgeProps> = ({
   tier,
   className = "",
 }) => {
-  const variantClass = styles[`variant${variant.charAt(0).toUpperCase() + variant.slice(1)}`];
-  const statusClass = status ? styles[`status${status.charAt(0).toUpperCase() + status.slice(1)}`] : "";
-  const tierClass = tier ? styles[`tier${tier.charAt(0).toUpperCase() + tier.slice(1)}`] : "";
+  const variantClass =
+    styles[`variant${variant.charAt(0).toUpperCase() + variant.slice(1)}`];
+  const statusClass = status
+    ? styles[`status${status.charAt(0).toUpperCase() + status.slice(1)}`]
+    : "";
+  const tierClass = tier
+    ? styles[`tier${tier.charAt(0).toUpperCase() + tier.slice(1)}`]
+    : "";
 
   return (
     <span
