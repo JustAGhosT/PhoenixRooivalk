@@ -63,7 +63,9 @@ export function ROIResults({
                 : `${phoenix.paybackPeriod.toFixed(1)} years`}
             </span>
           </div>
-          <div className={`${styles.resultsDetailRow} ${styles.resultsDetailRowLast}`}>
+          <div
+            className={`${styles.resultsDetailRow} ${styles.resultsDetailRowLast}`}
+          >
             <span className={styles.resultsDetailLabel}>3-Year ROI:</span>
             <span className={styles.resultsDetailValueLarge}>
               {phoenix.roi.toFixed(0)}%
@@ -84,13 +86,17 @@ export function ROIResults({
         </div>
 
         <div className={styles.resultsMetrics}>
-          <div className={`${styles.resultsMetric} ${styles.resultsMetricGray}`}>
+          <div
+            className={`${styles.resultsMetric} ${styles.resultsMetricGray}`}
+          >
             <div className={styles.resultsMetricValueWarning}>
               {(traditional.successRate * 100).toFixed(1)}%
             </div>
             <div className={styles.resultsMetricLabel}>Success Rate</div>
           </div>
-          <div className={`${styles.resultsMetric} ${styles.resultsMetricGray}`}>
+          <div
+            className={`${styles.resultsMetric} ${styles.resultsMetricGray}`}
+          >
             <div className={styles.resultsMetricValueWhite}>
               {traditional.prevented.toFixed(1)}
             </div>
@@ -115,9 +121,13 @@ export function ROIResults({
                 : `${traditional.paybackPeriod.toFixed(1)} years`}
             </span>
           </div>
-          <div className={`${styles.resultsDetailRow} ${styles.resultsDetailRowLast}`}>
+          <div
+            className={`${styles.resultsDetailRow} ${styles.resultsDetailRowLast}`}
+          >
             <span className={styles.resultsDetailLabel}>3-Year ROI:</span>
-            <span className={`${styles.resultsDetailValueLarge} ${styles.resultsDetailValueGray}`}>
+            <span
+              className={`${styles.resultsDetailValueLarge} ${styles.resultsDetailValueGray}`}
+            >
               {traditional.roi.toFixed(0)}%
             </span>
           </div>
@@ -126,9 +136,7 @@ export function ROIResults({
 
       {/* Savings Comparison */}
       <div className={styles.comparisonSection}>
-        <h3 className={styles.comparisonTitle}>
-          Annual Savings Difference
-        </h3>
+        <h3 className={styles.comparisonTitle}>Annual Savings Difference</h3>
         <div className={styles.comparisonValue}>
           ${(phoenix.savings - traditional.savings).toLocaleString()}
         </div>

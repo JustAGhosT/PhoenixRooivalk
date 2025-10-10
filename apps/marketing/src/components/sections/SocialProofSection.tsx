@@ -117,10 +117,7 @@ export const SocialProofSection: React.FC = () => {
             </p>
             <div className={styles.testimonialsGrid}>
               {testimonials.map((testimonial, index) => (
-                <div
-                  key={index}
-                  className={styles.testimonialCard}
-                >
+                <div key={index} className={styles.testimonialCard}>
                   <div className={styles.testimonialHeader}>
                     <div className={styles.avatar}>{testimonial.avatar}</div>
                     <div className={styles.testimonialContent}>
@@ -147,22 +144,13 @@ export const SocialProofSection: React.FC = () => {
 
           {/* Partnerships */}
           <div className={styles.partnershipsSection}>
-            <h3 className={styles.sectionTitle}>
-              Strategic Partnerships
-            </h3>
+            <h3 className={styles.sectionTitle}>Strategic Partnerships</h3>
             <div className={styles.partnershipsGrid}>
               {partnerships.map((partner, index) => (
-                <div
-                  key={index}
-                  className={styles.partnerCard}
-                >
+                <div key={index} className={styles.partnerCard}>
                   <div className={styles.partnerLogo}>{partner.logo}</div>
-                  <div className={styles.partnerName}>
-                    {partner.name}
-                  </div>
-                  <div className={styles.partnerType}>
-                    {partner.type}
-                  </div>
+                  <div className={styles.partnerName}>{partner.name}</div>
+                  <div className={styles.partnerType}>{partner.type}</div>
                 </div>
               ))}
             </div>
@@ -184,9 +172,7 @@ export const SocialProofSection: React.FC = () => {
                   <RevealSection key={index}>
                     <div className={styles.statusCard}>
                       <div className={styles.statusIcon}>{status.icon}</div>
-                      <h5 className={styles.statusTitle}>
-                        {status.title}
-                      </h5>
+                      <h5 className={styles.statusTitle}>{status.title}</h5>
                       <p className={styles.statusDescription}>
                         {status.description}
                       </p>
@@ -212,14 +198,9 @@ export const SocialProofSection: React.FC = () => {
               </h4>
               <div className={styles.complianceGrid}>
                 {certifications.map((cert, index) => (
-                  <div
-                    key={index}
-                    className={styles.certCard}
-                  >
+                  <div key={index} className={styles.certCard}>
                     <div className={styles.certIcon}>{cert.icon}</div>
-                    <div className={styles.certName}>
-                      {cert.name}
-                    </div>
+                    <div className={styles.certName}>{cert.name}</div>
                     <div
                       className={`${styles.certStatus} ${
                         cert.status === "Certified"
@@ -239,24 +220,15 @@ export const SocialProofSection: React.FC = () => {
 
           {/* Media Coverage */}
           <div className={styles.mediaSection}>
-            <h3 className={styles.sectionTitle}>
-              Industry Recognition
-            </h3>
+            <h3 className={styles.sectionTitle}>Industry Recognition</h3>
             <div className={styles.mediaGrid}>
               {mediaCoverage.map((article, index) => (
-                <div
-                  key={index}
-                  className={styles.articleCard}
-                >
-                  <div className={styles.articleOutlet}>
-                    {article.outlet}
-                  </div>
+                <div key={index} className={styles.articleCard}>
+                  <div className={styles.articleOutlet}>{article.outlet}</div>
                   <div className={styles.articleHeadline}>
                     {article.headline}
                   </div>
-                  <div className={styles.articleDate}>
-                    {article.date}
-                  </div>
+                  <div className={styles.articleDate}>{article.date}</div>
                 </div>
               ))}
             </div>

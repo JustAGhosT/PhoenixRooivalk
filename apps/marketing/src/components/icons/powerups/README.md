@@ -2,7 +2,8 @@
 
 ## Overview
 
-This directory contains icon specifications for all power-up and enhancement systems used in the Phoenix Rooivalk Threat Simulator.
+This directory contains icon specifications for all power-up and enhancement
+systems used in the Phoenix Rooivalk Threat Simulator.
 
 ## Icon Categories
 
@@ -105,7 +106,8 @@ Each power-up icon file contains:
 
 - **Common**: Basic enhancements (damage boost, rapid fire)
 - **Uncommon**: Advanced enhancements (area effect, range boost)
-- **Visual Hierarchy**: Rarer power-ups should have more distinctive visual elements
+- **Visual Hierarchy**: Rarer power-ups should have more distinctive visual
+  elements
 
 ## Maintenance
 

@@ -14,9 +14,7 @@ export function CTAButton({
   children,
 }: CTAButtonProps): React.ReactElement {
   const buttonClass = `${styles.ctaButton} ${styles.ctaButtonLarge} ${
-    variant === "primary"
-      ? styles.ctaButtonPrimary
-      : styles.ctaButtonSecondary
+    variant === "primary" ? styles.ctaButtonPrimary : styles.ctaButtonSecondary
   }`;
 
   return (

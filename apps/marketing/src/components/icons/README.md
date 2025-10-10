@@ -22,7 +22,8 @@ icons/
 
 ### Effectors (Weapon Systems)
 
-Located in `effectors/` directory - Contains all counter-drone weapon systems including:
+Located in `effectors/` directory - Contains all counter-drone weapon systems
+including:
 
 - **Hard Kill**: Kinetic, Smart Slug, Net Interceptor
 - **Soft Kill**: EMP, HPM, RF Jam, RF Takeover, GNSS Denial
@@ -32,16 +33,18 @@ Located in `effectors/` directory - Contains all counter-drone weapon systems in
 
 ### Drones (Deployable Systems)
 
-Located in `drones/` directory - Contains all UAV and deployable systems including:
+Located in `drones/` directory - Contains all UAV and deployable systems
+including:
 
 - **Core Types**: Effector, Jammer, Surveillance, Shield, Swarm Coordinator
-- **Extended Types**: Decoy UAV, Net-Capture UAV, EW Relay UAV, Tethered Overwatch,
-  Recovery Drone, Micro-Decoy Swarm, Perimeter Sentry, Spotter UAV, HPM Pod UAV,
-  Shield Wall, LiDAR Mapper, Optical Mesh Drone
+- **Extended Types**: Decoy UAV, Net-Capture UAV, EW Relay UAV, Tethered
+  Overwatch, Recovery Drone, Micro-Decoy Swarm, Perimeter Sentry, Spotter UAV,
+  HPM Pod UAV, Shield Wall, LiDAR Mapper, Optical Mesh Drone
 
 ### Power-ups (Enhancement Systems)
 
-Located in `powerups/` directory - Contains all temporary enhancement systems including:
+Located in `powerups/` directory - Contains all temporary enhancement systems
+including:
 
 - **Damage Boost**: Increased weapon effectiveness
 - **Rapid Fire**: Enhanced firing rate
@@ -50,7 +53,8 @@ Located in `powerups/` directory - Contains all temporary enhancement systems in
 
 ### Status Icons (UI Indicators)
 
-Located in `status/` directory - Contains all status and feedback indicators including:
+Located in `status/` directory - Contains all status and feedback indicators
+including:
 
 - **System Status**: Cooldown Ready, Cooldown Active
 - **Resource Status**: Energy Low

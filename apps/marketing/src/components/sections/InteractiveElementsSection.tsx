@@ -103,9 +103,7 @@ export const InteractiveElementsSection: React.FC = () => {
         <div className={styles.innerContainer}>
           {/* Section Header */}
           <div className={styles.header}>
-            <h2 className={styles.title}>
-              Projected ROI Analysis
-            </h2>
+            <h2 className={styles.title}>Projected ROI Analysis</h2>
             <p className={styles.subtitle}>
               Explore the potential return on investment for Phoenix
               Rooivalk&apos;s target 120ms response time based on current market
@@ -187,10 +185,7 @@ export const InteractiveElementsSection: React.FC = () => {
                 </div>
 
                 <div>
-                  <label
-                    htmlFor="roi-response-time"
-                    className={styles.label}
-                  >
+                  <label htmlFor="roi-response-time" className={styles.label}>
                     Current Response Time (ms)
                   </label>
                   <input
@@ -218,10 +213,7 @@ export const InteractiveElementsSection: React.FC = () => {
                 </div>
 
                 <div>
-                  <label
-                    htmlFor="roi-deployment-cost"
-                    className={styles.label}
-                  >
+                  <label htmlFor="roi-deployment-cost" className={styles.label}>
                     Deployment Cost (USD)
                   </label>
                   <input
@@ -285,7 +277,9 @@ export const InteractiveElementsSection: React.FC = () => {
                           : `$${Math.round(roi.phoenix.savings).toString()}`}
                       </span>
                     </div>
-                    <div className={`${styles.resultRow} ${styles.resultRowDivider}`}>
+                    <div
+                      className={`${styles.resultRow} ${styles.resultRowDivider}`}
+                    >
                       <span className="text-[rgb(var(--gray))]">ROI:</span>
                       <span className="text-[rgb(var(--accent))] font-bold text-xl">
                         {roi.phoenix.roi.toFixed(0)}%
@@ -325,7 +319,9 @@ export const InteractiveElementsSection: React.FC = () => {
                           : `$${Math.round(roi.traditional.savings).toString()}`}
                       </span>
                     </div>
-                    <div className={`${styles.resultRow} ${styles.resultRowDivider}`}>
+                    <div
+                      className={`${styles.resultRow} ${styles.resultRowDivider}`}
+                    >
                       <span className="text-[rgb(var(--gray))]">ROI:</span>
                       <span className="text-[rgb(var(--gray))] font-bold text-xl">
                         {roi.traditional.roi.toFixed(0)}%

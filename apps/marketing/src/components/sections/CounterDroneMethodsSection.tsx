@@ -29,59 +29,59 @@ const MethodCard: React.FC<MethodCardProps> = ({
   <div className={styles.card}>
     <div className={styles.cardHeader}>
       <div className={styles.cardIcon}>{icon}</div>
-      <h3 className={styles.cardTitle}>
-        {title}
-      </h3>
+      <h3 className={styles.cardTitle}>{title}</h3>
       <p className={styles.cardDescription}>{description}</p>
     </div>
 
     {/* Key Metrics */}
     <div className={styles.metricsGrid}>
       <div className={styles.metricBox}>
-        <div className={styles.metricLabel}>
-          Effectiveness
-        </div>
+        <div className={styles.metricLabel}>Effectiveness</div>
         <div className={`${styles.metricValue} ${styles.metricValueSuccess}`}>
           {effectiveness}
         </div>
       </div>
       <div className={styles.metricBox}>
-        <div className={styles.metricLabel}>
-          Response Time
-        </div>
+        <div className={styles.metricLabel}>Response Time</div>
         <div className={`${styles.metricValue} ${styles.metricValuePrimary}`}>
           {responseTime}
         </div>
       </div>
       <div className={styles.metricBox}>
         <div className={styles.metricLabel}>Range</div>
-        <div className={`${styles.metricValue} ${styles.metricValueAccent}`}>{range}</div>
+        <div className={`${styles.metricValue} ${styles.metricValueAccent}`}>
+          {range}
+        </div>
       </div>
     </div>
 
     {/* Pros and Cons */}
     <div className={styles.prosConsGrid}>
       <div className={styles.prosSection}>
-        <h4 className={styles.prosTitle}>
-          ✓ Advantages
-        </h4>
+        <h4 className={styles.prosTitle}>✓ Advantages</h4>
         <ul className={styles.list}>
           {pros.map((pro, index) => (
             <li key={index} className={styles.listItem}>
-              <span className={`${styles.listBullet} ${styles.listBulletSuccess}`}>•</span>
+              <span
+                className={`${styles.listBullet} ${styles.listBulletSuccess}`}
+              >
+                •
+              </span>
               {pro}
             </li>
           ))}
         </ul>
       </div>
       <div className={styles.consSection}>
-        <h4 className={styles.consTitle}>
-          ⚠ Limitations
-        </h4>
+        <h4 className={styles.consTitle}>⚠ Limitations</h4>
         <ul className={styles.list}>
           {cons.map((con, index) => (
             <li key={index} className={styles.listItem}>
-              <span className={`${styles.listBullet} ${styles.listBulletWarning}`}>•</span>
+              <span
+                className={`${styles.listBullet} ${styles.listBulletWarning}`}
+              >
+                •
+              </span>
               {con}
             </li>
           ))}
@@ -91,9 +91,7 @@ const MethodCard: React.FC<MethodCardProps> = ({
 
     {/* Use Case */}
     <div className={styles.useCaseBox}>
-      <h4 className={styles.useCaseTitle}>
-        Best Use Case
-      </h4>
+      <h4 className={styles.useCaseTitle}>Best Use Case</h4>
       <p className={styles.useCaseText}>{useCase}</p>
     </div>
   </div>
@@ -251,9 +249,7 @@ export const CounterDroneMethodsSection: React.FC = () => {
           <div className={styles.innerContainer}>
             {/* Section Header */}
             <div className={styles.header}>
-              <h2 className={styles.title}>
-                Counter-Drone Defense Methods
-              </h2>
+              <h2 className={styles.title}>Counter-Drone Defense Methods</h2>
               <p className={styles.subtitle}>
                 Phoenix Rooivalk integrates multiple defense strategies to
                 provide comprehensive protection against various drone threats.
@@ -281,7 +277,9 @@ export const CounterDroneMethodsSection: React.FC = () => {
                 </p>
                 <div className={styles.statsGrid}>
                   <div className={styles.statBox}>
-                    <div className={`${styles.statValue} ${styles.statValueSuccess}`}>
+                    <div
+                      className={`${styles.statValue} ${styles.statValueSuccess}`}
+                    >
                       95%
                     </div>
                     <div className={styles.statLabel}>
@@ -289,7 +287,9 @@ export const CounterDroneMethodsSection: React.FC = () => {
                     </div>
                   </div>
                   <div className={styles.statBox}>
-                    <div className={`${styles.statValue} ${styles.statValuePrimary}`}>
+                    <div
+                      className={`${styles.statValue} ${styles.statValuePrimary}`}
+                    >
                       &lt;200ms
                     </div>
                     <div className={styles.statLabel}>
@@ -297,12 +297,12 @@ export const CounterDroneMethodsSection: React.FC = () => {
                     </div>
                   </div>
                   <div className={styles.statBox}>
-                    <div className={`${styles.statValue} ${styles.statValueAccent}`}>
+                    <div
+                      className={`${styles.statValue} ${styles.statValueAccent}`}
+                    >
                       6
                     </div>
-                    <div className={styles.statLabel}>
-                      Defense Methods
-                    </div>
+                    <div className={styles.statLabel}>Defense Methods</div>
                   </div>
                 </div>
               </div>
