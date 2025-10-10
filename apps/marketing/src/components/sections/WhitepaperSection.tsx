@@ -1,8 +1,9 @@
 import { downloadWhitepaper } from "@phoenix-rooivalk/utils";
 import React from "react";
 import { RevealSection } from "../RevealSection";
-import { Button } from "../ui/button";
-import { Card } from "../ui/Card";
+import { Section, SectionContainer } from "../layouts";
+import { Grid } from "../layouts/Grid";
+import { Badge, Button, Card } from "../ui";
 import styles from "./WhitepaperSection.module.css";
 
 export const WhitepaperSection: React.FC = () => {
@@ -34,12 +35,12 @@ export const WhitepaperSection: React.FC = () => {
   ];
 
   return (
-    <section className={styles.section}>
-      <div className={styles.container}>
+    <Section background="gradient">
+      <SectionContainer centered>
         <RevealSection>
-          <div className={styles.badge}>
+          <Badge variant="gradient">
             📋 COMPREHENSIVE TECHNICAL DOCUMENTATION
-          </div>
+          </Badge>
           <h2 className={styles.title}>
             Get the Complete Technical Whitepaper
           </h2>
@@ -49,11 +50,11 @@ export const WhitepaperSection: React.FC = () => {
             and performance specifications.
           </p>
 
-          <div className={styles.grid}>
+          <Grid columns={{ mobile: 1, tablet: 2, desktop: 4 }} gap="lg">
             {features.map((feature, index) => (
               <Card key={index} {...feature} />
             ))}
-          </div>
+          </Grid>
 
           <div className={styles.actions}>
             <Button
@@ -68,7 +69,7 @@ export const WhitepaperSection: React.FC = () => {
             </Button>
           </div>
         </RevealSection>
-      </div>
-    </section>
+      </SectionContainer>
+    </Section>
   );
 };

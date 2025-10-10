@@ -1,6 +1,8 @@
 import React from "react";
 import { RevealSection } from "../RevealSection";
-import { Card } from "../ui/Card";
+import { Section, SectionContainer } from "../layouts";
+import { Grid } from "../layouts/Grid";
+import { Card } from "../ui";
 import styles from "./CredibilitySection.module.css";
 
 export const CredibilitySection: React.FC = () => {
@@ -28,8 +30,8 @@ export const CredibilitySection: React.FC = () => {
   ];
 
   return (
-    <section className={styles.section} id="credibility">
-      <div className={styles.container}>
+    <Section id="credibility">
+      <SectionContainer>
         <RevealSection className={styles.header}>
           <h2 className={styles.title}>Development Status</h2>
           <p className={styles.description}>
@@ -38,10 +40,12 @@ export const CredibilitySection: React.FC = () => {
           </p>
         </RevealSection>
 
-        <RevealSection className={styles.grid}>
-          {cards.map((card, index) => (
-            <Card key={index} {...card} />
-          ))}
+        <RevealSection>
+          <Grid columns={{ mobile: 1, tablet: 2, desktop: 4 }} gap="md">
+            {cards.map((card, index) => (
+              <Card key={index} {...card} />
+            ))}
+          </Grid>
         </RevealSection>
 
         <RevealSection className={styles.advisorySection}>
@@ -58,7 +62,7 @@ export const CredibilitySection: React.FC = () => {
             </div>
           </div>
         </RevealSection>
-      </div>
-    </section>
+      </SectionContainer>
+    </Section>
   );
 };

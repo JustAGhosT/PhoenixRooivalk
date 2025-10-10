@@ -1,6 +1,8 @@
 import * as React from "react";
 import { RevealSection } from "../RevealSection";
-import { Card } from "../ui/Card";
+import { Section, SectionContainer } from "../layouts";
+import { Grid } from "../layouts/Grid";
+import { Card } from "../ui";
 import styles from "./CapabilitiesSection.module.css";
 
 export const CapabilitiesSection: React.FC = () => {
@@ -71,8 +73,8 @@ export const CapabilitiesSection: React.FC = () => {
   ];
 
   return (
-    <section className={styles.section} id="capabilities">
-      <div className={styles.container}>
+    <Section id="capabilities">
+      <SectionContainer>
         <RevealSection className={styles.header}>
           <h2 className={styles.title}>Three-Tier Defense Architecture</h2>
           <p className={styles.description}>
@@ -84,12 +86,14 @@ export const CapabilitiesSection: React.FC = () => {
             Analytics and compliance reporting.
           </p>
         </RevealSection>
-        <RevealSection className={styles.grid}>
-          {coreCapabilities.map((capability, index) => (
-            <Card key={index} {...capability} />
-          ))}
+        <RevealSection>
+          <Grid columns={{ mobile: 1, tablet: 2, desktop: 3 }} gap="md">
+            {coreCapabilities.map((capability, index) => (
+              <Card key={index} {...capability} />
+            ))}
+          </Grid>
         </RevealSection>
-      </div>
-    </section>
+      </SectionContainer>
+    </Section>
   );
 };
