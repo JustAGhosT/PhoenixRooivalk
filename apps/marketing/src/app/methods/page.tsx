@@ -20,9 +20,7 @@ export default function MethodsPage(): React.ReactElement {
       <Navigation />
 
       {/* Main Content */}
-      <div className="pt-20">
-        <CounterDroneMethodsSection />
-      </div>
+      <CounterDroneMethodsSection />
 
       {/* Footer */}
       <Footer />

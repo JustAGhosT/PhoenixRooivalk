@@ -1,5 +1,6 @@
 "use client";
 import React, { useState } from "react";
+import { Footer } from "../../components/Footer";
 import { Navigation } from "../../components/Navigation";
 import { Button } from "../../components/ui/button";
 import styles from "./financial.module.css";
@@ -433,6 +434,9 @@ export default function FinancialPage(): React.ReactElement {
           </div>
         </div>
       </div>
+
+      {/* Footer */}
+      <Footer />
     </main>
   );
 }

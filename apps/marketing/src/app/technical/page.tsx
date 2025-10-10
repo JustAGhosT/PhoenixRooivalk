@@ -1,6 +1,8 @@
 "use client";
 import Link from "next/link";
 import React from "react";
+import { Footer } from "../../components/Footer";
+import { Navigation } from "../../components/Navigation";
 import styles from "./technical.module.css";
 
 export default function TechnicalPage(): React.ReactElement {
@@ -11,36 +13,8 @@ export default function TechnicalPage(): React.ReactElement {
         <div className={styles.gridPattern} />
       </div>
 
-      {/* Nav */}
-      <nav className={styles.nav}>
-        <div className={styles.navContainer}>
-          <Link href="/" className={styles.logo}>
-            Phoenix Rooivalk
-          </Link>
-          <ul className={styles.navLinks}>
-            <li>
-              <Link href="/" className={styles.navLink}>
-                Home
-              </Link>
-            </li>
-            <li>
-              <Link href="/technical" className={styles.navLinkActive}>
-                Technical
-              </Link>
-            </li>
-            <li>
-              <Link href="/financial" className={styles.navLink}>
-                Financial
-              </Link>
-            </li>
-            <li>
-              <Link href="/compliance" className={styles.navLink}>
-                Compliance
-              </Link>
-            </li>
-          </ul>
-        </div>
-      </nav>
+      {/* Navigation */}
+      <Navigation />
 
       {/* Header */}
       <section className={styles.section}>
@@ -344,25 +318,7 @@ export default function TechnicalPage(): React.ReactElement {
       </section>
 
       {/* Footer */}
-      <footer className={styles.footer}>
-        <div className={styles.footerContainer}>
-          <p>
-            © 2025 Phoenix Rooivalk. All rights reserved. | ITAR Compliance
-            Planned | ISO 27001 Certification Planned
-          </p>
-          <div className={styles.footerLinks}>
-            <Link href="/" className={styles.footerLink}>
-              Home
-            </Link>
-            <Link href="/financial" className={styles.footerLink}>
-              Financial
-            </Link>
-            <Link href="/compliance" className={styles.footerLink}>
-              Compliance
-            </Link>
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </main>
   );
 }

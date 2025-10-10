@@ -1,6 +1,7 @@
 "use client";
 import Link from "next/link";
 import * as React from "react";
+import { Footer } from "../../components/Footer";
 import { Navigation } from "../../components/Navigation";
 import styles from "./compliance.module.css";
 
@@ -285,25 +286,7 @@ export default function CompliancePage(): React.ReactElement {
       </section>
 
       {/* Footer */}
-      <footer className={styles.footer}>
-        <div className={styles.footerContainer}>
-          <p>
-            © 2025 Phoenix Rooivalk. All rights reserved. | ITAR Compliance
-            Planned | ISO 27001 Certification Planned
-          </p>
-          <div className={styles.footerLinks}>
-            <Link href="/" className={styles.footerLink}>
-              Home
-            </Link>
-            <Link href="/technical" className={styles.footerLink}>
-              Technical
-            </Link>
-            <Link href="/financial" className={styles.footerLink}>
-              Financial
-            </Link>
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </main>
   );
 }
