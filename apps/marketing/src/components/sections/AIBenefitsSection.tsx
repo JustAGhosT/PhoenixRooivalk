@@ -1,6 +1,7 @@
 import React from "react";
 import { RevealSection } from "../RevealSection";
 import { Button } from "../ui/button";
+import { FeatureCard } from "../ui/FeatureCard";
 import styles from "./AIBenefitsSection.module.css";
 
 export const AIBenefitsSection: React.FC = () => {
@@ -120,19 +121,5 @@ const MetricCard: React.FC<{
       <div className={styles.metricComparison}>{comparison}</div>
     </div>
     <div className={styles.metricValue}>{value}</div>
-  </div>
-);
-
-const FeatureCard: React.FC<{
-  icon: string;
-  title: string;
-  description: string;
-}> = ({ icon, title, description }) => (
-  <div className={styles.featureCard}>
-    <span className={styles.featureIcon}>{icon}</span>
-    <div className={styles.featureContent}>
-      <div className={styles.featureTitle}>{title}</div>
-      <div className={styles.featureDescription}>{description}</div>
-    </div>
   </div>
 );
