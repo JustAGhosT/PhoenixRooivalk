@@ -1,0 +1,48 @@
+/* Button component styles */
+.ctaButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 0.5rem;
+  transition: all 0.2s;
+  cursor: pointer;
+  text-decoration: none;
+  border: none;
+}
+
+.ctaButtonPrimary {
+  background: linear-gradient(
+    to right,
+    rgb(var(--primary)),
+    rgb(var(--accent))
+  );
+  color: white;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+    0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+.ctaButtonPrimary:hover {
+  background: linear-gradient(
+    to right,
+    rgb(var(--accent)),
+    rgb(var(--primary))
+  );
+}
+
+.ctaButtonSecondary {
+  background: transparent;
+  border: 1px solid rgb(var(--primary));
+  color: rgb(var(--primary));
+}
+
+.ctaButtonSecondary:hover {
+  background: rgba(var(--primary), 0.1);
+}
+
+.ctaButtonLarge {
+  padding: 1rem 2rem;
+  font-size: 1.125rem;
+}
