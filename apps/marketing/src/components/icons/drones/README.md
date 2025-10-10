@@ -2,7 +2,8 @@
 
 ## Overview
 
-This directory contains icon specifications for all deployable UAV and drone systems used in the Phoenix Rooivalk Threat Simulator.
+This directory contains icon specifications for all deployable UAV and drone
+systems used in the Phoenix Rooivalk Threat Simulator.
 
 ## Icon Categories
 
@@ -187,7 +188,8 @@ Each drone icon file contains:
 ### By Function
 
 - **Guard/Protection**: Effector, Shield, Perimeter Sentry, Shield Wall
-- **Reconnaissance**: Surveillance, Spotter UAV, LiDAR Mapper, Tethered Overwatch
+- **Reconnaissance**: Surveillance, Spotter UAV, LiDAR Mapper, Tethered
+  Overwatch
 - **Electronic Warfare**: Jammer, EW Relay UAV, HPM Pod UAV, Optical Mesh Drone
 - **Deception**: Decoy UAV, Micro-Decoy Swarm
 - **Capture**: Net-Capture UAV
@@ -196,7 +198,8 @@ Each drone icon file contains:
 ### By Energy Cost
 
 - **Low Cost (6-8)**: Recovery Drone, EW Relay UAV, Optical Mesh Drone
-- **Medium Cost (9-12)**: Surveillance, Spotter UAV, LiDAR Mapper, Perimeter Sentry, Tethered Overwatch
+- **Medium Cost (9-12)**: Surveillance, Spotter UAV, LiDAR Mapper, Perimeter
+  Sentry, Tethered Overwatch
 - **High Cost (14-20)**: Net-Capture UAV, Micro-Decoy Swarm, HPM Pod UAV
 
 ## Maintenance

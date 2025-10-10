@@ -69,7 +69,7 @@ export const WhitepaperSection: React.FC = () => {
             <Button
               onClick={() => downloadWhitepaper()}
               size="lg"
-              className="bg-green-600 hover:bg-green-700"
+              className={styles.downloadButton}
             >
               📥 Download Technical Whitepaper
             </Button>

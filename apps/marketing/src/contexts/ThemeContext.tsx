@@ -25,31 +25,52 @@ interface ThemeProviderProps {
 
 export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
   const [theme, setTheme] = useState<Theme>("phoenix");
+  const [mounted, setMounted] = useState(false);
+
+  // Load theme from localStorage on mount
+  useEffect(() => {
+    const savedTheme = localStorage.getItem("phoenix-theme") as Theme | null;
+    if (savedTheme && (savedTheme === "phoenix" || savedTheme === "blue")) {
+      setTheme(savedTheme);
+    }
+    setMounted(true);
+  }, []);
 
   useEffect(() => {
+    if (!mounted) return;
+
+    // Save theme to localStorage
+    localStorage.setItem("phoenix-theme", theme);
+
     // Apply theme to CSS custom properties
     const root = document.documentElement;
 
     if (theme === "phoenix") {
-      // Phoenix Rooivalk Fire Theme (Default)
-      root.style.setProperty("--primary", "255, 107, 0"); // Phoenix Orange
-      root.style.setProperty("--secondary", "51, 51, 51"); // Tactical Gray Dark
-      root.style.setProperty("--accent", "255, 165, 0"); // Phoenix Amber
-      root.style.setProperty("--orange", "255, 107, 0"); // Phoenix Orange
-      root.style.setProperty("--red-glow", "rgba(255, 34, 0, 0.2)");
-      root.style.setProperty("--orange-glow", "rgba(255, 107, 0, 0.15)");
-      root.style.setProperty("--amber-glow", "rgba(255, 165, 0, 0.15)");
+      // Phoenix Rooivalk Fire Theme (Default - Orange/Red)
+      root.style.setProperty("--primary", "249, 115, 22"); // Phoenix Orange
+      root.style.setProperty("--secondary", "51, 65, 85"); // Tactical Gray Dark
+      root.style.setProperty("--accent", "251, 146, 60"); // Phoenix Amber
+      root.style.setProperty("--orange", "249, 115, 22"); // Phoenix Orange
+      root.style.setProperty("--action-primary", "249, 115, 22"); // Phoenix Orange
+      root.style.setProperty("--brand-primary", "249, 115, 22");
+      root.style.setProperty("--brand-accent", "251, 146, 60");
+      root.style.setProperty("--red-glow", "rgba(249, 115, 22, 0.2)");
+      root.style.setProperty("--orange-glow", "rgba(249, 115, 22, 0.15)");
+      root.style.setProperty("--amber-glow", "rgba(251, 146, 60, 0.15)");
     } else {
       // Blue Tactical Theme
-      root.style.setProperty("--primary", "30, 64, 175"); // blue-700
-      root.style.setProperty("--secondary", "51, 51, 51"); // Tactical Gray Dark
-      root.style.setProperty("--accent", "59, 130, 246"); // blue-500
-      root.style.setProperty("--orange", "59, 130, 246"); // blue-500 (using blue for orange in blue theme)
-      root.style.setProperty("--red-glow", "rgba(30, 64, 175, 0.2)");
+      root.style.setProperty("--primary", "59, 130, 246"); // Blue 500
+      root.style.setProperty("--secondary", "51, 65, 85"); // Tactical Gray Dark
+      root.style.setProperty("--accent", "96, 165, 250"); // Blue 400
+      root.style.setProperty("--orange", "59, 130, 246"); // Use blue instead of orange
+      root.style.setProperty("--action-primary", "59, 130, 246"); // Blue
+      root.style.setProperty("--brand-primary", "59, 130, 246");
+      root.style.setProperty("--brand-accent", "96, 165, 250");
+      root.style.setProperty("--red-glow", "rgba(59, 130, 246, 0.2)");
       root.style.setProperty("--orange-glow", "rgba(59, 130, 246, 0.15)");
-      root.style.setProperty("--amber-glow", "rgba(59, 130, 246, 0.15)");
+      root.style.setProperty("--amber-glow", "rgba(96, 165, 250, 0.15)");
     }
-  }, [theme]);
+  }, [theme, mounted]);
 
   const toggleTheme = () => {
     setTheme((prev) => (prev === "phoenix" ? "blue" : "phoenix"));

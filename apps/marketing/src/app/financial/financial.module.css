@@ -502,6 +502,24 @@
 }
 
 /* Calculator Styles */
+.contentWrapper {
+  padding: 4rem 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .contentWrapper {
+    padding-left: 5%;
+    padding-right: 5%;
+  }
+}
+
+@media (min-width: 1024px) {
+  .contentWrapper {
+    padding-left: 5%;
+    padding-right: 5%;
+  }
+}
+
 .calculatorSection {
   margin-bottom: 4rem;
 }
@@ -603,4 +621,231 @@
   font-size: 0.75rem;
   color: rgb(var(--gray));
   margin-top: 0.25rem;
+}
+
+/* Results Grid */
+.resultsGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.resultsCard {
+  background: rgba(var(--tactical-charcoal), 0.8);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(var(--primary), 0.3);
+  border-radius: 1rem;
+  padding: 2rem;
+}
+
+.resultsCardGray {
+  border-color: rgba(var(--tactical-gray), 0.3);
+}
+
+.resultsHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.resultsIcon {
+  width: 2rem;
+  height: 2rem;
+  background: linear-gradient(
+    to right,
+    rgb(var(--primary)),
+    rgb(var(--accent))
+  );
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: bold;
+  font-size: 0.875rem;
+}
+
+.resultsIconGray {
+  background: rgb(var(--tactical-gray));
+}
+
+.resultsTitle {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: rgb(var(--primary));
+}
+
+.resultsTitleGray {
+  color: rgb(var(--gray));
+}
+
+.resultsMetrics {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.resultsMetric {
+  text-align: center;
+  padding: 1rem;
+  background: rgba(var(--tactical-black), 0.6);
+  border-radius: 0.5rem;
+  border: 1px solid rgba(var(--primary), 0.2);
+}
+
+.resultsMetricGray {
+  border-color: rgba(var(--tactical-gray), 0.2);
+}
+
+.resultsMetricValue {
+  font-size: 1.875rem;
+  font-weight: bold;
+  color: rgb(var(--status-active));
+  margin-bottom: 0.5rem;
+}
+
+.resultsMetricValueWhite {
+  font-size: 1.875rem;
+  font-weight: bold;
+  color: rgb(var(--phoenix-white));
+  margin-bottom: 0.5rem;
+}
+
+.resultsMetricValueWarning {
+  font-size: 1.875rem;
+  font-weight: bold;
+  color: rgb(var(--status-warning));
+  margin-bottom: 0.5rem;
+}
+
+.resultsMetricLabel {
+  color: rgb(var(--gray));
+  font-size: 0.875rem;
+}
+
+.resultsDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.resultsDetailRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid rgba(var(--primary), 0.1);
+}
+
+.resultsDetailRowLast {
+  border-bottom: none;
+}
+
+.resultsDetailLabel {
+  color: rgb(var(--gray));
+}
+
+.resultsDetailValue {
+  font-weight: bold;
+  font-size: 1.25rem;
+  color: rgb(var(--status-active));
+}
+
+.resultsDetailValueWhite {
+  font-weight: bold;
+  color: rgb(var(--phoenix-white));
+}
+
+.resultsDetailValueWarning {
+  font-weight: bold;
+  font-size: 1.25rem;
+  color: rgb(var(--status-warning));
+}
+
+.resultsDetailValueLarge {
+  font-weight: bold;
+  font-size: 1.5rem;
+  color: rgb(var(--accent));
+}
+
+.resultsDetailValueGray {
+  color: rgb(var(--gray));
+}
+
+/* Comparison Section */
+.comparisonSection {
+  background: rgba(var(--tactical-charcoal), 0.8);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(var(--accent), 0.3);
+  border-radius: 1rem;
+  padding: 2rem;
+  text-align: center;
+}
+
+.comparisonTitle {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: rgb(var(--accent));
+  margin-bottom: 1rem;
+}
+
+.comparisonValue {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: rgb(var(--status-active));
+  margin-bottom: 0.5rem;
+}
+
+.comparisonSubtext {
+  color: rgb(var(--gray));
+  margin-bottom: 0.5rem;
+  font-size: 1.125rem;
+}
+
+.comparisonSubtext:last-child {
+  font-weight: bold;
+  color: rgb(var(--accent));
+  margin-bottom: 0;
+}
+
+/* CTA Section */
+.ctaSection {
+  margin-top: 4rem;
+  text-align: center;
+  background: rgba(var(--tactical-charcoal), 0.8);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(var(--primary), 0.2);
+  border-radius: 1rem;
+  padding: 3rem;
+}
+
+.ctaTitle {
+  font-size: 1.875rem;
+  font-weight: bold;
+  color: white;
+  margin-bottom: 1rem;
+}
+
+.ctaDescription {
+  color: rgb(var(--gray));
+  font-size: 1.125rem;
+  margin-bottom: 2rem;
+  max-width: 48rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.ctaButtons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 640px) {
+  .ctaButtons {
+    flex-direction: column;
+  }
 }

@@ -1,6 +1,7 @@
 "use client";
 import * as React from "react";
 import { RevealSection } from "../RevealSection";
+import styles from "./CounterDroneMethodsSection.module.css";
 
 interface MethodCardProps {
   icon: string;
@@ -25,62 +26,62 @@ const MethodCard: React.FC<MethodCardProps> = ({
   cons,
   useCase,
 }) => (
-  <div className="card card--elevated">
-    <div className="text-center mb-6">
-      <div className="text-4xl mb-4">{icon}</div>
-      <h3 className="text-2xl font-bold text-[rgb(var(--action-primary))] mb-2">
-        {title}
-      </h3>
-      <p className="text-[rgb(var(--text-muted))]">{description}</p>
+  <div className={styles.card}>
+    <div className={styles.cardHeader}>
+      <div className={styles.cardIcon}>{icon}</div>
+      <h3 className={styles.cardTitle}>{title}</h3>
+      <p className={styles.cardDescription}>{description}</p>
     </div>
 
     {/* Key Metrics */}
-    <div className="grid grid-cols-3 gap-4 mb-6">
-      <div className="text-center p-3 bg-[rgba(var(--primary),0.1)] rounded-lg border border-[rgba(var(--primary),0.2)]">
-        <div className="text-sm text-[rgb(var(--text-muted))] mb-1">
-          Effectiveness
-        </div>
-        <div className="text-lg font-bold text-[var(--action-success)]">
+    <div className={styles.metricsGrid}>
+      <div className={styles.metricBox}>
+        <div className={styles.metricLabel}>Effectiveness</div>
+        <div className={`${styles.metricValue} ${styles.metricValueSuccess}`}>
           {effectiveness}
         </div>
       </div>
-      <div className="text-center p-3 bg-[rgba(var(--primary),0.1)] rounded-lg border border-[rgba(var(--primary),0.2)]">
-        <div className="text-sm text-[rgb(var(--text-muted))] mb-1">
-          Response Time
-        </div>
-        <div className="text-lg font-bold text-[rgb(var(--action-primary))]">
+      <div className={styles.metricBox}>
+        <div className={styles.metricLabel}>Response Time</div>
+        <div className={`${styles.metricValue} ${styles.metricValuePrimary}`}>
           {responseTime}
         </div>
       </div>
-      <div className="text-center p-3 bg-[rgba(var(--primary),0.1)] rounded-lg border border-[rgba(var(--primary),0.2)]">
-        <div className="text-sm text-[rgb(var(--text-muted))] mb-1">Range</div>
-        <div className="text-lg font-bold text-[var(--accent)]">{range}</div>
+      <div className={styles.metricBox}>
+        <div className={styles.metricLabel}>Range</div>
+        <div className={`${styles.metricValue} ${styles.metricValueAccent}`}>
+          {range}
+        </div>
       </div>
     </div>
 
     {/* Pros and Cons */}
-    <div className="grid md:grid-cols-2 gap-4 mb-6">
-      <div>
-        <h4 className="text-sm font-semibold text-[var(--action-success)] mb-2">
-          ✓ Advantages
-        </h4>
-        <ul className="text-sm text-[rgb(var(--text-muted))] space-y-1">
+    <div className={styles.prosConsGrid}>
+      <div className={styles.prosSection}>
+        <h4 className={styles.prosTitle}>✓ Advantages</h4>
+        <ul className={styles.list}>
           {pros.map((pro, index) => (
-            <li key={index} className="flex items-start">
-              <span className="text-[var(--action-success)] mr-2">•</span>
+            <li key={index} className={styles.listItem}>
+              <span
+                className={`${styles.listBullet} ${styles.listBulletSuccess}`}
+              >
+                •
+              </span>
               {pro}
             </li>
           ))}
         </ul>
       </div>
-      <div>
-        <h4 className="text-sm font-semibold text-[var(--action-warning)] mb-2">
-          ⚠ Limitations
-        </h4>
-        <ul className="text-sm text-[rgb(var(--text-muted))] space-y-1">
+      <div className={styles.consSection}>
+        <h4 className={styles.consTitle}>⚠ Limitations</h4>
+        <ul className={styles.list}>
           {cons.map((con, index) => (
-            <li key={index} className="flex items-start">
-              <span className="text-[var(--action-warning)] mr-2">•</span>
+            <li key={index} className={styles.listItem}>
+              <span
+                className={`${styles.listBullet} ${styles.listBulletWarning}`}
+              >
+                •
+              </span>
               {con}
             </li>
           ))}
@@ -89,11 +90,9 @@ const MethodCard: React.FC<MethodCardProps> = ({
     </div>
 
     {/* Use Case */}
-    <div className="p-4 bg-[rgba(var(--bg-secondary),0.6)] rounded-lg border border-[rgba(var(--primary),0.2)]">
-      <h4 className="text-sm font-semibold text-[rgb(var(--text-primary))] mb-2">
-        Best Use Case
-      </h4>
-      <p className="text-sm text-[rgb(var(--text-muted))]">{useCase}</p>
+    <div className={styles.useCaseBox}>
+      <h4 className={styles.useCaseTitle}>Best Use Case</h4>
+      <p className={styles.useCaseText}>{useCase}</p>
     </div>
   </div>
 );
@@ -242,68 +241,68 @@ export const CounterDroneMethodsSection: React.FC = () => {
 
   return (
     <RevealSection>
-      <section className="px-6 md:px-[5%] lg:px-[5%] py-20 bg-[var(--bg-primary)] relative overflow-hidden">
+      <section className={styles.section}>
         {/* Background pattern */}
-        <div className="absolute inset-0 opacity-5">
-          <div className="absolute inset-0 bg-[linear-gradient(rgba(var(--primary),0.1)_1px,_transparent_1px),_linear-gradient(90deg,_rgba(var(--primary),0.1)_1px,_transparent_1px)] bg-[length:50px_50px]"></div>
-        </div>
+        <div className={styles.backgroundPattern} />
 
-        <div className="relative z-10">
-          <div className="max-w-[1400px] mx-auto">
+        <div className={styles.container}>
+          <div className={styles.innerContainer}>
             {/* Section Header */}
-            <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-br from-[rgb(var(--text-primary))] to-[rgb(var(--primary))] mb-6">
-                Counter-Drone Defense Methods
-              </h2>
-              <p className="text-xl text-[rgb(var(--gray))] max-w-3xl mx-auto">
+            <div className={styles.header}>
+              <h2 className={styles.title}>Counter-Drone Defense Methods</h2>
+              <p className={styles.subtitle}>
                 Phoenix Rooivalk integrates multiple defense strategies to
                 provide comprehensive protection against various drone threats.
               </p>
             </div>
 
             {/* Methods Grid */}
-            <div className="grid lg:grid-cols-2 xl:grid-cols-3 gap-8">
+            <div className={styles.grid}>
               {methods.map((method, index) => (
                 <MethodCard key={index} {...method} />
               ))}
             </div>
 
             {/* Integration Note */}
-            <div className="mt-16 text-center">
-              <div className="bg-[rgba(var(--bg-surface),0.8)] backdrop-blur-sm border border-[rgba(var(--primary),0.2)] rounded-2xl p-8">
-                <h3 className="text-2xl font-bold text-[rgb(var(--primary))] mb-4">
+            <div className={styles.integrationSection}>
+              <div className={styles.integrationCard}>
+                <h3 className={styles.integrationTitle}>
                   Integrated Defense Strategy
                 </h3>
-                <p className="text-[rgb(var(--text-muted))] mb-6 max-w-3xl mx-auto">
+                <p className={styles.integrationDescription}>
                   Phoenix Rooivalk combines multiple counter-drone methods in a
                   layered defense approach. The system automatically selects the
                   most appropriate method based on threat type, environmental
                   conditions, and operational requirements.
                 </p>
-                <div className="grid md:grid-cols-3 gap-6">
-                  <div className="text-center">
-                    <div className="text-3xl font-bold text-[rgb(var(--action-success))] mb-2">
+                <div className={styles.statsGrid}>
+                  <div className={styles.statBox}>
+                    <div
+                      className={`${styles.statValue} ${styles.statValueSuccess}`}
+                    >
                       95%
                     </div>
-                    <div className="text-sm text-[rgb(var(--text-muted))]">
+                    <div className={styles.statLabel}>
                       Combined Effectiveness
                     </div>
                   </div>
-                  <div className="text-center">
-                    <div className="text-3xl font-bold text-[rgb(var(--action-primary))] mb-2">
+                  <div className={styles.statBox}>
+                    <div
+                      className={`${styles.statValue} ${styles.statValuePrimary}`}
+                    >
                       &lt;200ms
                     </div>
-                    <div className="text-sm text-[rgb(var(--text-muted))]">
+                    <div className={styles.statLabel}>
                       Average Response Time
                     </div>
                   </div>
-                  <div className="text-center">
-                    <div className="text-3xl font-bold text-[rgb(var(--accent))] mb-2">
+                  <div className={styles.statBox}>
+                    <div
+                      className={`${styles.statValue} ${styles.statValueAccent}`}
+                    >
                       6
                     </div>
-                    <div className="text-sm text-[rgb(var(--text-muted))]">
-                      Defense Methods
-                    </div>
+                    <div className={styles.statLabel}>Defense Methods</div>
                   </div>
                 </div>
               </div>

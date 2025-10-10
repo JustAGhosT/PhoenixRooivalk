@@ -3,6 +3,7 @@
 import Link from "next/link";
 import * as React from "react";
 import { Button } from "../components/ui/button";
+import styles from "./error-pages.module.css";
 
 export default function Error({
   error,
@@ -17,43 +18,39 @@ export default function Error({
   }, [error]);
 
   return (
-    <div className="min-h-screen bg-[var(--darker)] text-white flex items-center justify-center px-6">
-      <div className="max-w-md mx-auto text-center">
-        <div className="mb-8">
-          <h1 className="text-6xl font-bold text-[rgb(var(--primary))] mb-4">
-            500
-          </h1>
-          <h2 className="text-2xl font-semibold text-white mb-4">
-            Something went wrong!
-          </h2>
-          <p className="text-[rgb(var(--gray))] mb-8">
+    <div className={styles.container}>
+      <div className={styles.content}>
+        <div className={styles.headerSection}>
+          <h1 className={styles.errorCode}>500</h1>
+          <h2 className={styles.errorTitle}>Something went wrong!</h2>
+          <p className={styles.errorDescription}>
             We encountered an unexpected error. Please try again or contact
             support if the problem persists.
           </p>
         </div>
 
-        <div className="space-y-4">
+        <div className={styles.buttonGroup}>
           <Button
             onClick={reset}
             variant="primary"
             size="lg"
-            className="w-full"
+            className={styles.button}
           >
             Try Again
           </Button>
-          <Link href="/" className="block">
-            <Button variant="secondary" size="lg" className="w-full">
+          <Link href="/" className={styles.buttonLink}>
+            <Button variant="secondary" size="lg" className={styles.button}>
               Go Home
             </Button>
           </Link>
         </div>
 
         {process.env.NODE_ENV === "development" && (
-          <details className="mt-8 text-left">
-            <summary className="cursor-pointer text-[rgb(var(--primary))] hover:text-[rgb(var(--accent))]">
+          <details className={styles.errorDetails}>
+            <summary className={styles.errorSummary}>
               Error Details (Development)
             </summary>
-            <pre className="mt-4 p-4 bg-[rgba(var(--bg-surface),0.8)] rounded-lg text-xs overflow-auto">
+            <pre className={styles.errorStack}>
               {error.message}
               {error.stack && `\n\n${error.stack}`}
             </pre>

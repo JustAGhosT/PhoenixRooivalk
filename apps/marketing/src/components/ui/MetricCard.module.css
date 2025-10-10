@@ -1,0 +1,40 @@
+/* MetricCard.module.css */
+
+.card {
+  text-align: center;
+  padding: 1.5rem;
+  border-radius: 0.75rem;
+  background-color: rgba(0, 255, 136, 0.05);
+  border: 1px solid rgba(0, 255, 136, 0.2);
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  border-color: rgba(0, 255, 136, 0.4);
+  transform: translateY(-4px);
+}
+
+.value {
+  font-size: 1.875rem;
+  font-weight: 700;
+  color: rgb(var(--primary));
+  margin-bottom: 0.5rem;
+}
+
+@media (min-width: 768px) {
+  .value {
+    font-size: 2.25rem;
+  }
+}
+
+.label {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: rgb(var(--white));
+  margin-bottom: 0.25rem;
+}
+
+.description {
+  font-size: 0.875rem;
+  color: rgb(var(--gray));
+}

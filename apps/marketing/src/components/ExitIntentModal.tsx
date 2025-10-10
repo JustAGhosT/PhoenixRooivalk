@@ -131,14 +131,14 @@ export const ExitIntentModal: React.FC<ExitIntentModalProps> = ({
             <Button
               onClick={handleMaybeLater}
               variant="ghost"
-              className="text-sm"
+              className={styles.secondaryButton}
             >
               Maybe Later
             </Button>
             <Button
               onClick={handleStayOnPage}
               variant="ghost"
-              className="text-sm"
+              className={styles.secondaryButton}
             >
               Stay Here
             </Button>

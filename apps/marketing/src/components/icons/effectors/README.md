@@ -2,7 +2,8 @@
 
 ## Overview
 
-This directory contains icon specifications for all counter-drone weapon systems (effectors) used in the Phoenix Rooivalk Threat Simulator.
+This directory contains icon specifications for all counter-drone weapon systems
+(effectors) used in the Phoenix Rooivalk Threat Simulator.
 
 ## Icon Categories
 
