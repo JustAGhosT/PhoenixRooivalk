@@ -92,6 +92,14 @@
   }
 }
 
+.downloadButton {
+  background: #16a34a;
+}
+
+.downloadButton:hover {
+  background: #15803d;
+}
+
 .card {
   padding: 1rem;
   border-radius: 0.5rem;

@@ -1,4 +1,5 @@
 import React from "react";
+import styles from "./FilterChips.module.css";
 
 export interface FilterChip {
   id: string;
@@ -33,12 +34,12 @@ export const FilterChips: React.FC<FilterChipsProps> = ({
   };
 
   return (
-    <div className={`filter-chips ${className}`}>
-      <div className="filter-chips-header">
-        <span className="filter-chips-title">Filter by Class:</span>
+    <div className={`${styles.filterChips} ${className}`}>
+      <div className={styles.filterChipsHeader}>
+        <span className={styles.filterChipsTitle}>Filter by Class:</span>
         {selectedFilters.length > 0 && (
           <button
-            className="filter-chips-clear"
+            className={styles.filterChipsClear}
             onClick={handleClearAll}
             aria-label="Clear all filters"
           >
@@ -46,13 +47,13 @@ export const FilterChips: React.FC<FilterChipsProps> = ({
           </button>
         )}
       </div>
-      <div className="filter-chips-container">
+      <div className={styles.filterChipsContainer}>
         {chips.map((chip) => {
           const isSelected = selectedFilters.includes(chip.id);
           return (
             <button
               key={chip.id}
-              className={`filter-chip ${isSelected ? "filter-chip--selected" : ""}`}
+              className={`${styles.filterChip} ${isSelected ? styles.filterChipSelected : ""}`}
               style={
                 {
                   "--chip-color": chip.color,
@@ -67,9 +68,9 @@ export const FilterChips: React.FC<FilterChipsProps> = ({
               aria-pressed={isSelected}
               aria-label={`Filter by ${chip.label}${chip.count ? ` (${chip.count} items)` : ""}`}
             >
-              <span className="filter-chip-label">{chip.label}</span>
+              <span className={styles.filterChipLabel}>{chip.label}</span>
               {chip.count !== undefined && (
-                <span className="filter-chip-count">{chip.count}</span>
+                <span className={styles.filterChipCount}>{chip.count}</span>
               )}
             </button>
           );

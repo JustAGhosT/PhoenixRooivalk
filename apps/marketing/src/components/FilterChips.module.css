@@ -1,0 +1,68 @@
+.filterChips {
+  margin-bottom: 1.5rem;
+}
+
+.filterChipsHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.filterChipsTitle {
+  font-weight: 600;
+  color: var(--sim-text);
+  font-size: 0.875rem;
+}
+
+.filterChipsClear {
+  font-size: 0.75rem;
+  color: var(--sim-primary);
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  text-decoration: underline;
+  padding: 0;
+}
+
+.filterChipsClear:hover {
+  color: var(--sim-secondary);
+}
+
+.filterChipsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.filterChip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border: 1px solid;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  background: transparent;
+}
+
+.filterChip:hover {
+  transform: scale(1.05);
+}
+
+.filterChipSelected {
+  font-weight: 600;
+}
+
+.filterChipLabel {
+  font-weight: inherit;
+}
+
+.filterChipCount {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 0.125rem 0.5rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+}
