@@ -1,8 +1,32 @@
 import React from "react";
 import { RevealSection } from "../RevealSection";
+import { Card } from "../ui/Card";
 import styles from "./CredibilitySection.module.css";
 
 export const CredibilitySection: React.FC = () => {
+  const cards = [
+    {
+      icon: "🔬",
+      title: "Prototype Phase",
+      description: "Core architecture validated in controlled environments",
+    },
+    {
+      icon: "🚀",
+      title: "SBIR Strategy",
+      description: "Air Force SBIR Phase I application ($350K) in progress",
+    },
+    {
+      icon: "🛡️",
+      title: "DoD Compliance",
+      description: "CMMC 2.0 Level 2 certification pathway",
+    },
+    {
+      icon: "🤝",
+      title: "Partnership Ready",
+      description: "Seeking Anduril integration and defense contractor partnerships",
+    },
+  ];
+
   return (
     <section className={styles.section} id="credibility">
       <div className={styles.container}>
@@ -15,37 +39,9 @@ export const CredibilitySection: React.FC = () => {
         </RevealSection>
 
         <RevealSection className={styles.grid}>
-          <div className={styles.card}>
-            <div className={styles.cardIcon}>🔬</div>
-            <h3 className={styles.cardTitle}>Prototype Phase</h3>
-            <p className={styles.cardDescription}>
-              Core architecture validated in controlled environments
-            </p>
-          </div>
-
-          <div className={styles.card}>
-            <div className={styles.cardIcon}>🚀</div>
-            <h3 className={styles.cardTitle}>SBIR Strategy</h3>
-            <p className={styles.cardDescription}>
-              Air Force SBIR Phase I application ($350K) in progress
-            </p>
-          </div>
-
-          <div className={styles.card}>
-            <div className={styles.cardIcon}>🛡️</div>
-            <h3 className={styles.cardTitle}>DoD Compliance</h3>
-            <p className={styles.cardDescription}>
-              CMMC 2.0 Level 2 certification pathway
-            </p>
-          </div>
-
-          <div className={styles.card}>
-            <div className={styles.cardIcon}>🤝</div>
-            <h3 className={styles.cardTitle}>Partnership Ready</h3>
-            <p className={styles.cardDescription}>
-              Seeking Anduril integration and defense contractor partnerships
-            </p>
-          </div>
+          {cards.map((card, index) => (
+            <Card key={index} {...card} />
+          ))}
         </RevealSection>
 
         <RevealSection className={styles.advisorySection}>

@@ -2,38 +2,34 @@ import { downloadWhitepaper } from "@phoenix-rooivalk/utils";
 import React from "react";
 import { RevealSection } from "../RevealSection";
 import { Button } from "../ui/button";
+import { Card } from "../ui/Card";
 import styles from "./WhitepaperSection.module.css";
 
 export const WhitepaperSection: React.FC = () => {
-  const features: Array<{
-    icon: string;
-    title: string;
-    description: string;
-    color: "green" | "blue" | "purple" | "yellow";
-  }> = [
+  const features = [
     {
       icon: "🏗️",
       title: "System Architecture",
       description: "Complete technical design and component integration",
-      color: "green",
+      colorVariant: "green" as const,
     },
     {
       icon: "🔒",
       title: "Security Framework",
       description: "Blockchain security and compliance standards",
-      color: "blue",
+      colorVariant: "blue" as const,
     },
     {
       icon: "📊",
       title: "Performance Metrics",
       description: "Detailed benchmarks and testing results",
-      color: "purple",
+      colorVariant: "purple" as const,
     },
     {
       icon: "🚀",
       title: "Deployment Guide",
       description: "Implementation and configuration instructions",
-      color: "yellow",
+      colorVariant: "yellow" as const,
     },
   ];
 
@@ -55,13 +51,7 @@ export const WhitepaperSection: React.FC = () => {
 
           <div className={styles.grid}>
             {features.map((feature, index) => (
-              <FeatureCard
-                key={index}
-                icon={feature.icon}
-                title={feature.title}
-                description={feature.description}
-                color={feature.color}
-              />
+              <Card key={index} {...feature} />
             ))}
           </div>
 
@@ -80,22 +70,5 @@ export const WhitepaperSection: React.FC = () => {
         </RevealSection>
       </div>
     </section>
-  );
-};
-
-const FeatureCard: React.FC<{
-  icon: string;
-  title: string;
-  description: string;
-  color: "green" | "blue" | "purple" | "yellow";
-}> = ({ icon, title, description, color }) => {
-  const colorClass = `card${color.charAt(0).toUpperCase() + color.slice(1)}`;
-
-  return (
-    <div className={`${styles.card} ${styles[colorClass]}`}>
-      <div className={styles.cardIcon}>{icon}</div>
-      <h3 className={styles.cardTitle}>{title}</h3>
-      <p className={styles.cardDescription}>{description}</p>
-    </div>
   );
 };

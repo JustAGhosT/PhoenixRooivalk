@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import effectorDatabase from "../../data/effectorDatabase.json";
-import { FilterChip, FilterChips } from "../FilterChips";
+import { EFFECTOR_FILTER_CHIPS } from "../../constants/research";
+import { FilterChips } from "../FilterChips";
 import { InfoPopover } from "../InfoPopover";
 import { LegalBadge } from "../LegalBadge";
 import { ROERiskIndicator } from "../ROERiskIndicator";
@@ -44,20 +45,6 @@ export const ResearchPanel: React.FC<ResearchPanelProps> = ({
       resourceManager.unlockDrone(type);
     }
   };
-
-  // Create filter chips for effector classes
-  const effectorFilters: FilterChip[] = [
-    { id: "hard_kill", label: "Hard Kill", color: "#2ED573" },
-    { id: "soft_kill", label: "Soft Kill", color: "#FFA502" },
-    { id: "deception", label: "Deception", color: "#70A1FF" },
-    { id: "denial", label: "Denial", color: "#ECCC68" },
-    { id: "capture", label: "Capture", color: "#10b981" },
-    { id: "directed", label: "Directed", color: "#f97316" },
-    { id: "ecm", label: "ECM", color: "#8b5cf6" },
-    { id: "nonkinetic", label: "Non-Kinetic", color: "#84cc16" },
-    { id: "countermeasure", label: "Countermeasure", color: "#6b7280" },
-    { id: "kinetic", label: "Kinetic", color: "#dc2626" },
-  ];
 
   const filteredResearch = availableResearch.filter((item) => {
     if (item.category !== selectedCategory) return false;
@@ -141,7 +128,7 @@ export const ResearchPanel: React.FC<ResearchPanelProps> = ({
 
         {selectedCategory === "effector" && (
           <FilterChips
-            chips={effectorFilters}
+            chips={EFFECTOR_FILTER_CHIPS}
             selectedFilters={selectedFilters}
             onFilterChange={setSelectedFilters}
           />

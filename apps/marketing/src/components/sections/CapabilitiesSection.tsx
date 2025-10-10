@@ -1,5 +1,6 @@
 import * as React from "react";
 import { RevealSection } from "../RevealSection";
+import { Card } from "../ui/Card";
 import styles from "./CapabilitiesSection.module.css";
 
 export const CapabilitiesSection: React.FC = () => {
@@ -85,24 +86,10 @@ export const CapabilitiesSection: React.FC = () => {
         </RevealSection>
         <RevealSection className={styles.grid}>
           {coreCapabilities.map((capability, index) => (
-            <CapabilityCard key={index} {...capability} />
+            <Card key={index} {...capability} />
           ))}
         </RevealSection>
       </div>
     </section>
   );
 };
-
-const CapabilityCard: React.FC<{
-  icon: string;
-  title: string;
-  description: string;
-  proof?: string;
-}> = ({ icon, title, description, proof }) => (
-  <div className={styles.card}>
-    <div className={styles.cardIcon}>{icon}</div>
-    <h3 className={styles.cardTitle}>{title}</h3>
-    <p className={styles.cardDescription}>{description}</p>
-    {proof && <div className={styles.cardProof}>✓ {proof}</div>}
-  </div>
-);

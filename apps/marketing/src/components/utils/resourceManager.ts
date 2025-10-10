@@ -3,6 +3,8 @@
  * Handles tokens, research points, and effector/drone unlocks
  */
 
+import type { ResearchOption } from "../../types/research";
+
 export interface ResourceState {
   tokens: number;
   researchPoints: number;
@@ -441,24 +443,8 @@ export class ResourceManager {
   /**
    * Get available research options
    */
-  getAvailableResearch(): Array<{
-    type: string;
-    category: "effector" | "drone";
-    name: string;
-    description: string;
-    researchCost: number;
-    unlockCost: number;
-    isUnlocked: boolean;
-  }> {
-    const options: Array<{
-      type: string;
-      category: "effector" | "drone";
-      name: string;
-      description: string;
-      researchCost: number;
-      unlockCost: number;
-      isUnlocked: boolean;
-    }> = [];
+  getAvailableResearch(): ResearchOption[] {
+    const options: ResearchOption[] = [];
 
     // Add effector research options
     Object.entries(EFFECTOR_UNLOCK_DATA).forEach(([type, data]) => {
