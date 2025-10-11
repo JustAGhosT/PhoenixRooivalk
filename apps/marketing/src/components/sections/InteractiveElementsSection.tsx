@@ -330,8 +330,8 @@ export const InteractiveElementsSection: React.FC = () => {
           </div>
 
           {/* Interactive Demo Teaser */}
-          <div className="mt-24">
-            <div className="text-center mb-12">
+          <div className="mt-16">
+            <div className="text-center mb-10">
               <h3 className="text-4xl font-bold text-white mb-4">
                 Experience the System
               </h3>
@@ -347,7 +347,7 @@ export const InteractiveElementsSection: React.FC = () => {
                 <WasmThreatSimulator isTeaser={true} />
               </div>
 
-              <div className="text-center mt-8">
+              <div className="text-center mt-6">
                 <Button href="/interactive-demo" variant="primary" size="lg">
                   🚀 Try Full Interactive Demo (Rust/WASM)
                 </Button>
@@ -356,7 +356,7 @@ export const InteractiveElementsSection: React.FC = () => {
           </div>
 
           {/* Key Performance Metrics */}
-          <div className="mt-24">
+          <div className="mt-16">
             <div className="bg-[rgba(15,23,42,0.9)] backdrop-blur-sm border border-[rgba(var(--primary),0.3)] rounded-2xl p-10 shadow-2xl">
               <h3 className="text-3xl font-bold text-white mb-10 text-center">
                 Performance Comparison
@@ -421,11 +421,11 @@ export const InteractiveElementsSection: React.FC = () => {
           </div>
 
           {/* Concept Adaptation Calculator */}
-          <div className="mt-24">
-            <h3 className="text-4xl font-bold text-white mb-8 text-center">
+          <div className="mt-16">
+            <h3 className="text-4xl font-bold text-white mb-6 text-center">
               Concept Adaptation Explorer
             </h3>
-            <p className="text-xl text-[rgb(var(--gray))] mb-12 max-w-3xl mx-auto text-center leading-relaxed">
+            <p className="text-xl text-[rgb(var(--gray))] mb-10 max-w-3xl mx-auto text-center leading-relaxed">
               Explore how Phoenix Rooivalk&apos;s core technology could adapt to
               different operational environments and threat scenarios.
             </p>
@@ -586,11 +586,11 @@ export const InteractiveElementsSection: React.FC = () => {
           </div>
 
           {/* CTA */}
-          <div className="text-center mt-24">
-            <h3 className="text-4xl font-bold text-white mb-6">
+          <div className="text-center mt-16">
+            <h3 className="text-4xl font-bold text-white mb-5">
               Interested in the Technology?
             </h3>
-            <p className="text-xl text-[rgb(var(--gray))] mb-10 max-w-2xl mx-auto leading-relaxed">
+            <p className="text-xl text-[rgb(var(--gray))] mb-8 max-w-2xl mx-auto leading-relaxed">
               Learn more about Phoenix Rooivalk&apos;s innovative approach to
               autonomous counter-drone defense and explore partnership
               opportunities.
