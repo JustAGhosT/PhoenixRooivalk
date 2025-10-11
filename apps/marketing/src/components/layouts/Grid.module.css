@@ -1,0 +1,71 @@
+.grid {
+  display: grid;
+}
+
+/* Gap variants */
+.gapSm {
+  gap: 1rem;
+}
+
+.gapMd {
+  gap: 1.5rem;
+}
+
+.gapLg {
+  gap: 2rem;
+}
+
+/* Mobile columns (default, always applies) */
+.mobile1 {
+  grid-template-columns: 1fr;
+}
+
+.mobile2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+/* Tablet columns (768px and up) */
+@media (min-width: 768px) {
+  .tablet1 {
+    grid-template-columns: 1fr;
+  }
+
+  .tablet2 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .tablet3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .tablet4 {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* Desktop columns (1024px and up) */
+@media (min-width: 1024px) {
+  .desktop1 {
+    grid-template-columns: 1fr;
+  }
+
+  .desktop2 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .desktop3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .desktop4 {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .desktop5 {
+    grid-template-columns: repeat(5, 1fr);
+  }
+
+  .desktop6 {
+    grid-template-columns: repeat(6, 1fr);
+  }
+}

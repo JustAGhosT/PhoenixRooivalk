@@ -1,6 +1,7 @@
 import React from "react";
 import { RevealSection } from "../RevealSection";
 import { Button } from "../ui/button";
+import { FeatureCard } from "../ui/FeatureCard";
 import styles from "./UkraineChallengeSection.module.css";
 
 export const UkraineChallengeSection: React.FC = () => {
@@ -22,20 +23,23 @@ export const UkraineChallengeSection: React.FC = () => {
           <div className={styles.column}>
             <h3 className={styles.columnTitle}>Current Problems</h3>
             <div className={styles.cards}>
-              <ProblemCard
+              <FeatureCard
                 icon="❌"
                 title="False Positives"
                 description='"Puddles get mistaken for tanks, trees confuse targeting"'
+                className={styles.problemCard}
               />
-              <ProblemCard
+              <FeatureCard
                 icon="📡"
                 title="EW Vulnerability"
                 description='"Hit rates declining as electronic warfare evolves faster"'
+                className={styles.problemCard}
               />
-              <ProblemCard
+              <FeatureCard
                 icon="🐝"
                 title="Swarm Coordination"
                 description="Russia's drones coordinate in groups of six, Ukraine's hunt alone"
+                className={styles.problemCard}
               />
             </div>
           </div>
@@ -43,20 +47,23 @@ export const UkraineChallengeSection: React.FC = () => {
           <div className={styles.column}>
             <h3 className={styles.columnTitle}>Phoenix Rooivalk Solutions</h3>
             <div className={styles.cards}>
-              <SolutionCard
+              <FeatureCard
                 icon="✅"
                 title="Multi-Sensor Fusion"
                 description="RF + acoustic + optical sensors eliminate environmental confusion"
+                className={styles.solutionCard}
               />
-              <SolutionCard
+              <FeatureCard
                 icon="🔗"
                 title="Blockchain Coordination"
                 description="Tamper-proof swarm coordination resistant to EW attacks"
+                className={styles.solutionCard}
               />
-              <SolutionCard
+              <FeatureCard
                 icon="⚡"
                 title="Ready Today"
                 description="Deployable now, 18 months ahead of the 2027 deadline"
+                className={styles.solutionCard}
               />
             </div>
           </div>
@@ -89,31 +96,3 @@ export const UkraineChallengeSection: React.FC = () => {
     </section>
   );
 };
-
-const ProblemCard: React.FC<{
-  icon: string;
-  title: string;
-  description: string;
-}> = ({ icon, title, description }) => (
-  <div className={styles.problemCard}>
-    <span className={styles.problemIcon}>{icon}</span>
-    <div>
-      <div className={styles.problemTitle}>{title}</div>
-      <div className={styles.problemDescription}>{description}</div>
-    </div>
-  </div>
-);
-
-const SolutionCard: React.FC<{
-  icon: string;
-  title: string;
-  description: string;
-}> = ({ icon, title, description }) => (
-  <div className={styles.solutionCard}>
-    <span className={styles.solutionIcon}>{icon}</span>
-    <div>
-      <div className={styles.solutionTitle}>{title}</div>
-      <div className={styles.solutionDescription}>{description}</div>
-    </div>
-  </div>
-);

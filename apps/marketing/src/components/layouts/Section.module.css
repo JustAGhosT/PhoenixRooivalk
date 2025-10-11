@@ -1,0 +1,52 @@
+.section {
+  padding: var(--section-padding-sm, 3rem 1.5rem);
+}
+
+@media (min-width: 768px) {
+  .section {
+    padding-left: var(--section-padding-x, 5%);
+    padding-right: var(--section-padding-x, 5%);
+  }
+}
+
+@media (min-width: 1024px) {
+  .section {
+    padding-left: var(--section-padding-x, 5%);
+    padding-right: var(--section-padding-x, 5%);
+  }
+}
+
+/* Background variants */
+.backgroundGradient {
+  background: linear-gradient(
+    180deg,
+    rgba(0, 255, 136, 0.05),
+    rgba(0, 136, 255, 0.05)
+  );
+}
+
+.backgroundPrimary {
+  background: var(--bg-primary, #0a0e1a);
+}
+
+.backgroundNone {
+  background: none;
+}
+
+/* Container */
+.container {
+  max-width: var(--container-max-width, 1400px);
+  margin: 0 auto;
+}
+
+.maxWidthWide {
+  max-width: 1600px;
+}
+
+.maxWidthNarrow {
+  max-width: 1200px;
+}
+
+.centered {
+  text-align: center;
+}

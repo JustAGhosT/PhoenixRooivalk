@@ -1,49 +1,46 @@
 import { downloadWhitepaper } from "@phoenix-rooivalk/utils";
 import React from "react";
 import { RevealSection } from "../RevealSection";
-import { Button } from "../ui/button";
+import { Section, SectionContainer } from "../layouts";
+import { Grid } from "../layouts/Grid";
+import { Badge, Button, Card } from "../ui";
 import styles from "./WhitepaperSection.module.css";
 
 export const WhitepaperSection: React.FC = () => {
-  const features: Array<{
-    icon: string;
-    title: string;
-    description: string;
-    color: "green" | "blue" | "purple" | "yellow";
-  }> = [
+  const features = [
     {
       icon: "🏗️",
       title: "System Architecture",
       description: "Complete technical design and component integration",
-      color: "green",
+      colorVariant: "green" as const,
     },
     {
       icon: "🔒",
       title: "Security Framework",
       description: "Blockchain security and compliance standards",
-      color: "blue",
+      colorVariant: "blue" as const,
     },
     {
       icon: "📊",
       title: "Performance Metrics",
       description: "Detailed benchmarks and testing results",
-      color: "purple",
+      colorVariant: "purple" as const,
     },
     {
       icon: "🚀",
       title: "Deployment Guide",
       description: "Implementation and configuration instructions",
-      color: "yellow",
+      colorVariant: "yellow" as const,
     },
   ];
 
   return (
-    <section className={styles.section}>
-      <div className={styles.container}>
+    <Section background="gradient">
+      <SectionContainer centered>
         <RevealSection>
-          <div className={styles.badge}>
+          <Badge variant="gradient">
             📋 COMPREHENSIVE TECHNICAL DOCUMENTATION
-          </div>
+          </Badge>
           <h2 className={styles.title}>
             Get the Complete Technical Whitepaper
           </h2>
@@ -53,17 +50,11 @@ export const WhitepaperSection: React.FC = () => {
             and performance specifications.
           </p>
 
-          <div className={styles.grid}>
+          <Grid columns={{ mobile: 1, tablet: 2, desktop: 4 }} gap="lg">
             {features.map((feature, index) => (
-              <FeatureCard
-                key={index}
-                icon={feature.icon}
-                title={feature.title}
-                description={feature.description}
-                color={feature.color}
-              />
+              <Card key={index} {...feature} />
             ))}
-          </div>
+          </Grid>
 
           <div className={styles.actions}>
             <Button
@@ -78,24 +69,7 @@ export const WhitepaperSection: React.FC = () => {
             </Button>
           </div>
         </RevealSection>
-      </div>
-    </section>
-  );
-};
-
-const FeatureCard: React.FC<{
-  icon: string;
-  title: string;
-  description: string;
-  color: "green" | "blue" | "purple" | "yellow";
-}> = ({ icon, title, description, color }) => {
-  const colorClass = `card${color.charAt(0).toUpperCase() + color.slice(1)}`;
-
-  return (
-    <div className={`${styles.card} ${styles[colorClass]}`}>
-      <div className={styles.cardIcon}>{icon}</div>
-      <h3 className={styles.cardTitle}>{title}</h3>
-      <p className={styles.cardDescription}>{description}</p>
-    </div>
+      </SectionContainer>
+    </Section>
   );
 };
