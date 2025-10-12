@@ -5,6 +5,117 @@ import { WasmThreatSimulator } from "../WasmThreatSimulator";
 import { Button } from "../ui/button";
 import styles from "./InteractiveElementsSection.module.css";
 
+// Types
+interface AdaptationItem {
+  title: string;
+  description: string;
+}
+
+interface AdaptationCard {
+  icon: string;
+  title: string;
+  items: AdaptationItem[];
+}
+
+// Component for rendering an adaptation item
+const AdaptationItem: React.FC<AdaptationItem> = ({ title, description }) => (
+  <div className={styles.adaptationItem}>
+    <div className={styles.adaptationItemTitle}>{title}</div>
+    <div className={styles.adaptationItemDescription}>{description}</div>
+  </div>
+);
+
+// Component for rendering an adaptation card
+const AdaptationCard: React.FC<AdaptationCard> = ({ icon, title, items }) => (
+  <div className={styles.adaptationCard}>
+    <div className={styles.adaptationCardHeader}>
+      <div className={styles.adaptationCardIcon}>{icon}</div>
+      <h4 className={styles.adaptationCardTitle}>{title}</h4>
+    </div>
+    <div className={styles.resultRows}>
+      {items.map((item, index) => (
+        <AdaptationItem key={index} {...item} />
+      ))}
+    </div>
+  </div>
+);
+
+// Adaptation cards data
+const adaptationCardsData: AdaptationCard[] = [
+  {
+    icon: "🏢",
+    title: "Civilian Applications",
+    items: [
+      {
+        title: "Airport Security",
+        description: "Perimeter protection, runway monitoring",
+      },
+      {
+        title: "Critical Infrastructure",
+        description: "Power plants, water facilities, communication towers",
+      },
+      {
+        title: "Event Security",
+        description: "Stadiums, concerts, public gatherings",
+      },
+    ],
+  },
+  {
+    icon: "🏭",
+    title: "Commercial Security",
+    items: [
+      {
+        title: "Corporate Campus",
+        description: "Headquarters, R&D facilities",
+      },
+      {
+        title: "Data Center Security",
+        description: "Server farms, cloud infrastructure",
+      },
+      {
+        title: "Port Security",
+        description: "Shipping terminals, cargo facilities",
+      },
+    ],
+  },
+  {
+    icon: "🔬",
+    title: "Research & Development",
+    items: [
+      {
+        title: "University Partnerships",
+        description: "Academic research collaboration",
+      },
+      {
+        title: "Government Labs",
+        description: "DARPA, NSF, national laboratories",
+      },
+      {
+        title: "International Cooperation",
+        description: "NATO, allied defense research",
+      },
+    ],
+  },
+  {
+    icon: "⚡",
+    title: "Technology Licensing",
+    items: [
+      {
+        title: "Sensor Fusion",
+        description: "Core detection algorithms",
+      },
+      {
+        title: "Edge Processing",
+        description: "Autonomous decision-making",
+      },
+      {
+        title: "Blockchain Integration",
+        description: "Evidence management systems",
+      },
+    ],
+  },
+];
+
 export const InteractiveElementsSection: React.FC = () => {
   const [roiInputs, setRoiInputs] = useState({
     threatFrequency: 5, // threats per month
@@ -441,149 +552,9 @@ export const InteractiveElementsSection: React.FC = () => {
             </p>
 
             <div className={styles.adaptationGrid}>
-              {/* Civilian Applications */}
-              <div className={styles.adaptationCard}>
-                <div className={styles.adaptationCardHeader}>
-                  <div className={styles.adaptationCardIcon}>🏢</div>
-                  <h4 className={styles.adaptationCardTitle}>
-                    Civilian Applications
-                  </h4>
-                </div>
-                <div className={styles.resultRows}>
-                  <div className={styles.adaptationItem}>
-                    <div className={styles.adaptationItemTitle}>
-                      Airport Security
-                    </div>
-                    <div className={styles.adaptationItemDescription}>
-                      Perimeter protection, runway monitoring
-                    </div>
-                  </div>
-                  <div className={styles.adaptationItem}>
-                    <div className={styles.adaptationItemTitle}>
-                      Critical Infrastructure
-                    </div>
-                    <div className={styles.adaptationItemDescription}>
-                      Power plants, water facilities, communication towers
-                    </div>
-                  </div>
-                  <div className={styles.adaptationItem}>
-                    <div className={styles.adaptationItemTitle}>
-                      Event Security
-                    </div>
-                    <div className={styles.adaptationItemDescription}>
-                      Stadiums, concerts, public gatherings
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Commercial Security */}
-              <div className={styles.adaptationCard}>
-                <div className={styles.adaptationCardHeader}>
-                  <div className={styles.adaptationCardIcon}>🏭</div>
-                  <h4 className={styles.adaptationCardTitle}>
-                    Commercial Security
-                  </h4>
-                </div>
-                <div className={styles.resultRows}>
-                  <div className={styles.adaptationItem}>
-                    <div className={styles.adaptationItemTitle}>
-                      Corporate Campus
-                    </div>
-                    <div className={styles.adaptationItemDescription}>
-                      Headquarters, R&D facilities
-                    </div>
-                  </div>
-                  <div className={styles.adaptationItem}>
-                    <div className={styles.adaptationItemTitle}>
-                      Data Center Security
-                    </div>
-                    <div className={styles.adaptationItemDescription}>
-                      Server farms, cloud infrastructure
-                    </div>
-                  </div>
-                  <div className={styles.adaptationItem}>
-                    <div className={styles.adaptationItemTitle}>
-                      Port Security
-                    </div>
-                    <div className={styles.adaptationItemDescription}>
-                      Shipping terminals, cargo facilities
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Research & Development */}
-              <div className={styles.adaptationCard}>
-                <div className={styles.adaptationCardHeader}>
-                  <div className={styles.adaptationCardIcon}>🔬</div>
-                  <h4 className={styles.adaptationCardTitle}>
-                    Research & Development
-                  </h4>
-                </div>
-                <div className={styles.resultRows}>
-                  <div className={styles.adaptationItem}>
-                    <div className={styles.adaptationItemTitle}>
-                      University Partnerships
-                    </div>
-                    <div className={styles.adaptationItemDescription}>
-                      Academic research collaboration
-                    </div>
-                  </div>
-                  <div className={styles.adaptationItem}>
-                    <div className={styles.adaptationItemTitle}>
-                      Government Labs
-                    </div>
-                    <div className={styles.adaptationItemDescription}>
-                      DARPA, NSF, national laboratories
-                    </div>
-                  </div>
-                  <div className={styles.adaptationItem}>
-                    <div className={styles.adaptationItemTitle}>
-                      International Cooperation
-                    </div>
-                    <div className={styles.adaptationItemDescription}>
-                      NATO, allied defense research
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Technology Licensing */}
-              <div className={styles.adaptationCard}>
-                <div className={styles.adaptationCardHeader}>
-                  <div className={styles.adaptationCardIcon}>⚡</div>
-                  <h4 className={styles.adaptationCardTitle}>
-                    Technology Licensing
-                  </h4>
-                </div>
-                <div className={styles.resultRows}>
-                  <div className={styles.adaptationItem}>
-                    <div className={styles.adaptationItemTitle}>
-                      Sensor Fusion
-                    </div>
-                    <div className={styles.adaptationItemDescription}>
-                      Core detection algorithms
-                    </div>
-                  </div>
-                  <div className={styles.adaptationItem}>
-                    <div className={styles.adaptationItemTitle}>
-                      Edge Processing
-                    </div>
-                    <div className={styles.adaptationItemDescription}>
-                      Autonomous decision-making
-                    </div>
-                  </div>
-                  <div className={styles.adaptationItem}>
-                    <div className={styles.adaptationItemTitle}>
-                      Blockchain Integration
-                    </div>
-                    <div className={styles.adaptationItemDescription}>
-                      Evidence management systems
-                    </div>
-                  </div>
-                </div>
-              </div>
+              {adaptationCardsData.map((card, index) => (
+                <AdaptationCard key={index} {...card} />
+              ))}
             </div>
 
             <div className={styles.adaptationWarning}>
