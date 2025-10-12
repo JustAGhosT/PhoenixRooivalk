@@ -356,63 +356,73 @@ export const InteractiveElementsSection: React.FC = () => {
           </div>
 
           {/* Key Performance Metrics */}
-          <div className="mt-16">
-            <div className="bg-[rgba(15,23,42,0.9)] backdrop-blur-sm border border-[rgba(var(--primary),0.3)] rounded-2xl p-10 shadow-2xl">
-              <h3 className="text-3xl font-bold text-white mb-10 text-center">
+          <div className={styles.performanceSection}>
+            <div className={styles.performanceCard}>
+              <h3 className={styles.performanceTitle}>
                 Performance Comparison
               </h3>
 
-              <div className="grid md:grid-cols-3 gap-8">
-                <div className="text-center">
-                  <div className="text-4xl font-bold text-[rgb(var(--action-danger))] mb-2">
+              <div className={styles.performanceGrid}>
+                <div className={styles.performanceItem}>
+                  <div
+                    className={`${styles.performanceValue} ${styles.performanceValueDanger}`}
+                  >
                     3-10s
                   </div>
-                  <div className="text-[rgb(var(--gray))] font-semibold mb-2">
+                  <div className={styles.performanceLabel}>
                     Traditional Systems
                   </div>
-                  <div className="w-full bg-[rgba(var(--action-danger),0.2)] rounded-full h-4 border border-[rgba(var(--action-danger),0.3)]">
+                  <div
+                    className={`${styles.performanceBar} ${styles.performanceBarDanger}`}
+                  >
                     <div
-                      className="bg-gradient-to-r from-[rgb(var(--action-danger))] to-[rgb(var(--action-warning))] h-4 rounded-full"
+                      className={`${styles.performanceFill} ${styles.performanceFillDanger}`}
                       style={{ width: "100%" }}
                     ></div>
                   </div>
-                  <div className="text-xs text-[rgb(var(--gray))] mt-2">
+                  <div className={styles.performanceNote}>
                     Network dependent
                   </div>
                 </div>
 
-                <div className="text-center">
-                  <div className="text-4xl font-bold text-[rgb(var(--primary))] mb-2">
+                <div className={styles.performanceItem}>
+                  <div
+                    className={`${styles.performanceValue} ${styles.performanceValuePrimary}`}
+                  >
                     1-3s
                   </div>
-                  <div className="text-[rgb(var(--gray))] font-semibold mb-2">
-                    Current Best
-                  </div>
-                  <div className="w-full bg-[rgba(var(--primary),0.2)] rounded-full h-4 border border-[rgba(var(--primary),0.3)]">
+                  <div className={styles.performanceLabel}>Current Best</div>
+                  <div
+                    className={`${styles.performanceBar} ${styles.performanceBarPrimary}`}
+                  >
                     <div
-                      className="bg-gradient-to-r from-[rgb(var(--primary))] to-[rgb(var(--accent))] h-4 rounded-full"
+                      className={`${styles.performanceFill} ${styles.performanceFillPrimary}`}
                       style={{ width: "30%" }}
                     ></div>
                   </div>
-                  <div className="text-xs text-[rgb(var(--gray))] mt-2">
+                  <div className={styles.performanceNote}>
                     With network dependency
                   </div>
                 </div>
 
-                <div className="text-center">
-                  <div className="text-4xl font-bold text-[rgb(var(--action-success))] mb-2">
+                <div className={styles.performanceItem}>
+                  <div
+                    className={`${styles.performanceValue} ${styles.performanceValueSuccess}`}
+                  >
                     120ms
                   </div>
-                  <div className="text-[rgb(var(--gray))] font-semibold mb-2">
+                  <div className={styles.performanceLabel}>
                     Phoenix Rooivalk
                   </div>
-                  <div className="w-full bg-[rgba(var(--action-success),0.2)] rounded-full h-4 border border-[rgba(var(--action-success),0.3)]">
+                  <div
+                    className={`${styles.performanceBar} ${styles.performanceBarSuccess}`}
+                  >
                     <div
-                      className="bg-gradient-to-r from-[rgb(var(--action-success))] to-[rgb(var(--accent))] h-4 rounded-full"
+                      className={`${styles.performanceFill} ${styles.performanceFillSuccess}`}
                       style={{ width: "4%" }}
                     ></div>
                   </div>
-                  <div className="text-xs text-[rgb(var(--gray))] mt-2">
+                  <div className={styles.performanceNote}>
                     Autonomous edge processing
                   </div>
                 </div>
