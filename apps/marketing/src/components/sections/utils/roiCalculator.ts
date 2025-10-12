@@ -23,8 +23,12 @@ export const calculateROI = (
   inputs: ROIInputs,
   sensitivity: SensitivityLevel,
 ): ROICalculation => {
-  const { threatFrequency, averageResponseTime, deploymentCost, personnelCost } =
-    inputs;
+  const {
+    threatFrequency,
+    averageResponseTime,
+    deploymentCost,
+    personnelCost,
+  } = inputs;
 
   // Calculate annual threat events
   const annualThreats = threatFrequency * 12;

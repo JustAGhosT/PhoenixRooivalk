@@ -268,9 +268,7 @@ export const InteractiveElementsSection: React.FC = () => {
           {/* Interactive Demo Teaser */}
           <div className={styles.demoSection}>
             <div className={styles.demoHeader}>
-              <h3 className={styles.demoTitle}>
-                Experience the System
-              </h3>
+              <h3 className={styles.demoTitle}>Experience the System</h3>
               <p className={styles.demoSubtitle}>
                 Try our interactive defense simulator to see Phoenix Rooivalk
                 technology in action. Experience real-time threat detection,
@@ -393,9 +391,7 @@ export const InteractiveElementsSection: React.FC = () => {
 
           {/* CTA */}
           <div className={styles.ctaSection}>
-            <h3 className={styles.ctaTitle}>
-              Interested in the Technology?
-            </h3>
+            <h3 className={styles.ctaTitle}>Interested in the Technology?</h3>
             <p className={styles.ctaSubtitle}>
               Learn more about Phoenix Rooivalk&apos;s innovative approach to
               autonomous counter-drone defense and explore partnership
