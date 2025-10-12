@@ -4,206 +4,31 @@ import { useEffect, useState } from "react";
 import { WasmThreatSimulator } from "../WasmThreatSimulator";
 import { Button } from "../ui/button";
 import styles from "./InteractiveElementsSection.module.css";
-
-// Types
-interface AdaptationItem {
-  title: string;
-  description: string;
-}
-
-interface AdaptationCard {
-  icon: string;
-  title: string;
-  items: AdaptationItem[];
-}
-
-// Component for rendering an adaptation item
-const AdaptationItem: React.FC<AdaptationItem> = ({ title, description }) => (
-  <div className={styles.adaptationItem}>
-    <div className={styles.adaptationItemTitle}>{title}</div>
-    <div className={styles.adaptationItemDescription}>{description}</div>
-  </div>
-);
-
-// Component for rendering an adaptation card
-const AdaptationCard: React.FC<AdaptationCard> = ({ icon, title, items }) => (
-  <div className={styles.adaptationCard}>
-    <div className={styles.adaptationCardHeader}>
-      <div className={styles.adaptationCardIcon}>{icon}</div>
-      <h4 className={styles.adaptationCardTitle}>{title}</h4>
-    </div>
-    <div className={styles.resultRows}>
-      {items.map((item, index) => (
-        <AdaptationItem key={index} {...item} />
-      ))}
-    </div>
-  </div>
-);
-
-// Adaptation cards data
-const adaptationCardsData: AdaptationCard[] = [
-  {
-    icon: "🏢",
-    title: "Civilian Applications",
-    items: [
-      {
-        title: "Airport Security",
-        description: "Perimeter protection, runway monitoring",
-      },
-      {
-        title: "Critical Infrastructure",
-        description: "Power plants, water facilities, communication towers",
-      },
-      {
-        title: "Event Security",
-        description: "Stadiums, concerts, public gatherings",
-      },
-    ],
-  },
-  {
-    icon: "🏭",
-    title: "Commercial Security",
-    items: [
-      {
-        title: "Corporate Campus",
-        description: "Headquarters, R&D facilities",
-      },
-      {
-        title: "Data Center Security",
-        description: "Server farms, cloud infrastructure",
-      },
-      {
-        title: "Port Security",
-        description: "Shipping terminals, cargo facilities",
-      },
-    ],
-  },
-  {
-    icon: "🔬",
-    title: "Research & Development",
-    items: [
-      {
-        title: "University Partnerships",
-        description: "Academic research collaboration",
-      },
-      {
-        title: "Government Labs",
-        description: "DARPA, NSF, national laboratories",
-      },
-      {
-        title: "International Cooperation",
-        description: "NATO, allied defense research",
-      },
-    ],
-  },
-  {
-    icon: "⚡",
-    title: "Technology Licensing",
-    items: [
-      {
-        title: "Sensor Fusion",
-        description: "Core detection algorithms",
-      },
-      {
-        title: "Edge Processing",
-        description: "Autonomous decision-making",
-      },
-      {
-        title: "Blockchain Integration",
-        description: "Evidence management systems",
-      },
-    ],
-  },
-];
+import { AdaptationCard } from "./components/AdaptationCard";
+import { adaptationCardsData } from "./data/adaptationData";
+import {
+  calculateROI,
+  type ROIInputs,
+  type SensitivityLevel,
+} from "./utils/roiCalculator";
 
 export const InteractiveElementsSection: React.FC = () => {
-  const [roiInputs, setRoiInputs] = useState({
+  const [roiInputs, setRoiInputs] = useState<ROIInputs>({
     threatFrequency: 5, // threats per month
     averageResponseTime: 3000, // milliseconds
     deploymentCost: 250000, // USD
     personnelCost: 150000, // USD per year
   });
 
-  const [sensitivity, setSensitivity] = useState<
-    "conservative" | "median" | "aggressive"
-  >("conservative");
+  const [sensitivity, setSensitivity] =
+    useState<SensitivityLevel>("conservative");
   const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
     setIsClient(true);
   }, []);
 
-  const calculateROI = () => {
-    const {
-      threatFrequency,
-      averageResponseTime,
-      deploymentCost,
-      personnelCost,
-    } = roiInputs;
-
-    // Calculate annual threat events
-    const annualThreats = threatFrequency * 12;
-
-    // Apply sensitivity multipliers
-    const getSensitivityMultipliers = (sensitivity: string) => {
-      switch (sensitivity) {
-        case "conservative":
-          return { phoenix: 0.7, traditional: 0.9, incidentCost: 300000 };
-        case "median":
-          return { phoenix: 0.85, traditional: 0.75, incidentCost: 500000 };
-        case "aggressive":
-          return { phoenix: 0.95, traditional: 0.6, incidentCost: 750000 };
-        default:
-          return { phoenix: 0.7, traditional: 0.9, incidentCost: 300000 };
-      }
-    };
-
-    const multiplier = getSensitivityMultipliers(sensitivity);
-
-    // Calculate success rates based on response time and sensitivity
-    const phoenixSuccessRate =
-      (averageResponseTime <= 120 ? 0.95 : 0.85) * multiplier.phoenix;
-    const traditionalSuccessRate =
-      (averageResponseTime <= 3000 ? 0.65 : 0.45) * multiplier.traditional;
-
-    // Calculate prevented incidents
-    const phoenixPrevented = annualThreats * phoenixSuccessRate;
-    const traditionalPrevented = annualThreats * traditionalSuccessRate;
-
-    // Estimate cost per incident (varies by sensitivity)
-    const avgIncidentCost = multiplier.incidentCost;
-
-    // Calculate savings
-    const phoenixSavings = phoenixPrevented * avgIncidentCost;
-    const traditionalSavings = traditionalPrevented * avgIncidentCost;
-
-    // Calculate ROI
-    const phoenixROI =
-      ((phoenixSavings - deploymentCost - personnelCost) /
-        (deploymentCost + personnelCost)) *
-      100;
-    const traditionalROI =
-      ((traditionalSavings - deploymentCost * 2 - personnelCost) /
-        (deploymentCost * 2 + personnelCost)) *
-      100;
-
-    return {
-      phoenix: {
-        prevented: phoenixPrevented,
-        savings: phoenixSavings,
-        roi: phoenixROI,
-        successRate: phoenixSuccessRate,
-      },
-      traditional: {
-        prevented: traditionalPrevented,
-        savings: traditionalSavings,
-        roi: traditionalROI,
-        successRate: traditionalSuccessRate,
-      },
-    };
-  };
-
-  const roi = calculateROI();
+  const roi = calculateROI(roiInputs, sensitivity);
 
   return (
     <section className={styles.section}>
