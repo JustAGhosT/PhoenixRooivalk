@@ -4,95 +4,31 @@ import { useEffect, useState } from "react";
 import { WasmThreatSimulator } from "../WasmThreatSimulator";
 import { Button } from "../ui/button";
 import styles from "./InteractiveElementsSection.module.css";
+import { AdaptationCard } from "./components/AdaptationCard";
+import { adaptationCardsData } from "./data/adaptationData";
+import {
+  calculateROI,
+  type ROIInputs,
+  type SensitivityLevel,
+} from "./utils/roiCalculator";
 
 export const InteractiveElementsSection: React.FC = () => {
-  const [roiInputs, setRoiInputs] = useState({
+  const [roiInputs, setRoiInputs] = useState<ROIInputs>({
     threatFrequency: 5, // threats per month
     averageResponseTime: 3000, // milliseconds
     deploymentCost: 250000, // USD
     personnelCost: 150000, // USD per year
   });
 
-  const [sensitivity, setSensitivity] = useState<
-    "conservative" | "median" | "aggressive"
-  >("conservative");
+  const [sensitivity, setSensitivity] =
+    useState<SensitivityLevel>("conservative");
   const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
     setIsClient(true);
   }, []);
 
-  const calculateROI = () => {
-    const {
-      threatFrequency,
-      averageResponseTime,
-      deploymentCost,
-      personnelCost,
-    } = roiInputs;
-
-    // Calculate annual threat events
-    const annualThreats = threatFrequency * 12;
-
-    // Apply sensitivity multipliers
-    const getSensitivityMultipliers = (sensitivity: string) => {
-      switch (sensitivity) {
-        case "conservative":
-          return { phoenix: 0.7, traditional: 0.9, incidentCost: 300000 };
-        case "median":
-          return { phoenix: 0.85, traditional: 0.75, incidentCost: 500000 };
-        case "aggressive":
-          return { phoenix: 0.95, traditional: 0.6, incidentCost: 750000 };
-        default:
-          return { phoenix: 0.7, traditional: 0.9, incidentCost: 300000 };
-      }
-    };
-
-    const multiplier = getSensitivityMultipliers(sensitivity);
-
-    // Calculate success rates based on response time and sensitivity
-    const phoenixSuccessRate =
-      (averageResponseTime <= 120 ? 0.95 : 0.85) * multiplier.phoenix;
-    const traditionalSuccessRate =
-      (averageResponseTime <= 3000 ? 0.65 : 0.45) * multiplier.traditional;
-
-    // Calculate prevented incidents
-    const phoenixPrevented = annualThreats * phoenixSuccessRate;
-    const traditionalPrevented = annualThreats * traditionalSuccessRate;
-
-    // Estimate cost per incident (varies by sensitivity)
-    const avgIncidentCost = multiplier.incidentCost;
-
-    // Calculate savings
-    const phoenixSavings = phoenixPrevented * avgIncidentCost;
-    const traditionalSavings = traditionalPrevented * avgIncidentCost;
-
-    // Calculate ROI
-    const phoenixROI =
-      ((phoenixSavings - deploymentCost - personnelCost) /
-        (deploymentCost + personnelCost)) *
-      100;
-    const traditionalROI =
-      ((traditionalSavings - deploymentCost * 2 - personnelCost) /
-        (deploymentCost * 2 + personnelCost)) *
-      100;
-
-    return {
-      phoenix: {
-        prevented: phoenixPrevented,
-        savings: phoenixSavings,
-        roi: phoenixROI,
-        successRate: phoenixSuccessRate,
-      },
-      traditional: {
-        prevented: traditionalPrevented,
-        savings: traditionalSavings,
-        roi: traditionalROI,
-        successRate: traditionalSuccessRate,
-      },
-    };
-  };
-
-  const roi = calculateROI();
+  const roi = calculateROI(roiInputs, sensitivity);
 
   return (
     <section className={styles.section}>
@@ -330,24 +266,22 @@ export const InteractiveElementsSection: React.FC = () => {
           </div>
 
           {/* Interactive Demo Teaser */}
-          <div className="mt-16">
-            <div className="text-center mb-10">
-              <h3 className="text-4xl font-bold text-white mb-4">
-                Experience the System
-              </h3>
-              <p className="text-xl text-[rgb(var(--gray))] mb-6 max-w-2xl mx-auto leading-relaxed">
+          <div className={styles.demoSection}>
+            <div className={styles.demoHeader}>
+              <h3 className={styles.demoTitle}>Experience the System</h3>
+              <p className={styles.demoSubtitle}>
                 Try our interactive defense simulator to see Phoenix Rooivalk
                 technology in action. Experience real-time threat detection,
                 autonomous response, and tactical coordination.
               </p>
             </div>
 
-            <div className="relative">
-              <div className="bg-gradient-to-br from-[rgba(var(--bg-primary),0.8)] to-[rgba(var(--bg-secondary),0.8)] rounded-xl border border-[rgba(var(--primary),0.3)] p-4">
+            <div className={styles.demoContainer}>
+              <div className={styles.demoCard}>
                 <WasmThreatSimulator isTeaser={true} />
               </div>
 
-              <div className="text-center mt-6">
+              <div className={styles.demoButtonWrapper}>
                 <Button href="/interactive-demo" variant="primary" size="lg">
                   🚀 Try Full Interactive Demo (Rust/WASM)
                 </Button>
@@ -431,163 +365,23 @@ export const InteractiveElementsSection: React.FC = () => {
           </div>
 
           {/* Concept Adaptation Calculator */}
-          <div className="mt-16">
-            <h3 className="text-4xl font-bold text-white mb-6 text-center">
+          <div className={styles.adaptationSection}>
+            <h3 className={styles.adaptationTitle}>
               Concept Adaptation Explorer
             </h3>
-            <p className="text-xl text-[rgb(var(--gray))] mb-10 max-w-3xl mx-auto text-center leading-relaxed">
+            <p className={styles.adaptationSubtitle}>
               Explore how Phoenix Rooivalk&apos;s core technology could adapt to
               different operational environments and threat scenarios.
             </p>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-              {/* Civilian Applications */}
-              <div className="card">
-                <div className="text-center mb-4">
-                  <div className="text-3xl mb-2">🏢</div>
-                  <h4 className="text-lg font-bold text-[rgb(var(--action-primary))] mb-2">
-                    Civilian Applications
-                  </h4>
-                </div>
-                <div className={styles.resultRows}>
-                  <div className="text-sm">
-                    <div className="font-semibold text-[rgb(var(--text-primary))] mb-1">
-                      Airport Security
-                    </div>
-                    <div className="text-[rgb(var(--text-muted))]">
-                      Perimeter protection, runway monitoring
-                    </div>
-                  </div>
-                  <div className="text-sm">
-                    <div className="font-semibold text-[rgb(var(--text-primary))] mb-1">
-                      Critical Infrastructure
-                    </div>
-                    <div className="text-[rgb(var(--text-muted))]">
-                      Power plants, water facilities, communication towers
-                    </div>
-                  </div>
-                  <div className="text-sm">
-                    <div className="font-semibold text-[rgb(var(--text-primary))] mb-1">
-                      Event Security
-                    </div>
-                    <div className="text-[rgb(var(--text-muted))]">
-                      Stadiums, concerts, public gatherings
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Commercial Security */}
-              <div className="card">
-                <div className="text-center mb-4">
-                  <div className="text-3xl mb-2">🏭</div>
-                  <h4 className="text-lg font-bold text-[rgb(var(--action-primary))] mb-2">
-                    Commercial Security
-                  </h4>
-                </div>
-                <div className={styles.resultRows}>
-                  <div className="text-sm">
-                    <div className="font-semibold text-[rgb(var(--text-primary))] mb-1">
-                      Corporate Campus
-                    </div>
-                    <div className="text-[rgb(var(--text-muted))]">
-                      Headquarters, R&D facilities
-                    </div>
-                  </div>
-                  <div className="text-sm">
-                    <div className="font-semibold text-[rgb(var(--text-primary))] mb-1">
-                      Data Center Security
-                    </div>
-                    <div className="text-[rgb(var(--text-muted))]">
-                      Server farms, cloud infrastructure
-                    </div>
-                  </div>
-                  <div className="text-sm">
-                    <div className="font-semibold text-[rgb(var(--text-primary))] mb-1">
-                      Port Security
-                    </div>
-                    <div className="text-[rgb(var(--text-muted))]">
-                      Shipping terminals, cargo facilities
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Research & Development */}
-              <div className="card">
-                <div className="text-center mb-4">
-                  <div className="text-3xl mb-2">🔬</div>
-                  <h4 className="text-lg font-bold text-[rgb(var(--action-primary))] mb-2">
-                    Research & Development
-                  </h4>
-                </div>
-                <div className={styles.resultRows}>
-                  <div className="text-sm">
-                    <div className="font-semibold text-[rgb(var(--text-primary))] mb-1">
-                      University Partnerships
-                    </div>
-                    <div className="text-[rgb(var(--text-muted))]">
-                      Academic research collaboration
-                    </div>
-                  </div>
-                  <div className="text-sm">
-                    <div className="font-semibold text-[rgb(var(--text-primary))] mb-1">
-                      Government Labs
-                    </div>
-                    <div className="text-[rgb(var(--text-muted))]">
-                      DARPA, NSF, national laboratories
-                    </div>
-                  </div>
-                  <div className="text-sm">
-                    <div className="font-semibold text-[rgb(var(--text-primary))] mb-1">
-                      International Cooperation
-                    </div>
-                    <div className="text-[rgb(var(--text-muted))]">
-                      NATO, allied defense research
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Technology Licensing */}
-              <div className="card">
-                <div className="text-center mb-4">
-                  <div className="text-3xl mb-2">⚡</div>
-                  <h4 className="text-lg font-bold text-[rgb(var(--action-primary))] mb-2">
-                    Technology Licensing
-                  </h4>
-                </div>
-                <div className={styles.resultRows}>
-                  <div className="text-sm">
-                    <div className="font-semibold text-[rgb(var(--text-primary))] mb-1">
-                      Sensor Fusion
-                    </div>
-                    <div className="text-[rgb(var(--text-muted))]">
-                      Core detection algorithms
-                    </div>
-                  </div>
-                  <div className="text-sm">
-                    <div className="font-semibold text-[rgb(var(--text-primary))] mb-1">
-                      Edge Processing
-                    </div>
-                    <div className="text-[rgb(var(--text-muted))]">
-                      Autonomous decision-making
-                    </div>
-                  </div>
-                  <div className="text-sm">
-                    <div className="font-semibold text-[rgb(var(--text-primary))] mb-1">
-                      Blockchain Integration
-                    </div>
-                    <div className="text-[rgb(var(--text-muted))]">
-                      Evidence management systems
-                    </div>
-                  </div>
-                </div>
-              </div>
+            <div className={styles.adaptationGrid}>
+              {adaptationCardsData.map((card, index) => (
+                <AdaptationCard key={index} {...card} />
+              ))}
             </div>
 
-            <div className="mt-8 p-4 bg-[var(--action-warning)]/10 border border-[var(--action-warning)]/20 rounded-lg">
-              <p className="text-sm text-[var(--action-warning)] text-center font-semibold">
+            <div className={styles.adaptationWarning}>
+              <p className={styles.adaptationWarningText}>
                 💡 These are potential applications under exploration. Actual
                 deployment would require regulatory approval, market validation,
                 and technology adaptation for specific use cases.
@@ -596,16 +390,14 @@ export const InteractiveElementsSection: React.FC = () => {
           </div>
 
           {/* CTA */}
-          <div className="text-center mt-16">
-            <h3 className="text-4xl font-bold text-white mb-5">
-              Interested in the Technology?
-            </h3>
-            <p className="text-xl text-[rgb(var(--gray))] mb-8 max-w-2xl mx-auto leading-relaxed">
+          <div className={styles.ctaSection}>
+            <h3 className={styles.ctaTitle}>Interested in the Technology?</h3>
+            <p className={styles.ctaSubtitle}>
               Learn more about Phoenix Rooivalk&apos;s innovative approach to
               autonomous counter-drone defense and explore partnership
               opportunities.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className={styles.ctaButtons}>
               <Button href="/contact" size="lg" variant="primary">
                 Join Development Program
               </Button>
