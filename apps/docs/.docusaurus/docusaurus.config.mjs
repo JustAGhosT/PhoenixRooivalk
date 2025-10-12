@@ -42,13 +42,13 @@ export default {
       {
         "docs": {
           "routeBasePath": "docs",
-          "sidebarPath": "C:\\Users\\smitj\\repos\\PhoenixRooivalk\\apps\\docs\\sidebars.ts",
+          "sidebarPath": "/home/runner/work/PhoenixRooivalk/PhoenixRooivalk/apps/docs/sidebars.ts",
           "remarkPlugins": [],
           "rehypePlugins": []
         },
         "blog": false,
         "theme": {
-          "customCss": "C:\\Users\\smitj\\repos\\PhoenixRooivalk\\apps\\docs\\src\\css\\custom.css"
+          "customCss": "/home/runner/work/PhoenixRooivalk/PhoenixRooivalk/apps/docs/src/css/custom.css"
         }
       }
     ]
@@ -153,7 +153,7 @@ export default {
         },
         {
           "to": "#",
-          "label": "local",
+          "label": "local:copilot/fix-styling-issues-contact-page",
           "position": "right",
           "className": "navbar-env-badge navbar-env-badge--preview"
         }

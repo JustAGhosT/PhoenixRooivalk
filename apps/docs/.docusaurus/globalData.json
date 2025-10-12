@@ -385,6 +385,11 @@
               "sidebar": "docs"
             },
             {
+              "id": "technical/multi-user-signing-cooperation",
+              "path": "/docs/technical/multi-user-signing-cooperation",
+              "sidebar": "docs"
+            },
+            {
               "id": "technical/performance/performance-specifications",
               "path": "/docs/technical/performance/performance-specifications",
               "sidebar": "docs"

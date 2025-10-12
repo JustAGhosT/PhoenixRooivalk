@@ -556,3 +556,204 @@ a:focus {
 .shadow-phoenix {
   box-shadow: 0 4px 8px rgba(249, 115, 22, 0.2) !important;
 }
+
+/* Contact Page Styles */
+.contactMain {
+  min-height: calc(100vh - 60px);
+  background: rgb(15, 23, 42);
+  padding: 3rem 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .contactMain {
+    padding: 4rem 2rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .contactMain {
+    padding: 5rem 2rem;
+  }
+}
+
+.contactSection {
+  max-width: 800px;
+  margin: 0 auto;
+  background: rgb(30, 41, 59);
+  border: 1px solid rgb(51, 65, 85);
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+@media (min-width: 768px) {
+  .contactSection {
+    padding: 3rem;
+  }
+}
+
+.contactSection h1 {
+  color: rgb(242, 244, 246) !important;
+  font-size: 2.5rem !important;
+  font-weight: 800 !important;
+  margin-bottom: 1rem !important;
+  text-align: center;
+  background: linear-gradient(135deg, rgb(249, 115, 22), rgb(251, 146, 60));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+@media (max-width: 768px) {
+  .contactSection h1 {
+    font-size: 2rem !important;
+  }
+}
+
+.contactSection > p {
+  color: rgb(148, 163, 184);
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 1.125rem;
+  line-height: 1.6;
+}
+
+.contactSection > p:last-child {
+  text-align: center;
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgb(51, 65, 85);
+  color: rgb(226, 230, 234);
+}
+
+.contactSection > p:last-child a {
+  color: rgb(249, 115, 22) !important;
+  font-weight: 600;
+  text-decoration: none !important;
+}
+
+.contactSection > p:last-child a:hover {
+  color: rgb(251, 146, 60) !important;
+  text-decoration: underline !important;
+}
+
+.contactForm {
+  margin: 0;
+}
+
+.contactGrid {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 768px) {
+  .contactGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.contactGrid label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  color: rgb(242, 244, 246);
+  font-weight: 600;
+  font-size: 0.9375rem;
+}
+
+.contactGrid label:nth-child(4) {
+  grid-column: 1 / -1;
+}
+
+.contactGrid button {
+  grid-column: 1 / -1;
+  justify-self: center;
+  width: 100%;
+  max-width: 300px;
+  margin-top: 0.5rem;
+}
+
+.contactInput,
+.contactTextarea {
+  width: 100%;
+  padding: 0.875rem 1rem;
+  background: rgb(15, 23, 42);
+  border: 1px solid rgb(51, 65, 85);
+  border-radius: 6px;
+  color: rgb(242, 244, 246);
+  font-size: 1rem;
+  font-family: inherit;
+  transition: all 0.2s ease;
+}
+
+.contactInput:focus,
+.contactTextarea:focus {
+  outline: none;
+  border-color: rgb(249, 115, 22);
+  box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.1);
+  background: rgb(30, 41, 59);
+}
+
+.contactInput::placeholder,
+.contactTextarea::placeholder {
+  color: rgb(100, 116, 139);
+}
+
+.contactInput:hover,
+.contactTextarea:hover {
+  border-color: rgb(71, 85, 105);
+}
+
+.contactTextarea {
+  resize: vertical;
+  min-height: 150px;
+  line-height: 1.5;
+}
+
+.contactInput:required:invalid:not(:placeholder-shown),
+.contactTextarea:required:invalid:not(:placeholder-shown) {
+  border-color: rgb(239, 68, 68);
+}
+
+.contactInput:required:valid:not(:placeholder-shown),
+.contactTextarea:required:valid:not(:placeholder-shown) {
+  border-color: rgb(34, 197, 94);
+}
+
+/* Improve button visibility and interaction */
+.contactGrid .button--primary {
+  font-size: 1.125rem !important;
+  padding: 1rem 2rem !important;
+  box-shadow: 0 2px 8px rgba(249, 115, 22, 0.3);
+}
+
+.contactGrid .button--primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(249, 115, 22, 0.4);
+}
+
+/* Hidden honeypot field */
+.contactForm p[hidden] {
+  display: none !important;
+}
+
+/* Accessibility improvements */
+@media (prefers-reduced-motion: reduce) {
+  .contactInput,
+  .contactTextarea,
+  .contactGrid .button--primary {
+    transition: none !important;
+  }
+
+  .contactGrid .button--primary:hover {
+    transform: none;
+  }
+}
+
+/* Dark mode support (redundant for this theme but good practice) */
+@media (prefers-color-scheme: dark) {
+  .contactMain {
+    background: rgb(15, 23, 42);
+  }
+}

@@ -14,15 +14,15 @@ export default [
   },
   {
     path: '/docs',
-    component: ComponentCreator('/docs', '932'),
+    component: ComponentCreator('/docs', '7f2'),
     routes: [
       {
         path: '/docs',
-        component: ComponentCreator('/docs', '7aa'),
+        component: ComponentCreator('/docs', '81c'),
         routes: [
           {
             path: '/docs',
-            component: ComponentCreator('/docs', '6df'),
+            component: ComponentCreator('/docs', '788'),
             routes: [
               {
                 path: '/docs/',
@@ -442,7 +442,7 @@ export default [
               },
               {
                 path: '/docs/technical/glossary',
-                component: ComponentCreator('/docs/technical/glossary', '307'),
+                component: ComponentCreator('/docs/technical/glossary', '3bf'),
                 exact: true,
                 sidebar: "docs"
               },
@@ -473,6 +473,12 @@ export default [
               {
                 path: '/docs/technical/mechanical/mechanical-design-records',
                 component: ComponentCreator('/docs/technical/mechanical/mechanical-design-records', '8ec'),
+                exact: true,
+                sidebar: "docs"
+              },
+              {
+                path: '/docs/technical/multi-user-signing-cooperation',
+                component: ComponentCreator('/docs/technical/multi-user-signing-cooperation', '854'),
                 exact: true,
                 sidebar: "docs"
               },

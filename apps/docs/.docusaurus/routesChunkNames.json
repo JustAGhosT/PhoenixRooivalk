@@ -13,17 +13,17 @@
     },
     "config": "5e9f5e1a"
   },
-  "/docs-932": {
+  "/docs-7f2": {
     "__comp": "5e95c892",
     "__context": {
       "plugin": "aba21aa0"
     }
   },
-  "/docs-7aa": {
+  "/docs-81c": {
     "__comp": "a7bd4aaa",
     "__props": "0058b4c6"
   },
-  "/docs-6df": {
+  "/docs-788": {
     "__comp": "a94703ab"
   },
   "/docs/-e35": {
@@ -314,9 +314,9 @@
     "__comp": "17896441",
     "content": "705d8008"
   },
-  "/docs/technical/glossary-307": {
+  "/docs/technical/glossary-3bf": {
     "__comp": "17896441",
-    "content": "4be4b91d"
+    "content": "d53d0575"
   },
   "/docs/technical/hardware-foundation-63b": {
     "__comp": "17896441",
@@ -337,6 +337,10 @@
   "/docs/technical/mechanical/mechanical-design-records-8ec": {
     "__comp": "17896441",
     "content": "1ff4ecb4"
+  },
+  "/docs/technical/multi-user-signing-cooperation-854": {
+    "__comp": "17896441",
+    "content": "30e2cb99"
   },
   "/docs/technical/performance/performance-specifications-466": {
     "__comp": "17896441",
