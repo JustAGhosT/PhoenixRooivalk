@@ -68,6 +68,11 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
+      - name: Validate environment variables
+        run: |
+          chmod +x ./scripts/validate-env.sh
+          ./scripts/validate-env.sh marketing
+
       # Skip format check for now - focus on deployment
       - name: Type Check
         run: pnpm typecheck
@@ -150,6 +155,11 @@ jobs:
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
+
+      - name: Validate environment variables
+        run: |
+          chmod +x ./scripts/validate-env.sh
+          ./scripts/validate-env.sh marketing
 
       # Skip format check for now - focus on deployment
       - name: Type Check
