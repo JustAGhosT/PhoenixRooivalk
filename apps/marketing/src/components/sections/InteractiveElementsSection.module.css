@@ -484,6 +484,52 @@
   font-weight: 600;
 }
 
+.adaptationCard {
+  background: rgb(var(--bg-surface));
+  border: 1px solid rgb(var(--border));
+  border-radius: 16px;
+  padding: var(--space-6);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.adaptationCard:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+}
+
+.adaptationCardHeader {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.adaptationCardIcon {
+  font-size: 1.875rem;
+  margin-bottom: 0.5rem;
+}
+
+.adaptationCardTitle {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: rgb(var(--action-primary));
+  margin-bottom: 0.5rem;
+}
+
+.adaptationItem {
+  font-size: 0.875rem;
+}
+
+.adaptationItemTitle {
+  font-weight: 600;
+  color: rgb(var(--text-primary));
+  margin-bottom: 0.25rem;
+}
+
+.adaptationItemDescription {
+  color: rgb(var(--text-muted));
+}
+
 .ctaSection {
   text-align: center;
   margin-top: 6rem;
