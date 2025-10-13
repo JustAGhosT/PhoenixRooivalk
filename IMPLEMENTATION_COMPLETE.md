@@ -86,24 +86,31 @@ wherever identified"
 #### Bad Designs Identified & Fixed:
 
 1. **❌ HUD stats unlabeled/outside cards**
+
    - ✅ Fixed: Labels inside cards, proper hierarchy, 5-column grid
 
 2. **❌ Event feed too simple**
+
    - ✅ Fixed: Severity levels, icons, structured layout, custom scrollbar
 
 3. **❌ Controls lack clear hierarchy**
+
    - ✅ Fixed: 4-tier button system, logical grouping, clear visual distinction
 
 4. **❌ Reset button dangerous placement**
+
    - ✅ Fixed: Isolated far right, red warning colors, clear separation
 
 5. **❌ Toggles look like buttons**
+
    - ✅ Fixed: Proper switch controls with visible indicators
 
 6. **❌ Environment controls unlabeled**
+
    - ✅ Fixed: Clear labels (Weather/Terrain/Rules) with emojis
 
 7. **❌ Poor accessibility**
+
    - ✅ Fixed: Full ARIA support, proper roles, live regions
 
 8. **❌ No visual feedback**

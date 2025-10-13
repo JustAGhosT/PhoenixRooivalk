@@ -5,12 +5,14 @@
 ### Core Game Components (6/6) ✅
 
 1. **Main App** (`components.rs`, 350 lines)
+
    - Application shell and routing
    - Keyboard event handling (22 shortcuts)
    - Modal state management
    - Component orchestration
 
 2. **GameCanvas** (`game_canvas.rs`, 330 lines)
+
    - Canvas rendering with web-sys
    - Mouse click targeting
    - Game loop integration
@@ -18,6 +20,7 @@
    - Grid and range circle overlays
 
 3. **HUD** (`hud.rs`, 150 lines)
+
    - Real-time stats display
    - Score, level, health
    - Energy and cooling bars
@@ -25,12 +28,14 @@
    - Pause/play button
 
 4. **WeaponPanel** (`weapon_panel.rs`, 90 lines)
+
    - 13 weapon type selection
    - Active weapon highlighting
    - Keyboard shortcut display
    - Tooltip information
 
 5. **StatsPanel** (`stats_panel.rs`, 160 lines)
+
    - Detailed statistics modal
    - Combat performance metrics
    - Resource tracking
@@ -46,6 +51,7 @@
 ### Advanced Management Components (5/5) ✅
 
 7. **EnergyManagement** (`energy_management.rs`, 150 lines)
+
    - Primary reactor visualization
    - Thermal management display
    - Power budget breakdown (4 systems)
@@ -53,6 +59,7 @@
    - Regeneration rate display
 
 8. **DroneDeployment** (`drone_deployment.rs`, 140 lines)
+
    - Deploy 9 drone types
    - Count slider (1-10 drones)
    - Type selection dropdown
@@ -60,6 +67,7 @@
    - Formation spawn pattern
 
 9. **TokenStore** (`token_store.rs`, 150 lines)
+
    - Blockchain wallet integration
    - Purchase drones with tokens
    - Token balance display (1000 initial)
@@ -67,6 +75,7 @@
    - Earning methods guide
 
 10. **ResearchPanel** (`research_panel.rs`, 220 lines)
+
     - Tech tree system
     - 4 categories (Weapons, Drones, Systems, Upgrades)
     - 8+ research items
@@ -84,12 +93,14 @@
 ### Overlay & Modal Components (3/3) ✅
 
 12. **Overlays** (`overlays.rs`, 200 lines)
+
     - SimulationWarning (disclaimer)
     - AchievementNotification (trophy pop-ups)
     - GameOverOverlay (final stats)
     - FullscreenPrompt (enhanced mode)
 
 13. **CooldownMeter** (`cooldown_meter.rs`, 80 lines)
+
     - Visual weapon cooldowns
     - Ready/Charging states
     - Grid layout for all weapons
@@ -107,36 +118,42 @@
 ## 🎮 Game Engine Modules (7/7) ✅
 
 1. **Types** (`game/types.rs`, 230 lines, 7 tests)
+
    - Core data structures
    - Vector2 math
    - Threat, Drone, Weapon definitions
    - Serialization support
 
 2. **Physics** (`game/physics.rs`, 210 lines, 5 tests)
+
    - Collision detection
    - Impact calculations
    - Physics resolution
    - Boundary checks
 
 3. **Formations** (`game/formations.rs`, 320 lines, 5 tests)
+
    - 6 formation patterns
    - Position calculations
    - Formation movement
    - Dynamic updates
 
 4. **Waves** (`game/waves.rs`, 350 lines, 6 tests)
+
    - Progressive difficulty
    - Spawn events
    - Wave configurations
    - Threat distribution
 
 5. **Engine** (`game/engine.rs`, 220 lines, 6 tests)
+
    - Main game loop
    - Entity management
    - Update cycle
    - Integration layer
 
 6. **Weapons** (`game/weapons.rs`, 90 lines)
+
    - 13 weapon types
    - Firing logic
    - Damage application
