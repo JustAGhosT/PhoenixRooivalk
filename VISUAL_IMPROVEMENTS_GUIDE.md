@@ -5,18 +5,21 @@
 ### 1. HUD Bar Improvements
 
 #### Before:
+
 ```
 ┌─────────────────────────────────────────────────────────┐
 │  Score    Threats    Neutralized    Level               │
 │  [0]      [0]        [0]            [1]                  │
 └─────────────────────────────────────────────────────────┘
 ```
+
 - Small, hard-to-read values
 - No clear hierarchy
 - Generic labels
 - No accessibility support
 
 #### After:
+
 ```
 ┌───────────────────────────────────────────────────────────────┐
 │  SCORE      ACTIVE      NEUTRALIZED    WAVE      RESEARCH    │
@@ -24,6 +27,7 @@
 │  [LIVE]     [LIVE]      [LIVE]         [LIVE]                 │
 └───────────────────────────────────────────────────────────────┘
 ```
+
 - Larger, monospace values (1.5rem)
 - Clear label hierarchy (uppercase, bold)
 - Better labels: "Active" instead of "Threats", "Wave" instead of "Level"
@@ -32,6 +36,7 @@
 - 5 columns with integrated Research button
 
 **Key Improvements:**
+
 - 📏 **Font Size**: 1.25rem → 1.5rem (+20%)
 - 🎯 **Clarity**: Better terminology
 - ♿ **Accessibility**: Full ARIA support
@@ -43,6 +48,7 @@
 ### 2. Event Feed Enhancement
 
 #### Before:
+
 ```
 ┌─────────────────────────────────────────────────┐
 │ 12:34:56  System initialized. Awaiting events. │
@@ -50,12 +56,14 @@
 │ 12:35:03  Weapon fired                          │
 └─────────────────────────────────────────────────┘
 ```
+
 - Basic timestamp + message
 - No severity indication
 - No visual hierarchy
 - Plain text only
 
 #### After:
+
 ```
 ┌──────────────────────────────────────────────────────────┐
 │ ║ 🔴 12:35:05                                            │
@@ -76,12 +84,14 @@
 ```
 
 **Severity Levels:**
+
 - 🔴 **Critical**: Red border, red background tint
 - ⚠️ **Warning**: Yellow border
 - ✅ **Success**: Green border
 - ℹ️ **Info**: Blue border (default)
 
 **Key Improvements:**
+
 - 🎨 **Visual**: Color-coded left borders (3px)
 - 📊 **Hierarchy**: Icons, structured layout
 - 📝 **Detail**: Support for additional context
@@ -94,6 +104,7 @@
 ### 3. Control Bar Reorganization
 
 #### Before:
+
 ```
 ┌──────────────────────────────────────────────────────────────────────┐
 │ [Pause] [Spawn Swarm] [+5 Drones] [Reset]                           │
@@ -101,12 +112,14 @@
 │ Rules: [Hybrid▾]  [Show Zones] [Show Stats] [?]                     │
 └──────────────────────────────────────────────────────────────────────┘
 ```
+
 - Flat layout, no clear grouping
 - Reset mixed with other actions
 - Unclear button importance
 - Simple toggles without state indication
 
 #### After:
+
 ```
 ┌────────────────────────────────────────────────────────────────────────────────────────┐
 │ PRIMARY ACTIONS        ENVIRONMENT CONTROLS                VIEW    UTILITY    DANGER   │
@@ -145,6 +158,7 @@
    - 🔄 Reset (red warning)
 
 **Button Hierarchy:**
+
 ```
 ┌─────────────────────────────────────────┐
 │ PRIMARY (Spawn Swarm)                   │
@@ -162,6 +176,7 @@
 ```
 
 **Key Improvements:**
+
 - 🎯 **Organization**: 5 logical groups
 - 🚨 **Safety**: Reset isolated far right
 - 🎨 **Hierarchy**: 4-tier button system
@@ -177,6 +192,7 @@
 ### Typography Improvements
 
 #### Before:
+
 ```css
 .label {
   font-size: 0.72rem;
@@ -193,22 +209,23 @@
 ```
 
 #### After:
+
 ```css
 .label {
-  font-size: 0.7rem;        /* Slightly smaller */
+  font-size: 0.7rem; /* Slightly smaller */
   color: rgb(var(--sim-muted));
   text-transform: uppercase;
-  letter-spacing: 0.08em;   /* More spacing */
-  font-weight: 600;         /* Bolder */
-  margin-bottom: 4px;       /* Better separation */
+  letter-spacing: 0.08em; /* More spacing */
+  font-weight: 600; /* Bolder */
+  margin-bottom: 4px; /* Better separation */
 }
 
 .value {
-  font-size: 1.5rem;        /* 20% larger */
+  font-size: 1.5rem; /* 20% larger */
   font-weight: 800;
   color: rgb(var(--sim-text));
-  font-family: "Courier New", monospace;  /* Monospace for numbers */
-  line-height: 1;           /* Tighter line height */
+  font-family: "Courier New", monospace; /* Monospace for numbers */
+  line-height: 1; /* Tighter line height */
 }
 ```
 
@@ -217,33 +234,35 @@
 ### Color System
 
 #### Severity Colors:
+
 ```css
 /* Info - Default */
---color-info: #60a5fa;        /* Blue */
+--color-info: #60a5fa; /* Blue */
 --border-info: #60a5fa;
 
 /* Success - Positive actions */
---color-success: #4ade80;     /* Green */
+--color-success: #4ade80; /* Green */
 --border-success: #4ade80;
 
 /* Warning - Caution needed */
---color-warning: #fbbf24;     /* Yellow */
+--color-warning: #fbbf24; /* Yellow */
 --border-warning: #fbbf24;
 
 /* Critical - Urgent attention */
---color-critical: #ef4444;    /* Red */
+--color-critical: #ef4444; /* Red */
 --border-critical: #ef4444;
 --bg-critical: rgba(239, 68, 68, 0.05);
 ```
 
 #### Button Colors:
+
 ```css
 /* Primary - Main actions */
---btn-primary-bg: rgb(var(--sim-accent));   /* Orange */
+--btn-primary-bg: rgb(var(--sim-accent)); /* Orange */
 --btn-primary-text: white;
 
 /* Secondary - Supporting actions */
---btn-secondary-bg: rgb(var(--sim-elev));   /* Dark gray */
+--btn-secondary-bg: rgb(var(--sim-elev)); /* Dark gray */
 --btn-secondary-border: rgb(var(--sim-border));
 
 /* Ghost - Utility actions */
@@ -251,9 +270,9 @@
 --btn-ghost-border: rgb(var(--sim-border));
 
 /* Danger - Destructive actions */
---btn-danger-bg: rgba(239, 68, 68, 0.1);    /* Light red */
---btn-danger-border: #ef4444;                /* Red border */
---btn-danger-text: #ef4444;                  /* Red text */
+--btn-danger-bg: rgba(239, 68, 68, 0.1); /* Light red */
+--btn-danger-border: #ef4444; /* Red border */
+--btn-danger-text: #ef4444; /* Red text */
 ```
 
 ---
@@ -261,6 +280,7 @@
 ### Interactive States
 
 #### Hover Effects:
+
 ```css
 /* Before */
 .chip:hover {
@@ -276,6 +296,7 @@
 ```
 
 #### Active States:
+
 ```css
 /* Before */
 .chipOn {
@@ -294,6 +315,7 @@
 ```
 
 #### Focus States:
+
 ```css
 /* Added for accessibility */
 .environmentSelect:focus {
@@ -310,6 +332,7 @@
 ### Grid Improvements
 
 #### HUD Before:
+
 ```css
 .hud {
   display: grid;
@@ -320,36 +343,53 @@
 ```
 
 #### HUD After:
+
 ```css
 .hud {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);  /* 5 columns */
+  grid-template-columns: repeat(5, 1fr); /* 5 columns */
   gap: 12px;
-  padding: 16px;                          /* Consistent padding */
-  background: rgb(var(--sim-panel));      /* Solid background */
-  border-bottom: 2px solid rgb(var(--sim-border));  /* Thicker border */
+  padding: 16px; /* Consistent padding */
+  background: rgb(var(--sim-panel)); /* Solid background */
+  border-bottom: 2px solid rgb(var(--sim-border)); /* Thicker border */
 }
 ```
 
 ### Flexbox Organization
 
 #### Control Bar:
+
 ```css
 .controls {
   display: flex;
-  gap: 16px;              /* Larger gap */
+  gap: 16px; /* Larger gap */
   flex-wrap: wrap;
   align-items: center;
-  padding: 16px;          /* More padding */
+  padding: 16px; /* More padding */
   border-top: 2px solid rgb(var(--sim-border));
 }
 
 /* Logical groups */
-.primaryActions { display: flex; gap: 8px; }
-.environmentControls { display: flex; gap: 12px; flex: 1; }
-.viewControls { display: flex; gap: 8px; }
-.utilityActions { display: flex; gap: 4px; }
-.dangerActions { margin-left: auto; }  /* Push to far right */
+.primaryActions {
+  display: flex;
+  gap: 8px;
+}
+.environmentControls {
+  display: flex;
+  gap: 12px;
+  flex: 1;
+}
+.viewControls {
+  display: flex;
+  gap: 8px;
+}
+.utilityActions {
+  display: flex;
+  gap: 4px;
+}
+.dangerActions {
+  margin-left: auto;
+} /* Push to far right */
 ```
 
 ---
@@ -359,6 +399,7 @@
 ### ARIA Labels
 
 #### Before:
+
 ```html
 <div class="stat">
   <span class="label">Score</span>
@@ -367,45 +408,48 @@
 ```
 
 #### After:
+
 ```html
 <div class="stat" role="status" aria-label="Current score">
   <span class="label">Score</span>
-  <span class="value" aria-live="polite">
-    {score.toLocaleString()}
-  </span>
+  <span class="value" aria-live="polite"> {score.toLocaleString()} </span>
 </div>
 ```
 
 ### Radio Groups
 
 #### Before:
+
 ```html
 <div role="group">
-  <button aria-pressed={currentLevel === 1}>1</button>
-  <button aria-pressed={currentLevel === 2}>2</button>
+  <button aria-pressed="{currentLevel" ="" ="" ="1}">1</button>
+  <button aria-pressed="{currentLevel" ="" ="" ="2}">2</button>
 </div>
 ```
 
 #### After:
+
 ```html
 <div role="radiogroup" aria-label="Select wave level">
-  <button role="radio" aria-checked={currentLevel === 1}>1</button>
-  <button role="radio" aria-checked={currentLevel === 2}>2</button>
+  <button role="radio" aria-checked="{currentLevel" ="" ="" ="1}">1</button>
+  <button role="radio" aria-checked="{currentLevel" ="" ="" ="2}">2</button>
 </div>
 ```
 
 ### Switch Controls
 
 #### Before:
+
 ```html
 <button class="switch">Show Zones</button>
 ```
 
 #### After:
+
 ```html
-<button 
-  role="switch" 
-  aria-checked={showZones}
+<button
+  role="switch"
+  aria-checked="{showZones}"
   aria-label="Toggle deployment zones visibility"
   class="switch"
 >
@@ -419,18 +463,21 @@
 ## Performance Metrics
 
 ### Bundle Size Impact:
+
 - **CSS**: +2.1KB (uncompressed)
 - **JS**: +1.2KB (uncompressed)
 - **Gzipped**: <3KB total
 - **Impact**: Negligible (<1% increase)
 
 ### Rendering Performance:
+
 - **No additional re-renders**
 - **CSS-only animations** (hardware accelerated)
 - **Efficient selectors**
 - **No layout thrashing**
 
 ### Accessibility Score:
+
 - **Before**: 68/100
 - **After**: 94/100
 - **Improvement**: +26 points
@@ -440,12 +487,14 @@
 ## Browser Support
 
 All modern browsers (2023+):
+
 - ✅ Chrome 120+
 - ✅ Firefox 121+
 - ✅ Safari 17+
 - ✅ Edge 120+
 
 CSS features used:
+
 - ✅ CSS Grid (100% support)
 - ✅ Flexbox (100% support)
 - ✅ Custom Properties (99% support)
@@ -456,7 +505,8 @@ CSS features used:
 
 ## Conclusion
 
-These improvements transform the Phoenix Rooivalk simulator interface from functional to professional:
+These improvements transform the Phoenix Rooivalk simulator interface from
+functional to professional:
 
 1. **Visual Hierarchy**: Clear distinction between element types
 2. **Accessibility**: Full ARIA support with screen reader compatibility
@@ -464,4 +514,5 @@ These improvements transform the Phoenix Rooivalk simulator interface from funct
 4. **Aesthetics**: Modern design while maintaining tactical theme
 5. **Performance**: No negative impact, efficient implementation
 
-All changes are **backwards compatible** and require **no API changes** in consuming code.
+All changes are **backwards compatible** and require **no API changes** in
+consuming code.
