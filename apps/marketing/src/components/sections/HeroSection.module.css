@@ -105,7 +105,7 @@
   display: block;
   font-size: clamp(1.5rem, 3vw + 0.5rem, 3rem);
   margin-top: 1.5rem;
-  color: #ffa94d;
+  color: #f9bf3b;
   font-weight: 700;
 }
 
@@ -140,11 +140,11 @@
   padding: 1.75rem;
   background: linear-gradient(
     135deg,
-    rgba(15, 23, 42, 0.95),
-    rgba(30, 41, 59, 0.95)
+    rgba(30, 20, 15, 0.95),
+    rgba(40, 30, 25, 0.95)
   );
   border-radius: 1rem;
-  border: 1px solid rgba(249, 115, 22, 0.3);
+  border: 1px solid rgba(249, 115, 22, 0.2);
   max-width: 56rem;
   margin-left: auto;
   margin-right: auto;
