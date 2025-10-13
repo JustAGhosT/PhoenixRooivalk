@@ -3,7 +3,7 @@
 # This script validates that required environment variables are set and valid
 # to catch errors early before build/deployment
 
-set -e
+# Note: Don't use 'set -e' because we want to collect all errors before exiting
 
 # Colors for output
 RED='\033[0;31m'
@@ -125,7 +125,7 @@ validate_env() {
             log_info "GITHUB_REF_NAME: ${GITHUB_REF_NAME:-} (optional)"
             
             # MARKETING_URL is optional but must be valid if set
-            validate_url "MARKETING_URL" "${MARKETING_URL}" "false"
+            validate_url "MARKETING_URL" "${MARKETING_URL}" "false" || true
             ;;
             
         marketing)
@@ -155,9 +155,9 @@ validate_env() {
             
             # Database URL is required (API_DB_URL or DATABASE_URL)
             if [ -n "${API_DB_URL:-}" ]; then
-                validate_db_url "API_DB_URL" "${API_DB_URL}" "true"
+                validate_db_url "API_DB_URL" "${API_DB_URL}" "true" || true
             elif [ -n "${DATABASE_URL:-}" ]; then
-                validate_db_url "DATABASE_URL" "${DATABASE_URL}" "true"
+                validate_db_url "DATABASE_URL" "${DATABASE_URL}" "true" || true
             else
                 log_error "Neither API_DB_URL nor DATABASE_URL is set (one is required)"
             fi
@@ -173,9 +173,9 @@ validate_env() {
             
             # Database URL is required
             if [ -n "${KEEPER_DB_URL:-}" ]; then
-                validate_db_url "KEEPER_DB_URL" "${KEEPER_DB_URL}" "true"
+                validate_db_url "KEEPER_DB_URL" "${KEEPER_DB_URL}" "true" || true
             elif [ -n "${DATABASE_URL:-}" ]; then
-                validate_db_url "DATABASE_URL" "${DATABASE_URL}" "true"
+                validate_db_url "DATABASE_URL" "${DATABASE_URL}" "true" || true
             else
                 log_error "Neither KEEPER_DB_URL nor DATABASE_URL is set (one is required)"
             fi
@@ -184,19 +184,19 @@ validate_env() {
             log_info "KEEPER_PROVIDER: ${KEEPER_PROVIDER:-stub} (optional, defaults to 'stub')"
             
             if [ "${KEEPER_PROVIDER:-}" = "etherlink" ]; then
-                validate_url "ETHERLINK_ENDPOINT" "${ETHERLINK_ENDPOINT}" "false"
+                validate_url "ETHERLINK_ENDPOINT" "${ETHERLINK_ENDPOINT}" "false" || true
                 log_info "ETHERLINK_NETWORK: ${ETHERLINK_NETWORK:-ghostnet}"
                 log_info "ETHERLINK_PRIVATE_KEY: ${ETHERLINK_PRIVATE_KEY:+***set***}"
             elif [ "${KEEPER_PROVIDER:-}" = "solana" ]; then
-                validate_url "SOLANA_ENDPOINT" "${SOLANA_ENDPOINT}" "false"
+                validate_url "SOLANA_ENDPOINT" "${SOLANA_ENDPOINT}" "false" || true
                 log_info "SOLANA_NETWORK: ${SOLANA_NETWORK:-devnet}"
             elif [ "${KEEPER_PROVIDER:-}" = "multi" ]; then
                 if [ -n "${ETHERLINK_ENDPOINT:-}" ]; then
-                    validate_url "ETHERLINK_ENDPOINT" "${ETHERLINK_ENDPOINT}" "false"
+                    validate_url "ETHERLINK_ENDPOINT" "${ETHERLINK_ENDPOINT}" "false" || true
                     log_info "ETHERLINK_NETWORK: ${ETHERLINK_NETWORK:-ghostnet}"
                 fi
                 if [ -n "${SOLANA_ENDPOINT:-}" ]; then
-                    validate_url "SOLANA_ENDPOINT" "${SOLANA_ENDPOINT}" "false"
+                    validate_url "SOLANA_ENDPOINT" "${SOLANA_ENDPOINT}" "false" || true
                     log_info "SOLANA_NETWORK: ${SOLANA_NETWORK:-devnet}"
                 fi
             fi
