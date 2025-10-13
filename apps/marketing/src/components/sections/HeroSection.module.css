@@ -2,7 +2,8 @@
 .section {
   display: flex;
   align-items: center;
-  padding: 4rem 1.5rem 3rem;
+  padding: 0 1.5rem 3rem;
+  margin-top: 0;
   position: relative;
   min-height: 100vh;
   background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
@@ -14,8 +15,8 @@
   position: absolute;
   inset: 0;
   background-image:
-    linear-gradient(rgba(249, 115, 22, 0.08) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(249, 115, 22, 0.08) 1px, transparent 1px);
+    linear-gradient(rgba(249, 115, 22, 0.25) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(249, 115, 22, 0.25) 1px, transparent 1px);
   background-size: 50px 50px;
   opacity: 1;
   z-index: 0;

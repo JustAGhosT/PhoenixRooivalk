@@ -1,12 +1,7 @@
 /* InteractiveElementsSection.module.css */
 .section {
   padding: 4rem 1.5rem;
-  background: linear-gradient(
-    to bottom,
-    rgb(var(--bg-primary)),
-    rgb(var(--darker)),
-    rgb(var(--bg-primary))
-  );
+  background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
   position: relative;
   overflow: hidden;
 }
@@ -28,7 +23,7 @@
 .backgroundPattern {
   position: absolute;
   inset: 0;
-  opacity: 0.15;
+  opacity: 1;
 }
 
 .backgroundPattern::before {
@@ -36,8 +31,8 @@
   position: absolute;
   inset: 0;
   background-image:
-    linear-gradient(rgba(var(--primary), 0.15) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(var(--primary), 0.15) 1px, transparent 1px);
+    linear-gradient(rgba(249, 115, 22, 0.25) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(249, 115, 22, 0.25) 1px, transparent 1px);
   background-size: 50px 50px;
 }
 
