@@ -50,6 +50,11 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
+      - name: Validate environment variables
+        run: |
+          chmod +x ./scripts/validate-env.sh
+          ./scripts/validate-env.sh marketing
+
       - name: Format check
         run: pnpm format:check
 

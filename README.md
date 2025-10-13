@@ -124,6 +124,7 @@ cargo run --manifest-path apps/evidence-cli/Cargo.toml -- <command>  # Evidence 
 ./scripts/deploy.sh                    # Deployment script
 ./scripts/Invoke-Tests.ps1            # PowerShell test runner
 ./scripts/Invoke-OutboxWorker.ps1     # Blockchain outbox worker
+./scripts/validate-env.sh <app>        # Validate environment variables (docs, marketing, api, keeper)
 
 # linting and formatting
 pnpm lint                              # Run ESLint on all packages
@@ -214,6 +215,8 @@ For detailed specifications and planning baselines, see [`index.md`](./index.md)
 ## Documentation map
 
 - **Live Documentation**: [phoenixrooivalk-docs.netlify.app](https://phoenixrooivalk-docs.netlify.app) - Complete technical documentation
+- **Environment Validation**: [docs/ENVIRONMENT_VALIDATION.md](./docs/ENVIRONMENT_VALIDATION.md) - Environment variable validation guide
+- **Deployment Guide**: [DEPLOYMENT.md](./DEPLOYMENT.md) - Production deployment and configuration
 - **Legacy Documentation**: See `docs/` directory for historical reference
   - Executive: [Executive Summary](./docs/executive/Executive_Summary.md)
   - Business: [Market Analysis](./docs/business/Market_Analysis.md), [Business Model](./docs/business/Business_Model.md)
