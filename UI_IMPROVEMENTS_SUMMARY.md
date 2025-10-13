@@ -14,20 +14,17 @@ Rooivalk threat simulator.
 #### Improvements:
 
 - **Enhanced Visual Hierarchy**
-
   - Increased font sizes for better readability (1.25rem → 1.5rem for values)
   - Added monospace font for numerical values
   - Improved spacing and padding (8px → 10px, 14px padding)
   - Better grid layout (4 columns → 5 columns to include Research button)
 
 - **Better Labels**
-
   - "Threats" renamed to "Active" for clarity
   - "Level" renamed to "Wave" to match game terminology
   - Added uppercase, bold labels with letter spacing
 
 - **Accessibility Enhancements**
-
   - Added ARIA live regions (`aria-live="polite"`) for dynamic stat updates
   - Added role="status" for each stat
   - Descriptive aria-labels for screen readers
@@ -45,21 +42,18 @@ Rooivalk threat simulator.
 #### New Features:
 
 - **Severity Levels**
-
   - Info (ℹ️) - Blue accent
   - Warning (⚠️) - Yellow accent
   - Success (✅) - Green accent
   - Critical (🔴) - Red accent with background tint
 
 - **Rich Event Display**
-
   - Severity icons for quick visual identification
   - Structured layout with timestamp, message, and optional details
   - Color-coded left borders (3px) matching severity
   - Reverse chronological order (newest events first)
 
 - **Improved UX**
-
   - Custom scrollbar styling
   - Hover effects with subtle transform
   - Better spacing and padding (8px → 8px 10px)
@@ -88,21 +82,18 @@ Rooivalk threat simulator.
   - Danger Actions: Reset (isolated far right)
 
 - **Button Hierarchy**
-
   - **Primary** (Spawn Swarm): Accent color, white text, prominent
   - **Secondary** (Pause, +5): Subtle background, visible border
   - **Ghost** (Utility): Minimal style, transparent background
   - **Danger** (Reset): Red warning color, isolated position
 
 - **Improved Controls**
-
   - Environment dropdowns now use `<select>` with proper labels
   - Added `htmlFor` on labels for better accessibility
   - Switch controls have visible indicators (dots)
   - Radio group for wave selection with proper roles
 
 - **Visual Enhancements**
-
   - Emoji icons for quick recognition (▶️ ⏸️ 🌊 🔬 🪙 ❓ 🔄)
   - Consistent spacing (16px padding, 16px gaps)
   - 2px borders for all interactive elements
@@ -205,13 +196,11 @@ Rooivalk threat simulator.
 ### Manual Testing:
 
 1. **HUD Stats**
-
    - Verify live updates announce to screen readers
    - Check hover states on all stat cards
    - Verify responsive layout
 
 2. **Event Feed**
-
    - Test all severity levels
    - Verify scrolling behavior
    - Check hover effects
