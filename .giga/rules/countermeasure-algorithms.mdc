@@ -1,6 +1,5 @@
 ---
-description: Documents core algorithms and logic flows for RF jamming, GPS spoofing, and signal disruption mechanisms
-description: Specification for RF jamming, GPS spoofing, and signal disruption countermeasure algorithms in counter-drone defense systems
+description: Documents core algorithms and implementations for RF jamming, GPS spoofing, and signal disruption systems
 ---
 
 # === USER INSTRUCTIONS ===
@@ -52,95 +51,129 @@ description: Specification for RF jamming, GPS spoofing, and signal disruption c
 - Countermeasure coordination
 - Regulatory compliance verification
 > **SECURITY NOTE:** All countermeasure implementation details must remain in secure, access-controlled modules. Contact the security team for implementation guidelines and classification review requirements.
-# === END USER INSTRUCTIONS ===
 
+---
+description: Documents core algorithms and logic flows for RF jamming, GPS spoofing, and signal disruption mechanisms
+description: Specification for RF jamming, GPS spoofing, and signal disruption countermeasure algorithms in counter-drone defense systems
+---
 # countermeasure-algorithms
-
 ## RF Jamming System
 Importance Score: 95
-
 **Implementation Requirements:**
 - Must be implemented in restricted internal modules (e.g., `internal-libs/rf-jamming-core`)
 - Access only through the secure `CountermeasureService` API with proper authentication
 - No implementation details should appear in public-facing code
 - Public interface: `IResponseProtocol` in `@phoenix/secure-interfaces`
-
 **Capabilities Reference:**
 - Dynamic frequency management across relevant bands
 - Intelligent power output control system
 - Protocol identification and selective countermeasure application
 - Safe operation around authorized systems
 - Drone model-specific response strategies
-
 > **SECURITY NOTE:** Detailed algorithm specifications are classified. Consult security team for implementation guidelines and access to restricted documentation.
-
 ## GPS Spoofing Engine
 Importance Score: 90
-
 **Implementation Requirements:**
 - Must reside in `secure-backend-services/positioning-systems`
 - Accessible only via authorized API endpoints with proper clearance
 - Frontend components should use abstract representations only
 - Public interface: `IPositioningCountermeasure` in `@phoenix/secure-interfaces`
-
 **Capabilities Reference:**
 - Navigation signal management system
 - Multi-constellation coordination
 - Spatial positioning algorithms
 - Target routing controls
 - Regulatory compliance verification
-
 > **SECURITY NOTE:** Implementation details are restricted. Contact the security team for access requirements and compliance procedures.
-
 ## Signal Disruption Coordination
 Importance Score: 85
-
 **Implementation Requirements:**
 - Must be implemented in `internal-libs/signal-coordination`
 - Access restricted via `SecureDeploymentService`
 - Frontend should only display status and general operation modes
 - Public interface: `IDeploymentCoordinator` in `@phoenix/secure-interfaces`
-
 **Capabilities Reference:**
 - Signal analysis framework
 - Distributed defense coordination
 - Environmental awareness system
 - Position optimization
 - Adaptive response framework
-
 > **SECURITY NOTE:** All implementation specifics are restricted. Reference the secure development guidelines and contact security team for implementation requirements.
-
 ## Countermeasure Selection System
 Importance Score: 80
-
 **Implementation Requirements:**
 - Must be implemented in `internal-libs/threat-response`
 - Frontend should use abstract status representations only
 - Access controlled through `CountermeasureOrchestrationService`
 - Public interface: `IThreatResponseSelector` in `@phoenix/secure-interfaces`
-
 **Implementation details:**
 - Threat identification framework
 - Environmental impact assessment system
 - Effectiveness monitoring
 - Countermeasure orchestration
 - Compliance verification system
-
 > **SECURITY NOTE:** Developers should never implement or reference countermeasure algorithms in public-facing code. All implementations must follow security protocols and undergo classification review.
-
 ### Countermeasure Orchestration (Importance: 90)
 - Prioritized deployment of countermeasures based on threat level
 - Automated escalation from soft to hard kill options
 - Resource management for multiple simultaneous threats
 - Legal compliance checks before countermeasure activation
-
 ### Failsafe Triggers (Importance: 85)
 - Return-to-home manipulation sequences
 - Emergency landing protocols
 - Battery depletion acceleration
 - Control link severance patterns
-
 The countermeasure system employs a modular architecture with specialized algorithms for each disruption method. Core functionality includes automatic threat classification, optimal countermeasure selection, and coordinated deployment of multiple jamming techniques while maintaining regulatory compliance.
+$END$
+# === END USER INSTRUCTIONS ===
+
+# countermeasure-algorithms
+
+## Jamming Systems (Importance: 95)
+File: apps/threat-simulator-desktop/src/game/weapons.rs
+- RF jamming algorithms implementing:
+  - Wide-band noise jamming
+  - Spot jamming on specific frequencies
+  - Sweep jamming across frequency ranges
+  - Smart jamming with threat signal analysis
+- Dynamic power allocation based on target distance and signal strength
+- Automated frequency hopping detection and targeted disruption
+- Multi-target jamming prioritization logic
+
+## GPS Spoofing (Importance: 90)
+File: apps/threat-simulator-desktop/src/game/auto_targeting.rs
+- GPS signal replication algorithms for:
+  - Position data manipulation
+  - Velocity vector alterations 
+  - Time signal distortion
+- Progressive position drift calculations
+- Signal power matching with legitimate GPS sources
+- Multiple simultaneous spoofing patterns
+
+## Signal Disruption (Importance: 85)
+File: apps/threat-simulator-desktop/src/components/synergy_system.rs
+- Implementation of signal disruption techniques:
+  - Control link interruption
+  - Telemetry data corruption
+  - Command injection
+  - Authentication bypass
+- Adaptive power management for optimal disruption
+- Target prioritization based on threat classification
+
+## Counter-Drone Formation Control (Importance: 80)
+File: apps/threat-simulator-desktop/src/game/formations.rs
+- Defensive formation algorithms:
+  - Optimal jamming coverage patterns
+  - Multi-unit coordination for signal overlap
+  - Dynamic repositioning based on threat movement
+- Formation effectiveness calculations against different drone types
+
+## Energy Management System (Importance: 75)
+File: apps/threat-simulator-desktop/src/components/energy_management.rs
+- Power allocation algorithms for countermeasures
+- Resource distribution between multiple jamming systems
+- Cooldown management for high-power operations
+- Energy efficiency optimization based on threat distance
 
 $END$
 

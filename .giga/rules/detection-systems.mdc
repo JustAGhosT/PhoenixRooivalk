@@ -1,79 +1,126 @@
 ---
-description: Technical specifications for drone detection systems, sensor fusion, and threat analysis components
+description: Analyzes detection system capabilities, sensor fusion, and threat analysis algorithms for counter-drone defense systems
 ---
 
-
+# === USER INSTRUCTIONS ===
+---
+description: Technical specifications for drone detection systems, sensor fusion, and threat analysis components
+---
 # detection-systems
-
 ## Core Detection Components
-
 ### Threat Analysis Engine
 Path: `apps/marketing/src/components/utils/threatUtils.ts`
 Importance Score: 90
-
 Implements multi-layered threat detection:
 - Pattern recognition for swarm behavior identification 
 - Stealth drone detection using sensor fusion
 - Kamikaze threat trajectory analysis
 - Threat classification and prioritization system
 - Real-time threat behavior modeling
-
 ### Radar Integration System
 Path: `apps/marketing/src/components/RadarSystem.tsx`
 Importance Score: 85
-
 Manages sensor data processing:
 - Multi-spectrum sensor fusion
 - Signal processing for drone signature identification
 - Friend/foe identification protocols
 - Range and bearing calculations
 - False positive filtering
-
 ### Strategic Detection Manager
 Path: `apps/marketing/src/components/utils/strategicDeployment.ts`
 Importance Score: 85
-
 Handles detection zone configuration:
 - Dynamic coverage area optimization
 - Mission-specific detection parameters
 - Sensor placement algorithms
 - Detection threshold management
 - Environmental factor compensation
-
 ### Detection Event System
 Path: `apps/marketing/src/components/utils/eventSystem.ts`
 Importance Score: 80
-
 Manages detection events:
 - Threat alert prioritization
 - Detection confidence scoring
 - Multi-sensor correlation
 - Detection history tracking
 - Alert propagation rules
-
 ### Performance Monitoring
 Path: `apps/marketing/src/components/utils/performanceMonitor.ts`
 Importance Score: 75
-
 Monitors detection system effectiveness:
 - Detection rate tracking
 - False alarm analysis
 - System response time measurement
 - Coverage gap identification
 - Sensor health monitoring
-
 ## Integration Components
-
 ### Auto-Targeting System
 Path: `apps/marketing/src/components/utils/autoTargeting.ts`
 Importance Score: 85
-
 Links detection to response:
 - Target acquisition logic
 - Threat tracking algorithms
 - Target prioritization rules
 - Engagement zone management
 - Multiple target handling
+$END$
+# === END USER INSTRUCTIONS ===
+
+# detection-systems
+
+## Core Detection Components
+
+### Multi-Modal Sensor Fusion (Importance Score: 95)
+- RF signal detection and classification
+- Visual target tracking with computer vision
+- Acoustic signature analysis
+- RADAR integration and tracking
+- Sensor data correlation and fusion engine
+- Files: apps/threat-simulator-desktop/src/game/auto_targeting.rs
+
+### Threat Classification System (Importance Score: 90)
+- Dynamic threat categorization (Commercial, Military, Swarm, Stealth)
+- Real-time signature analysis and matching
+- Behavior pattern recognition
+- Classification confidence scoring
+- Files: apps/threat-simulator-desktop/src/game/types.rs
+
+### Detection Zones Management (Importance Score: 85)
+- Configurable detection zone geometry
+- Zone priority management
+- Coverage analysis and gap detection
+- Alert threshold configuration
+- Files: apps/threat-simulator-desktop/src/game/formations.rs
+
+### Autonomous Response System (Importance Score: 88)
+- Threat prioritization algorithms
+- Response protocol selection
+- Engagement zone calculations
+- Rules of engagement enforcement
+- Files: apps/marketing/src/components/utils/responseProtocols.ts
+
+### Sensor Network Topology (Importance Score: 82)
+- Distributed sensor placement optimization
+- Network redundancy management
+- Coverage overlap calculations
+- Detection reliability scoring
+- Files: apps/threat-simulator-desktop/src/game/engine.rs
+
+## Supporting Detection Systems
+
+### Environmental Adaptation (Importance Score: 75)
+- Weather impact modeling
+- Signal propagation adjustments
+- Detection threshold adaptation
+- Files: apps/marketing/src/components/utils/threatUtils.ts
+
+### Performance Monitoring (Importance Score: 70)
+- Detection accuracy metrics
+- False positive/negative tracking
+- System response time analysis
+- Files: apps/marketing/src/components/utils/performanceMonitor.ts
+
+The detection systems implement a sophisticated multi-layered approach to drone detection, incorporating various sensor types and advanced fusion algorithms. The system particularly excels in autonomous threat classification and response generation while maintaining adaptability to environmental conditions.
 
 $END$
 

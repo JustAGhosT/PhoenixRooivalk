@@ -1,65 +1,119 @@
 ---
-description: Documentation and guidance for Phoenix Rooivalk's modular system architecture and component integration patterns.
+description: Defines complex inter-module communication patterns and integration points for distributed threat simulation system
 ---
 
-
+# === USER INSTRUCTIONS ===
+---
+description: Documentation and guidance for Phoenix Rooivalk's modular system architecture and component integration patterns.
+---
 # module-integration
-
 ### Core Integration Architecture
-
 The modular system consists of four main integration layers:
-
 1. Threat Detection Layer
 - Integrates multiple sensor inputs via `autoTargeting.ts` and `threatUtils.ts`
 - Routes sensor data through `eventSystem.ts` for real-time threat assessment
 - Configurable detection thresholds per deployment environment
-
 2. Response Orchestration Layer 
 - Manages countermeasure deployment via `formationManager.ts` and `strategicDeployment.ts`
 - Coordinates resource allocation through `resourceManager.ts`
 - Handles dynamic formation adjustments based on threat analysis
-
 3. Evidence Management Layer
 - Anchors evidence records to multiple blockchains via `anchor-etherlink` and `anchor-solana` crates
 - Implements tamper-proof audit trails through `evidence` crate
 - Manages evidence job queues and processing via keeper service
-
 4. Edge Computing Layer
 - Enables offline operation through `gameEngine.ts` autonomous processing
 - Implements SAE Level 4 autonomy via `simpleStateMachine.ts` and `performanceMonitor.ts`
 - Handles resource constraints through `objectPool.ts` optimization
-
 ### Integration Patterns
-
 1. Event-Driven Communication
 - `eventSystem.ts` provides pub/sub backbone for inter-module communication
 - `waveManager.ts` coordinates staged threat progressions
 - `responseProtocols.ts` handles asynchronous countermeasure coordination
-
 2. Resource Management
 - Pooled resource allocation via `objectPool.ts`
 - Dynamic power budgeting through `resourceManager.ts`
 - Formation-based resource optimization in `formationUtils.ts`
-
 3. State Management
 - Hierarchical state machine via `simpleStateMachine.ts`
 - Threat state tracking in `threatTypes.ts`
 - Weapon system states managed by `weaponTypes.ts`
-
 ### Deployment Configurations
-
 Custom deployment profiles defined in `strategicDeployment.ts`:
 - Airport Security (restricted ROE)
 - Military Base (full capabilities)
 - VIP Protection (minimal footprint)
 - Urban Environment (collateral prevention)
-
 Each profile configures:
 - Sensor fusion parameters
 - Response protocol thresholds
 - Resource allocation priorities
 - Formation patterns
 - Evidence anchoring requirements
+$END$
+# === END USER INSTRUCTIONS ===
+
+# module-integration
+
+## Core Integration Components
+
+### 1. Evidence Anchoring System (Score: 95)
+`crates/anchor-etherlink/src/lib.rs`, `crates/anchor-solana/src/lib.rs`
+
+Implements cross-chain evidence anchoring with:
+- Dual-network transaction submission (Etherlink/Solana)
+- Confirmation status synchronization
+- Fallback network selection
+- Cross-chain reference tracking
+
+### 2. Threat Simulation Integration (Score: 90) 
+`apps/threat-simulator-desktop/src/game/engine.rs`
+
+Coordinates multiple simulation subsystems:
+- Formation management
+- Weapon systems 
+- Physics engine
+- Particle effects
+- Auto-targeting
+- Energy management
+
+### 3. Marketing Site WASM Bridge (Score: 85)
+`apps/marketing/src/components/WasmThreatSimulator.tsx`
+
+Provides seamless integration between web and WASM components:
+- Dynamic WASM module loading
+- Shared state management
+- Event propagation
+- Resource cleanup
+- Error boundary handling
+
+### 4. Evidence Processing Pipeline (Score: 85)
+`apps/evidence-cli/src/main.rs`, `apps/keeper/src/lib.rs`
+
+Coordinates evidence workflow across modules:
+- Record creation
+- Hash generation
+- Chain selection
+- Transaction submission
+- Status tracking
+
+### 5. Resource Management Bridge (Score: 80)
+`apps/marketing/src/components/utils/resourceManager.ts`
+
+Synchronizes resource state across modules:
+- Energy allocation
+- Weapon cooldowns
+- Research progression
+- Token economy
+
+### 6. Formation Coordination System (Score: 75)
+`apps/threat-simulator-desktop/src/game/formations.rs`
+
+Manages formation data flow between modules:
+- Position calculations
+- Role assignments
+- Movement coordination
+- Formation integrity checks
 
 $END$
 
