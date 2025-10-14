@@ -25,10 +25,8 @@ export const ExitIntentModal: FC<ExitIntentModalProps> = ({ docsUrl }) => {
     if (isVisible) {
       // Save current focus to return to when modal closes
       const previousFocus = document.activeElement as HTMLElement;
-      
       // Lock body scroll when modal is open
       document.body.style.overflow = "hidden";
-      
       // Focus the modal when it opens
       if (dialogRef.current) {
         dialogRef.current.focus();
@@ -155,20 +153,18 @@ export const ExitIntentModal: FC<ExitIntentModalProps> = ({ docsUrl }) => {
             const focusableElements = dialogRef.current?.querySelectorAll(
               'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])',
             );
-            
+
             if (!focusableElements || focusableElements.length === 0) return;
-            
+
             const firstElement = focusableElements[0] as HTMLElement;
             const lastElement = focusableElements[
               focusableElements.length - 1
             ] as HTMLElement;
-            
-            if (e.shiftKey) {
-              if (document.activeElement === firstElement) {
-                lastElement.focus();
-                e.preventDefault();
-              }
-            } else if (document.activeElement === lastElement) {
+
+            if (e.shiftKey && document.activeElement === firstElement) {
+              lastElement.focus();
+              e.preventDefault();
+            } else if (!e.shiftKey && document.activeElement === lastElement) {
               firstElement.focus();
               e.preventDefault();
             }

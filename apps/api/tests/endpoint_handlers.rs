@@ -341,16 +341,17 @@ async fn test_get_evidence_endpoint() {
 
     // Insert a test job directly into the database
     let job_id = "test-job-123";
-    let now = Utc::now().naive_utc();
+    let now = chrono::Utc::now().naive_utc();
+    
     sqlx::query(
         "INSERT INTO outbox_jobs (id, payload_sha256, status, attempts, last_error, created_ms, updated_ms)
-         VALUES (?, ?, ?, ?, ?, ?, ?)",
+         VALUES ($1, $2, $3, $4, $5, $6, $7)",
     )
     .bind(job_id)
     .bind("abcd1234")
     .bind("done")
-    .bind(1i32)  // Explicitly specify integer type
-    .bind(Some("test error"))  // Wrap in Some for nullable field
+    .bind(1i32)
+    .bind(Some("test error"))
     .bind(now)
     .bind(now)
     .execute(&pool)
@@ -410,12 +411,14 @@ async fn test_get_evidence_not_found() {
         .await
         .unwrap();
 
-    // Get the response status and text
+    // Get the response status 
     let status = response.status();
-    let response_text = response.text().await.unwrap();
     
     // Clean up server before assertions to ensure it's always cleaned up
     server.abort();
+    
+    // Get response text after server abort to ensure we don't hold up the test
+    let response_text = response.text().await.unwrap();
     
     // Check the response based on status code
     if status == 200 {
