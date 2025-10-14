@@ -98,12 +98,25 @@ export const ExitIntentModal: FC<ExitIntentModalProps> = ({ docsUrl }) => {
   const handleBackdropClick = (
     e: ReactMouseEvent<HTMLDivElement> | React.KeyboardEvent<HTMLDivElement>,
   ) => {
-    if (
-      e.target === e.currentTarget ||
-      (e as React.KeyboardEvent).key === "Enter"
-    ) {
+    // Check if it's a mouse click on the backdrop
+    if (e.target === e.currentTarget) {
       e.preventDefault();
       handleClose();
+      return;
+    }
+
+    // Check if it's a keyboard event (Enter or Space for ARIA button behavior)
+    if ("key" in e) {
+      const key = e.key;
+      if (
+        key === "Enter" ||
+        key === " " ||
+        key === "Space" ||
+        key === "Spacebar"
+      ) {
+        e.preventDefault(); // Prevent page scrolling for Space
+        handleClose();
+      }
     }
   };
 
