@@ -1,10 +1,9 @@
 use axum::serve;
-use chrono::Utc;
 use phoenix_api::build_app;
 use reqwest::Client;
 use serde_json::json;
 use sqlx::Row; // Keep this - it's used in get methods via row.get()
-use std::time::Duration;
+use std::time::{Duration, SystemTime};
 use tokio::net::TcpListener;
 
 /// Helper function to set environment variable with automatic restoration
@@ -346,8 +345,8 @@ async fn test_get_evidence_endpoint() {
     .bind("done")
     .bind(1)
     .bind("test error")
-    .bind(now)
-    .bind(now)
+    .bind(SystemTime::now())
+    .bind(SystemTime::now())
     .execute(&pool)
     .await
     .unwrap();
@@ -416,5 +415,6 @@ async fn test_get_evidence_not_found() {
     }
 
     server.abort();
-    assert!(json_str.contains("1234567890"));
+    let response_text = response.text().await.unwrap();
+    assert!(response_text.contains("1234567890"));
 }
