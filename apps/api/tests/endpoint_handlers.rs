@@ -340,7 +340,7 @@ async fn test_get_evidence_endpoint() {
     
     sqlx::query(
         "INSERT INTO outbox_jobs (id, payload_sha256, status, attempts, last_error, created_ms, updated_ms)
-         VALUES ($1, $2, $3, $4, $5, $6, $7)",
+         VALUES (?, ?, ?, ?, ?, ?, ?)",
     )
     .bind(job_id)
     .bind("abcd1234")
