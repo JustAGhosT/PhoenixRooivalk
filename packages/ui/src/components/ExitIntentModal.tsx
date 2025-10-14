@@ -121,9 +121,7 @@ export const ExitIntentModal: FC<ExitIntentModalProps> = ({ docsUrl }) => {
       const key = e.key;
       if (
         key === "Enter" ||
-        key === " " ||
-        key === "Space" ||
-        key === "Spacebar"
+        key === " "
       ) {
         e.preventDefault(); // Prevent page scrolling for Space
         handleClose();
