@@ -140,7 +140,6 @@ export const ExitIntentModal: FC<ExitIntentModalProps> = ({ docsUrl }) => {
         onClick={handleBackdropClick}
         onKeyDown={handleBackdropClick}
         role="button"
-        tabIndex={0}
         aria-label="Close modal"
       />
       <div
