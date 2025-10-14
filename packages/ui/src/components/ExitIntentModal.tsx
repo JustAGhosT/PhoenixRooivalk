@@ -21,93 +21,73 @@ export const ExitIntentModal: FC<ExitIntentModalProps> = ({ docsUrl }) => {
     return () => setMounted(false);
   }, []);
 
+  // Handle modal visibility and focus management
   useEffect(() => {
-    if (isVisible) {
-      // Save current focus to return to when modal closes
-      const previousFocus = document.activeElement as HTMLElement;
-      // Lock body scroll when modal is open
-      document.body.style.overflow = "hidden";
-      // Focus the modal when it opens
-      if (dialogRef.current) {
-        dialogRef.current.focus();
-      }
+    if (!isVisible) return undefined;
 
-      return () => {
-        // Restore body scroll and return focus
-        document.body.style.overflow = "";
-        previousFocus?.focus();
-      };
-    }
+    // Save current focus to return to when modal closes
+    previousFocusRef.current = document.activeElement as HTMLElement;
+    // Lock body scroll when modal is open
+    document.body.style.overflow = "hidden";
+
+    // Focus the close button when modal opens
+    closeButtonRef.current?.focus();
+
+    // Event handlers
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        handleClose();
+      }
+    };
+
+    // Focus trap - keep focus within modal
+    const handleFocusTrap = (e: KeyboardEvent) => {
+      if (e.key === "Tab" && dialogRef.current) {
+        const focusableElements = dialogRef.current.querySelectorAll(
+          'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])',
+        );
+        const firstElement = focusableElements[0] as HTMLElement;
+        const lastElement = focusableElements[focusableElements.length - 1] as HTMLElement;
+
+        if (e.shiftKey) {
+          if (document.activeElement === firstElement) {
+            e.preventDefault();
+            lastElement.focus();
+          }
+        } else if (document.activeElement === lastElement) {
+          e.preventDefault();
+          firstElement.focus();
+        }
+      }
+    };
+
+    // Add event listeners
+    document.addEventListener("keydown", handleEscape);
+    document.addEventListener("keydown", handleFocusTrap);
+
+    // Cleanup function
+    return () => {
+      document.removeEventListener("keydown", handleEscape);
+      document.removeEventListener("keydown", handleFocusTrap);
+      document.body.style.overflow = "";
+      
+      if (previousFocusRef.current) {
+        previousFocusRef.current.focus();
+        previousFocusRef.current = null;
+      }
+    };
   }, [isVisible]);
 
+  // Handle mouse leave to show modal
   useEffect(() => {
     const handleMouseLeave = (e: MouseEvent) => {
       if (e.clientY <= 0 && !isVisible) {
-        previousFocusRef.current =
-          document.activeElement instanceof HTMLElement
-            ? document.activeElement
-            : null;
         setIsVisible(true);
       }
     };
 
     document.addEventListener("mouseleave", handleMouseLeave);
-
-    return () => {
-      document.removeEventListener("mouseleave", handleMouseLeave);
-    };
-  }, [isVisible]);
-
-  useEffect(() => {
-    if (isVisible) {
-      // Focus management - focus the close button when modal opens
-      closeButtonRef.current?.focus();
-
-      // Escape key handler
-      const handleEscape = (e: KeyboardEvent) => {
-        if (e.key === "Escape") {
-          handleClose();
-        }
-      };
-
-      // Focus trap - keep focus within modal
-      const handleFocusTrap = (e: KeyboardEvent) => {
-        if (e.key === "Tab" && dialogRef.current) {
-          const focusableElements = dialogRef.current.querySelectorAll(
-            'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])',
-          );
-          const firstElement = focusableElements[0] as HTMLElement;
-          const lastElement = focusableElements[
-            focusableElements.length - 1
-          ] as HTMLElement;
-
-          if (e.shiftKey) {
-            if (document.activeElement === firstElement) {
-              e.preventDefault();
-              lastElement.focus();
-            }
-          } else {
-            if (document.activeElement === lastElement) {
-              e.preventDefault();
-              firstElement.focus();
-            }
-          }
-        }
-      };
-
-      document.addEventListener("keydown", handleEscape);
-      document.addEventListener("keydown", handleFocusTrap);
-
-      return () => {
-        document.removeEventListener("keydown", handleEscape);
-        document.removeEventListener("keydown", handleFocusTrap);
-      };
-    }
-
-    if (previousFocusRef.current && !isVisible) {
-      previousFocusRef.current.focus();
-      previousFocusRef.current = null;
-    }
+    return () => document.removeEventListener("mouseleave", handleMouseLeave);
   }, [isVisible]);
 
   const handleClose = () => {
