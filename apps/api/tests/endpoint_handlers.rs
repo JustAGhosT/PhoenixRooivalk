@@ -198,7 +198,7 @@ async fn test_post_evidence_endpoint() {
     // Verify job was created in database
     let job_id = result["id"].as_str().unwrap();
     let row = sqlx::query(
-        "SELECT id, status, attempts, created_ms, updated_ms FROM outbox_jobs WHERE id = ?"
+        "SELECT id, status, attempts, created_ms, updated_ms FROM outbox_jobs WHERE id = ?",
     )
     .bind(job_id)
     .fetch_optional(&pool)
@@ -253,7 +253,7 @@ async fn test_post_evidence_with_custom_id() {
         .unwrap();
 
     assert_eq!(response.status(), 200);
-        let result: serde_json::Value = response.json().await.unwrap();
+    let result: serde_json::Value = response.json().await.unwrap();
     assert_eq!(result["id"], "custom-evidence-123");
     assert_eq!(result["status"], "queued");
     server.abort();
@@ -341,7 +341,7 @@ async fn test_get_evidence_endpoint() {
     let job_id = "test-job-123";
     sqlx::query(
         "INSERT INTO outbox_jobs (id, payload_sha256, status, attempts, last_error, created_ms, updated_ms)
-         VALUES (?, ?, ?, ?, ?, ?, ?)"
+         VALUES (?, ?, ?, ?, ?, ?, ?)",
     )
     .bind(job_id)
     .bind("abcd1234")
@@ -419,6 +419,7 @@ async fn test_get_evidence_not_found() {
 
     server.abort();
 }
+
 #[test]
 fn test_evidence_in_deserialization() {
     let json_str = r#"{
