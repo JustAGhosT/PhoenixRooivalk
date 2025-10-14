@@ -104,7 +104,8 @@ export const ExitIntentModal: FC<ExitIntentModalProps> = ({ docsUrl }) => {
     <div
       className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 transition-opacity duration-300"
       onClick={handleBackdropClick}
-      aria-hidden="true">
+      aria-hidden="true"
+    >
       {/* This is the actual dialog */}
       <div
         ref={dialogRef}

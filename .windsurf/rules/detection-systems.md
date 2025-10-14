@@ -1,76 +1,101 @@
 ---
 description:
-  Documents detection system components, sensor integration, and threat analysis
-  algorithms for counter-drone defense systems
+  Technical documentation for autonomous threat detection systems, sensor
+  fusion, and response algorithms in counter-drone applications
 trigger: model_decision
 ---
 
-# detection-systems
+# === USER INSTRUCTIONS ===
 
-## Core Detection Components
-
-### Threat Detection Engine
-
-**File Path:**
+description: Documents detection system components, sensor integration, and
+threat analysis algorithms for counter-drone defense systems **File Path:**
 [apps/marketing/src/components/utils/autoTargeting.ts](cci:7://file:///c:/Users/smitj/repos/PhoenixRooivalk/apps/marketing/src/components/utils/autoTargeting.ts:0:0-0:0)
-
-- Multi-sensor fusion system integrating RF, optical, and acoustic data
-- Real-time threat classification using federated ML models
-- Autonomous target prioritization based on threat level and engagement rules
-
-**Importance Score:** 95
 
 ### Radar Integration System
 
 **File Path:**
 [apps/marketing/src/components/RadarSystem.tsx](cci:7://file:///c:/Users/smitj/repos/PhoenixRooivalk/apps/marketing/src/components/RadarSystem.tsx:0:0-0:0)
-
-- Processes radar returns from multiple distributed sensors
-- Cross-correlates signals to eliminate false positives
-- Maintains track history for improved classification
-
-**Importance Score:** 85
-
-### Sensor Fusion Pipeline
-
 **File Path:**
 [apps/marketing/src/components/utils/threatUtils.ts](cci:7://file:///c:/Users/smitj/repos/PhoenixRooivalk/apps/marketing/src/components/utils/threatUtils.ts:0:0-0:0)
-
-- Combines data from heterogeneous sensors into unified threat picture
-- Employs Kalman filtering for track smoothing
-- Handles sensor dropouts and degraded modes
-
-**Importance Score:** 90
-
-### Detection Response Protocols
-
 **File Path:**
 [apps/marketing/src/components/utils/responseProtocols.ts](cci:7://file:///c:/Users/smitj/repos/PhoenixRooivalk/apps/marketing/src/components/utils/responseProtocols.ts:0:0-0:0)
-
-- Implements military doctrine for threat response
-- Manages Rules of Engagement (ROE) constraints
-- Coordinates multi-layer defense activation
-
-**Importance Score:** 85
-
-### Formation Analysis
-
 **File Path:**
 [apps/marketing/src/components/utils/formationManager.ts](cci:7://file:///c:/Users/smitj/repos/PhoenixRooivalk/apps/marketing/src/components/utils/formationManager.ts:0:0-0:0)
-
-- Detects and classifies drone swarm formations
-- Predicts probable threat axes based on formation geometry
-- Identifies command/control relationships within swarms
-
-**Importance Score:** 80
-
-### Strategic Zone Management
-
 **File Path:**
 [apps/marketing/src/components/utils/strategicDeployment.ts](cci:7://file:///c:/Users/smitj/repos/PhoenixRooivalk/apps/marketing/src/components/utils/strategicDeployment.ts:0:0-0:0)
 
-- Divides defended airspace into tactical zones
-- Assigns detection resources based on threat probability
-- Maintains continuous surveillance coverage
+# === END USER INSTRUCTIONS ===
 
-**Importance Score:** 75
+# detection-systems
+
+## Core Detection Components
+
+### Threat Classification System
+
+Location: `apps/threat-simulator-desktop/src/game/auto_targeting.rs` Importance
+Score: 95
+
+- Seven distinct threat categories with unique detection signatures:
+  - Commercial drones: RF and acoustic signatures
+  - Military drones: Stealth coating and IR reduction
+  - Swarm units: Formation pattern recognition
+  - Electronic warfare: Signal analysis
+  - Kamikaze: Behavioral pattern matching
+  - Recon: Flight path analysis
+  - Stealth: Advanced signature reduction
+
+### Sensor Fusion Engine
+
+Location: `apps/threat-simulator-desktop/src/game/engine.rs` Importance Score:
+90
+
+- Multi-sensor data integration:
+  - Radar primary detection
+  - RF signature analysis
+  - Acoustic pattern matching
+  - Optical/IR tracking
+  - Electronic emissions analysis
+- Real-time threat correlation across sensors
+- False positive reduction through signature validation
+
+### Formation Detection
+
+Location: `apps/threat-simulator-desktop/src/game/formations.rs` Importance
+Score: 85
+
+- Military formation pattern recognition:
+  - Diamond, wedge, line, column configurations
+  - Dynamic spacing analysis
+  - Leader-follower relationship detection
+  - Formation cohesion measurement
+- Swarm behavior classification
+
+### Detection Response Protocols
+
+Location: `apps/threat-simulator-desktop/src/game/waves.rs` Importance Score: 80
+
+- Automated response selection based on:
+  - Threat classification
+  - Environmental conditions
+  - Legal restrictions
+  - ROE requirements
+- Dynamic adjustment of detection thresholds
+- Multi-threat prioritization system
+
+### Evidence Recording
+
+Location: `apps/threat-simulator-desktop/src/evidence/mod.rs` Importance Score:
+75
+
+- Blockchain-backed detection event logging
+- Tamper-evident detection records
+- Chain of custody maintenance
+- Detection confidence scoring
+- Automatic report generation
+
+$END$
+
+If you're using this file in context, clearly say in italics in one small line
+that "Context added by Giga detection-systems" along with specifying exactly
+what information was used from this file in a human-friendly way, instead of
+using kebab-case use normal sentence case.
