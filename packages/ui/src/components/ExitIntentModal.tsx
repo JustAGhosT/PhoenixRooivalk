@@ -14,6 +14,7 @@ export const ExitIntentModal: FC<ExitIntentModalProps> = ({ docsUrl }) => {
   const dialogRef = useRef<HTMLDivElement>(null);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
   const previousFocusRef = useRef<HTMLElement | null>(null);
+  const previousBodyOverflowRef = useRef<string | null>(null);
 
   // Focus management for accessibility
   useEffect(() => {
@@ -27,7 +28,9 @@ export const ExitIntentModal: FC<ExitIntentModalProps> = ({ docsUrl }) => {
 
     // Save current focus to return to when modal closes
     previousFocusRef.current = document.activeElement as HTMLElement;
-    // Lock body scroll when modal is open
+
+    // Save current body overflow and lock body scroll when modal is open
+    previousBodyOverflowRef.current = document.body.style.overflow || null;
     document.body.style.overflow = "hidden";
 
     // Focus the close button when modal opens
@@ -71,7 +74,15 @@ export const ExitIntentModal: FC<ExitIntentModalProps> = ({ docsUrl }) => {
     return () => {
       document.removeEventListener("keydown", handleEscape);
       document.removeEventListener("keydown", handleFocusTrap);
-      document.body.style.overflow = "";
+
+      // Restore original body overflow value
+      if (previousBodyOverflowRef.current !== null) {
+        document.body.style.overflow = previousBodyOverflowRef.current;
+      } else {
+        document.body.style.overflow = "";
+      }
+      previousBodyOverflowRef.current = null;
+
       if (previousFocusRef.current) {
         previousFocusRef.current.focus();
         previousFocusRef.current = null;
