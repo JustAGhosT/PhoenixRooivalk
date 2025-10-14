@@ -125,26 +125,55 @@ export const ExitIntentModal: FC<ExitIntentModalProps> = ({ docsUrl }) => {
   if (!mounted || !isVisible) return null;
 
   return createPortal(
-    // Backdrop with click handler
+    // Backdrop with click handler and keyboard support
     <div
       className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 transition-opacity duration-300"
       onClick={handleBackdropClick}
+      onKeyDown={(e) => {
+        if (e.key === "Escape") {
+          e.preventDefault();
+          handleClose();
+        }
+      }}
+      role="presentation"
     >
       {/* Modal dialog */}
       <div
         ref={dialogRef}
-        className="bg-[var(--darker)] p-8 rounded-xl border border-[var(--primary)] max-w-md mx-4 text-center"
+        className="bg-[var(--darker)] p-8 rounded-xl border border-[var(--primary)] max-w-md mx-4 text-center outline-none"
         role="dialog"
         aria-modal="true"
         aria-labelledby="exit-intent-title"
         aria-describedby="exit-intent-description"
+        tabIndex={-1}
         onKeyDown={(e) => {
+          // Trap focus inside the modal
           if (e.key === "Escape") {
             e.preventDefault();
             handleClose();
+          } else if (e.key === "Tab") {
+            const focusableElements = dialogRef.current?.querySelectorAll(
+              'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])',
+            );
+            
+            if (!focusableElements || focusableElements.length === 0) return;
+            
+            const firstElement = focusableElements[0] as HTMLElement;
+            const lastElement = focusableElements[
+              focusableElements.length - 1
+            ] as HTMLElement;
+            
+            if (e.shiftKey) {
+              if (document.activeElement === firstElement) {
+                lastElement.focus();
+                e.preventDefault();
+              }
+            } else if (document.activeElement === lastElement) {
+              firstElement.focus();
+              e.preventDefault();
+            }
           }
         }}
-        tabIndex={-1}
       >
         <h3
           id="exit-intent-title"

@@ -341,6 +341,7 @@ async fn test_get_evidence_endpoint() {
 
     // Insert a test job directly into the database
     let job_id = "test-job-123";
+    let now = Utc::now().naive_utc();
     sqlx::query(
         "INSERT INTO outbox_jobs (id, payload_sha256, status, attempts, last_error, created_ms, updated_ms)
          VALUES (?, ?, ?, ?, ?, ?, ?)",
@@ -348,10 +349,10 @@ async fn test_get_evidence_endpoint() {
     .bind(job_id)
     .bind("abcd1234")
     .bind("done")
-    .bind(1)
-    .bind("test error")
-    .bind(Utc::now().naive_utc())
-    .bind(Utc::now().naive_utc())
+    .bind(1i32)  // Explicitly specify integer type
+    .bind(Some("test error"))  // Wrap in Some for nullable field
+    .bind(now)
+    .bind(now)
     .execute(&pool)
     .await
     .unwrap();
@@ -409,21 +410,44 @@ async fn test_get_evidence_not_found() {
         .await
         .unwrap();
 
-    // The endpoint should return 200 with an error message, not 404
+    // Get the response status and text
     let status = response.status();
     let response_text = response.text().await.unwrap();
     
-    if status == 200 {
-        let result: serde_json::Value = serde_json::from_str(&response_text).unwrap();
-        assert!(result["error"].is_string());
-        assert_eq!(result["error"], "Job not found");
-    } else {
-        // If the endpoint returns 404, that's also acceptable behavior
-        assert_eq!(status, 404);
-    }
-
+    // Clean up server before assertions to ensure it's always cleaned up
     server.abort();
-    // Check for either error message or the test string
-    assert!(response_text.contains("Job not found") || response_text.contains("1234567890"), 
-            "Unexpected response: {}", response_text);
+    
+    // Check the response based on status code
+    if status == 200 {
+        // For 200 OK, parse the JSON and verify the error message
+        let result: serde_json::Value = serde_json::from_str(&response_text)
+            .unwrap_or_else(|_| panic!("Failed to parse response: {}", response_text));
+            
+        assert!(
+            result["error"].is_string(),
+            "Expected error field in response: {}",
+            response_text
+        );
+        assert_eq!(
+            result["error"].as_str().unwrap_or_default(),
+            "Job not found",
+            "Unexpected error message in response: {}",
+            response_text
+        );
+    } else {
+        // For 404 Not Found, verify the status code
+        assert_eq!(
+            status, 404,
+            "Expected status 404 Not Found, got {}: {}",
+            status, response_text
+        );
+    }
+    
+    // Verify the response contains the expected error message or the test job ID
+    assert!(
+        response_text.contains("Job not found") || 
+        response_text.contains("1234567890"), 
+        "Unexpected response: {}", 
+        response_text
+    );
 }
