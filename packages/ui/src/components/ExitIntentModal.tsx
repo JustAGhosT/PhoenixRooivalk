@@ -138,9 +138,6 @@ export const ExitIntentModal: FC<ExitIntentModalProps> = ({ docsUrl }) => {
       <div
         className="fixed inset-0 bg-black bg-opacity-50 transition-opacity duration-300"
         onClick={handleBackdropClick}
-        onKeyDown={handleBackdropClick}
-        
-        
       />
       <div
         ref={dialogRef}
