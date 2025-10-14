@@ -63,137 +63,179 @@ const ControlBar: React.FC<ControlBarProps> = ({
       role="toolbar"
       aria-label="Simulator controls"
     >
-      <button
-        className={`${styles.btn} ${styles.btnSecondary}`}
-        id="btn-pause"
-        aria-pressed={isPaused}
-        title="Space"
-        onClick={onPause}
-      >
-        {isPaused ? "Resume" : "Pause"}
-      </button>
-      <button className={styles.btn} id="btn-swarm" title="S" onClick={onSwarm}>
-        Spawn Swarm
-      </button>
-      <button
-        className={`${styles.btn} ${styles.btnSecondary}`}
-        id="btn-plus5"
-        title="+"
-        onClick={onPlus5}
-      >
-        +5 Drones
-      </button>
-
-      <div className={styles.level}>
-        <span className={styles.levelLabel}>Level</span>
-        <div
-          className={styles.levelButtons}
-          role="group"
-          aria-label="Select level"
+      <div className={styles.primaryActions}>
+        <button
+          className={`${styles.btn} ${styles.btnSecondary}`}
+          id="btn-pause"
+          aria-pressed={isPaused}
+          title="Space"
+          onClick={onPause}
+          aria-label={isPaused ? "Resume simulation" : "Pause simulation"}
         >
-          {levels.map((level) => (
-            <button
-              key={level}
-              className={`${styles.chip} ${currentLevel === level ? styles.chipOn : ""}`}
-              data-level={level}
-              onClick={() => onLevelChange(level)}
-              aria-pressed={currentLevel === level}
-            >
-              {level}
-            </button>
-          ))}
+          {isPaused ? "▶️ Resume" : "⏸️ Pause"}
+        </button>
+        <button
+          className={`${styles.btn} ${styles.btnPrimary}`}
+          id="btn-swarm"
+          title="S"
+          onClick={onSwarm}
+          aria-label="Spawn threat swarm"
+        >
+          🌊 Spawn Swarm
+        </button>
+        <button
+          className={`${styles.btn} ${styles.btnSecondary}`}
+          id="btn-plus5"
+          title="+"
+          onClick={onPlus5}
+          aria-label="Add 5 threat drones"
+        >
+          +5 Threats
+        </button>
+      </div>
+
+      <div className={styles.environmentControls}>
+        <div className={styles.level}>
+          <span className={styles.levelLabel}>Wave</span>
+          <div
+            className={styles.levelButtons}
+            role="radiogroup"
+            aria-label="Select wave level"
+          >
+            {levels.map((level) => (
+              <button
+                key={level}
+                className={`${styles.chip} ${currentLevel === level ? styles.chipOn : ""}`}
+                data-level={level}
+                onClick={() => onLevelChange(level)}
+                role="radio"
+                aria-checked={currentLevel === level}
+                aria-label={`Wave ${level}`}
+              >
+                {level}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <div className={styles.environmentGroup}>
+          <label htmlFor="weather-select" className={styles.environmentLabel}>
+            Weather:
+          </label>
+          <select
+            id="weather-select"
+            className={styles.environmentSelect}
+            value={weatherMode}
+            onChange={(e) => setWeatherMode(e.target.value as WeatherMode)}
+            aria-label="Select weather condition"
+          >
+            <option value="none">☀️ Clear</option>
+            <option value="rain">🌧️ Rain</option>
+            <option value="fog">🌫️ Fog</option>
+            <option value="night">🌙 Night</option>
+          </select>
+        </div>
+
+        <div className={styles.environmentGroup}>
+          <label htmlFor="terrain-select" className={styles.environmentLabel}>
+            Terrain:
+          </label>
+          <select
+            id="terrain-select"
+            className={styles.environmentSelect}
+            value={missionType}
+            onChange={(e) => setMissionType(e.target.value as MissionType)}
+            aria-label="Select mission terrain"
+          >
+            <option value="airport">✈️ Airport</option>
+            <option value="military-base">🏭 Military Base</option>
+            <option value="vip-protection">👤 VIP Protection</option>
+            <option value="border-patrol">🛡️ Border Patrol</option>
+          </select>
+        </div>
+
+        <div className={styles.environmentGroup}>
+          <label htmlFor="rules-select" className={styles.environmentLabel}>
+            Rules:
+          </label>
+          <select
+            id="rules-select"
+            className={styles.environmentSelect}
+            value={automationMode}
+            onChange={(e) =>
+              setAutomationMode(e.target.value as AutomationMode)
+            }
+            aria-label="Select engagement rules"
+          >
+            <option value="manual">Conservative</option>
+            <option value="automated">Aggressive</option>
+            <option value="hybrid">Hybrid</option>
+          </select>
         </div>
       </div>
 
-      <div className={styles.environmentGroup}>
-        <label className={styles.environmentLabel}>Weather:</label>
-        <select
-          className={styles.chip}
-          value={weatherMode}
-          onChange={(e) => setWeatherMode(e.target.value as WeatherMode)}
+      <div className={styles.viewControls}>
+        <button
+          role="switch"
+          aria-checked={showDeploymentZones}
+          className={`${styles.switch} ${showDeploymentZones ? styles.switchOn : ""}`}
+          onClick={() => setShowDeploymentZones(!showDeploymentZones)}
+          aria-label="Toggle deployment zones visibility"
         >
-          <option value="none">☀️ Clear</option>
-          <option value="rain">🌧️ Rain</option>
-          <option value="fog">🌫️ Fog</option>
-          <option value="night">🌙 Night</option>
-        </select>
+          <span className={styles.switchLabel}>Zones</span>
+          <span className={styles.switchIndicator} aria-hidden="true" />
+        </button>
+
+        <button
+          role="switch"
+          aria-checked={showStats}
+          className={`${styles.switch} ${showStats ? styles.switchOn : ""}`}
+          onClick={onShowStats}
+          aria-label="Toggle detailed statistics"
+        >
+          <span className={styles.switchLabel}>Stats</span>
+          <span className={styles.switchIndicator} aria-hidden="true" />
+        </button>
       </div>
 
-      <div className={styles.environmentGroup}>
-        <label className={styles.environmentLabel}>Terrain:</label>
-        <select
-          className={styles.chip}
-          value={missionType}
-          onChange={(e) => setMissionType(e.target.value as MissionType)}
+      <div className={styles.utilityActions}>
+        <button
+          className={`${styles.btn} ${styles.btnGhost}`}
+          onClick={onShowResearch}
+          title="Research"
+          aria-label="Open research panel"
         >
-          <option value="airport">✈️ Airport</option>
-          <option value="military-base">🏭 Military Base</option>
-          <option value="vip-protection">👤 VIP Protection</option>
-          <option value="border-patrol">🛡️ Border Patrol</option>
-        </select>
+          🔬
+        </button>
+        <button
+          className={`${styles.btn} ${styles.btnGhost}`}
+          onClick={onShowTokenStore}
+          title="Token Store"
+          aria-label="Open token store"
+        >
+          🪙
+        </button>
+        <button
+          className={`${styles.btn} ${styles.btnGhost}`}
+          onClick={onShowHelp}
+          title="?"
+          aria-label="Show help"
+        >
+          ❓
+        </button>
       </div>
 
-      <div className={styles.environmentGroup}>
-        <label className={styles.environmentLabel}>Rules:</label>
-        <select
-          className={styles.chip}
-          value={automationMode}
-          onChange={(e) => setAutomationMode(e.target.value as AutomationMode)}
+      <div className={styles.dangerActions}>
+        <button
+          className={`${styles.btn} ${styles.btnDanger}`}
+          id="btn-reset"
+          title="R"
+          onClick={onReset}
+          aria-label="Reset simulation (requires confirmation)"
         >
-          <option value="manual">Conservative</option>
-          <option value="automated">Aggressive</option>
-          <option value="hybrid">Hybrid</option>
-        </select>
+          🔄 Reset
+        </button>
       </div>
-
-      <button
-        className={`${styles.btn} ${styles.btnGhost}`}
-        id="btn-reset"
-        title="R"
-        onClick={onReset}
-      >
-        Reset
-      </button>
-
-      <button
-        role="switch"
-        aria-checked={showDeploymentZones}
-        className={`${styles.switch} ${showDeploymentZones ? styles.switchOn : ""}`}
-        onClick={() => setShowDeploymentZones(!showDeploymentZones)}
-      >
-        Show Zones
-      </button>
-
-      <button
-        role="switch"
-        aria-checked={showStats}
-        className={`${styles.switch} ${showStats ? styles.switchOn : ""}`}
-        onClick={onShowStats}
-      >
-        Show Stats
-      </button>
-
-      <button
-        className={`${styles.btn} ${styles.btnGhost}`}
-        onClick={onShowResearch}
-        title="Research"
-      >
-        🔬
-      </button>
-      <button
-        className={`${styles.btn} ${styles.btnGhost}`}
-        onClick={onShowTokenStore}
-        title="Token Store"
-      >
-        🪙
-      </button>
-      <button
-        className={`${styles.btn} ${styles.btnGhost}`}
-        onClick={onShowHelp}
-        title="?"
-      >
-        ?
-      </button>
     </footer>
   );
 };
