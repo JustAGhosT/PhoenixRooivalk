@@ -244,7 +244,6 @@ feature/leptos-tauri-threat-simulator (11 commits)
    - **Complexity**: Medium
 
 2. **Advanced AI** - Smart threat pathfinding
-
    - **Reason**: Current basic AI sufficient for MVP
    - **Priority**: v0.3.0
    - **Complexity**: High

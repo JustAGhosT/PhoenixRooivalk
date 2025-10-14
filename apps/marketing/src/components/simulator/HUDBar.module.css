@@ -1,32 +1,47 @@
 /* HUD Bar Component Styles */
 .hud {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   gap: 12px;
-  padding: 16px 16px 8px;
-  border-bottom: 1px solid rgb(var(--sim-border));
+  padding: 16px;
+  background: rgb(var(--sim-panel));
+  border-bottom: 2px solid rgb(var(--sim-border));
 }
 
 .stat {
   background: rgb(var(--sim-elev));
   border: 1px solid rgb(var(--sim-border));
-  border-radius: 10px;
-  padding: 8px 12px;
+  border-radius: 8px;
+  padding: 10px 14px;
+  transition: all 0.2s ease;
+  min-height: 64px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.stat:hover {
+  border-color: rgba(var(--sim-accent), 0.5);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
 .label {
   display: block;
-  font-size: 0.72rem;
+  font-size: 0.7rem;
   color: rgb(var(--sim-muted));
   text-transform: uppercase;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.08em;
+  margin-bottom: 4px;
+  font-weight: 600;
 }
 
 .value {
   display: block;
   font-weight: 800;
-  font-size: 1.25rem;
+  font-size: 1.5rem;
   color: rgb(var(--sim-text));
+  font-family: "Courier New", monospace;
+  line-height: 1;
 }
 
 .srOnly {
