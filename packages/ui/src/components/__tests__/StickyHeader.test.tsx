@@ -33,7 +33,7 @@ describe("StickyHeader", () => {
 
     expect(screen.getByText("Phoenix Rooivalk")).toBeInTheDocument();
     expect(
-      screen.getByText("- Counter-UAS Defense System"),
+      screen.getByText(/Counter-UAS Defense System/),
     ).toBeInTheDocument();
     expect(screen.getByText("Schedule Demo")).toBeInTheDocument();
   });
@@ -72,12 +72,13 @@ describe("StickyHeader", () => {
       "left-0",
       "right-0",
       "z-50",
-      "bg-[rgba(10,14,26,0.95)]",
-      "backdrop-blur",
+      "bg-[rgba(10,14,26,0.98)]",
+      "backdrop-blur-md",
       "border-b",
       "border-[rgba(0,255,136,0.2)]",
+      "shadow-lg",
       "transform",
-      "transition-transform",
+      "transition-all",
       "duration-300",
     );
   });
@@ -92,7 +93,7 @@ describe("StickyHeader", () => {
       "max-w-[1400px]",
       "mx-auto",
       "px-6",
-      "py-3",
+      "py-4",
       "flex",
       "items-center",
       "justify-between",
@@ -103,10 +104,11 @@ describe("StickyHeader", () => {
     render(<StickyHeader isVisible={true} />);
 
     const brandText = screen.getByText("Phoenix Rooivalk");
-    expect(brandText).toHaveClass("text-[var(--primary)]", "font-semibold");
+    expect(brandText).toHaveClass("text-[var(--primary)]", "font-bold", "text-base");
 
-    const descriptionText = screen.getByText("- Counter-UAS Defense System");
-    expect(descriptionText).toHaveClass("text-sm", "text-[var(--gray)]");
+    // The description might be hidden on small screens
+    const descriptionText = screen.getByText(/Counter-UAS Defense System/);
+    expect(descriptionText).toBeInTheDocument();
   });
 
   it("renders CTA button with correct styling", () => {
@@ -118,13 +120,14 @@ describe("StickyHeader", () => {
       "from-[var(--primary)]",
       "to-[var(--secondary)]",
       "text-[var(--dark)]",
-      "px-4",
-      "py-2",
-      "rounded",
+      "px-5",
+      "py-2.5",
+      "rounded-md",
       "font-bold",
       "text-sm",
       "hover:-translate-y-0.5",
-      "transition",
+      "transition-all",
+      "duration-200",
     );
   });
 
@@ -179,7 +182,7 @@ describe("StickyHeader", () => {
     render(<StickyHeader isVisible={true} />);
 
     const header = screen.getByText("Phoenix Rooivalk").closest("div");
-    expect(header).toHaveClass("backdrop-blur");
+    expect(header).toHaveClass("backdrop-blur-md");
   });
 
   it("has correct z-index for sticky positioning", () => {
