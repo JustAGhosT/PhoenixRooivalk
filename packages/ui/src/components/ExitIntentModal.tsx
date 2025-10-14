@@ -1,7 +1,7 @@
 "use client";
 
-import type { MouseEvent as ReactMouseEvent } from "react";
 import { FC, useEffect, useRef, useState } from "react";
+import type { MouseEvent as ReactMouseEvent } from "react";
 import { createPortal } from "react-dom";
 
 interface ExitIntentModalProps {
@@ -15,9 +15,34 @@ export const ExitIntentModal: FC<ExitIntentModalProps> = ({ docsUrl }) => {
   const closeButtonRef = useRef<HTMLButtonElement>(null);
   const previousFocusRef = useRef<HTMLElement | null>(null);
 
+  // Focus management for accessibility
   useEffect(() => {
     setMounted(true);
+    return () => setMounted(false);
+  }, []);
 
+  useEffect(() => {
+    if (isVisible) {
+      // Save current focus to return to when modal closes
+      const previousFocus = document.activeElement as HTMLElement;
+      
+      // Lock body scroll when modal is open
+      document.body.style.overflow = "hidden";
+      
+      // Focus the modal when it opens
+      if (dialogRef.current) {
+        dialogRef.current.focus();
+      }
+
+      return () => {
+        // Restore body scroll and return focus
+        document.body.style.overflow = "";
+        previousFocus?.focus();
+      };
+    }
+  }, [isVisible]);
+
+  useEffect(() => {
     const handleMouseLeave = (e: MouseEvent) => {
       if (e.clientY <= 0 && !isVisible) {
         previousFocusRef.current =
@@ -100,13 +125,12 @@ export const ExitIntentModal: FC<ExitIntentModalProps> = ({ docsUrl }) => {
   if (!mounted || !isVisible) return null;
 
   return createPortal(
-    // Using an ARIA compliant modal pattern
+    // Backdrop with click handler
     <div
       className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 transition-opacity duration-300"
       onClick={handleBackdropClick}
-      aria-hidden="true"
     >
-      {/* This is the actual dialog */}
+      {/* Modal dialog */}
       <div
         ref={dialogRef}
         className="bg-[var(--darker)] p-8 rounded-xl border border-[var(--primary)] max-w-md mx-4 text-center"
@@ -114,6 +138,13 @@ export const ExitIntentModal: FC<ExitIntentModalProps> = ({ docsUrl }) => {
         aria-modal="true"
         aria-labelledby="exit-intent-title"
         aria-describedby="exit-intent-description"
+        onKeyDown={(e) => {
+          if (e.key === "Escape") {
+            e.preventDefault();
+            handleClose();
+          }
+        }}
+        tabIndex={-1}
       >
         <h3
           id="exit-intent-title"
