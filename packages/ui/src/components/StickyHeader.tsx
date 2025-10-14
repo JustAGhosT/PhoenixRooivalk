@@ -1,13 +1,13 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, FC } from "react";
 import { createPortal } from "react-dom";
 
 interface StickyHeaderProps {
   isVisible: boolean;
 }
 
-export function StickyHeader({ isVisible }: StickyHeaderProps) {
+export const StickyHeader: FC<StickyHeaderProps> = ({ isVisible }) => {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -39,4 +39,4 @@ export function StickyHeader({ isVisible }: StickyHeaderProps) {
     </div>,
     document.body,
   );
-}
+};

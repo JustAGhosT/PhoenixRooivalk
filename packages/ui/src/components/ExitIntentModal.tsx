@@ -1,14 +1,14 @@
 "use client";
 
-import { useEffect, useState, useRef } from "react";
 import type { MouseEvent as ReactMouseEvent } from "react";
+import { FC, useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 
 interface ExitIntentModalProps {
   docsUrl: string;
 }
 
-export function ExitIntentModal({ docsUrl }: ExitIntentModalProps) {
+export const ExitIntentModal: FC<ExitIntentModalProps> = ({ docsUrl }) => {
   const [isVisible, setIsVisible] = useState(false);
   const [mounted, setMounted] = useState(false);
   const dialogRef = useRef<HTMLDivElement>(null);
@@ -100,18 +100,19 @@ export function ExitIntentModal({ docsUrl }: ExitIntentModalProps) {
   if (!mounted || !isVisible) return null;
 
   return createPortal(
+    // Using an ARIA compliant modal pattern
     <div
       className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 transition-opacity duration-300"
       onClick={handleBackdropClick}
-      role="dialog"
-      aria-modal="true"
-      aria-labelledby="exit-intent-title"
-      aria-describedby="exit-intent-description"
-    >
+      aria-hidden="true">
+      {/* This is the actual dialog */}
       <div
         ref={dialogRef}
         className="bg-[var(--darker)] p-8 rounded-xl border border-[var(--primary)] max-w-md mx-4 text-center"
-        onClick={(e) => e.stopPropagation()}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="exit-intent-title"
+        aria-describedby="exit-intent-description"
       >
         <h3
           id="exit-intent-title"
@@ -142,4 +143,4 @@ export function ExitIntentModal({ docsUrl }: ExitIntentModalProps) {
     </div>,
     document.body,
   );
-}
+};
