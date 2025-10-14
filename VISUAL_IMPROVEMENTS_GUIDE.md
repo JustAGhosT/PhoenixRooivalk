@@ -135,21 +135,25 @@
 **Control Groups:**
 
 1. **Primary Actions** (Left)
+
    - ⏸️/▶️ Pause/Resume
    - 🌊 Spawn Swarm (accent color)
    - +5 Threats
 
 2. **Environment Controls** (Center)
+
    - WAVE: Radio group (1-3)
    - WEATHER: ☀️🌧️🌫️🌙
    - TERRAIN: ✈️🏭👤🛡️
    - RULES: Conservative/Aggressive/Hybrid
 
 3. **View Controls** (Center-Right)
+
    - Zones switch [●/○]
    - Stats switch [●/○]
 
 4. **Utility Actions** (Right)
+
    - 🔬 Research
    - 🪙 Token Store
    - ❓ Help

@@ -147,6 +147,7 @@ While no new tests were added (per minimal changes requirement), the following
 should be tested:
 
 1. Visual regression tests for:
+
    - CapabilitiesSection
    - CredibilitySection
    - WhitepaperSection
@@ -154,6 +155,7 @@ should be tested:
    - UkraineChallengeSection
 
 2. Component tests for:
+
    - Card component with all color variants
    - FeatureCard component with className override
    - ResearchPanel filter functionality

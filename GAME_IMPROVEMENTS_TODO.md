@@ -8,6 +8,7 @@ on UI analysis and user feedback.
 ### **Critical Gameplay Issues**
 
 - [ ] **Fix Drone Path Animation**
+
   - **Problem**: Drone paths are currently "jumping" and unrealistic
   - **Impact**: Breaks immersion and credibility of simulation
   - **Fix**: Implement smooth interpolation between waypoints, realistic
@@ -16,6 +17,7 @@ on UI analysis and user feedback.
     functions
 
 - [ ] **Fix Drone Collision/Impact System**
+
   - **Problem**: Drones don't "crash" where they are supposed to
   - **Impact**: Unrealistic behavior undermines simulation accuracy
   - **Fix**: Implement proper collision detection and impact physics
@@ -32,6 +34,7 @@ on UI analysis and user feedback.
 ### **UI/UX Critical Issues**
 
 - [ ] **HUD Numbers Unlabeled/Outside Cards**
+
   - **Problem**: Four counters (Score, Threats, Neutralized, Level) are
     disconnected from simulator
   - **Fix**: Move labeled 4-tile HUD inside simulator card header
@@ -54,6 +57,7 @@ on UI analysis and user feedback.
   ```
 
 - [ ] **Controls Lack ARIA + Keyboard Semantics**
+
   - **Problem**: Weapon Systems visually single-select but coded like buttons
   - **Fix**: Implement proper radiogroup with keyboard navigation
 
@@ -66,6 +70,7 @@ on UI analysis and user feedback.
   ```
 
 - [ ] **Color-Blind Resilience on Radar**
+
   - **Problem**: Hostiles rely on red fill only
   - **Fix**: Use SVG elements with distinct shapes (circle, ring, triangle) and
     color as secondary cue
@@ -84,6 +89,7 @@ on UI analysis and user feedback.
   ```
 
 - [ ] **Reduced-Motion Not Enforced for Sweep**
+
   - **Problem**: Sweep line animates despite user preferences
   - **Fix**: Add prefers-reduced-motion media query
 
@@ -96,6 +102,7 @@ on UI analysis and user feedback.
   ```
 
 - [ ] **Ambiguous Environment Toggles**
+
   - **Problem**: "Clear, Military Base, Hybrid" are unclear
   - **Fix**: Split into labeled groups
 
@@ -106,6 +113,7 @@ on UI analysis and user feedback.
   ```
 
 - [ ] **Energy System Unclear**
+
   - **Problem**: Shows cost but not budget or remaining energy
   - **Fix**: Add budget bar with remaining energy display
 
@@ -121,11 +129,13 @@ on UI analysis and user feedback.
 ### **Enhanced Gameplay Features**
 
 - [ ] **Dynamic Threat Scaling**
+
   - **Problem**: Static threat patterns don't scale with player skill
   - **Fix**: Implement adaptive difficulty based on performance metrics
   - **Code**: Add `difficultyManager.ts` with ML-based threat adjustment
 
 - [ ] **Multi-Wave Defense Scenarios**
+
   - **Problem**: Single-threat scenarios lack depth
   - **Fix**: Add complex multi-wave scenarios with different threat types
   - **Code**: Add `scenarioEngine.ts` with predefined and procedural scenarios
@@ -139,6 +149,7 @@ on UI analysis and user feedback.
 ### **UI/UX Improvements**
 
 - [ ] **Event Feed Enhancement**
+
   - **Problem**: Single "System initialized" line with no detail
   - **Fix**: Rich event feed with timestamps, severity, and details
 
@@ -148,11 +159,13 @@ on UI analysis and user feedback.
   ```
 
 - [ ] **Button Priority & Placement**
+
   - **Problem**: Reset sits among other actions with accidental click risk
   - **Fix**: Keep Spawn Swarm as only orange; move Reset far right with
     confirmation
 
 - [ ] **Toggle Ambiguity Fix**
+
   - **Problem**: "Show Zones/Show Stats" look like buttons
   - **Fix**: Use switches with visible state indication
 
@@ -161,10 +174,12 @@ on UI analysis and user feedback.
   ```
 
 - [ ] **Target-Size & Spacing**
+
   - **Problem**: Controls <44px touch target; inconsistent padding
   - **Fix**: Minimum 44×44px clickable area; consistent 12-14px internal padding
 
 - [ ] **Radar Scale & Labels**
+
   - **Problem**: Range labels faint; no distance legend
   - **Fix**: Label 2 rings (400m / 800m) with muted blue and 1px halo
 
@@ -182,6 +197,7 @@ on UI analysis and user feedback.
 ### **Visual Improvements**
 
 - [ ] **Selected Weapon Outline Too Neon**
+
   - **Fix**: Border #ff3b00 at 70% + 1px inset
 
   ```css
@@ -192,9 +208,11 @@ on UI analysis and user feedback.
   ```
 
 - [ ] **Sidebars Symmetry**
+
   - **Fix**: Enforce equal widths and matching paddings
 
 - [ ] **Pointer Affordances**
+
   - **Fix**: cursor: pointer for interactive; cursor: not-allowed for disabled
 
 - [ ] **Legend/Help Overlay**
@@ -203,11 +221,13 @@ on UI analysis and user feedback.
 ### **Advanced Features**
 
 - [ ] **Threat Intelligence System**
+
   - **Problem**: No learning from previous engagements
   - **Fix**: Add threat pattern recognition and predictive targeting
   - **Code**: Add `threatIntelligence.ts` with pattern analysis
 
 - [ ] **Environmental Effects**
+
   - **Problem**: Weather/terrain don't affect gameplay
   - **Fix**: Implement weather-based visibility and weapon effectiveness
   - **Code**: Add `environmentalEffects.ts` with weather modifiers
@@ -222,18 +242,22 @@ on UI analysis and user feedback.
 ### **Performance & Engineering**
 
 - [ ] **RequestAnimationFrame Gating**
+
   - **Fix**: Pause updates when document.hidden or offscreen
   - **Code**: Add `IntersectionObserver` and `document.hidden` checks
 
 - [ ] **Node Pooling**
+
   - **Fix**: Reuse SVG blip nodes instead of create/destroy
   - **Code**: Add `blipPool.ts` with object pooling
 
 - [ ] **Hit Areas Optimization**
+
   - **Fix**: Restrict pointer events to interactive layers
   - **Code**: Add `pointer-events:none` on rings/labels
 
 - [ ] **State Management**
+
   - **Fix**: Single source of truth with running|paused|jammed states
   - **Code**: Add `gameStateManager.ts` with Redux-like pattern
 
@@ -244,16 +268,19 @@ on UI analysis and user feedback.
 ### **Advanced Gameplay**
 
 - [ ] **Mission Objectives System**
+
   - **Problem**: No clear goals or objectives
   - **Fix**: Add mission types with specific objectives
   - **Code**: Add `missionManager.ts` with objective tracking
 
 - [ ] **Resource Management**
+
   - **Problem**: Unlimited resources reduce strategic depth
   - **Fix**: Add ammunition limits, fuel consumption, maintenance cycles
   - **Code**: Add `resourceManager.ts` with consumption tracking
 
 - [ ] **Multiplayer Support**
+
   - **Problem**: Single-player only
   - **Fix**: Add cooperative multiplayer with shared threat board
   - **Code**: Add `multiplayerManager.ts` with WebSocket integration
@@ -333,12 +360,14 @@ src/components/
 ### **Resource Accumulation**
 
 - [x] **Token Economy Implementation**
+
   - **Problem**: No resource management or progression systems
   - **Impact**: Lack of long-term engagement and strategic depth
   - **Fix**: Implement token-based economy with research and unlock systems
   - **Code**: Add `resourceManager.ts` with token/research accumulation
 
 - [x] **Research & Development System**
+
   - **Problem**: No technology progression or unlock mechanics
   - **Impact**: Static gameplay without advancement incentives
   - **Fix**: Add research panel for gradual technology unlocks
@@ -353,12 +382,14 @@ src/components/
 ### **Progression Mechanics**
 
 - [x] **Starting Limitations**
+
   - **Problem**: All weapons/drones available from start
   - **Impact**: No learning curve or strategic resource management
   - **Fix**: Start with only 1 weapon type (kinetic) and 1 drone type (effector)
   - **Code**: Update default resource state and unlock requirements
 
 - [x] **Research Selection System**
+
   - **Problem**: No choice in technology development path
   - **Impact**: Linear progression without strategic decisions
   - **Fix**: Allow players to select research focus (effector vs drone)
@@ -373,6 +404,7 @@ src/components/
 ### **Performance-Based Rewards**
 
 - [x] **Dynamic Token Rewards**
+
   - **Problem**: No incentive for high performance
   - **Impact**: Lack of motivation for skill improvement
   - **Fix**: Award tokens based on score, threats neutralized, wave completion
@@ -387,6 +419,7 @@ src/components/
 ### **Advanced Gameplay Features**
 
 - [ ] **Effector Class Specialization**
+
   - **Problem**: Generic weapon effectiveness across all threats
   - **Impact**: Lack of tactical depth and real-world accuracy
   - **Fix**: Implement hard-kill, soft-kill, deception, denial classifications
@@ -394,6 +427,7 @@ src/components/
   - **Status**: Pending
 
 - [ ] **Legal Compliance Integration**
+
   - **Problem**: No consideration of real-world legal constraints
   - **Impact**: Unrealistic simulation and training value
   - **Fix**: Add legal flags and compliance requirements to effectors
@@ -414,6 +448,7 @@ src/components/
 ### **Research Depth**
 
 - [ ] **Multi-Stage Research**
+
   - **Problem**: Single-stage unlocks lack progression depth
   - **Impact**: Oversimplified technology advancement
   - **Fix**: Add multi-stage research (Basic → Advanced → Expert)
@@ -421,6 +456,7 @@ src/components/
   - **Status**: Pending
 
 - [ ] **Research Dependencies**
+
   - **Problem**: No technology prerequisites or dependencies
   - **Impact**: Unrealistic advancement paths
   - **Fix**: Add research tree with prerequisite technologies
@@ -437,6 +473,7 @@ src/components/
 ### **Specialization Paths**
 
 - [ ] **Doctrine Selection**
+
   - **Problem**: No strategic doctrine or approach selection
   - **Impact**: Missing high-level strategic decisions
   - **Fix**: Add doctrine selection (Kinetic Focus, Electronic Warfare, etc.)

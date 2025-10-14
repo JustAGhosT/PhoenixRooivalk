@@ -20,6 +20,7 @@ The following secrets need to be configured in your GitHub repository settings:
 ## How to Set Up Secrets
 
 1. **Get your Netlify Personal Access Token:**
+
    - Go to
      [Netlify User Settings](https://app.netlify.com/user/applications#personal-access-tokens)
    - Click "New access token"
@@ -27,6 +28,7 @@ The following secrets need to be configured in your GitHub repository settings:
    - Copy the generated token
 
 2. **Get your Netlify Site IDs:**
+
    - Go to your Netlify dashboard
    - Select the site you want to deploy
    - Go to Site Settings → General → Site details

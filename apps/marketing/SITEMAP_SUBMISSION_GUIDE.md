@@ -27,10 +27,12 @@ You should see XML content with all your pages listed.
 ### Step 2: Submit to Google Search Console
 
 1. **Sign up / Log in**
+
    - Go to: https://search.google.com/search-console
    - Sign in with Google account
 
 2. **Add Property**
+
    - Click "Add Property"
    - Select "URL prefix"
    - Enter: `https://phoenixrooivalk.netlify.app`
@@ -39,18 +41,21 @@ You should see XML content with all your pages listed.
 3. **Verify Ownership** (Choose one method):
 
    **Option A: HTML File Upload** (Easiest for Netlify)
+
    - Download the verification file (e.g., `google123abc.html`)
    - Place in `apps/marketing/public/`
    - Commit and deploy
    - Click "Verify" in Search Console
 
    **Option B: DNS Verification** (Recommended for long-term)
+
    - Copy the TXT record provided
    - Add to your DNS settings (where you manage phoenixrooivalk.netlify.app)
    - Wait 5-10 minutes for DNS propagation
    - Click "Verify"
 
 4. **Submit Sitemap**
+
    - Once verified, go to "Sitemaps" in left sidebar
    - Enter: `sitemap.xml`
    - Click "Submit"
@@ -64,6 +69,7 @@ You should see XML content with all your pages listed.
 ### Step 3: Submit to Bing Webmaster Tools
 
 1. **Sign up / Log in**
+
    - Go to: https://www.bing.com/webmasters
    - Sign in with Microsoft account
 
@@ -71,11 +77,13 @@ You should see XML content with all your pages listed.
    - Click "Add Site"
    - Enter: `https://phoenixrooivalk.netlify.app`
 3. **Import from Google** (Fastest)
+
    - Click "Import from Google Search Console"
    - Authorize connection
    - Your site and sitemap will be imported automatically
 
    **OR Verify Manually**:
+
    - Choose verification method (XML file, meta tag, or DNS)
    - Follow similar steps as Google
 
@@ -185,11 +193,13 @@ For important pages you want indexed quickly:
 ## Defense Industry Specific Tips
 
 1. **ITAR-Controlled Content**
+
    - Add `Disallow:` rules in robots.txt for sensitive pages
    - Use authentication for technical specifications
    - Don't index classified information
 
 2. **Government Buyers**
+
    - Optimize for .mil and .gov search patterns
    - Target keywords like "counter-drone", "C-UAS", "autonomous defense"
    - Include case studies and compliance information

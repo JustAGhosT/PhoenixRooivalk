@@ -237,6 +237,7 @@ RESEARCH ORGANIZATION STRUCTURE:
 The assistant should organize findings using this framework:
 
 1. Comprehensive Technology Taxonomy:
+
    - Battery chemistry classification with performance matrices
    - Power management system architectures by application
    - Charging infrastructure categories and capabilities
@@ -244,6 +245,7 @@ The assistant should organize findings using this framework:
    - Segment by military, industrial, and racing with clear differentiation
 
 2. Quantitative Performance Data:
+
    - Energy density comparisons (Wh/kg, Wh/L)
    - Discharge rate capabilities with real-world validation
    - Cycle life data with degradation curves
@@ -253,6 +255,7 @@ The assistant should organize findings using this framework:
    - Flight time calculations with worked examples
 
 3. Competitive Technology Analysis:
+
    - Head-to-head comparisons of competing battery chemistries
    - Power management system feature matrices
    - Charging technology efficiency and speed comparisons
@@ -260,6 +263,7 @@ The assistant should organize findings using this framework:
    - Trade-off analysis (performance vs safety vs cost vs weight)
 
 4. Market Leadership and Technological Approaches:
+
    - Defense sector: leading contractors and their proprietary systems
    - Industrial sector: commercial manufacturers and their product strategies
    - Racing sector: component manufacturers and performance leaders
@@ -267,6 +271,7 @@ The assistant should organize findings using this framework:
    - Intellectual property landscape
 
 5. Emerging Innovations and Impact Assessment:
+
    - Technology readiness levels (TRL) for emerging systems
    - Commercialization timelines with confidence intervals
    - Performance improvement projections
@@ -274,6 +279,7 @@ The assistant should organize findings using this framework:
    - Disruptive potential assessment by sector
 
 6. Technology Gaps and Engineering Challenges:
+
    - Current performance limitations by application
    - Unsolved technical problems (energy density ceiling, fast charging
      limitations, cold weather performance)
@@ -283,6 +289,7 @@ The assistant should organize findings using this framework:
    - Sector-specific unmet requirements
 
 7. Cost Analysis and Business Considerations:
+
    - Acquisition cost per unit
    - Total cost of ownership models (including replacement cycles)
    - Operational cost per flight hour

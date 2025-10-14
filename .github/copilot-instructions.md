@@ -182,6 +182,7 @@ pub fn validate_deployment(
 ### Visual Hierarchy
 
 1. **Typography Scale**
+
    - Headings: 3rem/2.5rem/2rem/1.5rem/1.25rem
    - Body: 1rem (16px)
    - Small: 0.875rem (14px)

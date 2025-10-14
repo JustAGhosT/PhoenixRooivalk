@@ -241,6 +241,7 @@ RESEARCH ORGANIZATION FRAMEWORK:
 Structure your findings according to the following systematic approach:
 
 1. **Comprehensive Technology Taxonomy:**
+
    - Categorize ESC architectures by control method, semiconductor technology,
      and power rating
    - Segment by application domain: military (tactical, strategic, swarm),
@@ -248,6 +249,7 @@ Structure your findings according to the following systematic approach:
    - Create hierarchical classification of features and capabilities
 
 2. **Quantitative Technical Specifications:**
+
    - Voltage ranges: continuous and peak ratings
    - Current capabilities: continuous, burst, and thermal limits
    - Switching frequencies and efficiency curves
@@ -258,6 +260,7 @@ Structure your findings according to the following systematic approach:
      tolerance
 
 3. **Comparative Technology Analysis:**
+
    - Head-to-head comparisons using objective performance metrics
    - Efficiency measurements across operating ranges
    - Reliability data: MTBF, failure rates, warranty claims
@@ -265,6 +268,7 @@ Structure your findings according to the following systematic approach:
    - Technology readiness levels (TRL) for emerging solutions
 
 4. **Market Leadership Assessment:**
+
    - Defense sector: prime contractors, specialized suppliers, emerging players
    - Commercial/industrial: market share leaders, technology innovators,
      regional specialists
@@ -272,6 +276,7 @@ Structure your findings according to the following systematic approach:
    - Technological differentiation strategies and competitive advantages
 
 5. **Emerging Innovation Identification:**
+
    - Wide-bandgap semiconductors: GaN and SiC adoption trajectories
    - Advanced control algorithms: model predictive control, AI-enhanced
      optimization
@@ -282,6 +287,7 @@ Structure your findings according to the following systematic approach:
    - Quantum sensing for position/velocity feedback (future horizon)
 
 6. **Technology Gap Analysis:**
+
    - Unsolved challenges in high-temperature operation (>150°C junction
      temperatures)
    - Reliability limitations in high-vibration environments
@@ -290,6 +296,7 @@ Structure your findings according to the following systematic approach:
    - Supply chain vulnerabilities and single-source dependencies
 
 7. **Economic and Business Analysis:**
+
    - Component cost breakdowns and cost drivers
    - Volume pricing considerations and economies of scale
    - Total cost of ownership: acquisition, operation, maintenance, disposal

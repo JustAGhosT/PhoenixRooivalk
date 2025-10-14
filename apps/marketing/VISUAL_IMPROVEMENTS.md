@@ -269,8 +269,7 @@ enhancements, visual hierarchy, and conversion optimization.
 ```css
 /* Dynamic gradient backgrounds */
 .section-gradient-1 {
-  background:
-    radial-gradient(
+  background: radial-gradient(
       ellipse at top left,
       rgba(249, 115, 22, 0.15),
       transparent 50%
