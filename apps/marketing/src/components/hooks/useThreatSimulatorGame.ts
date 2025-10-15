@@ -15,7 +15,7 @@ import { spawnThreat } from "../utils/threatUtils";
 import { WaveManager } from "../utils/waveManager";
 
 interface UseThreatSimulatorGameProps {
-  gameRef: React.RefObject<HTMLElement>;
+  gameRef: React.RefObject<HTMLElement | null>;
   gameState: GameState;
   updateThreats: (threats: Threat[]) => void;
   addThreat: (threat: Threat) => void;
