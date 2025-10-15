@@ -106,7 +106,7 @@ export const ExitIntentModal: FC<ExitIntentModalProps> = ({ docsUrl }) => {
     setIsVisible(false);
   };
 
-  const handleBackdropClick = (e: React.MouseEvent<HTMLDivElement>) => {
+  const handleBackdropClick = (e: ReactMouseEvent<HTMLDivElement>) => {
     if (e.target === e.currentTarget) {
       e.preventDefault();
       handleClose();
@@ -117,9 +117,11 @@ export const ExitIntentModal: FC<ExitIntentModalProps> = ({ docsUrl }) => {
 
   return createPortal(
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+      {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */}
       <div
         className="fixed inset-0 bg-black bg-opacity-50 transition-opacity duration-300"
         onClick={handleBackdropClick}
+        aria-hidden="true"
       />
       <div
         ref={dialogRef}
