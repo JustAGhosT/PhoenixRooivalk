@@ -320,7 +320,7 @@ impl JobProviderExt for SqliteJobProvider {
             let cap: i64 = 300000; // 5m
             let exp: u32 = attempts.clamp(0, 20) as u32;
             let backoff = (base.saturating_mul(2i64.pow(exp))).min(cap);
-            let jitter = rand::thread_rng().gen_range(0..1000);
+            let jitter = rand::rng().random_range(0..1000);
             let next = now_ms + backoff + jitter;
             sqlx::query(
                 "UPDATE outbox_jobs SET status='queued', last_error=?1, updated_ms=?2, next_attempt_ms=?3 WHERE id=?4",

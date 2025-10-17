@@ -337,7 +337,7 @@ async fn test_get_evidence_endpoint() {
     // Insert a test job directly into the database
     let job_id = "test-job-123";
     let now = chrono::Utc::now().timestamp_millis();
-    
+
     sqlx::query(
         "INSERT INTO outbox_jobs (id, payload_sha256, status, attempts, last_error, created_ms, updated_ms)
          VALUES (?, ?, ?, ?, ?, ?, ?)",
@@ -406,21 +406,21 @@ async fn test_get_evidence_not_found() {
         .await
         .unwrap();
 
-    // Get the response status 
+    // Get the response status
     let status = response.status();
-    
+
     // Read response body fully before aborting server to avoid race condition
     let response_text = response.text().await.unwrap();
-    
+
     // Clean up server after response is fully read
     server.abort();
-    
+
     // Check the response based on status code
     if status == 200 {
         // For 200 OK, parse the JSON and verify the error message
         let result: serde_json::Value = serde_json::from_str(&response_text)
             .unwrap_or_else(|_| panic!("Failed to parse response: {}", response_text));
-            
+
         assert!(
             result["error"].is_string(),
             "Expected error field in response: {}",

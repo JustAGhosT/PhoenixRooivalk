@@ -67,12 +67,12 @@ impl ParticleSystem {
 
     /// Create explosion particles at position
     pub fn create_explosion(&mut self, position: Vector2, intensity: f32, color: ParticleColor) {
-        let mut rng = rand::thread_rng();
+        let mut rng = rand::rng();
         let particle_count = (20.0 * intensity) as usize;
 
         for _ in 0..particle_count {
-            let angle = rng.gen::<f32>() * 2.0 * std::f32::consts::PI;
-            let speed = rng.gen::<f32>() * 200.0 * intensity;
+            let angle = rng.random::<f32>() * 2.0 * std::f32::consts::PI;
+            let speed = rng.random::<f32>() * 200.0 * intensity;
 
             let velocity = Vector2::new(angle.cos() * speed, angle.sin() * speed);
 
@@ -80,11 +80,11 @@ impl ParticleSystem {
                 id: format!("particle-{}", self.next_id),
                 position,
                 velocity,
-                size: rng.gen::<f32>() * 5.0 + 2.0,
+                size: rng.random::<f32>() * 5.0 + 2.0,
                 life: 1.0,
                 max_life: 1.0,
-                rotation: rng.gen::<f32>() * 360.0,
-                rotation_speed: (rng.gen::<f32>() - 0.5) * 720.0,
+                rotation: rng.random::<f32>() * 360.0,
+                rotation_speed: (rng.random::<f32>() - 0.5) * 720.0,
                 color,
                 particle_type: ParticleType::Explosion,
             });
@@ -113,22 +113,22 @@ impl ParticleSystem {
 
     /// Create debris particles (for destroyed entities)
     pub fn create_debris(&mut self, position: Vector2, count: usize) {
-        let mut rng = rand::thread_rng();
+        let mut rng = rand::rng();
 
         for _ in 0..count {
-            let angle = rng.gen::<f32>() * 2.0 * std::f32::consts::PI;
-            let speed = rng.gen::<f32>() * 150.0 + 50.0;
+            let angle = rng.random::<f32>() * 2.0 * std::f32::consts::PI;
+            let speed = rng.random::<f32>() * 150.0 + 50.0;
 
             self.particles.push(Particle {
                 id: format!("particle-{}", self.next_id),
                 position,
                 velocity: Vector2::new(angle.cos() * speed, angle.sin() * speed),
-                size: rng.gen::<f32>() * 4.0 + 1.0,
-                life: rng.gen::<f32>() * 1.5 + 0.5,
+                size: rng.random::<f32>() * 4.0 + 1.0,
+                life: rng.random::<f32>() * 1.5 + 0.5,
                 max_life: 2.0,
-                rotation: rng.gen::<f32>() * 360.0,
-                rotation_speed: (rng.gen::<f32>() - 0.5) * 360.0,
-                color: if rng.gen::<bool>() {
+                rotation: rng.random::<f32>() * 360.0,
+                rotation_speed: (rng.random::<f32>() - 0.5) * 360.0,
+                color: if rng.random::<bool>() {
                     ParticleColor::Orange
                 } else {
                     ParticleColor::Red

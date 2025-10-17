@@ -52,6 +52,7 @@ export const ThreatSimulator: React.FC<ThreatSimulatorProps> = ({
   >("full");
   const [isClient, setIsClient] = useState(false);
 
+  // Client-only rendering flag for Next.js hydration
   useEffect(() => {
     setIsClient(true);
   }, []);

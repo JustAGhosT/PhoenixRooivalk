@@ -197,11 +197,11 @@ impl WaveManager {
 
     /// Create a single threat (static method to avoid borrow issues)
     fn create_threat(threat_type: ThreatType, current_wave: u32) -> Threat {
-        let mut rng = rand::thread_rng();
+        let mut rng = rand::rng();
         let scaling = Self::calculate_difficulty_scaling(current_wave);
 
         // Random spawn position on edge of map
-        let angle = rng.gen::<f32>() * 2.0 * std::f32::consts::PI;
+        let angle = rng.random::<f32>() * 2.0 * std::f32::consts::PI;
         let spawn_radius = 800.0;
         let center = Vector2::new(960.0, 540.0);
 
@@ -237,7 +237,7 @@ impl WaveManager {
         };
 
         Threat {
-            id: format!("threat-{}-{}", current_wave, rng.gen::<u32>()),
+            id: format!("threat-{}-{}", current_wave, rng.random::<u32>()),
             threat_type,
             position,
             velocity,

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { FilterChips } from "../components/FilterChips";
 import { InfoPopover } from "../components/InfoPopover";
 import { LegalBadge } from "../components/LegalBadge";
@@ -24,46 +24,50 @@ const ThreatSimulatorDemo: React.FC = () => {
   );
   const [isClient, setIsClient] = useState(false);
 
+  // Client-only rendering flag for Next.js hydration
   useEffect(() => {
     setIsClient(true);
   }, []);
 
-  // Demo data for component showcase
-  const demoTargets: RadarTarget[] = [
-    {
-      id: "TGT-001",
-      type: "hostile",
-      position: { x: 150, y: 200 },
-      distance: 250,
-      bearing: 45,
-      speed: 15,
-      altitude: 100,
-      confidence: 0.85,
-      lastUpdate: Date.now(),
-    },
-    {
-      id: "TGT-002",
-      type: "unknown",
-      position: { x: -100, y: 150 },
-      distance: 180,
-      bearing: 135,
-      speed: 8,
-      altitude: 50,
-      confidence: 0.65,
-      lastUpdate: Date.now(),
-    },
-    {
-      id: "TGT-003",
-      type: "friendly",
-      position: { x: 80, y: -120 },
-      distance: 144,
-      bearing: 315,
-      speed: 12,
-      altitude: 75,
-      confidence: 0.95,
-      lastUpdate: Date.now(),
-    },
-  ];
+  // Demo data for component showcase - memoize to avoid Date.now() issues
+  const demoTargets: RadarTarget[] = useMemo(() => {
+    const now = Date.now();
+    return [
+      {
+        id: "TGT-001",
+        type: "hostile",
+        position: { x: 150, y: 200 },
+        distance: 250,
+        bearing: 45,
+        speed: 15,
+        altitude: 100,
+        confidence: 0.85,
+        lastUpdate: now,
+      },
+      {
+        id: "TGT-002",
+        type: "unknown",
+        position: { x: -100, y: 150 },
+        distance: 180,
+        bearing: 135,
+        speed: 8,
+        altitude: 50,
+        confidence: 0.65,
+        lastUpdate: now,
+      },
+      {
+        id: "TGT-003",
+        type: "friendly",
+        position: { x: 80, y: -120 },
+        distance: 144,
+        bearing: 315,
+        speed: 12,
+        altitude: 75,
+        confidence: 0.95,
+        lastUpdate: now,
+      },
+    ];
+  }, []);
 
   const demoDeployments: FriendlyDeployment[] = [
     {
