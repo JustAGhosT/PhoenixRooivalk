@@ -49,31 +49,27 @@ async fn test_build_app_with_fallback_url() {
     // Using in-memory database for reliability in tests
     let db_url = "sqlite::memory:";
 
-    // Save original values
+    // First, remove API_DB_URL if it exists, then set KEEPER_DB_URL
     let original_api_url = std::env::var("API_DB_URL").ok();
-    let original_keeper_url = std::env::var("KEEPER_DB_URL").ok();
-
-    std::env::set_var("KEEPER_DB_URL", db_url);
     std::env::remove_var("API_DB_URL");
 
-    // Build app
-    let (_app, pool) = build_app().await.unwrap();
+    with_env_var("KEEPER_DB_URL", db_url, || async {
+        // Build app
+        let (_app, pool) = build_app().await.unwrap();
 
-    // App should be created (Router doesn't have routes() method in axum 0.7)
-    // Just verify the app was created successfully
+        // App should be created (Router doesn't have routes() method in axum 0.7)
+        // Just verify the app was created successfully
 
-    // Pool should be connected
-    let result = sqlx::query("SELECT 1").fetch_one(&pool).await;
-    assert!(result.is_ok());
+        // Pool should be connected
+        let result = sqlx::query("SELECT 1").fetch_one(&pool).await;
+        assert!(result.is_ok());
+    })
+    .await;
 
-    // Restore original values
+    // Restore original API_DB_URL if it existed
     match original_api_url {
         Some(val) => std::env::set_var("API_DB_URL", val),
         None => std::env::remove_var("API_DB_URL"),
-    }
-    match original_keeper_url {
-        Some(val) => std::env::set_var("KEEPER_DB_URL", val),
-        None => std::env::remove_var("KEEPER_DB_URL"),
     }
 }
 
