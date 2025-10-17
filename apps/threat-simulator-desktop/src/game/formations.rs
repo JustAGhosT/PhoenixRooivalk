@@ -312,7 +312,7 @@ impl FormationManager {
 
     fn calculate_swarm_positions(&mut self, formation: &Formation, _count: usize) {
         use rand::Rng;
-        let mut rng = rand::thread_rng();
+        let mut rng = rand::rng();
 
         for drone_id in formation.drone_ids.iter() {
             // Check if drone already has a relative offset (for swarm persistence)
@@ -320,14 +320,14 @@ impl FormationManager {
                 // Use existing offset if available (prevents jumping when formation moves)
                 existing_pos.relative_offset.unwrap_or_else(|| {
                     // Generate new offset if existing position didn't have one
-                    let angle = rng.gen::<f32>() * 2.0 * std::f32::consts::PI;
-                    let distance = rng.gen::<f32>() * formation.radius;
+                    let angle = rng.random::<f32>() * 2.0 * std::f32::consts::PI;
+                    let distance = rng.random::<f32>() * formation.radius;
                     Vector2::new(distance * angle.cos(), distance * angle.sin())
                 })
             } else {
                 // New drone: generate random offset within radius
-                let angle = rng.gen::<f32>() * 2.0 * std::f32::consts::PI;
-                let distance = rng.gen::<f32>() * formation.radius;
+                let angle = rng.random::<f32>() * 2.0 * std::f32::consts::PI;
+                let distance = rng.random::<f32>() * formation.radius;
                 Vector2::new(distance * angle.cos(), distance * angle.sin())
             };
 
