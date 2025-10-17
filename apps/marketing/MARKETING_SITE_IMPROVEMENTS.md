@@ -511,7 +511,6 @@ export function getVariant(testName: string): "A" | "B" {
 #### Recommendations
 
 1. **Mobile-specific CTAs**
-
    - Click-to-call: `tel:+1-XXX-XXX-XXXX`
    - SMS lead capture:
      `sms:+1-XXX-XXX-XXXX?body=I'm interested in Phoenix Rooivalk`
