@@ -1,4 +1,4 @@
-import React, { useEffect, useId, useRef, useState } from "react";
+import React, { useCallback, useEffect, useId, useRef, useState } from "react";
 import styles from "./InfoPopover.module.css";
 
 interface InfoPopoverProps {
@@ -22,7 +22,7 @@ export const InfoPopover: React.FC<InfoPopoverProps> = ({
   const popoverRef = useRef<HTMLDivElement>(null);
   const uniqueId = useId();
 
-  const updatePosition = () => {
+  const updatePosition = useCallback(() => {
     if (triggerRef.current && popoverRef.current) {
       const rect = triggerRef.current.getBoundingClientRect();
       const popoverRect = popoverRef.current.getBoundingClientRect();
@@ -41,7 +41,7 @@ export const InfoPopover: React.FC<InfoPopoverProps> = ({
 
       setPosition({ x, y });
     }
-  };
+  }, []);
 
   useEffect(() => {
     if (isOpen) {
@@ -57,7 +57,7 @@ export const InfoPopover: React.FC<InfoPopoverProps> = ({
         window.removeEventListener("scroll", handleScroll, true);
       };
     }
-  }, [isOpen]);
+  }, [isOpen, updatePosition]);
 
   const handleMouseEnter = () => {
     setIsOpen(true);

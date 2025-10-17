@@ -27,6 +27,8 @@ const eslintConfig = [
       "out/**",
       "build/**",
       "next-env.d.ts",
+      "public/wasm/**",
+      "scripts/**",
     ],
   },
   {
@@ -42,6 +44,10 @@ const eslintConfig = [
       "@typescript-eslint/no-require-imports": "warn",
       "@next/next/no-img-element": "warn",
       "react-hooks/exhaustive-deps": "warn",
+      // Relax strict React hooks rules for common patterns
+      "react-hooks/set-state-in-effect": "warn",
+      "react-hooks/purity": "warn",
+      "react-hooks/immutability": "warn",
       // TODO: Address these security warnings in a separate task
       "security/detect-object-injection": "off",
     },

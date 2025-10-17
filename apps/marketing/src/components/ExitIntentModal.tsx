@@ -32,6 +32,20 @@ export const ExitIntentModal: React.FC<ExitIntentModalProps> = ({
     };
   }, [hasTriggered]);
 
+  const handleStayOnPage = () => {
+    setIsVisible(false);
+  };
+
+  const handleMaybeLater = () => {
+    setIsVisible(false);
+  };
+
+  const handleDownloadNow = (e: React.MouseEvent) => {
+    e.preventDefault();
+    downloadWhitepaper(docsUrl);
+    setIsVisible(false);
+  };
+
   // Focus and scroll management
   useEffect(() => {
     if (!isVisible) return;
@@ -63,20 +77,6 @@ export const ExitIntentModal: React.FC<ExitIntentModalProps> = ({
       window.removeEventListener("keydown", onKeyDown);
     };
   }, [isVisible]);
-
-  const handleMaybeLater = () => {
-    setIsVisible(false);
-  };
-
-  const handleDownloadNow = (e: React.MouseEvent) => {
-    e.preventDefault();
-    downloadWhitepaper(docsUrl);
-    setIsVisible(false);
-  };
-
-  const handleStayOnPage = () => {
-    setIsVisible(false);
-  };
 
   if (!isVisible) return null;
 

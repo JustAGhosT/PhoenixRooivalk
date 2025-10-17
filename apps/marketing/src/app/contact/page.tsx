@@ -1,20 +1,18 @@
 "use client";
 import Link from "next/link";
 import * as React from "react";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Footer } from "../../components/Footer";
 import { Navigation } from "../../components/Navigation";
 import styles from "./contact.module.css";
 
 export default function ContactPage(): React.ReactElement {
-  const [email, setEmail] = useState("");
-
   // Obfuscate email at render time to prevent scraping
-  useEffect(() => {
+  const [email] = useState(() => {
     const user = "smit.jurie";
     const domain = "gmail.com";
-    setEmail(`${user}@${domain}`);
-  }, []);
+    return `${user}@${domain}`;
+  });
 
   const handleEmailClick = (subject?: string, body?: string) => {
     if (!email) return;

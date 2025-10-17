@@ -1,5 +1,4 @@
 "use client";
-import Link from "next/link";
 import * as React from "react";
 import { Footer } from "../../../components/Footer";
 import { Navigation } from "../../../components/Navigation";
