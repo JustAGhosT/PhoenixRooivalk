@@ -170,13 +170,11 @@ Step-by-step action guide for:
 ### Immediate (This Week)
 
 1. **Install Analytics** ⚠️ CRITICAL
-
    - Sign up for Plausible Analytics
    - Add tracking script to layout.tsx
    - Verify events are firing
 
 2. **Create OG Images** ⚠️ HIGH PRIORITY
-
    - Design 1200x630 Open Graph image
    - Create Twitter Card version
    - Update metadata with image paths
@@ -189,14 +187,12 @@ Step-by-step action guide for:
 ### Week 2-3
 
 4. **Accessibility Testing**
-
    - Run axe DevTools audit
    - Test with screen readers
    - Verify keyboard navigation
    - Check color contrast
 
 5. **Content Creation**
-
    - Write first blog post
    - Create case study template
    - Record demo video

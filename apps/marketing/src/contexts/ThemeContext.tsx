@@ -24,15 +24,19 @@ interface ThemeProviderProps {
 }
 
 export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
-  const [theme, setTheme] = useState<Theme>("phoenix");
+  const [theme, setTheme] = useState<Theme>(() => {
+    if (typeof window !== "undefined") {
+      const savedTheme = localStorage.getItem("phoenix-theme") as Theme | null;
+      if (savedTheme && (savedTheme === "phoenix" || savedTheme === "blue")) {
+        return savedTheme;
+      }
+    }
+    return "phoenix";
+  });
   const [mounted, setMounted] = useState(false);
 
-  // Load theme from localStorage on mount
+  // Mark as mounted
   useEffect(() => {
-    const savedTheme = localStorage.getItem("phoenix-theme") as Theme | null;
-    if (savedTheme && (savedTheme === "phoenix" || savedTheme === "blue")) {
-      setTheme(savedTheme);
-    }
     setMounted(true);
   }, []);
 

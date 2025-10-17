@@ -7,7 +7,7 @@ import type {
 } from "../../types/game";
 
 interface UseThreatSimulatorEventsProps {
-  gameRef: React.RefObject<HTMLElement>;
+  gameRef: React.RefObject<HTMLElement | null>;
   gameState: GameState;
   updateThreats: (threats: Threat[]) => void;
   addThreat: (threat: Threat) => void;

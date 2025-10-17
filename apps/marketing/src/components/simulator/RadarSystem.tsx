@@ -53,7 +53,7 @@ export const RadarSystem: React.FC<RadarSystemProps> = ({
 
   // Animation state for sweep line
   const [sweepAngle, setSweepAngle] = useState(0);
-  const animationRef = useRef<number>();
+  const animationRef = useRef<number | undefined>(undefined);
 
   const getThreatColor = (type: ThreatType): string => {
     switch (type) {

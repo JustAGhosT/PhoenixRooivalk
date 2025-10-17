@@ -36,7 +36,7 @@ export const ThreatSimulator: React.FC<ThreatSimulatorProps> = ({
   autoFullscreen = false,
   demoMode = false,
 }): JSX.Element => {
-  const gameRef = useRef<HTMLDivElement>(null);
+  const gameRef = useRef<HTMLElement>(null);
   const [isResetting, _setIsResetting] = useState(false);
   const [showHelp, setShowHelp] = useState(false);
   const [showDetailedStats, setShowDetailedStats] = useState(false);
@@ -52,6 +52,7 @@ export const ThreatSimulator: React.FC<ThreatSimulatorProps> = ({
   >("full");
   const [isClient, setIsClient] = useState(false);
 
+  // Client-only rendering flag for Next.js hydration
   useEffect(() => {
     setIsClient(true);
   }, []);
