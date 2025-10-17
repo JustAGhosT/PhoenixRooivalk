@@ -32,9 +32,7 @@ describe("StickyHeader", () => {
     render(<StickyHeader isVisible={true} />);
 
     expect(screen.getByText("Phoenix Rooivalk")).toBeInTheDocument();
-    expect(
-      screen.getByText(/Counter-UAS Defense System/),
-    ).toBeInTheDocument();
+    expect(screen.getByText(/Counter-UAS Defense System/)).toBeInTheDocument();
     expect(screen.getByText("Schedule Demo")).toBeInTheDocument();
   });
 
@@ -104,7 +102,11 @@ describe("StickyHeader", () => {
     render(<StickyHeader isVisible={true} />);
 
     const brandText = screen.getByText("Phoenix Rooivalk");
-    expect(brandText).toHaveClass("text-[var(--primary)]", "font-bold", "text-base");
+    expect(brandText).toHaveClass(
+      "text-[var(--primary)]",
+      "font-bold",
+      "text-base",
+    );
 
     // The description might be hidden on small screens
     const descriptionText = screen.getByText(/Counter-UAS Defense System/);
